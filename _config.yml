@@ -9,6 +9,7 @@ description: 豪翔天下的博客,haoflynet,haofly
 author: haofly
 language: zh-CN
 timezone: Asia/Chongqing
+email: haoflynet@gmail.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -25,7 +26,6 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render: [favorites.html]
 
 # Writing
 new_post_name: :title.md # File name of new posts

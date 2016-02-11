@@ -22,6 +22,9 @@ menu:
   - page: 我的收藏
     directory: favorites.html
     icon: icon-archive
+  - page: 我的wiki
+    directory: https://github.com/haoflynet/wiki
+    icon: icon-archive
   - page: rss
     directory: atom.xml
     icon: icon-rss
