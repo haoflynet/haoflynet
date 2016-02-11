@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>使用Virtualenv搭建Python3的Django环境 | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">使用Virtualenv搭建Python3的Django环境</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">使用Virtualenv搭建Python3的Django环境</h1><div class="post-meta">2015-01-24<span class="categories"> | 分类于<a href="/categories/编程之路/"> 编程之路</a></span></div><span data-disqus-identifier="2015/01/24/virtualenv-python-django/" class="disqus-comment-count"></span><div class="post-content"><p>Virtualenv可用于创建独立的Python环境，在这些环境里面可以选择不同的Python版本或者不同的Packages，并且可以在没有root权限的情<br>况下在环境里安装新套件，互相不会产生任何的影响。  </p>
+<p>以下就是使用Virtualenv搭建Python3.4+Django1.7.4的过程：</p>
+<h2 id="u51C6_u5907_u5DE5_u4F5C"><a href="#u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="准备工作"></a>准备工作</h2><p>安装Virtualenv和Python3(因为有些Linux发行版默认没有安装Python3的)</p>
+<pre><code>sudo pip install virtualenv
+sudo apt-get install python3
+</code></pre><h2 id="u5EFA_u7ACB_u4E00_u4E2A_u65B0_u7684_u5DE5_u4F5C_u73AF_u5883"><a href="#u5EFA_u7ACB_u4E00_u4E2A_u65B0_u7684_u5DE5_u4F5C_u73AF_u5883" class="headerlink" title="建立一个新的工作环境"></a>建立一个新的工作环境</h2><pre><code>virtualenv --no-site-packages --python=python3.4 test_env
+如果出现The executable python does not exist 错误，那么可以这样使用
+virtualenv --no-site-packages --python=3.4 test_env
+</code></pre><p>其中，–no-site-packages表示不包括系统全局的Python安装包，这样会更令环境更干净<br>\–python=python3.4指定Python的版本未系统已经安装了的Python3.4 test_env是建立的环境的名称</p>
+<h2 id="u8FDB_u5165_u73AF_u5883_u6D4B_u8BD5_u5E76_u5B89_u88C5Django"><a href="#u8FDB_u5165_u73AF_u5883_u6D4B_u8BD5_u5E76_u5B89_u88C5Django" class="headerlink" title="进入环境测试并安装Django"></a>进入环境测试并安装Django</h2><p>使用<code>source test_env/bin/activate</code>命令进入开发环境，然后查看Python版本，再使用<code>pip install
+django</code>安装django</p>
+<pre><code>➜  virtualenv    
+
+➜  virtualenv  ls
+test_env
+➜  virtualenv  source test_env/bin/activate  # 如果是windows则是source test_env/Script/activate
+(test_env)➜  virtualenv  python
+Python 3.4.0 (default, Apr 11 2014, 13:05:11)
+[GCC 4.8.2] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import django
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ImportError: No module named &apos;django&apos;
+&gt;&gt;&gt; exit()
+(test_env)➜  virtualenv  pip install django
+Collecting django
+  Using cached Django-1.7.3-py2.py3-none-any.whl
+Installing collected packages: django
+
+
+
+
+Successfully installed django-1.7.3
+(test_env)➜  virtualenv  python
+Python 3.4.0 (default, Apr 11 2014, 13:05:11)
+[GCC 4.8.2] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import django
+&gt;&gt;&gt;
+</code></pre><p><code>import django</code>没有发生错误，证明已经成功安装Django了</p>
+<h2 id="u5F00_u59CB_u7B2C_u4E00_u4E2ADjango_app"><a href="#u5F00_u59CB_u7B2C_u4E00_u4E2ADjango_app" class="headerlink" title="开始第一个Django app"></a>开始第一个Django app</h2><pre><code>(test_env)➜  virtualenv  django-admin startproject mysite
+(test_env)➜  virtualenv  ls
+mysite  test_env
+(test_env)➜  virtualenv  cd mysite     
+
+(test_env)➜  mysite  python manage.py runserver
+Performing system checks...
+
+
+
+
+System check identified no issues (0 silenced).
+
+
+
+
+You have unapplied migrations; your app may not work properly until they are applied.
+Run &apos;python manage.py migrate&apos; to apply them.
+
+
+
+
+January 24, 2015 - 14:52:09
+Django version 1.7.3, using settings &apos;mysite.settings&apos;
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[24/Jan/2015 14:52:17] &quot;GET / HTTP/1.1&quot; 200 1759
+</code></pre><p>需要注意的是，新建的项目的文件夹mysite并不是仅仅存在在那个虚拟环境里，而是在实际的文件中，只是运行它使用的是虚拟的环境而已，不信呆会儿退出该虚拟环境后<br>，你可以用实体环境在该目录下测试。</p>
+<p>现在就可以直接访问<a href="http://127.0.0.1:8000，不需要端口映射，可直接访问，如下" target="_blank" rel="external">http://127.0.0.1:8000，不需要端口映射，可直接访问，如下</a>：</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://7xnc86.com1.z0.glb.clouddn.com/virtualenv-python-django_0.jpg" alt=""></h2><h2 id="u9000_u51FA_u865A_u62DF_u73AF_u5883"><a href="#u9000_u51FA_u865A_u62DF_u73AF_u5883" class="headerlink" title="退出虚拟环境"></a>退出虚拟环境</h2><p>最后退出，直接在该环境中使用<code>deactivate</code>命令即可退出</p>
+</div><a data-url="http://haofly.net/2015/01/24/virtualenv-python-django/" data-id="cikhyidba0013fmrx4o2r8ky6" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2015/02/08/front-end/" class="pre"><i class="icon-previous">我对前端的学习态度——浅尝辄止</i></a><a href="/2015/01/18/escape_class/" class="next">大三了，谈谈对逃课、挂科的看法<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
+var disqus_identifier = '2015/01/24/virtualenv-python-django/';
+var disqus_title = '使用Virtualenv搭建Python3的Django环境';
+var disqus_url = 'http://haofly.net/2015/01/24/virtualenv-python-django/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/17/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/08/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/07/database-application-scenarios/">各种数据库的应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/python-requests/">Python Requests模块进行网页抓取详解</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>

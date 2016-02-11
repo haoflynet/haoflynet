@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>[转]函数式编程——CoolShell | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">[转]函数式编程——CoolShell</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">[转]函数式编程——CoolShell</h1><div class="post-meta">2015-07-25<span class="categories"> | 分类于<a href="/categories/韦编三绝/"> 韦编三绝</a></span></div><span data-disqus-identifier="2015/07/25/function-coding-coolshell/" class="disqus-comment-count"></span><div class="post-content"><p>原文地址：<a href="http://coolshell.cn/articles/10822.html" target="_blank" rel="external">http://coolshell.cn/articles/10822.html</a></p>
+<blockquote>
+<p>本篇文章写于2013年底，而今天我看来，依然是精华中的精华，就喜欢这种深入浅出的文章，带我们对函数式编程更深入的理解，并且本篇文章采用多种语言多种角度来<br>向我们讲解了到底什么才是函数式编程，再加上最近工作上很多的问题，才发现，其实公司之前的代码有很多优秀的地方。</p>
+</blockquote>
+<p>原文地址：<a href="http://coolshell.cn/articles/10822.html" target="_blank" rel="external">http://coolshell.cn/articles/10822.html</a></p>
+<blockquote>
+<p>本篇文章写于2013年底，而今天我看来，依然是精华中的精华，就喜欢这种深入浅出的文章，带我们对函数式编程更深入的理解，并且本篇文章采用多种语言多种角度来<br>向我们讲解了到底什么才是函数式编程，再加上最近工作上很多的问题，才发现，其实公司之前的代码有很多优秀的地方。</p>
+</blockquote>
+<p>当我们说起函数式编程来说，我们会看到如下函数式编程的长相：</p>
+<ul>
+<li><p>函数式编程的三大特性：<br><strong>immutable data 不可变数据</strong>：像Clojure一样，默认上变量是不可变的，如果你要改变变量，你需要把变量copy出去修改。这样一来，可以让你的程序少很多Bug。因为，程序中的状态不好维护，在并发的时候更不好维护。（你可以试想一下如果你的程序有个复杂的状态，当以后别人改你代码的时候，是很容易出bug的，在并行中这样的问题就更多了）<br><strong>first class functions</strong>：这个技术可以让你的函数就像变量一样来使用。也就是说，你的函数可以像变量一样被创建，修改，并当成变量一样传递，返回或是在函数中嵌套函数。这个有点像Javascript的Prototype（<a href="http://coolshell.cn/articles/6668.html" target="_blank" rel="external">参看Javascript的面向对象编程</a>）<br><strong>尾递归优化</strong>：我们知道递归的害处，那就是如果递归很深的话，stack受不了，并会导致性能大幅度下降。所以，我们使用尾递归优化技术——每次递归时都会重用stack，这样一来能够提升性能，当然，这需要语言或编译器的支持。Python就不支持。</p>
+</li>
+<li><p>函数式编程的几个技术<br><strong>map &amp; reduce</strong> ：这个技术不用多说了，函数式编程最常见的技术就是对一个集合做Map和Reduce操作。这比起过程式的语言来说，在代码上要更容易阅读。（传统过程式的语言需要使用for/while循环，然后在各种变量中把数据倒过来倒过去的）这个很像C++中的STL中的foreach，find_if，count_if之流的函数的玩法。<br><strong>pipeline</strong>：这个技术的意思是，把函数实例成一个一个的action，然后，把一组action放到一个数组或是列表中，然后把数据传给这个action list，数据就像一个pipeline一样顺序地被各个函数所操作，最终得到我们想要的结果。<br><strong>recursing 递归</strong> ：递归最大的好处就简化代码，他可以把一个复杂的问题用很简单的代码描述出来。注意：递归的精髓是描述问题，而这正是函数式编程的精髓。<br><strong>currying</strong>：把一个函数的多个参数分解成多个函数， 然后把函数多层封装起来，每层函数都返回一个函数去接收下一个参数这样，可以简化函数的多个参数。在C++中，这个很像STL中的bind_1st或是bind2nd。<br><strong>higher order function 高阶函数</strong>：所谓高阶函数就是函数当参数，把传入的函数做一个封装，然后返回这个封装函数。现象上就是函数传进传出，就像面向对象对象满天飞一样。</p>
+</li>
+<li>还有函数式的一些好处<br><strong>parallelization 并行</strong>：所谓并行的意思就是在并行环境下，各个线程之间不需要同步或互斥。<strong>lazy evaluation 惰性求值</strong>：这个需要编译器的支持。表达式不在它被绑定到变量之后就立即求值，而是在该值被取用的时候求值，也就是说，语句如x:=expression; (把一个表达式的结果赋值给一个变量)明显的调用这个表达式被计算并把结果放置到 x 中，但是先不管实际在 x 中的是什么，直到通过后面的表达式中到 x 的引用而有了对它的值的需求的时候，而后面表达式自身的求值也可以被延迟，最终为了生成让外界看到的某个符号而计算这个快速增长的依赖树。<strong>determinism 确定性</strong>：所谓确定性的意思就是像数学那样 f(x) = y ，这个函数无论在什么场景下，都会得到同样的结果，这个我们称之为函数的确定性。而不是像程序中的很多函数那样，同一个参数，却会在不同的场景下计算出不同的结果。所谓不同的场景的意思就是我们的函数会根据一些运行中的状态信息的不同而发生变化。</li>
+</ul>
+<p>上面的那些东西太抽象了，还是让我们来循序渐近地看一些例子吧。</p>
+<p>我们先用一个最简单的例子来说明一下什么是函数式编程。</p>
+<p>先看一个非函数式的例子：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>|</p>
+<p>int cnt;</p>
+<p>void increment(){</p>
+<p>cnt++;</p>
+<p>}  </p>
+<p>—|—  </p>
+<p>那么，函数式的应该怎么写呢？</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>|</p>
+<p>int increment(int cnt){</p>
+<p>return cnt+1;</p>
+<p>}  </p>
+<p>—|—  </p>
+<p>你可能会觉得这个例子太普通了。是的，这个例子就是函数式编程的准则：<strong>不依赖于外部的数据，而且也不改变外部数据的值，而是返回一个新的值给你</strong>。</p>
+<p>我们再来看一个简单例子：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>|</p>
+<p>def inc(x):</p>
+<p>def incx(y):</p>
+<p>return x+y</p>
+<p>return incx</p>
+<p>inc2 = inc(2)</p>
+<p>inc5 = inc(5)</p>
+<p>print inc2(5) # 输出 7</p>
+<p>print inc5(5) # 输出 10  </p>
+<p>—|—  </p>
+<p>我们可以看到上面那个例子inc()函数返回了另一个函数incx()，于是我们可以用inc()函数来构造各种版本的inc函数，比如：inc2()和inc5()<br>。这个技术其实就是上面所说的Currying技术。从这个技术上，你可能体会到函数式编程的理念：<strong>把函数当成变量来用，关注于描述问题而不是怎么实现</strong>，这样<br>可以让代码更易读。</p>
+<h2 id="Map__26amp_3B_Reduce"><a href="#Map__26amp_3B_Reduce" class="headerlink" title="Map &amp; Reduce"></a>Map &amp; Reduce</h2><p>在函数式编程中，我们不应该用循环迭代的方式，我们应该用更为高级的方法，如下所示的Python代码</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>|</p>
+<p>name_len = map(len, [“hao”, “chen”, “coolshell”])</p>
+<p>print name_len</p>
+<h1 id="u8F93_u51FA__5B3_2C_4_2C_9_5D"><a href="#u8F93_u51FA__5B3_2C_4_2C_9_5D" class="headerlink" title="输出 [3, 4, 9]"></a>输出 [3, 4, 9]</h1><p>—|—  </p>
+<p>你可以看到这样的代码很易读，因为，<strong>这样的代码是在描述要干什么，而不是怎么干</strong>。</p>
+<p>我们再来看一个Python代码的例子：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>|</p>
+<p>def toUpper(item):</p>
+<p>return item.upper()</p>
+<p>upper_name = map(toUpper, [“hao”, “chen”, “coolshell”])</p>
+<p>print upper_name</p>
+<h1 id="u8F93_u51FA__5B_u2018HAO_u2019_2C__u2018CHEN_u2019_2C__u2018COOLSHELL_u2019_5D"><a href="#u8F93_u51FA__5B_u2018HAO_u2019_2C__u2018CHEN_u2019_2C__u2018COOLSHELL_u2019_5D" class="headerlink" title="输出 [‘HAO’, ‘CHEN’, ‘COOLSHELL’]"></a>输出 [‘HAO’, ‘CHEN’, ‘COOLSHELL’]</h1><p>—|—  </p>
+<p>顺便说一下，上面的例子个是不是和我们的STL的transform有些像？</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>|</p>
+<p>#include <iostream></iostream></p>
+<p>#include <algorithm></algorithm></p>
+<p>#include <string></string></p>
+<p>using namespace std;</p>
+<p>int main() {</p>
+<p>string s=”hello”;</p>
+<p>string out;</p>
+<p>transform(s.begin(), s.end(), back_inserter(out), ::toupper);</p>
+<p>cout &lt;&lt; out &lt;&lt; endl;</p>
+<p>// 输出：HELLO</p>
+<p>}  </p>
+<p>—|—  </p>
+<p>在上面Python的那个例子中我们可以看到，我们写义了一个函数toUpper，这个函数没有改变传进来的值，只是把传进来的值做个简单的操作，然后返回。然后，我<br>们把其用在map函数中，就可以很清楚地描述出我们想要干什么。而不会去理解一个在循环中的怎么实现的代码，最终在读了很多循环的逻辑后才发现原来是这个或那个意思。<br>下面，我们看看描述实现方法的过程式编程是怎么玩的（看上去是不是不如函数式的清晰？）：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>|</p>
+<p>upname =[‘HAO’, ‘CHEN’, ‘COOLSHELL’]</p>
+<p>lowname =[]</p>
+<p>for i in range(len(upname)):</p>
+<p>lowname.append( upname[i].lower() )  </p>
+<p>—|—  </p>
+<p>对于map我们别忘了lambda表达式：你可以简单地理解为这是一个inline的匿名函数。下面的lambda表达式相当于：def func(x):<br>return x*x</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>|</p>
+<p>squares = map(lambda x: x * x, range(9))</p>
+<p>print squares</p>
+<h1 id="u8F93_u51FA__5B0_2C_1_2C_4_2C_9_2C_16_2C_25_2C_36_2C_49_2C_64_5D"><a href="#u8F93_u51FA__5B0_2C_1_2C_4_2C_9_2C_16_2C_25_2C_36_2C_49_2C_64_5D" class="headerlink" title="输出 [0, 1, 4, 9, 16, 25, 36, 49, 64]"></a>输出 [0, 1, 4, 9, 16, 25, 36, 49, 64]</h1><p>—|—  </p>
+<p>我们再来看看reduce怎么玩？（下面的lambda表达式中有两个参数，也就是说每次从列表中取两个值，计算结果后把这个值再放回去，下面的表达式相当于：(((<br>(1+2)+3)+4)+5) ）</p>
+<p>1</p>
+<p>2</p>
+<p>|</p>
+<p>print reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])</p>
+<h1 id="u8F93_u51FA_15"><a href="#u8F93_u51FA_15" class="headerlink" title="输出 15"></a>输出 15</h1><p>—|—  </p>
+<p>Python中的除了map和reduce外，还有一些别的如filter, find, all,<br>any的函数做辅助（其它函数式的语言也有），可以让你的代码更简洁，更易读。 我们再来看一个比较复杂的例子：</p>
+<p>计算数组中正数的平均值</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>13</p>
+<p>|</p>
+<p>num =[2, -5, 9, 7, -2, 5, 3, 1, 0, -3, 8]</p>
+<p>positive_num_cnt = 0</p>
+<p>positive_num_sum = 0</p>
+<p>for i in range(len(num)):</p>
+<p>if num[i] &gt; 0:</p>
+<p>positive_num_cnt += 1</p>
+<p>positive_num_sum += num[i]</p>
+<p>if positive_num_cnt &gt; 0:</p>
+<p>average = positive_num_sum / positive_num_cnt</p>
+<p>print average</p>
+<h1 id="u8F93_u51FA_5"><a href="#u8F93_u51FA_5" class="headerlink" title="输出 5"></a>输出 5</h1><p>—|—  </p>
+<p>如果用函数式编程，这个例子可以写成这样：</p>
+<p>1</p>
+<p>2</p>
+<p>|</p>
+<p>positive_num = filter(lambda x: x&gt;0, num)</p>
+<p>average = reduce(lambda x,y: x+y, positive_num) / len( positive_num )  </p>
+<p>—|—  </p>
+<p>C++11玩的法：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>|</p>
+<p>#include <iostream></iostream></p>
+<p>#include <algorithm></algorithm></p>
+<p>#include <numeric></numeric></p>
+<p>#include <string></string></p>
+<p>#include <vector></vector></p>
+<p>using namespace std;</p>
+<p>vector num {2, -5, 9, 7, -2, 5, 3, 1, 0, -3, 8};</p>
+<p>vector p_num;</p>
+<p>copy_if(num.begin(), num.end(&lt;span class=”crayon-sy” sty</p>
+</div><a data-url="http://haofly.net/2015/07/25/function-coding-coolshell/" data-id="cikhyidld005hfmrx57bnyhft" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2015/08/04/ssl-jks-to-pem/" class="pre"><i class="icon-previous">SSL各种格式证书的转换(JKS to PEM, KEY, CRT)</i></a><a href="/2015/07/18/apache-vs-nginx/" class="next">[转]Apache vs Nginx: Practical Considerations<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
+var disqus_identifier = '2015/07/25/function-coding-coolshell/';
+var disqus_title = '[转]函数式编程——CoolShell';
+var disqus_url = 'http://haofly.net/2015/07/25/function-coding-coolshell/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/17/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/08/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/07/database-application-scenarios/">各种数据库的应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/python-requests/">Python Requests模块进行网页抓取详解</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>

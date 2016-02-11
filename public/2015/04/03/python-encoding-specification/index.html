@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>Python编码及注释规范 | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Python编码及注释规范</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">Python编码及注释规范</h1><div class="post-meta">2015-04-03<span class="categories"> | 分类于<a href="/categories/编程之路/"> 编程之路</a></span></div><span data-disqus-identifier="2015/04/03/python-encoding-specification/" class="disqus-comment-count"></span><div class="post-content"><p>Python，我最喜欢的语言。但是，在其强大的功能以及强制的编码格式背后，也会引来一大波的编码方面的困扰，所以依然得需要进行一些规范化。</p>
+<h2 id="u6CE8_u91CA"><a href="#u6CE8_u91CA" class="headerlink" title="注释"></a>注释</h2><p>函数或者文档的注释使用三引号，结尾空一行</p>
+<p><strong>函数注释</strong>需要注明三个参数：Args(参数)、Return(返回值)和Raises(抛出的错误)，例如：</p>
+<pre><code>def exampleFunc(one, two):
+    &quot;&quot;&quot;
+    这里是函数的功能
+
+
+
+
+
+Args:
+    one: 参数一的注释
+    two: 参数二的注释
+
+Return:返回值的解释，如果返回值比较复杂，比如是一个json数据，那么还需要将返回的格式卸载这儿
+
+Raises: 非必须
+&quot;&quot;&quot;&lt;/pre&gt;
+</code></pre><p><strong> 类的注释</strong>，依然得有一行文档字符串，若有共有属性，需要在注释处表名，例如：</p>
+<pre><code>class exampleClass(基类):
+    &quot;&quot;&quot;
+    类的注释
+
+
+
+
+
+Attributes:
+    公有属性1: 解释
+&quot;&quot;&quot;&lt;/pre&gt;
+</code></pre><p><strong> 文件注释：</strong>一般包括了编码信息、版权、许可声明、模块头等信息，例如：</p>
+<pre><code># coding = utf-8
+
+
+
+
+# Copyright 2015 ........
+
+
+
+
+&quot;&quot;&quot;
+这里是模块头，用一行文字概括文件或模块或脚本的作用
+&quot;&quot;&quot;
+</code></pre><h2 id="u547D_u540D"><a href="#u547D_u540D" class="headerlink" title="命名"></a>命名</h2><pre><code>module_name：模块
+package_name：包
+ClassName：类
+method_name：方法
+ExceptionName：错误
+function_name：函数
+GLOBAL_VAR_NAME：全局变量
+function_parameter_name：函数参数
+local_var_name：局部变量
+has_或is_：定义布尔类型元素
+</code></pre><h2 id="u7A7A_u884C"><a href="#u7A7A_u884C" class="headerlink" title="空行"></a>空行</h2><p>两个函数的定义之间空两行，而方法或者语句模块之间则只空一行</p>
+<h2 id="u7A7A_u683C"><a href="#u7A7A_u683C" class="headerlink" title="空格"></a>空格</h2><p>二元操作符之间添加空格</p>
+<h2 id="u5176_u5B83"><a href="#u5176_u5B83" class="headerlink" title="其它"></a>其它</h2><p>对于常字符串，Python可以使用小括号将行隐式地连接在一起而不用在每行末尾加上加号，例如：</p>
+<pre><code>a = (
+    &apos;wang&apos;
+    &apos;hao&apos;
+)
+print(a)
+
+
+
+
+# 打印出来就是wanghao
+</code></pre></div><a data-url="http://haofly.net/2015/04/03/python-encoding-specification/" data-id="cikhyidfe002pfmrxtol4fqjd" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2015/04/04/zhihu/" class="pre"><i class="icon-previous">[转]从0到100——知乎架构变迁史</i></a><a href="/2015/03/28/the-difference-of-frame-and-framework/" class="next">[转]一图胜千言:谈框架和架构的区别<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
+var disqus_identifier = '2015/04/03/python-encoding-specification/';
+var disqus_title = 'Python编码及注释规范';
+var disqus_url = 'http://haofly.net/2015/04/03/python-encoding-specification/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/17/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/08/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/07/database-application-scenarios/">各种数据库的应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/python-requests/">Python Requests模块进行网页抓取详解</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>

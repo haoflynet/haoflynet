@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>Unitedstack(阿里云)中数据库无法远程登录解决办法 | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Unitedstack(阿里云)中数据库无法远程登录解决办法</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">Unitedstack(阿里云)中数据库无法远程登录解决办法</h1><div class="post-meta">2014-11-10<span class="categories"> | 分类于<a href="/categories/编程之路/"> 编程之路</a></span></div><span data-disqus-identifier="2014/11/10/unitedstack-database-remote-login/" class="disqus-comment-count"></span><div class="post-content"><p>OK，昨晚熬夜到两点都没解决这个问题，不过还好昨晚至少知道了问题没有出现在配置上，而是IP有问题。今天写了一张工单给ustack的客服，终于知道答案了。</p>
+<p><strong>现象</strong>：ustack的云服务器中的mysql数据库无法实现远程登录。</p>
+<p><strong>环境</strong>：Ubuntu14.04(server) + ustack服务器</p>
+<p><strong>解决</strong>：</p>
+<h1 id="1-_u4FEE_u6539_u9ED8_u8BA4_u5B89_u5168_u7EC4"><a href="#1-_u4FEE_u6539_u9ED8_u8BA4_u5B89_u5168_u7EC4" class="headerlink" title="1.修改默认安全组"></a>1.修改默认安全组</h1><p>阿里云没有安全组功能，默认不对端口进行限制</p>
+<p>ustack的安全组是云主机虚拟网卡上行和下行流量的防火墙，就相当与其NAT的防火墙，而DigitalOcean没有这个东西，不信你可以试试<code>ifconfi
+g</code>，该命令在ustack可以看到两张网卡，但是却没有外网ip的网卡，而DigitalOcean则可以直接看到外网ip的网卡切没有内网的ip。以下是usta<br>ck的默认安全组：<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/database-remote-login.png" alt=""><br>可以看到其上行流量是完全开放的，但是下行却只开放了几个端口，可以在这里面添加安全规则，也可以自己另外建立安全组，然后在虚拟网卡里面绑定到相应的虚拟网卡就可以<br>生效了，然后重启一下服务器(没尝试过不重启会不会生效，反正我是重启了的)。</p>
+<h1 id="2-MySQL_u6388_u6743root_u7528_u6237_u8FDC_u7A0B_u767B_u5F55"><a href="#2-MySQL_u6388_u6743root_u7528_u6237_u8FDC_u7A0B_u767B_u5F55" class="headerlink" title="2.MySQL授权root用户远程登录"></a>2.MySQL授权root用户远程登录</h1><p>需要注意的是，最好不要用root用户远程登录，可自己新建一个用户用于远程登录，并限制一些权限，由于我这只是测试用的服务器，所以无所谓。首先在服务器中执行如下<br>命令：</p>
+<pre><code>mysql -u root -p   # 登录MySQL
+mysql&gt; use mysql;
+mysql&gt; select host, user from user;   # 查看是否已经分配了权限
++-----------+------------------+
+| host      | user             |
++-----------+------------------+
+| 127.0.0.1 | root             |
+| ::1       | root             |
+| localhost | debian-sys-maint |
+| localhost | root             |
+| tech      | root             |
++-----------+------------------+
+6 rows in set (0.00 sec)
+mysql&gt; grant all privileges on 星__.星__ to &apos;root&apos;@&apos;\%&apos; identified by &apos;password&apos; with grant option;
+mysql&gt; select host, user from user;    # 结果中的\%就表示所有IP都可以用root用户登录
++-----------+------------------+
+| host      | user             |
++-----------+------------------+
+| \%         | root             |
+| 127.0.0.1 | root             |
+| ::1       | root             |
+| localhost | debian-sys-maint |
+| localhost | root             |
+| tech      | root             |
++-----------+------------------+
+6 rows in set (0.00 sec)
+</code></pre><h1 id="3-_u4FEE_u6539MySQL_u4FA6_u542C_u7AEF_u53E3"><a href="#3-_u4FEE_u6539MySQL_u4FA6_u542C_u7AEF_u53E3" class="headerlink" title="3.修改MySQL侦听端口"></a>3.修改MySQL侦听端口</h1><p>修改MySQL配置文件<code>/etc/mysql/my.cnf</code>，将<code>bind-address</code>后的值<code>localhost</code>修改为ustack服务器的内网IP(<br>注意这里修改成的是内网ip，因为ustack是用的NAT方式转发过去的，它本身根本无法识别外网IP)</p>
+<p>阿里云需要将bind-address设置为服务器的外网IP</p>
+<p>DigitalOcean也要设置为外网IP(DO貌似没有内网IP)</p>
+<h1 id="4-_u6D4B_u8BD5"><a href="#4-_u6D4B_u8BD5" class="headerlink" title="4.测试"></a>4.测试</h1><p>在另一台电脑上执行<code>mysql -h 外网IP -uroot -p</code>，这里的IP是外网IP，如果能访问就表示设置成功了。</p>
+</div><a data-url="http://haofly.net/2014/11/10/unitedstack-database-remote-login/" data-id="cikhyidbq0017fmrx1ynfyoux" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2014/12/22/the-conclusion-of-the-first-project-of-studio/" class="pre"><i class="icon-previous">工作室第一次项目总结</i></a><a href="/2014/11/09/mysql-source-messy-code/" class="next">MySQL Source命令批量导入数据库及乱码问题的解决<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
+var disqus_identifier = '2014/11/10/unitedstack-database-remote-login/';
+var disqus_title = 'Unitedstack(阿里云)中数据库无法远程登录解决办法';
+var disqus_url = 'http://haofly.net/2014/11/10/unitedstack-database-remote-login/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/06/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/17/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/11/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/08/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/07/database-application-scenarios/">各种数据库的应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/python-requests/">Python Requests模块进行网页抓取详解</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>
