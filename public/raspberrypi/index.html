@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>玩转树莓派2 | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">玩转树莓派2</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/favorites.html"><i class="icon-archive"> 我的收藏</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">玩转树莓派2</h1><div class="post-meta">2015-12-08<span class="categories"> | 分类于<a href="/categories/就是爱玩/"> 就是爱玩</a></span></div><span data-disqus-identifier="raspberrypi/" class="disqus-comment-count"></span><div class="post-content"><p>想在家里做NAS、DNS等私有云服务，但是无奈家里淘汰下来的电脑已无力承担如此重任。没办法了，就只能试试树莓派。不试不知道，一试吓一跳，完全就是一手掌大小的<br>电脑，听说desktop版本还能使用word等软件，虽然只有1GB内存，但是200多块(淘宝店)就能买到这个东西，那是非常值了。当然，作为一个技术爱好者，别<br>人是完全无法体会这种快乐的。要是其功耗再低点或者能采用其它的供电方式(比如无线供电、电池供电)，感觉完全能颠覆智能市场。  </p>
+<h2 id="u5236_u4F5C_u542F_u52A8_u955C_u50CF"><a href="#u5236_u4F5C_u542F_u52A8_u955C_u50CF" class="headerlink" title="制作启动镜像"></a><strong>制作启动镜像</strong></h2><p>镜像下载：<a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="external">https://www.raspberrypi.org/downloads/</a>，我下载的是RASPBIAN分支，因为其是官方提供且基于Debia<br>n，和Ubuntu操作一样<strong><br>**</strong>Mac环境：<br>**</p>
+<pre><code>$ df  # 查看当前已经挂载的卷
+一般sd卡在最后，Filesystem是/dev/disk2s1，Mounted on /Volumes/No Name，可以在Finder里面将sd卡的名字改为Pi(我那个默认是No Name)
+$ diskutil unmount /dev/disk2s1   #将sd卡卸载
+Volume Pi on disk2s1 unmounted
+$ diskutil list # 查看是否有sd卡设备
+$ dd bs=4m if=pi.img of=/dev/rdisk2   #将镜像文件pi.img写入sd卡
+$ diskutil unmountDisk /dev/disk2  # 再卸载sd卡，此时可以拔出来插入树莓派的sd卡槽了  
+</code></pre><h2 id="u542F_u52A8_u64CD_u4F5C_u7CFB_u7EDF"><a href="#u542F_u52A8_u64CD_u4F5C_u7CFB_u7EDF" class="headerlink" title="启动操作系统"></a><strong>启动操作系统</strong></h2><p>收到货的那天，发现其有一个DC接口，还以为是通过DC接口供电，出门走了一圈都没发现有卖这货的，于是回家，自习已看，发现可以用Android的电源为期供电的，<br>那接口名字忘了。和网上建议的一样，我采用的是5V 2A的供电设备(其实是直接插到小米插线板上的)<br>然后，我又发现，我家里没多的网线，那怎么办，我装的不是desktop版本，没有网线就不能SSH进去。不过还好，它支持HDMI，于是我把它功过HDMI连接上了<br>家里40英寸的电视，(HDMI高清显示，真他妈爽)就像这样，还通过USB插了外置键盘。<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/raspberrypi_1.jpg" alt="">  </p>
+<p>默认是通电自动启动的，所以插上电就会进入系统了<br>默认用户名pi，默认密码是raspberry<br>接着就做一些基本的配置，通过sudo raspi-config的第一项将sd卡的剩余空间全部用来使用，接着修改源，这个国度没办法的事  </p>
+<pre><code>$ sudo nano /etc/apt/sources.list.d/raspi.list
+修改为如下：
+deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/debian/ jessie main
+
+
+$ sudo nano /etc/apt/sources.list  
+
+修改为如下：
+deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
+deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
+
+然后更新系统，并安装最基本的vim
+</code></pre><h2 id="WIFI_u8BBE_u7F6E"><a href="#WIFI_u8BBE_u7F6E" class="headerlink" title="WIFI设置"></a><strong>WIFI设置</strong></h2><p>当然，我不可能一直用电视作显示器吧，这时候我买的无线设备就有用场了，直接通过USB插到树莓派上，然后设置wifi  </p>
+<pre><code>$ ifconfig # 可以看到wlan0，表示已经识别无线网卡
+$ sudo vim /etc/network/interfaces添加或修改关于wlan0的配置
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ssid WIFI名称
+wpa-psk WIFI密码
+
+
+# 然后通过如下命令重启网卡
+
+
+
+
+sudo ifdown wlan0 &amp;&amp; sudo ifup wlan0
+</code></pre><p>注：如果要关机，务必使用命令关机，而不要物理直接断，当然开机貌似只能拔了电源再插上</p>
+<h2 id="u642D_u5EFAownCloud_u79C1_u6709_u4E91"><a href="#u642D_u5EFAownCloud_u79C1_u6709_u4E91" class="headerlink" title="搭建ownCloud私有云"></a><strong>搭建ownCloud私有云</strong></h2><p>作为私有云方案，我选择的ownCloud，而不是Samba，因为Samba功能仅仅算是ftp的共享，而不是一个私有云方案，当然ownCloud也有为人诟病的<br>地方，比如内存占用高(树莓派2上占用100多MB)，另一个是因为它本身是基于Apache的，树莓派内存总共就1G，我可不想既有Apache又有Nginx，所<br>以直接用的是Nginx+php5-fpm的方案，不过这样子，配置过程就有点麻烦了。  </p>
+<pre><code># 首先，安装基本服务
+sudo apt-get install php5-common php5-cli php5-fpm
+sudo apt-get install nginx
+sudo apt-get install mysql-server mysql-client
+
+
+
+
+# 配置MySQL，ownCloud需要提前创建用户、数据库和分配权限
+
+
+
+
+&gt; create database 库名 character set utf8 collate utf8_general_ci;  
+&gt; grant ALL on 库名.* 用户名@localhost identified by &quot;密码&quot;   # 注意，ownCloud是不允许root用户的，因为权限太多
+
+
+
+
+# 配置文件权限
+
+
+
+
+chmod 775 -R owncloud/        # 不要分配777，分配了也不能用
+chown -R www-data:www-data owncloud/
+
+
+
+
+# 配置php5-fpm
+
+
+
+
+$ printenv PATH 获取系统环境变量
+vim /etc/php5/fpm/pool.d/www.conf，将下面几行前面的注释去掉
+;env[HOSTNAME] = $HOSTNAME  
+;env[PATH] = /usr/local/bin:/usr/bin:/bin      # 这里还要修改为刚才获取到的环境变量  
+;env[TMP] = /tmp  
+;env[TMPDIR] = /tmp  
+;env[TEMP] = /tmp
+
+
+
+
+# 配置nginx，按照官网的教程配置Nginx conf：https://doc.owncloud.org/server/7.0/admin_manual/installation/nginx_configuration.html
+
+
+
+
+对于官网的配置，我做了如下几项修改：
+location ~ .php(?:$|/)$这里面修改为：
+location ~ ^(.+?.php)(/.*)?$ \{  
+  fastcgi_split_path_info ^(.+.php)(/.+)$;  
+  include fastcgi_params;  
+  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  
+  fastcgi_param PATH_INFO $fastcgi_path_info;  
+  fastcgi_pass unix:/var/run/php5-fpm.sock;  
+  fastcgi_index index.php;  
+  include fastcgi_params;  
+  fastcgi_param PHP_VALUE &quot;post_max_size=10G \\n upload_max_filesize=10G&quot;;   # 上传默认居然为513MB，这里可以修改大，不然在owncloud无法调整到更大  
+\}
+检查配置文件是否正确用# nginx -t nginx.conf  
+</code></pre><p>参考：<br><a href="http://blog.akar
+in.xyz/raspberry-
+init/https://github.com/ccforward/cc/issues/25?utm_source=tuicool" title="Link:
+http://blog.akarin.xyz/raspberry-
+init/https://github.com/ccforward/cc/issues/25?utm_source=tuicool" target="_blank" rel="external">http://blog.akarin.xyz/raspberry-init/<br>https://github.com/ccforward/cc/issues/25?utm_source=tuicool</a>  </p>
+</div><a data-url="http://haofly.net/raspberrypi/" data-id="ciki4pbha002e75rxgy6hshz3" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/mysql-design-tips/" class="pre"><i class="icon-previous">MySQL之设计方法</i></a><a href="/database-application-scenarios/" class="next">各种数据库的应用场景<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
+var disqus_identifier = 'raspberrypi/';
+var disqus_title = '玩转树莓派2';
+var disqus_url = 'http://haofly.net/raspberrypi/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/maitianshouwangzhe/">我越来越像《麦田守望者》</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/database-application-scenarios/">各种数据库的应用场景</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>

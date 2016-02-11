@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>[转]RESTful API设计指南 | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">[转]RESTful API设计指南</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/favorites.html"><i class="icon-archive"> 我的收藏</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">[转]RESTful API设计指南</h1><div class="post-meta">2015-04-11<span class="categories"> | 分类于<a href="/categories/编程之路/"> 编程之路</a></span></div><span data-disqus-identifier="restful-api/" class="disqus-comment-count"></span><div class="post-content"><p>原文地址：<a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" title="Link:
+http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="external">阮一峰的网络日志</a></p>
+<p>网络应用程序，分为前端和后端两个部分。当前的发展趋势，就是前端设备层出不穷（手机、平板、桌面电脑、其他专用设备……）。</p>
+<p>因此，必须有一种统一的机制，方便不同的前端设备与后端进行通信。这导致API构架的流行，甚至出现”<a href="http://x.vindicosu
+ite.com/click/fbfpc=1;v=5;m=3;l=401071;c=776283;b=3368032;dct=http\%3A//www.goo
+gle.com.hk/search\%3Fq\%3DAPI+first" target="_blank" rel="external">API First</a>“的设计思想。<a href="http://en.wikipedia.org
+/wiki/Representational_state_transfer" target="_blank" rel="external">RESTful API</a>是目前比较成熟的一套互联网应用程序的API设计理论。我以前写过一篇<a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank" rel="external">《理解RES<br>Tful架构》</a>，探讨如何理解这个概念。</p>
+<p>今天，我将介绍RESTful<br>API的设计细节，探讨如何设计一套合理、好用的API。我的主要参考了两篇文章（<a href="http://codeplanet.io/principles-
+good-restful-api-design/" target="_blank" rel="external">1</a>，<a href="https://bourgeois.me/rest/" target="_blank" rel="external">2</a>）。</p>
+<h1 id="u4E00_u3001_u534F_u8BAE"><a href="#u4E00_u3001_u534F_u8BAE" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与用户的通信协议，总是使用<a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank" rel="external">HTTPs协议</a><br>。</p>
+<h1 id="u4E8C_u3001_u57DF_u540D"><a href="#u4E8C_u3001_u57DF_u540D" class="headerlink" title="二、域名"></a>二、域名</h1><p>应该尽量将API部署在专用域名之下。</p>
+<pre><code>https://api.example.com
+</code></pre><p>如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。</p>
+<pre><code>https://example.org/api/
+</code></pre><h1 id="u4E09_u3001_u7248_u672C_uFF08Versioning_uFF09"><a href="#u4E09_u3001_u7248_u672C_uFF08Versioning_uFF09" class="headerlink" title="三、版本（Versioning）"></a>三、版本（Versioning）</h1><p>应该将API的版本号放入URL。</p>
+<pre><code>https://api.example.com/v1/
+</code></pre><p>另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。<a href="https://developer.github.com/v3/m
+edia/#request-specific-version" target="_blank" rel="external">Github</a>采用这种做法。</p>
+<h1 id="u56DB_u3001_u8DEF_u5F84_uFF08Endpoint_uFF09"><a href="#u56DB_u3001_u8DEF_u5F84_uFF08Endpoint_uFF09" class="headerlink" title="四、路径（Endpoint）"></a>四、路径（Endpoint）</h1><p>路径又称”终点”（endpoint），表示API的具体网址。</p>
+<p>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库<br>中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。</p>
+<p>举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。</p>
+<ul>
+<li><a href="https://api.example.com/v1/zoos" target="_blank" rel="external">https://api.example.com/v1/zoos</a></li>
+<li><a href="https://api.example.com/v1/animals" target="_blank" rel="external">https://api.example.com/v1/animals</a></li>
+<li><a href="https://api.example.com/v1/employees" target="_blank" rel="external">https://api.example.com/v1/employees</a></li>
+</ul>
+<h1 id="u4E94_u3001HTTP_u52A8_u8BCD"><a href="#u4E94_u3001HTTP_u52A8_u8BCD" class="headerlink" title="五、HTTP动词"></a>五、HTTP动词</h1><p>对于资源的具体操作类型，由HTTP动词表示。</p>
+<p>常用的HTTP动词有下面五个（括号里是对应的SQL命令）。</p>
+<ul>
+<li>GET（SELECT）：从服务器取出资源（一项或多项）。</li>
+<li>POST（CREATE）：在服务器新建一个资源。</li>
+<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。</li>
+<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。</li>
+<li><p>DELETE（DELETE）：从服务器删除资源。<br>还有两个不常用的HTTP动词。</p>
+</li>
+<li><p>HEAD：获取资源的元数据。</p>
+</li>
+<li><p>OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。<br>下面是一些例子。</p>
+</li>
+<li><p>GET /zoos：列出所有动物园</p>
+</li>
+<li>POST /zoos：新建一个动物园</li>
+<li>GET /zoos/ID：获取某个指定动物园的信息</li>
+<li>PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）</li>
+<li>PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）</li>
+<li>DELETE /zoos/ID：删除某个动物园</li>
+<li>GET /zoos/ID/animals：列出某个指定动物园的所有动物</li>
+<li>DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物</li>
+</ul>
+<h1 id="u516D_u3001_u8FC7_u6EE4_u4FE1_u606F_uFF08Filltering_uFF09"><a href="#u516D_u3001_u8FC7_u6EE4_u4FE1_u606F_uFF08Filltering_uFF09" class="headerlink" title="六、过滤信息（Filltering）"></a>六、过滤信息（Filltering）</h1><p>如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。</p>
+<p>下面是一些常见的参数。</p>
+<ul>
+<li>?limit=10：指定返回记录的数量</li>
+<li>?offset=10：指定返回记录的开始位置。</li>
+<li>?page=2&amp;per_page=100：指定第几页，以及每页的记录数。</li>
+<li>?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</li>
+<li>?animal_type_id=1：指定筛选条件<br>参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，GET /zoo/ID/animals 与 GET<br>/animals?zoo_id=ID 的含义是相同的。</li>
+</ul>
+<h1 id="u4E03_u3001_u72B6_u6001_u7801_28Status_Codes_29"><a href="#u4E03_u3001_u72B6_u6001_u7801_28Status_Codes_29" class="headerlink" title="七、状态码(Status Codes)"></a>七、状态码(Status Codes)</h1><p>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。</p>
+<ul>
+<li>200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</li>
+<li>201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</li>
+<li>202 Accepted - [_]：表示一个请求已经进入后台排队（异步任务）</li>
+<li>204 NO CONTENT - [DELETE]：用户删除数据成功。</li>
+<li>400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</li>
+<li>401 Unauthorized - [_]：表示用户没有权限（令牌、用户名、密码错误）。</li>
+<li>403 Forbidden - [_] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</li>
+<li>404 NOT FOUND - [_]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</li>
+<li>406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</li>
+<li>410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</li>
+<li>422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</li>
+<li>500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。<br>状态码的完全列表参见<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank" rel="external">这里</a>。</li>
+</ul>
+<h1 id="u516B_u3001_u9519_u8BEF_u5904_u7406_uFF08Error_handling_uFF09"><a href="#u516B_u3001_u9519_u8BEF_u5904_u7406_uFF08Error_handling_uFF09" class="headerlink" title="八、错误处理（Error handling）"></a>八、错误处理（Error handling）</h1><p>如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。</p>
+<pre><code>\{
+error: &quot;Invalid API key&quot;
+\}
+</code></pre><h1 id="u4E5D_u3001_u8FD4_u56DE_u7ED3_u679C"><a href="#u4E5D_u3001_u8FD4_u56DE_u7ED3_u679C" class="headerlink" title="九、返回结果"></a>九、返回结果</h1><p>针对不同操作，服务器向用户返回的结果应该符合以下规范。</p>
+<ul>
+<li>GET /collection：返回资源对象的列表（数组）</li>
+<li>GET /collection/resource：返回单个资源对象</li>
+<li>POST /collection：返回新生成的资源对象</li>
+<li>PUT /collection/resource：返回完整的资源对象</li>
+<li>PATCH /collection/resource：返回完整的资源对象</li>
+<li>DELETE /collection/resource：返回一个空文档</li>
+</ul>
+<h1 id="u5341_u3001Hypermedia_API"><a href="#u5341_u3001Hypermedia_API" class="headerlink" title="十、Hypermedia API"></a>十、Hypermedia API</h1><p>RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。</p>
+<p>比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档。</p>
+<pre><code>\{&quot;link&quot;: \{
+&quot;rel&quot;: &quot;collection https://www.example.com/zoos&quot;,
+&quot;href&quot;: &quot;https://api.example.com/zoos&quot;,
+&quot;title&quot;: &quot;List of zoos&quot;,
+&quot;type&quot;: &quot;application/vnd.yourformat+json&quot;
+\}\}
+</code></pre><p>上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给<br>出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型。</p>
+<p>Hypermedia API的设计被称为<a href="http://en.wikipedia.org/wiki/HATEOAS" target="_blank" rel="external">HATEOAS</a>。Github的API<br>就是这种设计，访问<a href="https://api.github.com/" target="_blank" rel="external">api.github.com</a>会得到一个所有可用API的网址列表。</p>
+<pre><code>\{
+&quot;current_user_url&quot;: &quot;https://api.github.com/user&quot;,
+&quot;authorizations_url&quot;: &quot;https://api.github.com/authorizations&quot;,
+// ...
+\}
+</code></pre><p>从上面可以看到，如果想获取当前用户的信息，应该去访问<a href="https://api.github.com/user" target="_blank" rel="external">api.github.com/user</a>，然<br>后就得到了下面结果。</p>
+<pre><code>\{
+&quot;message&quot;: &quot;Requires authentication&quot;,
+&quot;documentation_url&quot;: &quot;https://developer.github.com/v3&quot;
+\}
+</code></pre><p>上面代码表示，服务器给出了提示信息，以及文档的网址。</p>
+<h1 id="u5341_u4E00_u3001_u5176_u4ED6"><a href="#u5341_u4E00_u3001_u5176_u4ED6" class="headerlink" title="十一、其他"></a>十一、其他</h1><p>（1）API的身份认证应该使用<a href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html" target="_blank" rel="external">OAuth<br>2.0</a>框架。</p>
+<p>（2）服务器返回的数据格式，应该尽量使用JSON，避免使用XML。</p>
+<p>（完）</p>
+</div><a data-url="http://haofly.net/restful-api/" data-id="ciki4pbh0002a75rx3jd0r809" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/nailiangluwan/" class="pre"><i class="icon-previous">[转]一蓑烟雨任平生：奈良鹿丸的人生观</i></a><a href="/python-encode-decode/" class="next">Python编码格式各种问题的解决方案<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
+var disqus_identifier = 'restful-api/';
+var disqus_title = '[转]RESTful API设计指南';
+var disqus_url = 'http://haofly.net/restful-api/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/maitianshouwangzhe/">我越来越像《麦田守望者》</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/database-application-scenarios/">各种数据库的应用场景</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>

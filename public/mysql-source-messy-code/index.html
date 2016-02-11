@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>MySQL Source命令批量导入数据库及乱码问题的解决 | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">MySQL Source命令批量导入数据库及乱码问题的解决</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/favorites.html"><i class="icon-archive"> 我的收藏</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">MySQL Source命令批量导入数据库及乱码问题的解决</h1><div class="post-meta">2014-11-09<span class="categories"> | 分类于<a href="/categories/编程之路/"> 编程之路</a></span></div><span data-disqus-identifier="mysql-source-messy-code/" class="disqus-comment-count"></span><div class="post-content"><p>参考：<a href="http://www.111cn.net/database/mysql/46646.htm" target="_blank" rel="external">http://www.111cn.net/database/mysql/46646.htm</a></p>
+<p>近日老板给了我一个数据库，让我学学人家是怎么设计的，之前从来没有导入过别人的数据库，期间遇到一些问题，特记录如下：</p>
+<h1 id="1-_u6279_u91CF_u5BFC_u5165_u95EE_u9898"><a href="#1-_u6279_u91CF_u5BFC_u5165_u95EE_u9898" class="headerlink" title="1.批量导入问题"></a>1.批量导入问题</h1><p>首先老板给我的文件不是一个单独的sql文件而是一张一张单独的表对应的sql文件，加起来好几十个，我可不想一个一个的导入，所以到网上找到了一个比较方便的方法：</p>
+<p>首先，要知道有一种sql文件是这样的：</p>
+<pre><code>source file1.sql;
+source file2.sql;
+srouce file3.sql;
+...
+</code></pre><p>如果再用source命令执行这个文件的话就可以实现批量导入功能，但是怎么能直接获取全部文件名呢(由于source命令是在mysql shell里执行的，所以<br>要用绝对路径)，这是可以用管道了(linux下用ls，windows下用dir)。首先可以把所有sql文件放到一个文件夹内(如果同名就重命名，没有关系的)。<br>然后在cmd里执行</p>
+<pre><code>dir foldername /b/od/s &gt; all.sql
+</code></pre><p>这条命令会列出foldername文件夹内的所有子文件的绝对路径并将结果输出到all.sql文件内。然后用文本编辑器打开该sql文件，用替换工具，将每一行替<br>换为</p>
+<pre><code>source 绝对路径;
+</code></pre><p>的形式并保存。然后在MySQL里执行</p>
+<pre><code>source all.sql的绝对路径
+</code></pre><p>这样就能完全导入了。</p>
+<h1 id="2-_u5BFC_u5165_u4E71_u7801_u7684_u95EE_u9898"><a href="#2-_u5BFC_u5165_u4E71_u7801_u7684_u95EE_u9898" class="headerlink" title="2.导入乱码的问题"></a>2.导入乱码的问题</h1><p>出现乱码肯定是中文乱码，但是，虽然你把MySQL默认编码设置为utf8并且把数据库设置为utf8但依然无法避免人家导出时不用utf8的情况，我应该就是碰到这<br>么一个问题了，所以下次自己用命令导出的时候一定要设置编码：</p>
+<pre><code>mysqldump -uroot -pmysql --default-character-set=utf8 database &gt; xxxx.sql
+</code></pre><p>而如果遇到别人的数据库导入乱码的时候就需要把所有东西全部设置为utf8就可以彻底解决问题了：</p>
+<pre><code>SET character_set_client = utf8;
+SET character_set_connection = utf8;
+SET character_set_database = utf8;
+SET character_set_results = utf8;
+SET character_set_server = utf8;
+SET collation_connection = utf8_bin;
+SET collation_database = utf8_bin;
+SET collation_server = utf8_bin;
+
+
+
+
+# 然后再导入
+
+
+
+
+source all.sql
+</code></pre></div><a data-url="http://haofly.net/mysql-source-messy-code/" data-id="ciki4pbk7003q75rx0nijdw4k" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/unitedstack-database-remote-login/" class="pre"><i class="icon-previous">Unitedstack(阿里云)中数据库无法远程登录解决办法</i></a><a href="/ubuntu-install-phpmyadmin/" class="next">Ubuntu安装phpmyadmin<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
+var disqus_identifier = 'mysql-source-messy-code/';
+var disqus_title = 'MySQL Source命令批量导入数据库及乱码问题的解决';
+var disqus_url = 'http://haofly.net/mysql-source-messy-code/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/maitianshouwangzhe/">我越来越像《麦田守望者》</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/database-application-scenarios/">各种数据库的应用场景</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>

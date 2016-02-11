@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>Mysql之主从复制 | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Mysql之主从复制</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/favorites.html"><i class="icon-archive"> 我的收藏</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">Mysql之主从复制</h1><div class="post-meta">2016-01-06<span class="categories"> | 分类于<a href="/categories/编程之路/"> 编程之路</a></span></div><span data-disqus-identifier="mysql-master-slave/" class="disqus-comment-count"></span><div class="post-content"><p>参考地址：<a href="http://369369.blog.51cto.com/319630/790921" target="_blank" rel="external">http://369369.blog.51cto.com/319630/790921</a> 原来想要简单地实现MySQL的主从复制其实也是很简单的(<br>这里当然不包括服务监控和容错处理啦)首先，要检查主从服务器的MySQL版本，最好版本一致，不然会出现各种问题，特别是，5.5和5.6是不会兼容的  </p>
+<ol>
+<li>请先确保数据库版本一致，不然会出现各种错误</li>
+<li>修改两个服务器的mysql配置  </li>
+</ol>
+<pre><code>    # vim /etc/my.cnf
+[mysqld]
+log-bin=mysql-bin    // 打开二进制日志
+server-id=41         // 服务器的唯一ID，为0表示拒绝所有从服务器的连接
+</code></pre><p>分别修改两个服务器配置然后分别重启</p>
+<ol>
+<li>主服务器建立账户：这个账户与普通账户不一样，它智能用于主从复制中：  </li>
+</ol>
+<pre><code>mysql&gt; GRANT REPLICATION SLAVE ON 星.星 to &apos;xiaohao&apos;@&apos;\%&apos; identified by &apos;mysql&apos;;
+</code></pre><ol>
+<li>查看主服务器状态  </li>
+</ol>
+<pre><code>    mysql&gt; show master status;
++------------------+----------+--------------+------------------+-------------------+  
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |  
++------------------+----------+--------------+------------------+-------------------+  
+| mysql-bin.000004 |   615261 |              |                  |                   |  
++------------------+----------+--------------+------------------+-------------------+  
+1 row in set (0.00 sec)
+</code></pre><p>需要注意的是，这两个值都得记下来哟  </p>
+<ol>
+<li><p>将主服务器数据库dump然后导入到从服务器，记下了Position就不用担心dump后新增数据的情况，会自动同步的  </p>
+</li>
+<li><p>配置从服务器  </p>
+</li>
+</ol>
+<pre><code>mysql&gt; change master to master_host=&apos;192.168.1.41&apos;, master_user=&apos;xiaohao&apos;, master_password=&apos;mysql&apos;, master_log_file=&apos;mysql-bin.000004&apos;, master_log_pos=615261;  // 这里就是刚才的Position
+</code></pre><ol>
+<li>启动从服务器  </li>
+</ol>
+<pre><code>mysql&gt; start slave;
+</code></pre><ol>
+<li>查看复制状态  </li>
+</ol>
+<pre><code>    mysql&gt; show slave status\\G  
+**_*_****_*_****_*_****_*_* 1. row ****_*_****_*_****_*_******  
+               Slave_IO_State: Waiting for master to send event  
+                  Master_Host: 192.168.1.41  
+                  Master_User: xiaohao  
+                  Master_Port: 3306  
+                Connect_Retry: 60  
+              Master_Log_File: mysql-bin.000004  
+          Read_Master_Log_Pos: 652289  
+               Relay_Log_File: ubuntu-relay-bin.000002  
+                Relay_Log_Pos: 37345  
+        Relay_Master_Log_File: mysql-bin.000004  
+             Slave_IO_Running: Yes  
+            Slave_SQL_Running: Yes  
+              Replicate_Do_DB:
+</code></pre><p>必须保证Slave_IO_Running和Slave_SQL_Running都为Yes的时候才正确的</p>
+<h1 id="TroubleShooting_uFF1A"><a href="#TroubleShooting_uFF1A" class="headerlink" title="TroubleShooting："></a><strong>TroubleShooting：</strong></h1><ul>
+<li><p>出现错误：Slave SQL for channel ‘’: Slave failed to initialize relay log info structure from the repository, Error_code: 1872<br>是因为relay-log有问题，这时候修改从服务器mysql配置，在[mysqld]中加入relay-log-<br>recovery=1，这样表示，服务器启动之后，删除所有已有的relay日志，重新接收主库的relay日志</p>
+</li>
+<li></li>
+</ul>
+</div><a data-url="http://haofly.net/mysql-master-slave/" data-id="ciki4pbkj003w75rxr1p00d6c" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/mysql-update/" class="pre"><i class="icon-previous">MySQL数据库升级过程</i></a><a href="/python-multithreading-multiprocess/" class="next">Python多进程和多线程<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
+var disqus_identifier = 'mysql-master-slave/';
+var disqus_title = 'Mysql之主从复制';
+var disqus_url = 'http://haofly.net/mysql-master-slave/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/maitianshouwangzhe/">我越来越像《麦田守望者》</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/database-application-scenarios/">各种数据库的应用场景</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>

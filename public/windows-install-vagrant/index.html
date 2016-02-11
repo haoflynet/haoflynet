@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>windows环境下Vagrant(Docker)的安装、打包以及Vagrant Manager的安 | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">windows环境下Vagrant(Docker)的安装、打包以及Vagrant Manager的安</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/favorites.html"><i class="icon-archive"> 我的收藏</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">windows环境下Vagrant(Docker)的安装、打包以及Vagrant Manager的安</h1><div class="post-meta">2014-12-29<span class="categories"> | 分类于<a href="/categories/编程之路/"> 编程之路</a></span></div><span data-disqus-identifier="windows-install-vagrant/" class="disqus-comment-count"></span><div class="post-content"><p><em>Docker：是一个开放源代码软件专案，在软件容器下自动布署应用程序，借此在Linux操作系统上，提供了一个额外的软件抽象层，以及操作系统层虚拟化的自动管<br>理机制[2]。Docker利用Linux内核中的资源分离机制，例如cgroups，以及Linux内核名称空间，来建立独立的软件容器（containers）。<br>这可以在单一Linux实体下运作，避免启动一个虚拟机器造成的额外负担。(维基百科)</em></p>
+<p>Docker无疑是2014年人们谈论最多的虚拟开发环境构建工具，在我看来它是VirtualBox虚拟机最佳的替代方案，使用它的理由有三点：<br>1.轻量级，一个box只需要几百兆(Vagrant) 2.部署方便，有现成的<a href="http://www.vagrantbox.es/" target="_blank" rel="external">base<br>boxes可供下载</a>(Vagrant)，并且可以自己制作Image<br>3.运行流畅，几秒开机，占用内存十分的少(在我的电脑上，它甚至比Chrome占用的内存还要少)</p>
+<p>而本文所要说的Vagrant这是其在Windows上的替代方案，它是使用VirtualBox动态创建和配置虚拟环境。它基于Ruby，但必须依赖其他的虚拟环境<br>构建工具，比如VirtualBox或者VM等。下面主要介绍其安装部署过程。</p>
+<p><strong>注：有一个快速的生成Vagrantfile的网站：<a href="https://puphpet.com，可以选择不同的操作系统，不同的开发环境(lamp,lnmp)，如果设置了apache的域名，那么需要修改主机的host文" target="_blank" rel="external">https://puphpet.com，可以选择不同的操作系统，不同的开发环境(lamp,lnmp)，如果设置了apache的域名，那么需要修改主机的host文</a>件</strong></p>
+<p><strong>基础环境：Windows 7 + Git for Windows</strong></p>
+<ol>
+<li><h2 id="u4E0B_u8F7D_u5E76_u5B89_u88C5_u57FA_u672C_u5DE5_u5177"><a href="#u4E0B_u8F7D_u5E76_u5B89_u88C5_u57FA_u672C_u5DE5_u5177" class="headerlink" title="下载并安装基本工具"></a>下载并安装基本工具</h2></li>
+</ol>
+<p>Oracle VM VirtualBox：<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="external">https://www.virtualbox.org/wiki/Downloads</a><br>Vagrant：<a href="https://www.vagrantup.com/downloads.html" target="_blank" rel="external">https://www.vagrantup.com/downloads.html</a><br>安装完Vargrant后，可以直接在bash里查看是否安装成功</p>
+<pre><code>    $vagrant -v
+Vagrant 1.7.1
+</code></pre><ol>
+<li><h2 id="u4E0B_u8F7Dbox"><a href="#u4E0B_u8F7Dbox" class="headerlink" title="下载box"></a>下载box</h2></li>
+</ol>
+<p>Vagrant提供了一些常用的人们已经打包好了的box镜像，当然可以使用vargrant命令进行下载，但是总没有迅雷快吧，所以直接去官网下载：<a href="http:/
+/www.vagrantbox.es/" target="_blank" rel="external">http:/
+/www.vagrantbox.es/</a> 其中，我选择的是Ubuntu Server Trusty 14.04 amd64：<a href="https://oss-bin
+aries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box" target="_blank" rel="external">https://oss-bin
+aries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box</a><a href="https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-
+amd64-vmwarefusion.box" target="_blank" rel="external">
+</a>注意是virtualbox版本还是vmware版本，大小只有399M</p>
+<ol>
+<li><h2 id="u521D_u59CB_u5316_u5DE5_u4F5C_u76EE_u5F55"><a href="#u521D_u59CB_u5316_u5DE5_u4F5C_u76EE_u5F55" class="headerlink" title="初始化工作目录"></a>初始化工作目录</h2></li>
+</ol>
+<p><code>vagrant init</code><br><img src="http://7xnc86.com1.z0.glb.clouddn.com/windows-install-vagrant_1.jpg" alt=""><br>此时会生成一个Vagrantfile文件，它就是该虚拟机的配置文件，可在里面配置端口或者文件的映射规则。<br><strong>注</strong>：其实添加box可以在任意位置添加，vagrant应该只是记录了其路径，然后<code>vagrant init +
+name</code>才是初始化的时候指定所需要的box，而默认的<code>vagrant init</code>会默认去寻找名为base的镜像。  </p>
+<ol>
+<li><h2 id="u6DFB_u52A0_u955C_u50CF"><a href="#u6DFB_u52A0_u955C_u50CF" class="headerlink" title="添加镜像"></a>添加镜像</h2></li>
+</ol>
+<p><code>vagrant box add</code><br><img src="http://7xnc86.com1.z0.glb.clouddn.com/windows-install-vagrant_2.jpg" alt=""><br>其中”base”就是你给镜像取的名字，<code>vagrant box
+list</code>可以列出当前所有的box(不仅仅是该目录)，需要注意的是，由于我之前添加了一个同名的镜像，并且没删除干净，所以这里添加了一个<code>--force</code>参数</p>
+<ol>
+<li><h2 id="u542F_u52A8"><a href="#u542F_u52A8" class="headerlink" title="启动"></a>启动</h2></li>
+</ol>
+<p><img src="http://7xnc86.com1.z0.glb.clouddn.com/windows-install-vagrant_3.jpg" alt=""><br>这就是其启动过程，可以发现它的一些基本设置：如SSH端口为2222，用户名密码均是vagrant，/vagrant映射到本地的F:/docker/ubunt<br>u-server</p>
+<ol>
+<li><h2 id="u8FDE_u63A5_u8FDB_u5165"><a href="#u8FDE_u63A5_u8FDB_u5165" class="headerlink" title="连接进入"></a>连接进入</h2></li>
+</ol>
+<p>当虚拟机启动后，可以使用SSH连接工具XShell或者putty进行登录： 地址：127.0.0.1 端口：2222(虚拟机不同，端口会变的)<br>用户名：vagrant 密码：vagrant 或者直接使用vagrant命令登录：<code>vagrant ssh</code><br><img src="http://7xnc86.com1.z0.glb.clouddn.com/windows-install-vagrant_4.jpg" alt=""><br>到这里，就可以确定安装完成了。 PS：所有创建了的box也都可以通过VirtualBox进行查看和配置：<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/windows-install-vagrant_5.jpg" alt="">  </p>
+<h1 id="Vagrant_box_u7684_u6253_u5305"><a href="#Vagrant_box_u7684_u6253_u5305" class="headerlink" title="Vagrant box的打包"></a>Vagrant box的打包</h1><p>通常，官网的list列表并不能提供我们自己所需要的运行环境，比如我有时候需要14.04的LAMP环境或者LNAMP环境，但又不想每次都重新安装一下，这时候就<br>可以去官网下载一个干净的base，对其修改后打包成自己的box，以后谁要用就直接取，里面已经安装好了所需要的环境了，打包很简单，使用的是<code>vagrant
+package</code>命令，但首先得启动该虚拟机：<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/windows-install-vagrant_5.png" alt=""><br>注意我在该虚拟机的root用户目录里新建了一个名为<code>haofly</code>的文件，待会儿方便证明其确实是我修改后的box，下面只需要将<code>package.box</code>添加<br>到vagrant即可使用它来创建新的虚拟机了，为了方便管理，我将其复制了出来并重命名为<code>ubuntu-14.04-amd64-lamp-20141225.b
+ox</code>：  </p>
+<p><img src="http://7xnc86.com1.z0.glb.clouddn.com/windows-install-vagrant_6.jpg" alt="">  </p>
+<h1 id="Vagrant_Manager_u7684_u5B89_u88C5"><a href="#Vagrant_Manager_u7684_u5B89_u88C5" class="headerlink" title="Vagrant Manager的安装"></a>Vagrant Manager的安装</h1><p>vagrant<br>manager是一个正在开发中的vagrant的管理工具，主页在<a href="https://github.com/lanayotech/vagrant-manager-windows" title="Link:
+https://github.com/lanayotech/vagrant-manager-windows" target="_blank" rel="external">https://github.com/lanayotech/vagrant-<br>manager-windows </a></p>
+<p>安装步骤：</p>
+<ol>
+<li><p>下载安装 到其releases列表进行下载：<a href="https://github.com/lanayotech/vagrant-manager-windows/releases" target="_blank" rel="external">https://github.com/lanayotech/vagrant-manager-windows/releases</a> 然后直接运行安装即可。不过要是出现以下错误<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/windows-install-vagrant_7.jpg" alt=""><br><a href="http://haofly.net/wp-content/uploads/2014/12/windows-install-
+vagrant5.jpg"> </a>表示你的电脑没有安装<code>.NETFramwork 4.5</code>那么就去安装，但如果这里点击“是”那么会跳到4.5.2去，我没安装上，所以<br>之后直接下载了4.5(<a href="http://www.microsoft.com/zh-
+cn/download/details.aspx?id=30653" target="_blank" rel="external">下载地址</a>)安装上了</p>
+</li>
+<li><p>界面<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/windows-install-vagrant_8.jpg" alt=""><br>它没什么单独的界面，就是在右下角的一个控制图表，点击就可以了。</p>
+</li>
+<li><p>需要注意的是：vagrant manager目前存在一个很大的缺陷就是只能操作C盘下的box，不然什么操作都会出现错误 <em>A Vagrant environment or target machine is required to run this command. Run <code>vagrant init</code> to create a new Vagrant environment. Or, get an ID of a target machine from <code>vagrant global-status</code> to run this command on. A final option is to change to a directory with a Vagrantfile and to try again. </em>其实，开发人员也一直在关注着这个问题：<a href="https://github.com/lanayotech/vagrant-manager-windows/issues/8" target="_blank" rel="external">https://github.com/lanayotech/vagrant-manager-windows/issues/8</a></p>
+</li>
+</ol>
+<h1 id="u9644"><a href="#u9644" class="headerlink" title="附"></a>附</h1><p>Vagrant常用命令：</p>
+<p>vagrant box add name：添加box vagrant box list：列出当前所有的box vagrant box remove<br>name：列出某个box(名字就是自己给取的，比如上面的base) vagrant box repackage name：对某个box重新打包<br>vagrant init [name]：初始化当前目录为工作目录 vagrant up [name]：启动虚拟机 vagrant destroy<br>[name]：删除虚拟机 vagrant suspend [name]：暂停某个box vagrant reload [name]：重新加载 vagrant<br>resume [name]：恢复虚拟机 vagrant halt [name]：关闭虚拟机 vagrant ssh：连接虚拟机 vagrant<br>package –output name：如果对虚拟机的配置进行修改过后，如果想把当前环境打包，可使用这个命令 vagrant<br>status：查看虚拟机状态</p>
+<h2 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h2><ol>
+<li><p>在linux环境下，共享目录的权限无权限问题： <code>Vagrant Synced Folders Permissions</code> 解决方法是在Vagrantfile里面进行如下配置：</p>
+<p>   config.vm.synced_folder “/docker/ubuntu/“, “/var/www/html”,<br>   id: “vagrant-root”,<br>   owner: “nobody”,<br>   group: “nobody”,<br>   mount_options: [“dmode=775,fmode=664”]</p>
+</li>
+<li><p>连接mysql数据库出现如下错误：</p>
+<p>   Lost connection to MySQL server at ‘reading initial communication packet’, system error: 0</p>
+</li>
+</ol>
+<p>那么应该是mysql的bind-address未配置正确，应该将其改为eth0的地址，而不是该虚拟机的IP地址，当然，改为0.0.0.0也行</p>
+<ol>
+<li><p>集群(同时开启多个虚拟机，虚拟机之间通过IP访问)，vagrantfile可以这样配置，例如：</p>
+<h1 id="mode_3A_ruby"><a href="#mode_3A_ruby" class="headerlink" title="-- mode: ruby --"></a>-<em>- mode: ruby -</em>-</h1></li>
+</ol>
+<pre><code># vi: set ft=ruby :
+
+
+
+
+Vagrant.configure(2) do |config|
+    config.vm.define :master do |master|
+        master.vm.provider &quot;virtualbox&quot; do |v|
+            v.memory = &quot;1024&quot;
+            #v.gui = true
+        end
+        master.vm.box = &quot;django&quot;
+        master.vm.hostname = &quot;master&quot;
+        master.vm.network &quot;private_network&quot;, ip: &quot;192.168.111.10&quot;
+        master.vm.network &quot;forwarded_port&quot;, guest: 8000, host: 8000
+        master.vm.network &quot;forwarded_port&quot;, guest: 3306, host: 3307
+        master.vm.synced_folder &quot;F:/workspace/wh_operation&quot;, &quot;/django&quot;
+    end
+
+
+
+
+    config.vm.define :slave do |slave|
+    slave.vm.provider &quot;virtualbox&quot; do |v|
+        v.memory = &quot;1024&quot;
+        #v.gui = true
+    end
+    slave.vm.box = &quot;django&quot;
+    slave.vm.hostname = &quot;slave&quot;
+    slave.vm.network &quot;private_network&quot;, ip: &quot;192.168.111.11&quot;
+end
+</code></pre><p>end</p>
+</div><a data-url="http://haofly.net/windows-install-vagrant/" data-id="ciki4pb9r000p75rxhid6pcgf" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2014-the-last/" class="pre"><i class="icon-previous">2014总结：平凡的一年</i></a><a href="/web-status-code/" class="next">Web状态代码解释及常见出错原因<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
+var disqus_identifier = 'windows-install-vagrant/';
+var disqus_title = 'windows环境下Vagrant(Docker)的安装、打包以及Vagrant Manager的安';
+var disqus_url = 'http://haofly.net/windows-install-vagrant/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/maitianshouwangzhe/">我越来越像《麦田守望者》</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/database-application-scenarios/">各种数据库的应用场景</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>

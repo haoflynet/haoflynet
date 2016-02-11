@@ -19,6 +19,9 @@ menu:
   - page: about
     directory: about/
     icon: icon-about
+  - page: 我的收藏
+    directory: favorites.html
+    icon: icon-archive
   - page: rss
     directory: atom.xml
     icon: icon-rss
