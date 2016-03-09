@@ -3,30 +3,27 @@ title: "Mysql之主从复制"
 date: 2016-01-06 07:35:43
 categories: 编程之路
 ---
-参考地址：<http://369369.blog.51cto.com/319630/790921> 原来想要简单地实现MySQL的主从复制其实也是很简单的(
-这里当然不包括服务监控和容错处理啦)首先，要检查主从服务器的MySQL版本，最好版本一致，不然会出现各种问题，特别是，5.5和5.6是不会兼容的  
+参考地址：<http://369369.blog.51cto.com/319630/790921>  
+原来想要简单地实现MySQL的主从复制其实也是很简单的(
+这里当然不包括服务监控和容错处理啦)
 
+1.要检查主从服务器的MySQL版本，最好版本一致，不然会出现各种问题，特别是，5.5和5.6是不会兼容的  
 
-  1. 请先确保数据库版本一致，不然会出现各种错误
-  2. 修改两个服务器的mysql配置  
+2.修改两个服务器的mysql配置`vim /etc/my.cnf`
 
-
-        # vim /etc/my.cnf
     [mysqld]
     log-bin=mysql-bin    // 打开二进制日志
     server-id=41         // 服务器的唯一ID，为0表示拒绝所有从服务器的连接
 
 分别修改两个服务器配置然后分别重启
 
-  3. 主服务器建立账户：这个账户与普通账户不一样，它智能用于主从复制中：  
+3.主服务器建立账户：这个账户与普通账户不一样，它只能用于主从复制中：  
 
+    mysql> GRANT REPLICATION SLAVE ON *.* to 'master'@'%' identified by 'mysql';
 
-        mysql> GRANT REPLICATION SLAVE ON 星.星 to 'xiaohao'@'\%' identified by 'mysql';
+4.查看服务器状态
 
-  4. 查看主服务器状态  
-
-
-        mysql> show master status;
+    mysql> show master status;
     +------------------+----------+--------------+------------------+-------------------+  
     | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |  
     +------------------+----------+--------------+------------------+-------------------+  
@@ -35,25 +32,21 @@ categories: 编程之路
     1 row in set (0.00 sec)
 
 
-需要注意的是，这两个值都得记下来哟  
+需要注意的是，这两个值都得记下来哟
 
-  5. 将主服务器数据库dump然后导入到从服务器，记下了Position就不用担心dump后新增数据的情况，会自动同步的  
+5.将主服务器数据库dump然后导入到从服务器，记下了Position就不用担心dump后新增数据的情况，会自动同步的
 
-  6. 配置从服务器  
+6.配置从服务器
 
+    mysql> change master to master_host='192.168.1.41', master_user='xiaohao', master_password='mysql', master_log_file='mysql-bin.000004', master_log_pos=615261;  // 这里就是刚才的Position
 
-        mysql> change master to master_host='192.168.1.41', master_user='xiaohao', master_password='mysql', master_log_file='mysql-bin.000004', master_log_pos=615261;  // 这里就是刚才的Position
+7.启动从服务器  
 
-  7. 启动从服务器  
+        mysql> start slave;   # 同理，停止用stop slave
 
+8.查看复制状态  
 
-        mysql> start slave;
-
-
-  8. 查看复制状态  
-
-
-        mysql> show slave status\\G  
+        mysql> show slave status\G  
     **_*_****_*_****_*_****_*_* 1. row ****_*_****_*_****_*_******  
                    Slave_IO_State: Waiting for master to send event  
                       Master_Host: 192.168.1.41  
