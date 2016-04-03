@@ -34,5 +34,5 @@ categories: 编程之路
         mysqld_multi start      # 启动实例
         mysqld_multi stop
         mysqld_multi report     # 查看两个实例运行状态
-
+w
 另外，实例的日志文件默认是在实例文件夹下的`localhost.localdomain.err`文件里，启动完实例后，还要连接实例进行初始密码设置
