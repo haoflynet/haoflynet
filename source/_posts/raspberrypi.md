@@ -32,24 +32,31 @@ n，和Ubuntu操作一样**
 家里40英寸的电视，(HDMI高清显示，真他妈爽)就像这样，还通过USB插了外置键盘。  
 ![](http://7xnc86.com1.z0.glb.clouddn.com/raspberrypi_1.jpg)  
 
-默认是通电自动启动的，所以插上电就会进入系统了  
-默认用户名pi，默认密码是raspberry  
-接着就做一些基本的配置，通过sudo raspi-config的第一项将sd卡的剩余空间全部用来使用，接着修改源，这个国度没办法的事  
+默认是通电自动启动的，所以插上电就会进入系统了，默认用户名pi，默认密码是raspberry，接着就做一些基本的配置，通过`sudo raspi-config`来运行设置工具：
 
+- 第一项将sd卡的剩余空间全部用来使用
+- 然后修改international里面的时区及默认字符编码
+- 接着修改源，这个国度没办法的事  
 
+	    $ sudo nano /etc/apt/sources.list.d/raspi.list
+	    修改为如下：
+	    deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/debian/ jessie main
+	
+	
+	    $ sudo nano /etc/apt/sources.list  
+	
+	    修改为如下：
+	    deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
+	    deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
 
-    $ sudo nano /etc/apt/sources.list.d/raspi.list
-    修改为如下：
-    deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/debian/ jessie main
+- 最后，安装必要的软件
 
+		sudo apt-get update && apt-get upgrade 
+		sudo apt-get install vim tree ttf-wqy-microhei
+		
+- 中文环境配置
 
-    $ sudo nano /etc/apt/sources.list  
-
-    修改为如下：
-    deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
-    deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
-
-    然后更新系统，并安装最基本的vim
+		sudo dpkg-reconfigure locales
 
 ## **WIFI设置**
 
@@ -151,7 +158,13 @@ n，和Ubuntu操作一样**
 
 
 
+## TroubleShooting
+- **中文设置**:
 
+    sudo raspi-config
+    去掉en_GB.UTF-8 UTF-8
+    选择“en_US.UTF-8 UTF-8”、“zh_CN.UTF-8 UTF-8”、“zh_CN.GBK GBK”
+    然后第二个页面默认语言选择en_GB.UTF-8 UTF-8
 
 
 
