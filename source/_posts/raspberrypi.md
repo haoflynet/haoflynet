@@ -52,7 +52,7 @@ n，和Ubuntu操作一样**
 - 最后，安装必要的软件
 
 		sudo apt-get update && apt-get upgrade 
-		sudo apt-get install vim tree ttf-wqy-microhei
+		sudo apt-get install vim tree ttf-wqy-microhei python python3 python-dev python3-dev python-pip python3-pip zsh git -y
 		
 - 中文环境配置
 
