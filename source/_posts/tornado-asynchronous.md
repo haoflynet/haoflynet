@@ -12,6 +12,7 @@ categories: 编程之路
 耗时型任务一般分为两类：CPU耗时型任务和IO耗时型任务。CPU指一般的代码运算执行过程，IO一般分为两大类，计算型IO和阻塞式IO。如果仅有一个线程，那么同一时刻只能有一个任务在计算，但如果是阻塞式IO，它可以让它先阻塞掉，然后去计算其他的任务，等到内核告诉程序那边没有被阻塞了就、再回到之前的地方进行之后的运算。
 
 所以，在了解了这些概念过后，我就知道了为什么要发挥tornado的异步特性就得依赖异步库([Tornado官方提供的第三方异步库](https://github.com/tornadoweb/tornado/wiki/Links))，而不是随便一行代码都能变成异步非阻塞式的代码。比如我试验时使用的一个sleep函数：
+
 ```
     def sleep(self):
         for i in range(100000000):
@@ -19,6 +20,7 @@ categories: 编程之路
                 print(i)
         self.set_cookie('setting', 'hao')
 ```
+
 看吧，这是一个计算型任务，由于tornado是单进程单线程，所以无论怎么做也不可能实现在访问该请求的时候访问其他请求，因为CPU只能执行当前任务，其他请求必须等到这个请求结束后才能成功，这也是为什么部署tornado的时候几乎都是用nginx+多实例事实上，同理，其他的框架基本上都是需要nginx、apache等配合才能同时服务于多个请求的。Tornado的异步库，几乎都是用来进行阻塞式IO任务的，所以只有他们才能发挥其异步特性。
 
 Tornado的异步实现就是将当前请求的协程暂停，等待其返回结果，在等待的过程中当前请求不能继续往下执行，但是如果有其他请求(同样是一个协程)，只要不也是阻塞式IO，那么就会直接去处理其他的请求了。
@@ -32,6 +34,7 @@ Tornado的异步实现就是将当前请求的协程暂停，等待其返回结�
 
 #### Tornado实现：当前请求会立马返回一个结果并断开当前http连接，所以不能在这里设置cookie
 
+```
 	import tornado.ioloop
 	import tornado.web
 	import time
@@ -79,9 +82,11 @@ Tornado的异步实现就是将当前请求的协程暂停，等待其返回结�
 	if __name__ == "__main__":
     	application.listen(8888)
     	tornado.ioloop.IOLoop.instance().start()
+```
 
 #### flask实现：直接在启动时添加参数，当前请求不会立马返回一个返回值，会一直处于连接状态，所以可以设置cookie
 
+```
 	from flask import Flask,request,make_response
 	app = Flask(__name__)
 
@@ -105,7 +110,7 @@ Tornado的异步实现就是将当前请求的协程暂停，等待其返回结�
 
 	if __name__ == '__main__':
 		app.run(debug=True, threaded=True)
-
+```
 
 **参考文章**  
 [知乎：怎样理解阻塞非阻塞与同步异步的区别?](https://www.zhihu.com/question/19732473)  
