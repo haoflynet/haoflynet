@@ -27,23 +27,23 @@ API与用户的通信协议，总是使用[HTTPs协议](http://www.ruanyifeng.co
 
 应该尽量将API部署在专用域名之下。
 
-
-
+```
     https://api.example.com
+```
 
 如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。
 
-
-
+```
     https://example.org/api/
+```
 
 #  三、版本（Versioning）
 
 应该将API的版本号放入URL。
 
-
-
+```
     https://api.example.com/v1/
+```
 
 另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。[Github](https://developer.github.com/v3/m
 edia/#request-specific-version)采用这种做法。
@@ -123,11 +123,11 @@ edia/#request-specific-version)采用这种做法。
 
 如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。
 
-
-
-    \{
-    error: "Invalid API key"
-    \}
+```
+    {
+    	error: "Invalid API key"
+    }
+```
 
 # 九、返回结果
 
@@ -146,14 +146,14 @@ RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其�
 
 比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档。
 
-
-
-    \{"link": \{
+```
+    {"link": {
     "rel": "collection https://www.example.com/zoos",
     "href": "https://api.example.com/zoos",
     "title": "List of zoos",
     "type": "application/vnd.yourformat+json"
-    \}\}
+    }}
+```
 
 上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给
 出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型。
@@ -161,23 +161,23 @@ RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其�
 Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)。Github的API
 就是这种设计，访问[api.github.com](https://api.github.com/)会得到一个所有可用API的网址列表。
 
-
-
-    \{
+```
+    {
     "current_user_url": "https://api.github.com/user",
     "authorizations_url": "https://api.github.com/authorizations",
     // ...
-    \}
+    }
+```
 
 从上面可以看到，如果想获取当前用户的信息，应该去访问[api.github.com/user](https://api.github.com/user)，然
 后就得到了下面结果。
 
-
-
+```
     {
     "message": "Requires authentication",
     "documentation_url": "https://developer.github.com/v3"
     }
+```
 
 上面代码表示，服务器给出了提示信息，以及文档的网址。
 
