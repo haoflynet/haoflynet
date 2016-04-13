@@ -174,10 +174,10 @@ Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)�
 
 
 
-    \{
+    {
     "message": "Requires authentication",
     "documentation_url": "https://developer.github.com/v3"
-    \}
+    }
 
 上面代码表示，服务器给出了提示信息，以及文档的网址。
 
@@ -189,3 +189,6 @@ Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)�
 （2）服务器返回的数据格式，应该尽量使用JSON，避免使用XML。
 
 （完）
+
+## 个人总结
+RESTful设计风格是仅仅针对API的设计，其他的，比如新建功能页面的url还是需要自己另外定义的，当然可以在后面直接加参数，比如`GET /zoos?add=1`
