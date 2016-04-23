@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>packages - 我的Wiki</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "packages";
+    var mkdocs_page_input_path = "code/packages.md";
+    var mkdocs_page_url = "/code/packages/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> 我的Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>code</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../安全测试/">安全测试</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../编码经验/">编码经验</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../代码审查清单/">代码审查清单</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../正则表达式/">正则表达式</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">packages</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#python">Python</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_1">如果出现以下错误：</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_2">那么这样操作：</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_3">如果出现如下错误：</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_4">那么这样操作：</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#php">PHP</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#jqueryjs">jQuery/JS</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>python</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Django/">Django</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Flask/">Flask</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/kivy/">kivy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/pybrain/">pybrain</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Django/">Django</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/PyQT/">PyQT</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/pytest/">pytest</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/python/">python</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Scrapy-PySpider/">Scrapy-PySpider</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Splinter/">Splinter</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/string/">string</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Tornado/">Tornado</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>frontend</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/bootstrap/">bootstrap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/js/">js</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/css/">css</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/frontend/">frontend</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/gulp/">gulp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/html/">html</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/nodejs/">nodejs</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Database</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/MySQL and Mriadb/">MySQL and Mriadb</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/atlas/">atlas</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/MHA/">MHA</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/redis/">redis</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/sqlite/">sqlite</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>PHP</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/php/">PHP</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/Laravel/">Laravel</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/PHP编码规范/">PHP编码规范</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Other Tools</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Docker/">Docker</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Git/">Git</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Chrome/">Chrome</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/curl/">curl</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Atom/">Atom</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/SVN/">SVN</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Openstack/">Openstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/shadowsocks/">shadowsocks</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/fpm/">fpm</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/hexo/">hexo</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/phpmyadmin/">phpmyadmin</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Sublime Text/">Sublime Text</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/terminal/">terminal</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/vim/">vim</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wireshark/">wireshark</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wordpress/">wordpress</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/workbench/">workbench</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>server</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/apache/">apache</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/HAProxy/">HAProxy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/lamp/">lamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/nginx/">nginx</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/puppet/">puppet</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/saltstack/">saltstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/wamp/">wamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/zabbix/">zabbix</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>system</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/装机必备/">装机必备</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Android/">Android</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Linux/">Linux</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/MAC OSX/">MAC OSX</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Raspberry Pi/">Raspberry Pi</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Windows/">Windows</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>C and C++</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C/">C</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C++/">C++</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Java</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Java/java/">Tips</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">我的Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>code &raquo;</li>
+        
+      
+    
+    <li>packages</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>＃ python包／jQuery包收集与整理</p>
+<h1 id="python">Python</h1>
+<p>如果要使用pip安装最新版本可以在后面加上版本号</p>
+<p><strong><a href="http://beautifulsoup.readthedocs.org/zh_CN/latest/">beautifulsoup4</a></strong>：XML/HTML解析组件</p>
+<p><strong>coverage</strong>：代码覆盖率检测工具</p>
+<p>difflib：Python自带模块，比较文本之间的差异，且支持输出可读性强的HTML文档，</p>
+<p><a href="https://docs.djangoproject.com/en/1.8/topics/pagin
+ation/"><strong>django.core.paginator</strong></a>：这是Django自带的分页工具，非常实用</p>
+<p><strong>django.contrib.syndication.views</strong>：Django自带的输出feed的工具</p>
+<p><strong><a href="http://www.jianshu.com/p/da3de42a96b5">django-avatar</a></strong>：Django头像插件</p>
+<p><a href="https://github.com/django-debug-toolbar/django-
+debug-toolbar"><strong>django-debug-toolba</strong>r</a>：Django的调试工具，应该非常好用，未使用过</p>
+<p><a href="https://pypi.python.org/pypi/django-
+haystack/2.4.0"><strong>django-haystack</strong></a>：Django的全文搜索功能</p>
+<p><strong><a href="https://pypi.python.org/pypi/django-redis/4.0.0">django-redis</a></strong>：在Django中使用Redis必备。需要注意的是，它对value做了序列化，而且在key前面加入了版本号，类似_:1:key，<em>而且，默认生存时间是300秒，需要加入参数_cache.set(“key”, “value”, timeout=None)</em>。Redis密码的格式应该是 “LOCATION”: “redis://:密码内容@104.236.170.169:6379/1″,真的服了官网那不明不白的表述了</p>
+<p><a href="http://www.django-rest-
+framework.org/"><strong>django-rest-framework</strong></a>：Django的Restful框架</p>
+<p><a href="https://github.com/omab/django-social-
+auth"><strong>django-social-auth</strong></a>：Django社会化认证工具</p>
+<p><a href="https://github.com/stephenmcd/django-
+socketio"><strong>django-socketio</strong></a>：Django的WebSockets ，好爽</p>
+<p>dnspython：DNS工具包，支持几乎所有的记录类型，可用于查询、传输并动态更新ZONE信息，同时支持TSIG(事务签名)验证消息和EDNS0(扩展DN
+S)。我们可以利用其查询功能来实现DNS服务监控以及解析结果的校验，可以代替nslookup及dig等工具。</p>
+<p><strong><a href="http://django-wysiwyg.readthedocs.org/en/latest/index.html">django-wysiwyg</a></strong>：Django使用wysiwyg作为富文本编辑器</p>
+<p><a href="https://github.com/kennethreitz/grequests"><strong>grequests</strong></a>：异步请求</p>
+<p>IPy：IP地址处理模块，可用于计算大量的IP地址，包括IPv4、IPv6网段、网络掩码、广播地址、子网数、IP类型等。<a href="http://www.ipython.me/python/python-ipy.html">参考文章</a></p>
+<p><strong><a href="https://pypi.python.org/pypi/jieba/0.36.2" title="Link: https://pypi.python.org/pypi/jieba/0.36.2">jieba</a></strong>(<a href="https://github.com/fxsjy/jieba">官方文档</a>)：结巴中文分词，未使用过</p>
+<p><strong><a href="https://pypi.python.org/pypi/matplotlib/1.4.3">matplotlib</a></strong>：像Matlab那样使用图表的方式展示数据，未使用过</p>
+<p><strong>MkDocs</strong>(<a href="http://markdown-docs-zh.readthedocs.org/zh_CN/latest/">中文文档</a>)：项目文档工具，以markdown的方式攥写spinx烈性的文档<br />
+<strong><a href="http://zulko.github.io/moviepy/getting_started/audioclips.html?highlight=audio">MoviePy</a></strong>：Python处理视频文件</p>
+<p><strong><a href="https://pypi.python.org/pypi/mysqlclient/1.3.6" title="Link: https://pypi.python.org/pypi/mysqlclient/1.3.6">mysqlclient</a></strong>：Python3连接MySQL数据库，相比于官方的python connector它更新更快，而且安全，所以我选择它，在安装的时候需要先安装依赖：<em>sudo apt-get install python-dev libmysqlclient-dev</em>，Python3要加3哟，windows下可以直接安装，如果是OS X，那么可能是没有将mysql添加到环境变量，在_.profile_做如下修改</p>
+<p>PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin/pyt
+hon3:/usr/local/mysql/bin:${PATH}"</p>
+<p>export PATH</p>
+<p>DYLD_LIBRARY_PATH="/usr/local/mysql/lib/${DYLD_LIBRARY_PATH}"</p>
+<p>export DYLD_LIBRARY_PATH  </p>
+<p>---|---  </p>
+<p>Pandas：大数据处理工具，可将大文件分段读取</p>
+<p><strong><a href="https://pypi.python.org/pypi/paramiko/1.15.2">paramiko</a></strong>(<a href="http://docs.paramiko.org/en/1.15/api/client.html#paramiko.client.SSHClient">官方文档</a>)：基于Python2/3实现的SSH2的库，支持认证及密钥方式，可以实现远程命令执行、文件传输、中间SSH代理等功能。windows安装的时候会有依赖问题，可见这个<a href="https://github.com/onyxfish/relay/issues/11">issue</a></p>
+<p><strong>pep8</strong>：PEP8规范检测工具，使用时直接<code>pep8 ./</code></p>
+<p>pexpect：相当于Linux下得expect，可以实现对ssh、ftp、passwd、telnet等命令进行自动交互。比如可以模拟一个FTP登录时的所有
+交互，包括输入主机地址、用户名、密码、上传文件等等。</p>
+<p><strong><a href="https://pillow.readthedocs.org/en/3.0.x/">Pillow</a></strong>：Python图像处理库，与PyLab互斥，只能安装一个哟</p>
+<p><strong><a href="http://progressbar-2.readthedocs.org/en/latest/index.html">progressBar2</a></strong>：在终端显示进度条</p>
+<p><a href="https://pypi.python.org/pypi/psutil">psutil</a>：跨平台的获取系统运行的进程和系统利用率(包括CPU、内存、磁盘、
+网络等)信息的库，主要用于系统监控，分析和限制系统资源及进程的管理。实现了一些命令行的工具(如：ps、top、lsof、netstat、ifconfig、w
+ho、df、kill、free、nice、ionice、iostat、iotop、uptime、pidof、tty、taskset、pmap等)</p>
+<p><strong><a href="http://pybrain.org/">PyBrain</a></strong>：Python神经网络库</p>
+<p>pyClamad：直接使用ClamAV病毒扫描守护进程clamd，来实现一个高效的病毒检测功能(ClamAV是一款免费而且开源的防毒软件，软件与病毒库的更新
+皆由社区免费发布)</p>
+<p>pycurl：支持的操作协议有FTP、HTTP、HTTPS、TELNET等</p>
+<p><a href="https://github.com/binux/pyspider"><strong>pyspider</strong></a>：有图形界面的爬虫程序</p>
+<p><a href="https://github.com/trentm/python-
+markdown2"><strong>python-markdown2</strong></a>：Python解析markdown文件</p>
+<p>python-nmap：使用Python实现的端口扫描工具</p>
+<p><a href="https://github.com/richardasaurus/randomavatar"><strong>randomavatar</strong></a>：根据字符串生成随机头像
+，在Python3下有点问题</p>
+<p><strong><a href="https://github.com/mozillazg/random-avatar">random-avatar</a></strong>：直接生成指定大小的随机头像，是按照你的IP来计算的</p>
+<p><strong><a href="https://pypi.python.org/pypi/requests/2.7.0">requests</a></strong>(<a href="http://cn.python-requests.org/zh_CN/latest/">官方文档</a>)：比SSL和HttpResponse更加高级，更方便，一句话就可以搞定人家几十句的功能，非常方便
+|</p>
+<h1 id="_1">如果出现以下错误：</h1>
+<p>/usr/local/lib/python2.7/dist-
+packages/requests/packages/urllib3/util/ssl_.py:90: InsecurePlatformWarning: A
+true SSLContext object is not available. This prevents urllib3 from
+configuring SSL appropriately and may cause certain SSL connections to fail.
+For more information, see https://urllib3.readthedocs.org/en/latest/security.h
+tml#insecureplatformwarning.</p>
+<p>InsecurePlatformWarning</p>
+<h1 id="_2">那么这样操作：</h1>
+<p>pip uninstall requests</p>
+<p>pip \--no-cache-dir install requests[security]</p>
+<h1 id="_3">如果出现如下错误：</h1>
+<p>[APP SUBMITTED]: '_socketobject' object has no attribute
+'set_tlsext_host_name'</p>
+<h1 id="_4">那么这样操作：</h1>
+<p>apt-get purge python-openssl</p>
+<p>apt-get install libffi-dev python-pip</p>
+<p>pip2.7 install -U pyopenssl  </p>
+<p>---|---  </p>
+<p>rrdtool：rrdtoo是换装数据库的存储格式，round robin是一种处理定量数据以及当前元素指针的技术，rrdtool主要用来跟踪对象的变化情况
+，生成这些变化的走势图，如业务的访问流量、系统性能、磁盘利用率等趋势图</p>
+<p><strong><a href="http://sourceforge.net/projects/scipy/?source=typ_redirect">SciPy</a></strong>：Python科学计算库</p>
+<p><strong><a href="https://github.com/scrapinghub/scrapy-splash">scrapy-splash</a></strong>：Scrapy对于Splash的封装</p>
+<p><strong><a href="https://github.com/scrapinghub/splash">splash</a></strong>：用于获取经过Javascript处理后的html页面，十分有用，只需要将请求的url改为http://localhost:8050/render.html?url=' + url，即可向Splash服务器发送，并获取到js渲染过后的html页面</p>
+<p><strong>suds</strong>：Python仅作为客户端调用webservice</p>
+<p><strong><a href="https://github.com/PyMySQL/Tornado-MySQL">Tornado-MySQL</a></strong>：MySQL对于Tornado的异步实现，支持线程池直接操作</p>
+<p><a href="https://github.com/lxneng/xpinyin"><strong>xpinyin</strong></a>：汉字拼音</p>
+<h1 id="php">PHP</h1>
+<p><a href="https://github.com/yccphp/laravel-5-markdown-
+editor"><strong>laravel-5-markdown-editor</strong></a>：Laravel5 Markdown编辑器</p>
+<p><a href="https://github.com/maximebf/php-
+debugbar"><strong>PHP Debug Bar</strong></a>：方便调试，可以直接在浏览器里面看到变量信息，而不用var_dump()了。</p>
+<h1 id="jqueryjs">jQuery/JS</h1>
+<p><strong><a href="http://leaverou.github.io/awesomplete/#basic-usage" title="Link: http://leaverou.github.io/awesomplete/#basic-usage">Awesomplete</a></strong>：jQuery的联想次插件，必须异步加载哟，例如：</p>
+<pre><code>&lt;script type="text/javascript"&gt;
+$(function(){
+    var input = document.getElementById("myinput");
+    var awesomplete = new Awesomplete(input);
+    awesomplete.list = ["Ada", "Java", "JavaScript", "Brainfuck", "LOLCODE","Node.js" , "Ruby on Rails"];
+
+});
+&lt;/script&gt;
+</code></pre>
+<p><strong><a href="http://www.htmleaf.com/jQuery/Menu-Navigation/201505131825.html">BootSideMenu</a></strong>：Bootstrap隐藏滑动侧边栏jQuery插件，虽然不大好看，依赖还有点多，不过好用</p>
+<p><strong><a href="https://silviomoreto.github.io/bootstrap-select/">bootstrap-select</a></strong>: 基于Bootstrap和jQuery的下拉选择输入列表插件</p>
+<p><strong><a href="https://github.com/zenorocha/clipboard.js">clipboard.js</a></strong>：纯HTML5实现的复制到粘贴板的插件</p>
+<p><strong><a href="https://github.com/lepture/editor">editor</a></strong>：一个十分漂亮的markdown编辑器</p>
+<p><strong><a href="https://github.com/Valve/fingerprintjs">fingerprintjs</a></strong>: 浏览器唯一性解决方案</p>
+<p><strong><a href="http://jslite.io/hotkeys/">hotkeys</a></strong>：无任何依赖的键盘事件捕获插件</p>
+<p><a href="https://github.com/raphaelcruzeiro/jquery-
+notebook?utm_source=next.36kr.com"><strong>jquery-notebook</strong></a>：简洁的网页编辑器</p>
+<p><strong><a href="https://github.com/mycolorway/simditor" title="Link: https://github.com/mycolorway/simditor">simditor</a></strong>：采程设计的wysiwyg类型的编辑器</p>
+<p><strong><a href="http://threejs.org/" title="Link: http://threejs.org/">three.js</a></strong>: 有太多酷炫的效果了</p>
+<p><a href="https://github.com/Voog/wysihtml"><strong>wysihtml</strong></a>：十分强大的网页编辑器，但是文档几乎没有，上面有Django
+版本</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../python/Django/" class="btn btn-neutral float-right" title="Django">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../正则表达式/" class="btn btn-neutral" title="正则表达式"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../正则表达式/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../python/Django/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

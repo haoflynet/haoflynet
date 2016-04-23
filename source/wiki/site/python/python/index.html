@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>python - 我的Wiki</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "python";
+    var mkdocs_page_input_path = "python/python.md";
+    var mkdocs_page_url = "/python/python/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> 我的Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>code</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/安全测试/">安全测试</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/编码经验/">编码经验</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/代码审查清单/">代码审查清单</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/正则表达式/">正则表达式</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/packages/">packages</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>python</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Django/">Django</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Flask/">Flask</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../kivy/">kivy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../pybrain/">pybrain</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Django/">Django</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../PyQT/">PyQT</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../pytest/">pytest</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">python</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#python">Python</a></li>
+                
+                    <li><a class="toctree-l4" href="#_1">基本语法</a></li>
+                
+                    <li><a class="toctree-l4" href="#_2">标准库</a></li>
+                
+                    <li><a class="toctree-l4" href="#weakref">weakref：弱引用，与常规的引用相对，这种引用在对象只剩下一个弱引用的时候，就可能会被回收，多见于类的嵌套定义防止错误回收</a></li>
+                
+                    <li><a class="toctree-l4" href="#_3">语言本身</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_4">给类添加作者信息</a></li>
+                
+                    <li><a class="toctree-l4" href="#_5">多线程</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Scrapy-PySpider/">Scrapy-PySpider</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Splinter/">Splinter</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../string/">string</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Tornado/">Tornado</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>frontend</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/bootstrap/">bootstrap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/js/">js</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/css/">css</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/frontend/">frontend</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/gulp/">gulp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/html/">html</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/nodejs/">nodejs</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Database</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/MySQL and Mriadb/">MySQL and Mriadb</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/atlas/">atlas</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/MHA/">MHA</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/redis/">redis</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/sqlite/">sqlite</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>PHP</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/php/">PHP</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/Laravel/">Laravel</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/PHP编码规范/">PHP编码规范</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Other Tools</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Docker/">Docker</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Git/">Git</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Chrome/">Chrome</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/curl/">curl</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Atom/">Atom</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/SVN/">SVN</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Openstack/">Openstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/shadowsocks/">shadowsocks</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/fpm/">fpm</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/hexo/">hexo</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/phpmyadmin/">phpmyadmin</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Sublime Text/">Sublime Text</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/terminal/">terminal</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/vim/">vim</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wireshark/">wireshark</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wordpress/">wordpress</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/workbench/">workbench</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>server</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/apache/">apache</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/HAProxy/">HAProxy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/lamp/">lamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/nginx/">nginx</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/puppet/">puppet</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/saltstack/">saltstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/wamp/">wamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/zabbix/">zabbix</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>system</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/装机必备/">装机必备</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Android/">Android</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Linux/">Linux</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/MAC OSX/">MAC OSX</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Raspberry Pi/">Raspberry Pi</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Windows/">Windows</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>C and C++</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C/">C</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C++/">C++</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Java</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Java/java/">Tips</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">我的Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>python &raquo;</li>
+        
+      
+    
+    <li>python</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="python">Python</h1>
+<h2 id="_1">基本语法</h2>
+<ul>
+<li>
+<p><strong>列表</strong>：x</p>
+<pre><code>li[::-1]    # 逆序列表
+del(list[下标])   # 删除指定位置的元素，要注意每次都会更新，比如del(list[0], list[0])就是删除前面两个元素
+li.index(min(li))   # 列表最小值，返回位置，最大用max
+</code></pre>
+</li>
+<li>
+<p><strong>字典</strong>：</p>
+<pre><code># 字典遍历
+for key in dict:
+    print(key, dict[key])
+for key, vlaue in dict.items():
+    print(key, value)
+# 特殊的key
+li = {
+    'a': 'b',
+    None: 'c',
+    '': ''
+}
+# 判断key是否存在
+if 'a' in dict
+
+# 表达式解析
+a = {'x': 1, 'y': 2}
+globals().update(a)
+print(x, y)
+
+# 漂亮地打印json数据
+print(json.dump(sdata, indent=2))
+
+# 有序字典(占用的内存是普通字典的两倍)
+from collections import OrderedDict
+d = OrderedDict()
+
+# 字典排序
+通过某个关键字来排序
+rows = [\{\}, \{\}]  # 假设这是一个由字典组成的列表
+from operation import itemgetter
+result = sorted(rows, key=itemgetter('onekey'))
+通过某个值排序，使用zip()函数，它会先将键和值翻转过来，需要注意的是zip()函数是一个只能访问一次的迭代器
+prices = \{'A': 1, 'B': 2, 'C': 3\}
+min_price = min(zip(prices.values(), prices.keys()))  # 获取value最小的
+prices_sorted = sorted(zip(prices.values(), prices.keys()))
+
+# 字典合并（ChainMap只是将两个字典在逻辑上变为一个，在它上面的修改只会影响第一个字典a)
+from collections import ChainMap
+c = ChainMap(a, b)
+</code></pre>
+</li>
+<li>
+<p><strong>类</strong>：</p>
+<pre><code># 几个特殊的方法
+x.__class__.__name__  # 获取实例的类名
+</code></pre>
+</li>
+<li>
+<p><strong>数字</strong>：</p>
+<pre><code># 随机数
+import random
+random.choice(list)  # 随机选择一个
+random.sample(list, n) # 随机选择n个
+random.shuffle(list)  # 打乱选择后的顺序
+random.randint(0, 10)  # 0到10的随机整数
+random.random()   # 0到1得浮点数
+random.getrandbits(100) # 获取100位随机数
+random.uniform(begin, end)  # 生成0到10的随机浮点数
+</code></pre>
+</li>
+<li>
+<p><strong>文件目录</strong>:</p>
+<pre><code>os.mkdir # 新建目录、文件
+os.makedires('a/b')  # 创建多级目录
+os.remove(filename)  # 删除单个文件
+os.rmdir(dirname)   # 删除空目录
+
+# 用其他库
+import shutil
+shutil.rmtree('mydir')   # 删除非空目录
+shutil.copy(originame, tmpname)  # 复制单个文件
+shutil.copytree(root_of_tree, desetination_dir, True) # 复制目录树
+os.listdir('dirname')  # 显示一个目录下的所有文件和文件夹的名称
+os.path.isdir(filename)  # 是否是目录
+os.path.isfile(filename) # 是否是文件
+os.path.islink  # 是否是链接
+os.path.getsize(filename) # 获取文件大小
+os.path.basename(fname)  # 从完整路径获取其路径
+os.path.dirname(fname) # 从完整路径获取其名称
+os.getcwd()   # 获取当前目录
+os.chdir(newdir)  # 切换目录
+os.path.exists(name)  # 判断目录是否存在
+os.rename(original_name, new_name) # 修改文件名称
+</code></pre>
+</li>
+<li>
+<p><strong>包</strong>:</p>
+<pre><code>在目录下面加上__init__.py就变成了一个包，import包内部的模块使用'.'来分割，__init__.py里面可以定义一些全局变量，__all__指定了此包被import *的时候，哪些模块会被import进来
+# 带点号，表示当前目录下的模块，如
+from . import client
+# 可以在一个模块的根目录下得__init__.py定义一些基本的东西，比如加载一些模块呀，设置一些全局变量(__author__这样的东西)啥的
+</code></pre>
+</li>
+</ul>
+<h2 id="_2">标准库</h2>
+<ul>
+<li><strong>asyncore</strong>：socket的一个封装</li>
+<li><strong>contextlib</strong>：作为装饰器来使用，可以将一个生成器函数转换成上下文管理器，这样就可以用with了</li>
+<li><strong>functools</strong>：<a href="http://www.wklken.me/posts/2013/08/18/python-extra-functools.html#functoolupdate_wrapper">参考</a><ul>
+<li><strong>partial</strong>：冻结部分函数位置或关键字参数，使函数调用更灵活，可以让一个函数有一个或多个参数预先就能用上，例如：<pre><code>import functools
+
+def add(a, b):
+    return a + b
+
+plus3 = functools.partial(add, 3)
+plus3(4)  # 输出7
+- **update_wrapper**：主要用在装饰器函数中，使得装饰器返回函数反射得到的是包装函数定义而不是原始函数定义
+- **wraps**：调用函数装饰器partial(update_wrapper, wrapped=wrapped, assigned=assigned, updated=updated)的简写
+- **reduce**：等同于内置函数reduce()
+- **cmp_to_key**：将一个    函数转换为比较函数
+- **total_ordering**：
+</code></pre>
+<ul>
+<li><strong>collections</strong>：<a href="http://my.oschina.net/leejun2005/blog/222236">参考</a>，提供额外的数据类型<ul>
+<li><strong>namedtuple()</strong>：生成可以使用名字来访问元素内容的tuple子类</li>
+<li><strong>deque</strong>：双端队列</li>
+<li><strong>Counter</strong>：计数器，可用于统计字符串中字符数量</li>
+<li><strong>OrderedDict</strong>：有序字典</li>
+<li><strong>defaultdict</strong>：带有默认值的字典，这样访问不存在的dict就不会出错了</li>
+</ul>
+</li>
+<li><strong>heapq</strong>：Python里面的最小堆</li>
+<li><strong>itertools</strong>：<a href="http://www.wklken.me/posts/2013/08/20/python-extra-itertools.html#itertoolscountstart0-step1">参考</a><ul>
+<li><strong>count(start=0, step=1)</strong>：创建连续整数</li>
+<li><strong>cycle(iterable)</strong>：创建一个迭代器，可以反复循环的，此时用在for里面如果不加终止条件会无限循环</li>
+<li><strong>repeat(object, times)</strong>：创建一个迭代器，根据指定数量，生成重复的对象</li>
+<li><strong>chain(*iterables)</strong>：将多个迭代器作为参数, 但只返回单个迭代器, 它产生所有参数迭代器的内容, 就好像他们是来自于一个单一的序列.</li>
+<li><strong>compress(data, selectors)</strong>：提供一个选择列表，对原始数据进行筛选</li>
+<li><strong>dropwhile(predicate, iterable)</strong>：创建一个迭代器，只要函数predicate(item)为True，就丢弃iterable中的项，如果predicate返回False，就会生成iterable中的项和所有后续项</li>
+<li><strong>groupby(iterable, key)</strong>：返回一个产生按照key进行分组后的值集合的迭代器.</li>
+<li><strong>ifilter(predicate, iterable)</strong>：与dropwhile相反</li>
+<li><strong>ifilterfalce(predicate, iterable)</strong>：与上面这个相反</li>
+<li><strong>islice(iterable, stop)</strong>：返回的迭代器是返回了输入迭代器根据索引来选取的项</li>
+<li><strong>imap(function, *iterables)</strong>：返回一个迭代器, 它是调用了一个其值在输入迭代器上的函数, 返回结果. 它类似于内置函数 map() , 只是前者在任意输入迭代器结束后就停止(而不是插入None值来补全所有的输入).</li>
+<li><strong>starmap(function, iterable)</strong>：创建一个迭代器，生成值func(*item),其中item来自iterable，只有当iterable生成的项适用于这种调用函数的方式时，此函数才有效。</li>
+<li><strong>tee(iterable[, n=2])</strong>：从iterable创建n个独立的迭代器，创建的迭代器以n元组的形式返回，n的默认值为2</li>
+<li><strong>takewhile(predicate, iterable)</strong>：与takewhile相反</li>
+<li><strong>izip(*iterables)</strong>：返回一个合并了多个迭代器为一个元组的迭代器. 它类似于内置函数zip(), 只是它返回的是一个迭代器而不是一个列表</li>
+<li><strong>izip_longest(*iterables[, fillvalue])</strong>：与izip()相同，但是迭代过程会持续到所有输入迭代变量iter1,iter2等都耗尽为止，如果没有使用fillvalue关键字参数指定不同的值，则使用None来填充已经使用的迭代变量的值。</li>
+<li><strong>product(*iterables[, repeat])</strong>：笛卡尔积</li>
+<li><strong>permutations(iterable[, r])</strong>：排列</li>
+<li><strong>combinations(ierable, r)</strong>：创建一个迭代器，返回iterable中所有长度为r的子序列，返回的子序列中的项按输入iterable中的顺序排序 (不带重复)</li>
+<li><strong>combinations_with_replacement(iterable, r)</strong>：创建一个迭代器，返回iterable中所有长度为r的子序列，返回的子序列中的项按输入iterable中的顺序排序 (带重复)</li>
+</ul>
+</li>
+<li><strong>SocketServer</strong>：<a href="http://blog.marchtea.com/archives/60">参考</a>两种服务模型：ThreadingMinxln(有新请求时，创建一个新的进程)、ForkingMinln(有新请求时，创建一个新的线程)<ul>
+<li><strong>TCPServer</strong></li>
+<li><strong>UDPServer</strong></li>
+<li><strong>UnixStreamServer</strong></li>
+<li><strong>UnixDatagramServer</strong></li>
+</ul>
+</li>
+<li>
+<h2 id="weakref"><strong>weakref</strong>：弱引用，与常规的引用相对，这种引用在对象只剩下一个弱引用的时候，就可能会被回收，多见于类的嵌套定义防止错误回收</h2>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="_3">语言本身</h2>
+<ul>
+<li><strong>装饰器</strong>：装饰器就是一个函数，它接受其它函数为参数返回一个装饰过的函数，装饰器可用于静态方法、属性(@staticmethod)，在函数前后执行特定代码(比如，验证参数、给函数调用做缓存、注册回调函数、给函数打日志)<ul>
+<li>
+<p>@property装饰器：可以以属性的方式访问方法，或者改变父类属性，例如：</p>
+<pre><code>class B(A):
+    @property
+    def a(self):
+        return 123
+
+b = B()
+b.a # 123
+- 一个例子：输出函数的开始结束时间
+
+def printtime(func):
+    def warppedFunc():
+        print(time.time())
+        func()
+        print(time.time())
+return warppedFunc
+
+@printtime
+def test():
+    hehe
+</code></pre>
+<ul>
+<li><strong>Python设计模式</strong>：https://github.com/faif/python-patterns</li>
+<li><strong>SimpleHTTPServer</strong>：最简单的web服务，十分方便，可以方便局域网其它设备访问本机文件目录<code>python -m SimpleHTTPServer 8000</code></li>
+<li><strong>静态方法(@staticmethod)</strong>：跟类有管，和实例无关.静态方法没有默认的第一个参数.</li>
+<li><strong>类方法(@classmethod)</strong>：跟类有管，和实例无关.默认的第一个参数是类本身，而不像其它函数那样是对象本身</li>
+<li><strong>元类</strong>：<a href="http://blog.jobbole.com/21351/">参考</a> <a href="http://www.jianshu.com/p/d643d6f0ec82">参考2</a> <a href="http://www.cnblogs.com/russellluo/p/3409602.html">参考3</a>元类的主要用途是创建API，比如Django的Model里面，record.field，这会返回该字段的值，而不是model定义里面的Field对象.最简单的例子：</li>
+</ul>
+<h1 id="_4">给类添加作者信息</h1>
+<p>class AuthorTag(type):
+    def <strong>new</strong>(cls, name, bases, dict):
+        dict['<strong>author</strong>'] = 'RussellLuo'
+        return super(AuthorTag, cls).<strong>new</strong>(cls, name, bases, dict)</p>
+<p>class MyBlog:
+    <strong>metaclass</strong> = AuthorTag</p>
+<p>class MyGitHub:
+    <strong>metaclass</strong> = AuthorTag
+- <strong>自省</strong>：<a href="https://www.ibm.com/developerworks/cn/linux/l-pymeta/">参考</a>自省对象能够描述自己：实例属于哪个类？类有哪些祖先？对象可以用哪些方法和属性？自省让处理对象的函数或方法根据传递给函数或方法的对象类型来做决定
+- <strong>管理属性</strong>：
+    - <strong>__new__</strong>：在构造函数之前，可以决定是否用__init__方法来实例化类，是一个静态方法.
+    - <strong>__init__</strong>：负责将类实例化
+    - <strong>__del__</strong>：类的析构函数
+    - <strong>__call__</strong>：在定义类的时候，实现该函数，这样该类的实例就变成可调用的了，相当于重载了括号运算符.例如，md5那几个库，使用的时候就是md5(...)，但其实它肯定是个类的实例而不是个简单的函数撒.<a href="http://qa.helplib.com/523801">使用场景</a>例如：</p>
+<pre><code>class A():
+    def __call__(self, key):
+        print(key)
+a = A()
+a('key')    # 打印'key'
+</code></pre>
+<ul>
+<li><strong>多态</strong>：Python中的多态，就相当于重载的方法</li>
+<li><strong>Mixin</strong>：在运行期间动态改变类的基类或类的方法，哦，就是在运行时给改变基类，这样随之所有的子类都改变了</li>
+<li><strong>迭代器</strong>：<a href="https://github.com/lzjun567/note/blob/master/note/python/iterator_generator.md">参考</a>对象的类有next和iter方法返回自身</li>
+<li><strong>生成器</strong>：<a href="https://github.com/lzjun567/note/blob/master/note/python/iterator_generator.md">参考</a>生成器都是迭代器，使用yield来生成的结果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="_5">多线程</h2>
+<p>锁：</p>
+<pre><code>lock = threading.Lock()
+lock.acquire()
+xxxxx
+lock.release()
+# 更方便的使用：
+lock = threading.Lock()
+with lock:
+    xxxxxxx
+
+    ---
+    title: "Python时间处理"
+    date: 2015-07-24 17:41:56
+    categories: python
+    ---
+      * 简单的获取时间：
+
+            import datetime
+        a = str(datetime.date.today())
+        print(a)  # 格式为2015-07-17
+
+        a = time.strftime('\%H:\%M:\%S')  # 格式为11:20:00
+
+      * 字符串转时间：
+
+            time_str='Tue, 11 Nov 2014 06:37:20 +0000'
+        date = datetime.datetime.strptime(time_str, '\%a, \%d \%b \%Y \%H:\%M:\%S \%z')
+        print(date)  # 输出'2014-11-11 06:37:20+00:00'
+        print(date.timestamp()) # 输出时间戳'1415687840.0'
+
+      * 获取当天开始和结束的时间(即00:00:00到23:59:59)
+
+            today = datetime.date.today()
+        datetime.datetime.combine(today, datetime.time.min)
+        # 得到datetime.datetime(2015, 7, 24, 0, 0)
+        datetime.datetime.combine(today, datetime.time.max)
+        # 得到datetime.datetime(2015, 7, 24, 23, 59, 59, 999999)
+
+      * 时间加一天，昨天，明天，前面几天，后面几天
+
+            now = datetime.datetime.now()
+        date = now + datetime.timedelta(days = 1)
+
+      * 关于时间占位符总结：
+
+            \%d：日
+        \%b：简写的月份，如Oct
+        \%Y：年份
+        \%H：小时
+        \%m：月
+        \%M：分钟
+        \%S：秒
+        \%z：与时区相关，在标准时间上加时间，例如'+00:00'
+
+        # 各种格式举例
+        time.strftime('\%Y-\%m-\%dT\%H:\%M:\%S\%z')  # 2015-11-11T02:49:03+00:00
+
+
+      * 时间戳的转换：
+
+            ltime=time.localtime(1395025933)
+        timeStr=time.strftime("\%Y-\%m-\%d \%H:\%M:\%S", ltime)
+
+        string = '2015年09月18日 00:01:00'
+        date = time.strptime(string, '\%Y年\%m月\%d日 \%H:\%M:\%S')
+        b = time.mktime(date)   # 获取时间戳
+
+        # datetime转时间戳
+        time.mktime(the_date.timetuple()
+
+      * Django的时区设置：
+
+            TIME_ZONE = 'Asia/Chongqing'
+
+      * 获取本月有多少天，以及最后一天的计算方法
+
+            import calendar
+        today = datetime.date.today()
+        _, last_day_num = calendar.monthrange(today.year, today.month)
+        last_day = datetime.date(today.year, today.month, last_day_num)
+
+            ---
+            title: "Python奇淫技巧"
+            date: 2014-10-07 09:52:19
+            categories: python
+            ---
+              * 列表
+
+
+
+
+                del dict_var['key']
+
+              * 队列
+
+
+                    from collections import deque
+                q = deque(maxlen = 2)   # 定义队列的时候指定队列大小，也可以不指定
+                q.append(1)
+                q.append(2)   # 此时队列为[1, 2]
+                q.append(3)   # 此时队列为[2, 3]
+                q.appendleft(4) # 在队列的头部添加元素
+                q.pop()   # 去除尾部元素
+                q.popleft()   # 去除头部元素
+
+
+              * 文件
+
+
+                    # 文件打开与关闭
+                fp = open('a.txt', 'w')
+                fp.close()
+                或者
+                with open('a.txt', 'w') as fp):   # 这种方式不需要close
+                    print('it's...''', file=fp)
+                或者
+                import codecs
+                fp = codecs.open(filename, 'w', 'utf-8') # 这种方式可以解决很多编码问题
+                fp.write(string)
+                fp.close()
+
+                # 读取数据
+                fp.readline()  # 从文件读取一行数据
+                for each_line in fp:   # 可迭代获取每一行数据
+                    print(each_line)
+                fp.read()  # 读取所有数据
+                fp.readlines()  # 读取所有的行，返回一个列表，需要注意的是这个只会读取一次，读取第二次的时候就会返回空了
+                codecs.open(path, 'r', 'utf-8').read().splitlines() # 获取所有的数据，并使用splitlines()分隔行，这样在每行的后面就不会出现换行符了
+                print('string', file=fp)  # 直接写入文件
+
+                # 清空文件内容
+                fp.seek(0, 0) # 这一句可以保证之前是否读取，都能清空
+                fp.truncate() # 清空语句
+
+              * 数字
+
+
+                    # 四舍五入
+                round(1.23, 1)   # 第二个参数表示保留几位小数
+
+                # 保留几位小数
+                format(x, '0.2f')  # 保留两位小数
+
+              * 遍历/迭代
+
+
+                    # 反向迭代
+                for x in reversed(a_list):
+
+                # 跳过可迭代对象的前面几个值，例如for循环里面跳过前面几个
+                from itertools import islice
+                for x in islice(items, 3, None)   # 这里跳过了前面3个
+
+                # 迭代时获取序号
+                for index, val in enumerate(my_list)
+
+                # 多个列表同时迭代，让长度取决于最短的那一个
+                for a, b in zip(x, y) # 这样就不会超出长度
+
+              * 输入与输出
+
+
+                    # 在调试某些代码的时候发现print没有输出，这是有可能将print重定向了，这是用sys.stdout.write('')可以实现打印输出到控制台
+
+                # 将输出重定向到文件
+                fp = open('log', 'w')
+                sys.stdout = fp
+
+              * 系统环境相关
+
+
+                    import sys, platform
+                platform.system()  # 当前操作系统
+                platform.release()  # 当前系统版本
+                sys.version     # python版本
+                os.environ['name']  # 获取系统环境变量
+                os.environ['name'] = value  # 设置系统环境变量
+
+
+              * 执行系统命令
+
+
+                    import os, sys
+                os.system('命令')
+                os.popen('命令')  # 这个的返回值直接就是输出内容了
+
+                exec：总是返回None
+                eval：会获取到返回值
+
+              * 动态导入模块
+
+
+                    __import__(module_name)   # 相当于import
+                __import__(name = module_name, formlist=[a,b]) # 相当于from module_name import a, b
+
+
+              * 类、函数、对象
+
+
+                    x.__class__  # 获取对象的类名
+                id(x)   # 返回对象标识，即内存地址
+                setattr(my_model, 'name', 'value')  # 给对象动态添加属性
+
+                # 函数参数注释:
+                def fun(参数: '这是注释', 参数: '这是注释') -&gt; 返回释义
+
+              * 序列化：有时候还是挺方便的，比如后面的操作依赖前面的数据，但是前面的数据不能多次快速抓取，就需要将变量直接写到本地
+
+
+                    import pickle
+                # 如果序列化出现maximum recursion depth错误，那么可以设置sys.setrecursionlimit(1000)来解决
+
+              * 排列组合
+
+
+                    import itertoolrs
+                for i in itertools.product('ABCD', repeat
+
+              * 其他模块：
+
+
+                    collections.Counter：找出序列中出现次数最多的元素
+                heqpq：查找最大或最小的几个元素
+                itertoolrs：排列组合
+
+              * 装饰器
+
+
+                    @property：可将类的方法变为类的属性，比如之前用person.name()，现在可以直接person.name
+
+              * 变量
+
+
+                    sys.getsizeof(name)  # 获取变量占用内存的大小
+
+                # 如果要改变全局变量的值，那么需要用global来声明，如果仅仅是使用该值那么可以不用global声明
+
+                del name  # 删除一个变量
+
+                # 弱引用：在不增加引用计数的情况下使用对象的引用，以防止对象错误回收
+
+              *
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Scrapy-PySpider/" class="btn btn-neutral float-right" title="Scrapy-PySpider">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../pytest/" class="btn btn-neutral" title="pytest"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../pytest/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Scrapy-PySpider/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

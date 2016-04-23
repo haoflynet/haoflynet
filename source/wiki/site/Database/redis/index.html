@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>redis - 我的Wiki</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "redis";
+    var mkdocs_page_input_path = "Database/redis.md";
+    var mkdocs_page_url = "/Database/redis/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> 我的Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>code</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/安全测试/">安全测试</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/编码经验/">编码经验</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/代码审查清单/">代码审查清单</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/正则表达式/">正则表达式</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/packages/">packages</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>python</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Django/">Django</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Flask/">Flask</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/kivy/">kivy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/pybrain/">pybrain</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Django/">Django</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/PyQT/">PyQT</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/pytest/">pytest</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/python/">python</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Scrapy-PySpider/">Scrapy-PySpider</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Splinter/">Splinter</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/string/">string</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../python/Tornado/">Tornado</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>frontend</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/bootstrap/">bootstrap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/js/">js</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/css/">css</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/frontend/">frontend</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/gulp/">gulp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/html/">html</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/nodejs/">nodejs</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Database</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../MySQL and Mriadb/">MySQL and Mriadb</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../atlas/">atlas</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../MHA/">MHA</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">redis</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#redisconf">redis.conf配置详解</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#redis">Redis注意事项</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sqlite/">sqlite</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>PHP</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/php/">PHP</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/Laravel/">Laravel</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/PHP编码规范/">PHP编码规范</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Other Tools</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Docker/">Docker</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Git/">Git</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Chrome/">Chrome</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/curl/">curl</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Atom/">Atom</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/SVN/">SVN</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Openstack/">Openstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/shadowsocks/">shadowsocks</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/fpm/">fpm</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/hexo/">hexo</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/phpmyadmin/">phpmyadmin</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Sublime Text/">Sublime Text</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/terminal/">terminal</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/vim/">vim</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wireshark/">wireshark</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wordpress/">wordpress</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/workbench/">workbench</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>server</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/apache/">apache</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/HAProxy/">HAProxy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/lamp/">lamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/nginx/">nginx</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/puppet/">puppet</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/saltstack/">saltstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/wamp/">wamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/zabbix/">zabbix</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>system</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/装机必备/">装机必备</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Android/">Android</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Linux/">Linux</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/MAC OSX/">MAC OSX</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Raspberry Pi/">Raspberry Pi</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Windows/">Windows</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>C and C++</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C/">C</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C++/">C++</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Java</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Java/java/">Tips</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">我的Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Database &raquo;</li>
+        
+      
+    
+    <li>redis</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>之前在用64位linux安装Redis的时候一点问题没有出，所以这次遇到问题过后还是寻找了好久的答案，最后发现，答案就在文档上。。。</p>
+<p>系统环境：Ubuntu 14.04 server 32bit + Redis 3.0.0-rc5</p>
+<p>安装步骤：</p>
+<ul>
+<li>Redis的开发进度比较快，所以不适合使用常规的apt-get方式安装，而应该直接从官网或者Github上下载.tar.gz的源码。</li>
+<li>
+<p><strong>解压</strong>：</p>
+<pre><code>tar xzf 3.0.0-rc5.tar.gz
+</code></pre>
+<p>cd redis-3.0.0-rc5/   进入目录进行编译工作</p>
+</li>
+<li>
+<p><strong>编译</strong>：这一步在32位的机子上不能直接进行make命令，而应该执行如下命令：</p>
+<pre><code>sudo apt-get install g++-multilib
+</code></pre>
+<p>make CFLAGS="-m32 -march=native" LDFLAGS="-m32"</p>
+</li>
+<li>
+<p><strong>运行</strong>：在当前目录下执行</p>
+<pre><code>src/redis-server
+</code></pre>
+</li>
+<li>
+<p><strong>后台以daemon方式运行</strong>：编辑redis目录的_redis.conf_文件，修改如下内容：</p>
+<pre><code>daemonize no  #将这一行的no改为yes
+</code></pre>
+<p>daemonize yes</p>
+</li>
+</ul>
+<p>然后执行</p>
+<pre><code>    src/redis-server redis.conf    # 指定redis运行的配置文件
+ps -e | grep redis             # 查看redis是否在后台成功运行
+</code></pre>
+<p>关闭命令</p>
+<pre><code>    src/redis-cli       # 先进入Redis命令行模式
+shutdown            # 然后执行关闭命令
+</code></pre>
+<h2 id="redisconf">redis.conf配置详解</h2>
+<p>在redis的解压目录里有一个配置文件redis.conf，默认情况下，使用src/redis-
+server是调用的默认文件，但如果对文件进行了修改，需要指明，即<code>src/redis-server redis.conf</code>，以下是一些需要修改的地方：</p>
+<pre><code>loglevel notice # 日志级别，其中，notice比较适合生产环境，而，debug则表示记录详细的信息
+logfile ""    # 默认是空字符串，即输出到/dev/null，需要修改为自己的目录
+
+
+
+
+save 900 1       # 数据写入硬盘的频率，表示如果900秒内有1个key发生变化就写入一次，300秒内有10个key发生变化写入一次，60秒内10000个key发生变化写入一次
+save 300 10
+save 60 10000
+
+
+
+
+bind 127.0.0.1   # 绑定IP，表示只有该IP能够连接到该redis，默认所有IP均能连，学校用的动态IP该怎么破
+
+
+
+
+requirepass 密码 # 访问需要密码
+</code></pre>
+<h2 id="redis">Redis注意事项</h2>
+<ul>
+<li><strong>小数据量本地迁移数据：</strong>网上找到的Redis的迁移方法都是从一个服务器至另一个服务器做主从复制，但我现在面临的情况是如何将localhost的数据迁移到Server上面去，用最笨也最简单的方法，直接将dump.rdb覆盖服务器上Redis目录，需要注意的是，覆盖的时候得先把原Redis进程关闭掉，覆盖后再重启</li>
+</ul>
+<hr />
+<p>title: "Redis奇淫技巧"
+  date: 2014-12-28 15:31:21
+  categories: Redis</p>
+<hr />
+<pre><code>1. 要使redis能显示中文字符，只需要在启动cli的时候加入raw参数即可：
+
+      redis-cli --raw
+
+2. 查看Redis服务的相关信息：
+
+      127.0.0.1:6379&gt; info      // 该命令返回服务器的各种信息和统计数值
+  # server  记录了服务器的信息
+  # clients 记录了已连接客户端的信息
+  # memory 记录了服务器的内存信息
+  used_memory_human： 就是当前Redis所使用的内存
+  used_memory_rss：从操作系统的角度看的内存使用量，这是和top、ps等命令的输出一致
+  used_memory_peak_human：Redis的内存消耗峰值
+  # persistence 记录了RDB持久化和AOF持久化的相关的信息
+  # stats 记录一般的统计信息
+  total_connections_received：服务器已经接受的连接请求数量
+  total_commands_processed：服务器已经执行的命令数量
+  instantaneous_ops_per_sec：服务器每秒钟执行的命令数量
+  rejected_connections：因为最大客户端数量限制而被拒绝的连接请求数量
+  expired_keys：因为过期而呗自动删除的数据库建数量
+  # replication 主从复制信息
+  # cpu 记录CPU的计算量统计信息
+  # keyspace 记录了数据库相关的统计信息，数据库键的数量、数据库已经被删除的过期键的数量等
+
+3. 删除数据
+
+      flushall：删除所有数据库的key
+  flushdb：删除当前数据库的key
+  del key：删除某个key值
+
+4. 查找key
+
+      key name     // 查找某个key的值
+  keys pattern // 查找所有符合给定模式pattern的可以
+  keys *       // 列出所有的key
+  exists key   // 查找该key是否存在
+
+5. key的生存时间设置
+
+      expire key seconds   // 为某个key指定生存时间，单位为秒，时间到了后就不存在了，默认时间为永久
+  ttl key   // 查看剩余生存时间
+
+6. 排序操作：排序、分页等
+
+      sort key [BY pattern] [LIMIT offset count] [GET pattern [GET pattern ...]] [ASC|DESC] [ALPHA] [STORE destination]
+  sort keyname alpha           // 将keyname里面的值按字符排序
+  sort keyname alpha limit 0 3 // 讲keyname的值按字符排序并取得前面3个元素返回
+  # 如果是在laravel里使用
+  Redis::sort('keyname', array('ALPHA' =&gt; TRUE));
+  Redis::SORT('keyname', array('LIMIT' =&gt; array(0, 3));
+  j
+
+7. 字符串操作
+
+      set key value    // 设置key值为字符串value，会直接覆盖旧值
+
+8. 列表的操作
+
+      lpush keyname value [value ...]    // 将一个或多个值插入表头
+  lpushx keyname value [value ...]   // 当且仅当key存在且是一个列表时插入表头
+  rpush keyname value               // 插入表尾
+  rpushx keyname value              // 当且仅当key存在且是一个列表时插入表尾
+  lrange keyname start count        // 从表头的第start位开始取出count个元素
+  lindex keyname index              // 返回列表中下标为index的元素
+  llen keyname                      // 返回列表长度
+  lpop keyname                      // 移除并返回key的头元素
+  rpop keyname                      // 移除并返回key的尾元素
+  lset key index value              // 将key中下标为index的元素的值设置为value
+
+9. hash的操作
+10. 集合的操作
+---
+title: "Windows安装Redis教程"
+date: 2014-12-23 16:53:31
+categories: Redis
+---
+[Redis](http://redis.io/)：是一个完全免费开源的遵守BSD协议的内存数据库。它和memcache类似，都说是键值对存储，但是它支持更
+多的数据结构，比如字符串、哈希、列表、集合和有序集合等。这里不做详细介绍，只介绍在windows上的安装过程。
+
+环境：Windows 7 64（需要注意的是windows只有64位版本）
+
+# 1.下载
+
+Redis并不直接支持windows，起windows版本是由微软开源团队维护的，可直接到github主页：&lt;https://github.com/MSOp
+enTech/redis&gt;，但不要直接下载zip，里面没有windows的zip包的，应该将整个项目完整clone下来。  
+![](http://7xnc86.com1.z0.glb.clouddn.com/windows-install-redis_0.jpg)
+
+# 2.解压
+
+其他的都是项目文件，但真正可以在windows下使用的是`/bin/redis/redis-2.8.17.zip`里面，解压后会发现这样有这样几个文件，当然
+，也可以把这个目录添加到系统的环境变量，以便随时在bash中使用  
+![](http://7xnc86.com1.z0.glb.clouddn.com/windows-install-redis_2.jpg)  
+其中，redis-server.exe就是主程序，redis-cli.exe是命令行工具，redis.windows.conf是配置文件
+
+# 3.测试
+
+执行`redis-server.exe redis.windows.conf`开启Redis服务：
+
+![](http://7xnc86.com1.z0.glb.clouddn.com/redis.jpg)  
+然后，windows里面貌似没有把它作为daemon的配置选项，不过，应该没人会在自己的windows里把它作为daemon，只是偶尔开发的时候会使用，所以
+，另外开一个bash吧，执行以下命令进行测试：
+
+
+
+    $ redis-cli.exe
+    127.0.0.1:6379&gt; set wang hao
+    OK
+    127.0.0.1:6379&gt; keys *
+    1) "wang"
+    127.0.0.1:6379
+
+这就表示成功了，其中，Redis的相关命令中文参考文档可以查看[Redis命令参考简体中文版](http://redis.readthedocs.org/e
+n/2.4/)
+
+4.基本配置
+
+在windows下Redis运行久了，可能会出现如下错误：
+
+_Redis-Server:Windows is reporting that there is insufficient disk space
+available for this file (Windows error 0x70)._
+
+原因是分配的堆的大小太小了，默认的是多少忘了，只有1M还是多少，这时候需要修改其配置文件`redis.windows.conf`，修改maxheap的值为2
+000000000，即2G
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sqlite/" class="btn btn-neutral float-right" title="sqlite">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../MHA/" class="btn btn-neutral" title="MHA"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../MHA/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../sqlite/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

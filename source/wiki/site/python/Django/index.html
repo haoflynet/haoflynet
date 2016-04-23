@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Django - 我的Wiki</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Django";
+    var mkdocs_page_input_path = "python/Django.md";
+    var mkdocs_page_url = "/python/Django/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> 我的Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>code</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/安全测试/">安全测试</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/编码经验/">编码经验</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/代码审查清单/">代码审查清单</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/正则表达式/">正则表达式</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/packages/">packages</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>python</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="./">Django</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Flask/">Flask</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../kivy/">kivy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../pybrain/">pybrain</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Django</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#django">Django教程</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#create-your-views-href">Create your views href.</a></li>
+                
+                    <li><a class="toctree-l4" href="#settingspy">settings.py的选项注释</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#troubleshooting">TroubleShooting</a></li>
+                
+                    <li><a class="toctree-l4" href="#url">url</a></li>
+                
+                    <li><a class="toctree-l4" href="#model">model</a></li>
+                
+                    <li><a class="toctree-l4" href="#template">template</a></li>
+                
+                    <li><a class="toctree-l4" href="#signal">signal</a></li>
+                
+                    <li><a class="toctree-l4" href="#_2">创建用户</a></li>
+                
+                    <li><a class="toctree-l4" href="#_3">创建超级用户</a></li>
+                
+                    <li><a class="toctree-l4" href="#_4">验证用户登录</a></li>
+                
+                    <li><a class="toctree-l4" href="#_5">退出登录</a></li>
+                
+                    <li><a class="toctree-l4" href="#_6">限制登录用户访问路由</a></li>
+                
+                    <li><a class="toctree-l4" href="#_7">自定义用户认证类</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../PyQT/">PyQT</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../pytest/">pytest</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../python/">python</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Scrapy-PySpider/">Scrapy-PySpider</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Splinter/">Splinter</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../string/">string</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Tornado/">Tornado</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>frontend</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/bootstrap/">bootstrap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/js/">js</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/css/">css</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/frontend/">frontend</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/gulp/">gulp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/html/">html</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/nodejs/">nodejs</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Database</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/MySQL and Mriadb/">MySQL and Mriadb</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/atlas/">atlas</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/MHA/">MHA</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/redis/">redis</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/sqlite/">sqlite</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>PHP</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/php/">PHP</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/Laravel/">Laravel</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/PHP编码规范/">PHP编码规范</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Other Tools</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Docker/">Docker</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Git/">Git</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Chrome/">Chrome</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/curl/">curl</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Atom/">Atom</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/SVN/">SVN</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Openstack/">Openstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/shadowsocks/">shadowsocks</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/fpm/">fpm</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/hexo/">hexo</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/phpmyadmin/">phpmyadmin</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Sublime Text/">Sublime Text</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/terminal/">terminal</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/vim/">vim</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wireshark/">wireshark</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wordpress/">wordpress</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/workbench/">workbench</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>server</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/apache/">apache</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/HAProxy/">HAProxy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/lamp/">lamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/nginx/">nginx</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/puppet/">puppet</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/saltstack/">saltstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/wamp/">wamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/zabbix/">zabbix</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>system</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/装机必备/">装机必备</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Android/">Android</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Linux/">Linux</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/MAC OSX/">MAC OSX</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Raspberry Pi/">Raspberry Pi</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Windows/">Windows</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>C and C++</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C/">C</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C++/">C++</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Java</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Java/java/">Tips</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">我的Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>python &raquo;</li>
+        
+      
+    
+    <li>Django</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="django">Django教程</h1>
+<p>Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Python的Web框架。在Django和Tornado之间我选择了前者，没有特别的原因，网上人
+云亦云的，肯定不会有一方离另一方差很远，我就直接去看了看Github上两个项目的活跃度，所以选择了前者。</p>
+<p>应该说Django坚持自己造轮子，确实为开发者节约了不少的时间，我很看重它的扩展功能，packages数量十分丰富。Django采用的是最流行也是我最熟悉的
+MVC设计模式，虽然在之前的一个PHP(Laravel)项目中也是采用的MVC模式，但一直都没怎么吃透，始终在各层分离的时候不是很清晰，所以也可趁学习Dja
+ngo对MVC的概念进行强化。</p>
+<p>Django另一个我特别喜欢的特性就是Application，它与Project的概念不同，一个APP就相当于一个功能模块，一个Project可以包含多个A
+PP，一个APP可以同时被多个Project引用，App增加了代码的复用机会，提高了扩展性和松耦合性，Django中很多的packages都是以APP的形式
+存在的。</p>
+<p>另外，我学习主要参考的是开源书籍 <a href="http://andrew-liu.gitbooks.io/django-blog/" title="Link: http://andrew-liu.gitbooks.io/django-blog/">Django搭建简易博客教程</a></p>
+<p>下面是搭建一个Django环境的基本步骤：</p>
+<ol>
+<li><a href="http://haofly.net/virtualenv-python-django/">使用Virtualenv搭建Python3的Django环境</a></li>
+<li>
+<p>新建项目 <code>django-admin startproject 项目名</code> 这样会在当前目录新建一个目录，里面已经有一些基本的配置文件：</p>
+<pre><code>django_test
+</code></pre>
+<p>├── db.sqlite3
+├── django_test
+│   ├── <strong>init</strong>.py
+│   ├── <strong>pycache</strong>
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py</p>
+</li>
+<li>
+<p>新建APP <code>django-admin startapp APP名称</code> 如果是搭建一个非常简单的应用，那么不适用APP也行，只需要吧路由指向目标view就可以了，但是如果要搭建复杂的应用并且需要良好的隔离性，那最好使用APP。同样，使用该命令也会在当前目录下新建一个目录，里面已经包含一些配置文件：</p>
+<pre><code>django_test/testapp
+</code></pre>
+<p>├── admin.py
+├── <strong>init</strong>.py
+├── migrations
+├── models.py
+├── <strong>pycache</strong>
+├── tests.py
+└── views.py</p>
+</li>
+<li>
+<p>Hello World！ 所有入门教程都必须要有一个Hello World! 首先，在APP的视图文件views.py里添加函数，该函数直接返回一个字符串的响应：</p>
+<pre><code>from django.shortcuts import render
+</code></pre>
+<p>from django.http import HttpResponse</p>
+<h1 id="create-your-views-href">Create your views href.</h1>
+<p>def  hello(request):
+    return HttpResponse("Hello World!")</p>
+</li>
+</ol>
+<p>然后添加URL，在Project目录里的urls.py里进行管理，添加hello的url如下：</p>
+<pre><code>    from django.conf.urls import patterns, include, url
+from django.contrib import admin
+
+
+
+
+urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'django_test.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+
+
+
+
+    url(r'^admin/', include(admin.site.urls)),
+url(r'^hello/', 'testapp.views.hello'),            # 添加这一行
+</code></pre>
+<p>)</p>
+<p>这样，一个Hello World！的编码工作就完成了</p>
+<ol>
+<li>运行 <code>python manage.py runserver</code> 如果要以daemon的方式在后台运行，可以使用nohup命令 <code>nohup python manage.py runserver 0.0.0.0:8000 &amp;gt; log &amp;amp;</code> 使用它可以打开Django自带的默认Web引擎，可以在 <a href="http://127.0.0.1:8000中查">http://127.0.0.1:8000中查</a>看 在测试的时候可以使用该引擎，它不仅轻量，而且在打开后还会自动检测代码的更改，进行自动更新，这样就不用每次对代码变动了都来重启一次</li>
+</ol>
+<h2 id="settingspy">settings.py的选项注释</h2>
+<pre><code># Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(**file**))
+
+# SECURITY WARNING: keep the secret key used in production secret!
+
+
+
+SECRET_KEY = 'nfxa=9g\%e^6ah_9m9x46v4))_!qi47m&amp;bh@+9a9*8d&amp;@c0t!6#'
+
+# SECURITY WARNING: don't run with debut true on in production!
+
+
+
+DEBUG = True      # DEBUG模式
+
+
+TEMPLATE_DEBUG = True   # TEMPLATE也有DEBUG模式
+
+
+
+
+ALLOWED_HOSTS = []   # 设置哪些域名可以访问，当debug为false时必须为其指定一个值，['*']表示允许所有的访问
+
+# Application definition
+
+INSTALLED_APPS = (默认APP+自己的APP)
+
+
+
+
+MIDDLEWARE_CLASSES = (这里面的还未知)
+
+
+
+
+ROOT_URLCONF = 'django_test.urls'
+
+
+
+
+WSGI_APPLICATION = 'django_test.wsgi.application'
+
+# Database 数据库的配置
+
+DATABASES = \{
+    'default': \{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    \}
+\}
+
+# Internationalization 国际化
+
+LANGUAGE_CODE = 'en-us'  # 语言
+TIME_ZONE = 'UTC'        # 时区
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+# Static files (CSS, JavaScript, Images) 静态文件目录
+
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # 这个选项默认是没有的，在编码时将静态文件放在APP中的static目录下，部署时用python manage.py collectstatic就可以把静态文件收集到STATIDC_ROOT目录
+</code></pre>
+<h1 id="troubleshooting">TroubleShooting</h1>
+<p>1.如果想要直接执行_./manage.py_来启动runserver，那么可以修改manage.py文件如下：</p>
+<pre><code>#!/usr/bin/env python
+import os
+import sys
+
+
+
+
+if **name** == "**main**":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "frontend.settings")
+
+
+
+
+
+from django.core.management import execute_from_command_line
+
+
+
+
+sys.argv = ['manage.py', 'runserver', '0.0.0.0:8000']
+execute_from_command_line(sys.argv)
+</code></pre>
+<p>2.保存用户上传的图片或文件：使用Django自带的文件存储系统：</p>
+<pre><code>from django.core.files.storage import FileSystemStorage
+
+
+
+
+storage = FileSystemStorage(
+                    location = '/var/www/site/upfiles',
+                    base_url = '/upfiles'
+                  )
+content = request.FILES['the_file']
+name = storage.save(None, content)
+url = storage.url(name)
+</code></pre>
+<h2 id="url">url</h2>
+<h2 id="model">model</h2>
+<h2 id="template">template</h2>
+<h2 id="signal">signal</h2>
+<p><a href="http://www.weiguda.com/blog/38/">参考</a>django中signal与操作系统的signal是完全不一样的.Django的signal是一种同步的消息队列.通常在以下情况进行使用：</p>
+<ul>
+<li>signal的receiver需要同时修改对多个model时</li>
+<li>将多个app的相同signal引到同一receiver中处理时</li>
+<li>在某一model保存之后将cache清除时</li>
+<li>无法使用其他方法, 但需要一个被调函数来处理某些问题时</li>
+</ul>
+<h3 id="_1"></h3>
+<hr />
+<p>title: "Django Auth用户认证系统"
+date: 2015-06-20 22:15:12
+categories: django</p>
+<hr />
+<p>Django项目默认添加了用户认证系统的，可以通过<code>python manage.py makemigrations</code> <code>python manage.py
+migrate</code>将认证系统的数据表添加到数据库中去。</p>
+<h2 id="_2">创建用户</h2>
+<pre><code>from django.contrib.auth.models import User
+user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+
+
+
+# 这里可以设置其它的字段
+
+
+
+
+user.save()
+</code></pre>
+<h2 id="_3">创建超级用户</h2>
+<pre><code>$ python manage.py createsuperuser --email=896499825@qq.com --username=wanghao
+Password:
+Password (again):
+Superuser created successfully.
+</code></pre>
+<h2 id="_4">验证用户登录</h2>
+<p>需要注意的是，为了不与login冲突，views最好不要写成login</p>
+<pre><code>from django.contrib.auth import authenticate, login
+user = authenticate(username='hao', password='test')
+if user is not None:
+    if user.is_activate:
+        print('用户验证并登录成功')
+        login(request, user)     # 这才是登录，才会写入session
+    else:
+        print('密码正确，但是用户无法登录')
+    return HttpResponse('居然有这个用户')
+else:
+    return HttpResponse('用户不存在')
+</code></pre>
+<p>若登录成功，则会返回一个user对象，否则返回None，但是Django默认的认证系统只能认证username和password，却不能认证其它的字段，比如
+email字段，看似非常糟糕，但是Django却提供了十分方便的功能来扩展默认的验证组件。查看文档：<a href="https://docs.djangoproject.com/en/1.8/topics/auth/customizing/">Customizing authentication
+in Django</a></p>
+<p>如果要验证用户名或email可以这样做：首先，在myapp目录下新建一个文件，姑且取名叫_backends.py_，其内容如下：</p>
+<pre><code>from django.conf import settings
+from django.contrib.auth.models import User
+
+
+
+
+class EmailOrUsernameModelBackend(object):
+    def authenticate(self, username=None, password=None):
+        if '@' in username:
+            kwargs = \{'email': username\}
+        else:
+            kwargs = \{'username': username\}
+        try:
+            user = User.objects.get(**kwargs)
+            if user.check_password(password):
+                return user
+        except User.DoesNotExist:
+            return None
+
+
+
+
+
+def get_user(self, user_id):
+    try:
+        return User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        return None&lt;/pre&gt;
+</code></pre>
+<p>然后在settings.py中添加如下代码：</p>
+<pre><code># 该字段指定了默认的验证后台，从上到下顺序验证，如果上面验证不成功就验证下面的
+AUTHENTICATION_BACKENDS = (
+    'myapp.backends.EmailOrUsernameModelBackend',   # 自定义的认证后台
+    'django.contrib.auth.backends.ModelBackend',    # 这是默认的认证后台
+)
+</code></pre>
+<p>这样，就可以依然使用刚才的代码对用户登录进行验证了。</p>
+<h2 id="_5">退出登录</h2>
+<pre><code>from django.contrib.auth import logout
+
+
+
+
+def logout_view(request):
+    logout(request)
+</code></pre>
+<h2 id="_6">限制登录用户访问路由</h2>
+<p>某些路由只能登录用户才能访问，那么只需要添加这个装饰器：</p>
+<pre><code>from django.contrib.auth.decorators import login_required
+
+
+
+
+@login_required
+def my_view(request):
+    ......
+</code></pre>
+<h2 id="_7">自定义用户认证类</h2>
+<p>如果要把在model中添加的一张表来做用户认证，而不使用系统默认的user表，那么可以在建立完表过后</p>
+<pre><code>from .models import Myuser
+
+
+
+
+class MyAuthBackend:
+
+
+
+
+
+def authenticate(self, username=None, password=None):
+
+    try:
+        user = Myuser.objects.get(username=username)
+    except Myuser.DoesNotExist:
+        return None
+
+    if user.check_password(password):
+        return user
+    else:
+        return None
+
+def getUser(self, userId):
+    try:
+        return User.objects.get(pk=userId)
+    except Profile.DoesNotExist:
+        return None&lt;/pre&gt;
+
+
+        ---
+        title: "Django forms表单"
+        date: 2015-06-12 22:08:26
+        categories: django
+        ---
+        Django有一个十分重要的特色功能就是将表单功能独立了出来，使得表单构造和验证更加灵活可控。其实际使用方法如下：
+
+        首先，在app目录下新建_forms.py_文件，内容如下：
+
+
+
+            from django import forms
+
+
+
+
+            class LoginForm(forms.Form):
+                username = forms.CharField(label='用户名', max_length = 50)
+                password = forms.CharField(label='密码', max_length = 50)
+
+        然后，在views.py有如下代码
+
+
+
+            from .forms import LoginForm  # 引入该表单
+
+
+
+
+            def login(request):
+                if request.method == 'POST':
+                    form = LoginForm(request.POST)
+                    if form.is_valid():     # 判断合法性
+                        return HttpResponse('数据合法')
+                else:
+                    form = LoginForm()
+                    return render(request, 'login.html', \{'form': form\}
+
+        最后，在templates里面这样使用：
+
+
+
+            &lt;form class="form-horizontal" method="post"\}
+                \{\% csrf_token \%\}
+                \{\{ form \}\}
+                &lt;p class="form-actions" style="margin: 0"&gt;
+                    &lt;input type="submit" value="登录" class="btn btn-primary"&gt;
+                &lt;a href="#"&gt;&lt;input type="button" value="注册" class="btn btn-success"&gt;&lt;/a&gt;
+                &lt;a href="#"&gt;忘记密码&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/form&gt;
+
+        ## 获取表单的值
+
+
+
+            if request.method == 'POST':
+                form = Login(request.POST)
+                if form.is_valid():
+                    username = form.cleaned_data['username']   # 如果需要单独获取表单的值用这个方法
+
+
+
+
+
+                form = ProfileLoginForm(request.POST)
+
+                warning = ""
+                if form.is_valid():
+                    username = form.cleaned_data['username']
+                    password = form.cleaned_data['password']&lt;/pre&gt;
+
+
+        ## django-bootstrap3的使用
+
+        默认的form表单没有任何的css样式，如果要让默认的表单拥有bootstrap样式，那么可以使用django-
+        bootstrap3这个库，不仅提供了表单的bootstrap样式，而且还提供了bootstrap其它组件的样式，文档见&lt;http://django-
+        bootstrap3.readthedocs.org/en/latest/templatetags.html#bootstrap-form&gt;
+
+        ## TroubleShooting
+
+        1.给表单添加样式，例如：
+
+
+
+            username = forms.CharField(label='用户名', max_length = 50, widget = forms.TextInput(attrs=\{'class': 'one'\}))
+
+
+        2.Form表单可以不整个使用，而使用其中单个的field，比如form.username，这样就可以很方便地为表单中的每个field设置不同的css样式了
+
+
+        ---
+        title: "Django Model(Django数据库的使用)"
+        date: 2015-05-01 09:00:09
+        categories: django
+        ---
+        Django同很多框架一样使用了ORM(Object Relational
+        Mapping，对象关系映射)的方式，每个model类代表一张数据库的表，每一个属性代表其一个字段。
+
+        ## 数据库的设置
+
+        Django数据库配置在_project/settings.py_里面的DATABASES变量，默认是Django自带的sqlite3引擎，内置的引擎有
+        django.db.backends.postgresql_psycopg2 MySQL：django.db.backends.mysql ，要连接MySQ
+        L数据库需要先[安装依赖](https://docs.djangoproject.com/en/1.8/ref/databases/)，建议使用[mysql
+        client](https://pypi.python.org/pypi/mysqlclient)
+        SQLite：django.db.backends.sqlite3 django.db.backends.oracle
+
+        一个简单的例子：
+
+
+
+            DATABASES = \{
+                'default': \{
+                    'ENGINE': 'django.db.backends.mysql',
+                    'NAME': 'test',  # 这里是数据库名称
+                    'USER': 'root',
+                    'PASSWORD': 'mysql',
+                    'HOST': '127.0.0.1',
+                    'PORT': '3306',
+                \}
+            \}
+
+        ## 数据表的定义
+
+        定义model的文件在_project/app/models.py_里面，例如，要定义一张用户表：
+
+
+
+            from django.db import models
+
+
+
+
+            class User(models.Model):
+                username = models.CharField(max_length = 20)        # 用户名字段
+                registion_time = models.DateTimeField(auto_now_add = True) # 注册日期字段
+                # 如果同时有两个字段对应着同一个外键，那么就得重命名字段名了，比如(对应的数据库字段为receiver_id, poster_id)
+                receiver = models.ForeignKey(Users, null=True, related_name='receiver')
+                poster = models.ForeignKey(Users, null=True, related_name='poster')
+
+            def **str**(self):  
+                """  
+                这个函数可以用于str(obj)函数输出该对象信息，默认是&amp;lt;User: User object&amp;gt;可以自定义为自己的取的名字  
+                """  
+                return self.username
+
+
+
+            # 当建立好models过后，执行如下命令就可以在数据库中新建或更新数据表了：
+
+
+
+            python manage.py makemigrations
+            python manage.py migrate
+
+        注：如果是有修改的，那么新添加的数据必须要允许null或者设置默认值，否则会报错，这其实是为了保护已经存在了的数据，当然在添加完该字段后把null去掉再更新
+        数据库就可以了。
+
+        字段类型见本页最下面。
+
+        ## 数据库操作
+
+        要使用哪个model，必须先导入，例如：
+
+
+
+            from digital.models import Blog
+
+        一条记录就是一个model类的实例，要获取其字段值，直接用点号访问即可，例如有Blog对象blog，那么可以直接用blog.userName访问其值
+
+        #### 查询操作
+
+
+
+            Blog.objects.all()   # 获取该表的所有记录，返回的是记录对象组成的列表
+            Blog.objects.get(pk=1)      # 根据主键获取数据
+            Blog.objects.get(name="")  # 只会找到第一个匹配的数据
+            Blog.objects.filter(name="")# 这个就会找到匹配的多个数据
+            Blog.objects.filter(name**contains="")  # 模糊查找name字段的值，返回列表
+            Blog.objects.order_by("字段1", "字段2")   # 排序
+            Blog.objects.all().order_by("字段")
+            Blog.objects.count()     # 返回记录总数
+            Blog.objects.values('id', 'name')  # 相当于select id name from Blog
+            Blog.objects.values('name').distinct()   # distinct在django的mysql引擎中无法对field进行distinct操作，所以需要这样做
+            Blog.objects.values_list('id', flat=True) # 查询该字段的所有值并且返回的是id的列表，而不是包括了名字的字典
+            Blog.objects.latest('id')  # 根据某个字段查找其最后一条记录
+            Blog.objects.filter(time**gte = '2015-07-23', time**lte = '2015-07-24') # 大于等于并且小于等于，不加e表示不能等于
+            Blog.objects.filter(time****isnull = True)  # 判断某个字段是否为空
+            Blog.objects.all().exclude(id=7)  # 排除
+            Blog.objects.filter('time_year': '2015', 'time**month': '08', 'time_day': '17')：按年月日查询日期，可仅查询其中某一个条件
+
+
+
+
+            # Q查询，可以对关键字参数进行封装，可以使用&amp;,|,~等操作
+
+
+
+
+            from django.db.models import Q
+            Blog.objects.filter( Q(name**startswith='wang') | ~Q(name**startswith='hao') )
+            Blog.objects.get( Q(name**startswith='wang'), Q(name**startswith='hao')) # 逗号就可以直接表示and了
+
+
+        #### 新增记录
+
+
+
+            post = Blog(userName="wanghao", userId=12)
+            post.save()
+
+
+
+
+            # 批量插入/新增
+
+
+
+
+            posts = []
+            for i in title:
+                posts.append(Posts(title = title))
+            Posts.objects.bulk_create(posts)
+
+        #### 更新记录
+
+
+
+            post = Blog.objects.filter(id=1).update(userName="new") #1.7之前更新单条记录如果要用字典的话就只能这样了
+            Blog.objects.all().update(userName="new")  # 还可以批量更新
+            obj, created = Posts.objects.update_or_create(pk = 3, title='wang', defaults = updated_values)   # 1.7之后可以用这种方法来更新或者创建一个，如果没找到对象，那么就新建，新建或者更新的字典是defaults的值，返回值中，obj表示该对象，created是一个布尔值
+            get_or_create(title='wang', defaults=\{\})：获取或者新建
+
+        #### 删除记录
+
+
+
+            Blog.objects.get(userName="xiao").delete()
+            Blog.objects.all().delete()
+            Blog.author.through.objects.filter(author = author.id).delete()  # 删除多对多关系，仅仅是删除关系，而不是删除对象
+
+        ## 字段类型
+
+        注：Django默认为每张表设置了一个int(11)的自增主键，不需要自己去定义了。
+
+        字段的认证：见另一篇单独的文章
+
+        字段的参数：
+
+
+
+            primary_key = False/True   # 是否设置为主键
+            blank = False/True         # 是否可为空，这其实是用于Field的判断
+            null = False/True          # 是否可为空，这才是真正的数据库里面是否可以为null
+            max_length = 3             # 最大长度，对整型无效
+            default = ''               # 设置默认值
+            verbose_name =             # 相当于备注，如果没给出那么就是该字段,当然，要指定的话，可以直接第一个参数一个字符串就可以指定了
+            editable = False/True      # 是否可编辑
+            unique = False/True        # 是否唯一
+            auto_now = False/True      # 用于时间，每次更新记录的时候更新该字段
+            auto_now_add = False/True  # 用于时间，创建新纪录的时候自动更新该字段
+
+
+
+
+            choices # 很实用的一个功能，相当于存储一个枚举列表，其中左边的key是实际存储在数据库中的值，例如，可以这样定义一个字段：
+            YEAR_IN_SCHOOL_CHOICES= (
+                ('FR', 'Freshman'),
+                ('SO', 'Sophomore'),
+                ('JR', 'Junior'),
+                ('SR', 'Senior'),
+            )然后在定义字段的时候指定choices=YEAR_IN_SCHOOL_CHOICES
+            在插入字段的时候，使用'RF'这样的，在获取字段值的时候这样：p.get_year_in_school_display()即可显示'Freshman'
+
+        数字类型：
+
+
+
+            AutoField：自增长字段
+            IntegerField：长度为11的整数
+            PositiveIntegerField：
+            SmallIntegerField
+            PositiveSmallIntegerField
+            BigIntegerField：
+            BinaryField：
+            BooleanField：
+            NullBooleanField：
+            DecimalField(max_digits = None, decimal_places = None)
+            FloatField
+
+        字符类型：
+
+
+
+            CharField：字符串类型，可用max_length指定长度
+            TextField：text类型
+            CommaSeparatedIntegerField：用逗号分隔的整数，我擦，这有用
+
+
+        时间类型：
+
+
+
+            DateField
+            TimeField：datetime.time，时间
+            DateTimeField()：datetime类型，包括了日期和时间，需要注意的是Django默认的TIME_ZONE是UTC，其fixture数据(初始化数据)的时候，格式如"2015-04-27T15:01:00Z"，它属于python里面的datetime.datetime类型，可分别用year/month/day等获取时间
+            unique_for_date属性：比如，如果有一个title字段，其有一个参数unique_for_date = "pub_date"，那么该表就不会出现title和pub_date同时相同的情况，其它的还有unique_for_month,unique_for_year
+
+
+        其它很有用的类型：
+
+
+
+            EmailField：Email邮箱类型
+            FileField：文件类型，不过不能设置为primary_key和unique，要使用该字段还有很多需要注意的地方，具体的见官方文档
+            FilePathField：同上
+            ImageField
+            IPAddressField：从1.7开始已经不建议使用了，应该使用下面这个
+            GenericIPAddressField：
+            URLField：
+            UUIDField
+
+        ## 数据字段的关系
+
+        **ForeignKey**，实例如下：
+
+
+            #models.py
+            class System(models.Model):
+               name = models.CharField(max_length = 20)
+
+
+
+
+            class Server(models.Model):
+              ip = models.GenericIPAddressField(default = '127.0.0.1')
+              system = models.ForeignKey(System)
+
+
+
+
+            # views.py里面的使用
+
+
+
+
+            server = Server.objects.get(id = 1)
+            server_system = server.system.name  # 这样就可以获取到那个name了
+
+        **OneToMany(hasMany)**：一对多关系，也是通过Foreign实现的：
+
+
+            # 在models.py中定义
+            class Posts(models.Model):
+                title = models.CharField('标题', max_length = 50)
+
+
+
+
+            class Comments(models.Model):
+                post = models.ForeignKey(Posts, related_name = 'comments_set')
+
+
+
+
+            # 在views.py中这么用
+
+
+
+
+            post = Posts.objects.get(pk = 1)    # 获取一篇文章
+            comments = post.comments_set.all()  # 获取该文章的所有评论，是一个列表
+
+        **ManyToManyField**：多对多关系
+
+        多对多关系有一种特殊情况，如果需要对这种关系添加额外的字段，可以使用through，添加额外的表来表示，例如，用户一张表，被使用的物品一张表，用户与物品是多
+        对多的关系，但是有时候我们需要记录下用户使用该物品的一些其他属性，比如使用了多少次什么的，这时候就需要给
+        这个多对多关系添加额外的字段来表示，那就需要添加额外的表了，示例如下：
+
+
+
+            class User(models.Model):
+                username = models.CharField(max_length = 20)
+                goods = models.ManyToManyField('物品', 'Goods', through='user_goods')
+
+
+
+
+            class Goods(models.Model):
+                goodsname = models.CharField(max_length = 20)
+
+
+
+
+            class user_goods(models.Model):
+                user = models.ForeignKey(User)
+                goods = models.ForeignKey(Goods)
+
+
+
+
+
+            clicks = models.IntegerField('点击量', default=0)&lt;/pre&gt;
+
+
+        **OneToOneField**：必须是一对一，而不是多对一或一对多
+
+        ## 分页
+
+        Django使用内建的paginator模块进行分页的操作，十分方便。使用方法见例子：
+
+
+
+            from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # 导入模块
+
+
+
+
+            def listing(request):
+                contact_list = Contacts.objects.all()   # 获取所有model对象
+                paginator = Paginator(contact_list, 25) # 第二个参数是每页显示的数量
+
+
+
+
+
+            page = request.GET.get('page')          # 获取URL参数中的page number
+            try:
+                contacts = paginator.page(page)
+            except PageNotAnInteger:                # 若不是整数则跳到第一页
+                contacts = paginator.page(1)
+            except EmptyPage:                       # 若超过了则最后一页
+                contacts = paginator.page(paginator.num_pages)
+
+
+
+
+            return render_to_response('list.html', \{"contacts": contacts\})&lt;/pre&gt;
+
+
+        虽然contacts是一个Page对象，但是在模板中仍然可以使用for循环对其进行遍历，它其实是一个对象所组成的list。下面是分页按钮html模板例子：
+
+
+
+            &lt;nav&gt;
+                &lt;ul class="pagination"&gt;
+                 &lt;li class="\{\% if current_page == 1 \%\}disabled\{\% endif \%\}"&gt;&lt;a href="#" aria-label="Previous"&gt;&lt;span aria-hidden="true"&gt;&amp;laquo;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+
+
+
+             \{\% for index in page_index \%\}
+                &amp;lt;li \{\% if index == current_page \%\}class="active"\{\% endif \%\}&amp;gt;&amp;lt;a href="#"&amp;gt;\{\{ index \}\} &amp;lt;span class="sr-only"&amp;gt;(current)&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+            \{\% endfor \%\}
+
+
+
+
+            &amp;lt;li class="\{\% if current_page == num_pages \%\}disabled\{\% endif \%\}"&amp;gt;&amp;lt;a href="#" aria-label="Previous"&amp;gt;&amp;lt;span aria-hidden="true"&amp;gt;&amp;amp;raquo;&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+             &amp;lt;/ul&amp;gt;
+
+
+        &lt;/nav&gt;
+
+        ## 初始化数据
+
+        为了方便迁移,让别人使用你的APP,有时候需要为APP里面的表提供demo数据,这时候就需要预先填充一些数据.这里使用Django的fixtures方式填充
+        (Django提供两种[填充方式](https://docs.djangoproject.com/en/1.8/howto/initial-
+        data/))。使用JSON格式，我们可以首先使用_manage.py dumpdata &gt;
+        data.json_方式到处原来数据库中内容看看该格式，类似如下：
+
+
+
+            [
+                \{
+                    "fields": \{
+                        "userName": "小豪",
+                        "title": "第一篇文章",
+                        "userId": 1,
+                        "update": "2015-04-27T15:01:03Z",
+                        "datetime": "2015-04-27T15:01:00Z",
+                        "content": "这是文章的内容"
+                    \},
+                    "model": "digital.blog",
+                    "pk": 1
+                \},
+                \{
+                    "fields": \{
+                        "userName": "笑总",
+                        "title": "第二篇文章",
+                        "userId": 2,
+                        "update": "2015-04-28T15:01:03Z",
+                        "datetime": "2015-04-28T15:01:03Z",
+                        "content": "这是文章的内容吗"
+                    \},
+                    "model": "digital.blog",
+                    "pk": 2
+                \},
+            ]
+
+        我们可以自己按照这个模板新建填充数据，其中pk指的是主键值。当建立好json文件过后，执行_python manage.py loaddata
+        data.json_即可导入数据。
+
+        ## TroubleShooting：
+
+          * 自定义表名：在class model名()里面指明meta类，例如：
+
+                class Server(models.Model):
+                object_id = models.AutoField(primary_key = True)
+
+
+
+
+                class Meta:
+                db_table = '自定义表名'
+
+
+          * migrate的时候出现类似这样的错误：
+
+                django.db.utils.OperationalError: (1091, "Can't DROP 'os_id_id'; check that column/key exists")
+
+        原因是你在试图创建一个已经存在的column或者删除一个已经删除的column，这时候需要在migrate后面添加一个参数忽略这些：
+
+
+                python manage.py migrate --fake
+
+
+          * 通过字符串来获取model类，django的apps模块包含了所有注册的app的配置以及model信息([Application文档](https://docs.djangoproject.com/en/1.8/ref/applications/))
+
+                from django.apps import apps
+
+
+
+
+            print(apps.get_model('myapp', 'Classify_cpu'))
+
+          * 多个键联合unique，增加一个Meta即可：
+
+                class Meta:
+                db_table = 'posts'
+                unique_together = ('product_1', 'product_2')
+
+          * 如果要与默认的auth_user表做外键，那么可以这样做：
+
+                from django.db import models
+            from django.contrib.auth.models import User
+
+
+
+
+            class UserInfo(models.Model):
+                user_id = models.ForeignKey(User)
+
+
+          * 如果通过查询语句始终查询不到数据并且数据库的设置也是正确的，那么可能是model里面定义的字段名与数据库实际的字段不一致，这样既不会跑错，也不会提示，就说查找结果为空，很难debug
+          * 根据对象获取model的名称：
+
+                Blog.**class**.**name** # 会输出'Blog'
+
+          *
+          ---
+          title: "Django请求与响应"
+          date: 2015-05-15 15:12:11
+          categories: django
+          ---
+          官方文档：[Request and response
+          objects](https://docs.djangoproject.com/en/1.8/ref/request-response/)
+          当请求一个页面的时候，Django会建立一个HttpRequest对象，它包含了请求的一些数据，该对象就是每个views函数里面的第一个参数request.
+          需要注意的是，Django的HTTP动词(get/post等)在url上没有区分，只需要在view里面进行判断即可。
+
+          例子：
+
+
+
+              if request.method == 'GET':    # GET请求
+                  do_something()
+              elif request.method == 'POST': # POST请求
+                  request.POST['变量名']   # 获取请求参数
+
+          ### JsonResponse
+
+          如果要返回JSON数据(常见于Ajax请求)，可以在view里面这样构造json数据
+
+
+
+              from django.http import JsonResponse
+
+
+
+
+              reponse = JsonResponse(字典)  # JsonResponse(data, encoder=编码方式默认是utf-8
+              response = JsonResponse([1, 2, 3], safe = False)   # 如果要返回一个单纯的列表数据而不是字典类型的数据，就这样
+              return response
+
+          ### HttpResponse
+
+          直接响应字符串或者html
+
+
+
+              response = HttpResponse('响应一个字符串')
+              response.write('给那个字符串再添加东西')
+
+
+
+
+              # 如果响应一个字典类型
+
+
+
+
+              response = HttpResponse()
+              response['Age'] = 120
+
+
+
+
+              # 常用构建方法
+
+
+
+
+              HttpResponse('字符串', content_type="text/plain") # 指定content_type
+
+          常用属性：
+
+
+
+              HttpRequest.method   # 请求种类
+              HttpRequest.GET      # 获取所有的GET参数(字典)
+              HttpRequest.POST     # 获取POST的参数(字典)
+              HttpRequest.scheme   # 表示请求的模式，是http还是https
+              HttpRequest.cookies  # 包含了所有的cookie信息
+              HttpRequest.session  # session信息
+              HttpRequest.FILES    # 包含了上传的文件
+              HttpRequest.meta     # 包含了http请求的各种headers
+              HttpRequest.user     # 当前的登录的用户，配合着auth使用
+
+          常用方法：
+
+
+
+              get_host()           #不解释了吧
+              get_full_path()      # 获取路径，不包含域名
+              build_absolute_uri() # 获取完整路径
+              is_secure()          # 如果是https返回true，否则false
+              is_ajax()            # 是否是ajax请求
+
+          ### StreamingHttpResponse
+
+          媒体数据等
+
+          ### FileResponse
+
+          文件数据等
+
+          # TroubleShooting
+
+          1.设置GET请求的默认值：
+
+
+
+              date = request.GET.get('value', '2')
+
+          2.返回状态码：
+
+
+
+              return JsonResponse(error, status = 422)
+
+          3.将上传的文件写入到本地，使用chunks()生成器可以将文件一块一块地写入，而不使用read方法，这样可以防止大文件写入失败
+
+
+
+              destination = open('temp/' + filename, 'wb+')
+              for chunk in file.chunks():
+                  destination.write(chunk)
+              destination.close()
+
+          4.获取用户IP地址：
+
+
+
+              ip = request.META.get('REMOTE_ADDR')
+
+          5.退出登录功能：直接添加一个URL：
+
+
+
+              (r'^logout$', 'django.contrib.auth.views.logout',\{'next_page': 'login'\}, name = 'logout')
+
+
+          6.通过Ajax发送多维数组，原生不支持的，不过可以在前端以及后端同时传输JSON格式的
+
+
+
+              # 在前端使用Ajax进行传输
+              $.ajax(
+                  url: 'test',
+                  datatype: 'json',
+                  data: JSON.stringify(\{
+                      'one': 123,
+                      'two': \{
+                          'two_one': 'test'
+                      \}
+                  \})
+              )
+
+
+
+
+              # 在后端使用JSON进行解析
+
+
+
+
+              def test(request):
+                  data = json.loads(request.POST)
+
+
+
+                  ---
+                  title: "Django 模板"
+                  date: 2015-04-25 10:30:25
+                  categories: django
+                  ---
+                  和所有的MVC框架一样，模板功能是必须有的。这里介绍一下Django模板的使用方法。
+
+                  ## 模板位置
+
+                  为了方便管理，最好在app的目录下新建templates文件夹用于存放模板文件，然后在project的配置文件settings.py中指明模板文件夹的位置，
+                  添加如下代码：
+
+
+
+                      TEMPLATE_DIRS = (
+                           os.path.join(os.path.dirname(**file**), 'templates').replace('\\','/'),
+
+                      )
+
+                  这样，在该app的view中就可以这样使用templates下的test.html模板文件了。例如：
+
+
+
+                      def test(request):
+                          return render(request, 'test.html')
+
+                  ## 参数传递
+
+                  要向模板中传递参数，可以给render添加第三个参数，该参数其实是一个字典，在模板中可以直接使用该字典的key，例如：
+
+
+
+                      return render(request, 'test.html', \{'name1': value1, 'name2': value2\} )
+
+                  这样，在模板文件test.html中就可以直接\{\{ name1 \}\}来使用name1的值了。
+
+                  ## 继承与引用
+
+                  模板方便之处就是可以使用继承将代码分块并且将重复的地方都写在一个base.html里。
+
+                  当要继承的时候在html文件第一行写上
+
+                  `\{\% extends 'base.html' \%\}`
+
+                  然后分别实现其区块即可。
+
+                  在base模板中一般这样定义区块：
+
+
+
+                      \{\% block 块名 \%\}
+                          这里直接写html代码
+                      \{\% endblock \%\}
+
+                  如果子模块没有定义某个block的内容，那么就采用父模板的，如果需要使用父模板的内容可以用{{ block.super }}
+
+                  模板也可以通过引用其它模板的代码，例如，在要引用的地方使用：
+
+
+
+                      {% include 'nav.html' %}
+                      {% include 'includes/nav.html' %}
+
+                  ## 静态文件css、js、img
+
+                  静态文件一般当然是要存放在自己的app里面，这时候，就应该指定静态文件的路径，在project的配置文件settings.py中添加如下配置：
+
+
+
+                      STATICFILES_DIRS = (
+                          os.path.join(BASE_DIR, 'static'),
+                          'f:/project/app/static',     # 无论是windows还是linux都要用左斜杠哟
+                      )
+
+                  在模板中使用静态文件就这样：
+
+
+
+                      \{\% load staticfiles \%\}
+                      &lt;link href="\{\% static 'css/style.css' \%\}" rel="stylesheet"&gt;
+
+                  ## 模板标签
+
+                  Django内置了一些比较常用又使用的标签：
+
+                  #### 变量
+
+
+
+                      # 通过下标获取列表变量的值
+                      \{\{ names.0 \}\}
+
+                  #### 注释
+
+
+
+                      \{\# 单行注释 \#\}
+                      \{\% comment \%\}  多行注释 \{\% endcomment \%\}
+
+                  #### url路由
+
+
+
+                      有这样一个路由
+                      url(r'^blog/', 'myapp.views.blog'), # 博客页面
+                      那么就这样使用
+                      \{\% url 'digital.views.blog' \%\}
+
+
+
+
+                      或者使用别名，例如
+                      url(r'^blog/', 'myapp.views.blog', name='blog'),
+                      \{\% url 'blog' \%\}
+
+                  #### for循环
+
+
+
+                      \{\% for &lt;element&gt; in &lt;list&gt;  \%\} \{\% endfor \%\}
+                      \{\% for &lt;element&gt; in &lt;list&gt; reversed\%\}\{\% endfor \%\}反向迭代列表
+                      \{\% for &lt;element&gt; in &lt;list&gt; \%\} \{\% empty \%\}列表为空时的输出内容 \{\% endfor \%\}
+
+
+                  #### if语句
+
+
+
+                      \{\% if &lt;element&gt;  \%\} \{\% elif &lt;element&gt; \%\} \{\% else \%\} \{\% endif \%\}
+                      \{\% ifequal 变量1 变量2 \%\} 比较值 \{\% endifequal \%\}
+                      ifnotequal同上
+
+                  #### 过滤器
+
+                  可以直接格式化输出，是一种最便捷的转换变量输出格式的方式。
+
+
+
+                      \{\{ today | data: "F j, Y" \}\}
+
+                  这里可以将today这个变量直接按照规定格式输出。
+
+                  这里是常见的过滤器：
+
+                    * add：将该数字加上一个数字，例如 `\{\{ value|add:"2" \}\}`，如果原来的值为4，那么新的值就为6，不仅进可以作用与int，还能作用与列表，将列表中每个值都加
+                    * addslashes：添加反斜杠到需要转义的地方前
+                    * capfirst：第一个字母大写
+                    * center：在字符串前后加空格，并让该字符串位于中间，例如 `\{\{ value|center: "5" \}\}`，那么输出时前后都是5个空格
+                    * cut：去除字符串中的指定字符，例如`\{\{ value|cut:" " \}\}`，表示去除字符串中的所有空格
+                    * date：按指定的格式字符串参数格式化date或者datetime对象，参数太多了，看[文档](https://docs.djangoproject.com/en/1.8/ref/templates/builtins/)
+                    * default：参数没赋值的情况下给定默认值，例如`\{\{ value|default: "nothing" \}\}`
+                    * default_if_none：如果它是none就给定默认值
+                    * dictsort：将一个字典组成的列表排序，例如`\{\{ value|dictsort:"name" \}\}`意思是将value这个列表里面的字典按照字典里的name的顺序来排序
+                    * dictsortreversed：与上面顺序相反
+                    * divisibleby：是否能被整除，返回True/False，例如`\{\{ value|divisibleby:"3" \}\}`
+                    * filesizeformat：-h方式输出文件的大小，例如`\{\{ value|filesizeformat\}\}`，如果value=123456789，那么输出将是117.7MB
+                    * first：返回列表的第一个值
+                    * floatformat：设置浮点数的显示形式
+                    * get_digit：获取一个整数的倒数第几个数字，例如`\{\{ value|get_digit:"2" \}\}`,那么123456789的值为8
+                    * join：将一个列表的值添加一个分隔符并以字符串形式输出，例如`\{\{ value|join:"//"\}\}`那么['a', 'b', 'c']输出将是"a//b//c"
+                    * last：返回列表的最后yield值
+                    * length：返回变量的长度，也可以在if语句里面使用，例如 \{\% if messages|length &gt;= 100\%\} ...\{\% endif \%\}
+                    * length_is：判断一长度是否是某个值，例如`\{\{ vlaue|length_is:"4" \}\}`如果value长度是4那么就返回True
+                    * linebreaks：替换换行符，例如如果value的值是Joel\\nis a slug，那么输出就是&lt;&lt;p&gt;Joel&lt;br /&gt; is a slug&lt;/p&gt;
+                    * linenumbers：在输出的tex前加上标号
+                    * ljust：在字符串后面加上指定长度的宽度，例如`\{\{ value|ljust:"10" \}\}`
+                    * make_list：将整型或字符串转换为单个单个的列表元素组成一个列表
+                    * random：在列表里面随机选取一个元素
+                    * lower：转换为小写
+                    * rjust：在字符串前面加上指定长度的宽度
+                    * slice：列表分片，例如`\{\{ some_list|slice:":2"\}\}`就表示前面两个元素妈
+                    * slugify：
+                    * stringformat：
+                    * striptags：取出HTML中的tag，只去内容
+                    * time：同date
+                    * timesince：
+                    * timeuntil
+                    * title：将一个字符串转换为title的形式，即一般的第一个字母大写那种标题
+                    * truncatewords: "30"：表示只显示前面30个字符
+                    * truncatechars_html：
+                    * truncatewords：显示前面多少个字符，单位是词，而不是字符
+                    * truncatewords_html：
+                    * unordered_list：
+                    * upper：转换为大写
+                    * urlencode：将url进行编码，例如"http://www.example.org/foo?a=b&amp;c=d"被编码为“http\%3A//www.example.org/foo\%3Fa\%3Db\%26c\%3Dd”
+                    * urlize：
+                    * urlizetrunc：
+                    * wordcount：统计字符串中单词的数量
+                    * wordwrap：指定特定的长度来分隔字符串
+                    * yesno：
+
+                  #### 比较
+
+
+
+                      \{\% ifequal 第一个变量 第二个变量 \%\}
+                      标签比较两个值，当他们相等时，中间的代码才有效
+                      \{\% endifequal \%\}
+
+                  #### 其它
+
+
+
+                      autoescape：标签
+                      \{\% autoescape on \%\}       # 去掉自动转义
+                          \{\{ body \}\}
+                      \{\% endautoescape \%\}
+
+
+                      cycle标签：每次使用该标签，标签中的值就会变化，比如下面这个，第一次该值为row1，第二次则为row2，第三次又变为了1，感觉可以用于循环里面的奇偶什么的
+                      \{\% for o in some_list \%\}
+                          &lt;tr class="\{\% cycle 'row1' 'row'2 \%\}
+                          ...
+                         &lt;/tr&gt;
+                      \{\% endfor \%\}
+
+
+                      now 标签，直接将当前时间按指定格式输出：
+                      \{\% now "jS F Y H:i" \%\}
+
+
+                      spaceless标签：移出HTML tags之间的空白
+                      \{\% spaceless \%\}
+                         &lt;p&gt;
+                         ...
+                         &lt;/p&gt;
+                      \{\% endspaceless \%\}
+
+
+                      verbatim：停止模版引擎，一般用于在模板里面写Javascript什么的
+                      \{\% verbatim \%\}
+                      ...
+                      \{\% endverbatim \%\}
+
+
+                      with标签：和语法里面的with类似
+                      \{\% with total=business.employees.count \%\}
+                          \{\{ total  \}\} employee\{\{ total|pluralize \}\}
+                      \{\% endwith \%\}
+
+                  # TroubleShooting
+
+                  1.for循环获取index：
+
+
+
+                      \{\% for item in item_list \%\}
+                          \{\{ forloop.counter \}\}  \{\# 从1开始的序号 \#\}
+                          \{\{ forloop.counter0 \}\} \{\# 从0开始的序号 \#\}
+                      \{\% endfor \%\}
+
+                  2.直接将html生成成变量：
+
+
+
+                      from django.template import Context, Template
+                      t = Template("My name is \{\{ my_name \}\}.")
+                      c = Context(\{"my_name": "Adrian"\})
+                      output = t.render(c)
+                      return HttpResponse(output)  # 还能直接将HTML返回成页面
+
+                  3.使模板对HTML字符串进行转义 如果有一个HTML格式字符串，比如'&lt;strong&gt;haofly&lt;/strong&gt;'，那么当把它作为一个变量传递到htm
+                  l中区的时候，会原封不动的保留，很明显我们有时候并不想这样，而是真的想将'haofly'进行加粗，可以这样做：
+
+
+
+                      \{\{ variable name | safe\}\}
+                      ---
+                      title: "Django路由(url)和视图(view)"
+                      date: 2015-02-15 09:02:48
+                      categories: django
+                      ---
+                        * **url**：web访问请求的入口(相当于Laravel里的路由)
+                        * **view**：应用的逻辑部分，从客户端接收请求，处理并返回数据，一般返回到template模板进行渲染(相当于Laravel里的控制器)
+
+                      ## url与view的映射
+
+                      在为view指定url的时候，可以写成 `url(r'^$', 'article.views.home')` 的形式，也可以先import，比如 `from
+                      testapp.views import hello, &amp;nbsp; &amp;nbsp; #然后下面就可以直接用 url(r'^$', hello)`
+
+                      ## 路由命名规则
+
+                      Django的url采用的是正则表达式对目标进行匹配的，其中"r"表示这是一个原始的字符串，不对里面的斜杠进行转义，由于网站路由中经常都有"/"等特殊字符，
+                      所以最好是使用原始字符串。另外每一个路由前面是不需要添加斜杠的，并且最后的斜杠也可以不写，但建议是写上最后的斜杠，因为在Django里任何不匹配或尾部没有斜
+                      杠的url，都将被重定向到尾部包含了斜杠的url。
+
+                      正则表达式的匹配规则见我的另一篇文章：[正则表达式规则及常用正则表达式
+                      ](http://haofly.net/zhengze/)url中最常用的有两个：^(头部匹配) $(尾部匹配)，匹配网站根目录就使用r'^$'
+                      (?P&lt;name&gt;) ：创建一个命名的规则，也可以用于向view传递参数
+
+                      ## url参数
+
+                      完整的url有四个参数：reges, review, 以及可选的kwargs和name reges(regular
+                      expression)：使用正则表达式，从上至下进行匹配 view：指定一个view逻辑 kwargs：向view直接传递的参数
+                      name：给URL命名，这样可以方便该url在其他地方进行复用
+
+                      ## url传递参数
+
+                      例如，在视图中的如下函数
+
+
+
+                          from django.http import HttpResponse
+                          def hello(request, my_args):
+                              return HttpResponse("this is \%s." \% my_args)
+
+                      然后在url.py中可以这样写：
+
+
+
+                          url(r'^(?P&lt;my_args&gt;\\d+)/$', 'testapp.views.hello)
+
+                      表示将传入的一位或者多位数字作为参数传递到views中的hello作为参数，该参数命名为my_args
+
+                      其实代替参数的只是参数后面的正则&lt;?P&lt;name&gt;....)省略号才是正则的内容
+
+                      ## url命名
+
+                      例如`url(r'^add/$', 'calc.views.add', name='add')` 方便复用和修改，例如如果之前是/add/4/5，如果想修改
+                      为/4_add_5/这样的形式，代码中已经又大量的/add/4/5这样的形式，这样修改起来十分麻烦，所以用name，在代码中使用reverse可以获取当前的
+                      网址，这样写：reverse('add', args=(444,555))
+                      那么就会生成'/add/444/555'，这样即使之后修改了路由，只要对应的name不变就行了
+
+                      ## 视图获取常用参数
+
+                      获取get请求的参数使用：`a = request.GET['a']`
+
+                      # TroubleShooting
+
+                        1. POST请求403错误：
+
+                              Forbidden (403)
+                          CSRF verification failed. Request aborted.
+
+                      原因是Django默认给所有的post请求都添加了CSRF验证中间件，要想对某个路由(url)忽略，可以使用csrf_exempt，关于CSRF的其它一些装
+                      饰器见&lt;https://docs.djangoproject.com/en/1.7/ref/contrib/csrf/&gt;
+
+
+                              from django.views.decorators.csrf import csrf_exempt
+
+
+
+
+                          @csrf_exempt
+                          def webhook(request):
+                              pass
+
+                        2. 统一APP的路由 Django是以app的形式定义一个应用的，所以为了保持应用的隔离性，就需要将应用的url分离开来，相当于一个前缀，例如，先在setting.py里面添加APP
+
+                              INSTALLED_APPS = (
+                              'django.contrib.admin',
+                              'django.contrib.auth',
+                              'django.contrib.contenttypes',
+                              'django.contrib.sessions',
+                              'django.contrib.messages',
+                              'django.contrib.staticfiles',
+                              'haofly',                # 需要添加的APP名称
+                          )
+
+                      然后在工程的urls.py文件里定义APP的主url：
+
+
+                              from django.conf.urls import include, url
+
+
+
+
+                          urlpatterns = [
+                              url(r'^前缀/', include('haofly.urls')), # haofly下的urls.py
+                          ]
+
+
+                      然后再在haofly这个APP下建立一个独立的urls.py：
+
+
+                              from django.conf.urls import include, url
+
+
+
+
+                          urlpatterns = [
+                              url(r'^test/', 'haofly.views.test'),
+                          ]
+
+                        3. 在设置路由参数的时候出现如下错误：
+
+                              TypeError at /operation/servers/13/commands
+                          commands() got an unexpected keyword argument 'id'
+
+                      原因是没有将该参数加入views的定义中去，需要将id加入该views的第二个参数
+
+                        4. 跳转功能：
+
+                              return HttpResponseRedirect('/')
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../PyQT/" class="btn btn-neutral float-right" title="PyQT">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../pybrain/" class="btn btn-neutral" title="pybrain"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../pybrain/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../PyQT/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
