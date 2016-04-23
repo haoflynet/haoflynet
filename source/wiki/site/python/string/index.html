@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>string - 我的Wiki</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "string";
+    var mkdocs_page_input_path = "python/string.md";
+    var mkdocs_page_url = "/python/string/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> 我的Wiki</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>code</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/安全测试/">安全测试</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/编码经验/">编码经验</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/代码审查清单/">代码审查清单</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/正则表达式/">正则表达式</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../code/packages/">packages</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>python</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Django/">Django</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Flask/">Flask</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../kivy/">kivy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../pybrain/">pybrain</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Django/">Django</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../PyQT/">PyQT</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../pytest/">pytest</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../python/">python</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Scrapy-PySpider/">Scrapy-PySpider</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Splinter/">Splinter</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">string</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#python">Python字符串</a></li>
+                
+                    <li><a class="toctree-l4" href="#_1">各种字符编码问题</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_2">基本查找，返回第一个出现该字符串的位置</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_3">查找某字符串出现的所有位置的一个列表</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_4">忽略大小写的查找</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_5">使用正则方式查找</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_6">查找所有匹配的</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_7">最短匹配</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_8">查找时中文编码问题</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#_9">使用正则方式进行分割，例如：</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Tornado/">Tornado</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>frontend</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/bootstrap/">bootstrap</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/js/">js</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/css/">css</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/frontend/">frontend</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/gulp/">gulp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/html/">html</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../frontend/nodejs/">nodejs</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Database</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/MySQL and Mriadb/">MySQL and Mriadb</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/atlas/">atlas</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/MHA/">MHA</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/redis/">redis</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Database/sqlite/">sqlite</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>PHP</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/php/">PHP</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/Laravel/">Laravel</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../PHP/PHP编码规范/">PHP编码规范</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Other Tools</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Docker/">Docker</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Git/">Git</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Chrome/">Chrome</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/curl/">curl</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Atom/">Atom</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/SVN/">SVN</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Openstack/">Openstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/shadowsocks/">shadowsocks</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/fpm/">fpm</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/hexo/">hexo</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/phpmyadmin/">phpmyadmin</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/Sublime Text/">Sublime Text</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/terminal/">terminal</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/vim/">vim</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wireshark/">wireshark</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/wordpress/">wordpress</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Other Tools/workbench/">workbench</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>server</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/apache/">apache</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/HAProxy/">HAProxy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/lamp/">lamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/nginx/">nginx</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/puppet/">puppet</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/saltstack/">saltstack</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/wamp/">wamp</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../server/zabbix/">zabbix</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>system</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/装机必备/">装机必备</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Android/">Android</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Linux/">Linux</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/MAC OSX/">MAC OSX</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Raspberry Pi/">Raspberry Pi</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../system/Windows/">Windows</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>C and C++</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C/">C</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../C and C++/C++/">C++</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Java</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Java/java/">Tips</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">我的Wiki</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>python &raquo;</li>
+        
+      
+    
+    <li>string</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="python">Python字符串</h1>
+<h2 id="_1">各种字符编码问题</h2>
+<ul>
+<li><strong>2中打印str显示前面加了个u且中文类似\u8be5\u9879</strong>：这是十六进制的Unicode编码，使用<code>string.encode('utf-8')</code>进行转换</li>
+<li>
+<p><strong>2中类似\uiahd\u9483这样的字符串</strong>：需要注意的是，该字符串本来就是这样，而不是编码成这样的，这时候需要反编码：<code>string.decode('unicode_escape'))</code></p>
+</li>
+<li>
+<p><strong>字符串查找</strong>  </p>
+<p>text = 'test, hello, world!'  </p>
+<h1 id="_2">基本查找，返回第一个出现该字符串的位置</h1>
+<p>text.find(',')   </p>
+<h1 id="_3">查找某字符串出现的所有位置的一个列表</h1>
+<p>[m.start() for m in re.finditer(',', text)]<br />
+输出[4, 11]  </p>
+<h1 id="_4">忽略大小写的查找</h1>
+<p>re.findall('python', 'text, flags=re.IGNORECASE)  </p>
+<h1 id="_5">使用正则方式查找</h1>
+<p>import re<br />
+url = 'http://haofly.net/note.html'<br />
+match = re.search('(.<em>)/(.</em>?).html', a)<br />
+print(match.group(1), match.group(2))  </p>
+<h1 id="_6">查找所有匹配的</h1>
+<p>matches = re.findall('pattern', string)   # 返回所有匹配的列表  </p>
+<h1 id="_7">最短匹配</h1>
+<p>str_pat = re.compile(r'\"(.*?)\"')<br />
+str_pat.findall(text2)<br />
+输出['no.', 'yes.']</p>
+<h1 id="_8">查找时中文编码问题</h1>
+<p>re.search('中文(.*?)呵呵'.decode('utf8'), string)</p>
+</li>
+<li>
+<p><strong>除去空格</strong>  </p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>s.strip()          # 去掉两端空格
+s.lstrip()         # 去掉左边空格
+s.rstrip()         # 去掉右边空格
+s.replace(' ', '') # 去掉所有空格</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li>
+<p><strong>大小写转换</strong>  </p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>s.upper()    # 全部转为大写
+s.lower()    # 全部转为小写</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p><strong><em>*字符串格式化<br />
+</em></strong>*</p>
+<pre><code>的
+</code></pre>
+<p>"my name is {name}".format(name=name)</p>
+</li>
+<li>
+<p><strong><em>*分隔字符串</em>*<br />
+</strong></p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>s.split(',')   # 将字符串以逗号分隔，返回分隔后的列表
+['test', ' hello', ' world!']
+s.split(',', 2)  # 第二个参数为可选参数，表示最多分解的数量，2表示可以分为三个部分(中间2个分隔符)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="_9">使用正则方式进行分割，例如：</h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>line = 'asdf fjdk; afed, fjek, asdf, foo'
+import re
+re.split(r'[;,\s]\s_', line)
+['asdf', 'fjdk', 'afed', 'fjek', 'asdf', 'foo']
+re.split(r'(;|,|\s)\s_', line) # 这样连分隔符都能分割出来</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<p>5.字符串截取</p>
+<pre><code>&gt;&gt;&gt; s[:]    # 截取全部长度
+&gt;&gt;&gt; s[:-1]  # 截取从开始到倒数第一个字符
+&gt;&gt;&gt; s[::-1] # 将字符串反序
+</code></pre>
+<p>6.字符串匹配</p>
+<pre><code>&gt;&gt;&gt; filename = 'spam.txt'
+&gt;&gt;&gt; filename.endswith('.txt')
+True
+&gt;&gt;&gt; filename.startswith('file:') # 还可以将多种匹配作为一个列表传给startswith
+False
+</code></pre>
+<p>7.字符串替换：除了replace，还可以用re模块中的sub()函数，进行正则替换</p>
+<pre><code>text = 'Today is 11/27/2012. PyCon starts 3/13/2013.'
+import re
+datepat = re.compile(r'(\\d+)/(\\d+)/(\\d+)')
+datepat.sub(r'\\3-\\1-\\2', text)  # 在后面添加flags=re.IGNORECASE可忽略大小写
+'Today is 2012-11-27. PyCon starts 2013-3-13.'
+
+# 带命名组的替换
+
+
+
+re.sub(r'&lt;a._?&gt;(._?)&lt;/a&gt;','\\g&lt;1&gt;', text) # 替换a标签，但保留a标签里面的内容，需要注意的是._表示最长匹配，而._?表示最短匹配
+</code></pre>
+<p>8.合并拼接字符串</p>
+<pre><code>&gt;&gt;&gt; parts = ['Is', 'Chicago', 'Not', 'Chicago?']
+&gt;&gt;&gt; ' '.join(parts)
+'Is Chicago Not Chicago?'
+&gt;&gt;&gt; ','.join(parts)
+'Is,Chicago,Not,Chicago?'
+&gt;&gt;&gt; ''.join(parts)
+'IsChicagoNotChicago?'
+&gt;&gt;&gt;
+</code></pre>
+<p>9.以指定列宽格式化字符串</p>
+<pre><code>import textwrap
+print(textwrap,fill(s, 70)) # 将s字符串已70列显示，多的换行
+os.get_terminal_size().columns # 可以使用这个方法获得终端的大小和尺寸
+</code></pre>
+<p>10.字符串填充：</p>
+<pre><code>a = 'abc'
+print(a.zfill(5)) # 输出'00abc'
+</code></pre>
+<p>11.编码转换</p>
+<pre><code># Byte转为utf-8
+a = b'\\u0432'
+b = c.decode('utf8')
+</code></pre>
+<p>12.查看字符编码</p>
+<pre><code>import chardet
+chardet.detect(string)
+</code></pre>
+<ul>
+<li>
+<p>将字符串输出为16进制字节  </p>
+<pre><code>":".join("\{:02x\}".format(ord(x) for x in 字符串))
+</code></pre>
+<p>或
+":".join("{0:x}".format(ord(x) for x in 字符串))
+输出类似于: 12:45:45</p>
+</li>
+<li>
+<p>16进制转换为utf8的编码格式  </p>
+<pre><code>类似'\\xe5\\x94\\xae\\'这种，使用如下方式进行转换
+</code></pre>
+<p>unicode(string, 'utf-8')</p>
+</li>
+<li></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Tornado/" class="btn btn-neutral float-right" title="Tornado">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Splinter/" class="btn btn-neutral" title="Splinter"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Splinter/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Tornado/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
