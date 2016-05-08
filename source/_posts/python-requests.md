@@ -25,7 +25,7 @@ response.status_code  #HTTP status，http状态码
 print([x for x,y in A.__dict__.items() if type(y) == FunctionType])
 ```
 # TroubleShooting:
-
+- **设置最大重试次数**:之前发现设置了timeout时间却没反应，原来是因为查询不到ip地址，导致在timeout时间内就已经默认在重试了，要设置就得先执行语句：`requests.adapters.DEFAULT_RETRIES=5`
 - **user-agent列表﻿**  
 ```
 user_agent_list = [  
