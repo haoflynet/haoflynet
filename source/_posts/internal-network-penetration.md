@@ -3,7 +3,7 @@ title: "内网穿透方案"
 date: 2015-12-04 07:39:55
 categories: 编程之路
 ---
-## 背景：天朝大局域网，网上都说可以打电话叫客服切换到公网IP，但是电信、移动宽带，无论打客服还是安装师傅，居然从上到下都不知道公网IP是什么，他们以为我
+##### 背景：天朝大局域网，网上都说可以打电话叫客服切换到公网IP，但是电信、移动宽带，无论打客服还是安装师傅，居然从上到下都不知道公网IP是什么，他们以为我
 要公网IP是要独立宽带，公网IP和共享宽带明明是两个概念好不好，你可以封80端口，但是其它什么端口至少给我留一个总行吧，客服没用，就只能自己动手了。  
 
 ## 方案一：SSH Tunnel
@@ -42,33 +42,27 @@ categories: 编程之路
 
 
     写一个python脚本，然后nohup keepalived.py &，在脚本里新建一个ssh连接，不断发送空格即可
+    
+	```
+	#!/usr/bin/python
+	#coding: utf-8
+	import paramiko, time
 
-    #!/usr/bin/python
-    #coding: utf-8
+	class myssh():  
+		def **init**(self, ip, port, username, password):  
+		self.ssh = paramiko.SSHClient()  
+    	self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  
+		self.ssh.connect(ip, port, username, password, timeout=5)  
 
-    import paramiko, time
+		def exec(self, cmd):  
+			return self.ssh.exec_command(cmd)  
 
+	if '__name__ == '__main__':  
+		ssh = myssh('localhost', 8022, 'haofly', '896499825')  
+		while True:  
+			ssh.exec(' ')  
+			time.sleep(30)  
+		ssh.close()
 
-
-
-    class myssh():  
-        def **init**(self, ip, port, username, password):  
-            self.ssh = paramiko.SSHClient()  
-            self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  
-            self.ssh.connect(ip, port, username, password, timeout=5)  
-
-        def exec(self, cmd):  
-            return self.ssh.exec_command(cmd)  
-
-    if **name** == '**main**':  
-        ssh = myssh('localhost', 8022, 'haofly', '896499825')  
-        while True:  
-             ssh.exec(' ')  
-             time.sleep(30)  
-        ssh.close()
-
-
-
-
-
-封面图片来自Pixabay
+**推荐阅读**：  
+[几个内网穿透，内网网站穿透，内网端口映射到公网的服务推荐](https://v2ex.com/t/268495#reply11)
