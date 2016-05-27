@@ -11,15 +11,14 @@ Python官方文档都说自己解析XML的方式存在漏洞了，那我也只�
 另外，如果是简单的网页解析任务，可以直接将获取到的网页进行正则表达式匹配也可以达到效果，只是可能会出现各种编码各种错误问题
 
 ## Installation
-
-
-
+```
     # 直接apt安装
     $ sudo apt-get install Python3-bs4  # 这将安装下面两个包
 
     # pip方式安装
     $ pip3 install beautifulsoup4   # 这样直接安装或者下载源码进行安装
     $ pip3 install lxml             # 如果是解析xml必须安装一个解析器，文档里说的那个解析器只有这个好安装点，需要提前安装好依赖，apt-get install libxml2-dev, libxslt1-dev, python-dev，还可以使用html.parser这个解析器，这个解析器不会自动添加body元素
+```
 
 ## 基本概念
 
@@ -29,21 +28,17 @@ TAG：表示xml/html里面的一个元素(节点)，包括标签以及其里面�
 
 最简单的使用例子：
 
-
-
+```
     import urllib.request
     from bs4 import BeautifulSoup
-
 
     content = "<b><!--Hey, buddy--></b>"   # 表示网页内容
     content = urllib.request.urlopen(url)  # 通常做爬虫的时候html来自于网页
     soup = BeautifulSoup(content)          # 解析，生成一个bs4.BeautifulSoup
     comment = soup.b.string                # 获取<b>标签的内容
-
-## ** 查找**
-
-
-
+```
+## 查找
+```
     # 查找标签
     soup.a             # 查找第一个a标签，返回值就是一个TAG<class 'bs4.element.Tag'>
     soup.find('a')     # 同上，都只是查找满足条件的第一个
@@ -53,35 +48,33 @@ TAG：表示xml/html里面的一个元素(节点)，包括标签以及其里面�
     soup.find_all('a', limit=3) # 限制只找三个结果
     soup.find_all('a', recursive=False) # 只找直接子节点而不递归查找# CSS选择器  
 
-
-
     soup.select('a') # 查找a标签
     soup.select('.title') # 查找类为title的标签
     soup.select('#name')  # 查找id为name的标签
-
+```
 ## 获取内容
-
-
-
+```
     tag.name        # 如果是Tag，那么返回它本身，例如，如果是a标签，那就返回a；如果是soup对象，那么返回[document]，返回值都是str类型
     tag.attrs       # 获取该标签的属性，返回的是一个字典，例如，如果有个a标签是<a class="a" href="#"></a>那么返回\{'class': 'a', 'href': '#'\}
     soup.a['class'] # 直接获取a标签的class属性值
     soup.a.get('class'] # 同上
 
-
     soup.a.string   # 获取标签内的内容，<a>文字部分</a>
     soup.a.text     # 获取标签内文字部分<span>abc<a href=""></a></span> 获取abc
     soup.prettify() # 获取所有内容
-
+```
 ## 遍历
 
 获取tag内的字符串用tag.string，可以通过unicode方法将NavigableString对象转换成Unicode字符串，如unicode_st
 ring = unicode(tag.string)
 
+## TroubleShooting
+- 如果出现无法找到某些真的存在的标签，可能原因是选择的解析器有问题，可以将lxml换成html5lib
+
+
 如果要获取xml/html中的注释使用Comment对象，如
 
-
-
+```
     markup = "<b><!--Hey, buddy. Want to buy a used parser?--></b>"
     soup = BeautifulSoup(markup)
     comment = soup.b.string
@@ -99,68 +92,57 @@ ring = unicode(tag.string)
     print(soup.b.prettify())
     打印：
     <b><![CDATA[A CDATA block]]></b>
-
+```
 通过点去属性的方式只能获得当前名字的第一个tag，如果要得到所有的就用soup.find_all('a')
 
 tag的.contents属性可以将tag的子节点以列表的方式输出(包括子节点的所有内容)
 
-
-
+```
     head_tag = soup.head
     head_tag # <head><title>The Dormouse's story</title></head>  
 
-
-
     head_tag.contents
     [<title>The Dormouse's story</title>]
-
-
-
 
     title_tag = head_tag.contents[0]
     title_tag
 
     #<title>The Dormouse's story</title>  
 
-
-
     title_tag.contents
 
     [u'The Dormouse's story']
-
+```
 BeautifulSoup对象本身一定会包含子节点，也就是说<html>标签也是该对象的子节点，如 soup.contents[0].name就是html
 
 通过tag的.children生成器，可以对tag的子节点进行循环：
 
-
-
+```
     for child in title_tag.children:
         print(child)
         # The Dormouse's story
-
+```
 。desendants属性可以对所有tag的子孙节点进行递归循环
 
-
-
+```
     for child in head_tag.descendants:
         print(child)
         # <title>The Dormouse's story</title>
         # The Dormouse's story
     字符串也是一个子节点
-
+```
 如果tag只有一个NavigableString类型的子节点，就可以用title_tag.string访问子节点
 
 如果tag包含多个字符串就用.strings来循环，如：
 
-
-
+```
     for string in soup.strings:
         print(repr(string))
         # u"The Dormouse's story"
         # u'\\n\\n'
         # u"The Dormouse's story"
         # u'\\n\\n'
-
+```
 使用soup.stripped_strings代替soup.strings可以去掉空白或空行项
 
 父节点就正好相反了，.parent得到父节点，.parents递归得到元素的所有父节点
