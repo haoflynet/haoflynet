@@ -9,37 +9,32 @@ categories: 编程之路
 <http://mysql-python.sourceforge.net/MySQLdb.html>  
 
 ## 安装方法
+```
+# ubuntu
+sudo apt-get install python3-dev libmysqlclient-dev
+pip install mysqlclient
 
-
-
-    # ubuntu
-    sudo apt-get install python3-dev libmysqlclient-dev
-    pip install mysqlclient
-
-    # CentOS
-    sudo yum install pytho3n-devel mysql-devel
-    pip install mysqlclient
-
-
+# CentOS
+sudo yum install pytho3n-devel mysql-devel
+pip install mysqlclient
+```
 ## 数据库的连接
+```
+# 使用Oracle官方提供的数据库引擎的连接方法
+import mysql.connector
+cnx = mysql.connector.connect(  
+                          user='',
+                          password='',
+                          host='',
+                          database='',  
+                          pool_size=3 # 连接池大小)
+cnx.close()
 
-
-
-    # 使用Oracle官方提供的数据库引擎的连接方法
-    import mysql.connector
-    cnx = mysql.connector.connect(  
-                              user='',
-                              password='',
-                              host='',
-                              database='',  
-                              pool_size=3 # 连接池大小)
-    cnx.close()
-
-    # 使用基于MySQLdb的连接方法，比如mysqlclient
-    import MySQLdb
-    db = MySQLdb.connect(host='', user='', passwd='', db='', charset='utf8')
-    cursor = db.cursor()
-
+# 使用基于MySQLdb的连接方法，比如mysqlclient
+import MySQLdb
+db = MySQLdb.connect(host='', user='', passwd='', db='', charset='utf8')
+cursor = db.cursor()
+```
 
 
 ## Difference：两个库的区别
