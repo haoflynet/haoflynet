@@ -5,8 +5,8 @@ google_search: true ## Use Google search, true/false
 baidu_search: ## Use Baidu search, true/false
 swiftype: ## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT
 tinysou: ## Your tinysou_key, e.g. 4ac092ad8d749fdc6293
-google_analytics: ## Your Google Analytics tracking id, e.g. UA-42425684-2
-baidu_analytics: d06802e96e214bdb413a40b263d4cc15 ## Your Baidu Analytics tracking id, e.g. 8006843039519956000
+google_analytics: UA-47480072-1 ## Your Google Analytics tracking id, e.g. UA-42425684-2
+baidu_analytics: ## Your Baidu Analytics tracking id, e.g. 8006843039519956000
 shareto: true ## If you want to use the share button please set the value to true
 
 menu:
