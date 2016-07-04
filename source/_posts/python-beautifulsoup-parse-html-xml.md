@@ -48,7 +48,7 @@ TAG：表示xml/html里面的一个元素(节点)，包括标签以及其里面�
     soup.find_all('a', limit=3) # 限制只找三个结果
     soup.find_all('a', recursive=False) # 只找直接子节点而不递归查找# CSS选择器  
 
-    soup.select('a') # 查找a标签
+    soup.select('a') # 查找a标签，结果是列表
     soup.select('.title') # 查找类为title的标签
     soup.select('#name')  # 查找id为name的标签
 ```
