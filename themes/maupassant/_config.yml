@@ -39,10 +39,10 @@ widgets: ## Six widgets in sidebar provided: search, category, tag, recent_posts
 links:
   - title: 谢翔的Blog
     url: http://xiang.jwzcq.com/
-  - title: site-name2
-    url: http://www.example2.com/
-  - title: site-name3
-    url: http://www.example3.com/
+  - title: Phodal
+    url: https://www.phodal.com/
+  - title: qingguo
+    url: http://www.cnblogs.com/qingguo
 
 # Static files
 js: js
