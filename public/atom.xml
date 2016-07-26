@@ -4,9 +4,9 @@
   <subtitle>Change My World by Program</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://haofly.net/"/>
-  <updated>2016-02-11T10:30:26.360Z</updated>
-  <id>http://haofly.net/</id>
+  <link href="https://haofly.net/"/>
+  <updated>2016-07-24T13:39:23.000Z</updated>
+  <id>https://haofly.net/</id>
   
   <author>
     <name>haofly</name>
@@ -16,20 +16,571 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>我越来越像《麦田守望者》</title>
-    <link href="http://haofly.net/maitianshouwangzhe/"/>
-    <id>http://haofly.net/maitianshouwangzhe/</id>
-    <published>2016-02-11T10:30:14.000Z</published>
-    <updated>2016-02-11T10:30:26.360Z</updated>
+    <title>MacTalk 人生元编程</title>
+    <link href="https://haofly.net/renshegnyuanbiancheng/"/>
+    <id>https://haofly.net/renshegnyuanbiancheng/</id>
+    <published>2016-07-24T10:38:44.000Z</published>
+    <updated>2016-07-24T13:39:23.000Z</updated>
     
-    <content type="html">&lt;p&gt;初看麦田里的守望者，我只看到一个满口脏话，觉得全世界都是傻逼，只有我是最纯洁的一个人。在看之前我并不了解这本书的历史背景，一直觉得这本书可能是90年代后的，不过看了几天后脑海中却始终浮现出一幅很老的画面，就像电视里美国刚开始有摄像机的无声电影一样，所有的人都穿着”老土”的服装，那是一个灯红酒绿、社会混乱，所有人都在寻找出路的时代，事实证明我是对的，此书出版于1951年，正是二战后美国的真实写照吧。&lt;/p&gt;
-&lt;p&gt;“一个不成熟的人的标志是他愿意为了某个理由而轰轰烈烈地死去，而一个成熟的人的标志是他愿意为了某个理由而谦恭地活下去。”这或许是此书最出名的一句话。不敢自谦，不过，正如我一直坚持的价值观一样：人，是可以平凡的。比如爱情，现在的社会本没有历史上那么轰轰烈烈，也不会有什么海枯石烂，最多相隔万里，那也能通过网络时时通讯。说的太多，感觉这段和此书的主题并无多大联系。&lt;/p&gt;
-&lt;p&gt;第一次接触意识流的小说，觉得有些晦涩，有些不解，但霍尔顿的世界可能每个人都经历过。比如我们的成长，每个人的成长或许都伴随着成年人的不理解，有的人在这过程中练就了挑战世界的本领，而有的人则在反抗的过程中渐渐成长为自己曾经讨厌的人。成长过程中，无论坚持了以我，还是改变了自我，都没有错，最终他们都会走向自己一样的人生，哪怕不是曾经希望的，但一个成年人可能更懂得珍惜现在。不是认命，而是认清了自己。&lt;/p&gt;
-&lt;p&gt;故事最后的结局也让人们争论不已，我想，霍尔顿现在已经长大了吧，理想被一个一个击破，到底是继续反抗世界还是改变自己，现在他已经知道答案了。&lt;/p&gt;
-&lt;p&gt;今年过年回家，我仿佛变成了故事里的男主角，愤世嫉俗，以前觉得没什么的事情今年却突然感觉十分愤怒。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;为什么我今年回到家成天就感觉这里活着真累呀，错综复杂的亲戚关系，成天都担心着别人眼中自己的形象，遇到各种不公平待遇却又忍气吞声，明明讨厌的事情却又有各种原因不去拒绝。。。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这是我2月7日发表的一篇微博，怎么说呢，以前可能觉得这些离自己太远，所以没去在意。但是即将毕业的我，又碰巧在这个节骨眼到了谈婚论嫁的时刻，实在无法适应，只能边骂边去接受自己能接受的。只希望，明天的我，依然是我曾经喜欢的模样。&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>我不知道有多少人因为池老师的一篇《先有Mac还是先有钱》而去买的苹果电脑，我现在也在用rmbp，但我可不是因为这个原因。从大一到大三，我那台宏碁的笔记本一直陪伴在我身边，经历了我各种摧残，更换了无数的操作系统(windows、linux系列的)，曾经最长用了半年的deepin单系统。虽说我自认为我用电脑一定比其他人用得好，毕竟一台三千多的电脑能用出人家五六千电脑的流畅度，但是依然不尽如我意。折腾累了，最终在大三结束刚进入实习期的我就找父母拿钱买了一台15年乞丐版的rmbp。刚好快一年了，这一年，mac带给我最大的感受就是我几乎没有任何感受…我已经完全忘记了去折腾电脑了，重装系统、电脑卡顿、木马病毒，统统都没有，我甚至都忘记了他们的存在了。买windows是买电脑送系统，买mac则是买系统送电脑。mac带给我们更多的是一种享受，我愿意为这样的服务买单。</p>
+<p>作为一本talk mac的书籍，当然不乏众多的mac使用技巧，osx的强大，远比我当前的使用方式更强大，还需要我去探索。当然，现在的我已经不再是工具控了，因为我已经找到了一套自己认为最适合自己的工具，不用再为新工具的出现而浪费时间了。除了一些使用技巧外，池健强老师还谈了一些对编程的看法。让我了解了一个人，王小波，对他几乎没有什么认识，我想，我也该去拜读一下他的书了。</p>
+<p>关于盗版，我的博客很早就有一篇《学生应该尽量购买正版书籍》，上个月从学校回来，收拾了一箱子舍不得卖的书，几乎全是在当当或者亚马逊上买的，这，也算是我对这些作者表达的基本的尊重。同时，在使用了mac过后，我的电脑／手机都与盗版彻底绝缘了。从此可以问心无愧地进行开发，也希望自己开发的东西有一天能让大众享受，能让用户主动掏钱。以下是池老师关于盗版的言论：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1.盗版肯定是不对的，如果用了盗版软件，至少要有愧疚之心。如果你是个穷学生，学习软件开发用了盗版软件，谁忍心责备你呢？但大家千万不能无耻到开篇提到的那位父亲那样，不仅误己，而且误人。 2.程序员也是要吃饭的，你们每个人在自己的电脑上使用的每个软件都是程序员一行行的代码敲出来的。 3.在经济实力允许的基础上，尽可能用正版，尤其是程序员。程序员不支持程序员，还怎么指望别人呢？</div></pre></td></tr></table></figure>
+<p>池老师也算是很多新一代程序员的领路人，不知道他现在怎么样了，不过，我算是真正走上了这条路了，一切，才刚刚开始。</p>
+<h3 id="语录"><a href="#语录" class="headerlink" title="语录"></a>语录</h3><ul>
+<li>反观观国内，很多公司把企业文化作为一种“秀”或“工具”，这就比较扯淡了。我觉得搞好企业文化，就两点： 1.利益，把公司利益和员工联系在一起，好员工钱得给足。 2.人文，少搞或不搞办公室政治，让员工自由一点、开放一点、平等一点，你会获得回报。 对于员工本身来说，不管企业是什么文化，</li>
+<li>是啊，人怎么会有那么多时间学习那么多东西呢？其实这个不可能的设定，是在保证你有足够时间看电视、看美剧、刷微博、上网闲逛的基础之上的。只要把上述这些事情消费的时间减少一半，拿来持续学习，你就会发现学习效果是惊人的。</li>
+</ul>
+<ul>
+<li>有一些穿高跟鞋走不到的路，有一些喷着香水闻不到的空气，有一些在楼宇里永远遇不到的人。</li>
+</ul>
+<ul>
+<li>很多时候我们初入江湖，不知深浅，不知道什么事能做，怎么做，为什么要这么做，即使怯生生问了，得到的答复往往是，That’s just the way it’s done（我们向来这么做），于是我们慢慢也变得成熟、圆滑和懒惰，不再去从深层次思考『为什么要这么做？』因为别人也这么做。慢慢的，这些东西就成为了folklore（陈规陋习）。 一个坏的习惯或传统，可能延续十年、百年、千年，直到那个打破陈规陋习的人出现！ 提问、思考和努力工作，你就会抛弃这些陈规陋习，找到布满荆棘也满是鲜花的另一条鲜活的路。</li>
+<li>经验告诉我，优秀的人才是那些一心想着产品的人，而不是关注管理和流程本身。</li>
+<li>乔布斯认为，人活着是为了追求极致并分享美好的东西给人类，而不是做三流产品并赚钱。这样社会才能进步，让更多的人欣赏到更美好的东西。微软不过是另一个麦当劳，哈哈。</li>
+<li>我以为我是个盖世程序猿，有一天我的程序会奔跑在千万台服务器上。我猜中了前头，可是我猜不着这结局……我们说，呸，你丫从头就错了！ </li>
+<li>有人问，你为什么要从事IT技术研发工作？如果是乔布斯，可能的答案是改变世界；如果是人生导师，可能的答案是跟随你心。如果是我回答呢，答案就是如果不从事这个行业的话呢，我还真不知道该如何养家糊口</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我不知道有多少人因为池老师的一篇《先有Mac还是先有钱》而去买的苹果电脑，我现在也在用rmbp，但我可不是因为这个原因。从大一到大三，我那台宏碁的笔记本一直陪伴在我身边，经历了我各种摧残，更换了无数的操作系统(windows、linux系列的)，曾经最长用了半年的deepi
+    
+    </summary>
+    
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>OAuth和SSO</title>
+    <link href="https://haofly.net/oauth-and-sso/"/>
+    <id>https://haofly.net/oauth-and-sso/</id>
+    <published>2016-06-16T06:08:00.000Z</published>
+    <updated>2016-07-16T09:27:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>参考<a href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html" target="_blank" rel="external">理解OAuth 2.0</a></p>
+<p>目前网络上的数据传输普遍基于HTTP/HTTPS，然而，他们都是无状态的协议，也就是说你本次的请求与下一次的请求是毫无关系的，为了使得我们能够保存用户的状态，于是诞生了cookie，诞生了session，诞生了token，当然，这三者的概念其实都差不多，总体思想就是，在第一次请求过后，给用户生成唯一的一个标识，用户在下一次请求时，携带这个标识，这样服务端就能通过它来判断用户的状态以及合法性。</p>
+<p>注意: OAuth确实增加了安全性，但是也增加了应用的复杂性，对于安全要求没那么高的应用，依然可以使用简单的加密算法进行双向加解密认证。</p>
+<h2 id="OAuth"><a href="#OAuth" class="headerlink" title="OAuth"></a>OAuth</h2><p>OAuth主要用于社会化登录，仅仅需要一个系统来存储用户的信息，其他的系统或者第三方系统均可以使用，其他系统不需要维护自己的用户系统，免去了用户注册账号的麻烦，并且用户的密码等重要信息都集中保存在信任方，提高了安全性。</p>
+<p>根据阮一峰的博客，客户端获取授权有以下几种认证方式:</p>
+<ol>
+<li>授权码模式（authorization code）: 是功能最完整、流程最严密的授权模式。它的特点就是通过客户端的后台服务器，与”服务提供商”的认证服务器进行互动。</li>
+<li>简化模式（implicit）: 不通过第三方应用程序的服务器，直接在浏览器中向认证服务器申请令牌，跳过了”授权码”这个步骤，因此得名。所有步骤在浏览器中完成，令牌对访问者是可见的，且客户端不需要认证。</li>
+<li>密码模式（resource owner password credentials）:用户向客户端提供自己的用户名和密码。客户端使用这些信息，向”服务商提供商”索要授权。</li>
+<li>客户端模式（client credentials）:指客户端以自己的名义，而不是以用户的名义，向”服务提供商”进行认证。严格地说，客户端模式并不属于OAuth框架所要解决的问题。在这种模式中，用户直接向客户端注册，客户端以自己的名义要求”服务提供商”提供服务，其实不存在授权问题。</li>
+</ol>
+<p><img src="http://7xnc86.com1.z0.glb.clouddn.com/oauth-and-sso-1.png" alt="举个例子"><br>具体流程(感觉不用图也能说清楚呀):</p>
+<ol>
+<li>第三方站点获取未授权的Request Token</li>
+<li>获取用户授权的Request Token</li>
+<li>用授权的Request Token换取Access Token</li>
+<li>通过Access Token访问该用户的资源</li>
+</ol>
+<p>另外，对于客户端的每一次获取token的请求，都对应着一定的权限，比如微博的第三方认证，通常仅有获取用户基本信息的权限，或者如github的权限就更加详细一点，包括获取基本信息，公开库的访问权限和私有库的访问权限(github的认证请求权限使用的是<code>X-OAuth-Scopes</code>作为参数放在请求头部，例如<code>user</code>，表示能获取用户的所有信息，而<code>user.email</code>则表示只能获取用户的邮箱)。</p>
+<p>对于第三方应用，仅需要维护token的值，一般来说，有一种用户基本信息表，多张token存储表对应着多个公开应用。例如接入了微博的第三方可以有这么一张表: (id, user_id, weibo_id, weibo_access_token, weibo_expires)</p>
+<p>注: 社会化登录的回调地址(callback_url)与返回地址(next)的区别，回调地址指用户点击第三方登录过后，由资源服务器回调到的地址，而返回地址则是用户欲访问的地址，一般为应用自己的首页，但也有可能是用户直接知道url后想去的地址，这时候可以在请求的时候带上next参数，然后由资源服务器原样返回过去。</p>
+<p>最后，几乎所有关于OAuth的文章都会遗漏的一点，那就是资源服务器和认证服务器之间的认证。当访问者获取了token过后，向资源服务器发送请求时，资源服务器肯定会向认证服务器验证这个token的合法性，这也是一个很危险的步骤，在实际项目中，我将token与访问者的appkey一起进行认证，并且作为认证服务器同样要对资源服务器的认证请求一起认证。具体可参考<a href="http://stackoverflow.com/questions/12296017/how-to-validate-an-oauth-2-0-access-token-for-a-resource-server" target="_blank" rel="external">stackoverflow</a></p>
+<h2 id="SSO-单点登录"><a href="#SSO-单点登录" class="headerlink" title="SSO(单点登录)"></a>SSO(单点登录)</h2><p>解决的是跨域的用户校验问题，常用于一个公司内部有多个子网站，然后提供统一的登录，一个站点登录过后其他站点不用重复登录。多用于存在多个子系统的公司。<br>具体流程:</p>
+<ol>
+<li>用户请求任意一个子站的login页面</li>
+<li>用户输入用户名密码，子站将它传递给认证中心SSO Server</li>
+<li>SSO Server验证成功后</li>
+</ol>
+<p>虽然SSO和OAuth是不一样的东西，但是我认为SSO只是OAuth的一种简化模式，可以归为OAuth的一类。通常由于子系统的域名不一样，不方便设置各自的cookie，于是这里又有两种解决方案:</p>
+<ol>
+<li>使用公共加解密函数进行双向加解密(加密字符串直接放在GET请求中)</li>
+<li>同样使用公共的加解密函数，但是是使用JSOPN解决跨域问题(用户登录子应用时，会带上父应用域名下的cookie访问父应用提供的JSONP接口，父应用验证登录状态，最后返回加密后的用户信息)</li>
+</ol>
+<p>例如，本人在一个项目中所使用的认证流程:</p>
+<p><img src="http://7xnc86.com1.z0.glb.clouddn.com/oauth-and-sso-2.png" alt="图片"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考&lt;a href=&quot;http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;理解OAuth 2.0&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;目前网络上的数据传输普遍基于HTT
+    
+    </summary>
+    
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>《把时间当作朋友》——别试图去管理时间</title>
+    <link href="https://haofly.net/bashijiandangzuopengyou/"/>
+    <id>https://haofly.net/bashijiandangzuopengyou/</id>
+    <published>2016-06-05T13:56:05.000Z</published>
+    <updated>2016-06-05T14:29:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>说实话，李笑来的这本《把时间当作朋友》确实绕过去绕过来，把我饶得有点晕了，但是书中的主要观点我还是非常认同的。把时间当作朋友。从来都只听过如何去管理时间，却从来没听说过要去和时间做朋友。上帝给每个人的时间都是一样的，不是说你想怎么管理就怎么管理，从小学到大学到工作，每次考试前你不都有很多的复习计划，每次假期前不都有很多的出游计划吗，但是，有多少我们真正实现过呢。很多时候计划越详细，我们反而越不会执行。为什么？因为我们不了解时间，也不了解自己。就像你想和一个人做朋友一样，你们都不互相了解，非要在一起，那也是互相折磨而已。所以，要想与时间和睦相处，首先是要了解自己，自己是一个怎么样的人，自己喜欢做什么样的事情，什么样的事情会让自己有动力去做，到底为什么而活？</p>
+<p>没有人不懒惰，没有人不爱做计划，只是那些成功的人普遍都是做了计划就立马行动的，这真的真的是我目前为止发现的最大的缺点。想太多，做得少。基本上从高中就开始意识到这个缺点了，也一直在改，在改的过程中又发现了另一个缺点，那就是只要我心里有一块石头，就不能放下它去做其他的事情了。我在外面实习都快一年了，这一年里感觉还没我大一一个暑假成长得快，我知道自己遇到了一个瓶颈，也做了很多的计划去冲破它，但就是碍于学校里数不清的杂事，一直没放心大胆地去做。最后导致两边都互相拖着，然后两边都没做好。其实专注于一件事没有什么不好，但是心中担心一件事情，就直接把那件事情做了就好呀，这有什么好犹豫的呢，有什么好纠结的呢。那件事情制约着我，我干嘛就不把他做了呢，一定要拖到最后。不过还好，毕业答辩做了充足的准备，还是顺利通过了。在昨天那个不存在的日子里进行的答辩，而且在答辩前几天我就已经开始我的全栈实践之路了。马上进入社会，希望能真的和时间做好朋友，然后和它并肩作战。</p>
+<h2 id="语录"><a href="#语录" class="headerlink" title="语录"></a>语录</h2><p>当你把时间花在一个人身上的时候，相当于在他的身上倾注了你生命的一段，不管最终结果如何，反正，那个人、那件事都成了你生命的一部分——不管最后你是喜欢还是不喜欢。</p>
+<p>一个人遗忘痛苦的能力特别强的一个具体表现就是，这个人会很轻易地原谅自己。</p>
+<p>往往并不是有兴趣才能做好，而是做好了才有兴趣。</p>
+<p>浪费生命、虚度年华的人，有个共同的特征——他们拼命想控制自己完全不能控制的，却在自己真正能掌控的地方彻底失控。</p>
+<p>当我们不停地鼓励所有人的时候，最大的受益者其实是我们自己，因为最终我们会发现，自己开始进入一种他人无法想象的状态，成为一个不需要他人鼓励的人。</p>
+<p>心智真正成熟的人在一些情况下能够做到无须亲自经历，仅凭思考就得到深刻的体会。</p>
+<p>所谓的幸运，就是当你准备好了的时候，机会来了。</p>
+<p>你比别人强一点根本没用，真正有用的是你比别人强很多很多。</p>
+<p>学东西前不用定义一定要有用——别觉得知识现在没用就拒绝去学它。</p>
+<p>人是没办法管理时间的，时间也不听从任何人的管理，它只会自顾自一如既往地流逝。”管理时间”只不过是人们的一厢情愿而已。</p>
+<p>这些人其实并不是对自己正在做的事情没有兴趣，而是没有能力把目前正在做的事情做好。</p>
+<p>本科教育之”本”在于培养学生的自学能力。从理论上讲，一个人本科毕业之后，应该有能力自学他所需要的任何知识。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;说实话，李笑来的这本《把时间当作朋友》确实绕过去绕过来，把我饶得有点晕了，但是书中的主要观点我还是非常认同的。把时间当作朋友。从来都只听过如何去管理时间，却从来没听说过要去和时间做朋友。上帝给每个人的时间都是一样的，不是说你想怎么管理就怎么管理，从小学到大学到工作，每次考试
+    
+    </summary>
+    
+      <category term="韦编三绝" scheme="https://haofly.net/categories/%E9%9F%A6%E7%BC%96%E4%B8%89%E7%BB%9D/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Run for Fun，记第一次迷你马拉松之旅</title>
+    <link href="https://haofly.net/run-for-fun/"/>
+    <id>https://haofly.net/run-for-fun/</id>
+    <published>2016-05-27T13:51:53.000Z</published>
+    <updated>2016-05-27T14:22:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天，我顺利地完成了人生第一次的迷你马拉松。</p>
+<p>其实在去年，我就最高跑过七公里，当时因为心情失落，所以闷着头跑，一直跑到手脚发麻才停下来。开始实习过后，我就几乎没有跑过步了。在上个公司是下班过后尽量提前几个站下车，然后走着回家。来了现在公司过后好一点，每天能够骑自行车上下班了。所以从体力上我还是觉得自己可以的。不过为了保险起见，在前天我去了石子山体育公园试跑了一下，感觉还不错，只不过跑完了过后腰酸背疼的。直到几天都还在痛。</p>
+<p>今天六点钟，我们运维团的几个朋友就起床了，其实是听错了时间，以为8点开跑，结果是8点集合，10点开跑。到那儿过后天一直飘着雨，不过南滨路挨着嘉陵江，风景真的好，更好看的是…如图所示<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/run-for-fun_0.JPG" alt="图片"><br>运维取经团的几个朋友：<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/run-for-fun_1.JPG" alt="图片"><br>刚开始跑时，我突然感觉自己脚有点抽筋，于是放慢了一下脚步，之后才渐渐地匀速前进，但是主办方的路标是在是坑人，按常理来说应该是一公里一个提示，结果，它一个公里到两公里中间有一个提示，但是却没提示这时候的距离，只能让人以为这是1.5公里了，并且在折返点离2.5公里的路标是在太远，所以我们预计，总的里程大概在六公里多。折返跑有一个好处是，你能看到最前面的几个人，也能看到最后面的一群人。最后的一百米我还小小的冲刺了一下。其实我每次跑步最后都能够有冲刺的力气，但就是在前面无法提速，每次都是那样的速度，下次比赛我一定要克服这个问题，争取跑进半小时。今天的成绩大概在三十五六分钟。看看中途的我(白衣服短裤那个):<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/run-for-fun_2.JPG" alt="图片"></p>
+<p>总之，总体感觉真的很爽，虽然这次的比赛都是给公司的员工参加的，也就是说大家尽量在宣传自己的公司，不过，好多好多的人还是跑了个开心，run for fun，这才是比赛的宗旨。仔细想想自己为什么喜欢跑步呢，我想应该是因为跑步这个运动项目，每个人到达终点的距离一样，每个人的路线也都一样，只要坚持就一定可以到达终点，无论名词高低，到达终点后你都会如释重负，心胸特别舒畅。不像其他的运动项目，有很多的技巧、必须经过很多的练习或者场地总是有所限制。</p>
+<p>随着马拉松的落幕，我的毕业论文也经过了查重，周末就上传毕业论文了，然后下周就答辩了，希望一切顺利，然后，就可以开始我的全栈工程师实践之旅。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天，我顺利地完成了人生第一次的迷你马拉松。&lt;/p&gt;
+&lt;p&gt;其实在去年，我就最高跑过七公里，当时因为心情失落，所以闷着头跑，一直跑到手脚发麻才停下来。开始实习过后，我就几乎没有跑过步了。在上个公司是下班过后尽量提前几个站下车，然后走着回家。来了现在公司过后好一点，每天能够骑
+    
+    </summary>
+    
+      <category term="平凡之路" scheme="https://haofly.net/categories/%E5%B9%B3%E5%87%A1%E4%B9%8B%E8%B7%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>《我依然爱你，我只是不喜欢你了》——谁都不知道爱情是什么样</title>
+    <link href="https://haofly.net/woyiranainiwozhishibuxihuannile/"/>
+    <id>https://haofly.net/woyiranainiwozhishibuxihuannile/</id>
+    <published>2016-05-14T10:19:29.000Z</published>
+    <updated>2016-05-14T11:07:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>爱情是甜美的？爱情是苦涩的？花花世界，谁又能说得清呢。</p>
+<p>《我依然爱你，我只是不喜欢你了》这本书是无意间在以前一位喜欢过的女生的一篇微博看到的，光看标题就有一种台湾的那种小清新爱情片的味道，看了一下简洁，是讲爱情的不是讲分手的爱情的，所以果断入手，毕竟和女朋友还处在热恋期，不知道为什么，我们俩热恋期咋这么长呢。</p>
+<p>全书是由几十个小小的爱情故事汇聚而成，不知道真的是作者身边朋友的经历还是有很多朋友主动向作者倾诉的呢，我也好希望我身边能有一位情感专家，有什么心里问题她都能迎刃而解，什么心里话都能对她说，但是至今我的朋友圈也没出现过这样的人。作为书评，在这里我并不打算把我对爱情的理解写出来，因为也许可能大概我也写不出来，有些东西，在心里，就够了，是万万不能用我那笨拙的文字功底写出来的。另外，看了看豆瓣上的评分，其实还算不错，但是下面的有些评论我就不大赞成了。平淡、口水文，对于爱情来说，这样子有错吗？如果真的觉得平淡就觉得这是一本烂书，那我是该说你们不懂文学，还是该说你们不懂爱情呢？至少在我，一看到这个书名，就觉得这就是一本平平淡淡的书，就是一本贴近生活的书。这本书也绝不是一本只讲故事不走心的故事集，应该说它是很走心的，谁都可以深陷进那一个个的故事，也谁都可以从中体会到什么。</p>
+<p>小井岩(作者)是个温柔的人，只有温柔的人，人们才会想他倾诉吧。很多时候，我也想做一个温柔的男朋友。虽然我比我女朋友小，我也很幼稚。和她刚在一起的时候就觉得她是那种很有气质型的，没想到，现在已经被我”调教“成一个每天都会向我撒娇的可爱女孩子了，虽然我也每天撒娇。她很好，我是她第五个男朋友，她是我第三个女朋友，我们谁都不知道会不会一直走下去，但又一直都朝着一直走下去的目标努力着。不仅我们过去爱的是人渣还是真的错过，过去的都已经翻篇了，就像我最开始说的以前喜欢过的那个女生，我现在女朋友也知道我以前喜欢过她，但是女朋友并不会阻止我和她聊天，说了半天，我到底想说什么呢，我也不知道。反正，米娜，有爱到来的时候就好好爱吧，不要刻意去回避，也不要刻意去追逐，一切随缘，不矫揉造作的爱，才是最真最纯的爱。(不要问我为什么不多谈谈书中的内容，因为看了大半年了吧，已经忘记了，只能从kindle里的笔记中找一点点当时的体会)</p>
+<h4 id="语录"><a href="#语录" class="headerlink" title="语录"></a>语录</h4><p>我知道我已离开你的世界，也知道，彼此不再有交集，然而心中某块地方，始终无法抹去存在的痕迹。我依然爱你，我只是知道，自己不能再像以前那样喜欢你了。 依然祝你，平安幸福。</p>
+<p>“你知道年轻的时候穷最大的问题是什么吗？”<br>“什么？”<br>“以为所有得不到的一切都是穷的错。眼睛盯着遥远的地方看不到身边一朵花的美丽。”</p>
+<p>对那时的我来说，爱情是什么并不重要，就像我知道苹果就是苹果，而不需要知道它是蔷薇科还是落叶乔木；就像当我遇见你，我就知道遇见了爱情。</p>
+<p>最温暖的相处模式，就是两个人在一起的时候，有一种自然而然的舒适氛围，能够消解心中的那些戾气，恢复成最放松而且淡然的自己。没有强烈的惴惴不安，也没有莫名的看不顺眼，没有所有那些消耗神经的累的东西。只要我知道你在，一切就都很好。</p>
+<p>真的有些人，让你相信人是有上辈子的，不然为何一相见就可以自然而然跳过试探、了解、熟悉的人际程序直接成为那个直达灵魂的亲密之人。</p>
+<p>做个称职的前任吧，不纠缠，不打扰，不撩拨。心里那些残存的想念，是怀念和感激。放下心中那多愁善感的郁金香，才会开出畅然伸展的蓝莲花。</p>
+<p>我觉得真正爱一个人的表现肯定是努力使自己和对方变得更好，怎么会是拉着对方一起下沉呢？</p>
+<p>我不认为一辈子只爱一个人是件可惜的事，也不认为一辈子爱过很多人就是一件不道德的事。</p>
+<p>秒速五厘米间，樱花蹁跹了看客；人生聚散离合，伊人明媚了岁月。</p>
+<p>如果我们费尽所有心力，都不能在那个心爱的心上留下一个深一点的痕迹，这不是对方的错，也不是你的错。因为不是你不努力，而是对方跑得太快，飞得太高。</p>
+<p>感动不是爱情，爱情根本不需要这么累，你追我跑，那是狩猎，我又不是猎物！</p>
+<h4 id="最后献上知乎的几位朋友对”我爱你，我只是不再喜欢你了”的解释"><a href="#最后献上知乎的几位朋友对”我爱你，我只是不再喜欢你了”的解释" class="headerlink" title="最后献上知乎的几位朋友对”我爱你，我只是不再喜欢你了”的解释"></a>最后献上知乎的几位朋友对”我爱你，我只是不再喜欢你了”的<a href="https://www.zhihu.com/question/31681497" target="_blank" rel="external">解释</a></h4><p>《One Day》里安妮海瑟薇的一句台词 我无法控制自己对你的难以忘怀 可是我关于你的一切已经再也没有了期待。    ——<a href="https://www.zhihu.com/people/peng-si-ya" target="_blank" rel="external">Pengsiya</a><br>我会想起我们的过去，却不会再去想我们的未来。    ——<a href="https://www.zhihu.com/people/bing-huang-ma-luan-66" target="_blank" rel="external">兵荒马乱</a><br>“不介意孤独，比爱你舒服”    ——<a href="https://www.zhihu.com/people/bai-zhou-12-64-95" target="_blank" rel="external">江白粥</a><br>我还是曾经的那个我，你已经不是曾经的那个你了。 —— <a href="https://www.zhihu.com/people/gui-mu-zhi" target="_blank" rel="external">鬼木知</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;爱情是甜美的？爱情是苦涩的？花花世界，谁又能说得清呢。&lt;/p&gt;
+&lt;p&gt;《我依然爱你，我只是不喜欢你了》这本书是无意间在以前一位喜欢过的女生的一篇微博看到的，光看标题就有一种台湾的那种小清新爱情片的味道，看了一下简洁，是讲爱情的不是讲分手的爱情的，所以果断入手，毕竟和女朋友还
+    
+    </summary>
+    
+      <category term="韦编三绝" scheme="https://haofly.net/categories/%E9%9F%A6%E7%BC%96%E4%B8%89%E7%BB%9D/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>《暗时间》</title>
+    <link href="https://haofly.net/anshijian/"/>
+    <id>https://haofly.net/anshijian/</id>
+    <published>2016-05-08T12:06:20.000Z</published>
+    <updated>2016-05-09T23:50:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近真的太忙，但是再忙我也强迫自己抽出一些碎片时间来阅读，所以写书评也是必要的，因为，一本书不写书评，我根本就看不下去另一本书。对了，其实前几天还看过一本书叫《程序员的数学思维修炼》，这本书几乎是直接翻过去的，因为里面的内容基本上是给没上过大学的人看的，所以也就没有写书评的必要了。</p>
+<p>《暗时间》是本与效率有很大关系的书，有很多套路，但是也不乏新奇之处，很多章节虽然啰嗦而且段落太长(不知道是不是我kindle显示的原因)，但是书中对于每一个结论的得出，都是经过了层层推敲，循序渐进地引导我们进入作者的思维中去。而不是如其他效率书一样，上来就是一个结论，然后教我们步骤。整体感觉上，这本书还是挺不错的，可以给四分。对于“暗时间”的概念，我是觉得作者在这里并不是标题党，确实作者的“暗时间”并不仅仅是指传统意义上的碎片时间。</p>
+<p>更深层次地讲，此书，并不是完全讲时间管理，而更多的是一种引导，引导我们认知、学习，文中提到很多关于学习的方法以及很多学习不好的方法对我来说都受益匪浅。对于时间管理，我现在使用的是番茄工作法，基本上解决了碎片时间的利用率问题和工作休息切换的问题；但另一方面，天秤座最主要的特点，犹豫不决，我在这一点上依然会浪费很多的时间，而且总是给自己和身边的人造成困扰。我想或许经历得更多，我就能有更多的果断和从容，但是又该怎样在有限的时间里比普通人经历更多呢？</p>
+<p>书中关于学习算法那个章节我的印象是十分深刻的，因为我也曾经参加过ACM比赛，也曾经疯狂地刷题，虽然最终放弃了，但是那段一心钻研算法的日子真心值得回忆。看了该书，我仿佛茅塞顿开，仔细想想，曾经的很多算法书，特别是我们的教材上面讲算法，包括数学的公式证明，在引导我们的中途几乎都会突然来一个转折，“不妨在这里…”这样的坑我以前也踩过很多次，特别是在啃那部《算法导论》的时候，当时我就一直想弄明白，这里凭什么就突然要这么做了。事实上，正如作者所说好多的书籍都弱化了思考的这一环节，事实上，我猜，那些书的作者可能也没理解到这样转折的理由，如果真要把思考的过程全部加起来，那么随便一个K(kan)M(mao)P(pian)算法也足矣成一本书了。在刷OJ的那几个月里，我记住了很多算法，也记不住很多算法，但现在仔细想来，基本上能记住的算法，我都能清清楚楚地知道那个算法是怎么演变而来的以及为什么要用那个算法和什么时候用那个算法。</p>
+<p>书中还提到几个日常中非常实用的思维训练以及时间管理方法：  </p>
+<ul>
+<li>设置自己的进度条，将目标分割成一个个里程碑，再讲里程碑分割为一个个TODO list列表</li>
+<li>如果有什么难题困扰你了，那就在睡觉前一直想，你永远不知道大脑在你睡着的时候会怎么奇迹般地解决这个问题。这点相信很多人都是有实际体会的吧。 </li>
+<li>走路睡觉吃饭都可以思考，当你完完全全陷入一个问题的时候你就会知道你突然多了好多的时间</li>
+<li>时常反省和注意自己的思维过程。尤其是当遇到无法理解或解决的问题之后，最需要把原先的思维过程回顾一遍，看看到底是哪个过程被阻塞住了妨碍了理解。</li>
+</ul>
+<p>后记：写完了整个书评，突然觉得这本书比我之前认为的还要有意义得多，我现在可以给它五星了。</p>
+<h2 id="语录"><a href="#语录" class="headerlink" title="语录"></a>语录</h2><p>你会在这本书当中看到的一个重复出现的现象就是自学，大规模的自学，逃课自学，上网找书自学，程序员行业是最适合自学的行业，网络是程序员的天堂，需要的资源、工具，比课堂上的多出何止百倍，如果说还有一个学科，并不需要传统的教育就可以成才，估计非程序员莫属了。作为程序员如果没有查过wikipedia，没有看过几本原版电子书，没有在国内外主要邮件列表里面提过问题吵过架，没有用技术博客记录学习的独特体会，没有订阅技术牛人们的博客，怎么好意思说身在这个行业呢？</p>
+<p>利用走路和吃饭的时候思考，还有睡觉前必然要弄一个问题放在脑子里面，在思考中迷糊入睡。发现这样一来往往在不知不觉中多出来大量的思考时间。将思考成为习惯还有一个很大的好处–避免焦虑。</p>
+<p>尽量避免琐事骚扰，不重要的事情能不做就不做。有时候，紧急的事情往往只是当事人觉得必须马上做完才显得紧急或者干脆就是紧他人之急，最糟糕的就是纯属性格上原因觉得每件事情都得第一时间完成，很多看上去紧急的事情实际上并不是真的”不能再拖了”，有的干脆就并不需要或值得去做。有很多事情都是可以先放一放甚至完全let go的，否则的话就整天被所谓”紧急”的事情牵着鼻子走了。</p>
+<p>有一句话说：看一个人，只要看他读的书和见的人。还是很有道理的，这两者是一个人成长中最有价值的信息来源。</p>
+<p>一个你不明白其证明的定理在我看来比不知道这个定理还要糟糕，因它给你造成一种懂了的错觉。与看定理必看证明类似，看一个问题的解法，必然要看解法所诞生的过程，背后是否隐藏着更具一般性的解决问题的思路和原则。否则一个解法就只是一个问题的解法，跟背口诀一样。即，知道了算法是怎样一步步被推导出来的，我们就一下拥有了大量的记忆提取线索：对算法发现过程中的任何一个关键步骤（尤其是本质）的回忆都可能使我们能够自己动手推导出剩余的内容</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近真的太忙，但是再忙我也强迫自己抽出一些碎片时间来阅读，所以写书评也是必要的，因为，一本书不写书评，我根本就看不下去另一本书。对了，其实前几天还看过一本书叫《程序员的数学思维修炼》，这本书几乎是直接翻过去的，因为里面的内容基本上是给没上过大学的人看的，所以也就没有写书评的
+    
+    </summary>
+    
+      <category term="韦编三绝" scheme="https://haofly.net/categories/%E9%9F%A6%E7%BC%96%E4%B8%89%E7%BB%9D/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>从Tornado谈异步与非阻塞</title>
+    <link href="https://haofly.net/tornado-asynchronous/"/>
+    <id>https://haofly.net/tornado-asynchronous/</id>
+    <published>2016-04-11T15:59:57.000Z</published>
+    <updated>2016-04-13T07:00:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在做毕业设计的时候，由于后端有一个耗时任务，所以想到了异步，又由于长期使用Python，进而想到了Tornado，然后，我就半个月没做毕设了，说来全是坑啊。在了解异步与阻塞的原理之前我就盲目地想从代码层面去实现，这样只会浪费时间。所以这里我就先描述一下我对这几个概念的理解。</p>
+<h3 id="异步与同步：是消息通信机制的层面"><a href="#异步与同步：是消息通信机制的层面" class="headerlink" title="异步与同步：是消息通信机制的层面"></a>异步与同步：是消息通信机制的层面</h3><p>采用异步的时候，程序并不关心该操作的结果，所以并不会有返回结果，比如ajax，一般会给异步操作赋予一个回调函数，通过这个回调函数对结果进行处理，而不是直接将结果返回给外部(在ajax如果return结果则会是一个null值)</p>
+<h3 id="阻塞与非阻塞：指程序在等待调用结果时的状态"><a href="#阻塞与非阻塞：指程序在等待调用结果时的状态" class="headerlink" title="阻塞与非阻塞：指程序在等待调用结果时的状态"></a>阻塞与非阻塞：指程序在等待调用结果时的状态</h3><p>如果是阻塞，则程序会一直等待程序返回结果，如果是非阻塞，则不会等待，而继续执行下面或者其他的代码了。</p>
+<h3 id="阻塞式IO"><a href="#阻塞式IO" class="headerlink" title="阻塞式IO"></a>阻塞式IO</h3><p>耗时型任务一般分为两类：CPU耗时型任务和IO耗时型任务。CPU指一般的代码运算执行过程，IO一般分为两大类，计算型IO和阻塞式IO。如果仅有一个线程，那么同一时刻只能有一个任务在计算，但如果是阻塞式IO，它可以让它先阻塞掉，然后去计算其他的任务，等到内核告诉程序那边没有被阻塞了就、再回到之前的地方进行之后的运算。</p>
+<p>所以，在了解了这些概念过后，我就知道了为什么要发挥tornado的异步特性就得依赖异步库(<a href="https://github.com/tornadoweb/tornado/wiki/Links" target="_blank" rel="external">Tornado官方提供的第三方异步库</a>)，而不是随便一行代码都能变成异步非阻塞式的代码。比如我试验时使用的一个sleep函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">def sleep(self):</div><div class="line">    for i in range(100000000):</div><div class="line">        if i % 100000 == 0:</div><div class="line">            print(i)</div><div class="line">    self.set_cookie(&apos;setting&apos;, &apos;hao&apos;)</div></pre></td></tr></table></figure>
+<p>看吧，这是一个计算型任务，由于tornado是单进程单线程，所以无论怎么做也不可能实现在访问该请求的时候访问其他请求，因为CPU只能执行当前任务，其他请求必须等到这个请求结束后才能成功，这也是为什么部署tornado的时候几乎都是用nginx+多实例事实上，同理，其他的框架基本上都是需要nginx、apache等配合才能同时服务于多个请求的。Tornado的异步库，几乎都是用来进行阻塞式IO任务的，所以只有他们才能发挥其异步特性。</p>
+<p>Tornado的异步实现就是将当前请求的协程暂停，等待其返回结果，在等待的过程中当前请求不能继续往下执行，但是如果有其他请求(同样是一个协程)，只要不也是阻塞式IO，那么就会直接去处理其他的请求了。</p>
+<p>当然，包括nodejs的异步等，这些统统都是有历史原因的，JavaScript和Python在发展之初都只支持单进程单线程，即使使用多线程技术最多也只能利用到100%的单核，多核在这里似乎并不使用，而如果要使用多进程变成，光靠框架是做不到的，必须自己根据实际需求来处理多进程之前的数据共享、资源竞争等问题。所以，在我的理解里，如果能直接利用多线程编程就不需要用服务端异步，毕竟，多线程的发明本身也是为了解决阻塞式IO的问题。</p>
+<h2 id="多线程实现异步、非阻塞、并行请求、并行计算"><a href="#多线程实现异步、非阻塞、并行请求、并行计算" class="headerlink" title="多线程实现异步、非阻塞、并行请求、并行计算"></a>多线程实现异步、非阻塞、并行请求、并行计算</h2><p>其实我认为多线程相比于异步非阻塞有很大的优点，不可否认，多线程在线程切换上存在开销，并且在资源竞争上需要写更多的逻辑，稍微控制不好就会导致服务出错，然而，多线程在处理并行任务上有先天的优势，这一点光看名字就看得出来，下面介绍Tornado的多线程和Flask多线程的用法，其中Tornado的多线程是指由程序将当前请求中的代码交由其他线程处理，而flask的多线程就是类似apache服务器，另起一个进程来处理请求。</p>
+<p>注意：两者都可以使用global来引用全局变量</p>
+<h4 id="Tornado实现：当前请求会立马返回一个结果并断开当前http连接，所以不能在这里设置cookie"><a href="#Tornado实现：当前请求会立马返回一个结果并断开当前http连接，所以不能在这里设置cookie" class="headerlink" title="Tornado实现：当前请求会立马返回一个结果并断开当前http连接，所以不能在这里设置cookie"></a>Tornado实现：当前请求会立马返回一个结果并断开当前http连接，所以不能在这里设置cookie</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">import tornado.ioloop</div><div class="line">import tornado.web</div><div class="line">import time</div><div class="line">from concurrent.futures import ThreadPoolExecutor</div><div class="line">import tornado.httpclient</div><div class="line">from tornado.concurrent import run_on_executor</div><div class="line"></div><div class="line">class Executor(ThreadPoolExecutor):</div><div class="line">	_instance = None</div><div class="line"></div><div class="line">   	def __new__(cls, *args, **kwargs):</div><div class="line">       	if not getattr(cls, &apos;_instance&apos;, None):</div><div class="line">           	cls._instance = ThreadPoolExecutor(max_workers=10)</div><div class="line">       	return cls._instance</div><div class="line"></div><div class="line">class SleepHandler(tornado.web.RequestHandler):</div><div class="line">   	executor = ThreadPoolExecutor(10)</div><div class="line"></div><div class="line">   	def get(self):</div><div class="line">     	tornado.ioloop.IOLoop.instance().add_callback(self.sleep) # 相当于丢到下一个时间循环去  </div><div class="line">       	self.write(&quot;when i sleep&quot;)		# 请求会立马返回这个值并断开连接</div><div class="line"></div><div class="line">   	@run_on_executor</div><div class="line">   	def sleep(self):</div><div class="line">       	for i in range(100000000):</div><div class="line">           	if i % 100000 == 0:</div><div class="line">               	print(i)</div><div class="line">       	self.set_cookie(&apos;username&apos;, &apos;hao&apos;)</div><div class="line"></div><div class="line">       	print(&quot;yes&quot;)</div><div class="line">       	return 5</div><div class="line"></div><div class="line">class TestHandler(tornado.web.RequestHandler):</div><div class="line">   	def get(self):</div><div class="line">       	if not self.get_cookie(&apos;username&apos;):</div><div class="line">           	self.write(&apos;没有&apos;)</div><div class="line">       	else:</div><div class="line">           	self.write(&apos;有&apos;)</div><div class="line">           	</div><div class="line">application = tornado.web.Application([</div><div class="line">	(r&quot;/test&quot;, TestHandler),</div><div class="line">	(r&quot;/sleep&quot;, SleepHandler),</div><div class="line">	], debug=True)</div><div class="line"></div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">   	application.listen(8888)</div><div class="line">   	tornado.ioloop.IOLoop.instance().start()</div></pre></td></tr></table></figure>
+<h4 id="flask实现：直接在启动时添加参数，当前请求不会立马返回一个返回值，会一直处于连接状态，所以可以设置cookie"><a href="#flask实现：直接在启动时添加参数，当前请求不会立马返回一个返回值，会一直处于连接状态，所以可以设置cookie" class="headerlink" title="flask实现：直接在启动时添加参数，当前请求不会立马返回一个返回值，会一直处于连接状态，所以可以设置cookie"></a>flask实现：直接在启动时添加参数，当前请求不会立马返回一个返回值，会一直处于连接状态，所以可以设置cookie</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">from flask import Flask,request,make_response</div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;)</div><div class="line">def hello_world():</div><div class="line">	username = request.cookies.get(&apos;username&apos;)</div><div class="line">   	if username is None:</div><div class="line">      	return &apos;没有&apos;</div><div class="line">   	else:</div><div class="line">       	return &apos;有&apos;</div><div class="line">   	return username</div><div class="line"></div><div class="line">@app.route(&apos;/s&apos;)</div><div class="line">def sleep():</div><div class="line">   	for i in range(100000000):</div><div class="line">       	if i % 100000 == 0:</div><div class="line">			print(i)</div><div class="line">	resp = make_response(&apos;ok&apos;)</div><div class="line">   	resp.set_cookie(&apos;username&apos;, &apos;the username&apos;)</div><div class="line">   	return resp</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">	app.run(debug=True, threaded=True)</div></pre></td></tr></table></figure>
+<p><strong>参考文章</strong><br><a href="https://www.zhihu.com/question/19732473" target="_blank" rel="external">知乎：怎样理解阻塞非阻塞与同步异步的区别?</a><br><a href="http://tornadocn.readthedocs.org/zh/latest/guide/async.html" target="_blank" rel="external">Tornado文档：异步非阻塞I/O</a><br><a href="http://docs.pythontab.com/tornado/introduction-to-tornado/ch5.html" target="_blank" rel="external">Tornado教程：异步Web服务</a><br><a href="http://cloudaice.com/tornado-coroutine/" target="_blank" rel="external">使用tornado的coroutine进行编程</a><br><a href="https://segmentfault.com/q/1010000004910793?_ea=722806" target="_blank" rel="external">我在segmentfault的提问：无法理解tornado的异步</a>  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在做毕业设计的时候，由于后端有一个耗时任务，所以想到了异步，又由于长期使用Python，进而想到了Tornado，然后，我就半个月没做毕设了，说来全是坑啊。在了解异步与阻塞的原理之前我就盲目地想从代码层面去实现，这样只会浪费时间。所以这里我就先描述一下我对这几个概念的理解。
+    
+    </summary>
+    
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>《把生命浪费在美好的事物上》</title>
+    <link href="https://haofly.net/bashengminglangfeizaimeihaodeshiwushang/"/>
+    <id>https://haofly.net/bashengminglangfeizaimeihaodeshiwushang/</id>
+    <published>2016-04-06T14:06:28.000Z</published>
+    <updated>2016-04-06T14:22:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的kindle里面收藏了太多的书，此书就是一本我也不知道什么时候一时兴起将其收藏的，光看书名还以为是一部心灵励志类的小说，没想到竟是包含人生、哲理、财经、政治的集大成者。自然，在看本书前我对作者也是一无所知，到后面越看越觉得作者不是等闲之辈，便去维基了一下：吴晓波，就是那个《激荡三十年》和《跌宕一百年》等著作及纪录片的作者，他的《大败局》被评为‘影响中国商业界二十本书’之一。一路走来，吴晓波亲身经历了中国改革开放的几十年，并深入其中，握其精髓，无论书中哪一篇文章都让我感觉仿佛身临其中，无法自拔。</p>
+<p>其实，这部作品从形式上来说是一篇文集，“把生命浪费在美好的事物上”只是这部著作其中一篇的标题，作者从人生谈到家国，谈了几个人，仿佛谈了几千年。他不仅经历过，而且还和很多成功或曾经成功的人士聊了很多事，历史的沉浮中升华出自己的理解。其间的内涵可能也只有自己能体会。我想，一个知识分子，姑且这样称呼自己，想要在浮躁的社会中，必然得有自己的一片精深田地，可以入世，但不能抛弃一个知识分子的道德、心境、理想。</p>
+<p>当然，另一方面，有人读书的目的就是当前对自己有没有用。客观地说，书的前面一份主要讲一些鸡汤，中间以及后面的部分才是全书的内涵所在，从叙事中领悟不同的人生。</p>
+<p>看完这本书，我也忍不住想去看作者其他几本书，光从书名上就感觉是我目前思想境界还未能企及的，所以暂时，放下，等我继续，沉淀。</p>
+<p>最后关于“把生命浪费在美好的事物上”这几个字，我一直很喜欢。中考的时候，阅读理解，大意是“珍惜那些浪费的时光”，两个主题其实如出一辙。生命中总有好多的事，我们很喜欢，但是这些事可能无法给我们带来直接的价值，所以很多人尽量选择回避自己所喜欢的，而不得不接受自己不喜欢的。我一直不希望成为这样的人，因为这样子活着，真的好累。在这个浮躁的社会，每晚拿出kindle，摆上一杯清水，就这样，静静地看，这一刻你会发现，你的灵魂终于跟上了你的身体。</p>
+<h3 id="语录"><a href="#语录" class="headerlink" title="语录"></a>语录</h3><p>其实，人生如草，活的就是“从容”两字。</p>
+<p>这一生中，你遇见怎样的人，然后有机会成为那样的人。</p>
+<p>我们对这个世界还是这么好奇，我们还有舍弃一切的勇气，即便手中的黄金变成了砂砾，但若放手出来，空掌仍能握铁。</p>
+<p>你看，我们对这个世界还是这么好</p>
+<p>你看，我们对这个世界还是这么好奇，我们还有舍弃一切的勇气，即便手中的黄金变成了沙砾，但若放手出来，空掌仍能握铁。还是邱兵同学说得好：“我只知道，我心澎湃如昨。”</p>
+<p>自由是世俗的，它不在空中，不在别处，它就在地上。作为一个读书人，你能否自由地支配时间，你能否自由地选择和放弃职业，你能否自由地在四月去京都看樱花，你能否自由地与富可敌国的人平等对视，你能否自由地抵制任何利益集团的诱惑，这一切并不仅仅是心态或勇敢的问题，而是一种现实能力。</p>
+<p>在这个世界上，不是每个国家、每个时代、每个家庭的年轻人都有权利去追求自己所喜欢的未来。所以，如果你侥幸可以，请千万不要错过。</p>
+<p>每一件与众不同的绝世好东西，其实都是以无比寂寞的勤奋为前提的，要么是血，要么是汗，要么是大把大把的曼妙青春好时光。</p>
+<p>金钱让人丧失的，无非是他原本就没有真正拥有的；而金钱让人拥有的，却是人并非与生俱有的从容和沉重。金钱会让深刻的人更深刻，让浅薄的人更浅薄。金钱可以改变人的一生，同样，人也可以改变金钱的颜色。 把金钱当对手和敌人的人，将一生为金钱而烦恼；而把金钱当朋友的人，将获得金钱给予的欢乐和平和。成为金钱的奴隶，或将金钱视为奴隶的人，都无法与金钱平视对坐。</p>
+<p>花开在眼前/已经开了很多很多遍/每次我总是泪流满面/像一个不解风情的少年</p>
+<p>一箪食，一瓢饮，在陋巷，人不堪其忧，回也不改其乐。贤哉，回也！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我的kindle里面收藏了太多的书，此书就是一本我也不知道什么时候一时兴起将其收藏的，光看书名还以为是一部心灵励志类的小说，没想到竟是包含人生、哲理、财经、政治的集大成者。自然，在看本书前我对作者也是一无所知，到后面越看越觉得作者不是等闲之辈，便去维基了一下：吴晓波，就是那
+    
+    </summary>
+    
+      <category term="韦编三绝" scheme="https://haofly.net/categories/%E9%9F%A6%E7%BC%96%E4%B8%89%E7%BB%9D/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>懒不是最恐怖的，最恐怖的是没发现自己懒</title>
+    <link href="https://haofly.net/terriable-lazy/"/>
+    <id>https://haofly.net/terriable-lazy/</id>
+    <published>2016-04-03T15:45:50.000Z</published>
+    <updated>2016-04-03T16:37:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>重庆，真的是一座来了就跑不脱的城市。这里每个人干事都风风火火、雷厉风行，从不脱离带水，但是这里的每一个人骨子里貌似都藏着一份“不与世俗同流合污”的精神。磁器口喝茶，植物园赏花，歌乐山看树，朝天门游江，清晨找个公园晨跑，傍晚全家围着看生活麻辣烫，这样的生活，一直以来都是我所期待的，安静、舒适、简单、美好。曾经看过重庆时尚频道冷暖人生栏目的一个广告(应该是09年以前的了，始终找不到那个视频了)，广告语是：当生命在懵懂中灿烂/当情愫在无言中飘零/当我们在百转中千回/其实人生正如季节，冷暖交替/看人生故事，品故事人生。就像这样，当生活麻辣烫看久了，就真的感觉已经离不开这种生活方式了。推荐大家看看《火锅英雄》这部陈坤和白百合主演的富有重庆本色的电影，谈不上精彩，但是重庆的风土人情还是展现得不错的，特别是片中的几处取景，特别不错。<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/terriable-lazy.jpg" alt="重庆"></p>
+<p><center><em>haofly拍摄于重庆朝天门</em></center><br>以上说的并不是今天要讲的重点，重点是我现在发现在小城市生活与大城市一样，同样要面临很多困难，大城市多的是外界施加给你的压力，而小城市则是自己与自己抗争。如今，终于理解什么叫“努力不一定会成功，但是不努力一定会很舒服”。在大城市，压力是很大，但至少身边有各种拼了命也想要成功的朋友，你自然也不会松懈，但小城市就不一样了，你会感觉每个人好像都是安于现状的，每个人好像都没有多大的追求，当然，我并不了解每一个人，这些也只是表面上给我的感觉而已，但是自己还是潜移默化地被感染了。渐渐地，感觉到自己的棱角被磨平了，说不出年少时的豪言壮语，再提起曾经的梦想也只是一闪而过，生怕自己发现了自己的堕落。</p>
+<p>近一年的实习经验经历，不仅没让我越来越强，反而使我觉得在这一年的时间里自己并没有多少成长。我是在吃老本吗？不知道。我是在骄傲吗？不知道。我是温水里的青蛙吗？不知道。仔细想想，我什么都不知道，确实，我已经好久好久没有静下来这么想了。遇到人生第一个瓶颈，我竟不知所措，最终选择视而不见，究其原因，可能是懒，因为懒，所以好多该做的事情没有做，因为懒，根本没有去发现什么事情该做，因为懒，连未来怎么走都不知道，只能走一步是一步。但是每个人不都有轻度的懒癌吗，为什么偏偏就我的懒癌就无可救药吗？</p>
+<p>近日发现，身边的人都成长十分迅猛，而自己依然止步不前，心里十分焦虑，仿佛压力越大，行动力反而越差，事情越多就越不想做。清明回家，回想了一下自己近一年的实习，我发现，目前我要克服自己的最大的一个缺点就是反省。不会反省，所以每次我发现自己有点懒惰了，然后就会立马忽略；不会反省，有些事情总是一错再错；不会反省，永远不知道自己什么事情做了，什么事情没做，什么事情做好了，什么事情没做好。总之，“吾日三省吾身”，我要为自己制定一个计划，希望能通过这个计划提高自己的反省能力，并从中找到技术瓶颈的解决办法。<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/terriable-lazy-1.png" alt=""><br>每天总结一次，并在每周周末形成一篇完整的周报。</p>
+<p>看起来又是一篇无用的计划文，但是闹钟已设，毕竟不都说，21天就可以养成一个习惯了吗，加油，还是得多喝鸡汤呀。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;重庆，真的是一座来了就跑不脱的城市。这里每个人干事都风风火火、雷厉风行，从不脱离带水，但是这里的每一个人骨子里貌似都藏着一份“不与世俗同流合污”的精神。磁器口喝茶，植物园赏花，歌乐山看树，朝天门游江，清晨找个公园晨跑，傍晚全家围着看生活麻辣烫，这样的生活，一直以来都是我所期
+    
+    </summary>
+    
+      <category term="边走边想" scheme="https://haofly.net/categories/%E8%BE%B9%E8%B5%B0%E8%BE%B9%E6%83%B3/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Web框架特点及应用场景</title>
+    <link href="https://haofly.net/web-application-scenarios/"/>
+    <id>https://haofly.net/web-application-scenarios/</id>
+    <published>2016-03-29T09:06:21.000Z</published>
+    <updated>2016-03-28T09:12:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>我用的框架还是不少的</p>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h2 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h2><ul>
+<li>全面无轮子</li>
+<li>后台管理类网站</li>
+<li>快速开发</li>
+<li>自带ORM</li>
+<li>速度最慢的</li>
+</ul>
+<h2 id="Tornado"><a href="#Tornado" class="headerlink" title="Tornado"></a>Tornado</h2><ul>
+<li>异步要求大的地方</li>
+<li>轻量快速</li>
+</ul>
+<h2 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h2><ul>
+<li>轻量快速</li>
+<li>后台接口</li>
+<li>几个里面速度最快的</li>
+</ul>
+<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><h2 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h2><ul>
+<li>全面无轮子</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我用的框架还是不少的&lt;/p&gt;
+&lt;h1 id=&quot;Python&quot;&gt;&lt;a href=&quot;#Python&quot; class=&quot;headerlink&quot; title=&quot;Python&quot;&gt;&lt;/a&gt;Python&lt;/h1&gt;&lt;h2 id=&quot;Django&quot;&gt;&lt;a href=&quot;#Django&quot; class
+    
+    </summary>
+    
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL单机多实例</title>
+    <link href="https://haofly.net/mysql-multi-instance/"/>
+    <id>https://haofly.net/mysql-multi-instance/</id>
+    <published>2016-03-09T06:37:29.000Z</published>
+    <updated>2016-04-13T06:57:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是我们公司的实习内容之一，以前一直以为在单机上部署多个MySQL就是起多个进程就行了，too yuang too simple，原来MySQL默认提供了单机多实例功能的。<br>配置和使用过程如下(CentOS)：</p>
+<ol>
+<li><code>mysqld_multi --example</code>这个可以直接查看MySQL提供的多实例配置文件的配置内容样例，基本上可以直接拿来就用</li>
+<li><code>mysql_install_db --datadir=/tmp/mariadb/data1</code>以这种方式创建多个数据库存放目录，<strong>一定要注意不要放在/root目录下，不然会出现什么Aria无法加载的情况</strong></li>
+<li><code>vim /etc/my.cnf</code>内容如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[mysqld_multi]</div><div class="line">mysqld     = /usr/bin/mysqld_safe</div><div class="line">mysqladmin = /usr/bin/mysqladmin</div><div class="line">user       = root # mysql</div><div class="line">password   = mysql</div><div class="line">	</div><div class="line">[mysqld2]</div><div class="line">socket     = /tmp/mysql.sock2</div><div class="line">port       = 3307</div><div class="line">pid-file   = /tmp/hostname.pid2</div><div class="line">datadir    = /tmp/data1</div><div class="line">user       = mysql</div><div class="line">	</div><div class="line">[mysqld3]</div><div class="line">socket     = /tmp/mysql.sock3</div><div class="line">port       = 3308</div><div class="line">pid-file   = /tmp/hostname.pid3</div><div class="line">datadir    = /tmp/data2</div><div class="line">user       = mysql</div></pre></td></tr></table></figure>
+<ol>
+<li>启动实例</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mysqld_multi start      # 启动实例</div><div class="line">mysqld_multi stop</div><div class="line">mysqld_multi report     # 查看两个实例运行状态</div></pre></td></tr></table></figure>
+<p>另外，实例的日志文件默认是在实例文件夹下的<code>localhost.localdomain.err</code>文件里，启动完实例后，还要连接实例进行初始密码设置</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是我们公司的实习内容之一，以前一直以为在单机上部署多个MySQL就是起多个进程就行了，too yuang too simple，原来MySQL默认提供了单机多实例功能的。&lt;br&gt;配置和使用过程如下(CentOS)：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;mysqld_mu
+    
+    </summary>
+    
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>故乡，我可能真的回不来了</title>
+    <link href="https://haofly.net/bye-myhome/"/>
+    <id>https://haofly.net/bye-myhome/</id>
+    <published>2016-02-17T13:49:29.000Z</published>
+    <updated>2016-02-22T05:23:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今年情人节，和女朋友相约去最近的一个县城玩儿，但其中发生了各种不愉快，不过还好女朋友现在越来越像我了，遇到事情不会抱怨太久。又要离开家乡了，仔细想想这个寒假的种种经历，我想，可能，我再也回不来家乡了。</p>
+<p>这里的回不来，不是指不回来，而是，我已经完全不适合在家乡生存了。我从大学一进城就发现，家乡的生存成本比城里高出了不知道多少倍，父母却总是不信。在家乡人眼里，城市依然是一个吃顿饭就会不小心花上几百上千的地方。然而，他们所不知道的是，农村因为信息的阻塞和大家生活水平的相对提高，物价可能比城市更高，至少在我眼里是这样的。城里有团购软件，你可以选择离你最近的地方，然后点你最想吃的餐，这些你都可以通过一个手机APP找到，并且全都明码标价，绝对不会作出宰客这种事情。如果你对商家提供的服务有一点点的不满意，你随时可以给一个差评或者直接向APP投诉，不出24小时基本上你的诉求都能得到回应。</p>
+<p>我嫂子前几天去银行改手机号码，结果银行服务人员脾气太差，她直接被吓回来了，我就跟她说下次带我一起去，她一发脾气，我立马举报，如果举报不行，那就找12315投诉。同样，我另一个在城里待过几年的嫂子，想要将城里暂时用不到的宽带转移到家里来却被各种拖延，当时眼看对方要发脾气，立马说了一句，“你再不搞好我就投诉你”，对方立马焉了，我多么想看看服务员当时的面部表情。家乡的人由于信息闭塞与教育落后，真的受了太多的“欺负”，他们不知道还有这么多的合法渠道来维护自己的合理的权益，导致这里的不良商家像上帝一样对待顾客，不过这里，商家才是上帝。同样关于维权的，前几年，我家的电压一直不稳定，电力局一直说要解决，但是一直不见行动，当时的我十分气愤，给市长信箱写了邮件，第二天，一伙人赶来我家检查，最后还要我签字确认。不是我这人较真，我只是觉得，我付出了金钱，就应该享受这些服务，而且在我付钱的时候他们也都承诺过要给予这些服务的。包括12315这样的组织，我们虽然没有直接交钱，但是我们的税收里肯定包含了这些的，所以有问题不能解决，那我就找12315。</p>
+<p>情人节去邻县看电影，整个县城两个电影院，我们去的中心那个，另一个在城边上，几乎没人会去那里。可是，居然有电影院不能网上团购选座，把我弄郁闷了。于是我们就自己走去购买，12点买到了下午2点的票，而且是最后几个位置，当然是第一排的边上了，2点去看电影的时候电影院简直人满为患，据说现在买到的都到晚上八点后的了。看电影的时候我惊奇地发现，屏幕咋那么小，而且屏幕边缘那些褶皱是什么鬼。总之，体验超级不好，还不能给差评。邻县的交通也是乱得无法形容，基本上是人和车都在抢道，没办法，人让了就过不了马路，车让了也过不了马路，政府也没办法，人流量大的地方正好车流量也大，设个红绿灯还不如不设呢。中午吃饭，这里居然有三顾冒菜，但是，价钱呢，怎么没标识，想着也没有团购吧。这里的出租车据说跑城内都很有可能不打表的，不过在这里我一般不坐出租车，毕竟公交车只要1元，虽然我不知道司机哪儿有那么多急刹车要踩。</p>
+<p>这里的人际关系之复杂，与城里简直是天壤之别。简单地说，在大城市，有能力就可以，而在小地方，有关系，没能力你也可以。在这里无论做什么，你都得先想想，对方可能是你的某个亲戚或者某个亲戚的亲戚。比如去年，我一个大姨被一酒驾人员擦到了，由于年岁已高，当时就倒地不起，那人居然肇事逃逸了。之后家人居然叫我们不急打110。我是完全无法理解的。直到我大姨被送到医院，那人始终未出面，而那些大人们却一直在联系认识肇事人的亲戚过来。最后我们中有年轻人报了警，但是警察来的时候，那亲戚也来了，然后，就叫警察回去了，当时看得我是目瞪口呆的。最后，这件事也在一顿饭中不了了之了。对于肇事逃逸那个人，我只想说，幸亏你身在这儿，不然早就进监狱了。</p>
+<p>再来说说家乡的酒桌文化和面子文化。为什么有人要把劝酒视为一种传统文化而世代相传呢，连七八岁的小孩都觉得，不喝酒怎么行，不喝酒怎么在社会上走。有些人劝起酒来，给我这种不喝酒的人的感受就是，不把你灌醉就是我照顾不周，而你不喝酒的话，那更严重，那就是不给我面子。面对这种人，我就有多远滚多远吧。我说我不能喝酒，我说我高血压，结果还非要我喝，你连我的命都不要，还奢求我给你什么面子，再说，我不想喝你偏要我喝，这到底是谁不给谁面子。当然，家乡的送礼文化我倒觉得没什么，一般也就送一些奶、火炮什么的，一般是你送给我多少，下次我就还给你多少，这个虽然也是有点麻烦，但是毕竟不会劳民伤财嘛。当然，请一定要记住，千万不要少给或者不给，不然的话，背地里一定会到处说的，你永远也不知道在家乡，一张嘴的传播速度与互联网的传播能力速度哪个更快。</p>
+<p>我知道，家乡生我养我，我或许不该说得这么过分，但是现在，我真的越来越不懂家乡了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今年情人节，和女朋友相约去最近的一个县城玩儿，但其中发生了各种不愉快，不过还好女朋友现在越来越像我了，遇到事情不会抱怨太久。又要离开家乡了，仔细想想这个寒假的种种经历，我想，可能，我再也回不来家乡了。&lt;/p&gt;
+&lt;p&gt;这里的回不来，不是指不回来，而是，我已经完全不适合在家乡生
+    
+    </summary>
+    
+      <category term="边走边想" scheme="https://haofly.net/categories/%E8%BE%B9%E8%B5%B0%E8%BE%B9%E6%83%B3/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我居然忘了写《三体》的读后感</title>
+    <link href="https://haofly.net/santi/"/>
+    <id>https://haofly.net/santi/</id>
+    <published>2016-02-13T14:58:29.000Z</published>
+    <updated>2016-02-22T05:23:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>买了kindle已经看了七八本书了，其他的书在博客改版后都陆陆续续写了书评了，但是我居然还没有给《三体》写读后感。这两天，世界突然被一个发现震动了：<a href="http://www.guokr.com/article/441177/" target="_blank" rel="external">引力波</a>被证实了。虽然不知道其中的具体含义，但是可能真的如人们所说，引力波的发现可能会像万有引力被发现一样给基础物理学带来飞速的发展。</p>
+<p>简单地说，我最初是因为急着看《三体》才去淘宝买kindle的。对于一个长大了的科幻迷来说，《三体》绝对是不可多得的好书，并且它是国产的，这是我最惊讶的一个部分。不是我看不起国内小说，国内小说总体来说武侠传奇的比较多，描写未来的确实罕见，而能这样引人入胜的，更是凤毛麟角。当然也有可能是由于我读的小说比较少的缘故吧，这部小说在开篇就把我吸引进去了，废寝忘食地看了一个星期。</p>
+<p>全书分为三个部分：《地球往事》、《黑暗森林》、《死神永生》，其中最精彩的部分莫过于黑暗森林了，把宗教、伦理、科幻、爱情等统统融合在一起，体现了其宇宙社会学的深层含义。看了很多的书评，负面评价的原因主要有二，一是叙事手法上，二是科幻知识上相对低级。前者我不好评价，毕竟我对这方面没有研究，我只知道在阅读的时候我被深深地吸入进去了，只知道这本书的想象力至少在国内是极少见到的。(不过说实话，最后一部的结尾，确实有点粗糙，感觉就像是《火影忍者》一样，匆匆结尾，看起来像是文思枯竭了一样)对于后者，我只能说，正式因为此书所用到的物理知识对于一个大学生的我来说，刚好能够理解，不会显得晦涩难懂，我想，这已经很成功了。</p>
+<p><strong>黑暗森林法则</strong>：宇宙就是一座黑暗森林，每个文明都是带枪的猎人，像幽灵般潜行于林间，轻轻拨开挡路的树枝，竭力不让脚步发出一点儿声音，连呼吸都必须小心翼翼：他必须小心，因为林中到处都有与他一样潜行的猎人，如果他发现了别的生命，能做的只有一件事：开枪消灭之。在这片森林中，他人就是地狱，就是永恒的威胁，任何暴露自己存在的生命都将很快被消灭，这就是宇宙文明的图景。<br>佩服作者的想象力，以前的我真的从没想过这一个层面的东西，认为我们就应该一直寻找宇宙中的智慧生物，去寻找另一个文明，现在看来，一切都太艰难了，宇宙中处处存在着猜疑链，你永远不知道另一个文明是怎么看你的，不要像程圣母(程心)一样只用善良的思维去思考这个世界。</p>
+<p><strong>射手假说</strong>：有一名神枪手，在一个靶子上每隔十厘米打一个洞。设想这个靶子的平面上生活着一种二维智能生物，它们中的科学家在对自己的宇宙进行观察后，发现了一个伟大的定律： “宇宙每隔十厘米，必然会有一个洞。”它们把这个神枪手一时兴起的随意行为，看成了自己宇宙中的铁律。<br><strong>农场主假说</strong>：一个农场里有一一群火鸡，农场主每天中午十一点来给它们喂食。火鸡中的一名科学家观察这个现象，一直观察了近一年都没有例外，于是它也发现了自己宇宙中的伟大定律：“每天上午十一点，就有食物降临。”它在感恩节早晨向火鸡们公布了这个定律，但这天上午十一点食物没有降临，农场主进来把它们都捉去杀了。<br>这两个假说，我也只能仰望了，看过那么多科幻小说和纪录片，我也没能跳出这个牢笼，从外面的世界思考，比如这里，如果调到比我们更高维度来思考，他们也会不会认为我们只是纸上的一些小人儿呢。</p>
+<h2 id="消灭人类暴政，世界属于三体"><a href="#消灭人类暴政，世界属于三体" class="headerlink" title="消灭人类暴政，世界属于三体"></a>消灭人类暴政，世界属于三体</h2><h2 id="一切都会逝去，只有死神永生"><a href="#一切都会逝去，只有死神永生" class="headerlink" title="一切都会逝去，只有死神永生"></a>一切都会逝去，只有死神永生</h2><p>推荐观看：<br><a href="https://www.youtube.com/watch?v=HL_o_if5it0" target="_blank" rel="external">神剪辑！12分钟看完90万字科幻小说神作《三体》
+</a><br><a href="http://www.bilibili.com/bangumi/i/1704/" target="_blank" rel="external">我的三体(国内粉丝使用minecraft制作)</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;买了kindle已经看了七八本书了，其他的书在博客改版后都陆陆续续写了书评了，但是我居然还没有给《三体》写读后感。这两天，世界突然被一个发现震动了：&lt;a href=&quot;http://www.guokr.com/article/441177/&quot; target=&quot;_blank&quot; 
+    
+    </summary>
+    
+      <category term="韦编三绝" scheme="https://haofly.net/categories/%E9%9F%A6%E7%BC%96%E4%B8%89%E7%BB%9D/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>大学全记事</title>
+    <link href="https://haofly.net/my-university/"/>
+    <id>https://haofly.net/my-university/</id>
+    <published>2016-02-12T03:57:50.000Z</published>
+    <updated>2016-02-22T05:23:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>人生最后一个寒假，趁着还记得，回忆一下我这四年</p>
+<h2 id="大一"><a href="#大一" class="headerlink" title="大一"></a>大一</h2><ul>
+<li>比规定时间提前来了几天，学校里居然这么少的人。6栋真小，12平米的房间住了四个人。那几天有领导来关怀新生，整栋楼就没几个人，正好他们敲了我的房间，还和领导握了手。后来才知道，她就是大名鼎鼎的是书记</li>
+<li>听学长的话，认为大学就该多去争取兼职机会，于是答应帮别人卖被子提成。但是遇到一个人得时候不忍心把被子高价卖给别人，也由于自己脸皮比较薄，所以放弃了</li>
+<li>听别人的话，大学得多加社团，报了几个社团，基本上，如果有技术面的都能过，面试都没过，然后就没有然后了。当时不知道还有学生社团这种东西(和学生会的黑社会性质不一样，这个完全是兴趣)，也错过了社团的招新。</li>
+<li>下学期的时候参加了C语言考前培训，认识了软件协会会长和副会长，给了我几道题，做好了，然后就跟着他们联系ACM，然后顺利成长的当上了副会长(当时叫我当会长，被我拒绝了)</li>
+<li>大学有一次进某个实验室的机会，但我也放弃了，那老师就一个做外挂的</li>
+<li>虽然我高三就开始学习C语言，但其实大一那个寒假我才真正学完，才真正学号了她</li>
+<li>大一结束那个暑假，学了Python、Delphi、PHP，虽然都只是学了其语法，但也算入门了</li>
+<li>我们是大一结束才军训的，厌恶透了</li>
+<li>从大一下开始追海贼，也是这个时候入微博</li>
+<li>大一暑假，我们一行人准备骑行去西藏，结果，我半途而废，至今是我心里永远的伤疤</li>
+<li>对了，就在大一结束就开始写个人博客了</li>
+</ul>
+<h2 id="大二"><a href="#大二" class="headerlink" title="大二"></a>大二</h2><ul>
+<li>当了一年的副会长，认识了很多人，技术也学到了一些，与服务器的第一次亲密接触，从此知道linuxinux server这种神奇的东西，从此会搭建个人网站了，从此走上了运维这条不归路。其实在软协这两年，我一直是想通过一些特殊的培训来帮助大家，提高大家的，不过没想到的是大二大三事情太多了</li>
+<li>与软件协会另两位组队参加了重庆市的ACM比赛，不过没获奖，也没什么，至少我还是参加过一次比赛的(PS:别问我获奖队伍那么多为什么我们都没获奖，谁叫他规定每个学校最多三支队伍获奖的)</li>
+<li>英语四六级考试都一次过，不过，说真的，每次考完我都觉得差着几百分呢，ps：四级是优</li>
+<li>大概是从这一年开始接触微博的，从此完全成了微博控，花费了我大量的时间，不过带给我的启发却是不可估量的，通过微博，我才看到了世界。至少，不用再沉浸在C和C++的海洋里，原来外面的世界还有python，还有node，还有openstack，还有nosql，原来，我们永远也学不完，原来学校教的在外面真的很少能用到</li>
+<li>这一年，也是我上自习上得最多的，导致我连续两年拿了奖学金，还拿奖学金买了一把国产机械键盘，那叫一个爽，那叫一个帅</li>
+<li>大二下学期，进入了实验室，好吧，我那么晚才进实验室的，可是实验室的老师是一个刚从国外留学回来的，感觉他不怎么了解国内市场和国内的职场。不过，搞研究的老师应该都这样吧。模式识别，几十篇的全英文论文，看得心烦。也因为这次经历，导致我放弃了考研的想法。</li>
+<li>放弃考研的那几天，我把以前的书都卖了，还美其名曰破釜沉舟。同时，也没怎么关心学习的事情了，一心钻研自己的技术。</li>
+<li>这个学期分专业填志愿，我和以前毅然决然的选择了信安专业，虽然当时我已经不想学信安了，但是毕竟自己以前一直期待这个专业嘛，而且当时的我对选择什么专业已经不以为然了，无论哪个专业我都只会走我自己的路。</li>
+<li>20岁生日这天，买了两瓶白酒和几瓶啤酒，在寝室喝，由于没有什么氛围，室友们并不想喝，于是我一个人喝了…反正我是不知道那晚吐了多少次，据说我吐了无数次，翻下了床无数次，多亏了我的室友啊，不过，你们看到我这样都不送我去医院吗…<br>醉了才知道自己有多么无力，20岁，我写过一篇文章，很伤心，很落寞，觉得自己太失败了，那晚我也仅仅是喝醉了而已，并没有把一切都看开，真正让我看开的，是我现在的女朋友，所以，忘掉一段感情最好的方式就是认真开始一段全新的感情</li>
+<li>暑假的时候把qq相册所有的好友的图片抓下来了，这篇博客访问量上万了，而且因为这个，腾讯一个团队老大找过我，不过当时我实在不想去做前端…现在想想，还好没答应，不然怎么找得到女朋友呢</li>
+<li>大二刚开始就买了台红米手机，从此入坑，直至现在都还在用着红米系列</li>
+<li>大二暑假，我家终于买车了，突然想学车了，然而现在的我已经没时间去学习了</li>
+</ul>
+<h2 id="大三"><a href="#大三" class="headerlink" title="大三"></a>大三</h2><ul>
+<li>既然不考研那就得找事儿了，找了一个工作室去练习，其实一直很佩服领导人眼光的(是一位在职百度贴吧大神创业)，但是他是在不懂得如何管理团队，导致大家最后都没什么激情了。而且由于没有项目管理人员，导致项目到最后居然和之前的需求不一致，最后就没让我们做了。在这个项目里面我主要做的是服务器、数据库的搭建与维护，还包括后台PHP程序的开发。虽然最终失败，不过经历过这个项目，我突然对运维感兴趣了，所以现在自然进入了运维开发这个行当。</li>
+<li>大三下学期一直在找实习机会，也顺利在期末进入了一个传媒公司实习。实习到过年，同样，也是做的Python后台程序开发以及服务器的维护，也算是有大半年的Python工作经验了。我能说，我来这里一两个月了，团队里的人才知道我是实习生吗，原来人事和技术这么分离呀，原来我真的能胜任工作的。除了工资相对低以外，这个公司绝对是我见过的福利最好的公司，各种假期，中秋国庆连着放了13天，过年同事们都说毕业这么多年，第一次感觉到放寒假了，从2月3号放到23号。年会没人都抢了几百的红包，一人一块猪肉…对了当天我们还一人提一带猪肉去ktv的总统套房…</li>
+<li>也正是因为实习，终于我过上了梦寐以求的租房的生活，想吃什么吃什么</li>
+<li>也正是因为进了公司，开始大量使用微信了，原来这里又是另外一片天地</li>
+<li>大三上学期，我居然挂科了，而且挂这个科的人基本上大学都是只挂了这一科，我只想说这个老师是个奇葩</li>
+<li>在大三下学期刚开始就找到了女朋友，从此，每个周末都没有空了…很累但很幸福，对了，她可是我小学同学，隔壁村的哟</li>
+<li>大三寒假，140斤，去医院检查，说肝上油太多，快发展成脂肪肝了，从此不敢海吃肥肉了，大三下每天运动，减了十几斤的肉，but，暑假的时候，老婆的菜确实太好吃了…</li>
+<li>3月份，我的微博数量超过了1000</li>
+<li>8月份，我终于申请到了人生的第一张信用卡，额度6000，写这篇文章的时候，这个月账单8000多</li>
+</ul>
+<h2 id="大四"><a href="#大四" class="headerlink" title="大四"></a>大四</h2><ul>
+<li>大四上学期只回去上过一次课，都是找人代的，而且还没挂科，后来想想，要是大一大二就能做到这样该多好呀，但我们学校逼的，我只能呵呵</li>
+<li>7月份校招就已经开始，但是我现在完全不像去外地了，只想找一个离家近的工作，好不容易得来的爱情，我不像就这样异地恋，别tm跟我说异地恋是一场考验，不像分开就是不像分开，交往一年，我现在觉得百多公里的距离就是银河那么远了。其实不离开家乡还有一个重要的原因是因为这里朋友多，我好想毕业了能像爱情公寓里面一样，所有的好朋友都能在一起。选择了重庆，自然就选择了猪八戒，好吧，其实我貌似只投过猪八戒。以我当时的能力，我想，在重庆，无论哪个公司应该都能投简历就能上吧，毕竟，我曾经那么努力，就是为了自己以后在选择的时候多一些自由。其实去不去外地，都是自己的选择，有很多人都不理解我，我也不奢求所有人都能理解，反正，你在那里奋斗，我再这里奋斗，大家一起努力嘛，都是自己选择的人生，站着跪着都要走完。</li>
+<li>整个上学期都是在之前那个公司实习的…</li>
+<li>大四上，我终于用上了苹果电脑，应了一句话，所有linux爱好者在有钱后都会转向mac的，不仅买了rmbp，还买了kindle，终于又开始大量看书的时代了</li>
+<li>寒假，报名了学车了，以前我想学的时候他们不然我学，后来他们想让我学的时候我也不想学，现在终于抓紧最后时间学一下吧</li>
+<li>大四寒假，二十几年来重庆看到的第一场大雪</li>
+<li>这个寒假，爸爸50岁生日，终于能用自己的钱给爸爸买礼物了，一个机械表，信用卡刷爆…</li>
+</ul>
+<p>总之，我的大学并没有白过，四年大学生涯，学校没教会我什么，但是我是在这个学校学到了我想学的，也领悟到了我以前我不懂得。比以前更了解自己，这才是大学的意义嘛。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;人生最后一个寒假，趁着还记得，回忆一下我这四年&lt;/p&gt;
+&lt;h2 id=&quot;大一&quot;&gt;&lt;a href=&quot;#大一&quot; class=&quot;headerlink&quot; title=&quot;大一&quot;&gt;&lt;/a&gt;大一&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;比规定时间提前来了几天，学校里居然这么少的人。6栋真小，12平米的
+    
+    </summary>
+    
+      <category term="边走边想" scheme="https://haofly.net/categories/%E8%BE%B9%E8%B5%B0%E8%BE%B9%E6%83%B3/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>《动物庄园》——我从未见过如此讽刺的小说</title>
+    <link href="https://haofly.net/dongwuzhuangyuan/"/>
+    <id>https://haofly.net/dongwuzhuangyuan/</id>
+    <published>2016-02-12T03:24:47.000Z</published>
+    <updated>2016-02-22T05:23:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前在微博上看到有关敏感话题的讨论中看到该书名，然后出于愤世嫉俗的原因，我自然会去买来看。看了一点点后我就像说，在天朝，这本书没有被禁，简直是奇迹。</p>
+<p>太像了，一切都太像了，为了自由，聪明的猪带领大家起义，最终赶走了农场主。但是随着猪的权利越来越大，得到的利益越来越多，野心越来越膨胀，最终，大家奋斗来的自由都被统治者剥削完了，生活甚至比以前更加艰难了，但是他们的洗脑工作却让下面的以为这样的日子比以前好多了，然而实则已经变成一个充满剥削的社会了。</p>
+<p>据说，这部小说背景是俄国的十月革命到苏联1940年代，但我只想说，和某国太像了，既得利益者为了巩固和加强自己的权力，不顾一切地去掠夺，甚至有时候闹出一切滑稽的笑话，就像“所有动物生来平等，但有些动物比其他动物更平等。”这让我想起了某国的特供用品。对于对自己不利的一切消息，对内部一律封锁，甚至建立一堵堵厚厚的墙，声称这样是为了保护大家，实则是将好的东西都挡在了外面，最后的结局可想而知。</p>
+<p>在我眼里，动物们升旗就是最大的讽刺，明显是为洗脑而生的行为。我能说某些国家即使到了大学还要经常升旗吗，升旗还要念文章，我去。自己生活十分艰苦，还一天嚷嚷着要去解放别人，别人的生活不知道比你好到哪里去了。他们还喜欢邀请别人来庄园，炫耀他们这里多么的繁华。还有被取消的“同志”这个词，看着真是搞笑。</p>
+<p>至于这本书为什么没被禁，我是想不通了，或许他们根本不屑于审查这部“童话”，或许他们根本看不懂…反正我是推荐生在不平等国家的人都去看看。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前在微博上看到有关敏感话题的讨论中看到该书名，然后出于愤世嫉俗的原因，我自然会去买来看。看了一点点后我就像说，在天朝，这本书没有被禁，简直是奇迹。&lt;/p&gt;
+&lt;p&gt;太像了，一切都太像了，为了自由，聪明的猪带领大家起义，最终赶走了农场主。但是随着猪的权利越来越大，得到的利益越
+    
+    </summary>
+    
+      <category term="韦编三绝" scheme="https://haofly.net/categories/%E9%9F%A6%E7%BC%96%E4%B8%89%E7%BB%9D/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我越来越像《麦田守望者》</title>
+    <link href="https://haofly.net/maitianshouwangzhe/"/>
+    <id>https://haofly.net/maitianshouwangzhe/</id>
+    <published>2016-02-11T10:30:14.000Z</published>
+    <updated>2016-02-22T05:23:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>初看麦田里的守望者，我只看到一个满口脏话，觉得全世界都是傻逼，只有我是最纯洁的一个人。在看之前我并不了解这本书的历史背景，一直觉得这本书可能是90年代后的，不过看了几天后脑海中却始终浮现出一幅很老的画面，就像电视里美国刚开始有摄像机的无声电影一样，所有的人都穿着”老土”的服装，那是一个灯红酒绿、社会混乱，所有人都在寻找出路的时代，事实证明我是对的，此书出版于1951年，正是二战后美国的真实写照吧。</p>
+<p>“一个不成熟的人的标志是他愿意为了某个理由而轰轰烈烈地死去，而一个成熟的人的标志是他愿意为了某个理由而谦恭地活下去。”这或许是此书最出名的一句话。不敢自谦，不过，正如我一直坚持的价值观一样：人，是可以平凡的。比如爱情，现在的社会本没有历史上那么轰轰烈烈，也不会有什么海枯石烂，最多相隔万里，那也能通过网络时时通讯。说的太多，感觉这段和此书的主题并无多大联系。</p>
+<p>第一次接触意识流的小说，觉得有些晦涩，有些不解，但霍尔顿的世界可能每个人都经历过。比如我们的成长，每个人的成长或许都伴随着成年人的不理解，有的人在这过程中练就了挑战世界的本领，而有的人则在反抗的过程中渐渐成长为自己曾经讨厌的人。成长过程中，无论坚持了以我，还是改变了自我，都没有错，最终他们都会走向自己一样的人生，哪怕不是曾经希望的，但一个成年人可能更懂得珍惜现在。不是认命，而是认清了自己。</p>
+<p>故事最后的结局也让人们争论不已，我想，霍尔顿现在已经长大了吧，理想被一个一个击破，到底是继续反抗世界还是改变自己，现在他已经知道答案了。</p>
+<p>今年过年回家，我仿佛变成了故事里的男主角，愤世嫉俗，以前觉得没什么的事情今年却突然感觉十分愤怒。</p>
+<pre><code>为什么我今年回到家成天就感觉这里活着真累呀，错综复杂的亲戚关系，成天都担心着别人眼中自己的形象，遇到各种不公平待遇却又忍气吞声，明明讨厌的事情却又有各种原因不去拒绝。。。
+</code></pre><p>这是我2月7日发表的一篇微博，怎么说呢，以前可能觉得这些离自己太远，所以没去在意。但是即将毕业的我，又碰巧在这个节骨眼到了谈婚论嫁的时刻，实在无法适应，只能边骂边去接受自己能接受的。只希望，明天的我，依然是我曾经喜欢的模样。</p>
+]]></content>
     
     <summary type="html">
     
@@ -37,47 +588,47 @@
     
     </summary>
     
-      <category term="边走边想" scheme="http://haofly.net/categories/%E8%BE%B9%E8%B5%B0%E8%BE%B9%E6%83%B3/"/>
+      <category term="边走边想" scheme="https://haofly.net/categories/%E8%BE%B9%E8%B5%B0%E8%BE%B9%E6%83%B3/"/>
     
     
   </entry>
   
   <entry>
     <title>MySQL数据库升级过程</title>
-    <link href="http://haofly.net/mysql-update/"/>
-    <id>http://haofly.net/mysql-update/</id>
+    <link href="https://haofly.net/mysql-update/"/>
+    <id>https://haofly.net/mysql-update/</id>
     <published>2016-01-06T00:06:50.000Z</published>
-    <updated>2016-02-11T07:23:22.808Z</updated>
+    <updated>2016-02-22T05:23:58.000Z</updated>
     
-    <content type="html">&lt;p&gt;参考地址：&lt;a href=&quot;http://dev.mysql.com/doc/refman/5.6/en/linux-installation-debian.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dev.mysql.com/doc/refman/5.6/en/linux-installation-debian.html&lt;/a&gt;&lt;br&gt;不知道为什么很多地方的官网都把一个完整的包打散了，然后完整包和分开的包放在同一级目录里，我也是醉了，最终我还是找到了正确的安装方法。  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;MySQL社区版官网下载地址：&lt;a href=&quot;http://dev.mysql.com/downloads/mysql/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dev.mysql.com/downloads/mysql/&lt;/a&gt;&lt;br&gt;需要注意的是，一定要下载结尾为.deb-bundle.tar的包，因为它包含了其它分开的包的所有数据&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;一步一步执行下列步骤就可以了：  &lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    sudo apt-get install libaio1   // 安装基本的依赖
+    <content type="html"><![CDATA[<p>参考地址：<a href="http://dev.mysql.com/doc/refman/5.6/en/linux-installation-debian.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.6/en/linux-installation-debian.html</a><br>不知道为什么很多地方的官网都把一个完整的包打散了，然后完整包和分开的包放在同一级目录里，我也是醉了，最终我还是找到了正确的安装方法。  </p>
+<ol>
+<li><p>MySQL社区版官网下载地址：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a><br>需要注意的是，一定要下载结尾为.deb-bundle.tar的包，因为它包含了其它分开的包的所有数据</p>
+</li>
+<li><p>一步一步执行下列步骤就可以了：  </p>
+</li>
+</ol>
+<pre><code>    sudo apt-get install libaio1   // 安装基本的依赖
 tar -xvf mysql-server_MVER-DVER_CPU.deb-bundle.tar   //解压
 sudo dpkg -i mysql-common_MVER-DVER_CPU.deb   // 安装common文件
 dpkg-preconfigure mysql-community-server_MVER-DVER_CPU.deb // 预配置，进行mysql的配置，这时候会要求输入root密码等
 sudo dpkg -i mysql-community-server_MVER-DVER_CPU.deb    // 安装mysql-server
 sudo dpkg -i mysql-community-client_MVER-DVER_CPU.deb    // 安装mysql-client
 sudo dpkg -i libmysqlclient18_MVER-DVER_CPU.deb   // 安装公共库
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;收尾  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    # 运行兼容检查工具，自动解决不兼容的问题
+</code></pre><ol>
+<li>收尾  </li>
+</ol>
+<pre><code>    # 运行兼容检查工具，自动解决不兼容的问题
 命令行执行mysql_upgrade -uroot -pmysql
 
 
 
 
 不然可能会出现这些错误：
-MySQL unknown column &amp;apos;password_last_changed&amp;apos;
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;So Easy&lt;/li&gt;
-&lt;/ol&gt;
-</content>
+MySQL unknown column &apos;password_last_changed&apos;
+</code></pre><ol>
+<li>So Easy</li>
+</ol>
+]]></content>
     
     <summary type="html">
     
@@ -85,108 +636,65 @@ MySQL unknown column &amp;apos;password_last_changed&amp;apos;
     
     </summary>
     
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
     
     
   </entry>
   
   <entry>
     <title>Mysql之主从复制</title>
-    <link href="http://haofly.net/mysql-master-slave/"/>
-    <id>http://haofly.net/mysql-master-slave/</id>
+    <link href="https://haofly.net/mysql-master-slave/"/>
+    <id>https://haofly.net/mysql-master-slave/</id>
     <published>2016-01-05T23:35:43.000Z</published>
-    <updated>2016-02-11T07:23:22.292Z</updated>
+    <updated>2016-04-13T07:00:52.000Z</updated>
     
-    <content type="html">&lt;p&gt;参考地址：&lt;a href=&quot;http://369369.blog.51cto.com/319630/790921&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://369369.blog.51cto.com/319630/790921&lt;/a&gt; 原来想要简单地实现MySQL的主从复制其实也是很简单的(&lt;br&gt;这里当然不包括服务监控和容错处理啦)首先，要检查主从服务器的MySQL版本，最好版本一致，不然会出现各种问题，特别是，5.5和5.6是不会兼容的  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;请先确保数据库版本一致，不然会出现各种错误&lt;/li&gt;
-&lt;li&gt;修改两个服务器的mysql配置  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    # vim /etc/my.cnf
-[mysqld]
-log-bin=mysql-bin    // 打开二进制日志
-server-id=41         // 服务器的唯一ID，为0表示拒绝所有从服务器的连接
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;分别修改两个服务器配置然后分别重启&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;主服务器建立账户：这个账户与普通账户不一样，它智能用于主从复制中：  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;mysql&amp;gt; GRANT REPLICATION SLAVE ON 星.星 to &amp;apos;xiaohao&amp;apos;@&amp;apos;\%&amp;apos; identified by &amp;apos;mysql&amp;apos;;
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;查看主服务器状态  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    mysql&amp;gt; show master status;
-+------------------+----------+--------------+------------------+-------------------+  
-| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |  
-+------------------+----------+--------------+------------------+-------------------+  
-| mysql-bin.000004 |   615261 |              |                  |                   |  
-+------------------+----------+--------------+------------------+-------------------+  
-1 row in set (0.00 sec)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;需要注意的是，这两个值都得记下来哟  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;将主服务器数据库dump然后导入到从服务器，记下了Position就不用担心dump后新增数据的情况，会自动同步的  &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;配置从服务器  &lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;mysql&amp;gt; change master to master_host=&amp;apos;192.168.1.41&amp;apos;, master_user=&amp;apos;xiaohao&amp;apos;, master_password=&amp;apos;mysql&amp;apos;, master_log_file=&amp;apos;mysql-bin.000004&amp;apos;, master_log_pos=615261;  // 这里就是刚才的Position
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;启动从服务器  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;mysql&amp;gt; start slave;
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;查看复制状态  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    mysql&amp;gt; show slave status\\G  
-**_*_****_*_****_*_****_*_* 1. row ****_*_****_*_****_*_******  
-               Slave_IO_State: Waiting for master to send event  
-                  Master_Host: 192.168.1.41  
-                  Master_User: xiaohao  
-                  Master_Port: 3306  
-                Connect_Retry: 60  
-              Master_Log_File: mysql-bin.000004  
-          Read_Master_Log_Pos: 652289  
-               Relay_Log_File: ubuntu-relay-bin.000002  
-                Relay_Log_Pos: 37345  
-        Relay_Master_Log_File: mysql-bin.000004  
-             Slave_IO_Running: Yes  
-            Slave_SQL_Running: Yes  
-              Replicate_Do_DB:
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;必须保证Slave_IO_Running和Slave_SQL_Running都为Yes的时候才正确的&lt;/p&gt;
-&lt;h1 id=&quot;TroubleShooting_uFF1A&quot;&gt;&lt;a href=&quot;#TroubleShooting_uFF1A&quot; class=&quot;headerlink&quot; title=&quot;TroubleShooting：&quot;&gt;&lt;/a&gt;&lt;strong&gt;TroubleShooting：&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;出现错误：Slave SQL for channel ‘’: Slave failed to initialize relay log info structure from the repository, Error_code: 1872&lt;br&gt;是因为relay-log有问题，这时候修改从服务器mysql配置，在[mysqld]中加入relay-log-&lt;br&gt;recovery=1，这样表示，服务器启动之后，删除所有已有的relay日志，重新接收主库的relay日志&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
+    <content type="html"><![CDATA[<p>参考地址：<a href="http://369369.blog.51cto.com/319630/790921" target="_blank" rel="external">http://369369.blog.51cto.com/319630/790921</a><br>原来想要简单地实现MySQL的主从复制其实也是很简单的(<br>这里当然不包括服务监控和容错处理啦)</p>
+<p>1.要检查主从服务器的MySQL版本，最好版本一致，不然会出现各种问题，特别是，5.5和5.6是不会兼容的  </p>
+<p>2.修改两个服务器的mysql配置<code>vim /etc/my.cnf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">log-bin=mysql-bin    // 打开二进制日志</div><div class="line">server-id=41         // 服务器的唯一ID，为0表示拒绝所有从服务器的连接</div></pre></td></tr></table></figure></p>
+<p>分别修改两个服务器配置然后分别重启</p>
+<p>3.主服务器建立账户：这个账户与普通账户不一样，它只能用于主从复制中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; GRANT REPLICATION SLAVE ON *.* to &apos;master&apos;@&apos;%&apos; identified by &apos;mysql&apos;;</div></pre></td></tr></table></figure></p>
+<p>4.查看服务器状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show master status;</div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |  </div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">| mysql-bin.000004 |   615261 |              |                  |                   |  </div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>需要注意的是，这两个值都得记下来哟</p>
+<p>5.将主服务器数据库dump然后导入到从服务器，记下了Position就不用担心dump后新增数据的情况，会自动同步的</p>
+<p>6.配置从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; change master to master_host=&apos;192.168.1.41&apos;, master_user=&apos;xiaohao&apos;, master_password=&apos;mysql&apos;, master_log_file=&apos;mysql-bin.000004&apos;, master_log_pos=615261;  // 这里就是刚才的Position</div></pre></td></tr></table></figure></p>
+<p>7.启动从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; start slave;   # 同理，停止用stop slave</div></pre></td></tr></table></figure></p>
+<p>8.查看复制状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">    mysql&gt; show slave status\G  </div><div class="line">**_*_****_*_****_*_****_*_* 1. row ****_*_****_*_****_*_******  </div><div class="line">               Slave_IO_State: Waiting for master to send event  </div><div class="line">                  Master_Host: 192.168.1.41  </div><div class="line">                  Master_User: xiaohao  </div><div class="line">                  Master_Port: 3306  </div><div class="line">                Connect_Retry: 60  </div><div class="line">              Master_Log_File: mysql-bin.000004  </div><div class="line">          Read_Master_Log_Pos: 652289  </div><div class="line">               Relay_Log_File: ubuntu-relay-bin.000002  </div><div class="line">                Relay_Log_Pos: 37345  </div><div class="line">        Relay_Master_Log_File: mysql-bin.000004  </div><div class="line">             Slave_IO_Running: Yes  </div><div class="line">            Slave_SQL_Running: Yes  </div><div class="line">              Replicate_Do_DB:</div></pre></td></tr></table></figure></p>
+<p>必须保证Slave_IO_Running和Slave_SQL_Running都为Yes的时候才正确的</p>
+<h1 id="TroubleShooting："><a href="#TroubleShooting：" class="headerlink" title="TroubleShooting："></a><strong>TroubleShooting：</strong></h1><ul>
+<li><p>出现错误：Slave SQL for channel ‘’: Slave failed to initialize relay log info structure from the repository, Error_code: 1872<br>是因为relay-log有问题，这时候修改从服务器mysql配置，在[mysqld]中加入relay-log-<br>recovery=1，这样表示，服务器启动之后，删除所有已有的relay日志，重新接收主库的relay日志</p>
+</li>
+<li></li>
+</ul>
+]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;参考地址：&lt;a href=&quot;http://369369.blog.51cto.com/319630/790921&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://369369.blog.51cto.com/319630/790921&lt;/a&gt; 原
+      &lt;p&gt;参考地址：&lt;a href=&quot;http://369369.blog.51cto.com/319630/790921&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://369369.blog.51cto.com/319630/790921&lt;/a&gt;&lt;b
     
     </summary>
     
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
     
     
   </entry>
   
   <entry>
     <title>Python多进程和多线程</title>
-    <link href="http://haofly.net/python-multithreading-multiprocess/"/>
-    <id>http://haofly.net/python-multithreading-multiprocess/</id>
+    <link href="https://haofly.net/python-multithreading-multiprocess/"/>
+    <id>https://haofly.net/python-multithreading-multiprocess/</id>
     <published>2015-12-29T19:28:42.000Z</published>
-    <updated>2016-02-11T07:23:25.456Z</updated>
+    <updated>2016-02-22T05:23:58.000Z</updated>
     
-    <content type="html">&lt;p&gt;多线程和多进程能极大限度的利用线代计算机强大的CPU，在IO密集型的应用场景里十分常见，目前项目中有个需求，是需要向别人网站发送请求等待响应，不过必须等页面&lt;br&gt;的js执行完毕后才能获取内容，就得将执行时间设置得长一点，比如10s，如果每个请求都等这么久那效率实在太慢，所以趁此机会，学习了一下Python的多进程和多&lt;br&gt;线程编程。  &lt;/p&gt;
-&lt;p&gt;在Python里面多进程和多线程的区别&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Python里的多线程只能利用CPU的一个核(由于全局解释锁的历史原因)，而多进程则能利用多核的优势&lt;/li&gt;
-&lt;li&gt;多线程一般来说比多进程快，毕竟共享内存，但是多线程也更危险，因为一个线程崩溃可能导致整个程序崩溃&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;Python_u591A_u7EBF_u7A0B&quot;&gt;&lt;a href=&quot;#Python_u591A_u7EBF_u7A0B&quot; class=&quot;headerlink&quot; title=&quot;Python多线程&quot;&gt;&lt;/a&gt;&lt;strong&gt;Python多线程&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;定义与使用  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;    import threading
+    <content type="html"><![CDATA[<p>多线程和多进程能极大限度的利用线代计算机强大的CPU，在IO密集型的应用场景里十分常见，目前项目中有个需求，是需要向别人网站发送请求等待响应，不过必须等页面<br>的js执行完毕后才能获取内容，就得将执行时间设置得长一点，比如10s，如果每个请求都等这么久那效率实在太慢，所以趁此机会，学习了一下Python的多进程和多<br>线程编程。  </p>
+<p>在Python里面多进程和多线程的区别</p>
+<ul>
+<li>Python里的多线程只能利用CPU的一个核(由于全局解释锁的历史原因)，而多进程则能利用多核的优势</li>
+<li>多线程一般来说比多进程快，毕竟共享内存，但是多线程也更危险，因为一个线程崩溃可能导致整个程序崩溃</li>
+</ul>
+<h1 id="Python多线程"><a href="#Python多线程" class="headerlink" title="Python多线程"></a><strong>Python多线程</strong></h1><ul>
+<li>定义与使用  </li>
+</ul>
+<pre><code>    import threading
 
 class Thread(threading.Thread):
     def __init__(self, 变量):
@@ -196,29 +704,29 @@ class Thread(threading.Thread):
         逻辑
 thread = Thread(参数) # 定义一个线程
 thread.start()        # 开启一个线程
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;全局变量：加锁，对于全局变量，如果仅仅是引用其值，而不对其进行修改，那么可以直接引用，如果要进行修改，就必须加锁，否则会出现不可预期的错误，比如可能会导致MySQL连接意外断开  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;    LOCK = threading.Lock()  # 在全局定义一个锁
+</code></pre><ul>
+<li>全局变量：加锁，对于全局变量，如果仅仅是引用其值，而不对其进行修改，那么可以直接引用，如果要进行修改，就必须加锁，否则会出现不可预期的错误，比如可能会导致MySQL连接意外断开  </li>
+</ul>
+<pre><code>    LOCK = threading.Lock()  # 在全局定义一个锁
 # 局部使用
 LOCK.acquire()
 修改全局变量
 LOCK.release()
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;局部变量：虽然局部变量简单的使用直接用就行，但是如果要在run里面进行各个函数之间的传递那就麻烦了，所以提供了ThreadLocal来将线程内部的局部变量变为一个字典，其它函数直接调用即可  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;    LOCAL = threading.local() # 在全局定义，每个线程引用该值结果都仅仅会得到自己的私有变量
+</code></pre><ul>
+<li>局部变量：虽然局部变量简单的使用直接用就行，但是如果要在run里面进行各个函数之间的传递那就麻烦了，所以提供了ThreadLocal来将线程内部的局部变量变为一个字典，其它函数直接调用即可  </li>
+</ul>
+<pre><code>    LOCAL = threading.local() # 在全局定义，每个线程引用该值结果都仅仅会得到自己的私有变量
 # 在Thread类里面的run函数赋值，不能在__init__里面定义，因为那时候线程还没启起来
 LOCAL.变量名 = 值 # 就这样
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;常用方法  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;    threading.activeCount()  # 获取当前线程数量，我一般用这个来控制线程最大的数量
+</code></pre><ul>
+<li>常用方法  </li>
+</ul>
+<pre><code>    threading.activeCount()  # 获取当前线程数量，我一般用这个来控制线程最大的数量
 threading.currentThread() # 获取当前线程对象
 threading.currentThread().getName() # 获取当前线程的名称
 exit()         # 终止当前线程，网上好多人问怎么没有API，后来发现exit就行了...并不会影响到其它线程和主线程
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Python_u591A_u8FDB_u7A0B&quot;&gt;&lt;a href=&quot;#Python_u591A_u8FDB_u7A0B&quot; class=&quot;headerlink&quot; title=&quot;Python多进程&quot;&gt;&lt;/a&gt;&lt;strong&gt;Python多进程&lt;/strong&gt;&lt;/h1&gt;&lt;p&gt;waiting…&lt;/p&gt;
-</content>
+</code></pre><h1 id="Python多进程"><a href="#Python多进程" class="headerlink" title="Python多进程"></a><strong>Python多进程</strong></h1><p>waiting…</p>
+]]></content>
     
     <summary type="html">
     
@@ -226,33 +734,33 @@ exit()         # 终止当前线程，网上好多人问怎么没有API，后来
     
     </summary>
     
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
     
     
   </entry>
   
   <entry>
     <title>MySQL数据库目录存放位置迁移</title>
-    <link href="http://haofly.net/mysql-migration/"/>
-    <id>http://haofly.net/mysql-migration/</id>
+    <link href="https://haofly.net/mysql-migration/"/>
+    <id>https://haofly.net/mysql-migration/</id>
     <published>2015-12-17T04:29:11.000Z</published>
-    <updated>2016-02-11T07:23:22.420Z</updated>
+    <updated>2016-02-22T05:23:58.000Z</updated>
     
-    <content type="html">&lt;p&gt;迁移MySQL的数据库目录，其实并不难呀  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;查看MySQL数据存放目录  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    &amp;gt; show variables like &amp;apos;\%dir\%&amp;apos;;
+    <content type="html"><![CDATA[<p>迁移MySQL的数据库目录，其实并不难呀  </p>
+<ol>
+<li>查看MySQL数据存放目录  </li>
+</ol>
+<pre><code>    &gt; show variables like &apos;\%dir\%&apos;;
 datadir的值就是mysql当前的存放目录，默认是/usr/local/mysql/data
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;进行迁移  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    service mysqld stop
+</code></pre><ol>
+<li>进行迁移  </li>
+</ol>
+<pre><code>    service mysqld stop
 cp -r /usr/local/mysql/data/*  /path/to/mypath
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;修改配置  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    chown mysql:mysql -R /path/to/mypath
+</code></pre><ol>
+<li>修改配置  </li>
+</ol>
+<pre><code>    chown mysql:mysql -R /path/to/mypath
 
 
 
@@ -263,12 +771,12 @@ cp -r /usr/local/mysql/data/*  /path/to/mypath
 
 
 将datadir的值更改为新目录
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;重启服务  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;service mysqld start
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;﻿  &lt;/p&gt;
-</content>
+</code></pre><ol>
+<li>重启服务  </li>
+</ol>
+<pre><code>service mysqld start
+</code></pre><p>﻿  </p>
+]]></content>
     
     <summary type="html">
     
@@ -281,1549 +789,7 @@ datadir的值就是my
     
     </summary>
     
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>[转]23种设计模式</title>
-    <link href="http://haofly.net/design-pattern/"/>
-    <id>http://haofly.net/design-pattern/</id>
-    <published>2015-12-10T21:55:35.000Z</published>
-    <updated>2016-02-11T07:23:17.556Z</updated>
-    
-    <content type="html">&lt;p&gt;原文地址：&lt;a href=&quot;http://blog.csdn.net/beijiguangyong/article/details/6010756&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/beijiguangyong/article/details/6010756&lt;/a&gt;  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;这篇文章并不是深入讲解各种设计模式该怎么使用，而是列举了23种设计模式的基本结构以及其使用目的和适用场景。这里没有转载图片，需要看图片的，可以到原文直接查看。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建型&lt;br&gt;1\. Factory Method（工厂方法）&lt;br&gt;2\. Abstract Factory（抽象工厂）&lt;br&gt;3\. Builder（建造者）&lt;br&gt;4\. Prototype（原型）&lt;br&gt;5\. Singleton（单例）  &lt;/p&gt;
-&lt;p&gt;结构型&lt;br&gt;6\. Adapter Class/Object（适配器）&lt;br&gt;7\. Bridge（桥接）&lt;br&gt;8\. Composite（组合）&lt;br&gt;9\. Decorator（装饰）&lt;br&gt;10\. Facade（外观）&lt;br&gt;11\. Flyweight（享元）&lt;br&gt;12\. Proxy（代理）  &lt;/p&gt;
-&lt;p&gt;行为型&lt;br&gt;13\. Interpreter（解释器）&lt;br&gt;14\. Template Method（模板方法）&lt;br&gt;15\. Chain of Responsibility（责任链）&lt;br&gt;16\. Command（命令）&lt;br&gt;17\. Iterator（迭代器）&lt;br&gt;18\. Mediator（中介者）&lt;br&gt;19\. Memento（备忘录）&lt;br&gt;20\. Observer（观察者）&lt;br&gt;21\. State（状态）&lt;br&gt;22\. Strategy（策略）&lt;br&gt;23\. Visitor（访问者）  &lt;/p&gt;
-&lt;p&gt;创建型  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Factory Method（工厂方法）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method使一个类的实例化延迟到其子类。&lt;br&gt;适用性：&lt;br&gt;当一个类不知道它所必须创建的对象的类的时候。&lt;br&gt;当一个类希望由它的子类来指定它所创建的对象的时候。&lt;br&gt;当类将创建对象的职责委托给多个帮助子类中的某一个，并且你希望将哪一个帮助子类是代理者这一信息局部化的时候。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Abstract Factory（抽象工厂）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;一个系统要独立于它的产品的创建、组合和表示时。&lt;br&gt;一个系统要由多个产品系列中的一个来配置时。&lt;br&gt;当你要强调一系列相关的产品对象的设计以便进行联合使用时。&lt;br&gt;当你提供一个产品类库，而只想显示它们的接口而不是实现时。  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Builder（建造者）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;当创建复杂对象的算法应该独立于该对象的组成部分以及它们的装配方式时。&lt;br&gt;当构造过程必须允许被构造的对象有不同的表示时。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Prototype（原型）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;当要实例化的类是在运行时刻指定时，例如，通过动态装载；或者&lt;br&gt;为了避免创建一个与产品类层次平行的工厂类层次时；或者&lt;br&gt;当一个类的实例只能有几个不同状态组合中的一种时。建立相应数目的原型并克隆它们可能比每次用合适的状态手工实例化该类更方便一些。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Singleton（单例）&lt;br&gt;意图：&lt;br&gt;保证一个类仅有一个实例，并提供一个访问它的全局访问点。  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;适用性：&lt;br&gt;当类只能有一个实例而且客户可以从一个众所周知的访问点访问它时。&lt;br&gt;当这个唯一实例应该是通过子类化可扩展的，并且客户应该无需更改代码就能使用一个扩展的实例时。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Adapter Class/Object（适配器）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;将一个类的接口转换成客户希望的另外一个接口。Adapter模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;你想使用一个已经存在的类，而它的接口不符合你的需求。&lt;br&gt;你想创建一个可以复用的类，该类可以与其他不相关的类或不可预见的类（即那些接口可能不一定兼容的类）协同工作。&lt;br&gt;（仅适用于对象Adapter）你想使用一些已经存在的子类，但是不可能对每一个都进行子类化以匹配它们的接口。对象适配器可以适配它的父类接口。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Bridge（桥接）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;将抽象部分与它的实现部分分离，使它们都可以独立地变化。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;你不希望在抽象和它的实现部分之间有一个固定的绑定关系。例如这种情况可能是因为，在程序运行时刻实现部分应可以被选择或者切换。&lt;br&gt;类的抽象以及它的实现都应该可以通过生成子类的方法加以扩充。这时Bridge模式使你可以对不同的抽象接口和实现部分进行组合，并分别对它们进行扩充。&lt;br&gt;对一个抽象的实现部分的修改应对客户不产生影响，即客户的代码不必重新编译。&lt;br&gt;（C++）你想对客户完全隐藏抽象的实现部分。在C++中，类的表示在类接口中是可见的。&lt;br&gt;有许多类要生成。这样一种类层次结构说明你必须将一个对象分解成两个部分。Rumbaugh称这种类层次结构为“嵌套的普化”（nested&lt;br&gt;generalizations ）。&lt;br&gt;你想在多个对象间共享实现（可能使用引用计数），但同时要求客户并不知道这一点。一个简单的例子便是Coplien的String类[ Cop92&lt;br&gt;]，在这个类中多个对象可以共享同一个字符串表示（StringRep）。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Composite（组合）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;将对象组合成树形结构以表示“部分-整体”的层次结构。C o m p o s i t e 使得用户对单个对象和组合对象的使用具有一致性。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;你想表示对象的部分-整体层次结构。&lt;br&gt;你希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Decorator（装饰）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;动态地给一个对象添加一些额外的职责。就增加功能来说，Decorator模式相比生成子类更为灵活。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责。&lt;br&gt;处理那些可以撤消的职责。&lt;br&gt;当不能采用生成子类的方法进行扩充时。一种情况是，可能有大量独立的扩展，为支持每一种组合将产生大量的子类，使得子类数目呈爆炸性增长。另一种情况可能是因为类定义&lt;br&gt;被隐藏，或类定义不能用于生成子类。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Facade（外观）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;为子系统中的一组接口提供一个一致的界面，Facade模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;当你要为一个复杂子系统提供一个简单接口时。子系统往往因为不断演化而变得越来越复杂。大多数模式使用时都会产生更多更小的类。这使得子系统更具可重用性，也更容易对&lt;br&gt;子系统进行定制，但这也给那些不需要定制子系统的用户带来一些使用上的困难。Facade可以提供一个简单的缺省视图，这一视图对大多数用户来说已经足够，而那些需要&lt;br&gt;更多的可定制性的用户可以越过facade层。&lt;br&gt;客户程序与抽象类的实现部分之间存在着很大的依赖性。引入facade将这个子系统与客户以及其他的子系统分离，可以提高子系统的独立性和可移植性。&lt;br&gt;当你需要构建一个层次结构的子系统时，使用facade模式定义子系统中每层的入口点。如果子系统之间是相互依赖的，你可以让它们仅通过facade进行通讯，从而简&lt;br&gt;化了它们之间的依赖关系。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Flyweight（享元）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;运用共享技术有效地支持大量细粒度的对象。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;一个应用程序使用了大量的对象。&lt;br&gt;完全由于使用大量的对象，造成很大的存储开销。&lt;br&gt;对象的大多数状态都可变为外部状态。&lt;br&gt;如果删除对象的外部状态，那么可以用相对较少的共享对象取代很多组对象。&lt;br&gt;应用程序不依赖于对象标识。由于Flyweight对象可以被共享，对于概念上明显有别的对象，标识测试将返回真值。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Proxy（代理）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;为其他对象提供一种代理以控制对这个对象的访问。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;在需要用比较通用和复杂的对象指针代替简单的指针的时，使用Proxy模式。下面是一些可以使用Proxy模式常见情况：&lt;br&gt;1) 远程代理（Remote Proxy）为一个对象在不同的地址空间提供局部代表。&lt;br&gt;NEXTSTEP[Add94]使用NXProxy类实现了这一目的。Coplien[Cop92]称这种代理为“大使”（Ambassador）。&lt;br&gt;2 )虚代理（Virtual Proxy）根据需要创建开销很大的对象。在动机一节描述的ImageProxy就是这样一种代理的例子。&lt;br&gt;3) 保护代理（Protection Proxy）控制对原始对象的访问。保护代理用于对象应该有不同的访问权限的时候。例如，在Choices操作系统[&lt;br&gt;CIRM93]中KemelProxies为操作系统对象提供了访问保护。&lt;br&gt;4 )智能指引（Smart Reference）取代了简单的指针，它在访问对象时执行一些附加操作。它的典型用途包括：  &lt;/p&gt;
-&lt;p&gt;对指向实际对象的引用计数，这样当该对象没有引用时，可以自动释放它(也称为SmartPointers[Ede92 ] )。&lt;br&gt;当第一次引用一个持久对象时，将它装入内存。&lt;br&gt;在访问一个实际对象前，检查是否已经锁定了它，以确保其他对象不能改变它。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Interpreter（解释器）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;给定一个语言，定义它的文法的一种表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;当有一个语言需要解释执行,并且你可将该语言中的句子表示为一个抽象语法树时，可使用解释器模式。而当存在以下情况时该模式效果最好：  &lt;/p&gt;
-&lt;p&gt;该文法简单对于复杂的文法,文法的类层次变得庞大而无法管理。此时语法分析程序生成器这样的工具是更好的选择。它们无需构建抽象语法树即可解释表达式,这样可以节省空&lt;br&gt;间而且还可能节省时间。  &lt;/p&gt;
-&lt;p&gt;效率不是一个关键问题最高效的解释器通常不是通过直接解释语法分析树实现的,而是首先将它们转换成另一种形式。例如，正则表达式通常被转换成状态机。但即使在这种情况&lt;br&gt;下,转换器仍可用解释器模式实现,该模式仍是有用的。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Template Method（模板方法）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。TemplateMethod使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;一次性实现一个算法的不变的部分，并将可变的行为留给子类来实现。&lt;br&gt;各子类中公共的行为应被提取出来并集中到一个公共父类中以避免代码重复。这是Opdyke和Johnson所描述过的“重分解以一般化”的一个很好的例子[ OJ93&lt;br&gt;]。首先识别现有代码中的不同之处，并且将不同之处分离为新的操作。最后，用一个调用这些新的操作的模板方法来替换这些不同的代码。&lt;br&gt;控制子类扩展。模板方法只在特定点调用“hook ”操作（参见效果一节），这样就只允许在这些点进行扩展。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Chain of Responsibility（责任链）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;有多个的对象可以处理一个请求，哪个对象处理该请求运行时刻自动确定。&lt;br&gt;你想在不明确指定接收者的情况下，向多个对象中的一个提交一个请求。&lt;br&gt;可处理一个请求的对象集合应被动态指定。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Command（命令）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;将一个请求封装为一个对象，从而使你可用不同的请求对客户进行参数化；对请求排队或记录请求日志，以及支持可撤消的操作。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;抽象出待执行的动作以参数化某对象，你可用过程语言中的回调（call&lt;br&gt;back）函数表达这种参数化机制。所谓回调函数是指函数先在某处注册，而它将在稍后某个需要的时候被调用。Command模式是回调机制的一个面向对象的替代品。&lt;br&gt;在不同的时刻指定、排列和执行请求。一个Command对象可以有一个与初始请求无关的生存期。如果一个请求的接收者可用一种与地址空间无关的方式表达，那么就可将负&lt;br&gt;责该请求的命令对象传送给另一个不同的进程并在那儿实现该请求。&lt;br&gt;支持取消操作。Command的Excute操作可在实施操作前将状态存储起来，在取消操作时这个状态用来消除该操作的影响。Command接口必须添加一个Unex&lt;br&gt;ecute操作，该操作取消上一次Execute调用的效果。执行的命令被存储在一个历史列表中。可通过向后和向前遍历这一列表并分别调用Unexecute和Exe&lt;br&gt;cute来实现重数不限的“取消”和“重做”。&lt;br&gt;支持修改日志，这样当系统崩溃时，这些修改可以被重做一遍。在Command接口中添加装载操作和存储操作，可以用来保持变动的一个一致的修改日志。从崩溃中恢复的过&lt;br&gt;程包括从磁盘中重新读入记录下来的命令并用Execute操作重新执行它们。&lt;br&gt;用构建在原语操作上的高层操作构造一个系统。这样一种结构在支持事务( transaction)的信息系统中很常见。一个事务封装了对数据的一组变动。Comman&lt;br&gt;d模式提供了对事务进行建模的方法。Command有一个公共的接口，使得你可以用同一种方式调用所有的事务。同时使用该模式也易于添加新事务以扩展系统。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Iterator（迭代器）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;提供一种方法顺序访问一个聚合对象中各个元素,而又不需暴露该对象的内部表示。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;访问一个聚合对象的内容而无需暴露它的内部表示。&lt;br&gt;支持对聚合对象的多种遍历。&lt;br&gt;为遍历不同的聚合结构提供一个统一的接口(即,支持多态迭代)。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Mediator（中介者）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;一组对象以定义良好但是复杂的方式进行通信。产生的相互依赖关系结构混乱且难以理解。&lt;br&gt;一个对象引用其他很多对象并且直接与这些对象通信,导致难以复用该对象。&lt;br&gt;想定制一个分布在多个类中的行为，而又不想生成太多的子类。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Memento（备忘录）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;必须保存一个对象在某一个时刻的(部分)状态,这样以后需要时它才能恢复到先前的状态。&lt;br&gt;如果一个用接口来让其它对象直接得到这些状态，将会暴露对象的实现细节并破坏对象的封装性。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Observer（观察者）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;定义对象间的一种一对多的依赖关系,当一个对象的状态发生改变时,所有依赖于它的对象都得到通知并被自动更新。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;当一个抽象模型有两个方面,其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。&lt;br&gt;当对一个对象的改变需要同时改变其它对象,而不知道具体有多少对象有待改变。&lt;br&gt;当一个对象必须通知其它对象，而它又不能假定其它对象是谁。换言之,你不希望这些对象是紧密耦合的。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;State（状态）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;允许一个对象在其内部状态改变时改变它的行为。对象看起来似乎修改了它的类。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;一个对象的行为取决于它的状态,并且它必须在运行时刻根据状态改变它的行为。&lt;br&gt;一个操作中含有庞大的多分支的条件语句，且这些分支依赖于该对象的状态。这个状态通常用一个或多个枚举常量表示。通常,有多个操作包含这一相同的条件结构。State&lt;br&gt;模式将每一个条件分支放入一个独立的类中。这使得你可以根据对象自身的情况将对象的状态作为一个对象，这一对象可以不依赖于其他对象而独立变化。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Strategy（策略）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;定义一系列的算法,把它们一个个封装起来,并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;许多相关的类仅仅是行为有异。“策略”提供了一种用多个行为中的一个行为来配置一个类的方法。&lt;br&gt;需要使用一个算法的不同变体。例如，你可能会定义一些反映不同的空间/时间权衡的算法。当这些变体实现为一个算法的类层次时[H087] ,可以使用策略模式。&lt;br&gt;算法使用客户不应该知道的数据。可使用策略模式以避免暴露复杂的、与算法相关的数据结构。&lt;br&gt;一个类定义了多种行为,并且这些行为在这个类的操作中以多个条件语句的形式出现。将相关的条件分支移入它们各自的Strategy类中以代替这些条件语句。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Visitor（访问者）  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;意图：&lt;br&gt;定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。TemplateMethod使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。  &lt;/p&gt;
-&lt;p&gt;适用性：&lt;br&gt;一次性实现一个算法的不变的部分，并将可变的行为留给子类来实现。&lt;br&gt;各子类中公共的行为应被提取出来并集中到一个公共父类中以避免代码重复。这是Opdyke和Johnson所描述过的“重分解以一般化”的一个很好的例子[OJ93]&lt;br&gt;。首先识别现有代码中的不同之处，并且将不同之处分离为新的操作。最后，用一个调用这些新的操作的模板方法来替换这些不同的代码。&lt;br&gt;控制子类扩展。模板方法只在特定点调用“hook ”操作（参见效果一节），这样就只允许在这些点进行扩展。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原文地址：&lt;a href=&quot;http://blog.csdn.net/beijiguangyong/article/details/6010756&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/beijiguang
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL之调优方法</title>
-    <link href="http://haofly.net/mysql-optimization/"/>
-    <id>http://haofly.net/mysql-optimization/</id>
-    <published>2015-12-10T00:25:34.000Z</published>
-    <updated>2016-02-11T07:23:22.548Z</updated>
-    
-    <content type="html">&lt;ul&gt;
-&lt;li&gt;数据库分析调优步骤  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;    1.将sql语句记录下来
-2.看查询更新的比例(如果太多，可以抽样查看)
-3.看最多查询的数据表有哪些，最多更新的数据表有哪些
-4.看最多查询的数据表最多查询的SQL是什么样子的，最多更新的数据表最多执行的SQL语句是怎样的，算出各自每秒的请求频率
-5.关键分析，最多查询的SQL，基于同一主键查询的比例多不多(看能不能缓存化)
-6.应对大翻页的问题，其实是不需要精确的返回结果数的，像淘宝这些都不会超过100页的
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;数据库配置：  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;innodb_read_io_threads/innodb_write_io_threads：这两个参数指Innodb数据库读写的IO进程数，默认为4
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;慢查询日志：  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;    # 开启慢查询
-&amp;gt; show variables like &amp;apos;slow_query_log&amp;apos;   # 查看是否开起慢查询
-&amp;gt; set global slow_query_log_file = &amp;apos;&amp;apos;
-&amp;gt; set global log_queries_not_using_indexes = on
-&amp;gt; set global long_query_time = 1
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;分库分表&lt;br&gt;表的垂直拆分：把原来一个有很多列的表拆分成多个表，解决了表宽的问题，通常，把不常用的字段单独存放到一个表中，大字段单独存放，一起使用的字段一起存放&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;语句分析：使用explan查询SQL的执行计划&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;其它工具  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;Mysqldumpslow：慢查询日志的分析工具
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;数据库分析调优步骤  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;    1.将sql语句记录下来
-2.看查询更新的比例(如果太多，可以抽样查看)
-3.看最多查询的数据表有哪些，最多更新的数据表有哪些
-4.看最多查询的数据表最多查询的SQL是什么样子的，最多更
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL之设计方法</title>
-    <link href="http://haofly.net/mysql-design-tips/"/>
-    <id>http://haofly.net/mysql-design-tips/</id>
-    <published>2015-12-10T00:16:46.000Z</published>
-    <updated>2016-02-11T07:23:21.896Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;u5173_u4E8E_u67B6_u6784&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u67B6_u6784&quot; class=&quot;headerlink&quot; title=&quot;关于架构&quot;&gt;&lt;/a&gt;关于架构&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;一般把读取的请求放在缓存(Redis)，而更新请求放在数据库&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;u5173_u4E8E_u7D22_u5F15&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u7D22_u5F15&quot; class=&quot;headerlink&quot; title=&quot;关于索引&quot;&gt;&lt;/a&gt;关于索引&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;数据查询只能用到一个索引，不过这个只是说的是单表查询，联表查询实际上每个表都可以用到其独立的索引&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;有些时候索引并不会用到，比如&lt;br&gt;where key like ‘keyword\%’：这里可以用到key索引&lt;br&gt;where key like ‘\%keyword\%’：这里用不到key的索引&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;适当建立复合索引：&lt;br&gt;前几天看了“caoz的梦呓”的文章《如何应对并发(1) - 关于数据索引》，理解了建立复合索引所需要考虑的一些东西，顺序不同效率也有很大的不同。&lt;br&gt;‘SELECT * FROM user where area = ‘$area’ order by lastlogin desc limit 30;’&lt;br&gt;如果只把area当做索引，那么数据库会把符合这个area的所有结果都拿出来，然后按照lastlogin来进行排序；&lt;br&gt;如果只把lastlogin做为索引，那么数据库会从最后一条开始往前遍历，每条都会对比area，直到数出30条&lt;br&gt;如果lastlogin+area建立符合，和单独lastlogin索引是一样的&lt;br&gt;如果area+lastlogin，把两个字段拼接然后排好序后，看这条SQL在这个数列中查询的提现，所命中的完全是连续的30条，仅仅遍历30条索引即可&lt;br&gt;我最先以为简历复合索引也会是先查找出area，再拿出来排序哟，但其实索引都是预先排好了的，这里就相当于先按照area排序，area相同的再按照lastlog&lt;br&gt;in进行排序，这样，只要找到area，然后取前面30条就可以了，就像电话簿一样，先找姓氏，姓氏相同的也会按照名排好序的。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;u5173_u4E8E_u67B6_u6784&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u67B6_u6784&quot; class=&quot;headerlink&quot; title=&quot;关于架构&quot;&gt;&lt;/a&gt;关于架构&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;一般把读取的请求放在缓存(Redis
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>玩转树莓派2</title>
-    <link href="http://haofly.net/raspberrypi/"/>
-    <id>http://haofly.net/raspberrypi/</id>
-    <published>2015-12-07T18:58:50.000Z</published>
-    <updated>2016-02-11T07:23:25.848Z</updated>
-    
-    <content type="html">&lt;p&gt;想在家里做NAS、DNS等私有云服务，但是无奈家里淘汰下来的电脑已无力承担如此重任。没办法了，就只能试试树莓派。不试不知道，一试吓一跳，完全就是一手掌大小的&lt;br&gt;电脑，听说desktop版本还能使用word等软件，虽然只有1GB内存，但是200多块(淘宝店)就能买到这个东西，那是非常值了。当然，作为一个技术爱好者，别&lt;br&gt;人是完全无法体会这种快乐的。要是其功耗再低点或者能采用其它的供电方式(比如无线供电、电池供电)，感觉完全能颠覆智能市场。  &lt;/p&gt;
-&lt;h2 id=&quot;u5236_u4F5C_u542F_u52A8_u955C_u50CF&quot;&gt;&lt;a href=&quot;#u5236_u4F5C_u542F_u52A8_u955C_u50CF&quot; class=&quot;headerlink&quot; title=&quot;制作启动镜像&quot;&gt;&lt;/a&gt;&lt;strong&gt;制作启动镜像&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;镜像下载：&lt;a href=&quot;https://www.raspberrypi.org/downloads/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.raspberrypi.org/downloads/&lt;/a&gt;，我下载的是RASPBIAN分支，因为其是官方提供且基于Debia&lt;br&gt;n，和Ubuntu操作一样&lt;strong&gt;&lt;br&gt;**&lt;/strong&gt;Mac环境：&lt;br&gt;**&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ df  # 查看当前已经挂载的卷
-一般sd卡在最后，Filesystem是/dev/disk2s1，Mounted on /Volumes/No Name，可以在Finder里面将sd卡的名字改为Pi(我那个默认是No Name)
-$ diskutil unmount /dev/disk2s1   #将sd卡卸载
-Volume Pi on disk2s1 unmounted
-$ diskutil list # 查看是否有sd卡设备
-$ dd bs=4m if=pi.img of=/dev/rdisk2   #将镜像文件pi.img写入sd卡
-$ diskutil unmountDisk /dev/disk2  # 再卸载sd卡，此时可以拔出来插入树莓派的sd卡槽了  
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;u542F_u52A8_u64CD_u4F5C_u7CFB_u7EDF&quot;&gt;&lt;a href=&quot;#u542F_u52A8_u64CD_u4F5C_u7CFB_u7EDF&quot; class=&quot;headerlink&quot; title=&quot;启动操作系统&quot;&gt;&lt;/a&gt;&lt;strong&gt;启动操作系统&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;收到货的那天，发现其有一个DC接口，还以为是通过DC接口供电，出门走了一圈都没发现有卖这货的，于是回家，自习已看，发现可以用Android的电源为期供电的，&lt;br&gt;那接口名字忘了。和网上建议的一样，我采用的是5V 2A的供电设备(其实是直接插到小米插线板上的)&lt;br&gt;然后，我又发现，我家里没多的网线，那怎么办，我装的不是desktop版本，没有网线就不能SSH进去。不过还好，它支持HDMI，于是我把它功过HDMI连接上了&lt;br&gt;家里40英寸的电视，(HDMI高清显示，真他妈爽)就像这样，还通过USB插了外置键盘。&lt;br&gt;&lt;img src=&quot;http://7xnc86.com1.z0.glb.clouddn.com/raspberrypi_1.jpg&quot; alt=&quot;&quot;&gt;  &lt;/p&gt;
-&lt;p&gt;默认是通电自动启动的，所以插上电就会进入系统了&lt;br&gt;默认用户名pi，默认密码是raspberry&lt;br&gt;接着就做一些基本的配置，通过sudo raspi-config的第一项将sd卡的剩余空间全部用来使用，接着修改源，这个国度没办法的事  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ sudo nano /etc/apt/sources.list.d/raspi.list
-修改为如下：
-deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/debian/ jessie main
-
-
-$ sudo nano /etc/apt/sources.list  
-
-修改为如下：
-deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
-deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
-
-然后更新系统，并安装最基本的vim
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;WIFI_u8BBE_u7F6E&quot;&gt;&lt;a href=&quot;#WIFI_u8BBE_u7F6E&quot; class=&quot;headerlink&quot; title=&quot;WIFI设置&quot;&gt;&lt;/a&gt;&lt;strong&gt;WIFI设置&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;当然，我不可能一直用电视作显示器吧，这时候我买的无线设备就有用场了，直接通过USB插到树莓派上，然后设置wifi  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ ifconfig # 可以看到wlan0，表示已经识别无线网卡
-$ sudo vim /etc/network/interfaces添加或修改关于wlan0的配置
-auto wlan0
-allow-hotplug wlan0
-iface wlan0 inet dhcp
-wpa-ssid WIFI名称
-wpa-psk WIFI密码
-
-
-# 然后通过如下命令重启网卡
-
-
-
-
-sudo ifdown wlan0 &amp;amp;&amp;amp; sudo ifup wlan0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注：如果要关机，务必使用命令关机，而不要物理直接断，当然开机貌似只能拔了电源再插上&lt;/p&gt;
-&lt;h2 id=&quot;u642D_u5EFAownCloud_u79C1_u6709_u4E91&quot;&gt;&lt;a href=&quot;#u642D_u5EFAownCloud_u79C1_u6709_u4E91&quot; class=&quot;headerlink&quot; title=&quot;搭建ownCloud私有云&quot;&gt;&lt;/a&gt;&lt;strong&gt;搭建ownCloud私有云&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;作为私有云方案，我选择的ownCloud，而不是Samba，因为Samba功能仅仅算是ftp的共享，而不是一个私有云方案，当然ownCloud也有为人诟病的&lt;br&gt;地方，比如内存占用高(树莓派2上占用100多MB)，另一个是因为它本身是基于Apache的，树莓派内存总共就1G，我可不想既有Apache又有Nginx，所&lt;br&gt;以直接用的是Nginx+php5-fpm的方案，不过这样子，配置过程就有点麻烦了。  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 首先，安装基本服务
-sudo apt-get install php5-common php5-cli php5-fpm
-sudo apt-get install nginx
-sudo apt-get install mysql-server mysql-client
-
-
-
-
-# 配置MySQL，ownCloud需要提前创建用户、数据库和分配权限
-
-
-
-
-&amp;gt; create database 库名 character set utf8 collate utf8_general_ci;  
-&amp;gt; grant ALL on 库名.* 用户名@localhost identified by &amp;quot;密码&amp;quot;   # 注意，ownCloud是不允许root用户的，因为权限太多
-
-
-
-
-# 配置文件权限
-
-
-
-
-chmod 775 -R owncloud/        # 不要分配777，分配了也不能用
-chown -R www-data:www-data owncloud/
-
-
-
-
-# 配置php5-fpm
-
-
-
-
-$ printenv PATH 获取系统环境变量
-vim /etc/php5/fpm/pool.d/www.conf，将下面几行前面的注释去掉
-;env[HOSTNAME] = $HOSTNAME  
-;env[PATH] = /usr/local/bin:/usr/bin:/bin      # 这里还要修改为刚才获取到的环境变量  
-;env[TMP] = /tmp  
-;env[TMPDIR] = /tmp  
-;env[TEMP] = /tmp
-
-
-
-
-# 配置nginx，按照官网的教程配置Nginx conf：https://doc.owncloud.org/server/7.0/admin_manual/installation/nginx_configuration.html
-
-
-
-
-对于官网的配置，我做了如下几项修改：
-location ~ .php(?:$|/)$这里面修改为：
-location ~ ^(.+?.php)(/.*)?$ \{  
-  fastcgi_split_path_info ^(.+.php)(/.+)$;  
-  include fastcgi_params;  
-  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  
-  fastcgi_param PATH_INFO $fastcgi_path_info;  
-  fastcgi_pass unix:/var/run/php5-fpm.sock;  
-  fastcgi_index index.php;  
-  include fastcgi_params;  
-  fastcgi_param PHP_VALUE &amp;quot;post_max_size=10G \\n upload_max_filesize=10G&amp;quot;;   # 上传默认居然为513MB，这里可以修改大，不然在owncloud无法调整到更大  
-\}
-检查配置文件是否正确用# nginx -t nginx.conf  
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;参考：&lt;br&gt;&lt;a href=&quot;http://blog.akar
-in.xyz/raspberry-
-init/https://github.com/ccforward/cc/issues/25?utm_source=tuicool&quot; title=&quot;Link:
-http://blog.akarin.xyz/raspberry-
-init/https://github.com/ccforward/cc/issues/25?utm_source=tuicool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.akarin.xyz/raspberry-init/&lt;br&gt;https://github.com/ccforward/cc/issues/25?utm_source=tuicool&lt;/a&gt;  &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;想在家里做NAS、DNS等私有云服务，但是无奈家里淘汰下来的电脑已无力承担如此重任。没办法了，就只能试试树莓派。不试不知道，一试吓一跳，完全就是一手掌大小的&lt;br&gt;电脑，听说desktop版本还能使用word等软件，虽然只有1GB内存，但是200多块(淘宝店)就能买到这个东
-    
-    </summary>
-    
-      <category term="就是爱玩" scheme="http://haofly.net/categories/%E5%B0%B1%E6%98%AF%E7%88%B1%E7%8E%A9/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>各种数据库的应用场景</title>
-    <link href="http://haofly.net/database-application-scenarios/"/>
-    <id>http://haofly.net/database-application-scenarios/</id>
-    <published>2015-12-06T23:48:21.000Z</published>
-    <updated>2016-02-11T07:23:17.360Z</updated>
-    
-    <content type="html">&lt;ul&gt;
-&lt;li&gt;&lt;h1 id=&quot;Redis&quot;&gt;&lt;a href=&quot;#Redis&quot; class=&quot;headerlink&quot; title=&quot;Redis&quot;&gt;&lt;/a&gt;&lt;strong&gt;Redis&lt;/strong&gt;&lt;/h1&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;统计：比如行为指标、点击量统计、访问量统计、排行榜、最新或最高的N个数据等&lt;br&gt;缓存：会话缓存，页面缓存，全局变量缓存&lt;br&gt;队列：队列服务&lt;br&gt;过期：需要设置过期时间的数据&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;h1 id=&quot;MongoDB&quot;&gt;&lt;a href=&quot;#MongoDB&quot; class=&quot;headerlink&quot; title=&quot;MongoDB&quot;&gt;&lt;/a&gt;&lt;strong&gt;MongoDB&lt;/strong&gt;&lt;/h1&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;文本：日志、文章等&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;h1 id=&quot;Redis&quot;&gt;&lt;a href=&quot;#Redis&quot; class=&quot;headerlink&quot; title=&quot;Redis&quot;&gt;&lt;/a&gt;&lt;strong&gt;Redis&lt;/strong&gt;&lt;/h1&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;统计：比如行为指标、点击量统计、访问量统
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Python Requests模块进行网页抓取详解</title>
-    <link href="http://haofly.net/python-requests/"/>
-    <id>http://haofly.net/python-requests/</id>
-    <published>2015-12-04T00:02:53.000Z</published>
-    <updated>2016-02-11T07:23:25.588Z</updated>
-    
-    <content type="html">&lt;p&gt;Python3早已可以不用自带的urllib来进行Http请求了，requests包就是一神奇，可以在各种场合使用它。它能方便的发送GET和POST请求，支&lt;br&gt;持HTTPS，基本上能模拟人类真实的访问  &lt;/p&gt;
-&lt;h2 id=&quot;u53D1_u9001_u8BF7_u6C42&quot;&gt;&lt;a href=&quot;#u53D1_u9001_u8BF7_u6C42&quot; class=&quot;headerlink&quot; title=&quot;发送请求&quot;&gt;&lt;/a&gt;发送请求&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# GET请求
-response = requests.get(url)  
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;u81EA_u5B9A_u4E49HTTP_u5934_uFF0C_u4FEE_u6539Headers&quot;&gt;&lt;a href=&quot;#u81EA_u5B9A_u4E49HTTP_u5934_uFF0C_u4FEE_u6539Headers&quot; class=&quot;headerlink&quot; title=&quot;自定义HTTP头，修改Headers&quot;&gt;&lt;/a&gt;自定义HTTP头，修改Headers&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;headers = \{
-    &amp;apos;User-Agent&amp;apos;: &amp;apos;注意名称&amp;apos;
-\}
-requests.get(url, headers=headers)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;u91CD_u5B9A_u5411&quot;&gt;&lt;a href=&quot;#u91CD_u5B9A_u5411&quot; class=&quot;headerlink&quot; title=&quot;重定向&quot;&gt;&lt;/a&gt;重定向&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;response.status_code  #HTTP status，http状态码
-
-
-
-
-# 如果直接请求，如果发生重定向，那么response.status_code = 200, response.history = 301
-
-
-
-
-resposne = requests.get(url, allow_redirects=False)  # 禁止重定向，此时response.status_code = 301
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;TroubleShooting_3A&quot;&gt;&lt;a href=&quot;#TroubleShooting_3A&quot; class=&quot;headerlink&quot; title=&quot;TroubleShooting:&quot;&gt;&lt;/a&gt;TroubleShooting:&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;user-agent列表﻿  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;    user_agent_list = [  
-    &amp;apos;Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166  Safari/535.19&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Linux; U; Android 4.0.4; en-gb; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Linux; U; Android 2.2; en-gb; GT-P1000 Build/FROYO) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Android; Mobile; rv:14.0) Gecko/14.0 Firefox/14.0&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Android; Tablet; rv:14.0) Gecko/14.0 Firefox/14.0&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:21.0) Gecko/20130331 Firefox/21.0&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Windows NT 6.2; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Linux; Android 4.1.2; Nexus 7 Build/JZ054K) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Ubuntu/11.10 Chromium/27.0.1453.93 Chrome/27.0.1453.93 Safari/537.36&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_4 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/27.0.1453.10 Mobile/10B350 Safari/8536.25&amp;apos;,  
-    &amp;apos;Mozilla/4.0 (Windows; MSIE 6.0; Windows NT 5.2)&amp;apos;,  
-    &amp;apos;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)&amp;apos;,  
-    &amp;apos;Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0)&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (compatible; WOW64; MSIE 10.0; Windows NT 6.2)&amp;apos;,  
-    &amp;apos;Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; en) Presto/2.9.168 Version/11.52&amp;apos;,  
-    &amp;apos;Opera/9.80 (Windows NT 6.1; WOW64; U; en) Presto/2.10.229 Version/11.62&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML, like Gecko) Version/7.2.1.0 Safari/536.2+&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; en-US) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3&amp;apos;,  
-    &amp;apos;Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3&amp;apos;,  
-]
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;封面图片来自Pixabay&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python3早已可以不用自带的urllib来进行Http请求了，requests包就是一神奇，可以在各种场合使用它。它能方便的发送GET和POST请求，支&lt;br&gt;持HTTPS，基本上能模拟人类真实的访问  &lt;/p&gt;
-&lt;h2 id=&quot;u53D1_u9001_u8BF7_u6
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>内网穿透方案</title>
-    <link href="http://haofly.net/internal-network-penetration/"/>
-    <id>http://haofly.net/internal-network-penetration/</id>
-    <published>2015-12-03T23:39:55.000Z</published>
-    <updated>2016-02-11T07:23:20.040Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;u80CC_u666F_uFF1A_u5929_u671D_u5927_u5C40_u57DF_u7F51_uFF0C_u7F51_u4E0A_u90FD_u8BF4_u53EF_u4EE5_u6253_u7535_u8BDD_u53EB_u5BA2_u670D_u5207_u6362_u5230_u516C_u7F51IP_uFF0C_u4F46_u662F_u7535_u4FE1_u3001_u79FB_u52A8_u5BBD_u5E26_uFF0C_u65E0_u8BBA_u6253_u5BA2_u670D_u8FD8_u662F_u5B89_u88C5_u5E08_u5085_uFF0C_u5C45_u7136_u4ECE_u4E0A_u5230_u4E0B_u90FD_u4E0D_u77E5_u9053_u516C_u7F51IP_u662F_u4EC0_u4E48_uFF0C_u4ED6_u4EEC_u4EE5_u4E3A_u6211&quot;&gt;&lt;a href=&quot;#u80CC_u666F_uFF1A_u5929_u671D_u5927_u5C40_u57DF_u7F51_uFF0C_u7F51_u4E0A_u90FD_u8BF4_u53EF_u4EE5_u6253_u7535_u8BDD_u53EB_u5BA2_u670D_u5207_u6362_u5230_u516C_u7F51IP_uFF0C_u4F46_u662F_u7535_u4FE1_u3001_u79FB_u52A8_u5BBD_u5E26_uFF0C_u65E0_u8BBA_u6253_u5BA2_u670D_u8FD8_u662F_u5B89_u88C5_u5E08_u5085_uFF0C_u5C45_u7136_u4ECE_u4E0A_u5230_u4E0B_u90FD_u4E0D_u77E5_u9053_u516C_u7F51IP_u662F_u4EC0_u4E48_uFF0C_u4ED6_u4EEC_u4EE5_u4E3A_u6211&quot; class=&quot;headerlink&quot; title=&quot;背景：天朝大局域网，网上都说可以打电话叫客服切换到公网IP，但是电信、移动宽带，无论打客服还是安装师傅，居然从上到下都不知道公网IP是什么，他们以为我&quot;&gt;&lt;/a&gt;背景：天朝大局域网，网上都说可以打电话叫客服切换到公网IP，但是电信、移动宽带，无论打客服还是安装师傅，居然从上到下都不知道公网IP是什么，他们以为我&lt;/h2&gt;&lt;p&gt;要公网IP是要独立宽带，公网IP和共享宽带明明是两个概念好不好，你可以封80端口，但是其它什么端口至少给我留一个总行吧，客服没用，就只能自己动手了。  &lt;/p&gt;
-&lt;h2 id=&quot;u65B9_u6848_u4E00_uFF1ASSH_Tunnel&quot;&gt;&lt;a href=&quot;#u65B9_u6848_u4E00_uFF1ASSH_Tunnel&quot; class=&quot;headerlink&quot; title=&quot;方案一：SSH Tunnel&quot;&gt;&lt;/a&gt;方案一：SSH Tunnel&lt;/h2&gt;&lt;p&gt;使用SSH进行的Tunnel进行端口转发，对于不需要访问desktop来说是最简单的一种内网穿透方案，当然，唯一的要求是你得有一个有公网IP的服务器做代理。  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;首先，在内网主机上执行ssh命令：  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;ssh -NfR 外网ssh端口号:localhost:本地ssh端口号 远端IP
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;在代理服务器上执行通过ssh连接内网的服务器：  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;ssh -p 刚才定义的远程端口号  localhost
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;SSH太容易掉线了，为了不掉线，有多种方法：  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    # 首先，修改SSH配置
-代理服务器段：vim /etc/ssh/sshd_config，修改或新增如下两项
-
-
-ClinetAliveInterval 60
-ClientAliveCountMax 10
-然后重启SSH服务：service sshd restart
-
-内网服务器端：vim /etc/ssh/ssh_config，修改或新增
-
-
-Host *
-ServerAliveInterval 30
-
-# 但其实，这两种方法都还是容易掉线，接下来，终极解决方案  
-
-
-
-写一个python脚本，然后nohup keepalived.py &amp;amp;，在脚本里新建一个ssh连接，不断发送空格即可
-
-#!/usr/bin/python
-#coding: utf-8
-
-import paramiko, time
-
-
-
-
-class myssh():  
-    def **init**(self, ip, port, username, password):  
-        self.ssh = paramiko.SSHClient()  
-        self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  
-        self.ssh.connect(ip, port, username, password, timeout=5)  
-
-    def exec(self, cmd):  
-        return self.ssh.exec_command(cmd)  
-
-if **name** == &amp;apos;**main**&amp;apos;:  
-    ssh = myssh(&amp;apos;localhost&amp;apos;, 8022, &amp;apos;haofly&amp;apos;, &amp;apos;896499825&amp;apos;)  
-    while True:  
-         ssh.exec(&amp;apos; &amp;apos;)  
-         time.sleep(30)  
-    ssh.close()
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;封面图片来自Pixabay&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;u80CC_u666F_uFF1A_u5929_u671D_u5927_u5C40_u57DF_u7F51_uFF0C_u7F51_u4E0A_u90FD_u8BF4_u53EF_u4EE5_u6253_u7535_u8BDD_u53EB_u5BA2_u670D_
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>博客再次改版</title>
-    <link href="http://haofly.net/blog-revision/"/>
-    <id>http://haofly.net/blog-revision/</id>
-    <published>2015-12-02T04:46:10.000Z</published>
-    <updated>2016-02-11T07:23:15.652Z</updated>
-    
-    <content type="html">&lt;p&gt;经过长达5个月的艰辛历程(实际的编程时间少之又少)，终于自己打造出了一个静态博客。虽然没有wordpress那么方便，虽然没有预期中那么漂亮，虽然还有很多功&lt;br&gt;能还没有完善，但是这是我第一次用自己的技术为自己做了一个“会用”的东西。&lt;/p&gt;
-&lt;p&gt;开博两年多了，从Github的octopress到wordpress再到自己搭建静态博客，写了总共一百多篇文章，由于本次改版采用的是大重构，所以我是一篇文章&lt;br&gt;一篇文章的迁移过来的，只是格式有些还没改动，不过大体能成型了。目前博客有我很喜欢的几大特点：&lt;/p&gt;
-&lt;p&gt;1.静态化，直接使用nginx实现html文件的静态访问&lt;/p&gt;
-&lt;p&gt;2.ajax异步提交评论，评论不会立即出发更新html的接口，而是后台审核后才能更新&lt;/p&gt;
-&lt;p&gt;3.SEO自己做，这个还有很多学习的地方&lt;/p&gt;
-&lt;p&gt;4.每篇文章对应一张大图，其实是自己爱上摄影后才选择的这个主题，因为这样不仅让我在每篇文章编写时用心，还能用心拍照片(当然，实在没照片的时候就使用的Pixe&lt;br&gt;bay的免费可商用的图片)&lt;/p&gt;
-&lt;p&gt;5.采用我最喜欢的Python语言进行编写(Djanago框架)&lt;/p&gt;
-&lt;p&gt;总之，这几个月很少更新博客，原因是公司的事情太多，自己没有合理利用好时间，所以导致这种这个局面。其实，最近几个月的实习，自己还是有很多感悟的，以后会陆续写成&lt;br&gt;文章发表出来的。也不知道有没有人看，反正，开心就好咯。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;经过长达5个月的艰辛历程(实际的编程时间少之又少)，终于自己打造出了一个静态博客。虽然没有wordpress那么方便，虽然没有预期中那么漂亮，虽然还有很多功&lt;br&gt;能还没有完善，但是这是我第一次用自己的技术为自己做了一个“会用”的东西。&lt;/p&gt;
-&lt;p&gt;开博两年多了，从Git
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Python3 使用MySQL Connector操作数据库</title>
-    <link href="http://haofly.net/python-connect-mysql/"/>
-    <id>http://haofly.net/python-connect-mysql/</id>
-    <published>2015-11-04T09:48:41.000Z</published>
-    <updated>2016-02-11T07:23:24.804Z</updated>
-    
-    <content type="html">&lt;p&gt;参考文档：&lt;br&gt;&lt;a href=&quot;https://dev.mysql.com/doc/connector-python/en/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://dev.mysql.com/doc/connector-python/en/&lt;/a&gt;  &lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://mysql-python.sourceforge.net/MySQLdb.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mysql-python.sourceforge.net/MySQLdb.html&lt;/a&gt;  &lt;/p&gt;
-&lt;h2 id=&quot;u5B89_u88C5_u65B9_u6CD5&quot;&gt;&lt;a href=&quot;#u5B89_u88C5_u65B9_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;安装方法&quot;&gt;&lt;/a&gt;安装方法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# ubuntu
-sudo apt-get install python3-dev libmysqlclient-dev
-pip install mysqlclient
-
-# CentOS
-sudo yum install pytho3n-devel mysql-devel
-pip install mysqlclient
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;u6570_u636E_u5E93_u7684_u8FDE_u63A5&quot;&gt;&lt;a href=&quot;#u6570_u636E_u5E93_u7684_u8FDE_u63A5&quot; class=&quot;headerlink&quot; title=&quot;数据库的连接&quot;&gt;&lt;/a&gt;数据库的连接&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 使用Oracle官方提供的数据库引擎的连接方法
-import mysql.connector
-cnx = mysql.connector.connect(  
-                          user=&amp;apos;&amp;apos;,
-                          password=&amp;apos;&amp;apos;,
-                          host=&amp;apos;&amp;apos;,
-                          database=&amp;apos;&amp;apos;,  
-                          pool_size=3 # 连接池大小)
-cnx.close()
-
-# 使用基于MySQLdb的连接方法，比如mysqlclient
-import MySQLdb
-db = MySQLdb.connect(host=&amp;apos;&amp;apos;, user=&amp;apos;&amp;apos;, passwd=&amp;apos;&amp;apos;, db=&amp;apos;&amp;apos;, charset=&amp;apos;utf8&amp;apos;)
-cursor = db.cursor()
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Difference_uFF1A_u4E24_u4E2A_u5E93_u7684_u533A_u522B&quot;&gt;&lt;a href=&quot;#Difference_uFF1A_u4E24_u4E2A_u5E93_u7684_u533A_u522B&quot; class=&quot;headerlink&quot; title=&quot;Difference：两个库的区别&quot;&gt;&lt;/a&gt;Difference：两个库的区别&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# MySQL Connector/Python
-Oracle官方的实现，底层完全用C来实现
-默认未开启cursorbuffer，如果需要则显式开启：cnx.cursor(buffered=True)或者mysql.connector.connect(buffered=True)，开启了buffer，可同时使用多个游标
-
-# MySQLdb
-不完全用C
-默认开启了cursor的，会缓存结果，但是针对特别大的查询，可能会导致程序崩溃
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;u63D2_u5165&quot;&gt;&lt;a href=&quot;#u63D2_u5165&quot; class=&quot;headerlink&quot; title=&quot;插入&quot;&gt;&lt;/a&gt;插入&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 同时插入多条数据
-
-
-data = [
-    (&amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;c&amp;apos;, &amp;apos;d&amp;apos;),
-    (&amp;apos;e&amp;apos;, &amp;apos;f&amp;apos;, &amp;apos;g&amp;apos;, &amp;apos;h&amp;apos;)
-]
-stmt = &amp;apos;INSERT INTO table_name (field_name1, field_name2) VALUES(\%s, \%s)&amp;apos;
-cursor.executemany(stmt, data)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;u8BFB_u53D6&quot;&gt;&lt;a href=&quot;#u8BFB_u53D6&quot; class=&quot;headerlink&quot; title=&quot;读取&quot;&gt;&lt;/a&gt;读取&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 看了源码发现，fetchone/fatchmany/fetchall实现居然是一样的：https://github.com/PyMySQL/mysqlclient-python/blob/7d289b21728ab1a94bb1f0210a26367c6714d881/MySQLdb/cursors.py，结果都是一次取出保存，这三个方法就是在结果列表里面切片而已
-
-# fetchone()举例
-cursor.execute(&amp;apos;select * FROM user&amp;quot;)
-row = cursor.fetchone()
-while row is not None:
-    print(row)
-    row = cursor.fetchone()  
-
-# cursor可以直接拿来做迭代器
-cursor.execute(sql)
-for row in cursor:
-    print(row)
-
-# fetchmany()：获取固定数量的结果，当然，每次fetch过后指针会偏移到后面那个地方
-rows = cursor.fetchmany(size=1)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;TroubleShooting&quot;&gt;&lt;a href=&quot;#TroubleShooting&quot; class=&quot;headerlink&quot; title=&quot;TroubleShooting&quot;&gt;&lt;/a&gt;TroubleShooting&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;获取insert后的ID值  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;db.insert_id()  # 表示上一次插入数据的ID
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;多线程的情况下，出现错误”OperationalError:(2013, ‘Lost connection to MySQL server during query’)”，出现这种情况是因为在多线程的情况下，如果只有一个mysql连接，那么mysql该连接会在执行完一个线程后销毁，需要加锁，在线程里面修改全局变量，会导致该变量的引用出错  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;    LOCK.acquire()  
-mysql.cursor.execute(sql)  
-result = mysql.cursor.fetchall()  
-LOCK.release()  
-print(len(result))
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参考文档：&lt;br&gt;&lt;a href=&quot;https://dev.mysql.com/doc/connector-python/en/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://dev.mysql.com/doc/connector-pyth
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用Supervisor管理进程</title>
-    <link href="http://haofly.net/supervisor-manage-processor/"/>
-    <id>http://haofly.net/supervisor-manage-processor/</id>
-    <published>2015-08-11T02:07:33.000Z</published>
-    <updated>2016-02-11T07:23:26.600Z</updated>
-    
-    <content type="html">&lt;p&gt;参考文章：&lt;a href=&quot;http://segmentfault.com/a/1190000002991175&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://segmentfault.com/a/1190000002991175&lt;/a&gt;(原文中还有使用OneAPM安装Python探针的应用，可&lt;br&gt;以实时监控web应用数据，暂时还未实践)&lt;/p&gt;
-&lt;p&gt;supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理&lt;br&gt;Nginx、Apache等，都比较方便，这里是其使用方法：&lt;/p&gt;
-&lt;h2 id=&quot;u5B89_u88C5&quot;&gt;&lt;a href=&quot;#u5B89_u88C5&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 不要用apt-get的方式安装，如果安装出现unix:///var/run/supervisor.sock no such file这样的错误，那么请参考：http://tuzii.me/diary/522dc528848eea683d7724f2/\%E8\%A7\%A3\%E5\%86\%B3ubuntu-supervisor-unix:var-run-supervisor.sock-no-such-file.\%E7\%9A\%84\%E6\%96\%B9\%E6\%B3\%95
-
-
-
-
-sudo easy_install supervisor
-echo_supervisord_conf &amp;gt; supervisord.conf  # 生成一个配置文件
-sudo supervisord -c supervisord.conf      # 使用该配置文件启动supervisord
-sudo supervisorctl                        # 进入命令行界面管理进程
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;u8BBE_u7F6E_u4E00_u4E2A_u8FDB_u7A0B&quot;&gt;&lt;a href=&quot;#u8BBE_u7F6E_u4E00_u4E2A_u8FDB_u7A0B&quot; class=&quot;headerlink&quot; title=&quot;设置一个进程&quot;&gt;&lt;/a&gt;设置一个进程&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 在supervisord.conf里面添加如下内容
-[program:frontend]                                           # 进程名
-command=/usr/bin/python manage.py runserver 0.0.0.0:8000     # 启动该进程的命令
-directory=/media/sf_company/frontend/frontend                # 在执行上面命令前切换到指定目录
-startsecs=0
-stopwaitsecs=0
-autostart=false
-autorestart=false
-user=root
-stdout_logfile=/root/log/8000_access.log                     # 访问日志
-stderr_logfile=/root/log/8000_error.log                      # 错误日志
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样就创建了一个进程，进程的名称为frontend&lt;/p&gt;
-&lt;h2 id=&quot;supervisorctl_u5E38_u7528_u547D_u4EE4_uFF1A&quot;&gt;&lt;a href=&quot;#supervisorctl_u5E38_u7528_u547D_u4EE4_uFF1A&quot; class=&quot;headerlink&quot; title=&quot;supervisorctl常用命令：&quot;&gt;&lt;/a&gt;supervisorctl常用命令：&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;start name    # 开始一个进程
-stop name    # 终止一个进程
-status   # 查看当前管理状态
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参考文章：&lt;a href=&quot;http://segmentfault.com/a/1190000002991175&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://segmentfault.com/a/1190000002991175&lt;/a&gt;(原
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>SSL各种格式证书的转换(JKS to PEM, KEY, CRT)</title>
-    <link href="http://haofly.net/ssl-jks-to-pem/"/>
-    <id>http://haofly.net/ssl-jks-to-pem/</id>
-    <published>2015-08-04T03:05:06.000Z</published>
-    <updated>2016-02-11T07:23:26.316Z</updated>
-    
-    <content type="html">&lt;p&gt;原文链接：&lt;a href=&quot;http://ju.outofmemory.cn/entry/108566&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://ju.outofmemory.cn/entry/108566&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;fuck，最讨厌java了，有同事说JKS是Java特有的东西，所以必须调用Java才能使用，but，I use Python，nothing is im&lt;br&gt;possible，发现使用requests来直接调用其它格式的证书文件就行，当然，Python也可以用pyjks包来将jks转换为其它格式，但没必要那样做，&lt;br&gt;因为直接用ssl工具转换就可以一劳永逸了。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;JKS(Java&lt;br&gt;KeyStore)是Java的一个证书仓库，包括授权整数和公钥整数等。JDK提供了一个工具keytool用于管理keystore。转换步骤：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;使用keytool导出成PKCS12格式：&lt;/p&gt;
-&lt;h1 id=&quot;keytool_-importkeystore_-srckeystore_server-jks_-destkeystore_server-p12_-srcstoretype_jks_-deststoretype_pkcs12&quot;&gt;&lt;a href=&quot;#keytool_-importkeystore_-srckeystore_server-jks_-destkeystore_server-p12_-srcstoretype_jks_-deststoretype_pkcs12&quot; class=&quot;headerlink&quot; title=&quot;keytool -importkeystore -srckeystore server.jks -destkeystore server.p12 -srcstoretype jks -deststoretype pkcs12&quot;&gt;&lt;/a&gt;keytool -importkeystore -srckeystore server.jks -destkeystore server.p12 -srcstoretype jks -deststoretype pkcs12&lt;/h1&gt;&lt;p&gt;输入目标密钥库口令:  &lt;/p&gt;
-&lt;p&gt;再次输入新口令:&lt;br&gt;输入源密钥库口令:  &lt;/p&gt;
-&lt;p&gt;已成功导入别名 ca_root 的条目。&lt;br&gt;已完成导入命令: 1 个条目成功导入, 0 个条目失败或取消&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;生成pem证书(包含了key，server证书和ca证书)：&lt;/p&gt;
-&lt;h1 id=&quot;u751F_u6210key__u52A0_u5BC6_u7684pem_u8BC1_u4E66&quot;&gt;&lt;a href=&quot;#u751F_u6210key__u52A0_u5BC6_u7684pem_u8BC1_u4E66&quot; class=&quot;headerlink&quot; title=&quot;生成key 加密的pem证书&quot;&gt;&lt;/a&gt;生成key 加密的pem证书&lt;/h1&gt;&lt;p&gt;$ openssl pkcs12 -in server.p12 -out server.pem&lt;br&gt;Enter Import Password:&lt;br&gt;MAC verified OK&lt;br&gt;Enter PEM pass phrase:&lt;br&gt;Verifying - Enter PEM pass phrase:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;# 生成key 非加密的pem证书
-
-
-
-
-$ openssl pkcs12 -nodes -in server.p12 -out server.pem
-Enter Import Password:
-MAC verified OK
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;单独导出key：&lt;/p&gt;
-&lt;h1 id=&quot;u751F_u6210_u52A0_u5BC6_u7684key&quot;&gt;&lt;a href=&quot;#u751F_u6210_u52A0_u5BC6_u7684key&quot; class=&quot;headerlink&quot; title=&quot;生成加密的key&quot;&gt;&lt;/a&gt;生成加密的key&lt;/h1&gt;&lt;p&gt;$ openssl pkcs12 -in tankywoo.p12  -nocerts -out server.key&lt;br&gt;Enter Import Password:&lt;br&gt;MAC verified OK&lt;br&gt;Enter PEM pass phrase:&lt;br&gt;Verifying - Enter PEM pass phrase:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;# 生成非加密的key
-
-
-
-
-$ openssl pkcs12 -in tankywoo.p12 -nocerts -nodes -out server.key
-Enter Import Password:
-MAC verified OK
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;单独导出server证书：&lt;/p&gt;
-&lt;p&gt;   $ openssl pkcs12 -in server.p12  -nokeys -clcerts -out server.crt&lt;br&gt;Enter Import Password:&lt;br&gt;MAC verified OK&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;单独导出ca证书：&lt;/p&gt;
-&lt;p&gt;   $ openssl pkcs12 -in server.p12  -nokeys -cacerts -out ca.crt&lt;br&gt;Enter Import Password:&lt;br&gt;MAC verified OK&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;TroubleShooting_uFF1A&quot;&gt;&lt;a href=&quot;#TroubleShooting_uFF1A&quot; class=&quot;headerlink&quot; title=&quot;TroubleShooting：&quot;&gt;&lt;/a&gt;TroubleShooting：&lt;/h1&gt;&lt;p&gt;1.至于原文中出现的导入ca_root证书出现错误，它那个方法貌似不管用，这里建议将Java升级到Java8即可成功导入。&lt;/p&gt;
-&lt;p&gt;2.在Python中使用ssl时(无论是用httplib、ssl还是requests)，可能出现以下错误：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Traceback (most recent call last):
-  File &amp;quot;client.py&amp;quot;, line 10, in &amp;lt;module&amp;gt;
-    ssl_sock.connect((&amp;apos;&amp;apos;, 9000))
-  File &amp;quot;/Users/amk/source/p/python/Lib/ssl.py&amp;quot;, line 204, in connect
-    self.ca_certs)
-ssl.SSLError: [Errno 0] _ssl.c:327: error:00000000:lib(0):func(0):reason(0)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;根本原因就是提供的证书是错误的&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原文链接：&lt;a href=&quot;http://ju.outofmemory.cn/entry/108566&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://ju.outofmemory.cn/entry/108566&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>[转]函数式编程——CoolShell</title>
-    <link href="http://haofly.net/function-coding-coolshell/"/>
-    <id>http://haofly.net/function-coding-coolshell/</id>
-    <published>2015-07-25T08:35:42.000Z</published>
-    <updated>2016-02-11T07:23:18.340Z</updated>
-    
-    <content type="html">&lt;p&gt;原文地址：&lt;a href=&quot;http://coolshell.cn/articles/10822.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://coolshell.cn/articles/10822.html&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;本篇文章写于2013年底，而今天我看来，依然是精华中的精华，就喜欢这种深入浅出的文章，带我们对函数式编程更深入的理解，并且本篇文章采用多种语言多种角度来&lt;br&gt;向我们讲解了到底什么才是函数式编程，再加上最近工作上很多的问题，才发现，其实公司之前的代码有很多优秀的地方。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;原文地址：&lt;a href=&quot;http://coolshell.cn/articles/10822.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://coolshell.cn/articles/10822.html&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;本篇文章写于2013年底，而今天我看来，依然是精华中的精华，就喜欢这种深入浅出的文章，带我们对函数式编程更深入的理解，并且本篇文章采用多种语言多种角度来&lt;br&gt;向我们讲解了到底什么才是函数式编程，再加上最近工作上很多的问题，才发现，其实公司之前的代码有很多优秀的地方。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;当我们说起函数式编程来说，我们会看到如下函数式编程的长相：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;函数式编程的三大特性：&lt;br&gt;&lt;strong&gt;immutable data 不可变数据&lt;/strong&gt;：像Clojure一样，默认上变量是不可变的，如果你要改变变量，你需要把变量copy出去修改。这样一来，可以让你的程序少很多Bug。因为，程序中的状态不好维护，在并发的时候更不好维护。（你可以试想一下如果你的程序有个复杂的状态，当以后别人改你代码的时候，是很容易出bug的，在并行中这样的问题就更多了）&lt;br&gt;&lt;strong&gt;first class functions&lt;/strong&gt;：这个技术可以让你的函数就像变量一样来使用。也就是说，你的函数可以像变量一样被创建，修改，并当成变量一样传递，返回或是在函数中嵌套函数。这个有点像Javascript的Prototype（&lt;a href=&quot;http://coolshell.cn/articles/6668.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参看Javascript的面向对象编程&lt;/a&gt;）&lt;br&gt;&lt;strong&gt;尾递归优化&lt;/strong&gt;：我们知道递归的害处，那就是如果递归很深的话，stack受不了，并会导致性能大幅度下降。所以，我们使用尾递归优化技术——每次递归时都会重用stack，这样一来能够提升性能，当然，这需要语言或编译器的支持。Python就不支持。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;函数式编程的几个技术&lt;br&gt;&lt;strong&gt;map &amp;amp; reduce&lt;/strong&gt; ：这个技术不用多说了，函数式编程最常见的技术就是对一个集合做Map和Reduce操作。这比起过程式的语言来说，在代码上要更容易阅读。（传统过程式的语言需要使用for/while循环，然后在各种变量中把数据倒过来倒过去的）这个很像C++中的STL中的foreach，find_if，count_if之流的函数的玩法。&lt;br&gt;&lt;strong&gt;pipeline&lt;/strong&gt;：这个技术的意思是，把函数实例成一个一个的action，然后，把一组action放到一个数组或是列表中，然后把数据传给这个action list，数据就像一个pipeline一样顺序地被各个函数所操作，最终得到我们想要的结果。&lt;br&gt;&lt;strong&gt;recursing 递归&lt;/strong&gt; ：递归最大的好处就简化代码，他可以把一个复杂的问题用很简单的代码描述出来。注意：递归的精髓是描述问题，而这正是函数式编程的精髓。&lt;br&gt;&lt;strong&gt;currying&lt;/strong&gt;：把一个函数的多个参数分解成多个函数， 然后把函数多层封装起来，每层函数都返回一个函数去接收下一个参数这样，可以简化函数的多个参数。在C++中，这个很像STL中的bind_1st或是bind2nd。&lt;br&gt;&lt;strong&gt;higher order function 高阶函数&lt;/strong&gt;：所谓高阶函数就是函数当参数，把传入的函数做一个封装，然后返回这个封装函数。现象上就是函数传进传出，就像面向对象对象满天飞一样。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;还有函数式的一些好处&lt;br&gt;&lt;strong&gt;parallelization 并行&lt;/strong&gt;：所谓并行的意思就是在并行环境下，各个线程之间不需要同步或互斥。&lt;strong&gt;lazy evaluation 惰性求值&lt;/strong&gt;：这个需要编译器的支持。表达式不在它被绑定到变量之后就立即求值，而是在该值被取用的时候求值，也就是说，语句如x:=expression; (把一个表达式的结果赋值给一个变量)明显的调用这个表达式被计算并把结果放置到 x 中，但是先不管实际在 x 中的是什么，直到通过后面的表达式中到 x 的引用而有了对它的值的需求的时候，而后面表达式自身的求值也可以被延迟，最终为了生成让外界看到的某个符号而计算这个快速增长的依赖树。&lt;strong&gt;determinism 确定性&lt;/strong&gt;：所谓确定性的意思就是像数学那样 f(x) = y ，这个函数无论在什么场景下，都会得到同样的结果，这个我们称之为函数的确定性。而不是像程序中的很多函数那样，同一个参数，却会在不同的场景下计算出不同的结果。所谓不同的场景的意思就是我们的函数会根据一些运行中的状态信息的不同而发生变化。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;上面的那些东西太抽象了，还是让我们来循序渐近地看一些例子吧。&lt;/p&gt;
-&lt;p&gt;我们先用一个最简单的例子来说明一下什么是函数式编程。&lt;/p&gt;
-&lt;p&gt;先看一个非函数式的例子：&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;4&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;int cnt;&lt;/p&gt;
-&lt;p&gt;void increment(){&lt;/p&gt;
-&lt;p&gt;cnt++;&lt;/p&gt;
-&lt;p&gt;}  &lt;/p&gt;
-&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;那么，函数式的应该怎么写呢？&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;int increment(int cnt){&lt;/p&gt;
-&lt;p&gt;return cnt+1;&lt;/p&gt;
-&lt;p&gt;}  &lt;/p&gt;
-&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;你可能会觉得这个例子太普通了。是的，这个例子就是函数式编程的准则：&lt;strong&gt;不依赖于外部的数据，而且也不改变外部数据的值，而是返回一个新的值给你&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;我们再来看一个简单例子：&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;4&lt;/p&gt;
-&lt;p&gt;5&lt;/p&gt;
-&lt;p&gt;6&lt;/p&gt;
-&lt;p&gt;7&lt;/p&gt;
-&lt;p&gt;8&lt;/p&gt;
-&lt;p&gt;9&lt;/p&gt;
-&lt;p&gt;10&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;def inc(x):&lt;/p&gt;
-&lt;p&gt;def incx(y):&lt;/p&gt;
-&lt;p&gt;return x+y&lt;/p&gt;
-&lt;p&gt;return incx&lt;/p&gt;
-&lt;p&gt;inc2 = inc(2)&lt;/p&gt;
-&lt;p&gt;inc5 = inc(5)&lt;/p&gt;
-&lt;p&gt;print inc2(5) # 输出 7&lt;/p&gt;
-&lt;p&gt;print inc5(5) # 输出 10  &lt;/p&gt;
-&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;我们可以看到上面那个例子inc()函数返回了另一个函数incx()，于是我们可以用inc()函数来构造各种版本的inc函数，比如：inc2()和inc5()&lt;br&gt;。这个技术其实就是上面所说的Currying技术。从这个技术上，你可能体会到函数式编程的理念：&lt;strong&gt;把函数当成变量来用，关注于描述问题而不是怎么实现&lt;/strong&gt;，这样&lt;br&gt;可以让代码更易读。&lt;/p&gt;
-&lt;h2 id=&quot;Map__26amp_3B_Reduce&quot;&gt;&lt;a href=&quot;#Map__26amp_3B_Reduce&quot; class=&quot;headerlink&quot; title=&quot;Map &amp;amp; Reduce&quot;&gt;&lt;/a&gt;Map &amp;amp; Reduce&lt;/h2&gt;&lt;p&gt;在函数式编程中，我们不应该用循环迭代的方式，我们应该用更为高级的方法，如下所示的Python代码&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;name_len = map(len, [“hao”, “chen”, “coolshell”])&lt;/p&gt;
-&lt;p&gt;print name_len&lt;/p&gt;
-&lt;h1 id=&quot;u8F93_u51FA__5B3_2C_4_2C_9_5D&quot;&gt;&lt;a href=&quot;#u8F93_u51FA__5B3_2C_4_2C_9_5D&quot; class=&quot;headerlink&quot; title=&quot;输出 [3, 4, 9]&quot;&gt;&lt;/a&gt;输出 [3, 4, 9]&lt;/h1&gt;&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;你可以看到这样的代码很易读，因为，&lt;strong&gt;这样的代码是在描述要干什么，而不是怎么干&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;我们再来看一个Python代码的例子：&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;4&lt;/p&gt;
-&lt;p&gt;5&lt;/p&gt;
-&lt;p&gt;6&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;def toUpper(item):&lt;/p&gt;
-&lt;p&gt;return item.upper()&lt;/p&gt;
-&lt;p&gt;upper_name = map(toUpper, [“hao”, “chen”, “coolshell”])&lt;/p&gt;
-&lt;p&gt;print upper_name&lt;/p&gt;
-&lt;h1 id=&quot;u8F93_u51FA__5B_u2018HAO_u2019_2C__u2018CHEN_u2019_2C__u2018COOLSHELL_u2019_5D&quot;&gt;&lt;a href=&quot;#u8F93_u51FA__5B_u2018HAO_u2019_2C__u2018CHEN_u2019_2C__u2018COOLSHELL_u2019_5D&quot; class=&quot;headerlink&quot; title=&quot;输出 [‘HAO’, ‘CHEN’, ‘COOLSHELL’]&quot;&gt;&lt;/a&gt;输出 [‘HAO’, ‘CHEN’, ‘COOLSHELL’]&lt;/h1&gt;&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;顺便说一下，上面的例子个是不是和我们的STL的transform有些像？&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;4&lt;/p&gt;
-&lt;p&gt;5&lt;/p&gt;
-&lt;p&gt;6&lt;/p&gt;
-&lt;p&gt;7&lt;/p&gt;
-&lt;p&gt;8&lt;/p&gt;
-&lt;p&gt;9&lt;/p&gt;
-&lt;p&gt;10&lt;/p&gt;
-&lt;p&gt;11&lt;/p&gt;
-&lt;p&gt;12&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;#include &lt;iostream&gt;&lt;/iostream&gt;&lt;/p&gt;
-&lt;p&gt;#include &lt;algorithm&gt;&lt;/algorithm&gt;&lt;/p&gt;
-&lt;p&gt;#include &lt;string&gt;&lt;/string&gt;&lt;/p&gt;
-&lt;p&gt;using namespace std;&lt;/p&gt;
-&lt;p&gt;int main() {&lt;/p&gt;
-&lt;p&gt;string s=”hello”;&lt;/p&gt;
-&lt;p&gt;string out;&lt;/p&gt;
-&lt;p&gt;transform(s.begin(), s.end(), back_inserter(out), ::toupper);&lt;/p&gt;
-&lt;p&gt;cout &amp;lt;&amp;lt; out &amp;lt;&amp;lt; endl;&lt;/p&gt;
-&lt;p&gt;// 输出：HELLO&lt;/p&gt;
-&lt;p&gt;}  &lt;/p&gt;
-&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;在上面Python的那个例子中我们可以看到，我们写义了一个函数toUpper，这个函数没有改变传进来的值，只是把传进来的值做个简单的操作，然后返回。然后，我&lt;br&gt;们把其用在map函数中，就可以很清楚地描述出我们想要干什么。而不会去理解一个在循环中的怎么实现的代码，最终在读了很多循环的逻辑后才发现原来是这个或那个意思。&lt;br&gt;下面，我们看看描述实现方法的过程式编程是怎么玩的（看上去是不是不如函数式的清晰？）：&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;4&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;upname =[‘HAO’, ‘CHEN’, ‘COOLSHELL’]&lt;/p&gt;
-&lt;p&gt;lowname =[]&lt;/p&gt;
-&lt;p&gt;for i in range(len(upname)):&lt;/p&gt;
-&lt;p&gt;lowname.append( upname[i].lower() )  &lt;/p&gt;
-&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;对于map我们别忘了lambda表达式：你可以简单地理解为这是一个inline的匿名函数。下面的lambda表达式相当于：def func(x):&lt;br&gt;return x*x&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;squares = map(lambda x: x * x, range(9))&lt;/p&gt;
-&lt;p&gt;print squares&lt;/p&gt;
-&lt;h1 id=&quot;u8F93_u51FA__5B0_2C_1_2C_4_2C_9_2C_16_2C_25_2C_36_2C_49_2C_64_5D&quot;&gt;&lt;a href=&quot;#u8F93_u51FA__5B0_2C_1_2C_4_2C_9_2C_16_2C_25_2C_36_2C_49_2C_64_5D&quot; class=&quot;headerlink&quot; title=&quot;输出 [0, 1, 4, 9, 16, 25, 36, 49, 64]&quot;&gt;&lt;/a&gt;输出 [0, 1, 4, 9, 16, 25, 36, 49, 64]&lt;/h1&gt;&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;我们再来看看reduce怎么玩？（下面的lambda表达式中有两个参数，也就是说每次从列表中取两个值，计算结果后把这个值再放回去，下面的表达式相当于：(((&lt;br&gt;(1+2)+3)+4)+5) ）&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;print reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])&lt;/p&gt;
-&lt;h1 id=&quot;u8F93_u51FA_15&quot;&gt;&lt;a href=&quot;#u8F93_u51FA_15&quot; class=&quot;headerlink&quot; title=&quot;输出 15&quot;&gt;&lt;/a&gt;输出 15&lt;/h1&gt;&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;Python中的除了map和reduce外，还有一些别的如filter, find, all,&lt;br&gt;any的函数做辅助（其它函数式的语言也有），可以让你的代码更简洁，更易读。 我们再来看一个比较复杂的例子：&lt;/p&gt;
-&lt;p&gt;计算数组中正数的平均值&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;4&lt;/p&gt;
-&lt;p&gt;5&lt;/p&gt;
-&lt;p&gt;6&lt;/p&gt;
-&lt;p&gt;7&lt;/p&gt;
-&lt;p&gt;8&lt;/p&gt;
-&lt;p&gt;9&lt;/p&gt;
-&lt;p&gt;10&lt;/p&gt;
-&lt;p&gt;11&lt;/p&gt;
-&lt;p&gt;12&lt;/p&gt;
-&lt;p&gt;13&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;num =[2, -5, 9, 7, -2, 5, 3, 1, 0, -3, 8]&lt;/p&gt;
-&lt;p&gt;positive_num_cnt = 0&lt;/p&gt;
-&lt;p&gt;positive_num_sum = 0&lt;/p&gt;
-&lt;p&gt;for i in range(len(num)):&lt;/p&gt;
-&lt;p&gt;if num[i] &amp;gt; 0:&lt;/p&gt;
-&lt;p&gt;positive_num_cnt += 1&lt;/p&gt;
-&lt;p&gt;positive_num_sum += num[i]&lt;/p&gt;
-&lt;p&gt;if positive_num_cnt &amp;gt; 0:&lt;/p&gt;
-&lt;p&gt;average = positive_num_sum / positive_num_cnt&lt;/p&gt;
-&lt;p&gt;print average&lt;/p&gt;
-&lt;h1 id=&quot;u8F93_u51FA_5&quot;&gt;&lt;a href=&quot;#u8F93_u51FA_5&quot; class=&quot;headerlink&quot; title=&quot;输出 5&quot;&gt;&lt;/a&gt;输出 5&lt;/h1&gt;&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;如果用函数式编程，这个例子可以写成这样：&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;positive_num = filter(lambda x: x&amp;gt;0, num)&lt;/p&gt;
-&lt;p&gt;average = reduce(lambda x,y: x+y, positive_num) / len( positive_num )  &lt;/p&gt;
-&lt;p&gt;—|—  &lt;/p&gt;
-&lt;p&gt;C++11玩的法：&lt;/p&gt;
-&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;p&gt;4&lt;/p&gt;
-&lt;p&gt;5&lt;/p&gt;
-&lt;p&gt;6&lt;/p&gt;
-&lt;p&gt;7&lt;/p&gt;
-&lt;p&gt;8&lt;/p&gt;
-&lt;p&gt;9&lt;/p&gt;
-&lt;p&gt;10&lt;/p&gt;
-&lt;p&gt;11&lt;/p&gt;
-&lt;p&gt;12&lt;/p&gt;
-&lt;p&gt;|&lt;/p&gt;
-&lt;p&gt;#include &lt;iostream&gt;&lt;/iostream&gt;&lt;/p&gt;
-&lt;p&gt;#include &lt;algorithm&gt;&lt;/algorithm&gt;&lt;/p&gt;
-&lt;p&gt;#include &lt;numeric&gt;&lt;/numeric&gt;&lt;/p&gt;
-&lt;p&gt;#include &lt;string&gt;&lt;/string&gt;&lt;/p&gt;
-&lt;p&gt;#include &lt;vector&gt;&lt;/vector&gt;&lt;/p&gt;
-&lt;p&gt;using namespace std;&lt;/p&gt;
-&lt;p&gt;vector num {2, -5, 9, 7, -2, 5, 3, 1, 0, -3, 8};&lt;/p&gt;
-&lt;p&gt;vector p_num;&lt;/p&gt;
-&lt;p&gt;copy_if(num.begin(), num.end(&amp;lt;span class=”crayon-sy” sty&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原文地址：&lt;a href=&quot;http://coolshell.cn/articles/10822.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://coolshell.cn/articles/10822.html&lt;/a&gt;&lt;/p&gt;
-&lt;bl
-    
-    </summary>
-    
-      <category term="韦编三绝" scheme="http://haofly.net/categories/%E9%9F%A6%E7%BC%96%E4%B8%89%E7%BB%9D/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>[转]Apache vs Nginx: Practical Considerations</title>
-    <link href="http://haofly.net/apache-vs-nginx/"/>
-    <id>http://haofly.net/apache-vs-nginx/</id>
-    <published>2015-07-18T01:34:47.000Z</published>
-    <updated>2016-02-11T07:23:15.124Z</updated>
-    
-    <content type="html">&lt;p&gt;原文地址：&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/apache-vs-nginx-
-practical-considerations&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.digitalocean.com/community/tutorials/apache-vs-nginx-
-practical-considerations&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;总之就是各有各的优点，最好的方式就是nginx在前面做反向代理，并顺便处理静态内容，而apache则负责处理动态内容。&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Apache and Nginx are the two most common open source web servers in the world.&lt;br&gt;Together, they are responsible for serving over 50\% of traffic on the&lt;br&gt;internet. Both solutions are capable of handling diverse workloads and working&lt;br&gt;with other software to provide a complete web stack.&lt;/p&gt;
-&lt;p&gt;While Apache and Nginx share many qualities, they should not be thought of as&lt;br&gt;entirely interchangeable. Each excels in its own way and it is important to&lt;br&gt;understand the situations where you may need to reevaluate your web server of&lt;br&gt;choice. This article will be devoted to a discussion of how each server stacks&lt;br&gt;up in various areas.&lt;/p&gt;
-&lt;h2 id=&quot;General_Overview&quot;&gt;&lt;a href=&quot;#General_Overview&quot; class=&quot;headerlink&quot; title=&quot;General Overview&quot;&gt;&lt;/a&gt;General Overview&lt;/h2&gt;&lt;p&gt;Before we dive into the differences between Apache and Nginx, let’s take a&lt;br&gt;quick look at the background of these two projects and their general&lt;br&gt;characteristics.&lt;/p&gt;
-&lt;h4 id=&quot;Apache&quot;&gt;&lt;a href=&quot;#Apache&quot; class=&quot;headerlink&quot; title=&quot;Apache&quot;&gt;&lt;/a&gt;Apache&lt;/h4&gt;&lt;p&gt;The Apache HTTP Server was created by Robert McCool in 1995 and has been&lt;br&gt;developed under the direction of the Apache Software Foundation since 1999.&lt;br&gt;Since the HTTP web server is the foundation’s original project and is by far&lt;br&gt;their most popular piece of software, it is often referred to simply as&lt;br&gt;“Apache”.&lt;/p&gt;
-&lt;p&gt;The Apache web server has been the most popular server on the internet since&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Because of this popularity, Apache benefits from great documentation and&lt;br&gt;integrated support from other software projects.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Apache is often chosen by administrators for its flexibility, power, and&lt;br&gt;widespread support. It is extensible through a dynamically loadable module&lt;br&gt;system and can process a large number of interpreted languages without&lt;br&gt;connecting out to separate software.&lt;/p&gt;
-&lt;h4 id=&quot;Nginx&quot;&gt;&lt;a href=&quot;#Nginx&quot; class=&quot;headerlink&quot; title=&quot;Nginx&quot;&gt;&lt;/a&gt;Nginx&lt;/h4&gt;&lt;p&gt;In 2002, Igor Sysoev began work on Nginx as an answer to the C10K problem,&lt;br&gt;which was a challenge for web servers to begin handling ten thousand&lt;br&gt;concurrent connections as a requirement for the modern web. The initial public&lt;br&gt;release was made in 2004, meeting this goal by relying on an asynchronous(异步),&lt;br&gt;events-driven(事件驱动) architecture.&lt;/p&gt;
-&lt;p&gt;Nginx has grown in popularity since its release due to its light-weight&lt;br&gt;resource utilization and its ability to scale easily on minimal hardware.&lt;br&gt;Nginx excels at serving static content(静态内容) quickly and is designed to pass&lt;br&gt;dynamic requests off to other software that is better suited for those&lt;br&gt;purposes.&lt;/p&gt;
-&lt;p&gt;Nginx is often selected by administrators for its resource efficiency and&lt;br&gt;responsiveness under load. Advocates welcome Nginx’s focus on core web server&lt;br&gt;and proxy features.&lt;/p&gt;
-&lt;h2 id=&quot;Connection_Handling_Architecturel_28_u8FDE_u63A5_u5904_u7406_u67B6_u6784_29&quot;&gt;&lt;a href=&quot;#Connection_Handling_Architecturel_28_u8FDE_u63A5_u5904_u7406_u67B6_u6784_29&quot; class=&quot;headerlink&quot; title=&quot;Connection Handling Architecturel(连接处理架构)&quot;&gt;&lt;/a&gt;Connection Handling Architecturel(连接处理架构)&lt;/h2&gt;&lt;p&gt;One big difference between Apache and Nginx is the actual way that they handle&lt;br&gt;connections and traffic. This provides perhaps the most significant difference&lt;br&gt;in the way that they respond to different traffic conditions.&lt;/p&gt;
-&lt;h4 id=&quot;Apache-1&quot;&gt;&lt;a href=&quot;#Apache-1&quot; class=&quot;headerlink&quot; title=&quot;Apache&quot;&gt;&lt;/a&gt;Apache&lt;/h4&gt;&lt;p&gt;Apache provides a variety of multi-processing modules (Apache calls these&lt;br&gt;MPMs) that dictate(决定) how client requests are handled. Basically, this allows&lt;br&gt;administrators to swap out its connection handling architecture easily. These&lt;br&gt;are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;mpm_prefork&lt;/strong&gt;: This processing module spawns(产生) processes with a single thread each to handle request(一个请求一个线程). Each child can handle a single connection at a time. As long as the number of requests is fewer than the number of processes, this MPM is very fast(请求数量比进程数量少的时候会很快). However, performance degrades quickly after the requests surpass the number of processes, so this is not a good choice in many scenarios. Each process has a significant impact on RAM consumption, so this MPM is difficult to scale effectively. This may still be a good choice though if used in conjunction with other components that are not built with threads in mind. For instance, PHP is not thread-safe, so this MPM is recommended as the only safe way of working with mod_php, the Apache module for processing these files.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;mpm_worker&lt;/strong&gt;: This module spawns processes that can each manage multiple threads(每个进程可以管理多个线程). Each of these threads can handle a single connection. Threads are much more efficient than processes(线程比进程更高效), which means that this MPM scales better than the prefork MPM. Since there are more threads than processes, this also means that new connections can immediately take a free thread instead of having to wait for a free process(处理新的连接只需要有新的线程而不需要等待进程释放).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;mpm_event&lt;/strong&gt;: This module is similar to the worker module in most situations, but is optimized to handle keep-alive connections(对持久连接进行了优化). When using the worker MPM, a connection will hold a thread regardless of whether a request is actively being made for as long as the connection is kept alive. The event MPM handles keep alive connections by setting aside dedicated(专用的) threads for handling keep alive connections and passing active requests off to other threads. This keeps the module from getting bogged down by keep-alive requests, allowing for faster execution. This was marked stable with the release of Apache 2.4. As you can see, Apache provides a flexible architecture for choosing different connection and request handling algorithms. The choices provided are mainly a function of the server’s evolution and the increasing need for concurrency as the internet landscape has changed.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;Nginx-1&quot;&gt;&lt;a href=&quot;#Nginx-1&quot; class=&quot;headerlink&quot; title=&quot;Nginx&quot;&gt;&lt;/a&gt;Nginx&lt;/h4&gt;&lt;p&gt;Nginx came onto the scene after Apache, with more awareness of the concurrency&lt;br&gt;problems that would face sites at scale(更注重并发问题). Leveraging(利用) this&lt;br&gt;knowledge, Nginx was designed from the ground up to use an asynchronous, non-&lt;br&gt;blocking, event-driven connection handling algorithm.&lt;/p&gt;
-&lt;p&gt;Nginx spawns worker processes, each of which can handle thousands of&lt;br&gt;connections(产生的是worker进程，每个都可以处理上千个连接). The worker processes accomplish this&lt;br&gt;by implementing a fast looping mechanism(快速的循环机制) that continuously checks for&lt;br&gt;and processes events. Decoupling(解耦) actual work from connections allows each&lt;br&gt;worker to concern itself with a connection only when a new event has been&lt;br&gt;triggered.&lt;/p&gt;
-&lt;p&gt;Each of the connections handled by the worker are placed within the event loop&lt;br&gt;where they exist with other connections. Within the loop, events are processed&lt;br&gt;asynchronously, allowing work to be handled in a non-blocking manner. When the&lt;br&gt;connection closes, it is removed from the loop.&lt;/p&gt;
-&lt;p&gt;This style of connection processing allows Nginx to scale incredibly far with&lt;br&gt;limited resources. Since the server is single-threaded and processes are not&lt;br&gt;spawned to handle each new connection, the memory and CPU usage tends to stay&lt;br&gt;relatively consistent, even at times of heavy load.&lt;/p&gt;
-&lt;h1 id=&quot;Static_vs_Dynamic_Content&quot;&gt;&lt;a href=&quot;#Static_vs_Dynamic_Content&quot; class=&quot;headerlink&quot; title=&quot;Static vs Dynamic Content&quot;&gt;&lt;/a&gt;Static vs Dynamic Content&lt;/h1&gt;&lt;p&gt;In terms of real world use-cases, one of the most common comparisons between&lt;br&gt;Apache and Nginx is the way in which each server handles requests for static&lt;br&gt;and dynamic content.&lt;/p&gt;
-&lt;h4 id=&quot;Apache-2&quot;&gt;&lt;a href=&quot;#Apache-2&quot; class=&quot;headerlink&quot; title=&quot;Apache&quot;&gt;&lt;/a&gt;Apache&lt;/h4&gt;&lt;p&gt;Apache servers can handle static content using its conventional file-based&lt;br&gt;methods. The performance of these operations is mainly a function of the MPM&lt;br&gt;methods described above.&lt;/p&gt;
-&lt;p&gt;Apache can also process dynamic content by embedding(嵌入) a processor of the&lt;br&gt;language in question into each of its worker instances. This allows it to&lt;br&gt;execute dynamic content within the web server itself without having to rely on&lt;br&gt;external components. These dynamic processors can be enabled through the use&lt;br&gt;of dynamically loadable modules.&lt;/p&gt;
-&lt;p&gt;Apache’s ability to handle dynamic content internally means that configuration&lt;br&gt;of dynamic processing tends to be simpler. Communication does not need to be&lt;br&gt;coordinated with an additional piece of software and modules can easily be&lt;br&gt;swapped out if the content requirements change.&lt;/p&gt;
-&lt;h4 id=&quot;Nginx-2&quot;&gt;&lt;a href=&quot;#Nginx-2&quot; class=&quot;headerlink&quot; title=&quot;Nginx&quot;&gt;&lt;/a&gt;Nginx&lt;/h4&gt;&lt;p&gt;Nginx does not have any ability to process dynamic content&lt;br&gt;natively(本身无法处理动态内容). To handle PHP and other requests for dynamic content,&lt;br&gt;Nginx must pass to an external processor for execution and wait for the&lt;br&gt;rendered content to be sent back(必须使用外部的执行程序然后等待返回). The results can then be&lt;br&gt;relayed to the client.&lt;/p&gt;
-&lt;p&gt;For administrators, this means that communication must be configured between&lt;br&gt;Nginx and the processor over one of the protocols Nginx knows how to speak&lt;br&gt;(http, FastCGI, SCGI, uWSGI, memcache). This can complicate things slightly,&lt;br&gt;especially when trying to anticipate the number of connections to allow, as an&lt;br&gt;additional connection will be used for each call to the processor.&lt;/p&gt;
-&lt;p&gt;However, this method has some advantages as well. Since the dynamic&lt;br&gt;interpreter is not embedded in the worker process, its overhead will only be&lt;br&gt;present for dynamic content. Static content can be served in a straight-&lt;br&gt;forward manner and the interpreter will only be contacted when needed. Apache&lt;br&gt;can also function in this manner, but doing so removes the benefits in the&lt;br&gt;previous section.&lt;/p&gt;
-&lt;h1 id=&quot;Distributed_vs_Centralized_Configuration&quot;&gt;&lt;a href=&quot;#Distributed_vs_Centralized_Configuration&quot; class=&quot;headerlink&quot; title=&quot;Distributed vs Centralized Configuration&quot;&gt;&lt;/a&gt;Distributed vs Centralized Configuration&lt;/h1&gt;&lt;p&gt;For administrators, one of the most readily apparent differences between these&lt;br&gt;two pieces of software is whether directory-level configuration is permitted&lt;br&gt;within the content directories.&lt;/p&gt;
-&lt;h4 id=&quot;Apache-3&quot;&gt;&lt;a href=&quot;#Apache-3&quot; class=&quot;headerlink&quot; title=&quot;Apache&quot;&gt;&lt;/a&gt;Apache&lt;/h4&gt;&lt;p&gt;Apache includes an option to allow additional configuration on a per-directory&lt;br&gt;basis by inspecting and interpreting directives in hidden files within the&lt;br&gt;content directories themselves. These files are known as .htaccess&lt;br&gt;files.(可以管理每个目录)&lt;/p&gt;
-&lt;p&gt;Since these files reside within the content directories themselves, when&lt;br&gt;handling a request, Apache checks each component of the path to the requested&lt;br&gt;file for an .htaccess file and applies the directives found within. This&lt;br&gt;effectively allows decentralized configuration of the web server, which is&lt;br&gt;often used for implementing URL rewrites, access restrictions, authorization&lt;br&gt;and authentication, even caching policies.&lt;/p&gt;
-&lt;p&gt;While the above examples can all be configured in the main Apache&lt;br&gt;configuration file,.htaccess files have some important advantages. First,&lt;br&gt;since these are interpreted each time they are found along a request path,&lt;br&gt;they are implemented immediately without reloading the server. Second, it&lt;br&gt;makes it possible to allow non-privileged users to control certain aspects of&lt;br&gt;their own web content without giving them control over the entire&lt;br&gt;configuration file.&lt;/p&gt;
-&lt;p&gt;This provides an easy way for certain web software, like content management&lt;br&gt;systems, to configure their environment without providing access to the&lt;br&gt;central configuration file. This is also used by shared hosting providers to&lt;br&gt;retain control of the main configuration while giving clients control over&lt;br&gt;their specific directories.&lt;/p&gt;
-&lt;h4 id=&quot;Nginx-3&quot;&gt;&lt;a href=&quot;#Nginx-3&quot; class=&quot;headerlink&quot; title=&quot;Nginx&quot;&gt;&lt;/a&gt;Nginx&lt;/h4&gt;&lt;p&gt;Nginx does not interpret .htaccess files, nor does it provide any mechanism&lt;br&gt;for evaluating per-directory configuration outside of the main configuration&lt;br&gt;file. This may be less flexible than the Apache model, but it does have its&lt;br&gt;own advantages.&lt;/p&gt;
-&lt;p&gt;The most notable improvement over the .htaccess system of directory-level&lt;br&gt;configuration is increased performance. For a typical Apache setup that may&lt;br&gt;allow .htaccess in any directory, the server will check for these files in&lt;br&gt;each of the parent directories leading up to the requested file, for each&lt;br&gt;request. If one or more .htaccess files are found during this search, they&lt;br&gt;must be read and interpreted. By not allowing directory overrides, Nginx can&lt;br&gt;serve requests faster by doing a single directory lookup and file read for&lt;br&gt;each request (assuming that the file is found in the conventional directory&lt;br&gt;structure).&lt;/p&gt;
-&lt;p&gt;Another advantage is security related(安全). Distributing directory-level&lt;br&gt;configuration access also distributes the responsibility of security to&lt;br&gt;individual users, who may not be trusted to handle this task well. Ensuring&lt;br&gt;that the administrator maintains control over the entire web server can&lt;br&gt;prevent some security missteps that may occur when access is given to other&lt;br&gt;parties.&lt;/p&gt;
-&lt;p&gt;Keep in mind that it is possible to turn off .htaccess interpretation in&lt;br&gt;Apache if these concerns resonate with you.&lt;/p&gt;
-&lt;h1 id=&quot;File_vs_URI-Based_Interpretation&quot;&gt;&lt;a href=&quot;#File_vs_URI-Based_Interpretation&quot; class=&quot;headerlink&quot; title=&quot;File vs URI-Based Interpretation&quot;&gt;&lt;/a&gt;File vs URI-Based Interpretation&lt;/h1&gt;&lt;p&gt;How the web server interprets requests and maps them to actual resources on&lt;br&gt;the system is another area where these two servers differ.&lt;/p&gt;
-&lt;h4 id=&quot;Apache-4&quot;&gt;&lt;a href=&quot;#Apache-4&quot; class=&quot;headerlink&quot; title=&quot;Apache&quot;&gt;&lt;/a&gt;Apache&lt;/h4&gt;&lt;p&gt;Apache provides the ability to interpret a request as a physical resource on&lt;br&gt;the filesystem or as a URI location that may need a more abstract evaluation.&lt;br&gt;In general, for the former Apache uses &lt;directory&gt; or &lt;files&gt; blocks, while it&lt;br&gt;utilizes &lt;location&gt; blocks for more abstract resources.&lt;/location&gt;&lt;/files&gt;&lt;/directory&gt;&lt;/p&gt;
-&lt;p&gt;Because Apache was designed from the ground up as a web server, the default is&lt;br&gt;usually to interpret requests as filesystem resources. It begins by taking the&lt;br&gt;document root and appending the portion of the request following the host and&lt;br&gt;port number to try to find an actual file. Basically, the filesystem hierarchy&lt;br&gt;is represented on the web as the available document tree.&lt;/p&gt;
-&lt;p&gt;Apache provides a number of alternatives for when the request does not match&lt;br&gt;the underlying filesystem. For instance, an Alias directive can be used to map&lt;br&gt;to an alternative location. Using &lt;location&gt; blocks is a method of working&lt;br&gt;with the URI itself instead of the filesystem. There are also regular&lt;br&gt;expression variants which can be used to apply configuration more flexibly&lt;br&gt;throughout the filesystem.&lt;/location&gt;&lt;/p&gt;
-&lt;p&gt;While Apache has the ability to operate on both the underlying filesystem and&lt;br&gt;the webspace, it leans heavily towards filesystem methods. This can be seen in&lt;br&gt;some of the design decisions, including the use of .htaccess files for per-&lt;br&gt;directory configuration. The Apache docs themselves warn against using URI-&lt;br&gt;based blocks to restrict access when the request mirrors the underlying&lt;br&gt;filesystem.&lt;/p&gt;
-&lt;h4 id=&quot;Nginx-4&quot;&gt;&lt;a href=&quot;#Nginx-4&quot; class=&quot;headerlink&quot; title=&quot;Nginx&quot;&gt;&lt;/a&gt;Nginx&lt;/h4&gt;&lt;p&gt;Nginx was created to be both a web server and a proxy server. Due to the&lt;br&gt;architecture required for these two roles, it works primarily with URIs,&lt;br&gt;translating to the filesystem when necessary.&lt;/p&gt;
-&lt;p&gt;This can be seen in some of the ways that Nginx configuration files are&lt;br&gt;constructed and interpreted.Nginx does not provide a mechanism for specifying&lt;br&gt;configuration for a filesystem directory and instead parses the URI itself.&lt;/p&gt;
-&lt;p&gt;For instance, the primary configuration blocks for Nginx are server and&lt;br&gt;location blocks. The server block interprets the host being requested, while&lt;br&gt;the location blocks are responsible for matching portions of the URI that&lt;br&gt;comes after the host and port. At this point, the request is being interpreted&lt;br&gt;as a URI, not as a location on the filesystem.&lt;/p&gt;
-&lt;p&gt;For static files, all requests eventually have to be mapped to a location on&lt;br&gt;the filesystem. First, Nginx selects the server and location blocks that will&lt;br&gt;handle the request and then combines the document root with the URI, adapting&lt;br&gt;anything necessary according to the configuration specified.&lt;/p&gt;
-&lt;p&gt;This may seem similar, but parsing requests primarily as URIs instead of&lt;br&gt;filesystem locations allows Nginx to more easily function in both web, mail,&lt;br&gt;and proxy server roles. Nginx is configured simply by laying out how to&lt;br&gt;respond to different request patterns. Nginx does not check the filesystem&lt;br&gt;until it is ready to serve the request, which explains why it does not&lt;br&gt;implement a form of .htaccess files.&lt;/p&gt;
-&lt;h1 id=&quot;Modules&quot;&gt;&lt;a href=&quot;#Modules&quot; class=&quot;headerlink&quot; title=&quot;Modules&quot;&gt;&lt;/a&gt;Modules&lt;/h1&gt;&lt;p&gt;Both Nginx and Apache are extensible through module systems, but the way that&lt;br&gt;they work differ significantly.&lt;/p&gt;
-&lt;h4 id=&quot;Apache-5&quot;&gt;&lt;a href=&quot;#Apache-5&quot; class=&quot;headerlink&quot; title=&quot;Apache&quot;&gt;&lt;/a&gt;Apache&lt;/h4&gt;&lt;p&gt;Apache’s module system allows you to dynamically load or unload modules to&lt;br&gt;satisfy your needs during the course of running the server. The Apache core is&lt;br&gt;always present, while modules can be turned on or off, adding or removing&lt;br&gt;additional functionality and hooking into the main server.&lt;/p&gt;
-&lt;p&gt;Apache uses this functionality for a large variety tasks. Due to the maturity&lt;br&gt;of the platform, there is an extensive library of modules available. These can&lt;br&gt;be used to alter some of the core functionality of the server, such as&lt;br&gt;mod_php, which embeds a PHP interpreter into each running worker.&lt;/p&gt;
-&lt;p&gt;Modules are not limited to processing dynamic content, however. Among other&lt;br&gt;functions, they can be used for rewriting URLs, authenticating clients,&lt;br&gt;hardening the server, logging, caching, compression, proxying, rate limiting,&lt;br&gt;and encrypting. Dynamic modules can extend the core functionality considerably&lt;br&gt;without much additional work.&lt;/p&gt;
-&lt;h4 id=&quot;Nginx-5&quot;&gt;&lt;a href=&quot;#Nginx-5&quot; class=&quot;headerlink&quot; title=&quot;Nginx&quot;&gt;&lt;/a&gt;Nginx&lt;/h4&gt;&lt;p&gt;Nginx also implements a module system, but it is quite different from the&lt;br&gt;Apache system. In Nginx, modules are not dynamically loadable, so they must be&lt;br&gt;selected and compiled into the core software(模块居然不是动态加载的).&lt;/p&gt;
-&lt;p&gt;For many users, this will make Nginx much less flexible. This is especially&lt;br&gt;true for users who are not comfortable maintaining their own compiled software&lt;br&gt;outside of their distribution’s conventional packaging system. While&lt;br&gt;distributions’ packages tend to include the most commonly used modules, if you&lt;br&gt;require a non-standard module, you will have to build the server from source&lt;br&gt;yourself.&lt;/p&gt;
-&lt;p&gt;Nginx modules are still very useful though, and they allow you to dictate what&lt;br&gt;you want out of your server by only including the functionality you intend to&lt;br&gt;use. Some users also may consider this more secure, as arbitrary components&lt;br&gt;cannot be hooked into the server. However, if your server is ever put in a&lt;br&gt;position where this is possible, it is likely compromised already.&lt;/p&gt;
-&lt;p&gt;Nginx modules allow many of the same capabilities as Apache modules. For&lt;br&gt;instance, Nginx modules can provide proxying support, compression, rate&lt;br&gt;limiting, logging, rewriting, geolocation, authentication, encryption,&lt;br&gt;streaming, and mail functionality.&lt;/p&gt;
-&lt;h2 id=&quot;Support_2C_Compatibility_2C_Ecosystem_2C_and_Documentation&quot;&gt;&lt;a href=&quot;#Support_2C_Compatibility_2C_Ecosystem_2C_and_Documentation&quot; class=&quot;headerlink&quot; title=&quot;Support, Compatibility, Ecosystem, and Documentation&quot;&gt;&lt;/a&gt;Support, Compatibility, Ecosystem, and Documentation&lt;/h2&gt;&lt;p&gt;A major point to consider is what the actual process of getting up and running&lt;br&gt;will be given the landscape of available help and support among other&lt;br&gt;software.&lt;/p&gt;
-&lt;h4 id=&quot;Apache-6&quot;&gt;&lt;a href=&quot;#Apache-6&quot; class=&quot;headerlink&quot; title=&quot;Apache&quot;&gt;&lt;/a&gt;Apache&lt;/h4&gt;&lt;p&gt;Because Apache has been popular for so long, support for the server is fairly&lt;br&gt;ubiquitous. There is a large library of first- and third-party documentation&lt;br&gt;available for the core server and for task-based scenarios involving hooking&lt;br&gt;Apache up with other software.&lt;/p&gt;
-&lt;p&gt;Along with documentation, many tools and web projects include tools to&lt;br&gt;bootstrap themselves within an Apache environment. This may be included in the&lt;br&gt;projects themselves, or in the packages maintained by your distribution’s&lt;br&gt;packaging team.&lt;/p&gt;
-&lt;p&gt;Apache, in general, will have more support from third-party projects simply&lt;br&gt;because of its market share and the length of time it has been available.&lt;br&gt;Administrators are also somewhat more likely to have experience working with&lt;br&gt;Apache not only due to its prevalence, but also because many people start off&lt;br&gt;in shared-hosting scenarios which almost exclusively rely on Apache due to the&lt;br&gt;.htaccess distributed management capabilities.&lt;/p&gt;
-&lt;h4 id=&quot;Nginx-6&quot;&gt;&lt;a href=&quot;#Nginx-6&quot; class=&quot;headerlink&quot; title=&quot;Nginx&quot;&gt;&lt;/a&gt;Nginx&lt;/h4&gt;&lt;p&gt;Nginx is experiencing increased support as more users adopt it for its&lt;br&gt;performance profile, but it still has some catching up to do in some key&lt;br&gt;areas.&lt;/p&gt;
-&lt;p&gt;In the past, it was difficult to find comprehensive English-language&lt;br&gt;documentation regarding Nginx due to the fact that most of the early&lt;br&gt;development and documentation were in Russian. As interest in the project&lt;br&gt;grew, the documentation has been filled out and there are now plenty of&lt;br&gt;administration resources on the Nginx site and through third parties.&lt;/p&gt;
-&lt;p&gt;In regards to third-party applications, support and documentation is becoming&lt;br&gt;more readily available, and package maintainers are beginning, in some cases,&lt;br&gt;to give choices between auto-configuring for Apache and Nginx. Even without&lt;br&gt;support, configuring Nginx to work with alternative software is usually&lt;br&gt;straight-forward so long as the project itself documents its requirements&lt;br&gt;(permissions, headers, etc).&lt;/p&gt;
-&lt;h2 id=&quot;Using_Apache_and_Nginx_Together&quot;&gt;&lt;a href=&quot;#Using_Apache_and_Nginx_Together&quot; class=&quot;headerlink&quot; title=&quot;Using Apache and Nginx Together&quot;&gt;&lt;/a&gt;Using Apache and Nginx Together&lt;/h2&gt;&lt;p&gt;After going over the benefits and limitations of both Apache and Nginx, you&lt;br&gt;may have a better idea of which server is more suited to your needs. However,&lt;br&gt;many users find that it is possible to leverage each server’s strengths by&lt;br&gt;using them together.&lt;/p&gt;
-&lt;p&gt;The conventional configuration for this partnership is to place Nginx in front&lt;br&gt;of Apache as a reverse proxy(Nginx做反向代理). This will allow Nginx to handle all&lt;br&gt;requests from clients. This takes advantage of Nginx’s fast processing speed&lt;br&gt;and ability to handle large numbers of connections concurrently.&lt;/p&gt;
-&lt;p&gt;For static content, which Nginx excels at, the files will be served quickly&lt;br&gt;and directly to the client. For dynamic content, for instance PHP files, Nginx&lt;br&gt;will proxy the request to Apache, which can then process the results and&lt;br&gt;return the rendered page. Nginx can then pass the content back to the client.&lt;/p&gt;
-&lt;p&gt;This setup works well for many people because it allows Nginx to function as a&lt;br&gt;sorting machine. It will handle all requests it can and pass on the ones that&lt;br&gt;it has no native ability to serve. By cutting down on the requests the Apache&lt;br&gt;server is asked to handle, we can alleviate some of the blocking that occurs&lt;br&gt;when an Apache process or thread is occupied.&lt;/p&gt;
-&lt;p&gt;This configuration also allows you to scale out by adding additional backend&lt;br&gt;servers as necessary. Nginx can be configured to pass to a pool of servers&lt;br&gt;easily, increasing this configuration’s resilience to failure and performance.&lt;/p&gt;
-&lt;h2 id=&quot;Conclusion&quot;&gt;&lt;a href=&quot;#Conclusion&quot; class=&quot;headerlink&quot; title=&quot;Conclusion&quot;&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;&lt;p&gt;As you can see, both Apache and Nginx are powerful, flexible, and capable.&lt;br&gt;Deciding which server is best for you is largely a function of evaluating your&lt;br&gt;specific requirements and testing with the patterns that you expect to see.&lt;/p&gt;
-&lt;p&gt;There are differences between these projects that have a very real impact on&lt;br&gt;the raw performance, capabilities, and the implementation time necessary to&lt;br&gt;get each solution up and running. However, these usually are the result of a&lt;br&gt;series of trade offs that should not be casually dismissed. In the end, there&lt;br&gt;is no one-size-fits-all web server, so use the solution that best aligns with&lt;br&gt;your objectives.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原文地址：&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/apache-vs-nginx-
-practical-considerations&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用PDB调试Python程序</title>
-    <link href="http://haofly.net/pdb-%09debug-python/"/>
-    <id>http://haofly.net/pdb-	debug-python/</id>
-    <published>2015-07-11T09:18:07.000Z</published>
-    <updated>2016-02-11T07:23:23.868Z</updated>
-    
-    <content type="html">&lt;p&gt;pdb是Python自带的类gdb、cdb的调试工具。&lt;/p&gt;
-&lt;p&gt;在Sublime Text的SublimeREPL插件提供了pdb调试应用程序的功能，但是由于手上项目package太过复杂，所以这次我就直接在Django&lt;br&gt;代码要调试的地方插入pdb代码，这样相当于直接在那个地方下了一个断点。可以在任何地方插入如下代码进行中断，即使是Django也能通过这种方式进行调试：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import pdb; pdb.set_trace()
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;pdb常用命令：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;n：执行下一行&lt;/li&gt;
-&lt;li&gt;s：执行下一行，如果有函数，会进入函数体&lt;/li&gt;
-&lt;li&gt;c：让程序正常运行，直到遇到断点&lt;/li&gt;
-&lt;li&gt;p：&lt;strong&gt;打印某个变量&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;！：感叹号后面跟一个语句，可以直接改变某个变量&lt;/li&gt;
-&lt;li&gt;h：帮助&lt;/li&gt;
-&lt;li&gt;l：列出当前将要运行的代码块&lt;/li&gt;
-&lt;li&gt;b：设置断点，例如’b 12’表示在第12行下端点，’b a.py:12’表示在a.py这个文件的第12行下断点&lt;/li&gt;
-&lt;li&gt;cl：清楚所有的断点&lt;/li&gt;
-&lt;li&gt;j：跳到指定的行数&lt;/li&gt;
-&lt;li&gt;a：打印当前函数的参数&lt;/li&gt;
-&lt;li&gt;q：推出调试&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;pdb是Python自带的类gdb、cdb的调试工具。&lt;/p&gt;
-&lt;p&gt;在Sublime Text的SublimeREPL插件提供了pdb调试应用程序的功能，但是由于手上项目package太过复杂，所以这次我就直接在Django&lt;br&gt;代码要调试的地方插入pdb代码，这样相当
-    
-    </summary>
-    
-      <category term="编程之路" scheme="http://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>[转]Laravel学习笔记——神奇的服务容器</title>
-    <link href="http://haofly.net/laravel-container/"/>
-    <id>http://haofly.net/laravel-container/</id>
-    <published>2015-07-10T12:11:49.000Z</published>
-    <updated>2016-02-11T07:23:20.452Z</updated>
-    
-    <content type="html">&lt;p&gt;原文地址：&lt;a href=&quot;https://www.insp.top/learn-laravel-container&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.insp.top/learn-laravel-container&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;转注：本文详细介绍了依赖注入以及Laravel IoC容器的原理，深入浅出，十分容易让人理解。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;控制反转(IoC)&lt;/strong&gt;：由外部负责其依赖需求的行为&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;依赖注入(DI)&lt;/strong&gt;：只要不是由内部生产，而是由外部以参数或其他形式注入的，都属于依赖注入&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;容器，字面上理解就是装东西的东西。常见的变量、对象属性等都可以算是容器。一个容器能够装什么，全部取决于你对该容器的定义。当然，有这样一种容器，它存放的不是&lt;br&gt;文本、数值，而是对象、对象的描述（类、接口）或者是提供对象的回调，通过这种容器，我们得以实现许多高级的功能，其中最常提到的，就是 “解耦”&lt;br&gt;、“依赖注入（DI）”。本文就从这里开始。&lt;/em&gt;&lt;/p&gt;
-&lt;h1 id=&quot;IoC__u5BB9_u5668_uFF0C_laravel__u7684_u6838_u5FC3&quot;&gt;&lt;a href=&quot;#IoC__u5BB9_u5668_uFF0C_laravel__u7684_u6838_u5FC3&quot; class=&quot;headerlink&quot; title=&quot;IoC 容器， laravel 的核心&quot;&gt;&lt;/a&gt;IoC 容器， laravel 的核心&lt;/h1&gt;&lt;p&gt;Laravel 的核心就是一个 IoC 容器，根据文档，称其为“服务容器”，顾名思义，该容器提供了整个框架中需要的一系列服务。作为初学者，很多人会在这一个概&lt;br&gt;念上犯难，因此，我打算从一些基础的内容开始讲解，通过理解面向对象开发中依赖的产生和解决方法，来逐渐揭开“依赖注入”的面纱，逐渐理解这一神奇的设计理念。&lt;/p&gt;
-&lt;p&gt;本文一大半内容都是通过举例来让读者去理解什么是 IoC（控制反转） 和 DI（依赖注入），通过理解这些概念，来更加深入。更多关于 laravel&lt;br&gt;服务容器的用法建议阅读文档即可。&lt;/p&gt;
-&lt;h1 id=&quot;IoC__u5BB9_u5668_u8BDE_u751F_u7684_u6545_u4E8B&quot;&gt;&lt;a href=&quot;#IoC__u5BB9_u5668_u8BDE_u751F_u7684_u6545_u4E8B&quot; class=&quot;headerlink&quot; title=&quot;IoC 容器诞生的故事&quot;&gt;&lt;/a&gt;IoC 容器诞生的故事&lt;/h1&gt;&lt;p&gt;讲解 IoC 容器有很多的文章，我之前也写过。但现在我打算利用当下的灵感重新来过，那么开始吧。&lt;/p&gt;
-&lt;h2 id=&quot;u8D85_u4EBA_u548C_u8D85_u80FD_u529B_uFF0C_u4F9D_u8D56_u7684_u4EA7_u751F_uFF01&quot;&gt;&lt;a href=&quot;#u8D85_u4EBA_u548C_u8D85_u80FD_u529B_uFF0C_u4F9D_u8D56_u7684_u4EA7_u751F_uFF01&quot; class=&quot;headerlink&quot; title=&quot;超人和超能力，依赖的产生！&quot;&gt;&lt;/a&gt;超人和超能力，依赖的产生！&lt;/h2&gt;&lt;p&gt;面向对象编程，有以下几样东西无时不刻的接触：接口、类还有对象。这其中，接口是类的原型，一个类必须要遵守其实现的接口；对象则是一个类实例化后的产物，我们称其为&lt;br&gt;一个实例。当然这样说肯定不利于理解，我们就实际的写点中看不中用的代码辅助学习。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;怪物横行的世界，总归需要点超级人物来摆平。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;我们把一个“超人”作为一个类，&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Superman \{\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们可以想象，一个超人诞生的时候肯定拥有至少一个超能力，这个超能力也可以抽象为一个对象，为这个对象定义一个描述他的类吧。一个超能力肯定有多种属性、（操作）方&lt;br&gt;法，这个尽情的想象，但是目前我们先大致定义一个只有属性的“超能力”，至于能干啥，我们以后再丰富：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Power \{
-    /*_
-    * 能力值
-    _/
-    protected $ability;
-
-
-
-
-
-/**
-* 能力范围或距离
-*/
-protected $range;
-
-public function __construct($ability, $range)
-\{
-    $this-&amp;amp;gt;ability = $ability;
-    $this-&amp;amp;gt;range = $range;
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;这时候我们回过头，修改一下之前的“超人”类，让一个“超人”创建的时候被赋予一个超能力：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Superman
-\{
-    protected $power;
-
-
-
-
-
-public function __construct()
-\{
-    $this-&amp;amp;gt;power = new Power(999, 100);
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;这样的话，当我们创建一个“超人”实例的时候，同时也创建了一个“超能力”的实例，但是，我们看到了一点，“超人”和“超能力”之间不可避免的产生了一个依赖。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;所谓“依赖”，就是“我若依赖你，少了你就没有我”。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;在一个贯彻面向对象编程的项目中，这样的依赖随处可见。少量的依赖并不会有太过直观的影响，我们随着这个例子逐渐铺开，让大家慢慢意识到，当依赖达到一个量级时，是怎&lt;br&gt;样一番噩梦般的体验。当然，我也会自然而然的讲述如何解决问题。&lt;/p&gt;
-&lt;h2 id=&quot;u4E00_u5806_u4E71_u9EBB__u2014_u2014__u53EF_u6015_u7684_u4F9D_u8D56&quot;&gt;&lt;a href=&quot;#u4E00_u5806_u4E71_u9EBB__u2014_u2014__u53EF_u6015_u7684_u4F9D_u8D56&quot; class=&quot;headerlink&quot; title=&quot;一堆乱麻 —— 可怕的依赖&quot;&gt;&lt;/a&gt;一堆乱麻 —— 可怕的依赖&lt;/h2&gt;&lt;p&gt;之前的例子中，超能力类实例化后是一个具体的超能力，但是我们知道，超人的超能力是多元化的，每种超能力的方法、属性都有不小的差异，没法通过一种类描述完全。我们现&lt;br&gt;在进行修改，我们假设超人可以有以下多种超能力：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;飞行，属性有：飞行速度、持续飞行时间&lt;/li&gt;
-&lt;li&gt;蛮力，属性有：力量值&lt;/li&gt;
-&lt;li&gt;能量弹，属性有：伤害值、射击距离、同时射击个数&lt;br&gt;我们创建了如下类：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;class Flight
-\{
-    protected $speed;
-    protected $holdtime;
-    public function __construct($speed, $holdtime) \{\}
-\}
-
-
-
-
-class Force
-\{
-    protected $force;
-    public function __construct($force) \{\}
-\}
-
-
-
-
-class Shot
-\{
-    protected $atk;
-    protected $range;
-    protected $limit;
-    public function **construct($atk, $range, $limit) \{\}
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;为了省事儿我没有详细写出 *&lt;/em&gt;construct() 这个构造函数的全部，只写了需要传递的参数。&lt;/p&gt;
-&lt;p&gt;好了，这下我们的超人有点“忙”了。在超人初始化的时候，我们会根据需要来实例化其拥有的超能力吗，大致如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Superman
-\{
-    protected $power;
-
-
-
-
-
-public function __construct()
-\{
-    $this-&amp;amp;gt;power = new Fight(9, 100);
-    // $this-&amp;amp;gt;power = new Force(45);
-    // $this-&amp;amp;gt;power = new Shot(99, 50, 2);
-    /*
-    $this-&amp;amp;gt;power = array(
-        new Force(45),
-        new Shot(99, 50, 2)
-    );
-    */
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;我们需要自己手动的在构造函数内（或者其他方法里）实例化一系列需要的类，这样并不好。可以想象，假如需求变更（不同的怪物横行地球），需要更多的有针对性的 新的&lt;br&gt;超能力，或者需要 变更 超能力的方法，我们必须 重新改造&lt;br&gt;超人。换句话说就是，改变超能力的同时，我还得重新制造个超人。效率太低了！新超人还没创造完成世界早已被毁灭。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;这时，灵机一动的人想到：为什么不可以这样呢？超人的能力可以被随时更换，只需要添加或者更新一个芯片或者其他装置啥的（想到钢铁侠没）。这样的话就不要整个重新来&lt;br&gt;过了。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;对，就是这样的。&lt;/p&gt;
-&lt;p&gt;我们不应该手动在 “超人” 类中固化了他的 “超能力” 初始化的行为，而转由外部负责，由外部创造超能力模组、装置或者芯片等（我们后面统一称为&lt;br&gt;“模组”），植入超人体内的某一个接口，这个接口是一个既定的，只要这个 “模组”&lt;br&gt;满足这个接口的装置都可以被超人所利用，可以提升、增加超人的某一种能力。这种由外部负责其依赖需求的行为，我们可以称其为 “控制反转（IoC）”。&lt;/p&gt;
-&lt;h2 id=&quot;u5DE5_u5382_u6A21_u5F0F_uFF0C_u4F9D_u8D56_u8F6C_u79FB_uFF01&quot;&gt;&lt;a href=&quot;#u5DE5_u5382_u6A21_u5F0F_uFF0C_u4F9D_u8D56_u8F6C_u79FB_uFF01&quot; class=&quot;headerlink&quot; title=&quot;工厂模式，依赖转移！&quot;&gt;&lt;/a&gt;工厂模式，依赖转移！&lt;/h2&gt;&lt;p&gt;当然，实现控制反转的方法有几种。在这之前，不如我们先了解一些好玩的东西。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;我们可以想到，组件、工具（或者超人的模组），是一种可被生产的玩意儿，生产的地方当然是 “工厂（Factory）”，于是有人就提出了这样一种模式：&lt;br&gt;工厂模式。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;工厂模式，顾名思义，就是一个类所以依赖的外部事物的实例，都可以被一个或多个 “工厂” 创建的这样一种开发模式，就是 “工厂模式”。&lt;/p&gt;
-&lt;p&gt;我们为了给超人制造超能力模组，我们创建了一个工厂，它可以制造各种各样的模组，且仅需要通过一个方法：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class SuperModuleFactory
-\{
-    public function makeModule($moduleName, $options)
-    \{
-       switch ($moduleName) \{
-           case &amp;apos;Fight&amp;apos;: return new Fight($options[0], $options[1]);
-           case &amp;apos;Force&amp;apos;: return new Force($options[0]);
-           case &amp;apos;Shot&amp;apos;: return new Shot($options[0], $options[1], $options[2]);
-       \}
-    \}
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这时候，超人 创建之初就可以使用这个工厂！&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Superman
-\{
-    protected $power;
-
-
-
-
-
-public function __construct()
-\{
-    // 初始化工厂
-    $factory = new SuperModuleFactory;
-
-    // 通过工厂提供的方法制造需要的模块
-    $this-&amp;amp;gt;power = $factory-&amp;amp;gt;makeModule(&amp;apos;Fight&amp;apos;, [9, 100]);
-    // $this-&amp;amp;gt;power = $factory-&amp;amp;gt;makeModule(&amp;apos;Force&amp;apos;, [45]);
-    // $this-&amp;amp;gt;power = $factory-&amp;amp;gt;makeModule(&amp;apos;Shot&amp;apos;, [99, 50, 2]);
-    /*
-    $this-&amp;amp;gt;power = array(
-        $factory-&amp;amp;gt;makeModule(&amp;apos;Force&amp;apos;, [45]),
-        $factory-&amp;amp;gt;makeModule(&amp;apos;Shot&amp;apos;, [99, 50, 2])
-    );
-    */
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;可以看得出，我们不再需要在超人初始化之初，去初始化许多第三方类，只需初始化一个工厂类，即可满足需求。但这样似乎和以前区别不大，只是没有那么多 new&lt;br&gt;关键字。其实我们稍微改造一下这个类，你就明白，工厂类的真正意义和价值了。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Superman
-\{
-    protected $power;
-
-
-
-
-
-public function __construct(array $modules)
-\{
-    // 初始化工厂
-    $factory = new SuperModuleFactory;
-
-    // 通过工厂提供的方法制造需要的模块
-    foreach ($modules as $moduleName =&amp;amp;gt; $moduleOptions) \{
-        $this-&amp;amp;gt;power[] = $factory-&amp;amp;gt;makeModule($moduleName, $moduleOptions);
-    \}
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;// 创建超人 $superman = new Superman([ ‘Fight’ =&amp;gt; [9, 100], ‘Shot’ =&amp;gt; [99, 50, 2]&lt;br&gt;]);&lt;/p&gt;
-&lt;p&gt;现在修改的结果令人满意。现在，“超人” 的创建不再依赖任何一个 “超能力” 的类，我们如若修改了或者增加了新的超能力，只需要针对修改&lt;br&gt;SuperModuleFactory 即可。扩充超能力的同时不再需要重新编辑超人的类文件，使得我们变得很轻松。但是，这才刚刚开始。&lt;/p&gt;
-&lt;h2 id=&quot;u518D_u8FDB_u4E00_u6B65_uFF01IoC__u5BB9_u5668_u7684_u91CD_u8981_u7EC4_u6210__u2014_u2014__u4F9D_u8D56_u6CE8_u5165_uFF01&quot;&gt;&lt;a href=&quot;#u518D_u8FDB_u4E00_u6B65_uFF01IoC__u5BB9_u5668_u7684_u91CD_u8981_u7EC4_u6210__u2014_u2014__u4F9D_u8D56_u6CE8_u5165_uFF01&quot; class=&quot;headerlink&quot; title=&quot;再进一步！IoC 容器的重要组成 —— 依赖注入！&quot;&gt;&lt;/a&gt;再进一步！IoC 容器的重要组成 —— 依赖注入！&lt;/h2&gt;&lt;p&gt;由 “超人” 对 “超能力” 的依赖变成 “超人” 对 “超能力模组工厂”&lt;br&gt;的依赖后，对付小怪兽们变得更加得心应手。但这也正如你所看到的，依赖并未解除，只是由原来对多个外部的依赖变成了对一个 “工厂”&lt;br&gt;的依赖。假如工厂出了点麻烦，问题变得就很棘手。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;其实大多数情况下，工厂模式已经足够了。工厂模式的缺点就是：接口未知（即没有一个很好的契约模型，关于这个我马上会有解释）、产生对象类型单一。总之就是，还是不&lt;br&gt;够灵活。虽然如此，工厂模式依旧十分优秀，并且适用于绝大多数情况。不过我们为了讲解后面的 依赖注入 ，这里就先夸大一下工厂模式的缺陷咯。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;我们知道，超人依赖的模组，我们要求有统一的接口，这样才能和超人身上的注入接口对接，最终起到提升超能力的效果。&lt;/p&gt;
-&lt;p&gt;事实上，我之前说谎了，不仅仅只有一堆小怪兽，还有更多的大怪兽。嘿嘿。额，这时候似乎工厂的生产能力显得有些不足 ——&lt;br&gt;由于工厂模式下，所有的模组都已经在工厂类中安排好了，如果有新的、高级的模组加入，我们必须修改工厂类（好比增加新的生产线）：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class SuperModuleFactory
-\{
-    public function makeModule($moduleName, $options)
-    \{
-       switch ($moduleName) \{
-            case &amp;apos;Fight&amp;apos;: return new Fight($options[0], $options[1]);
-            case &amp;apos;Force&amp;apos;: return new Force($options[0]);
-            case &amp;apos;Shot&amp;apos;: return new Shot($options[0], $options[1], $options[2]);
-            // case &amp;apos;more&amp;apos;: .......
-            // case &amp;apos;and more&amp;apos;: .......
-            // case &amp;apos;and more&amp;apos;: .......
-            // case &amp;apos;oh no! its too many!&amp;apos;: .......
-        \}
-    \}
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看到没。。。噩梦般的感受！&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;其实灵感就差一步！你可能会想到更为灵活的办法！对，下一步就是我们今天的主要配角 —— DI （依赖注入）&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;由于对超能力模组的需求不断增大，我们需要集合整个世界的高智商人才，一起解决问题，不应该仅仅只有几个工厂垄断负责。不过高智商人才们都非常自负，认为自己的想法是&lt;br&gt;对的，创造出的超能力模组没有统一的接口，自然而然无法被正常使用。这时我们需要提出一种契约，这样无论是谁创造出的模组，都符合这样的接口，自然就可被正常使用。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;interface SuperModuleInterface
-\{
-    /**
-    * 超能力激活方法
-    _
-    * 任何一个超能力都得有该方法，并拥有一个参数
-    _@param array $target 针对目标，可以是一个或多个，自己或他人
-    */
-    public function activate(array $target);
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;上文中，我们定下了一个接口 （超能力模组的规范、契约），所有被创造的模组必须遵守该规范，才能被生产。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;其实，这就是 php 中 接口（ interface ） 的用处和意义！很多人觉得，为什么 php 需要接口这种东西？难道不是 java 、 C#&lt;br&gt;之类的语言才有的吗？这么说，只要是一个正常的面向对象编程语言（虽然 php 可以面向过程），都应该具备这一特性。因为一个 对象（object）&lt;br&gt;本身是由他的模板或者原型 —— 类 （class） ，经过实例化后产生的一个具体事物，而有时候，实现统一种方法且不同功能（或特性）的时候，会存在很多的类（c&lt;br&gt;lass），这时候就需要有一个契约，让大家编写出可以被随时替换却不会产生影响的接口。这种由编程语言本身提出的硬性规范，会增加更多优秀的特性。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;虽然有些绕，但通过我们接下来的实例，大家会慢慢领会接口带来的好处。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;这时候，那些提出更好的超能力模组的高智商人才，遵循这个接口，创建了下述（模组）类：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/**
-_ X-超能量
-_/
-class XPower implements SuperModuleInterface
-\{
-    public function activate(array $target)
-    \{
-        // 这只是个例子。。具体自行脑补
-    \}
-\}
-
-
-
-
-/__
-_ 终极炸弹 （就这么俗）
-_/
-class UltraBomb implements SuperModuleInterface
-\{
-    public function activate(array $target)
-    \{
-        // 这只是个例子。。具体自行脑补
-    \}
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;同时，为了防止有些 “砖家” 自作聪明，或者一些叛徒恶意捣蛋，不遵守契约胡乱制造模组，影响超人，我们对超人初始化的方法进行改造：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Superman
-\{
-    protected $module;
-
-
-
-
-
-public function __construct(SuperModuleInterface $module)
-\{
-    $this-&amp;amp;gt;module = $module
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;改造完毕！现在，当我们初始化 “超人” 类的时候，提供的模组实例必须是一个 SuperModuleInterface 接口的实现。否则就会提示错误。&lt;/p&gt;
-&lt;p&gt;正是由于超人的创造变得容易，一个超人也就不需要太多的超能力，我们可以创造多个超人，并分别注入需要的超能力模组即可。这样的话，虽然一个超人只有一个超能力，但超&lt;br&gt;人更容易变多，我们也不怕怪兽啦！&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;现在有人疑惑了，你要讲的 依赖注入 呢？&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;其实，上面讲的内容，正是依赖注入。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;什么叫做 依赖注入？&lt;/p&gt;
-&lt;p&gt;本文从开头到现在提到的一系列依赖，只要不是由内部生产（比如初始化、构造函数 __construct 中通过工厂方法、自行手动 new&lt;br&gt;的），而是由外部以参数或其他形式注入的，都属于 依赖注入（DI） 。是不是豁然开朗？事实上，就是这么简单。下面就是一个典型的依赖注入：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 超能力模组
-$superModule = new XPower;
-
-
-
-
-// 初始化一个超人，并注入一个超能力模组依赖
-$superMan = new Superman($superModule);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;关于依赖注入这个本文的主要配角，也就这么多需要讲的。理解了依赖注入，我们就可以继续深入问题。慢慢走近今天的主角……&lt;/p&gt;
-&lt;h2 id=&quot;u66F4_u4E3A_u5148_u8FDB_u7684_u5DE5_u5382__u2014_u2014_IoC__u5BB9_u5668_uFF01&quot;&gt;&lt;a href=&quot;#u66F4_u4E3A_u5148_u8FDB_u7684_u5DE5_u5382__u2014_u2014_IoC__u5BB9_u5668_uFF01&quot; class=&quot;headerlink&quot; title=&quot;更为先进的工厂 —— IoC 容器！&quot;&gt;&lt;/a&gt;更为先进的工厂 —— IoC 容器！&lt;/h2&gt;&lt;p&gt;刚刚列了一段代码：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$superModule = new XPower;
-
-
-
-
-$superMan = new Superman($superModule);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;读者应该看出来了，手动的创建了一个超能力模组、手动的创建超人并注入了刚刚创建超能力模组。呵呵，手动。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;现代社会，应该是高效率的生产，干净的车间，完美的自动化装配。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;一群怪兽来了，如此低效率产出超人是不现实，我们需要自动化 —— 最多一条指令，千军万马来相见。我们需要一种高级的生产车间，我们只需要向生产车间提交一个脚本，&lt;br&gt;工厂便能够通过指令自动化生产。这种更为高级的工厂，就是工厂模式的升华 —— IoC 容器。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Container
-\{
-    protected $binds;
-
-
-
-
-
-protected $instances;
-
-public function bind($abstract, $concrete)
-\{
-    if ($concrete instanceof Closure) \{
-        $this-&amp;amp;gt;binds[$abstract] = $concrete;
-    \} else \{
-        $this-&amp;amp;gt;instances[$abstract] = $concrete;
-    \}
-\}
-
-public function make($abstract, $parameters = [])
-\{
-   if (isset($this-&amp;amp;gt;instances[$abstract])) \{
-        return $this-&amp;amp;gt;instances[$abstract];
-   \}
-
-   array_unshift($parameters, $this);
-
-   return call_user_func_array($this-&amp;amp;gt;binds[$abstract], $parameters);
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;这时候，一个十分粗糙的容器就诞生了。现在的确很简陋，但不妨碍我们进一步提升他。先着眼现在，看看这个容器如何使用吧！&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 创建一个容器（后面称作超级工厂）
-$container = new Container;
-
-
-
-
-// 向该 超级工厂 添加 超人 的生产脚本
-$container-&amp;gt;bind(&amp;apos;superman&amp;apos;, function($container, $moduleName) \{
-    return new Superman($container-&amp;gt;make($moduleName));
-\});
-
-
-
-
-// 向该 超级工厂 添加 超能力模组 的生产脚本
-$container-&amp;gt;bind(&amp;apos;xpower&amp;apos;, function($container) \{
-    return new XPower;
-\});
-
-
-
-
-// 同上
-$container-&amp;gt;bind(&amp;apos;ultrabomb&amp;apos;, function($container) \{
-    return new UltraBomb;
-\});
-
-
-
-
-// **_*_****_*_****_* 华丽丽的分割线 _****_*_****_*_*******
-// 开始启动生产
-$superman_1 = $container-&amp;gt;make(&amp;apos;superman&amp;apos;, &amp;apos;xpower&amp;apos;);
-$superman_2 = $container-&amp;gt;make(&amp;apos;superman&amp;apos;, &amp;apos;ultrabomb&amp;apos;);
-$superman_3 = $container-&amp;gt;make(&amp;apos;superman&amp;apos;, &amp;apos;xpower&amp;apos;);
-// ...随意添加
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看到没？通过最初的 绑定（bind） 操作，我们向 超级工厂 注册了一些生产脚本，这些生产脚本在生产指令下达之时便会执行。发现没有？我们彻底的解除了 超人&lt;br&gt;与 超能力模组 的依赖关系，更重要的是，容器类也丝毫没有和他们产生任何依赖！我们通过注册、绑定的方式向容器中添加一段可以被执行的回调（可以是匿名函数、非匿名&lt;br&gt;函数、类的方法）作为生产一个类的实例的 脚本 ，只有在真正的 生产（make） 操作被调用执行时，才会触发。&lt;/p&gt;
-&lt;p&gt;这样一种方式，使得我们更容易在创建一个实例的同时解决其依赖关系，并且更加灵活。当有新的需求，只需另外绑定一个“生产脚本”即可。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;实际上，真正的 IoC 容器更为高级。我们现在的例子中，还是需要手动提供超人所需要的模组参数，但真正的 IoC&lt;br&gt;容器会根据类的依赖需求，自动在注册、绑定的一堆实例中搜寻符合的依赖需求，并自动注入到构造函数参数中去。Laravel&lt;br&gt;框架的服务容器正是这么做的。实现这种功能其实理论上并不麻烦，但我并不会在本文中写出，因为……我懒得写。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;不过我告诉大家，这种自动搜寻依赖需求的功能，是通过 反射（Reflection） 实现的，恰好的，php 完美的支持反射机制！关于反射，php&lt;br&gt;官方文档有详细的资料，并且中文翻译基本覆盖，足够学习和研究！&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://php.net/manual/zh/book.reflection.php&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://php.net/manual/zh/book.reflection.php&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;现在，到目前为止，我们已经不再惧怕怪兽们了。高智商人才集思广益，井井有条，根据接口契约创造规范的超能力模组。超人开始批量产出。最终，人人都是超人，你也可以是&lt;br&gt;哦 ！&lt;/p&gt;
-&lt;h1 id=&quot;u56DE_u5F52_u6B63_u5E38_u4E16_u754C_u3002_u6211_u4EEC_u5F00_u59CB_u91CD_u65B0_u5BA1_u89C6_laravel__u7684_u6838_u5FC3_u3002&quot;&gt;&lt;a href=&quot;#u56DE_u5F52_u6B63_u5E38_u4E16_u754C_u3002_u6211_u4EEC_u5F00_u59CB_u91CD_u65B0_u5BA1_u89C6_laravel__u7684_u6838_u5FC3_u3002&quot; class=&quot;headerlink&quot; title=&quot;回归正常世界。我们开始重新审视 laravel 的核心。&quot;&gt;&lt;/a&gt;回归正常世界。我们开始重新审视 laravel 的核心。&lt;/h1&gt;&lt;p&gt;现在，我们开始慢慢解读 laravel 的核心。其实，laravel 的核心就是一个 IoC 容器，也恰好是我之前所说的高级的 IoC 容器。&lt;/p&gt;
-&lt;p&gt;可以说，laravel 的核心本身十分轻量，并没有什么很神奇很实质性的应用功能。很多人用到的各种功能模块比如Route（路由）、Eloquent&lt;br&gt;ORM（数据库 ORM 组件）、Request and&lt;br&gt;Response（请求和响应）等等等等，实际上都是与核心无关的类模块提供的，这些类从注册到实例化，最终被你所使用，其实都是 laravel&lt;br&gt;的服务容器负责的。&lt;/p&gt;
-&lt;p&gt;我们以大家最常见的 Route 类作为例子。大家可能经常见到路由定义是这样的：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Route::get(&amp;apos;/&amp;apos;, function() \{
-    // bla bla bla...
-\});
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;实际上， Route 类被定义在这个命名空间：Illuminate\Routing\Router，文件vendor/laravel/framework/sr&lt;br&gt;c/Illuminate/Routing/Router.php。&lt;/p&gt;
-&lt;p&gt;我们通过打开发现，这个类的这一系列方法，如 get，post，any 等都不是静态（static）方法，这是怎么一回事儿？不要急，我们继续。&lt;/p&gt;
-&lt;h2 id=&quot;u670D_u52A1_u63D0_u4F9B_u8005&quot;&gt;&lt;a href=&quot;#u670D_u52A1_u63D0_u4F9B_u8005&quot; class=&quot;headerlink&quot; title=&quot;服务提供者&quot;&gt;&lt;/a&gt;服务提供者&lt;/h2&gt;&lt;p&gt;我们在前文介绍 IoC 容器的部分中，提到了，一个类需要绑定、注册至容器中，才能被“制造”。&lt;/p&gt;
-&lt;p&gt;对，一个类要被容器所能够提取，必须要先注册至这个容器。既然 laravel&lt;br&gt;称这个容器叫做服务容器，那么我们需要某个服务，就得先注册、绑定这个服务到容器，那么提供服务并绑定服务至容器的东西，就是&lt;br&gt;服务提供者（ServiceProvider）。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;虽然，绑定一个类到容器不一定非要通过 服务提供者（ServiceProvider） 。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;但是，我们知道，有时候我们的类、模块会有需要其他类和组件的情况，为了保证初始化阶段不会出现所需要的模块和组件没有注册的情况，laravel&lt;br&gt;将注册和初始化行为进行拆分，注册的时候就只能注册，初始化的时候就是初始化。拆分后的产物就是现在的 服务提供者。&lt;/em&gt;&lt;br&gt;&lt;em&gt;服务提供者主要分为两个部分，register（注册） 和 boot（引导、初始化），具体参考文档。register&lt;br&gt;负责进行向容器注册“脚本”，但要注意注册部分不要有对未知事物的依赖，如果有，就要移步至 boot 部分。&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Facade&quot;&gt;&lt;a href=&quot;#Facade&quot; class=&quot;headerlink&quot; title=&quot;Facade&quot;&gt;&lt;/a&gt;Facade&lt;/h2&gt;&lt;p&gt;我们现在解答之前关于 Route 的方法为何能以静态方法访问的问题。实际上这个问题文档上有写，简单说来就是模拟一个类，提供一个静态魔术方法__callSta&lt;br&gt;tic，并将该静态方法映射到真正的方法上。&lt;/p&gt;
-&lt;p&gt;我们使用的 Route 类实际上是 Illuminate\Support\Facades\Route 通过 class_alias() 函数创造的 别名&lt;br&gt;而已，这个类被定义在文件&lt;br&gt;vendor/laravel/framework/src/Illuminate/Support/Facades/Route.php。&lt;/p&gt;
-&lt;p&gt;我们打开文件一看……诶？怎么只有这么简单的一段代码呢？&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php namespace Illuminate\\Support\\Facades;
-
-
-
-
-/__
-_ @see \\Illuminate\\Routing\\Router
-_/
-class Route extends Facade \{
-
-
-
-
-
-/**
-* Get the registered name of the component.
-*
-* @return string
-*/
-protected static function getFacadeAccessor()
-\{
-    return &amp;apos;router&amp;apos;;
-\}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;其实仔细看，会发现这个类继承了一个叫做 Facade 的类，到这里谜底差不多要解开了。&lt;/p&gt;
-&lt;p&gt;上述简单的定义中，我们看到了 getFacadeAccessor 方法返回了一个 route，这是什么意思呢？事实上，这个值被一个&lt;br&gt;ServiceProvider 注册过，大家应该知道注册了个什么，当然是那个真正的路由类！&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;有人会问，Facade&lt;br&gt;是怎么实现的。我并不想说得太细，一个是我懒，另一个原因就是，自己发现一些东西更容易理解，并不容易忘记。很多细节我已经说了，建议大家自行去研究。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;至此，我们已经讲的差不多了。&lt;/p&gt;
-&lt;h1 id=&quot;u548C_u5E73_uFF01_u6211_u4EEC_u8BE5_u603B_u7ED3_u603B_u7ED3_u4E86_uFF01&quot;&gt;&lt;a href=&quot;#u548C_u5E73_uFF01_u6211_u4EEC_u8BE5_u603B_u7ED3_u603B_u7ED3_u4E86_uFF01&quot; class=&quot;headerlink&quot; title=&quot;和平！我们该总结总结了！&quot;&gt;&lt;/a&gt;和平！我们该总结总结了！&lt;/h1&gt;&lt;p&gt;无论如何，世界和平了。&lt;/p&gt;
-&lt;p&gt;这里要总结的内容就是，其实很多事情并不复杂，怕的是复杂的理论内容。我觉得很多东西一旦想通也就那么回事儿。很多人觉得 laravel&lt;br&gt;这不好那不好、这里难哪里难，我只能说，laravel 的确不是一流和优秀的框架，说 laravel 是一流、优秀的框架的人，不是 laravel&lt;br&gt;的粉丝那么就是跟风炒作。Laravel 最大的特点和优秀之处就是使用了很多 php 比较新（实际上并不新）的概念和技术（也就一堆语法糖）而已。因此&lt;br&gt;laravel 的确符合一个适宜学习的框架。Laravel 的构思的确和其他框架有很大不同，这也要求学习他的人必须熟练 php，并 基础扎实！如果你觉得学&lt;br&gt;laravel 框架十分困难，那么原因只有一个：你 php 基础不好。&lt;/p&gt;
-&lt;p&gt;另外，善于利用命名空间和面向对象的诸多特性，去追寻一些东西，你会发现，原来这一切这么容易。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原文地址：&lt;a href=&quot;https://www.insp.top/learn-laravel-container&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.insp.top/learn-laravel-container&lt;/
-    
-    </summary>
-    
-      <category term="韦编三绝" scheme="http://haofly.net/categories/%E9%9F%A6%E7%BC%96%E4%B8%89%E7%BB%9D/"/>
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
     
     
   </entry>
