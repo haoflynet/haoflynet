@@ -1,7 +1,349 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>[转]一图胜千言:谈框架和架构的区别 | 豪翔天下</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">[转]一图胜千言:谈框架和架构的区别</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/favorites.html"><i class="icon-archive"> 我的收藏</i></a><a href="https://github.com/haoflynet/wiki"><i class="icon-archive"> 我的wiki</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">[转]一图胜千言:谈框架和架构的区别</h1><div class="post-meta">2015-03-28<span class="categories"> | 分类于<a href="/categories/编程之路/"> 编程之路</a></span></div><span data-disqus-identifier="the-difference-of-frame-and-framework/" class="disqus-comment-count"></span><div class="post-content"><p><img src="http://7xnc86.com1.z0.glb.clouddn.com/the-difference-of-frame-and-
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="该文章是我之前在麦库里收藏的，但不知为何现在已找不到原文链接了，网上都是些转载文章，还不完整。如果作者能看到，希望作者可以联系我。为使文章结构更清晰，下文稍有改动。
+架构和框架的区别笔者发现，人们对软件架构存在非常多的误解，其中一个最为普遍的误解就是：将架构和框架（Framework）混为一谈。本文阐述了它们的区别。算是对思辨成果的一个应用吧。一图胜千言，下图切中肯綮地点出了架构和框架的区别。一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]一图胜千言:谈框架和架构的区别">
+<meta property="og:url" content="https://haofly.net/the-difference-of-frame-and-framework/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="该文章是我之前在麦库里收藏的，但不知为何现在已找不到原文链接了，网上都是些转载文章，还不完整。如果作者能看到，希望作者可以联系我。为使文章结构更清晰，下文稍有改动。
+架构和框架的区别笔者发现，人们对软件架构存在非常多的误解，其中一个最为普遍的误解就是：将架构和框架（Framework）混为一谈。本文阐述了它们的区别。算是对思辨成果的一个应用吧。一图胜千言，下图切中肯綮地点出了架构和框架的区别。一">
+<meta property="og:image" content="http://7xnc86.com1.z0.glb.clouddn.com/the-difference-of-frame-and-
+framework_0.jpg">
+<meta property="og:updated_time" content="2016-02-22T05:23:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[转]一图胜千言:谈框架和架构的区别">
+<meta name="twitter:description" content="该文章是我之前在麦库里收藏的，但不知为何现在已找不到原文链接了，网上都是些转载文章，还不完整。如果作者能看到，希望作者可以联系我。为使文章结构更清晰，下文稍有改动。
+架构和框架的区别笔者发现，人们对软件架构存在非常多的误解，其中一个最为普遍的误解就是：将架构和框架（Framework）混为一谈。本文阐述了它们的区别。算是对思辨成果的一个应用吧。一图胜千言，下图切中肯綮地点出了架构和框架的区别。一">
+<meta name="twitter:image" content="http://7xnc86.com1.z0.glb.clouddn.com/the-difference-of-frame-and-
+framework_0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://haofly.net/the-difference-of-frame-and-framework/"/>
+
+  <title> [转]一图胜千言:谈框架和架构的区别 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            收藏
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [转]一图胜千言:谈框架和架构的区别
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-28T01:12:20+00:00" content="2015-03-28">
+              2015-03-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/the-difference-of-frame-and-framework/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="the-difference-of-frame-and-framework/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://7xnc86.com1.z0.glb.clouddn.com/the-difference-of-frame-and-
 framework_0.jpg" alt=""></p>
 <p>该文章是我之前在麦库里收藏的，但不知为何现在已找不到原文链接了，网上都是些转载文章，还不完整。如果作者能看到，希望作者可以联系我。为使文章结构更清晰，下文稍<br>有改动。</p>
-<h2 id="u67B6_u6784_u548C_u6846_u67B6_u7684_u533A_u522B"><a href="#u67B6_u6784_u548C_u6846_u67B6_u7684_u533A_u522B" class="headerlink" title="架构和框架的区别"></a>架构和框架的区别</h2><p>笔者发现，人们对软件架构存在非常多的误解，其中一个最为普遍的误解就是：将架构和框架（Framework）混为一谈。本文阐述了它们的区别。算是对思辨成果的一个<br>应用吧。一图胜千言，下图切中肯綮地点出了架构和框架的区别。一句话，框架是软件，架构不是软件。  </p>
+<h2 id="架构和框架的区别"><a href="#架构和框架的区别" class="headerlink" title="架构和框架的区别"></a>架构和框架的区别</h2><p>笔者发现，人们对软件架构存在非常多的误解，其中一个最为普遍的误解就是：将架构和框架（Framework）混为一谈。本文阐述了它们的区别。算是对思辨成果的一个<br>应用吧。一图胜千言，下图切中肯綮地点出了架构和框架的区别。一句话，框架是软件，架构不是软件。  </p>
 <p><strong>框架</strong>是一种特殊的<strong>软件</strong>，它并不能提供完整无缺的解决方案，而是为你构建解决方案提供良好的基础。框架是<strong>半成品</strong>。典型地，框架是系统或子系统的半成品；框架中的服务可以被最终应用直接调用，而框架中的扩展点是供应用开发人员定制的“可变化点”。</p>
 <p><strong>软件架构不是软件</strong>，而是<strong>关于软件如何设计的重要决策</strong>。软件架构决策涉及到如何将软件系统分解成不同的部分、各部分之间的静态结构关系和动态交互关系等。经过完整的开发过程之后，这些架构决策将体现在最终开发出的软件系统中；当然，引入软件框架之后，整个开发过程变成了“分两步走”，而架构决策往往会体现在框架之中。或许，人们常把架构和框架混为一谈的原因就在于此吧。</p>
 <p>理解了本图，我们就很容易理解Frank Buschmann等人在《面向模式的软件体系结构（第一卷）》中为框架所下的定义了，其中也提到了框架和架构的关系：<br><strong><em>框架是一个可实例化的、部分完成的软件系统或子系统，它为一组系统或子系统定义了架构，并提供了构造系统的基本构造块，还为实现特定功能定义了可调整点。在面向对象环境中，框架由抽象类和具体类组成</em>。</strong>（A framework is a partially complete software (sub-) system that is intended to be instantiated. It defines the architecture for a family of (sub-) systems and provides the basic building blocks to create them. It also defines the places where adaptations for specific functionality should be made. In an object-oriented environment a framework consists of abstract and concrete classes.）</p>
@@ -22,7 +364,7 @@ framework_0.jpg" alt=""></p>
 <p>一个基于框架开发的应用系统包含一个或多个框架，与框架相关的构件类，以及与应用系统相关的功能扩展。与应用系统相关的扩展包括与应用系统相关的类和对象。应用系统可<br>能仅仅复用了面向对象框架的一部分，或者说，它可能需要对框架进行一些适应性修改，以满足系统需求。</p>
 <p>面向对象的框架作为一种可复用的软件，在基于框架的软件开发过程中会涉及到框架的开发和利用两个方面的工作。框架的开发阶段在于产生领域中可复用的设计。该阶段的主要<br>结果是框架以及与框架相关的构件类。该阶段的一个重要活动是框架的演变和维护。象所有软件一样，框架也易于变化。产生变化的原因很多，如应用出错，业务领域变化，等等<br>。</p>
 <p>不论是哪一种技术，最终都是为业务发展而服务的。从业务的角度来讲。首先，框架的是为了企业的业务发展和战略规划而服务的，他服从于企业的愿景（vision）；其次<br>，框架最重要的目标是提高企业的竞争能力，包括降低成本、提高质量、改善客户满意程度，控制进度等方面。最后，框架实现这一目标的方式是进行有效的知识积累。软件开发<br>是一种知识活动，因此知识的聚集和积累是至关重要的。框架能够采用一种结构化的方式对某个特定的业务领域进行描述，也就是将这个领域相关的技术以代码、文档、模型等方<br>式固化下来。</p>
-<h3 id="u8BE6_u7EC6_u4ECB_u7ECD_u4E00_u4E0B_u6846_u67B6_u7684_u4F5C_u7528"><a href="#u8BE6_u7EC6_u4ECB_u7ECD_u4E00_u4E0B_u6846_u67B6_u7684_u4F5C_u7528" class="headerlink" title="详细介绍一下框架的作用"></a>详细介绍一下框架的作用</h3><p>一、框架要解决的问题</p>
+<h3 id="详细介绍一下框架的作用"><a href="#详细介绍一下框架的作用" class="headerlink" title="详细介绍一下框架的作用"></a>详细介绍一下框架的作用</h3><p>一、框架要解决的问题</p>
 <p>框架要解决的最重要的一个问题是<strong>技术整合</strong>的问题，在J2EE的框架中，有着各种各样的技术，不同的软件企业需要从J2EE中选择不同的技术，这就使得软件企业<br>最终的应用依赖于这些技术，技术自身的复杂性和技术的风险性将会直接对应用造成冲击。而应用是软件企业的核心，是竞争力的关键所在，因此应该将应用自身的设计和具体的<br>实现技术解耦。这样，软件企业的研发将集中在应用的设计上，而不是具体的技术实现，技术实现是应用的底层支撑，它不应该直接对应用产生影响。</p>
 <p>要理解这一点，我们来举一些例子：</p>
 <p>一个做视频流应用的软件企业，他为电广行业提供整体的解决方案。他的优势在于将各种各样的视频硬件、服务器、和管理结合起来，因此他扮演的是一个集成商的角色。因此他<br>的核心价值在于使用软件技术将不同的硬件整合起来，并在硬件的整合层面上提供一个统一的管理平台。所以他的精力应该放在解决两个问题：</p>
@@ -57,19 +399,384 @@ framework_0.jpg" alt=""></p>
 <p>成功的框架开发需要确定领域专用的“热点” (Hot spot)。应用开发者在框架的基础上进行开发，只须扩展框架的某些部分，<em>“热点”就是在应用领域的一种扩展<br>槽，开发者根据自己的需要填充这些扩展槽</em>。“热点”使框架具有灵活性，如在具体的实现中，扩展槽可以被看成是一些抽象类，开发者通过重写抽象方法获得具体实现。</p>
 <p>“食谱” (Cookbook)就是描述如何使用框架方法的文档。在“食谱”中包含了许多“烹饪”方法，这些“烹饪”方法相当于一些具体的操作步骤，描述了为解决某一<br>专门问题如何使用框架的详细方法。框架的内部设计和实现细节通常不出现在“食谱”中。</p>
 <p>框架的一个重要特征就是用户定义的方法经常被框架自身调用，而不是从用户的应用代码中调用。这种机制常称为“好莱坞原则”(Hollywood<br>Principle)或“别调用我们，我们会调用您”。</p>
-</div><a data-url="http://haofly.net/the-difference-of-frame-and-framework/" data-id="ciki4pbeo001s75rxtkj0llnh" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/python-encoding-specification/" class="pre"><i class="icon-previous">Python编码及注释规范</i></a><a href="/github-set-webhook/" class="next">在Github上设置webhook钩子<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'haoflynet';
-var disqus_identifier = 'the-difference-of-frame-and-framework/';
-var disqus_title = '[转]一图胜千言:谈框架和架构的区别';
-var disqus_url = 'http://haofly.net/the-difference-of-frame-and-framework/';
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();</script><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/maitianshouwangzhe/">我越来越像《麦田守望者》</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/database-application-scenarios/">各种数据库的应用场景</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-  })();
-</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/github-set-webhook/" rel="next" title="在Github上设置webhook钩子">
+                <i class="fa fa-chevron-left"></i> 在Github上设置webhook钩子
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/python-encoding-specification/" rel="prev" title="Python编码及注释规范">
+                Python编码及注释规范 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">140</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xiang.jwzcq.com" title="谢翔的博客" target="_blank">谢翔的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/qingguo" title="qingguo" target="_blank">qingguo</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#架构和框架的区别"><span class="nav-number">1.</span> <span class="nav-text">架构和框架的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#详细介绍一下框架的作用"><span class="nav-number">1.1.</span> <span class="nav-text">详细介绍一下框架的作用</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'haoflynet';
+      var disqus_identifier = 'the-difference-of-frame-and-framework/';
+      var disqus_title = "[转]一图胜千言:谈框架和架构的区别";
+      var disqus_url = 'https://haofly.net/the-difference-of-frame-and-framework/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
