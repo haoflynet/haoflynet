@@ -1,8 +1,1919 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="豪翔天下的博客,haoflynet,haofly"><title>豪翔天下 | Change My World by Program</title><link rel="stylesheet" type="text/css" href="/css/normalize.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">豪翔天下</h1><a id="logo" href="/.">豪翔天下</a><p class="description">Change My World by Program</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/favorites.html"><i class="icon-archive"> 我的收藏</i></a><a href="https://github.com/haoflynet/wiki"><i class="icon-archive"> 我的wiki</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h2 class="post-title"><a href="/python-requests/">Python Requests模块进行网页抓取详解</a></h2><div class="post-meta">2015-12-04</div><span data-disqus-identifier="python-requests/" class="disqus-comment-count"></span><div class="post-content"><p>Python3早已可以不用自带的urllib来进行Http请求了，requests包就是一神奇，可以在各种场合使用它。它能方便的发送GET和POST请求，支<br>持HTTPS，基本上能模拟人类真实的访问  </p></div><p class="readmore"><a href="/python-requests/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/internal-network-penetration/">内网穿透方案</a></h2><div class="post-meta">2015-12-04</div><span data-disqus-identifier="internal-network-penetration/" class="disqus-comment-count"></span><div class="post-content"><h2 id="u80CC_u666F_uFF1A_u5929_u671D_u5927_u5C40_u57DF_u7F51_uFF0C_u7F51_u4E0A_u90FD_u8BF4_u53EF_u4EE5_u6253_u7535_u8BDD_u53EB_u5BA2_u670D_u5207_u6362_u5230_u516C_u7F51IP_uFF0C_u4F46_u662F_u7535_u4FE1_u3001_u79FB_u52A8_u5BBD_u5E26_uFF0C_u65E0_u8BBA_u6253_u5BA2_u670D_u8FD8_u662F_u5B89_u88C5_u5E08_u5085_uFF0C_u5C45_u7136_u4ECE_u4E0A_u5230_u4E0B_u90FD_u4E0D_u77E5_u9053_u516C_u7F51IP_u662F_u4EC0_u4E48_uFF0C_u4ED6_u4EEC_u4EE5_u4E3A_u6211"><a href="#u80CC_u666F_uFF1A_u5929_u671D_u5927_u5C40_u57DF_u7F51_uFF0C_u7F51_u4E0A_u90FD_u8BF4_u53EF_u4EE5_u6253_u7535_u8BDD_u53EB_u5BA2_u670D_u5207_u6362_u5230_u516C_u7F51IP_uFF0C_u4F46_u662F_u7535_u4FE1_u3001_u79FB_u52A8_u5BBD_u5E26_uFF0C_u65E0_u8BBA_u6253_u5BA2_u670D_u8FD8_u662F_u5B89_u88C5_u5E08_u5085_uFF0C_u5C45_u7136_u4ECE_u4E0A_u5230_u4E0B_u90FD_u4E0D_u77E5_u9053_u516C_u7F51IP_u662F_u4EC0_u4E48_uFF0C_u4ED6_u4EEC_u4EE5_u4E3A_u6211" class="headerlink" title="背景：天朝大局域网，网上都说可以打电话叫客服切换到公网IP，但是电信、移动宽带，无论打客服还是安装师傅，居然从上到下都不知道公网IP是什么，他们以为我"></a>背景：天朝大局域网，网上都说可以打电话叫客服切换到公网IP，但是电信、移动宽带，无论打客服还是安装师傅，居然从上到下都不知道公网IP是什么，他们以为我</h2><p>要公网IP是要独立宽带，公网IP和共享宽带明明是两个概念好不好，你可以封80端口，但是其它什么端口至少给我留一个总行吧，客服没用，就只能自己动手了。  </p></div><p class="readmore"><a href="/internal-network-penetration/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/blog-revision/">博客再次改版</a></h2><div class="post-meta">2015-12-02</div><span data-disqus-identifier="blog-revision/" class="disqus-comment-count"></span><div class="post-content"><p>经过长达5个月的艰辛历程(实际的编程时间少之又少)，终于自己打造出了一个静态博客。虽然没有wordpress那么方便，虽然没有预期中那么漂亮，虽然还有很多功<br>能还没有完善，但是这是我第一次用自己的技术为自己做了一个“会用”的东西。</p></div><p class="readmore"><a href="/blog-revision/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/python-connect-mysql/">Python3 使用MySQL Connector操作数据库</a></h2><div class="post-meta">2015-11-04</div><span data-disqus-identifier="python-connect-mysql/" class="disqus-comment-count"></span><div class="post-content"><p>参考文档：<br><a href="https://dev.mysql.com/doc/connector-python/en/" target="_blank" rel="external">https://dev.mysql.com/doc/connector-python/en/</a>  </p></div><p class="readmore"><a href="/python-connect-mysql/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/supervisor-manage-processor/">使用Supervisor管理进程</a></h2><div class="post-meta">2015-08-11</div><span data-disqus-identifier="supervisor-manage-processor/" class="disqus-comment-count"></span><div class="post-content"><p>参考文章：<a href="http://segmentfault.com/a/1190000002991175" target="_blank" rel="external">http://segmentfault.com/a/1190000002991175</a>(原文中还有使用OneAPM安装Python探针的应用，可<br>以实时监控web应用数据，暂时还未实践)</p></div><p class="readmore"><a href="/supervisor-manage-processor/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/ssl-jks-to-pem/">SSL各种格式证书的转换(JKS to PEM, KEY, CRT)</a></h2><div class="post-meta">2015-08-04</div><span data-disqus-identifier="ssl-jks-to-pem/" class="disqus-comment-count"></span><div class="post-content"><p>原文链接：<a href="http://ju.outofmemory.cn/entry/108566" target="_blank" rel="external">http://ju.outofmemory.cn/entry/108566</a></p></div><p class="readmore"><a href="/ssl-jks-to-pem/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/function-coding-coolshell/">[转]函数式编程——CoolShell</a></h2><div class="post-meta">2015-07-25</div><span data-disqus-identifier="function-coding-coolshell/" class="disqus-comment-count"></span><div class="post-content"><p>原文地址：<a href="http://coolshell.cn/articles/10822.html" target="_blank" rel="external">http://coolshell.cn/articles/10822.html</a></p></div><p class="readmore"><a href="/function-coding-coolshell/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/apache-vs-nginx/">[转]Apache vs Nginx: Practical Considerations</a></h2><div class="post-meta">2015-07-18</div><span data-disqus-identifier="apache-vs-nginx/" class="disqus-comment-count"></span><div class="post-content"><p>原文地址：<a href="https://www.digitalocean.com/community/tutorials/apache-vs-nginx-</div><p class="readmore"><a href="/apache-vs-nginx/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/pdb-	debug-python/">使用PDB调试Python程序</a></h2><div class="post-meta">2015-07-11</div><span data-disqus-identifier="pdb-	debug-python/" class="disqus-comment-count"></span><div class="post-content"><p>pdb是Python自带的类gdb、cdb的调试工具。</p></div><p class="readmore"><a href="/pdb-	debug-python/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/laravel-container/">[转]Laravel学习笔记——神奇的服务容器</a></h2><div class="post-meta">2015-07-10</div><span data-disqus-identifier="laravel-container/" class="disqus-comment-count"></span><div class="post-content"><p>原文地址：<a href="https://www.insp.top/learn-laravel-container" target="_blank" rel="external">https://www.insp.top/learn-laravel-container</a></p></div><p class="readmore"><a href="/laravel-container/">阅读更多</a></p></div><div class="page-navigator"><a href="/" class="pre">上一页</a><a href="/page/3/" class="next">下一页</a></div><script id="dsq-count-scr" src="//haoflynet.disqus.com/count.js" async></script></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://haofly.net"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/就是爱玩/">就是爱玩</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之路/">编程之路</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/边走边想/">边走边想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那时年少/">那时年少</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/韦编三绝/">韦编三绝</a></li></ul></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/maitianshouwangzhe/">我越来越像《麦田守望者》</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-update/">MySQL数据库升级过程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-master-slave/">Mysql之主从复制</a></li><li class="post-list-item"><a class="post-list-link" href="/python-multithreading-multiprocess/">Python多进程和多线程</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-migration/">MySQL数据库目录存放位置迁移</a></li><li class="post-list-item"><a class="post-list-link" href="/design-pattern/">[转]23种设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-optimization/">MySQL之调优方法</a></li><li class="post-list-item"><a class="post-list-link" href="/mysql-design-tips/">MySQL之设计方法</a></li><li class="post-list-item"><a class="post-list-link" href="/raspberrypi/">玩转树莓派2</a></li><li class="post-list-item"><a class="post-list-link" href="/database-application-scenarios/">各种数据库的应用场景</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//haoflynet.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">豪翔天下.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><script type="text/javascript" src="/js/totop.js?v=0.0.0"></script><script type="text/javascript" src="/js/fancybox.pack.js?v=0.0.0"></script><script type="text/javascript" src="/js/jquery.fancybox.js?v=0.0.0"></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-  })();
-</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script type="text/javascript" src="/js/share.js?v=0.0.0"></script></div></body></html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="豪翔天下的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="豪翔天下">
+<meta property="og:url" content="https://haofly.net/page/2/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="豪翔天下的个人博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="豪翔天下">
+<meta name="twitter:description" content="豪翔天下的个人博客">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://haofly.net/page/2/"/>
+
+  <title> 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            收藏
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/mysql-multi-instance/" itemprop="url">
+                  MySQL单机多实例
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-09T14:37:29+08:00" content="2016-03-09">
+              2016-03-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mysql-multi-instance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mysql-multi-instance/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这是我们公司的实习内容之一，以前一直以为在单机上部署多个MySQL就是起多个进程就行了，too yuang too simple，原来MySQL默认提供了单机多实例功能的。<br>配置和使用过程如下(CentOS)：</p>
+<ol>
+<li><code>mysqld_multi --example</code>这个可以直接查看MySQL提供的多实例配置文件的配置内容样例，基本上可以直接拿来就用</li>
+<li><code>mysql_install_db --datadir=/tmp/mariadb/data1</code>以这种方式创建多个数据库存放目录，<strong>一定要注意不要放在/root目录下，不然会出现什么Aria无法加载的情况</strong></li>
+<li><code>vim /etc/my.cnf</code>内容如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[mysqld_multi]</div><div class="line">mysqld     = /usr/bin/mysqld_safe</div><div class="line">mysqladmin = /usr/bin/mysqladmin</div><div class="line">user       = root # mysql</div><div class="line">password   = mysql</div><div class="line">	</div><div class="line">[mysqld2]</div><div class="line">socket     = /tmp/mysql.sock2</div><div class="line">port       = 3307</div><div class="line">pid-file   = /tmp/hostname.pid2</div><div class="line">datadir    = /tmp/data1</div><div class="line">user       = mysql</div><div class="line">	</div><div class="line">[mysqld3]</div><div class="line">socket     = /tmp/mysql.sock3</div><div class="line">port       = 3308</div><div class="line">pid-file   = /tmp/hostname.pid3</div><div class="line">datadir    = /tmp/data2</div><div class="line">user       = mysql</div></pre></td></tr></table></figure>
+<ol>
+<li>启动实例</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mysqld_multi start      # 启动实例</div><div class="line">mysqld_multi stop</div><div class="line">mysqld_multi report     # 查看两个实例运行状态</div></pre></td></tr></table></figure>
+<p>另外，实例的日志文件默认是在实例文件夹下的<code>localhost.localdomain.err</code>文件里，启动完实例后，还要连接实例进行初始密码设置</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/bye-myhome/" itemprop="url">
+                  故乡，我可能真的回不来了
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-17T21:49:29+08:00" content="2016-02-17">
+              2016-02-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/边走边想/" itemprop="url" rel="index">
+                    <span itemprop="name">边走边想</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/bye-myhome/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="bye-myhome/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今年情人节，和女朋友相约去最近的一个县城玩儿，但其中发生了各种不愉快，不过还好女朋友现在越来越像我了，遇到事情不会抱怨太久。又要离开家乡了，仔细想想这个寒假的种种经历，我想，可能，我再也回不来家乡了。</p>
+<p>这里的回不来，不是指不回来，而是，我已经完全不适合在家乡生存了。我从大学一进城就发现，家乡的生存成本比城里高出了不知道多少倍，父母却总是不信。在家乡人眼里，城市依然是一个吃顿饭就会不小心花上几百上千的地方。然而，他们所不知道的是，农村因为信息的阻塞和大家生活水平的相对提高，物价可能比城市更高，至少在我眼里是这样的。城里有团购软件，你可以选择离你最近的地方，然后点你最想吃的餐，这些你都可以通过一个手机APP找到，并且全都明码标价，绝对不会作出宰客这种事情。如果你对商家提供的服务有一点点的不满意，你随时可以给一个差评或者直接向APP投诉，不出24小时基本上你的诉求都能得到回应。</p>
+<p>我嫂子前几天去银行改手机号码，结果银行服务人员脾气太差，她直接被吓回来了，我就跟她说下次带我一起去，她一发脾气，我立马举报，如果举报不行，那就找12315投诉。同样，我另一个在城里待过几年的嫂子，想要将城里暂时用不到的宽带转移到家里来却被各种拖延，当时眼看对方要发脾气，立马说了一句，“你再不搞好我就投诉你”，对方立马焉了，我多么想看看服务员当时的面部表情。家乡的人由于信息闭塞与教育落后，真的受了太多的“欺负”，他们不知道还有这么多的合法渠道来维护自己的合理的权益，导致这里的不良商家像上帝一样对待顾客，不过这里，商家才是上帝。同样关于维权的，前几年，我家的电压一直不稳定，电力局一直说要解决，但是一直不见行动，当时的我十分气愤，给市长信箱写了邮件，第二天，一伙人赶来我家检查，最后还要我签字确认。不是我这人较真，我只是觉得，我付出了金钱，就应该享受这些服务，而且在我付钱的时候他们也都承诺过要给予这些服务的。包括12315这样的组织，我们虽然没有直接交钱，但是我们的税收里肯定包含了这些的，所以有问题不能解决，那我就找12315。</p>
+<p>情人节去邻县看电影，整个县城两个电影院，我们去的中心那个，另一个在城边上，几乎没人会去那里。可是，居然有电影院不能网上团购选座，把我弄郁闷了。于是我们就自己走去购买，12点买到了下午2点的票，而且是最后几个位置，当然是第一排的边上了，2点去看电影的时候电影院简直人满为患，据说现在买到的都到晚上八点后的了。看电影的时候我惊奇地发现，屏幕咋那么小，而且屏幕边缘那些褶皱是什么鬼。总之，体验超级不好，还不能给差评。邻县的交通也是乱得无法形容，基本上是人和车都在抢道，没办法，人让了就过不了马路，车让了也过不了马路，政府也没办法，人流量大的地方正好车流量也大，设个红绿灯还不如不设呢。中午吃饭，这里居然有三顾冒菜，但是，价钱呢，怎么没标识，想着也没有团购吧。这里的出租车据说跑城内都很有可能不打表的，不过在这里我一般不坐出租车，毕竟公交车只要1元，虽然我不知道司机哪儿有那么多急刹车要踩。</p>
+<p>这里的人际关系之复杂，与城里简直是天壤之别。简单地说，在大城市，有能力就可以，而在小地方，有关系，没能力你也可以。在这里无论做什么，你都得先想想，对方可能是你的某个亲戚或者某个亲戚的亲戚。比如去年，我一个大姨被一酒驾人员擦到了，由于年岁已高，当时就倒地不起，那人居然肇事逃逸了。之后家人居然叫我们不急打110。我是完全无法理解的。直到我大姨被送到医院，那人始终未出面，而那些大人们却一直在联系认识肇事人的亲戚过来。最后我们中有年轻人报了警，但是警察来的时候，那亲戚也来了，然后，就叫警察回去了，当时看得我是目瞪口呆的。最后，这件事也在一顿饭中不了了之了。对于肇事逃逸那个人，我只想说，幸亏你身在这儿，不然早就进监狱了。</p>
+<p>再来说说家乡的酒桌文化和面子文化。为什么有人要把劝酒视为一种传统文化而世代相传呢，连七八岁的小孩都觉得，不喝酒怎么行，不喝酒怎么在社会上走。有些人劝起酒来，给我这种不喝酒的人的感受就是，不把你灌醉就是我照顾不周，而你不喝酒的话，那更严重，那就是不给我面子。面对这种人，我就有多远滚多远吧。我说我不能喝酒，我说我高血压，结果还非要我喝，你连我的命都不要，还奢求我给你什么面子，再说，我不想喝你偏要我喝，这到底是谁不给谁面子。当然，家乡的送礼文化我倒觉得没什么，一般也就送一些奶、火炮什么的，一般是你送给我多少，下次我就还给你多少，这个虽然也是有点麻烦，但是毕竟不会劳民伤财嘛。当然，请一定要记住，千万不要少给或者不给，不然的话，背地里一定会到处说的，你永远也不知道在家乡，一张嘴的传播速度与互联网的传播能力速度哪个更快。</p>
+<p>我知道，家乡生我养我，我或许不该说得这么过分，但是现在，我真的越来越不懂家乡了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/santi/" itemprop="url">
+                  我居然忘了写《三体》的读后感
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-13T22:58:29+08:00" content="2016-02-13">
+              2016-02-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/韦编三绝/" itemprop="url" rel="index">
+                    <span itemprop="name">韦编三绝</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/santi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="santi/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>买了kindle已经看了七八本书了，其他的书在博客改版后都陆陆续续写了书评了，但是我居然还没有给《三体》写读后感。这两天，世界突然被一个发现震动了：<a href="http://www.guokr.com/article/441177/" target="_blank" rel="external">引力波</a>被证实了。虽然不知道其中的具体含义，但是可能真的如人们所说，引力波的发现可能会像万有引力被发现一样给基础物理学带来飞速的发展。</p>
+<p>简单地说，我最初是因为急着看《三体》才去淘宝买kindle的。对于一个长大了的科幻迷来说，《三体》绝对是不可多得的好书，并且它是国产的，这是我最惊讶的一个部分。不是我看不起国内小说，国内小说总体来说武侠传奇的比较多，描写未来的确实罕见，而能这样引人入胜的，更是凤毛麟角。当然也有可能是由于我读的小说比较少的缘故吧，这部小说在开篇就把我吸引进去了，废寝忘食地看了一个星期。</p>
+<p>全书分为三个部分：《地球往事》、《黑暗森林》、《死神永生》，其中最精彩的部分莫过于黑暗森林了，把宗教、伦理、科幻、爱情等统统融合在一起，体现了其宇宙社会学的深层含义。看了很多的书评，负面评价的原因主要有二，一是叙事手法上，二是科幻知识上相对低级。前者我不好评价，毕竟我对这方面没有研究，我只知道在阅读的时候我被深深地吸入进去了，只知道这本书的想象力至少在国内是极少见到的。(不过说实话，最后一部的结尾，确实有点粗糙，感觉就像是《火影忍者》一样，匆匆结尾，看起来像是文思枯竭了一样)对于后者，我只能说，正式因为此书所用到的物理知识对于一个大学生的我来说，刚好能够理解，不会显得晦涩难懂，我想，这已经很成功了。</p>
+<p><strong>黑暗森林法则</strong>：宇宙就是一座黑暗森林，每个文明都是带枪的猎人，像幽灵般潜行于林间，轻轻拨开挡路的树枝，竭力不让脚步发出一点儿声音，连呼吸都必须小心翼翼：他必须小心，因为林中到处都有与他一样潜行的猎人，如果他发现了别的生命，能做的只有一件事：开枪消灭之。在这片森林中，他人就是地狱，就是永恒的威胁，任何暴露自己存在的生命都将很快被消灭，这就是宇宙文明的图景。<br>佩服作者的想象力，以前的我真的从没想过这一个层面的东西，认为我们就应该一直寻找宇宙中的智慧生物，去寻找另一个文明，现在看来，一切都太艰难了，宇宙中处处存在着猜疑链，你永远不知道另一个文明是怎么看你的，不要像程圣母(程心)一样只用善良的思维去思考这个世界。</p>
+<p><strong>射手假说</strong>：有一名神枪手，在一个靶子上每隔十厘米打一个洞。设想这个靶子的平面上生活着一种二维智能生物，它们中的科学家在对自己的宇宙进行观察后，发现了一个伟大的定律： “宇宙每隔十厘米，必然会有一个洞。”它们把这个神枪手一时兴起的随意行为，看成了自己宇宙中的铁律。<br><strong>农场主假说</strong>：一个农场里有一一群火鸡，农场主每天中午十一点来给它们喂食。火鸡中的一名科学家观察这个现象，一直观察了近一年都没有例外，于是它也发现了自己宇宙中的伟大定律：“每天上午十一点，就有食物降临。”它在感恩节早晨向火鸡们公布了这个定律，但这天上午十一点食物没有降临，农场主进来把它们都捉去杀了。<br>这两个假说，我也只能仰望了，看过那么多科幻小说和纪录片，我也没能跳出这个牢笼，从外面的世界思考，比如这里，如果调到比我们更高维度来思考，他们也会不会认为我们只是纸上的一些小人儿呢。</p>
+<h2 id="消灭人类暴政，世界属于三体"><a href="#消灭人类暴政，世界属于三体" class="headerlink" title="消灭人类暴政，世界属于三体"></a>消灭人类暴政，世界属于三体</h2><h2 id="一切都会逝去，只有死神永生"><a href="#一切都会逝去，只有死神永生" class="headerlink" title="一切都会逝去，只有死神永生"></a>一切都会逝去，只有死神永生</h2><p>推荐观看：<br><a href="https://www.youtube.com/watch?v=HL_o_if5it0" target="_blank" rel="external">神剪辑！12分钟看完90万字科幻小说神作《三体》
+</a><br><a href="http://www.bilibili.com/bangumi/i/1704/" target="_blank" rel="external">我的三体(国内粉丝使用minecraft制作)</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/my-university/" itemprop="url">
+                  大学全记事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-12T11:57:50+08:00" content="2016-02-12">
+              2016-02-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/边走边想/" itemprop="url" rel="index">
+                    <span itemprop="name">边走边想</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/my-university/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="my-university/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>人生最后一个寒假，趁着还记得，回忆一下我这四年</p>
+<h2 id="大一"><a href="#大一" class="headerlink" title="大一"></a>大一</h2><ul>
+<li>比规定时间提前来了几天，学校里居然这么少的人。6栋真小，12平米的房间住了四个人。那几天有领导来关怀新生，整栋楼就没几个人，正好他们敲了我的房间，还和领导握了手。后来才知道，她就是大名鼎鼎的是书记</li>
+<li>听学长的话，认为大学就该多去争取兼职机会，于是答应帮别人卖被子提成。但是遇到一个人得时候不忍心把被子高价卖给别人，也由于自己脸皮比较薄，所以放弃了</li>
+<li>听别人的话，大学得多加社团，报了几个社团，基本上，如果有技术面的都能过，面试都没过，然后就没有然后了。当时不知道还有学生社团这种东西(和学生会的黑社会性质不一样，这个完全是兴趣)，也错过了社团的招新。</li>
+<li>下学期的时候参加了C语言考前培训，认识了软件协会会长和副会长，给了我几道题，做好了，然后就跟着他们联系ACM，然后顺利成长的当上了副会长(当时叫我当会长，被我拒绝了)</li>
+<li>大学有一次进某个实验室的机会，但我也放弃了，那老师就一个做外挂的</li>
+<li>虽然我高三就开始学习C语言，但其实大一那个寒假我才真正学完，才真正学号了她</li>
+<li>大一结束那个暑假，学了Python、Delphi、PHP，虽然都只是学了其语法，但也算入门了</li>
+<li>我们是大一结束才军训的，厌恶透了</li>
+<li>从大一下开始追海贼，也是这个时候入微博</li>
+<li>大一暑假，我们一行人准备骑行去西藏，结果，我半途而废，至今是我心里永远的伤疤</li>
+<li>对了，就在大一结束就开始写个人博客了</li>
+</ul>
+<h2 id="大二"><a href="#大二" class="headerlink" title="大二"></a>大二</h2><ul>
+<li>当了一年的副会长，认识了很多人，技术也学到了一些，与服务器的第一次亲密接触，从此知道linuxinux server这种神奇的东西，从此会搭建个人网站了，从此走上了运维这条不归路。其实在软协这两年，我一直是想通过一些特殊的培训来帮助大家，提高大家的，不过没想到的是大二大三事情太多了</li>
+<li>与软件协会另两位组队参加了重庆市的ACM比赛，不过没获奖，也没什么，至少我还是参加过一次比赛的(PS:别问我获奖队伍那么多为什么我们都没获奖，谁叫他规定每个学校最多三支队伍获奖的)</li>
+<li>英语四六级考试都一次过，不过，说真的，每次考完我都觉得差着几百分呢，ps：四级是优</li>
+<li>大概是从这一年开始接触微博的，从此完全成了微博控，花费了我大量的时间，不过带给我的启发却是不可估量的，通过微博，我才看到了世界。至少，不用再沉浸在C和C++的海洋里，原来外面的世界还有python，还有node，还有openstack，还有nosql，原来，我们永远也学不完，原来学校教的在外面真的很少能用到</li>
+<li>这一年，也是我上自习上得最多的，导致我连续两年拿了奖学金，还拿奖学金买了一把国产机械键盘，那叫一个爽，那叫一个帅</li>
+<li>大二下学期，进入了实验室，好吧，我那么晚才进实验室的，可是实验室的老师是一个刚从国外留学回来的，感觉他不怎么了解国内市场和国内的职场。不过，搞研究的老师应该都这样吧。模式识别，几十篇的全英文论文，看得心烦。也因为这次经历，导致我放弃了考研的想法。</li>
+<li>放弃考研的那几天，我把以前的书都卖了，还美其名曰破釜沉舟。同时，也没怎么关心学习的事情了，一心钻研自己的技术。</li>
+<li>这个学期分专业填志愿，我和以前毅然决然的选择了信安专业，虽然当时我已经不想学信安了，但是毕竟自己以前一直期待这个专业嘛，而且当时的我对选择什么专业已经不以为然了，无论哪个专业我都只会走我自己的路。</li>
+<li>20岁生日这天，买了两瓶白酒和几瓶啤酒，在寝室喝，由于没有什么氛围，室友们并不想喝，于是我一个人喝了…反正我是不知道那晚吐了多少次，据说我吐了无数次，翻下了床无数次，多亏了我的室友啊，不过，你们看到我这样都不送我去医院吗…<br>醉了才知道自己有多么无力，20岁，我写过一篇文章，很伤心，很落寞，觉得自己太失败了，那晚我也仅仅是喝醉了而已，并没有把一切都看开，真正让我看开的，是我现在的女朋友，所以，忘掉一段感情最好的方式就是认真开始一段全新的感情</li>
+<li>暑假的时候把qq相册所有的好友的图片抓下来了，这篇博客访问量上万了，而且因为这个，腾讯一个团队老大找过我，不过当时我实在不想去做前端…现在想想，还好没答应，不然怎么找得到女朋友呢</li>
+<li>大二刚开始就买了台红米手机，从此入坑，直至现在都还在用着红米系列</li>
+<li>大二暑假，我家终于买车了，突然想学车了，然而现在的我已经没时间去学习了</li>
+</ul>
+<h2 id="大三"><a href="#大三" class="headerlink" title="大三"></a>大三</h2><ul>
+<li>既然不考研那就得找事儿了，找了一个工作室去练习，其实一直很佩服领导人眼光的(是一位在职百度贴吧大神创业)，但是他是在不懂得如何管理团队，导致大家最后都没什么激情了。而且由于没有项目管理人员，导致项目到最后居然和之前的需求不一致，最后就没让我们做了。在这个项目里面我主要做的是服务器、数据库的搭建与维护，还包括后台PHP程序的开发。虽然最终失败，不过经历过这个项目，我突然对运维感兴趣了，所以现在自然进入了运维开发这个行当。</li>
+<li>大三下学期一直在找实习机会，也顺利在期末进入了一个传媒公司实习。实习到过年，同样，也是做的Python后台程序开发以及服务器的维护，也算是有大半年的Python工作经验了。我能说，我来这里一两个月了，团队里的人才知道我是实习生吗，原来人事和技术这么分离呀，原来我真的能胜任工作的。除了工资相对低以外，这个公司绝对是我见过的福利最好的公司，各种假期，中秋国庆连着放了13天，过年同事们都说毕业这么多年，第一次感觉到放寒假了，从2月3号放到23号。年会没人都抢了几百的红包，一人一块猪肉…对了当天我们还一人提一带猪肉去ktv的总统套房…</li>
+<li>也正是因为实习，终于我过上了梦寐以求的租房的生活，想吃什么吃什么</li>
+<li>也正是因为进了公司，开始大量使用微信了，原来这里又是另外一片天地</li>
+<li>大三上学期，我居然挂科了，而且挂这个科的人基本上大学都是只挂了这一科，我只想说这个老师是个奇葩</li>
+<li>在大三下学期刚开始就找到了女朋友，从此，每个周末都没有空了…很累但很幸福，对了，她可是我小学同学，隔壁村的哟</li>
+<li>大三寒假，140斤，去医院检查，说肝上油太多，快发展成脂肪肝了，从此不敢海吃肥肉了，大三下每天运动，减了十几斤的肉，but，暑假的时候，老婆的菜确实太好吃了…</li>
+<li>3月份，我的微博数量超过了1000</li>
+<li>8月份，我终于申请到了人生的第一张信用卡，额度6000，写这篇文章的时候，这个月账单8000多</li>
+</ul>
+<h2 id="大四"><a href="#大四" class="headerlink" title="大四"></a>大四</h2><ul>
+<li>大四上学期只回去上过一次课，都是找人代的，而且还没挂科，后来想想，要是大一大二就能做到这样该多好呀，但我们学校逼的，我只能呵呵</li>
+<li>7月份校招就已经开始，但是我现在完全不像去外地了，只想找一个离家近的工作，好不容易得来的爱情，我不像就这样异地恋，别tm跟我说异地恋是一场考验，不像分开就是不像分开，交往一年，我现在觉得百多公里的距离就是银河那么远了。其实不离开家乡还有一个重要的原因是因为这里朋友多，我好想毕业了能像爱情公寓里面一样，所有的好朋友都能在一起。选择了重庆，自然就选择了猪八戒，好吧，其实我貌似只投过猪八戒。以我当时的能力，我想，在重庆，无论哪个公司应该都能投简历就能上吧，毕竟，我曾经那么努力，就是为了自己以后在选择的时候多一些自由。其实去不去外地，都是自己的选择，有很多人都不理解我，我也不奢求所有人都能理解，反正，你在那里奋斗，我再这里奋斗，大家一起努力嘛，都是自己选择的人生，站着跪着都要走完。</li>
+<li>整个上学期都是在之前那个公司实习的…</li>
+<li>大四上，我终于用上了苹果电脑，应了一句话，所有linux爱好者在有钱后都会转向mac的，不仅买了rmbp，还买了kindle，终于又开始大量看书的时代了</li>
+<li>寒假，报名了学车了，以前我想学的时候他们不然我学，后来他们想让我学的时候我也不想学，现在终于抓紧最后时间学一下吧</li>
+<li>大四寒假，二十几年来重庆看到的第一场大雪</li>
+<li>这个寒假，爸爸50岁生日，终于能用自己的钱给爸爸买礼物了，一个机械表，信用卡刷爆…</li>
+</ul>
+<p>总之，我的大学并没有白过，四年大学生涯，学校没教会我什么，但是我是在这个学校学到了我想学的，也领悟到了我以前我不懂得。比以前更了解自己，这才是大学的意义嘛。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/dongwuzhuangyuan/" itemprop="url">
+                  《动物庄园》——我从未见过如此讽刺的小说
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-12T11:24:47+08:00" content="2016-02-12">
+              2016-02-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/韦编三绝/" itemprop="url" rel="index">
+                    <span itemprop="name">韦编三绝</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/dongwuzhuangyuan/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="dongwuzhuangyuan/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前在微博上看到有关敏感话题的讨论中看到该书名，然后出于愤世嫉俗的原因，我自然会去买来看。看了一点点后我就像说，在天朝，这本书没有被禁，简直是奇迹。</p>
+<p>太像了，一切都太像了，为了自由，聪明的猪带领大家起义，最终赶走了农场主。但是随着猪的权利越来越大，得到的利益越来越多，野心越来越膨胀，最终，大家奋斗来的自由都被统治者剥削完了，生活甚至比以前更加艰难了，但是他们的洗脑工作却让下面的以为这样的日子比以前好多了，然而实则已经变成一个充满剥削的社会了。</p>
+<p>据说，这部小说背景是俄国的十月革命到苏联1940年代，但我只想说，和某国太像了，既得利益者为了巩固和加强自己的权力，不顾一切地去掠夺，甚至有时候闹出一切滑稽的笑话，就像“所有动物生来平等，但有些动物比其他动物更平等。”这让我想起了某国的特供用品。对于对自己不利的一切消息，对内部一律封锁，甚至建立一堵堵厚厚的墙，声称这样是为了保护大家，实则是将好的东西都挡在了外面，最后的结局可想而知。</p>
+<p>在我眼里，动物们升旗就是最大的讽刺，明显是为洗脑而生的行为。我能说某些国家即使到了大学还要经常升旗吗，升旗还要念文章，我去。自己生活十分艰苦，还一天嚷嚷着要去解放别人，别人的生活不知道比你好到哪里去了。他们还喜欢邀请别人来庄园，炫耀他们这里多么的繁华。还有被取消的“同志”这个词，看着真是搞笑。</p>
+<p>至于这本书为什么没被禁，我是想不通了，或许他们根本不屑于审查这部“童话”，或许他们根本看不懂…反正我是推荐生在不平等国家的人都去看看。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/maitianshouwangzhe/" itemprop="url">
+                  我越来越像《麦田守望者》
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-11T18:30:14+08:00" content="2016-02-11">
+              2016-02-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/边走边想/" itemprop="url" rel="index">
+                    <span itemprop="name">边走边想</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/maitianshouwangzhe/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="maitianshouwangzhe/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>初看麦田里的守望者，我只看到一个满口脏话，觉得全世界都是傻逼，只有我是最纯洁的一个人。在看之前我并不了解这本书的历史背景，一直觉得这本书可能是90年代后的，不过看了几天后脑海中却始终浮现出一幅很老的画面，就像电视里美国刚开始有摄像机的无声电影一样，所有的人都穿着”老土”的服装，那是一个灯红酒绿、社会混乱，所有人都在寻找出路的时代，事实证明我是对的，此书出版于1951年，正是二战后美国的真实写照吧。</p>
+<p>“一个不成熟的人的标志是他愿意为了某个理由而轰轰烈烈地死去，而一个成熟的人的标志是他愿意为了某个理由而谦恭地活下去。”这或许是此书最出名的一句话。不敢自谦，不过，正如我一直坚持的价值观一样：人，是可以平凡的。比如爱情，现在的社会本没有历史上那么轰轰烈烈，也不会有什么海枯石烂，最多相隔万里，那也能通过网络时时通讯。说的太多，感觉这段和此书的主题并无多大联系。</p>
+<p>第一次接触意识流的小说，觉得有些晦涩，有些不解，但霍尔顿的世界可能每个人都经历过。比如我们的成长，每个人的成长或许都伴随着成年人的不理解，有的人在这过程中练就了挑战世界的本领，而有的人则在反抗的过程中渐渐成长为自己曾经讨厌的人。成长过程中，无论坚持了以我，还是改变了自我，都没有错，最终他们都会走向自己一样的人生，哪怕不是曾经希望的，但一个成年人可能更懂得珍惜现在。不是认命，而是认清了自己。</p>
+<p>故事最后的结局也让人们争论不已，我想，霍尔顿现在已经长大了吧，理想被一个一个击破，到底是继续反抗世界还是改变自己，现在他已经知道答案了。</p>
+<p>今年过年回家，我仿佛变成了故事里的男主角，愤世嫉俗，以前觉得没什么的事情今年却突然感觉十分愤怒。</p>
+<pre><code>为什么我今年回到家成天就感觉这里活着真累呀，错综复杂的亲戚关系，成天都担心着别人眼中自己的形象，遇到各种不公平待遇却又忍气吞声，明明讨厌的事情却又有各种原因不去拒绝。。。
+</code></pre><p>这是我2月7日发表的一篇微博，怎么说呢，以前可能觉得这些离自己太远，所以没去在意。但是即将毕业的我，又碰巧在这个节骨眼到了谈婚论嫁的时刻，实在无法适应，只能边骂边去接受自己能接受的。只希望，明天的我，依然是我曾经喜欢的模样。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/mysql-update/" itemprop="url">
+                  MySQL数据库升级过程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-06T08:06:50+08:00" content="2016-01-06">
+              2016-01-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mysql-update/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mysql-update/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考地址：<a href="http://dev.mysql.com/doc/refman/5.6/en/linux-installation-debian.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.6/en/linux-installation-debian.html</a><br>不知道为什么很多地方的官网都把一个完整的包打散了，然后完整包和分开的包放在同一级目录里，我也是醉了，最终我还是找到了正确的安装方法。  </p>
+<ol>
+<li><p>MySQL社区版官网下载地址：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a><br>需要注意的是，一定要下载结尾为.deb-bundle.tar的包，因为它包含了其它分开的包的所有数据</p>
+</li>
+<li><p>一步一步执行下列步骤就可以了：  </p>
+</li>
+</ol>
+<pre><code>    sudo apt-get install libaio1   // 安装基本的依赖
+tar -xvf mysql-server_MVER-DVER_CPU.deb-bundle.tar   //解压
+sudo dpkg -i mysql-common_MVER-DVER_CPU.deb   // 安装common文件
+dpkg-preconfigure mysql-community-server_MVER-DVER_CPU.deb // 预配置，进行mysql的配置，这时候会要求输入root密码等
+sudo dpkg -i mysql-community-server_MVER-DVER_CPU.deb    // 安装mysql-server
+sudo dpkg -i mysql-community-client_MVER-DVER_CPU.deb    // 安装mysql-client
+sudo dpkg -i libmysqlclient18_MVER-DVER_CPU.deb   // 安装公共库
+</code></pre><ol>
+<li>收尾  </li>
+</ol>
+<pre><code>    # 运行兼容检查工具，自动解决不兼容的问题
+命令行执行mysql_upgrade -uroot -pmysql
+
+
+
+
+不然可能会出现这些错误：
+MySQL unknown column &apos;password_last_changed&apos;
+</code></pre><ol>
+<li>So Easy</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/mysql-master-slave/" itemprop="url">
+                  Mysql之主从复制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-06T07:35:43+08:00" content="2016-01-06">
+              2016-01-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mysql-master-slave/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mysql-master-slave/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考地址：<a href="http://369369.blog.51cto.com/319630/790921" target="_blank" rel="external">http://369369.blog.51cto.com/319630/790921</a><br>原来想要简单地实现MySQL的主从复制其实也是很简单的(<br>这里当然不包括服务监控和容错处理啦)</p>
+<p>1.要检查主从服务器的MySQL版本，最好版本一致，不然会出现各种问题，特别是，5.5和5.6是不会兼容的  </p>
+<p>2.修改两个服务器的mysql配置<code>vim /etc/my.cnf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">log-bin=mysql-bin    // 打开二进制日志</div><div class="line">server-id=41         // 服务器的唯一ID，为0表示拒绝所有从服务器的连接</div></pre></td></tr></table></figure></p>
+<p>分别修改两个服务器配置然后分别重启</p>
+<p>3.主服务器建立账户：这个账户与普通账户不一样，它只能用于主从复制中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; GRANT REPLICATION SLAVE ON *.* to &apos;master&apos;@&apos;%&apos; identified by &apos;mysql&apos;;</div></pre></td></tr></table></figure></p>
+<p>4.查看服务器状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show master status;</div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |  </div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">| mysql-bin.000004 |   615261 |              |                  |                   |  </div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>需要注意的是，这两个值都得记下来哟</p>
+<p>5.将主服务器数据库dump然后导入到从服务器，记下了Position就不用担心dump后新增数据的情况，会自动同步的</p>
+<p>6.配置从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; change master to master_host=&apos;192.168.1.41&apos;, master_user=&apos;xiaohao&apos;, master_password=&apos;mysql&apos;, master_log_file=&apos;mysql-bin.000004&apos;, master_log_pos=615261;  // 这里就是刚才的Position</div></pre></td></tr></table></figure></p>
+<p>7.启动从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; start slave;   # 同理，停止用stop slave</div></pre></td></tr></table></figure></p>
+<p>8.查看复制状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">    mysql&gt; show slave status\G  </div><div class="line">**_*_****_*_****_*_****_*_* 1. row ****_*_****_*_****_*_******  </div><div class="line">               Slave_IO_State: Waiting for master to send event  </div><div class="line">                  Master_Host: 192.168.1.41  </div><div class="line">                  Master_User: xiaohao  </div><div class="line">                  Master_Port: 3306  </div><div class="line">                Connect_Retry: 60  </div><div class="line">              Master_Log_File: mysql-bin.000004  </div><div class="line">          Read_Master_Log_Pos: 652289  </div><div class="line">               Relay_Log_File: ubuntu-relay-bin.000002  </div><div class="line">                Relay_Log_Pos: 37345  </div><div class="line">        Relay_Master_Log_File: mysql-bin.000004  </div><div class="line">             Slave_IO_Running: Yes  </div><div class="line">            Slave_SQL_Running: Yes  </div><div class="line">              Replicate_Do_DB:</div></pre></td></tr></table></figure></p>
+<p>必须保证Slave_IO_Running和Slave_SQL_Running都为Yes的时候才正确的</p>
+<h1 id="TroubleShooting："><a href="#TroubleShooting：" class="headerlink" title="TroubleShooting："></a><strong>TroubleShooting：</strong></h1><ul>
+<li><p>出现错误：Slave SQL for channel ‘’: Slave failed to initialize relay log info structure from the repository, Error_code: 1872<br>是因为relay-log有问题，这时候修改从服务器mysql配置，在[mysqld]中加入relay-log-<br>recovery=1，这样表示，服务器启动之后，删除所有已有的relay日志，重新接收主库的relay日志</p>
+</li>
+<li></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/python-multithreading-multiprocess/" itemprop="url">
+                  Python多进程和多线程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-30T03:28:42+08:00" content="2015-12-30">
+              2015-12-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/python-multithreading-multiprocess/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="python-multithreading-multiprocess/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>多线程和多进程能极大限度的利用线代计算机强大的CPU，在IO密集型的应用场景里十分常见，目前项目中有个需求，是需要向别人网站发送请求等待响应，不过必须等页面<br>的js执行完毕后才能获取内容，就得将执行时间设置得长一点，比如10s，如果每个请求都等这么久那效率实在太慢，所以趁此机会，学习了一下Python的多进程和多<br>线程编程。  </p>
+<p>在Python里面多进程和多线程的区别</p>
+<ul>
+<li>Python里的多线程只能利用CPU的一个核(由于全局解释锁的历史原因)，而多进程则能利用多核的优势</li>
+<li>多线程一般来说比多进程快，毕竟共享内存，但是多线程也更危险，因为一个线程崩溃可能导致整个程序崩溃</li>
+</ul>
+<h1 id="Python多线程"><a href="#Python多线程" class="headerlink" title="Python多线程"></a><strong>Python多线程</strong></h1><ul>
+<li>定义与使用  </li>
+</ul>
+<pre><code>    import threading
+
+class Thread(threading.Thread):
+    def __init__(self, 变量):
+        threading.Thread.__init__(self)
+        self.变量 = 变量
+    def run(self):
+        逻辑
+thread = Thread(参数) # 定义一个线程
+thread.start()        # 开启一个线程
+</code></pre><ul>
+<li>全局变量：加锁，对于全局变量，如果仅仅是引用其值，而不对其进行修改，那么可以直接引用，如果要进行修改，就必须加锁，否则会出现不可预期的错误，比如可能会导致MySQL连接意外断开  </li>
+</ul>
+<pre><code>    LOCK = threading.Lock()  # 在全局定义一个锁
+# 局部使用
+LOCK.acquire()
+修改全局变量
+LOCK.release()
+</code></pre><ul>
+<li>局部变量：虽然局部变量简单的使用直接用就行，但是如果要在run里面进行各个函数之间的传递那就麻烦了，所以提供了ThreadLocal来将线程内部的局部变量变为一个字典，其它函数直接调用即可  </li>
+</ul>
+<pre><code>    LOCAL = threading.local() # 在全局定义，每个线程引用该值结果都仅仅会得到自己的私有变量
+# 在Thread类里面的run函数赋值，不能在__init__里面定义，因为那时候线程还没启起来
+LOCAL.变量名 = 值 # 就这样
+</code></pre><ul>
+<li>常用方法  </li>
+</ul>
+<pre><code>    threading.activeCount()  # 获取当前线程数量，我一般用这个来控制线程最大的数量
+threading.currentThread() # 获取当前线程对象
+threading.currentThread().getName() # 获取当前线程的名称
+exit()         # 终止当前线程，网上好多人问怎么没有API，后来发现exit就行了...并不会影响到其它线程和主线程
+</code></pre><h1 id="Python多进程"><a href="#Python多进程" class="headerlink" title="Python多进程"></a><strong>Python多进程</strong></h1><p>waiting…</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/mysql-migration/" itemprop="url">
+                  MySQL数据库目录存放位置迁移
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-17T12:29:11+08:00" content="2015-12-17">
+              2015-12-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mysql-migration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mysql-migration/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>迁移MySQL的数据库目录，其实并不难呀  </p>
+<ol>
+<li>查看MySQL数据存放目录  </li>
+</ol>
+<pre><code>    &gt; show variables like &apos;\%dir\%&apos;;
+datadir的值就是mysql当前的存放目录，默认是/usr/local/mysql/data
+</code></pre><ol>
+<li>进行迁移  </li>
+</ol>
+<pre><code>    service mysqld stop
+cp -r /usr/local/mysql/data/*  /path/to/mypath
+</code></pre><ol>
+<li>修改配置  </li>
+</ol>
+<pre><code>    chown mysql:mysql -R /path/to/mypath
+
+
+
+
+# 修改/etc/my.cnf文件和/etc/init.d/mysqld文件，
+
+
+
+
+将datadir的值更改为新目录
+</code></pre><ol>
+<li>重启服务  </li>
+</ol>
+<pre><code>service mysqld start
+</code></pre><p>﻿  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">140</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xiang.jwzcq.com" title="谢翔的博客" target="_blank">谢翔的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/qingguo" title="qingguo" target="_blank">qingguo</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'haoflynet';
+      var disqus_identifier = 'page/2/index.html';
+      var disqus_title = "";
+      var disqus_url = '';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
