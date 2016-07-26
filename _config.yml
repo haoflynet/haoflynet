@@ -5,9 +5,9 @@
 # Site
 title: 豪翔天下
 subtitle: Change My World by Program
-description: 豪翔天下的博客,haoflynet,haofly
+description: 豪翔天下的个人博客
 author: haofly
-language: zh-CN
+language: zh-Hans
 timezone: Asia/Chongqing
 email: haoflynet@gmail.com
 
@@ -64,7 +64,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# theme: landscape
+theme: next
 # theme: maupassant
 # plugins:
 # - hexo-generator-feed
@@ -74,3 +75,7 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+disqus_shortname: haoflynet
+google_analytics: UA-47480072-1
+jiathis: true
