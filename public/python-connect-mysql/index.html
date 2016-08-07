@@ -96,7 +96,7 @@ http://mysql-python.sourceforge.net/MySQLdb.html
 <meta property="og:description" content="参考文档：https://dev.mysql.com/doc/connector-python/en/  
 http://mysql-python.sourceforge.net/MySQLdb.html  
 安装方法1234567# ubuntusudo apt-get install python3-dev libmysqlclient-devpip install mysqlclient#">
-<meta property="og:updated_time" content="2016-05-15T14:36:27.000Z">
+<meta property="og:updated_time" content="2016-08-04T06:37:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3 使用MySQL Connector操作数据库">
 <meta name="twitter:description" content="参考文档：https://dev.mysql.com/doc/connector-python/en/  
@@ -341,8 +341,9 @@ http://mysql-python.sourceforge.net/MySQLdb.html
       
         <p>参考文档：<br><a href="https://dev.mysql.com/doc/connector-python/en/" target="_blank" rel="external">https://dev.mysql.com/doc/connector-python/en/</a>  </p>
 <p><a href="http://mysql-python.sourceforge.net/MySQLdb.html" target="_blank" rel="external">http://mysql-python.sourceforge.net/MySQLdb.html</a>  </p>
-<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ubuntu</div><div class="line">sudo apt-get install python3-dev libmysqlclient-dev</div><div class="line">pip install mysqlclient</div><div class="line"></div><div class="line"># CentOS</div><div class="line">sudo yum install pytho3n-devel mysql-devel</div><div class="line">pip install mysqlclient</div></pre></td></tr></table></figure>
-<h2 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># 使用Oracle官方提供的数据库引擎的连接方法</div><div class="line">import mysql.connector</div><div class="line">cnx = mysql.connector.connect(  </div><div class="line">                          user=&apos;&apos;,</div><div class="line">                          password=&apos;&apos;,</div><div class="line">                          host=&apos;&apos;,</div><div class="line">                          database=&apos;&apos;,  </div><div class="line">                          pool_size=3 # 连接池大小)</div><div class="line">cnx.close()</div><div class="line"></div><div class="line"># 使用基于MySQLdb的连接方法，比如mysqlclient</div><div class="line">import MySQLdb</div><div class="line">db = MySQLdb.connect(host=&apos;&apos;, user=&apos;&apos;, passwd=&apos;&apos;, db=&apos;&apos;, charset=&apos;utf8&apos;)</div><div class="line">cursor = db.cursor()</div></pre></td></tr></table></figure>
+<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ubuntu</div><div class="line">sudo apt-get install python3-dev libmysqlclient-dev</div><div class="line">pip install mysqlclient</div><div class="line"></div><div class="line"># CentOS</div><div class="line">sudo yum install pytho3-devel mysql-devel</div><div class="line">pip install mysqlclient</div></pre></td></tr></table></figure>
+<h2 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h2><p>这里有所有的<a href="https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html" target="_blank" rel="external">连接参数列表</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用Oracle官方提供的数据库引擎的连接方法</span></div><div class="line"><span class="keyword">import</span> mysql.connector</div><div class="line">cnx = mysql.connector.connect(  </div><div class="line">                          user=<span class="string">''</span>,</div><div class="line">                          password=<span class="string">''</span>,</div><div class="line">                          host=<span class="string">''</span>,</div><div class="line">                          database=<span class="string">''</span>,  </div><div class="line">                          pool_size=<span class="number">3</span> <span class="comment"># 连接池大小)</span></div><div class="line">cnx.close()</div><div class="line"></div><div class="line"><span class="comment"># 使用基于MySQLdb的连接方法，比如mysqlclient</span></div><div class="line"><span class="keyword">import</span> MySQLdb</div><div class="line">db = MySQLdb.connect(</div><div class="line">	host=<span class="string">''</span>, </div><div class="line">    user=<span class="string">''</span>, </div><div class="line">    passwd=<span class="string">''</span>, </div><div class="line">    db=<span class="string">''</span>, </div><div class="line">    charset=<span class="string">'utf8'</span>, </div><div class="line">    autocommit=<span class="keyword">True</span>)</div><div class="line">cursor = db.cursor()</div></pre></td></tr></table></figure>
 <h2 id="Difference：两个库的区别"><a href="#Difference：两个库的区别" class="headerlink" title="Difference：两个库的区别"></a>Difference：两个库的区别</h2><pre><code># MySQL Connector/Python
 Oracle官方的实现，底层完全用C来实现
 默认未开启cursorbuffer，如果需要则显式开启：cnx.cursor(buffered=True)或者mysql.connector.connect(buffered=True)，开启了buffer，可同时使用多个游标
@@ -350,45 +351,35 @@ Oracle官方的实现，底层完全用C来实现
 # MySQLdb
 不完全用C
 默认开启了cursor的，会缓存结果，但是针对特别大的查询，可能会导致程序崩溃
-</code></pre><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><pre><code># 同时插入多条数据
+</code></pre><h2 id="CURD操作"><a href="#CURD操作" class="headerlink" title="CURD操作"></a>CURD操作</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><pre><code># 插入一条数据
+insert_stmt = (
+  &quot;INSERT INTO employees (emp_no, first_name, last_name, hire_date) &quot;
+  &quot;VALUES (%s, %s, %s, %s)&quot;
+)
+data = (2, &apos;Jane&apos;, &apos;Doe&apos;, datetime.date(2012, 3, 23))
+cursor.execute(insert_stmt, data)
 
-
+# 同时插入多条数据
 data = [
     (&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;),
     (&apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;)
 ]
-stmt = &apos;INSERT INTO table_name (field_name1, field_name2) VALUES(\%s, \%s)&apos;
+stmt = &apos;INSERT INTO table_name (field_name1, field_name2)&apos;                 &apos;VALUES(%s, %s)&apos;
 cursor.executemany(stmt, data)
-</code></pre><h2 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h2><pre><code># 看了源码发现，fetchone/fatchmany/fetchall实现居然是一样的：https://github.com/PyMySQL/mysqlclient-python/blob/7d289b21728ab1a94bb1f0210a26367c6714d881/MySQLdb/cursors.py，结果都是一次取出保存，这三个方法就是在结果列表里面切片而已
-
-# fetchone()举例
-cursor.execute(&apos;select * FROM user&quot;)
-row = cursor.fetchone()
-while row is not None:
-    print(row)
-    row = cursor.fetchone()  
-
-# cursor可以直接拿来做迭代器
-cursor.execute(sql)
-for row in cursor:
-    print(row)
-
-# fetchmany()：获取固定数量的结果，当然，每次fetch过后指针会偏移到后面那个地方
-rows = cursor.fetchmany(size=1)
-</code></pre><h1 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h1><ul>
-<li>获取insert后的ID值  </li>
-</ul>
-<pre><code>db.insert_id()  # 表示上一次插入数据的ID
-</code></pre><ul>
-<li>多线程的情况下，出现错误”OperationalError:(2013, ‘Lost connection to MySQL server during query’)”，出现这种情况是因为在多线程的情况下，如果只有一个mysql连接，那么mysql该连接会在执行完一个线程后销毁，需要加锁，在线程里面修改全局变量，会导致该变量的引用出错  </li>
-</ul>
-<pre><code>    LOCK.acquire()  
-mysql.cursor.execute(sql)  
-result = mysql.cursor.fetchall()  
-LOCK.release()  
-print(len(result))
-</code></pre><ul>
-<li></li>
+</code></pre><h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># 看了源码发现，fetchone/fatchmany/fetchall实现居然是一样的：https://github.com/PyMySQL/mysqlclient-python/blob/7d289b21728ab1a94bb1f0210a26367c6714d881/MySQLdb/cursors.py，结果都是一次取出保存，这三个方法就是在结果列表里面切片而已</div><div class="line"></div><div class="line"># fetchone</div><div class="line">cursor.execute('select * FROM user")</div><div class="line">row = cursor.fetchone()</div><div class="line">while row is not None:</div><div class="line">    print(row)</div><div class="line">    row = cursor.fetchone()  </div><div class="line"></div><div class="line"># cursor可以直接拿来做迭代器</div><div class="line">cursor.execute(sql)</div><div class="line">for row in cursor:</div><div class="line">    print(row)</div><div class="line"></div><div class="line"># fetchmany()：获取固定数量的结果，当然，每次fetch过后指针会偏移到后面那个地方</div><div class="line">rows = cursor.fetchmany(size=1)</div></pre></td></tr></table></figure>
+<h1 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h1><ul>
+<li><p>获取insert后的ID值  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.insert_id()  # 表示上一次插入数据的ID</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取原始SQL语句</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(cursor._last_executed)</div></pre></td></tr></table></figure>
+</li>
+<li><p>多线程的情况下，出现错误”OperationalError:(2013, ‘Lost connection to MySQL server during query’)”，出现这种情况是因为在多线程的情况下，如果只有一个mysql连接，那么mysql该连接会在执行完一个线程后销毁，需要加锁，在线程里面修改全局变量，会导致该变量的引用出错  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">LOCK.acquire()  </div><div class="line">mysql.cursor.execute(sql)  </div><div class="line">result = mysql.cursor.fetchall()  </div><div class="line">LOCK.release()  </div><div class="line">print(len(result))</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Can’t connect to local mySQL server ough socket ‘/tmp/mysql.sock</strong></p>
+<p>可能原因是由于MySQL是编译安装的，没有放在默认的目录，导致python找不到默认的sock文件，可以用一个软连接将实际文件链接到这个默认的目录下面</p>
+</li>
 </ul>
 
       
@@ -523,7 +514,7 @@ print(len(result))
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">140</span>
+              <span class="site-state-item-count">141</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -611,7 +602,7 @@ print(len(result))
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装方法"><span class="nav-number">1.</span> <span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的连接"><span class="nav-number">2.</span> <span class="nav-text">数据库的连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Difference：两个库的区别"><span class="nav-number">3.</span> <span class="nav-text">Difference：两个库的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入"><span class="nav-number">4.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读取"><span class="nav-number">5.</span> <span class="nav-text">读取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TroubleShooting"><span class="nav-number"></span> <span class="nav-text">TroubleShooting</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装方法"><span class="nav-number">1.</span> <span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的连接"><span class="nav-number">2.</span> <span class="nav-text">数据库的连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Difference：两个库的区别"><span class="nav-number">3.</span> <span class="nav-text">Difference：两个库的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CURD操作"><span class="nav-number">4.</span> <span class="nav-text">CURD操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">4.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取"><span class="nav-number">4.2.</span> <span class="nav-text">读取</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TroubleShooting"><span class="nav-number"></span> <span class="nav-text">TroubleShooting</span></a></div>
             
           </div>
         </section>

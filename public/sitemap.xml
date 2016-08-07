@@ -2,23 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://haofly.net/renshegnyuanbiancheng/</loc>
+    <loc>https://haofly.net/kanbokederendouxiangyaoganhuo/</loc>
     
-    <lastmod>2016-07-24T13:39:23.000Z</lastmod>
+    <lastmod>2016-08-07T13:07:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://haofly.net/python-requests/</loc>
+    
+    <lastmod>2016-08-05T09:17:31.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://haofly.net/oauth-and-sso/</loc>
     
-    <lastmod>2016-07-16T09:27:49.000Z</lastmod>
+    <lastmod>2016-08-04T12:55:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://haofly.net/python-connect-mysql/</loc>
+    
+    <lastmod>2016-08-04T06:37:42.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://haofly.net/python-beautifulsoup-parse-html-xml/</loc>
     
-    <lastmod>2016-07-02T16:14:58.000Z</lastmod>
+    <lastmod>2016-07-30T07:16:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://haofly.net/renshegnyuanbiancheng/</loc>
+    
+    <lastmod>2016-07-24T13:39:23.000Z</lastmod>
     
   </url>
   
@@ -44,13 +65,6 @@
   </url>
   
   <url>
-    <loc>https://haofly.net/python-connect-mysql/</loc>
-    
-    <lastmod>2016-05-15T14:36:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://haofly.net/woyiranainiwozhishibuxihuannile/</loc>
     
     <lastmod>2016-05-14T11:07:57.000Z</lastmod>
@@ -61,13 +75,6 @@
     <loc>https://haofly.net/anshijian/</loc>
     
     <lastmod>2016-05-09T23:50:10.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://haofly.net/python-requests/</loc>
-    
-    <lastmod>2016-04-27T09:33:05.000Z</lastmod>
     
   </url>
   
@@ -136,13 +143,6 @@
   
   <url>
     <loc>https://haofly.net/mysql-source-messy-code/</loc>
-    
-    <lastmod>2016-02-22T05:23:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://haofly.net/chengxuyuanjiankangzhinan/</loc>
     
     <lastmod>2016-02-22T05:23:58.000Z</lastmod>
     
@@ -976,6 +976,13 @@
   
   <url>
     <loc>https://haofly.net/write-to-girls/</loc>
+    
+    <lastmod>2016-02-22T05:23:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://haofly.net/chengxuyuanjiankangzhinan/</loc>
     
     <lastmod>2016-02-22T05:23:58.000Z</lastmod>
     
