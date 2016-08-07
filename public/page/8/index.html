@@ -269,6 +269,161 @@
             
               
                 
+                <a class="post-title-link" href="/mysql-source-messy-code/" itemprop="url">
+                  MySQL Source命令批量导入数据库及乱码问题的解决
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-11-09T15:49:56+08:00" content="2014-11-09">
+              2014-11-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mysql-source-messy-code/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mysql-source-messy-code/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考：<a href="http://www.111cn.net/database/mysql/46646.htm" target="_blank" rel="external">http://www.111cn.net/database/mysql/46646.htm</a></p>
+<p>近日老板给了我一个数据库，让我学学人家是怎么设计的，之前从来没有导入过别人的数据库，期间遇到一些问题，特记录如下：</p>
+<h1 id="1-批量导入问题"><a href="#1-批量导入问题" class="headerlink" title="1.批量导入问题"></a>1.批量导入问题</h1><p>首先老板给我的文件不是一个单独的sql文件而是一张一张单独的表对应的sql文件，加起来好几十个，我可不想一个一个的导入，所以到网上找到了一个比较方便的方法：</p>
+<p>首先，要知道有一种sql文件是这样的：</p>
+<pre><code>source file1.sql;
+source file2.sql;
+srouce file3.sql;
+...
+</code></pre><p>如果再用source命令执行这个文件的话就可以实现批量导入功能，但是怎么能直接获取全部文件名呢(由于source命令是在mysql shell里执行的，所以<br>要用绝对路径)，这是可以用管道了(linux下用ls，windows下用dir)。首先可以把所有sql文件放到一个文件夹内(如果同名就重命名，没有关系的)。<br>然后在cmd里执行</p>
+<pre><code>dir foldername /b/od/s &gt; all.sql
+</code></pre><p>这条命令会列出foldername文件夹内的所有子文件的绝对路径并将结果输出到all.sql文件内。然后用文本编辑器打开该sql文件，用替换工具，将每一行替<br>换为</p>
+<pre><code>source 绝对路径;
+</code></pre><p>的形式并保存。然后在MySQL里执行</p>
+<pre><code>source all.sql的绝对路径
+</code></pre><p>这样就能完全导入了。</p>
+<h1 id="2-导入乱码的问题"><a href="#2-导入乱码的问题" class="headerlink" title="2.导入乱码的问题"></a>2.导入乱码的问题</h1><p>出现乱码肯定是中文乱码，但是，虽然你把MySQL默认编码设置为utf8并且把数据库设置为utf8但依然无法避免人家导出时不用utf8的情况，我应该就是碰到这<br>么一个问题了，所以下次自己用命令导出的时候一定要设置编码：</p>
+<pre><code>mysqldump -uroot -pmysql --default-character-set=utf8 database &gt; xxxx.sql
+</code></pre><p>而如果遇到别人的数据库导入乱码的时候就需要把所有东西全部设置为utf8就可以彻底解决问题了：</p>
+<pre><code>SET character_set_client = utf8;
+SET character_set_connection = utf8;
+SET character_set_database = utf8;
+SET character_set_results = utf8;
+SET character_set_server = utf8;
+SET collation_connection = utf8_bin;
+SET collation_database = utf8_bin;
+SET collation_server = utf8_bin;
+
+
+
+
+# 然后再导入
+
+
+
+
+source all.sql
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/ubuntu-install-phpmyadmin/" itemprop="url">
                   Ubuntu安装phpmyadmin
                 </a>
@@ -1538,143 +1693,11 @@ oltp      数据库性能测试(OLTP基准测试)
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/modify-u-disk-logo/" itemprop="url">
-                  修改U盘图标
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-10-30T12:54:14+08:00" content="2014-10-30">
-              2014-10-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/就是爱玩/" itemprop="url" rel="index">
-                    <span itemprop="name">就是爱玩</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/modify-u-disk-logo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="modify-u-disk-logo/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>虽然用U盘装过很多次系统了，但昨天突然感觉制作完win7启动盘后，那个图标也太丑了吧。所以毅然决定改了一下，通过这种改动，无论是在什么电脑上都能显示出来的。</p>
-<h1 id="1-制作图标"><a href="#1-制作图标" class="headerlink" title="1.制作图标"></a>1.制作图标</h1><p>U盘的图标其实png, jpg, ico什么类型的都支持的，但是为了美观，最好选择png或ico，我就用的ico，因为这两者会把透明部分真正透明化。至于怎么<br>制作ico，可以使用Photoshop修改好了过后保存为png图片，然后在线将png转换为ico格式：<a href="http://www.img2i
-co.net/" target="_blank" rel="external">图标在线转换工具</a></p>
-<h1 id="2-在U盘根目录新建文件autorun-inf"><a href="#2-在U盘根目录新建文件autorun-inf" class="headerlink" title="2.在U盘根目录新建文件autorun.inf"></a>2.在U盘根目录新建文件autorun.inf</h1><p>内容如下：</p>
-<pre><code>[AutoRun.Amd64]
-icon=haofly.ico
-
-
-
-
-[AutoRun]
-icon=haofly.ico
-</code></pre><h1 id="3-将图片haofly-ico拷贝到U盘根目录"><a href="#3-将图片haofly-ico拷贝到U盘根目录" class="headerlink" title="3.将图片haofly.ico拷贝到U盘根目录"></a>3.将图片haofly.ico拷贝到U盘根目录</h1><h1 id="4-结果如下"><a href="#4-结果如下" class="headerlink" title="4.结果如下"></a>4.结果如下</h1><p><img src="http://7xnc86.com1.z0.glb.clouddn.com/modify-u-disk-logo.png" alt="">﻿  </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1715,7 +1738,7 @@ icon=haofly.ico
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">140</span>
+              <span class="site-state-item-count">141</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

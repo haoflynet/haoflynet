@@ -87,21 +87,18 @@
 
 
 <meta name="description" content="一直以来我都看不惯python自带的urllib包的繁琐的使用方法，所以我都使用的requests包来代替原生方法。它能方便的发送GET和POST请求，支持HTTPS，基本上能模拟人类真实的访问  
-发送请求12# GET请求response = requests.get(url)
-自定义HTTP头，修改Headers1234headers = &amp;#123;	&amp;apos;User-Agent&amp;ap">
+发送请求12345678910# GET请求response = requests.get(url)  # 会话对象，以这种方式可以跨请求保持某些参数，不用再自己提取上一次请求的信息了，比如cooki">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python Requests模块进行网页抓取详解">
 <meta property="og:url" content="https://haofly.net/python-requests/index.html">
 <meta property="og:site_name" content="豪翔天下">
 <meta property="og:description" content="一直以来我都看不惯python自带的urllib包的繁琐的使用方法，所以我都使用的requests包来代替原生方法。它能方便的发送GET和POST请求，支持HTTPS，基本上能模拟人类真实的访问  
-发送请求12# GET请求response = requests.get(url)
-自定义HTTP头，修改Headers1234headers = &amp;#123;	&amp;apos;User-Agent&amp;ap">
-<meta property="og:updated_time" content="2016-04-27T09:33:05.000Z">
+发送请求12345678910# GET请求response = requests.get(url)  # 会话对象，以这种方式可以跨请求保持某些参数，不用再自己提取上一次请求的信息了，比如cooki">
+<meta property="og:updated_time" content="2016-08-05T09:17:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python Requests模块进行网页抓取详解">
 <meta name="twitter:description" content="一直以来我都看不惯python自带的urllib包的繁琐的使用方法，所以我都使用的requests包来代替原生方法。它能方便的发送GET和POST请求，支持HTTPS，基本上能模拟人类真实的访问  
-发送请求12# GET请求response = requests.get(url)
-自定义HTTP头，修改Headers1234headers = &amp;#123;	&amp;apos;User-Agent&amp;ap">
+发送请求12345678910# GET请求response = requests.get(url)  # 会话对象，以这种方式可以跨请求保持某些参数，不用再自己提取上一次请求的信息了，比如cooki">
 
 
 
@@ -340,7 +337,7 @@
 
       
         <p>一直以来我都看不惯python自带的urllib包的繁琐的使用方法，所以我都使用的requests包来代替原生方法。它能方便的发送GET和POST请求，支<br>持HTTPS，基本上能模拟人类真实的访问  </p>
-<h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># GET请求</div><div class="line">response = requests.get(url)</div></pre></td></tr></table></figure>
+<h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># GET请求</div><div class="line">response = requests.get(url)  </div><div class="line"></div><div class="line"># 会话对象，以这种方式可以跨请求保持某些参数，不用再自己提取上一次请求的信息了，比如cookie等，但是需要注意的是，即使使用了会话，方法级别的参数并不会跨请求保持，如果要跨方法，可以使用with</div><div class="line">s = requests.Session()</div><div class="line">s.get(url)</div><div class="line">r = s.get(next_url)</div><div class="line"></div><div class="line">with requests.Session() as s:</div><div class="line">	s.get(url)</div></pre></td></tr></table></figure>
 <h2 id="自定义HTTP头，修改Headers"><a href="#自定义HTTP头，修改Headers" class="headerlink" title="自定义HTTP头，修改Headers"></a>自定义HTTP头，修改Headers</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">headers = &#123;</div><div class="line">	&apos;User-Agent&apos;: &apos;注意名称&apos;</div><div class="line">&#125;</div><div class="line">requests.get(url, headers=headers)</div></pre></td></tr></table></figure>
 <h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">response.status_code  #HTTP status，http状态码</div><div class="line"># 如果直接请求，如果发生重定向，那么response.status_code = 200, response.history = 301</div><div class="line">print([x for x,y in A.__dict__.items() if type(y) == FunctionType])</div></pre></td></tr></table></figure>
 <h1 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting:"></a>TroubleShooting:</h1><ul>
@@ -480,7 +477,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">140</span>
+              <span class="site-state-item-count">141</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

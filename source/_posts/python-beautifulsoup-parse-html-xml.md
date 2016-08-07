@@ -12,12 +12,12 @@ Python官方文档都说自己解析XML的方式存在漏洞了，那我也只�
 
 ## Installation
 ```
-    # 直接apt安装
-    $ sudo apt-get install Python3-bs4  # 这将安装下面两个包
+# 直接apt安装
+$ sudo apt-get install Python3-bs4  # 这将安装下面两个包
 
-    # pip方式安装
-    $ pip3 install beautifulsoup4   # 这样直接安装或者下载源码进行安装
-    $ pip3 install lxml             # 如果是解析xml必须安装一个解析器，文档里说的那个解析器只有这个好安装点，需要提前安装好依赖，apt-get install libxml2-dev, libxslt1-dev, python-dev，还可以使用html.parser这个解析器，这个解析器不会自动添加body元素
+# pip方式安装
+$ pip3 install beautifulsoup4   # 这样直接安装或者下载源码进行安装
+$ pip3 install lxml             # 如果是解析xml必须安装一个解析器，文档里说的那个解析器只有这个好安装点，需要提前安装好依赖，apt-get install libxml2-dev, libxslt1-dev, python-dev，还可以使用html.parser这个解析器，这个解析器不会自动添加body元素,CentOS用yum -y install python-devel gcc libxml2 libxml2-devel libxslt libxslt-devel
 ```
 
 ## 基本概念
@@ -29,18 +29,18 @@ TAG：表示xml/html里面的一个元素(节点)，包括标签以及其里面�
 最简单的使用例子：
 
 ```
-    import urllib.request
-    from bs4 import BeautifulSoup
+import urllib.request
+from bs4 import BeautifulSoup
 
-    content = "<b><!--Hey, buddy--></b>"   # 表示网页内容
-    content = urllib.request.urlopen(url)  # 通常做爬虫的时候html来自于网页
-    soup = BeautifulSoup(content)          # 解析，生成一个bs4.BeautifulSoup
-    comment = soup.b.string                # 获取<b>标签的内容
+content = "<b><!--Hey, buddy--></b>"   # 表示网页内容
+content = urllib.request.urlopen(url)  # 通常做爬虫的时候html来自于网页
+soup = BeautifulSoup(content)          # 解析，生成一个bs4.BeautifulSoup
+comment = soup.b.string                # 获取<b>标签的内容
 ```
 ## 查找
 ```
-    # 查找标签
-    soup.a             # 查找第一个a标签，返回值就是一个TAG<class 'bs4.element.Tag'>
+# 查找标签
+soup.a             # 查找第一个a标签，返回值就是一个TAG<class 'bs4.element.Tag'>
     soup.find('a')     # 同上，都只是查找满足条件的第一个
     soup.find_all('a') # 查找所有的a标签，返回一个list获取内容
     soup.find_all('a', class_='name')  # 根据标签的属性进行查找，比如这里查找class这个属性为name的a标签
@@ -48,9 +48,9 @@ TAG：表示xml/html里面的一个元素(节点)，包括标签以及其里面�
     soup.find_all('a', limit=3) # 限制只找三个结果
     soup.find_all('a', recursive=False) # 只找直接子节点而不递归查找# CSS选择器  
 
-    soup.select('a') # 查找a标签，结果是列表
-    soup.select('.title') # 查找类为title的标签
-    soup.select('#name')  # 查找id为name的标签
+soup.select('a') # 查找a标签，结果是列表
+soup.select('.title') # 查找类为title的标签
+soup.select('#name')  # 查找id为name的标签
 ```
 ## 获取内容
 ```
@@ -199,7 +199,7 @@ nd_next()，find_all_previous()，find_previous()
 
     # 删除当前节点
     tag.extract()  
-
+    
     # 插入节点
     new_tag = '<url>dagasgga</url>'
     new_tag = BeautifulSoup(new_url, 'html.parser')
