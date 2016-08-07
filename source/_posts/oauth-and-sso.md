@@ -51,5 +51,69 @@ OAuth主要用于社会化登录，仅仅需要一个系统来存储用户的信
 
 ![图片](http://7xnc86.com1.z0.glb.clouddn.com/oauth-and-sso-2.png)
 
+## 签名算法的设计
 
+无论是OAuth或是SSO都涉及到认证的过程，一般都不推荐使用可逆的加密算法，而使用单向的加密算法，只要双方对数据进行加密后的结果一致就表示该请求是合法的。参考网上很多的签名算法，最后总结了一下使用最广也是最安全的一种签名算法步骤:
+
+1. 将请求的参数转换为'key=value'形式的字符串，如: "k1=v1", "k2=v2"
+2. 将格式化后的字符串以字典升序进行排序，然后拼接在一起，如: "k1=v1k2=v2"
+3. 在拼接后的字符串的前后加上Secret Key，如："keyk1=v1k2=v2key"
+4. 对拼接后的字符串进行MD5加密得到最终的结果
+
+### Python实现
+
+```python
+import hashlib
+def apiSign(parameters, secret):
+	keys = list(parameters.keys())
+	keys.sort()
+
+	parameters_str = "%s%s%s" % (
+		secret,
+		str().join('%s%s' % (key, parameters[key]) for key in keys),
+		secret)
+	return hashlib.md5(parameters_str.encode('utf8')).hexdigest()j
+```
+
+### PHP实现
+
+```php
+function apiSign($parameters, $secret)
+{
+	$str = '';
+
+	if (gettype($parameters) === 'array') {
+		ksort($parameters);
+		foreach ($parameters as $k => $v) {
+			$str .= $k.$v;
+		}
+	} elseif (gettype($parameters) === 'string') {
+		$str = $parameters;
+	} else {
+		return false;
+	}
+	$str = $secret.$str.$secret;
+	
+	return md5($str);
+}
+```
+
+### Java实现
+
+```java
+private static String apiSign(List<NameValuePair> nvps) throws NoSuchAlgorithmException, IOException {
+    List<String> nvs = Lists.newArrayList();
+    for (NameValuePair nvp: nvps) {
+        boolean noSignValue = nvp == null || nvp.getValue() == null ||
+                SIGN_EXCEPTIONS.contains(nvp.getName());
+        if (noSignValue) continue;
+        nvs.add(String.format("%s=%s", nvp.getName(), nvp.getValue()));
+    }
+    Collections.sort(nvs);
+    StringBuilder sb = new StringBuilder();
+    for (String nv: nvs) sb.append(String.format("%s", nv));
+    String encodeSource = String.format("%s%s", sb.toString(), APP_SECRET);
+    return MD5Util.MD5Encode(encodeSource, ENCRYPT_CHARSET).toLowerCase();
+}
+```
 

@@ -269,6 +269,155 @@
             
               
                 
+                <a class="post-title-link" href="/mysql-migration/" itemprop="url">
+                  MySQL数据库目录存放位置迁移
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-17T12:29:11+08:00" content="2015-12-17">
+              2015-12-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mysql-migration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mysql-migration/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>迁移MySQL的数据库目录，其实并不难呀  </p>
+<ol>
+<li>查看MySQL数据存放目录  </li>
+</ol>
+<pre><code>    &gt; show variables like &apos;\%dir\%&apos;;
+datadir的值就是mysql当前的存放目录，默认是/usr/local/mysql/data
+</code></pre><ol>
+<li>进行迁移  </li>
+</ol>
+<pre><code>    service mysqld stop
+cp -r /usr/local/mysql/data/*  /path/to/mypath
+</code></pre><ol>
+<li>修改配置  </li>
+</ol>
+<pre><code>    chown mysql:mysql -R /path/to/mypath
+
+
+
+
+# 修改/etc/my.cnf文件和/etc/init.d/mysqld文件，
+
+
+
+
+将datadir的值更改为新目录
+</code></pre><ol>
+<li>重启服务  </li>
+</ol>
+<pre><code>service mysqld start
+</code></pre><p>﻿  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/design-pattern/" itemprop="url">
                   [转]23种设计模式
                 </a>
@@ -1139,7 +1288,7 @@ init/https://github.com/ccforward/cc/issues/25?utm_source=tuicool" target="_blan
         
           
             <p>一直以来我都看不惯python自带的urllib包的繁琐的使用方法，所以我都使用的requests包来代替原生方法。它能方便的发送GET和POST请求，支<br>持HTTPS，基本上能模拟人类真实的访问  </p>
-<h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># GET请求</div><div class="line">response = requests.get(url)</div></pre></td></tr></table></figure>
+<h2 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># GET请求</div><div class="line">response = requests.get(url)  </div><div class="line"></div><div class="line"># 会话对象，以这种方式可以跨请求保持某些参数，不用再自己提取上一次请求的信息了，比如cookie等，但是需要注意的是，即使使用了会话，方法级别的参数并不会跨请求保持，如果要跨方法，可以使用with</div><div class="line">s = requests.Session()</div><div class="line">s.get(url)</div><div class="line">r = s.get(next_url)</div><div class="line"></div><div class="line">with requests.Session() as s:</div><div class="line">	s.get(url)</div></pre></td></tr></table></figure>
 <h2 id="自定义HTTP头，修改Headers"><a href="#自定义HTTP头，修改Headers" class="headerlink" title="自定义HTTP头，修改Headers"></a>自定义HTTP头，修改Headers</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">headers = &#123;</div><div class="line">	&apos;User-Agent&apos;: &apos;注意名称&apos;</div><div class="line">&#125;</div><div class="line">requests.get(url, headers=headers)</div></pre></td></tr></table></figure>
 <h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">response.status_code  #HTTP status，http状态码</div><div class="line"># 如果直接请求，如果发生重定向，那么response.status_code = 200, response.history = 301</div><div class="line">print([x for x,y in A.__dict__.items() if type(y) == FunctionType])</div></pre></td></tr></table></figure>
 <h1 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting:"></a>TroubleShooting:</h1><ul>
@@ -1567,8 +1716,9 @@ if &apos;__name__ == &apos;__main__&apos;:
           
             <p>参考文档：<br><a href="https://dev.mysql.com/doc/connector-python/en/" target="_blank" rel="external">https://dev.mysql.com/doc/connector-python/en/</a>  </p>
 <p><a href="http://mysql-python.sourceforge.net/MySQLdb.html" target="_blank" rel="external">http://mysql-python.sourceforge.net/MySQLdb.html</a>  </p>
-<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ubuntu</div><div class="line">sudo apt-get install python3-dev libmysqlclient-dev</div><div class="line">pip install mysqlclient</div><div class="line"></div><div class="line"># CentOS</div><div class="line">sudo yum install pytho3n-devel mysql-devel</div><div class="line">pip install mysqlclient</div></pre></td></tr></table></figure>
-<h2 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># 使用Oracle官方提供的数据库引擎的连接方法</div><div class="line">import mysql.connector</div><div class="line">cnx = mysql.connector.connect(  </div><div class="line">                          user=&apos;&apos;,</div><div class="line">                          password=&apos;&apos;,</div><div class="line">                          host=&apos;&apos;,</div><div class="line">                          database=&apos;&apos;,  </div><div class="line">                          pool_size=3 # 连接池大小)</div><div class="line">cnx.close()</div><div class="line"></div><div class="line"># 使用基于MySQLdb的连接方法，比如mysqlclient</div><div class="line">import MySQLdb</div><div class="line">db = MySQLdb.connect(host=&apos;&apos;, user=&apos;&apos;, passwd=&apos;&apos;, db=&apos;&apos;, charset=&apos;utf8&apos;)</div><div class="line">cursor = db.cursor()</div></pre></td></tr></table></figure>
+<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ubuntu</div><div class="line">sudo apt-get install python3-dev libmysqlclient-dev</div><div class="line">pip install mysqlclient</div><div class="line"></div><div class="line"># CentOS</div><div class="line">sudo yum install pytho3-devel mysql-devel</div><div class="line">pip install mysqlclient</div></pre></td></tr></table></figure>
+<h2 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h2><p>这里有所有的<a href="https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html" target="_blank" rel="external">连接参数列表</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用Oracle官方提供的数据库引擎的连接方法</span></div><div class="line"><span class="keyword">import</span> mysql.connector</div><div class="line">cnx = mysql.connector.connect(  </div><div class="line">                          user=<span class="string">''</span>,</div><div class="line">                          password=<span class="string">''</span>,</div><div class="line">                          host=<span class="string">''</span>,</div><div class="line">                          database=<span class="string">''</span>,  </div><div class="line">                          pool_size=<span class="number">3</span> <span class="comment"># 连接池大小)</span></div><div class="line">cnx.close()</div><div class="line"></div><div class="line"><span class="comment"># 使用基于MySQLdb的连接方法，比如mysqlclient</span></div><div class="line"><span class="keyword">import</span> MySQLdb</div><div class="line">db = MySQLdb.connect(</div><div class="line">	host=<span class="string">''</span>, </div><div class="line">    user=<span class="string">''</span>, </div><div class="line">    passwd=<span class="string">''</span>, </div><div class="line">    db=<span class="string">''</span>, </div><div class="line">    charset=<span class="string">'utf8'</span>, </div><div class="line">    autocommit=<span class="keyword">True</span>)</div><div class="line">cursor = db.cursor()</div></pre></td></tr></table></figure>
 <h2 id="Difference：两个库的区别"><a href="#Difference：两个库的区别" class="headerlink" title="Difference：两个库的区别"></a>Difference：两个库的区别</h2><pre><code># MySQL Connector/Python
 Oracle官方的实现，底层完全用C来实现
 默认未开启cursorbuffer，如果需要则显式开启：cnx.cursor(buffered=True)或者mysql.connector.connect(buffered=True)，开启了buffer，可同时使用多个游标
@@ -1576,192 +1726,37 @@ Oracle官方的实现，底层完全用C来实现
 # MySQLdb
 不完全用C
 默认开启了cursor的，会缓存结果，但是针对特别大的查询，可能会导致程序崩溃
-</code></pre><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><pre><code># 同时插入多条数据
+</code></pre><h2 id="CURD操作"><a href="#CURD操作" class="headerlink" title="CURD操作"></a>CURD操作</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><pre><code># 插入一条数据
+insert_stmt = (
+  &quot;INSERT INTO employees (emp_no, first_name, last_name, hire_date) &quot;
+  &quot;VALUES (%s, %s, %s, %s)&quot;
+)
+data = (2, &apos;Jane&apos;, &apos;Doe&apos;, datetime.date(2012, 3, 23))
+cursor.execute(insert_stmt, data)
 
-
+# 同时插入多条数据
 data = [
     (&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;),
     (&apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;)
 ]
-stmt = &apos;INSERT INTO table_name (field_name1, field_name2) VALUES(\%s, \%s)&apos;
+stmt = &apos;INSERT INTO table_name (field_name1, field_name2)&apos;                 &apos;VALUES(%s, %s)&apos;
 cursor.executemany(stmt, data)
-</code></pre><h2 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h2><pre><code># 看了源码发现，fetchone/fatchmany/fetchall实现居然是一样的：https://github.com/PyMySQL/mysqlclient-python/blob/7d289b21728ab1a94bb1f0210a26367c6714d881/MySQLdb/cursors.py，结果都是一次取出保存，这三个方法就是在结果列表里面切片而已
-
-# fetchone()举例
-cursor.execute(&apos;select * FROM user&quot;)
-row = cursor.fetchone()
-while row is not None:
-    print(row)
-    row = cursor.fetchone()  
-
-# cursor可以直接拿来做迭代器
-cursor.execute(sql)
-for row in cursor:
-    print(row)
-
-# fetchmany()：获取固定数量的结果，当然，每次fetch过后指针会偏移到后面那个地方
-rows = cursor.fetchmany(size=1)
-</code></pre><h1 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h1><ul>
-<li>获取insert后的ID值  </li>
-</ul>
-<pre><code>db.insert_id()  # 表示上一次插入数据的ID
-</code></pre><ul>
-<li>多线程的情况下，出现错误”OperationalError:(2013, ‘Lost connection to MySQL server during query’)”，出现这种情况是因为在多线程的情况下，如果只有一个mysql连接，那么mysql该连接会在执行完一个线程后销毁，需要加锁，在线程里面修改全局变量，会导致该变量的引用出错  </li>
-</ul>
-<pre><code>    LOCK.acquire()  
-mysql.cursor.execute(sql)  
-result = mysql.cursor.fetchall()  
-LOCK.release()  
-print(len(result))
-</code></pre><ul>
-<li></li>
+</code></pre><h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># 看了源码发现，fetchone/fatchmany/fetchall实现居然是一样的：https://github.com/PyMySQL/mysqlclient-python/blob/7d289b21728ab1a94bb1f0210a26367c6714d881/MySQLdb/cursors.py，结果都是一次取出保存，这三个方法就是在结果列表里面切片而已</div><div class="line"></div><div class="line"># fetchone</div><div class="line">cursor.execute('select * FROM user")</div><div class="line">row = cursor.fetchone()</div><div class="line">while row is not None:</div><div class="line">    print(row)</div><div class="line">    row = cursor.fetchone()  </div><div class="line"></div><div class="line"># cursor可以直接拿来做迭代器</div><div class="line">cursor.execute(sql)</div><div class="line">for row in cursor:</div><div class="line">    print(row)</div><div class="line"></div><div class="line"># fetchmany()：获取固定数量的结果，当然，每次fetch过后指针会偏移到后面那个地方</div><div class="line">rows = cursor.fetchmany(size=1)</div></pre></td></tr></table></figure>
+<h1 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h1><ul>
+<li><p>获取insert后的ID值  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.insert_id()  # 表示上一次插入数据的ID</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取原始SQL语句</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(cursor._last_executed)</div></pre></td></tr></table></figure>
+</li>
+<li><p>多线程的情况下，出现错误”OperationalError:(2013, ‘Lost connection to MySQL server during query’)”，出现这种情况是因为在多线程的情况下，如果只有一个mysql连接，那么mysql该连接会在执行完一个线程后销毁，需要加锁，在线程里面修改全局变量，会导致该变量的引用出错  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">LOCK.acquire()  </div><div class="line">mysql.cursor.execute(sql)  </div><div class="line">result = mysql.cursor.fetchall()  </div><div class="line">LOCK.release()  </div><div class="line">print(len(result))</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Can’t connect to local mySQL server ough socket ‘/tmp/mysql.sock</strong></p>
+<p>可能原因是由于MySQL是编译安装的，没有放在默认的目录，导致python找不到默认的sock文件，可以用一个软连接将实际文件链接到这个默认的目录下面</p>
+</li>
 </ul>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/supervisor-manage-processor/" itemprop="url">
-                  使用Supervisor管理进程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-11T10:07:33+08:00" content="2015-08-11">
-              2015-08-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/编程之路/" itemprop="url" rel="index">
-                    <span itemprop="name">编程之路</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/supervisor-manage-processor/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="supervisor-manage-processor/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考文章：<a href="http://segmentfault.com/a/1190000002991175" target="_blank" rel="external">http://segmentfault.com/a/1190000002991175</a>(原文中还有使用OneAPM安装Python探针的应用，可<br>以实时监控web应用数据，暂时还未实践)</p>
-<p>supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理<br>Nginx、Apache等，都比较方便，这里是其使用方法：</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 不要用apt-get的方式安装，如果安装出现unix:///var/run/supervisor.sock no such file这样的错误，那么请参考：http://tuzii.me/diary/522dc528848eea683d7724f2/\%E8\%A7\%A3\%E5\%86\%B3ubuntu-supervisor-unix:var-run-supervisor.sock-no-such-file.\%E7\%9A\%84\%E6\%96\%B9\%E6\%B3\%95
-
-
-
-
-sudo easy_install supervisor
-echo_supervisord_conf &gt; supervisord.conf  # 生成一个配置文件
-sudo supervisord -c supervisord.conf      # 使用该配置文件启动supervisord
-sudo supervisorctl                        # 进入命令行界面管理进程
-</code></pre><h2 id="设置一个进程"><a href="#设置一个进程" class="headerlink" title="设置一个进程"></a>设置一个进程</h2><pre><code># 在supervisord.conf里面添加如下内容
-[program:frontend]                                           # 进程名
-command=/usr/bin/python manage.py runserver 0.0.0.0:8000     # 启动该进程的命令
-directory=/media/sf_company/frontend/frontend                # 在执行上面命令前切换到指定目录
-startsecs=0
-stopwaitsecs=0
-autostart=false
-autorestart=false
-user=root
-stdout_logfile=/root/log/8000_access.log                     # 访问日志
-stderr_logfile=/root/log/8000_error.log                      # 错误日志
-</code></pre><p>这样就创建了一个进程，进程的名称为frontend</p>
-<h2 id="supervisorctl常用命令："><a href="#supervisorctl常用命令：" class="headerlink" title="supervisorctl常用命令："></a>supervisorctl常用命令：</h2><pre><code>start name    # 开始一个进程
-stop name    # 终止一个进程
-status   # 查看当前管理状态
-</code></pre>
           
         
       
@@ -1793,7 +1788,7 @@ status   # 查看当前管理状态
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1834,7 +1829,7 @@ status   # 查看当前管理状态
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">140</span>
+              <span class="site-state-item-count">141</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

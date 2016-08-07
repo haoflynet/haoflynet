@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://haofly.net/"/>
-  <updated>2016-07-24T13:39:23.000Z</updated>
+  <updated>2016-08-07T13:07:29.000Z</updated>
   <id>https://haofly.net/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>看博客的人要的都是干货？</title>
+    <link href="https://haofly.net/kanbokederendouxiangyaoganhuo/"/>
+    <id>https://haofly.net/kanbokederendouxiangyaoganhuo/</id>
+    <published>2016-08-07T12:35:20.000Z</published>
+    <updated>2016-08-07T13:07:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>前几天，一位朋友突然问我道，为什么我的博客最近更新的都是有关读后感的，而少了以前那么多的技术干货。很欣慰，居然有朋友一直在看我的站点，虽然并没有看到它想看的，但是他所要的技术干货我现在其实也有，只是并没有放在主站，而是放在<a href="https://wiki.haofly.net" target="_blank" rel="external">豪翔天下的wiki</a>这个二级域名下。至于为什么，我想是因为厌倦了很多博客的内容样式，厌倦了很多教程的复制粘贴，才有了把它们一分为二的想法。</p>
+<p>看了一下百度统计和谷歌Analytics，博客从13年至今，统计在内的PV总共有20000+，单日最高PV居然有1300+，但是平日里也就10左右。虽然我有用统计工具，但是几乎不会去关注这些统计结果，一直以来我写博客都是为了自己在写，即使是技术干货，也是为了方便自己以后查阅。但是最近又有了一些新的方法，我认为，我现在可以宣传自己了。以前的我很自卑，觉得自己写的东西，那肯定都是别人写过的，而且自己写的东西更是没有多少技术深度的东西，但是事实好像并不是这样。我最骄傲的地方就是与身边的不一样，我每天都在浏览着很多科技博客、技术新闻，以为自己一直是站在技术前沿的人，也意识到自己学的东西范围非常广，自己的深度也不够，眼前有很多路，却不知道该往哪里走。这就像一个瓶子，明明上面就是瓶颈了，但就是怎么做也钻不出去，甚至在往下掉。<br>到新公司也快半年了，新同事们很好，也很牛逼，感觉大家简直就像游侠一样，不想去北上广争夺，只想待在重庆这个小江湖，说实话，他们的技能水平，在北上广绝对也能称得上高手。这半年里，因为有人在旁边指导，在代码质量方面成长得挺快，至少现在写代码的时候能明显感觉到自己以前写的代码是有多么的bad smell。在给别人开发的时候也感觉自己的代码量真的太少了。以前都是自己开发自己的东西，觉得有时候有点错误没什么，但是给别人开发的过程中，一点儿不满意人家就会指出来，而且让人伤心的是，这里面起码有百分之五十确实是自己代码质量的问题。路漫漫其修远兮，编程之路，我还有很长的路要走。</p>
+<p>前几天翻了以前的博客，我去，居然没有今年的年初计划，不禁思考，我这半年是怎么浑浑噩噩过来的，接下来的半年又该怎样浑浑噩噩地过呢。浑浑噩噩这个词我不喜欢，你说我懒我会接受，我懒得开心，但是说我浑浑噩噩，说我不思进取，那肯定是不行的。在这里，补一下下半年的目标:</p>
+<ol>
+<li>熟练日语五十音(说了很多次要学日语，结果到现在连五十音都还不认识，要想装逼，至少要会说吧)</li>
+<li>结交三个以上IT界朋友(年龄相仿+忘年)</li>
+<li>博客日访问量10+(我承认，现在的博客日访问量还有零的)</li>
+<li>年底公司评级达到P4及以上(这就要求在公司好好工作啦)</li>
+<li>给父母做全身检查(哪怕再缺钱也得做)</li>
+<li>SegmentFault声望达到1000以上</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前几天，一位朋友突然问我道，为什么我的博客最近更新的都是有关读后感的，而少了以前那么多的技术干货。很欣慰，居然有朋友一直在看我的站点，虽然并没有看到它想看的，但是他所要的技术干货我现在其实也有，只是并没有放在主站，而是放在&lt;a href=&quot;https://wiki.haof
+    
+    </summary>
+    
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>MacTalk 人生元编程</title>
@@ -59,7 +90,7 @@
     <link href="https://haofly.net/oauth-and-sso/"/>
     <id>https://haofly.net/oauth-and-sso/</id>
     <published>2016-06-16T06:08:00.000Z</published>
-    <updated>2016-07-16T09:27:49.000Z</updated>
+    <updated>2016-08-04T12:55:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>参考<a href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html" target="_blank" rel="external">理解OAuth 2.0</a></p>
 <p>目前网络上的数据传输普遍基于HTTP/HTTPS，然而，他们都是无状态的协议，也就是说你本次的请求与下一次的请求是毫无关系的，为了使得我们能够保存用户的状态，于是诞生了cookie，诞生了session，诞生了token，当然，这三者的概念其实都差不多，总体思想就是，在第一次请求过后，给用户生成唯一的一个标识，用户在下一次请求时，携带这个标识，这样服务端就能通过它来判断用户的状态以及合法性。</p>
@@ -96,6 +127,16 @@
 </ol>
 <p>例如，本人在一个项目中所使用的认证流程:</p>
 <p><img src="http://7xnc86.com1.z0.glb.clouddn.com/oauth-and-sso-2.png" alt="图片"></p>
+<h2 id="签名算法的设计"><a href="#签名算法的设计" class="headerlink" title="签名算法的设计"></a>签名算法的设计</h2><p>无论是OAuth或是SSO都涉及到认证的过程，一般都不推荐使用可逆的加密算法，而使用单向的加密算法，只要双方对数据进行加密后的结果一致就表示该请求是合法的。参考网上很多的签名算法，最后总结了一下使用最广也是最安全的一种签名算法步骤:</p>
+<ol>
+<li>将请求的参数转换为’key=value’形式的字符串，如: “k1=v1”, “k2=v2”</li>
+<li>将格式化后的字符串以字典升序进行排序，然后拼接在一起，如: “k1=v1k2=v2”</li>
+<li>在拼接后的字符串的前后加上Secret Key，如：”keyk1=v1k2=v2key”</li>
+<li>对拼接后的字符串进行MD5加密得到最终的结果</li>
+</ol>
+<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">apiSign</span><span class="params">(parameters, secret)</span>:</span></div><div class="line">	keys = list(parameters.keys())</div><div class="line">	keys.sort()</div><div class="line"></div><div class="line">	parameters_str = <span class="string">"%s%s%s"</span> % (</div><div class="line">		secret,</div><div class="line">		str().join(<span class="string">'%s%s'</span> % (key, parameters[key]) <span class="keyword">for</span> key <span class="keyword">in</span> keys),</div><div class="line">		secret)</div><div class="line">	<span class="keyword">return</span> hashlib.md5(parameters_str.encode(<span class="string">'utf8'</span>)).hexdigest()j</div></pre></td></tr></table></figure>
+<h3 id="PHP实现"><a href="#PHP实现" class="headerlink" title="PHP实现"></a>PHP实现</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">apiSign</span><span class="params">($parameters, $secret)</span></span></div><div class="line">&#123;</div><div class="line">	$str = <span class="string">''</span>;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (gettype($parameters) === <span class="string">'array'</span>) &#123;</div><div class="line">		ksort($parameters);</div><div class="line">		<span class="keyword">foreach</span> ($parameters <span class="keyword">as</span> $k =&gt; $v) &#123;</div><div class="line">			$str .= $k.$v;</div><div class="line">		&#125;</div><div class="line">	&#125; <span class="keyword">elseif</span> (gettype($parameters) === <span class="string">'string'</span>) &#123;</div><div class="line">		$str = $parameters;</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">	$str = $secret.$str.$secret;</div><div class="line">	</div><div class="line">	<span class="keyword">return</span> md5($str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">apiSign</span><span class="params">(List&lt;NameValuePair&gt; nvps)</span> <span class="keyword">throws</span> NoSuchAlgorithmException, IOException </span>&#123;</div><div class="line">    List&lt;String&gt; nvs = Lists.newArrayList();</div><div class="line">    <span class="keyword">for</span> (NameValuePair nvp: nvps) &#123;</div><div class="line">        <span class="keyword">boolean</span> noSignValue = nvp == <span class="keyword">null</span> || nvp.getValue() == <span class="keyword">null</span> ||</div><div class="line">                SIGN_EXCEPTIONS.contains(nvp.getName());</div><div class="line">        <span class="keyword">if</span> (noSignValue) <span class="keyword">continue</span>;</div><div class="line">        nvs.add(String.format(<span class="string">"%s=%s"</span>, nvp.getName(), nvp.getValue()));</div><div class="line">    &#125;</div><div class="line">    Collections.sort(nvs);</div><div class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">    <span class="keyword">for</span> (String nv: nvs) sb.append(String.format(<span class="string">"%s"</span>, nv));</div><div class="line">    String encodeSource = String.format(<span class="string">"%s%s"</span>, sb.toString(), APP_SECRET);</div><div class="line">    <span class="keyword">return</span> MD5Util.MD5Encode(encodeSource, ENCRYPT_CHARSET).toLowerCase();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
@@ -731,61 +772,6 @@ exit()         # 终止当前线程，网上好多人问怎么没有API，后来
     <summary type="html">
     
       &lt;p&gt;多线程和多进程能极大限度的利用线代计算机强大的CPU，在IO密集型的应用场景里十分常见，目前项目中有个需求，是需要向别人网站发送请求等待响应，不过必须等页面&lt;br&gt;的js执行完毕后才能获取内容，就得将执行时间设置得长一点，比如10s，如果每个请求都等这么久那效率实在太慢，所
-    
-    </summary>
-    
-      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL数据库目录存放位置迁移</title>
-    <link href="https://haofly.net/mysql-migration/"/>
-    <id>https://haofly.net/mysql-migration/</id>
-    <published>2015-12-17T04:29:11.000Z</published>
-    <updated>2016-02-22T05:23:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>迁移MySQL的数据库目录，其实并不难呀  </p>
-<ol>
-<li>查看MySQL数据存放目录  </li>
-</ol>
-<pre><code>    &gt; show variables like &apos;\%dir\%&apos;;
-datadir的值就是mysql当前的存放目录，默认是/usr/local/mysql/data
-</code></pre><ol>
-<li>进行迁移  </li>
-</ol>
-<pre><code>    service mysqld stop
-cp -r /usr/local/mysql/data/*  /path/to/mypath
-</code></pre><ol>
-<li>修改配置  </li>
-</ol>
-<pre><code>    chown mysql:mysql -R /path/to/mypath
-
-
-
-
-# 修改/etc/my.cnf文件和/etc/init.d/mysqld文件，
-
-
-
-
-将datadir的值更改为新目录
-</code></pre><ol>
-<li>重启服务  </li>
-</ol>
-<pre><code>service mysqld start
-</code></pre><p>﻿  </p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;迁移MySQL的数据库目录，其实并不难呀  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;查看MySQL数据存放目录  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;    &amp;gt; show variables like &amp;apos;\%dir\%&amp;apos;;
-datadir的值就是my
     
     </summary>
     

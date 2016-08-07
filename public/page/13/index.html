@@ -269,6 +269,173 @@
             
               
                 
+                <a class="post-title-link" href="/linux-openkeeper-netkeeper/" itemprop="url">
+                  重邮等高校在Linux下使用openkeeper代替netkeeper连接网络
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-02T15:27:56+08:00" content="2014-03-02">
+              2014-03-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/linux-openkeeper-netkeeper/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="linux-openkeeper-netkeeper/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>封面图片来自：Pixabay  </p>
+<p>首先下载大神们做好的软件包：<a href="http://download.csdn.net/detail/haoxiangtianxia/6982631" target="_blank" rel="external">点此下载</a>（<br>其实这里面也有安装说明的），由重邮linux协会以及linux story团队提供<br>重邮BBS地址：<a href="http://bbs.cqupt.edu.cn/nForum/#!article/Unix_Linux/13702" target="_blank" rel="external">http://bbs.cqupt.edu.cn/nForum/#!article/Unix_Linux/13702</a></p>
+<p>然后执行以下命令：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>|</p>
+<p>tar -jxv -f openkeeper-cli-1.1.tar.bz2 # 解压缩到当前目录</p>
+<p>cd openkeeper-cli-1.1 # 进入目录</p>
+<p>ls #显示当前目录文件</p>
+<p>32 64 build-essential_11.6ubuntu4_amd64.deb README  </p>
+<p>—|—  </p>
+<p>如果电脑没有安装build-essential需要先安装它，如果有归档管理器，那么双击<code>build-
+essential_11.6ubuntu4_amd64.deb</code>即可安装，如果没有或者是你的电脑是32位系统那么就执行<code>sudo apt-get
+install build-essential</code>即可安装依赖。</p>
+<p>然后进入进入目录安装，执行：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>|</p>
+<p>cd 64 # 进入该目录，如果是32位系统请选择32这个文件夹</p>
+<p>sudo chmod 777 install.sh # 给install.sh添加可执行权限</p>
+<p>sudo ./install.sh # 执行安装命令  </p>
+<p>—|—  </p>
+<p>这样就安装好了，安装好后，可以使用如下命令进行配置和连接(此时不一定要当前目录的，因为这几个命令已经放到了你的/usr/bin/中去了)：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>|</p>
+<p>ok-config # 配置网络参数，这里会要求输入用户名密码以及网卡(网卡默认eth0)</p>
+<p>okok # 这一点与README里介绍的不同，我想是因为这个东西是后人对前人改进了的，以前的版本会每十分钟断一次的</p>
+<p>okok-stop # 断开网络  </p>
+<p>—|—  </p>
+<p>如此，便可以连接外网了。以后开机只需要输入<code>sudo okok</code>即可。</p>
+<p>如果要连接内网，还要进行如下配置：</p>
+<p>点击网络设置，如下图：</p>
+<p><img src="http://7xnc86.com1.z0.glb.clouddn.com/linux-openkeeper-netkeeper_0.png" alt="">  </p>
+<p>如果没有该网络管理软件，可执行<code>sudo apt-get install network-manager-network</code>安装</p>
+<p>然后点击以太网里面的一个选项编辑，出现如下对话框：</p>
+<p><img src="http://7xnc86.com1.z0.glb.clouddn.com/linux-openkeeper-netkeeper_1.png" alt="">  </p>
+<p>然后选择”821.X安全性“选项卡，这里输入内网的用户名和密码，然后就可以进入内网了</p>
+<h2 id="openkeeper下载地址"><a href="#openkeeper下载地址" class="headerlink" title="openkeeper下载地址"></a>openkeeper下载地址</h2><p>因为打包的时候并没有在所有平台尝试，所以选择最好的</p>
+<p><a href="http://7xjhvx.dl1.z0.glb.clouddn.com/openkeeper-
+cli-1.1.tar.gz" title="Link: http://7xjhvx.dl1.z0.glb.clouddn.com/openkeeper-
+cli-1.1.tar.gz" target="_blank" rel="external">openkeeper-cli-1.1.tar.gz</a></p>
+<p><a href="http://7xjhvx.dl1.z0.glb.clouddn.com/openkeeper-
+cli-1.3.1-noarch.tar.gz" target="_blank" rel="external">openkeeper-<br>cli-1.3.1-noarch.tar.gz</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/our-programmer/" itemprop="url">
                   [转]我们这些程序员
                 </a>
@@ -1516,168 +1683,11 @@ ppa/mainline/" target="_blank" rel="external">下载地址</a>（带了rc的内�
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/college-entrance-examination-will-deciding/" itemprop="url">
-                  关于填志愿
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-06-22T16:02:47+08:00" content="2013-06-22">
-              2013-06-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/边走边想/" itemprop="url" rel="index">
-                    <span itemprop="name">边走边想</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/college-entrance-examination-will-deciding/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="college-entrance-examination-will-deciding/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>啊，好像要快要知道成绩了，紧张吗 放松<br>上次年级集中上一位学长总结了大学的四种活法：</p>
-<p>学习：考研，出国</p>
-<p>技术：实验室，各种比赛</p>
-<p>实践：各种社团，团队，兼职</p>
-<p>迷茫：游戏，电影，愚爱</p>
-<p>确实，这些都是你以后必须面对的选择，而且有可能不知不觉就走上了某一条路。其实，我都还在迷茫的阶段，所以也只能讲一些我自己在填志愿的时候的一些愚见。</p>
-<p>我把所有的专业分为了技术和非技术两个方向。</p>
-<p>技术篇：</p>
-<p>技术方向主要包括：工学（建筑，机械，工程，材料，电气，电子，通信，计算机），农学，医学</p>
-<p>很多人说在大学重要的是人际关系，上大学只是为了拿个毕业证，大学毕业几乎都找不到对口的工作，而且学技术的一抓一大把，根本就找不到工作。切，脏话我就不说了，他后<br>面两句话我还是承认的，以下就由我的计算机来举例子吧。</p>
-<p>首先说刚才那种话的人他专业知识一定不好，我研究过很多技术牛人，很多都是大一大二就可以看得出来了，比如我们计院真正想学计算机的人不足40\%（开学典礼上院长说的<br>是好像60\%都是调配过来的，当然，这在我们学校算是特色了，谁让我们计算机在重邮排第二呢，不过我们重邮的计算机在全国还是拍在前面三四十名吧）我敢说我们院50\%<br>的人没有自学的想法和行动，我甚至敢说10\%的人在大四毕业的时候专业技术还赶不上现在的我（额。。。当然，我现只是学到点皮毛，比我强的人多了去了）应该说大学里面<br>的学习光靠老师讲那点儿你毕业也别想找个好工作，更别说老师的教育能力还是参差不齐的，而且大学的老师根本没有义务来单独帮助你，除非你主动去找他。其次，很多被迫来<br>计算机的人完全不想走这条路，也可以，要么转专业（劝大家别这么想，100个人里进大学时想转专业的之后真正转了的不会有10个人）要么就去提高自己其它方面能力，也<br>就是非技术能力，课堂上的东西拉着走进行了，一定要找各种机会和途径来提高自己其它能力，交际能力，口才什么的，这些在今后会非常非常有用的，有时候比专业知识还有用<br>。选择了自己的路就不要犹豫，要勇敢地走下去，要知道大学里更多的人是根本找不到自己的路。你也可以完全学技术，如果真的成为了高手，还需要去辛苦地维护人际关系拼命<br>地把脸皮脸厚吗？不用，到时候是公司追着要你，哪怕你是个哑巴。不是每个岗位都一定要能说会道的。当然要想成为高手绝不是一天两天的事情，而且绝不是轻轻松松就能成功<br>的。我认识一个学长，大二的，每天学习到一两点，现在大三大四能达到他那水平的人绝对没有多少。</p>
-<p>建筑，医学什么的现在应该都是很热门的吧！去年这个时候家人都叫我要么学建筑里的工程造价要么学医学里的临床医学，呵呵！当然，至于热门和非热门，由于我是个感情用事<br>的人，所以并不会去在意这些，而只是根据自己的兴趣。总之，学技术一定要学到真材实料。</p>
-<p>非技术篇：</p>
-<p>非技术方向主要包括：哲学，经济学，法学，教育学，文学（艺术，音乐，美术，传媒，外语），历史学，理学（数学，物理，化学，天文，地理，生物），军事学，管理学（工<br>商，会计，企业）</p>
-<p>如果你认为学技术出路窄，工作累，工资低，像书呆子，那么，恭喜你，你的想法很对，很符合社会的潮流，相信你也能在这一块儿做得很出色的。（额，非技术的东西，好像就<br>只有管理学和文学是正常人学的，其它的，呵呵。。。）</p>
-<p>有许多同学在刚进大学的时候都去尝试过竞选学生会、各种社团的干事与干部。事后，有许多同学都发出了这样的感慨：不公平，做什么都要凭关系。没办法，学校尚且如此，社<br>会又怎样呢？社会上对权术、关系、金钱玩得更彻底，不学会这些凭什么在社会上立足，权利，关系，钞票总得要有一样。</p>
-<p>既然选择非技术，那就不要去工科的大学，比如重庆邮电大学（这样说了我们学校的妹子又少了）去工科大学不会为你的人脉和能力增加多少筹码的，因为这类大学的人极少数会<br>成为精英，而且在这样的环境里锻炼不到你，就去非工科的大许多吧，去那里，以后你的朋友就遍布天下，而且都是管理什么的，到时候到哪里都会有人来帮你顺水推舟。</p>
-<p>额。。。由于我学的是计算机专业，所以对于这块儿感受不深，大家一定要去虚心请教呀，呵呵。。</p>
-<p>选学校：</p>
-<p>学校，呵呵，或许专业每个学校都有高有低，但其实学校才是大人最在意的，额。。。好吧，既然是大人在意的，你就别管大人的愿望了（当然，大人们看问题的角度不一样，肯<br>定还是有参考价值的，别一味地拒绝）</p>
-<p>所谓的名校（额，我这文章不是给600分以上的人看的哈，所以别去想了）顺便纠正一下211，985的认识，确实，他们会在很多方面获得国家的支持，但又怎样呢？其实<br>现在有很多学校的教学质量都或多或少地超过了这种院校，只不过国家的规定好像是不会再增加这类学校的名额了。再次，你们有木有发现有些省市的211，985很少，有的<br>却很多呢？其实吧，有些只有一所211，985的院校或许只是国家给他们省面子而扶持了一下，其教学质量或许根本不高，当然，从另一方面来讲，那所学校多半都是本省最<br>好的学校，也就是说至少是那一个省最重视的学校了。</p>
-<p>总之，我个人认为选专业比选学校重要。引用一段话“每年高考出分的时候，哭一批笑一批，惨淡一批灿烂一批，那些难过的人以为自己下了地狱，那批高兴的人也以为自己真的<br>到了天堂。只有上过大学的才知道，再SB的大学一样可以努力,再NB的大学也充斥着堕落。谁也别哭闹，四年后的风骚，谁的天下，都别说得太早。阴差阳错也许比如愿以偿<br>更让人成长。”</p>
-<p>其次，对于走得远还是就在本地，这个就不好说了，因人而异，可以去问问过来人的体会。我先说说，其实，最初我的想法是想去外省的，走得越远越好，像龚卫那样，但家长那<br>个固执呀，懒得和他们争了（当时也最反对我读计算机，到最后的决定是我选专业，他们选学校）其实他们也不完全是担心我，确实如他们所说，在重庆读大学无论我学得怎样，<br>找工作都比在外面好找点。也不想在外面读了四年连当地的口音都学不会，最后还回来重庆，一个同龄的熟人都认求不到，当然考研回来还是不错的，至少研究生的很多工作可以<br>帮助你迅速地在本地认识很多人（但，或许这些人永远不可能像同学那样和你密切了）。至于别人的感受去问问@龚卫 （要说点积极的哈）</p>
-<p>还有，很多人说有些大学通宵不断网，不上早晚自习，食堂好吃，消费低，额，其实这都是人家的调侃，这些就不用考虑了（当然，或许是因为我在重邮12个平方的寝室住过，<br>7：10的早自习都山谷go，我肯定很乐观的）还有就是重庆热，MLGB，好吧，重庆确实热，还ＴＭ没什么空调，但其实吧，我们是来学习的，不是来享受的，孩子们，先<br>苦后甜呀。</p>
-<p>以下是李开复的建议：</p>
-<p>1\. 不要只看学校不看专业，进了名校但是学一个你痛恨的专业是不值得的</p>
-<p>2\. 花一些时间咨询你可能有兴趣的专业，如果比较确定，可以把这些专业填在前面</p>
-<p>3\. 在报考大学专业时，千万不要选择自己一定不会感谢兴趣的专业。就算你不知道自己对什么有兴趣，你至少应该知道自己对什么没有兴趣吧？如果你不确定，做一些简单<br>的咨询，就会很清晰了。</p>
-<p>4\. 选择一些相对广阔、选择度较大的系，因为知识面广的专业在今后使你会有更多的职业选择，例如：计算机系、化学系、中文系等等。</p>
-<p>5\. 对于领域相对比较狭窄的科系，除非你非常确定这就是你的志向，否则千万不要浪费四年的光阴去学习。</p>
-<p>6\. 如果有些学校看起来差不多，把那些可以让学生转系的学校填在最前面，这样万一你发现了新的兴趣，入学后还有机会转系。还有些学校允许一个学院里面的学生在大二<br>后挑选读任何一个学院里的系，这种学校也应该优先考虑。</p>
-<p>7\. 把不随便调剂学生志愿专业的学校填在较前面，尽量避免填那些随便调剂学生志愿专业的学校。</p>
-<p>顺便把我填的志愿贴上（注：虽然这确实是当年我填的志愿，不过纯属娱乐哈，其实吧，我也挺后悔的，应该把清华填在第一的，不然就不会先被重邮录取了，唉）</p>
-<p><img src="http://7xnc86.com1.z0.glb.clouddn.com/college-entrance-examination-will-
-deciding_0.jpg" alt=""><br><img src="http://7xnc86.com1.z0.glb.clouddn.com/college-entrance-examination-will-
-deciding_1.jpg" alt=""><br><img src="http://7xnc86.com1.z0.glb.clouddn.com/college-entrance-examination-will-
-deciding_2.jpg" alt=""><br><img src="http://7xnc86.com1.z0.glb.clouddn.com/college-entrance-examination-will-
-deciding_3.jpg" alt="">  </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1718,7 +1728,7 @@ deciding_3.jpg" alt="">  </p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">140</span>
+              <span class="site-state-item-count">141</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -10,6 +10,14 @@ categories: 编程之路
 ```
 # GET请求
 response = requests.get(url)  
+
+# 会话对象，以这种方式可以跨请求保持某些参数，不用再自己提取上一次请求的信息了，比如cookie等，但是需要注意的是，即使使用了会话，方法级别的参数并不会跨请求保持，如果要跨方法，可以使用with
+s = requests.Session()
+s.get(url)
+r = s.get(next_url)
+
+with requests.Session() as s:
+	s.get(url)
 ```
 ## 自定义HTTP头，修改Headers
 ```
