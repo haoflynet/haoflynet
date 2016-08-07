@@ -269,6 +269,151 @@
             
               
                 
+                <a class="post-title-link" href="/supervisor-manage-processor/" itemprop="url">
+                  使用Supervisor管理进程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-11T10:07:33+08:00" content="2015-08-11">
+              2015-08-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/supervisor-manage-processor/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="supervisor-manage-processor/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考文章：<a href="http://segmentfault.com/a/1190000002991175" target="_blank" rel="external">http://segmentfault.com/a/1190000002991175</a>(原文中还有使用OneAPM安装Python探针的应用，可<br>以实时监控web应用数据，暂时还未实践)</p>
+<p>supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理<br>Nginx、Apache等，都比较方便，这里是其使用方法：</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 不要用apt-get的方式安装，如果安装出现unix:///var/run/supervisor.sock no such file这样的错误，那么请参考：http://tuzii.me/diary/522dc528848eea683d7724f2/\%E8\%A7\%A3\%E5\%86\%B3ubuntu-supervisor-unix:var-run-supervisor.sock-no-such-file.\%E7\%9A\%84\%E6\%96\%B9\%E6\%B3\%95
+
+
+
+
+sudo easy_install supervisor
+echo_supervisord_conf &gt; supervisord.conf  # 生成一个配置文件
+sudo supervisord -c supervisord.conf      # 使用该配置文件启动supervisord
+sudo supervisorctl                        # 进入命令行界面管理进程
+</code></pre><h2 id="设置一个进程"><a href="#设置一个进程" class="headerlink" title="设置一个进程"></a>设置一个进程</h2><pre><code># 在supervisord.conf里面添加如下内容
+[program:frontend]                                           # 进程名
+command=/usr/bin/python manage.py runserver 0.0.0.0:8000     # 启动该进程的命令
+directory=/media/sf_company/frontend/frontend                # 在执行上面命令前切换到指定目录
+startsecs=0
+stopwaitsecs=0
+autostart=false
+autorestart=false
+user=root
+stdout_logfile=/root/log/8000_access.log                     # 访问日志
+stderr_logfile=/root/log/8000_error.log                      # 错误日志
+</code></pre><p>这样就创建了一个进程，进程的名称为frontend</p>
+<h2 id="supervisorctl常用命令："><a href="#supervisorctl常用命令：" class="headerlink" title="supervisorctl常用命令："></a>supervisorctl常用命令：</h2><pre><code>start name    # 开始一个进程
+stop name    # 终止一个进程
+status   # 查看当前管理状态
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/ssl-jks-to-pem/" itemprop="url">
                   SSL各种格式证书的转换(JKS to PEM, KEY, CRT)
                 </a>
@@ -1966,11 +2111,11 @@ pipe.set(&apos;foo&apos;, &apos;bar&apos;).sadd(&apos;faz&apos;, &apos;baz&apos;
             <p>Python官方文档都说自己解析XML的方式存在漏洞了，那我也只能用他推荐的了。</p>
 <p>这里我使用的BeautifulSoup，因为其中文文档十分完整清晰，而且相比于defusedxml，它不仅可以解析XML还可以解析HTML，非常方便。<a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html" target="_blank" rel="external">文档<br>地址</a></p>
 <p>另外，如果是简单的网页解析任务，可以直接将获取到的网页进行正则表达式匹配也可以达到效果，只是可能会出现各种编码各种错误问题</p>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 直接apt安装</div><div class="line">$ sudo apt-get install Python3-bs4  # 这将安装下面两个包</div><div class="line"></div><div class="line"># pip方式安装</div><div class="line">$ pip3 install beautifulsoup4   # 这样直接安装或者下载源码进行安装</div><div class="line">$ pip3 install lxml             # 如果是解析xml必须安装一个解析器，文档里说的那个解析器只有这个好安装点，需要提前安装好依赖，apt-get install libxml2-dev, libxslt1-dev, python-dev，还可以使用html.parser这个解析器，这个解析器不会自动添加body元素</div></pre></td></tr></table></figure>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 直接apt安装</div><div class="line">$ sudo apt-get install Python3-bs4  # 这将安装下面两个包</div><div class="line"></div><div class="line"># pip方式安装</div><div class="line">$ pip3 install beautifulsoup4   # 这样直接安装或者下载源码进行安装</div><div class="line">$ pip3 install lxml             # 如果是解析xml必须安装一个解析器，文档里说的那个解析器只有这个好安装点，需要提前安装好依赖，apt-get install libxml2-dev, libxslt1-dev, python-dev，还可以使用html.parser这个解析器，这个解析器不会自动添加body元素,CentOS用yum -y install python-devel gcc libxml2 libxml2-devel libxslt libxslt-devel</div></pre></td></tr></table></figure>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>TAG：表示xml/html里面的一个元素(节点)，包括标签以及其里面的内容</p>
 <h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>最简单的使用例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import urllib.request</div><div class="line">from bs4 import BeautifulSoup</div><div class="line"></div><div class="line">content = &quot;&lt;b&gt;&lt;!--Hey, buddy--&gt;&lt;/b&gt;&quot;   # 表示网页内容</div><div class="line">content = urllib.request.urlopen(url)  # 通常做爬虫的时候html来自于网页</div><div class="line">soup = BeautifulSoup(content)          # 解析，生成一个bs4.BeautifulSoup</div><div class="line">comment = soup.b.string                # 获取&lt;b&gt;标签的内容</div></pre></td></tr></table></figure>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 查找标签</div><div class="line">soup.a             # 查找第一个a标签，返回值就是一个TAG&lt;class &apos;bs4.element.Tag&apos;&gt;</div><div class="line">soup.find(&apos;a&apos;)     # 同上，都只是查找满足条件的第一个</div><div class="line">soup.find_all(&apos;a&apos;) # 查找所有的a标签，返回一个list获取内容</div><div class="line">soup.find_all(&apos;a&apos;, class_=&apos;name&apos;)  # 根据标签的属性进行查找，比如这里查找class这个属性为name的a标签</div><div class="line">soup.find_all(text=&quot;&quot;) # 在整个文档中查找一个字符串</div><div class="line">soup.find_all(&apos;a&apos;, limit=3) # 限制只找三个结果</div><div class="line">soup.find_all(&apos;a&apos;, recursive=False) # 只找直接子节点而不递归查找# CSS选择器  </div><div class="line"></div><div class="line">soup.select(&apos;a&apos;) # 查找a标签，结果是列表</div><div class="line">soup.select(&apos;.title&apos;) # 查找类为title的标签</div><div class="line">soup.select(&apos;#name&apos;)  # 查找id为name的标签</div></pre></td></tr></table></figure>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 查找标签</div><div class="line">soup.a             # 查找第一个a标签，返回值就是一个TAG&lt;class &apos;bs4.element.Tag&apos;&gt;</div><div class="line">    soup.find(&apos;a&apos;)     # 同上，都只是查找满足条件的第一个</div><div class="line">    soup.find_all(&apos;a&apos;) # 查找所有的a标签，返回一个list获取内容</div><div class="line">    soup.find_all(&apos;a&apos;, class_=&apos;name&apos;)  # 根据标签的属性进行查找，比如这里查找class这个属性为name的a标签</div><div class="line">    soup.find_all(text=&quot;&quot;) # 在整个文档中查找一个字符串</div><div class="line">    soup.find_all(&apos;a&apos;, limit=3) # 限制只找三个结果</div><div class="line">    soup.find_all(&apos;a&apos;, recursive=False) # 只找直接子节点而不递归查找# CSS选择器  </div><div class="line"></div><div class="line">soup.select(&apos;a&apos;) # 查找a标签，结果是列表</div><div class="line">soup.select(&apos;.title&apos;) # 查找类为title的标签</div><div class="line">soup.select(&apos;#name&apos;)  # 查找id为name的标签</div></pre></td></tr></table></figure>
 <h2 id="获取内容"><a href="#获取内容" class="headerlink" title="获取内容"></a>获取内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tag.name        # 如果是Tag，那么返回它本身，例如，如果是a标签，那就返回a；如果是soup对象，那么返回[document]，返回值都是str类型</div><div class="line">tag.attrs       # 获取该标签的属性，返回的是一个字典，例如，如果有个a标签是&lt;a class=&quot;a&quot; href=&quot;#&quot;&gt;&lt;/a&gt;那么返回\&#123;&apos;class&apos;: &apos;a&apos;, &apos;href&apos;: &apos;#&apos;\&#125;</div><div class="line">soup.a[&apos;class&apos;] # 直接获取a标签的class属性值</div><div class="line">soup.a.get(&apos;class&apos;] # 同上</div><div class="line"></div><div class="line">soup.a.string   # 获取标签内的内容，&lt;a&gt;文字部分&lt;/a&gt;</div><div class="line">soup.a.text     # 获取标签内文字部分&lt;span&gt;abc&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/span&gt; 获取abc</div><div class="line">soup.prettify() # 获取所有内容</div></pre></td></tr></table></figure>
 <h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>获取tag内的字符串用tag.string，可以通过unicode方法将NavigableString对象转换成Unicode字符串，如unicode_st<br>ring = unicode(tag.string)</p>
 <h2 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h2><ul>
@@ -2257,155 +2402,11 @@ $request = $di-&gt;getRequest();
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/vps-nginx-reverse-proxy/" itemprop="url">
-                  Vps上使用nginx反向代理某些你懂的网站
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-16T20:38:05+08:00" content="2015-05-16">
-              2015-05-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/就是爱玩/" itemprop="url" rel="index">
-                    <span itemprop="name">就是爱玩</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/vps-nginx-reverse-proxy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="vps-nginx-reverse-proxy/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>之前在Github的学生计划中获得的$100 Digitalocean支付券放在那里没怎么用，由于今天碰巧登录不上1024，于是想到直接通过自己的vps来做<br>反向代理试试(之所以不用shadowsocks，是因为我在DO上搭建的shadowsocks一直都很慢，慢得我无法原谅。。。)</p>
-<p>好了，这里说一下ubuntu server上通过nginx反向代理http网站的过程：</p>
-<p>首先是一条命令安装nginx<code>sudo apt-get install nginx</code></p>
-<p>然后直接修改nginx的server配置文件<em>/etc/nginx/sites-enabled/default</em>，修改为如下：</p>
-<pre><code>server \{
-        listen 100;  # 指定端口地址
-        server_name localhost;
-
-
-
-
-
-    access_log /var/log/nginx/access_100.log
-    error_log /var/log/nginx/error_100.log;
-    location / \{
-            sub_filter haofly.net localhost;
-            proxy_pass http://haofly.net;
-            proxy_redirect http://haofly.net  /;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header Referer http://$host;
-    \}
-</code></pre><p>}</p>
-<p>如果有多个就写多个server，之后就可以使用服务器的IP+端口访问haofly.net网站了。</p>
-<p>反向代理的速度和直接访问院网站的速度几乎一样，所以我想到了其它的用途，比如Ubuntu的官方镜像源的代理等。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2446,7 +2447,7 @@ $request = $di-&gt;getRequest();
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">140</span>
+              <span class="site-state-item-count">141</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
