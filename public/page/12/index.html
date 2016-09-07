@@ -269,6 +269,160 @@
             
               
                 
+                <a class="post-title-link" href="/C-and-pointer_2/" itemprop="url">
+                  《C和指针》——C语言补漏(基本用法篇)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-05-14T19:06:57+08:00" content="2014-05-14">
+              2014-05-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/韦编三绝/" itemprop="url" rel="index">
+                    <span itemprop="name">韦编三绝</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/C-and-pointer_2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="C-and-pointer_2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.amazon.cn/C\%E5\%92\%8C\%E6\%8C\%87\%E9\%92\%88-Pointers-On-C-
+Kenneth-A-Reek/dp/B00163LU68/ref=sr_1_1?ie=UTF8&amp;qid=1400057920&amp;sr=8-1&amp;keywords
+=C\%E5\%92\%8C\%E6\%8C\%87\%E9\%92\%88" target="_blank" rel="external">《C和指针》——Kenneth<br>A.Reek</a></p>
+<p>这本书应该是我最后一次买盗版的经典书籍了，买了这本书后我就写下了<a href="http://haofly.net/thoughts1/">学生应尽量购买正版</a>，发誓以后<br>都在正规的书店(包括网上书店)买书。<br>本来以为这本书的内容挺少的，但当读到指针的部分发现我以前了解的真的很少，还好我上学期认真学过《数据结构》这门课，对指针的使用还算熟练，不然光靠以前自学的谭浩<br>强的C语言和课堂上教的，根本就只能算是一个只知道C语言这个东西的人。<br>至于这本书的阅读时间，我觉得我的时间并不正确，这本书应该是在C语言基础学完后，在数据结构之前来学习，不仅可以深入理解一下C语言的精髓，还可以顺利过渡到数据结<br>构的学习。<br>在这里就以前我不了解的一些C语言知识做一些归纳(不过这里很多都是一些以前没见过的函数以及一些用法，当然这些函数或者是用法并不是罕见的，只是在学生中比较罕见罢<br>了，我在网上看过很多高手的代码，发现有一些还是挺常用的)。  </p>
+<p>1.要从逻辑上删除一段C代码，更好的办法是使用#if指令。这样可以防止在一段内部已经有注释的代码外面加上注释所引起的注释不匹配的问题：</p>
+<blockquote>
+<p>#if 0<br>statements  </p>
+<p>#endif</p>
+</blockquote>
+<p>2.EOF是一个整型值，在很多读入字符的情况下，如果要判断输入是否结束，需要把字符读入为整型值，这样可以判断输入是否结束。<br>3.程序会使用一个运行时堆栈，它用于存储函数的局部变量和返回地址。程序同时也可以使用静态内存，存储与静态内存中的变量在程序的整个执行过程中将一直保留着他们的<br>值。<br>4.标准规定了几个特殊的三字母词，比如??(代表[，不过这个应该很少见，至少我之前一直没碰到这种情况<br>5.如果要创建新的类名，应该使用typedef而不是#define，因为后者无法正确处理指针类型，例如：</p>
+<blockquote>
+<p>#define ptr char *<br>ptr a, b;</p>
+</blockquote>
+<p>上面代码会使a成为一个char指针，而b却被声明为一个char<br>6.在定义常量的时候我们应该使用#define而不是const：</p>
+<blockquote>
+<p>#define MAX_ELEMENTS 50<br>int const max_eleemnts 50;</p>
+</blockquote>
+<p>因为只要允许使用字面值的地方都可以使用前者，比如声明数组的长度，const变量只能用于允许使用变量的地方。<br>7.链接属性：分为3种——external(外部)、internal(内部)和none(无)。没有链接属性的标识符(none)总是被当作单独的个体，也就是说<br>该标识符被当作独立不同的实体。属于internal链接属性的标识符在同一个源文件内的所有声明都指同一个实体，但位于不同源文件的多个声明则分属不同的实体。最后<br>，属于external链接属性的标识符不论声明多少次，位于几个源文件都表示同一个实体。<br>8.凡是在任何代码块之外声明的变量总是存储于静态内存中，也就是不属于堆栈的内存，这类变量称为静态变量。<br>9.标准说明无符号值的所有移位操作都是逻辑移位，但对于有符号值，到底是采用逻辑移位还是算术移位取决于编译器。也就是说一个程序如果所使用了有符号数的移位操作，<br>他就是不可移植的。<br>10.C函数可以理解为所有的参数均以“传值调用”的方式进行传递，传递数组时也传递的是指针的值。<br>11.只要有可能，函数的指针形参都应该声明为const<br>12.不要使用strlen来相减，因为strlen是无符号数，那么相减的结果必然也是无符号数，所以像`if( strlen(x) - strlen(y)</p>
+<blockquote>
+<p>= 0 )`这种用法就是错的，因为结果永远都是大于等于零<br>13.注重可移植的程序应该避免使用位段。任何可以用位段实现的任务都可以使用移位和屏蔽来实现。<br>14.编译器为一个结构变量的成员分配内存时要满足他们的边界对齐要求。在实现结构存储的边界对齐时，可能会浪费一部分内存空间。根据边界对齐要求降序排列结构成员可<br>以最大限度地减少结构存储中浪费的内存空间。<br>15.在程序中，数组的长度一般是根据运行后决定的，所以最好使用动态内存分配。<br>16.几个预定义符号：</p>
+</blockquote>
+<p><strong>FILE</strong>：进行编译的源文件名<br><strong>LINE</strong>：文件当前行的行号<br><strong>DATE</strong>：文件被编译的日期<br><strong>TIME</strong>：文件被编译的时间<br><strong>STDC</strong>：如果编译器遵循ANSI C，其值就为1，否则未定义<br>17.如果相同的代码需要出现在程序的几个地方，通常的做法是将它实现为一个函数，而不是宏#define<br>18.条件编译：可以允许选择某条语句或某组语句进行翻译或者被忽略，这常用语本地调试：</p>
+<blockquote>
+<p>#if constant-expression<br>statements  </p>
+<p>#endif</p>
+</blockquote>
+<p>19.文件包含：如果是库文件一般用&lt;&gt;，如果是本地文件一般用””<br>20.删除多重包含引发的危险：</p>
+<blockquote>
+<p>#ifndef _HEADERNAME_H  </p>
+<p>#define _HEADERNAME_H 1<br>/<em><br>** All the stuff that you want in the header file  
+</em>/  </p>
+<p>#endif</p>
+</blockquote>
+<p>19.绝大多数流是完全缓冲的，意味着“读取”和“写入”实际上是从一块被称为缓冲区的内存区域来回赋值数据。用于输出流的缓冲区只有当它写满时才会被刷新到设备或文<br>件中。也可使用fflush迫使缓冲区的数据立即写入，不管它是否已满。<br>20.函数库为I/O所提供的接口称为流。<br>21.fgets函数比gets函数更为安全，它把缓冲区长度作为参数之一，可以保证一个长输入行不会溢出缓冲区，gets函数会去除它所读取的行的换行符，puts<br>函数在写入到缓冲区的文本后面加上一个换行符</p>
+<p>封面图片来自Pixebay</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/C-and-pointer_1/" itemprop="url">
                   《C和指针》——C语言补漏(函数篇)
                 </a>
@@ -1402,131 +1556,6 @@ F\%B7\%E8\%8C\%AB" target="_blank" rel="external">《谁的青春不迷茫》—
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014-plan/" itemprop="url">
-                  大二下学期计划(回顾2013展望2014)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-03-08T15:17:21+08:00" content="2014-03-08">
-              2014-03-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/边走边想/" itemprop="url" rel="index">
-                    <span itemprop="name">边走边想</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014-plan/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-plan/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="回顾2013"><a href="#回顾2013" class="headerlink" title="回顾2013"></a>回顾2013</h3><p>2013年可以算作是我真正进入编程界大门的一年，这一年把C语言基础学了，然后又学了C++，还浅学了汇编、Delphi、python等语言，当然都局限于基础部<br>分。这一年，我又申请了一个域名haofly.net，但还是没有建立什么网站，而是在接触了github后将网站搭建在了这上面。<br>这一年，我去了四川，体验了那里的风土人情，突然明白了一些，旅行不是要证明去了某个地方，而是去体验了某个地方。所以以后的旅行我会尽量一个人去，而不是和一群人去<br>走马观花，而且不一定要风景名胜，或许去一个安静的地方更能偶遇到美丽的姑娘。<br>这一年，我从大一到了大二，从一个奔二的人成为了一个奔三的人，逐渐开始进入人生与学习的迷茫期。</p>
-<h3 id="展望2014"><a href="#展望2014" class="headerlink" title="展望2014"></a>展望2014</h3><p>无论2013年里我做过了什么，错过了什么，它已经过去，2014年已经开始向前迈进，在这学期开学前夕，特别做了如下计划。</p>
-<h3 id="计算机"><a href="#计算机" class="headerlink" title="计算机"></a>计算机</h3><p>我曾经说过，在大二的时候，我练的是内功，所以仍然不会专注于某一种语言或某一种技术去专研，而是广撒网，弄清自己兴趣到底在哪里，了解自己擅长的是什么。当然主线还<br>是C/C++语言和信息安全方向，而且把工作环境转移到linux，以前一直觉得linux的使用有很多极不方便的地方，而现在已经用了一个寒假了，几乎没有任何异样<br>，而且自己动手解决问题的感觉，太爽了。</p>
-<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>上学期已经很累了，我很想推掉自己的很多职务，但是又觉得却是该锻炼锻炼自己。所以这学期我不会为自己增加事情，反而会减少。这学期课很少，我想放松一学期，好好观察<br>一下大学生活。</p>
-<h3 id="改变"><a href="#改变" class="headerlink" title="改变"></a>改变</h3><p>虽然我是一个自己都不怎么了解自己的人，但是我肯定比很多不关心我的人更了解自己。很多人都说我很幼稚，没错，我确实是幼稚，幼稚到二十岁了还在为理想而活，幼稚到二<br>十岁还那么固执，幼稚到二十岁还不愿改变自己。或许，我永远不会把幼稚和成熟当成反义词来看待，当然，这也或许只是时间问题，或许我也会被以后的现实打磨掉棱角，而逐<br>渐让自己看起来像一个成年人。原谅我，我这个人最讨厌的是伪装，而我却依然坚持不把自己成熟的一面露给我在乎的人看。<br>拖延症</p>
-<p>最后再写一些比较具体的计划，之所以要添加这一项，是为了给自己一些约束，我也不知道自己能不能做完，但是不试试又怎么知道自己不行呢。<br>1.阅读： 看10-20本书，专业和非专业均可，当然专业书籍不一定要全部吃透，七分熟即可。<br>2.博客： 写50-100篇博客，大概是每周一篇，写博客主要是为了记录自己的学习历程，目的并不是给别人看，所以没必要有多大的技术含量也没必要有多久的推敲<br>3.翻译：<br>译50-100篇文章，大概也是每周一篇，翻译文章虽然挺辛苦的，但我不想放弃，因为它不仅能提高我阅读外文的能力，而且还能把外国的优秀文章分享给国内的爱好者<br>4.上课： 学4-10门coursera课程，无论是专业的还是非专业的，反正都比老师上课有动力，而且对提高阅读英语的能力也有很大的帮助<br>5.恋爱： 苍天呀，保佑我今年能找个女朋友吧</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1572,7 +1601,7 @@ F\%B7\%E8\%8C\%AB" target="_blank" rel="external">《谁的青春不迷茫》—
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">141</span>
+              <span class="site-state-item-count">142</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
