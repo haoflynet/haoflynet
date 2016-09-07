@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://haofly.net/"/>
-  <updated>2016-08-07T13:07:29.000Z</updated>
+  <updated>2016-09-07T14:31:07.000Z</updated>
   <id>https://haofly.net/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>读《解忧杂货店》</title>
+    <link href="https://haofly.net/jieyouzahuodian/"/>
+    <id>https://haofly.net/jieyouzahuodian/</id>
+    <published>2016-09-07T15:08:42.000Z</published>
+    <updated>2016-09-07T14:31:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这本书在最近一年里面特别火，以前好多从来不看书的朋友都在朋友圈里发这本书的照片，仿佛大家一下子爱上了文字。我当然不会因为人家看我就看的，只是每次一看到这本书的名字，就不由得想起日本的情感电视剧《深夜食堂》，不知道为什么，就感觉他们可能会有好多相似的地方，应该会和《深夜食堂》一样，在很平淡的叙述中体会其中的韵味，引人入胜。于是最后，我还是看了。它和《深夜食堂》有相似的，也有不同的。《深夜食堂》是把精彩的故事写平淡，而《解忧杂货店》则是把本应该跌宕起伏的故事写得平淡，然后一步一步将错综复杂的故事串起来，功力同样深厚，毕竟是东野圭吾的作品，不得不叹服。</p>
+<p>浪矢杂货店，一个连接过去与未来的杂货店，连接了一个老头与三个坏孩子一起帮助别人排忧解难的故事。通过几个矛盾人物与他们之间的书信交流来推动故事发展，更精妙的是几个矛盾人物之间又刚好有一丝丝的联系，联系虽然不深，但是却足以让人看到其中环环相扣的逻辑，被作者的思维所震撼。</p>
+<p>我一直都像很多国人一样，哪怕自己过得再堕落，哪怕自己不相信大道理也要自以为是地告诫别人，偶尔，也会很认真地回应别人的玩笑，因为“我们也要尽可能帮助他人，你没有无视他开玩笑写的问题，而是认真回答，所以才回一直牢记在心里”。我希望自己能力所能及地帮助他人，特别是刚入编程领域的小学弟们，我很希望他们来问我问题，哪怕最简单的，哪怕最幼稚的，我也要认认真真地回答。遗憾的是，我并不是什么大神，所以找我咨询的学弟微乎其微呀。</p>
+<p>人生，重要的是选择。作为一个挣扎于选择困难症不能自拔的天秤座的我来说，其实，很多时候在犹豫不决的时候，决定其实早就在自己心中，只是，要么因为各种客观原因，要么就是自己主观上的回避。最常见的莫过于购物的时候，说简单点就是没钱，所以才会犹豫不决，这个倒很好解决，多挣钱就行。又比如人生中的抉择，月兔想参加奥运会，但是怕选不上所以找了一个照顾男友的理由；克朗想成为歌手，然后又以照顾父亲为理由放弃追逐梦想。追逐梦想，能够轻松实现自己想要的，谁又不想呢。只是现实很多时候过于残酷，我们不知道继续坚持会不会得到自己期待的结果，只是从现在的情形看来，结果肯定不会太好，这个时候如果来了一个很合理的，连自己都能说服的理由，又何尝不想放弃呢，放弃多好，努力不一定成功，但不努力，一定很轻松。似乎，只要不是自己的原因，这样的理由就非常容易被接受，也不至于被身边的人嘲笑。但是，终究不过是自欺欺人。明明知道自己想要的，但还是选择逃避。不要轻易被自己的努力感动，真的，你做的努力相比于真正成功了的人，是微乎其微的。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这本书在最近一年里面特别火，以前好多从来不看书的朋友都在朋友圈里发这本书的照片，仿佛大家一下子爱上了文字。我当然不会因为人家看我就看的，只是每次一看到这本书的名字，就不由得想起日本的情感电视剧《深夜食堂》，不知道为什么，就感觉他们可能会有好多相似的地方，应该会和《深夜食堂》
+    
+    </summary>
+    
+      <category term="韦编三绝" scheme="https://haofly.net/categories/%E9%9F%A6%E7%BC%96%E4%B8%89%E7%BB%9D/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>看博客的人要的都是干货？</title>
@@ -711,67 +735,6 @@ MySQL unknown column &apos;password_last_changed&apos;
     <summary type="html">
     
       &lt;p&gt;参考地址：&lt;a href=&quot;http://369369.blog.51cto.com/319630/790921&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://369369.blog.51cto.com/319630/790921&lt;/a&gt;&lt;b
-    
-    </summary>
-    
-      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Python多进程和多线程</title>
-    <link href="https://haofly.net/python-multithreading-multiprocess/"/>
-    <id>https://haofly.net/python-multithreading-multiprocess/</id>
-    <published>2015-12-29T19:28:42.000Z</published>
-    <updated>2016-02-22T05:23:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>多线程和多进程能极大限度的利用线代计算机强大的CPU，在IO密集型的应用场景里十分常见，目前项目中有个需求，是需要向别人网站发送请求等待响应，不过必须等页面<br>的js执行完毕后才能获取内容，就得将执行时间设置得长一点，比如10s，如果每个请求都等这么久那效率实在太慢，所以趁此机会，学习了一下Python的多进程和多<br>线程编程。  </p>
-<p>在Python里面多进程和多线程的区别</p>
-<ul>
-<li>Python里的多线程只能利用CPU的一个核(由于全局解释锁的历史原因)，而多进程则能利用多核的优势</li>
-<li>多线程一般来说比多进程快，毕竟共享内存，但是多线程也更危险，因为一个线程崩溃可能导致整个程序崩溃</li>
-</ul>
-<h1 id="Python多线程"><a href="#Python多线程" class="headerlink" title="Python多线程"></a><strong>Python多线程</strong></h1><ul>
-<li>定义与使用  </li>
-</ul>
-<pre><code>    import threading
-
-class Thread(threading.Thread):
-    def __init__(self, 变量):
-        threading.Thread.__init__(self)
-        self.变量 = 变量
-    def run(self):
-        逻辑
-thread = Thread(参数) # 定义一个线程
-thread.start()        # 开启一个线程
-</code></pre><ul>
-<li>全局变量：加锁，对于全局变量，如果仅仅是引用其值，而不对其进行修改，那么可以直接引用，如果要进行修改，就必须加锁，否则会出现不可预期的错误，比如可能会导致MySQL连接意外断开  </li>
-</ul>
-<pre><code>    LOCK = threading.Lock()  # 在全局定义一个锁
-# 局部使用
-LOCK.acquire()
-修改全局变量
-LOCK.release()
-</code></pre><ul>
-<li>局部变量：虽然局部变量简单的使用直接用就行，但是如果要在run里面进行各个函数之间的传递那就麻烦了，所以提供了ThreadLocal来将线程内部的局部变量变为一个字典，其它函数直接调用即可  </li>
-</ul>
-<pre><code>    LOCAL = threading.local() # 在全局定义，每个线程引用该值结果都仅仅会得到自己的私有变量
-# 在Thread类里面的run函数赋值，不能在__init__里面定义，因为那时候线程还没启起来
-LOCAL.变量名 = 值 # 就这样
-</code></pre><ul>
-<li>常用方法  </li>
-</ul>
-<pre><code>    threading.activeCount()  # 获取当前线程数量，我一般用这个来控制线程最大的数量
-threading.currentThread() # 获取当前线程对象
-threading.currentThread().getName() # 获取当前线程的名称
-exit()         # 终止当前线程，网上好多人问怎么没有API，后来发现exit就行了...并不会影响到其它线程和主线程
-</code></pre><h1 id="Python多进程"><a href="#Python多进程" class="headerlink" title="Python多进程"></a><strong>Python多进程</strong></h1><p>waiting…</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;多线程和多进程能极大限度的利用线代计算机强大的CPU，在IO密集型的应用场景里十分常见，目前项目中有个需求，是需要向别人网站发送请求等待响应，不过必须等页面&lt;br&gt;的js执行完毕后才能获取内容，就得将执行时间设置得长一点，比如10s，如果每个请求都等这么久那效率实在太慢，所
     
     </summary>
     
