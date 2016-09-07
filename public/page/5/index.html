@@ -269,6 +269,216 @@
             
               
                 
+                <a class="post-title-link" href="/laravel-IoC-DI/" itemprop="url">
+                  Laravel使用IoC模式(DI、依赖注入)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-17T16:19:06+08:00" content="2015-05-17">
+              2015-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/laravel-IoC-DI/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="laravel-IoC-DI/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考文章：<a href="https://phphub.org/topics/607" target="_blank" rel="external">https://phphub.org/topics/607</a> (以下内容基本上都摘自该文章)</p>
+<p>IoC这个主题我已经收藏了很久了，直到今天才有空深入地理解了一遍Laravel的IoC模式。</p>
+<p>前几天在使用LeanCloud的Python SDK，我就在想，每次连接LeanCloud的存储服务都需要先创建一个连接，如果要执行其它的操作，那又得新建那<br>个连接了。IoC就是为了解决每次都重复连接的一种编码模式，通过依赖注入减少耦合。</p>
+<p>上面引用的参考文章里已经注明了为什么我们在这种情况下一定要使用依赖注入，这里我就只记录下到底该如何使用该模式。</p>
+<p>Laravel的依赖注入是使用的“容器”这个概念，是一种全局注册表，使用容器的依赖注入作为一种桥梁来解决依赖可以使我们的代码耦合度耕地，很好的降低了组件的复<br>杂性。示例代码如下：</p>
+<pre><code>&lt;?php
+
+
+
+
+class SomeComponent\{      # 组件
+    protected $_di;      # 一个私有变量
+
+
+
+
+
+public function __construct($di)\{
+    $this-&amp;gt;_di = $di;
+\}
+
+public function someDbTask()\{
+    // 通过get获取connection service总是返回一个新的连接
+    $connection = $this-&amp;gt;_di-&amp;gt;get(&apos;db&apos;);
+\}
+
+public function someOtherDbTask()\{
+    // 和上面不同，这里获取的是共享的连接
+    $connection = $this-&amp;gt;_di-&amp;gt;getShared(&apos;db&apos;);
+
+    //This method also requires a input filtering service
+    $filter = $this-&amp;gt;_db-&amp;gt;get(&apos;filter&apos;);
+\}
+</code></pre><p>}</p>
+<p>$di = new Phalcon\DI(); // 创建一个容器</p>
+<p>// 在容器中注册一个名为’db’的服务，用于连接数据库，并返回该连接 $di-&gt;set(‘db’, function(){ return new<br>Connection(array( “host” =&gt; “localhost”, “username” =&gt; “root”, “password” =&gt;<br>“secret”, “dbname” =&gt; “invo” )); });</p>
+<p>// 在容器中注册一个名为’filter’的服务 $di-&gt;set(‘filter’, function(){ return new Filter();<br>});</p>
+<p>// 在容器中注册一个名为’session’的服务 $di-&gt;set(‘session’, function(){ return new<br>Session(); });</p>
+<p>// 将容器作为一个参数传递到构造函数中去 $some = new SomeComponent($di);</p>
+<p>$some-&gt;someTask();</p>
+<p>现在，该组件只有访问某种service的时候才需要它，如果它不需要，它甚至不会被初始化，以节约资源。Phalcon\DI是一个实现了服务的依赖注入功能的组件<br>，它本身就是一个容器。由于Phalcon高度解耦，Phalcon\DI是框架用来集成其他组件的必不可少的部分，开发人员也可以使用这个组件依赖注入和管理应用程<br>序中不同类文件的实例。</p>
+<p>在容器中注册服务，框架本身或开发人员都可以注册服务。当一个组件A要求调用组件B(或它的类的一个实例)，可以从容器中请求调用组件B，而不是创建组件B的一个实例<br>。</p>
+<h3 id="注入方法"><a href="#注入方法" class="headerlink" title="注入方法"></a>注入方法</h3><p>服务可以通过以下几种方式注入到容器：</p>
+<pre><code>&lt;?php
+
+
+
+
+// 首先要创建一个依赖注入容器
+$di = new Phalcon\\DI();
+
+
+
+
+// 通过类名注入
+$di-&gt;set(&quot;request&quot;, &apos;Phalcon\\Http\\Request&apos;);
+
+
+
+
+// 通过匿名函数注入Using an anonymous function, the instance will lazy loaded
+$di-&gt;set(&quot;request&quot;, function()\{
+    return new Phalcon\\Http\\Request();
+\});
+
+
+
+
+// 直接用一个实例来注入
+$di-&gt;set(&quot;request&quot;, new Phalcon\\Http\\Request());
+
+
+
+
+// 通过数组来注入
+$di-&gt;set(&quot;request&quot;, array(
+    &quot;className&quot; =&gt; &apos;Phalcon\\Http\\Request&apos;,
+    &quot;parameters&quot; =&gt; array(
+            parameter&quot; =&gt; array(
+                &quot;host&quot; =&gt; &quot;localhost&quot;,
+            )
+        )
+    )
+));
+</code></pre><p>在容器中，通过数组，字符串等方式存储的服务都将被延迟加载，即只有在请求对象的时候才被初始化。</p>
+<p>从容器获得服务：</p>
+<pre><code>&lt;?php $request = $di-&gt;get(&quot;request&quot;);
+//或者使用魔术方法
+$request = $di-&gt;getRequest();
+</code></pre><p>其它相关文章：</p>
+<h1 id="PHP程序员如何理解IoC-DI-http-segmentfault-com-a-1190000002411255-“Link"><a href="#PHP程序员如何理解IoC-DI-http-segmentfault-com-a-1190000002411255-“Link" class="headerlink" title="[PHP程序员如何理解IoC/DI](http://segmentfault.com/a/1190000002411255 “Link:"></a>[PHP程序员如何理解IoC/DI](<a href="http://segmentfault.com/a/1190000002411255" target="_blank" rel="external">http://segmentfault.com/a/1190000002411255</a> “Link:</h1><p><a href="http://segmentfault.com/a/1190000002411255" target="_blank" rel="external">http://segmentfault.com/a/1190000002411255</a>“ )</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/vps-nginx-reverse-proxy/" itemprop="url">
                   Vps上使用nginx反向代理某些你懂的网站
                 </a>
@@ -1539,131 +1749,6 @@ UTF-8
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/programmer-internal-strength/" itemprop="url">
-                  程序员之内功修炼
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-05T14:57:07+08:00" content="2015-04-05">
-              2015-04-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/边走边想/" itemprop="url" rel="index">
-                    <span itemprop="name">边走边想</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/programmer-internal-strength/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="programmer-internal-strength/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>直到上个月，我都还一直以为能使用个第三方库，想要什么功能去Google一下肯定能搜索到，这样就算是高手了。可是，最近的实习生应聘却让我吃了一些苦头。刚开始时<br>，我还一直想，为什么即使是BAT这样的大公司也都问那些在实际开发中根本就用不到的网上一搜就一大片的东西，感觉他们也落入了俗套。但最近看的几篇文章，遇到的几件<br>事却让我意识到自己犯了一个多大的错。</p>
-<p>在这里，我想把只会堆砌代码的程序员称呼为码农，当然不是贬低，而是确实这个词比较直观，比如当年给进城务工的人士命名为农民工一样，绝对没有歧视的意思。<br>在我看来，内功包括三个方面：</p>
-<h2 id="熟练程度"><a href="#熟练程度" class="headerlink" title="熟练程度"></a>熟练程度</h2><p>这绝对不是一朝一夕就能简单掌握的，必须日复一日年复一年的写代码，才能达到所谓“熟练”的程度。不然，每次就像我之前那样，除了最熟悉的一两门语言、一两个框架外，<br>甚至是很基础的语法问题都得去搜一下，然后，每次遇到问题都重复地去寻找答案，完全没有技术含量，可却从另一方面说明，你仅仅只是一个码农。</p>
-<h2 id="创造能力"><a href="#创造能力" class="headerlink" title="创造能力"></a>创造能力</h2><p>我不鼓励重复造轮子，但你得保证，在没有轮子的时候能自己造一个出来。前阵子因为业务的需要，得破解一下某系统的验证码，以前一直以为这种事情网上应该有很多的库吧。<br>结果去Google一下才让我大吃一惊，只发现了一个很古老的东西，pytesseract，是对Google Tesseract的一个简单的封装，识别效果差的令<br>人发指。没办法，只能计划着自己造，我以前跟着一位导师研究过一点AI方面的知识，知道这种验证码是可以实现很高识别率的。可是，从哪儿开始呢？这种时候，我这种码农<br>就只能呵呵了。</p>
-<h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><p>天地万物为我所用。程序员，垒砌代码，总得知道在哪儿垒吧。如果，能够自己设计系统架构，能够清楚明白每一种技术选型的利与弊，那样，一个完整的工程才真正属于你，否<br>则，你永远只属于你那一方没人愿意去碰的基础的代码，而且，我总感觉，像这种重复性的劳动，总有一天会被更智能的东西取代。</p>
-<p>当年，小米刚出来的时候，所有硬件都是出自别人之手，当时我很仰慕，能够集中所有最好的东西做出来一个产品，这样，应该很牛了吧。可后来发现，小米牛的不是这点，它也<br>在造轮子，至少我认为小米系统，是国内最好的一个改装版android，很难想像，小米没有MIUI会是多么的脆弱。<br>内功这种东西，有没有最重要，用不用才是另一回事儿。不过，是有一些工作是只需要码农的，那就是外包，而且是低质量项目的外包。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1709,7 +1794,7 @@ UTF-8
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">141</span>
+              <span class="site-state-item-count">142</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

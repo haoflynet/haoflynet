@@ -269,6 +269,166 @@
             
               
                 
+                <a class="post-title-link" href="/python-multithreading-multiprocess/" itemprop="url">
+                  Python多进程和多线程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-30T03:28:42+08:00" content="2015-12-30">
+              2015-12-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/python-multithreading-multiprocess/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="python-multithreading-multiprocess/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>多线程和多进程能极大限度的利用线代计算机强大的CPU，在IO密集型的应用场景里十分常见，目前项目中有个需求，是需要向别人网站发送请求等待响应，不过必须等页面<br>的js执行完毕后才能获取内容，就得将执行时间设置得长一点，比如10s，如果每个请求都等这么久那效率实在太慢，所以趁此机会，学习了一下Python的多进程和多<br>线程编程。  </p>
+<p>在Python里面多进程和多线程的区别</p>
+<ul>
+<li>Python里的多线程只能利用CPU的一个核(由于全局解释锁的历史原因)，而多进程则能利用多核的优势</li>
+<li>多线程一般来说比多进程快，毕竟共享内存，但是多线程也更危险，因为一个线程崩溃可能导致整个程序崩溃</li>
+</ul>
+<h1 id="Python多线程"><a href="#Python多线程" class="headerlink" title="Python多线程"></a><strong>Python多线程</strong></h1><ul>
+<li>定义与使用  </li>
+</ul>
+<pre><code>    import threading
+
+class Thread(threading.Thread):
+    def __init__(self, 变量):
+        threading.Thread.__init__(self)
+        self.变量 = 变量
+    def run(self):
+        逻辑
+thread = Thread(参数) # 定义一个线程
+thread.start()        # 开启一个线程
+</code></pre><ul>
+<li>全局变量：加锁，对于全局变量，如果仅仅是引用其值，而不对其进行修改，那么可以直接引用，如果要进行修改，就必须加锁，否则会出现不可预期的错误，比如可能会导致MySQL连接意外断开  </li>
+</ul>
+<pre><code>    LOCK = threading.Lock()  # 在全局定义一个锁
+# 局部使用
+LOCK.acquire()
+修改全局变量
+LOCK.release()
+</code></pre><ul>
+<li>局部变量：虽然局部变量简单的使用直接用就行，但是如果要在run里面进行各个函数之间的传递那就麻烦了，所以提供了ThreadLocal来将线程内部的局部变量变为一个字典，其它函数直接调用即可  </li>
+</ul>
+<pre><code>    LOCAL = threading.local() # 在全局定义，每个线程引用该值结果都仅仅会得到自己的私有变量
+# 在Thread类里面的run函数赋值，不能在__init__里面定义，因为那时候线程还没启起来
+LOCAL.变量名 = 值 # 就这样
+</code></pre><ul>
+<li>常用方法  </li>
+</ul>
+<pre><code>    threading.activeCount()  # 获取当前线程数量，我一般用这个来控制线程最大的数量
+threading.currentThread() # 获取当前线程对象
+threading.currentThread().getName() # 获取当前线程的名称
+exit()         # 终止当前线程，网上好多人问怎么没有API，后来发现exit就行了...并不会影响到其它线程和主线程
+</code></pre><h1 id="Python多进程"><a href="#Python多进程" class="headerlink" title="Python多进程"></a><strong>Python多进程</strong></h1><p>waiting…</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/mysql-migration/" itemprop="url">
                   MySQL数据库目录存放位置迁移
                 </a>
@@ -1623,167 +1783,6 @@ if &apos;__name__ == &apos;__main__&apos;:
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/python-connect-mysql/" itemprop="url">
-                  Python3 使用MySQL Connector操作数据库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-04T17:48:41+08:00" content="2015-11-04">
-              2015-11-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/编程之路/" itemprop="url" rel="index">
-                    <span itemprop="name">编程之路</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/python-connect-mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="python-connect-mysql/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考文档：<br><a href="https://dev.mysql.com/doc/connector-python/en/" target="_blank" rel="external">https://dev.mysql.com/doc/connector-python/en/</a>  </p>
-<p><a href="http://mysql-python.sourceforge.net/MySQLdb.html" target="_blank" rel="external">http://mysql-python.sourceforge.net/MySQLdb.html</a>  </p>
-<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ubuntu</div><div class="line">sudo apt-get install python3-dev libmysqlclient-dev</div><div class="line">pip install mysqlclient</div><div class="line"></div><div class="line"># CentOS</div><div class="line">sudo yum install pytho3-devel mysql-devel</div><div class="line">pip install mysqlclient</div></pre></td></tr></table></figure>
-<h2 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h2><p>这里有所有的<a href="https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html" target="_blank" rel="external">连接参数列表</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用Oracle官方提供的数据库引擎的连接方法</span></div><div class="line"><span class="keyword">import</span> mysql.connector</div><div class="line">cnx = mysql.connector.connect(  </div><div class="line">                          user=<span class="string">''</span>,</div><div class="line">                          password=<span class="string">''</span>,</div><div class="line">                          host=<span class="string">''</span>,</div><div class="line">                          database=<span class="string">''</span>,  </div><div class="line">                          pool_size=<span class="number">3</span> <span class="comment"># 连接池大小)</span></div><div class="line">cnx.close()</div><div class="line"></div><div class="line"><span class="comment"># 使用基于MySQLdb的连接方法，比如mysqlclient</span></div><div class="line"><span class="keyword">import</span> MySQLdb</div><div class="line">db = MySQLdb.connect(</div><div class="line">	host=<span class="string">''</span>, </div><div class="line">    user=<span class="string">''</span>, </div><div class="line">    passwd=<span class="string">''</span>, </div><div class="line">    db=<span class="string">''</span>, </div><div class="line">    charset=<span class="string">'utf8'</span>, </div><div class="line">    autocommit=<span class="keyword">True</span>)</div><div class="line">cursor = db.cursor()</div></pre></td></tr></table></figure>
-<h2 id="Difference：两个库的区别"><a href="#Difference：两个库的区别" class="headerlink" title="Difference：两个库的区别"></a>Difference：两个库的区别</h2><pre><code># MySQL Connector/Python
-Oracle官方的实现，底层完全用C来实现
-默认未开启cursorbuffer，如果需要则显式开启：cnx.cursor(buffered=True)或者mysql.connector.connect(buffered=True)，开启了buffer，可同时使用多个游标
-
-# MySQLdb
-不完全用C
-默认开启了cursor的，会缓存结果，但是针对特别大的查询，可能会导致程序崩溃
-</code></pre><h2 id="CURD操作"><a href="#CURD操作" class="headerlink" title="CURD操作"></a>CURD操作</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><pre><code># 插入一条数据
-insert_stmt = (
-  &quot;INSERT INTO employees (emp_no, first_name, last_name, hire_date) &quot;
-  &quot;VALUES (%s, %s, %s, %s)&quot;
-)
-data = (2, &apos;Jane&apos;, &apos;Doe&apos;, datetime.date(2012, 3, 23))
-cursor.execute(insert_stmt, data)
-
-# 同时插入多条数据
-data = [
-    (&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;),
-    (&apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;)
-]
-stmt = &apos;INSERT INTO table_name (field_name1, field_name2)&apos;                 &apos;VALUES(%s, %s)&apos;
-cursor.executemany(stmt, data)
-</code></pre><h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># 看了源码发现，fetchone/fatchmany/fetchall实现居然是一样的：https://github.com/PyMySQL/mysqlclient-python/blob/7d289b21728ab1a94bb1f0210a26367c6714d881/MySQLdb/cursors.py，结果都是一次取出保存，这三个方法就是在结果列表里面切片而已</div><div class="line"></div><div class="line"># fetchone</div><div class="line">cursor.execute('select * FROM user")</div><div class="line">row = cursor.fetchone()</div><div class="line">while row is not None:</div><div class="line">    print(row)</div><div class="line">    row = cursor.fetchone()  </div><div class="line"></div><div class="line"># cursor可以直接拿来做迭代器</div><div class="line">cursor.execute(sql)</div><div class="line">for row in cursor:</div><div class="line">    print(row)</div><div class="line"></div><div class="line"># fetchmany()：获取固定数量的结果，当然，每次fetch过后指针会偏移到后面那个地方</div><div class="line">rows = cursor.fetchmany(size=1)</div></pre></td></tr></table></figure>
-<h1 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h1><ul>
-<li><p>获取insert后的ID值  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.insert_id()  # 表示上一次插入数据的ID</div></pre></td></tr></table></figure>
-</li>
-<li><p>获取原始SQL语句</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(cursor._last_executed)</div></pre></td></tr></table></figure>
-</li>
-<li><p>多线程的情况下，出现错误”OperationalError:(2013, ‘Lost connection to MySQL server during query’)”，出现这种情况是因为在多线程的情况下，如果只有一个mysql连接，那么mysql该连接会在执行完一个线程后销毁，需要加锁，在线程里面修改全局变量，会导致该变量的引用出错  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">LOCK.acquire()  </div><div class="line">mysql.cursor.execute(sql)  </div><div class="line">result = mysql.cursor.fetchall()  </div><div class="line">LOCK.release()  </div><div class="line">print(len(result))</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Can’t connect to local mySQL server ough socket ‘/tmp/mysql.sock</strong></p>
-<p>可能原因是由于MySQL是编译安装的，没有放在默认的目录，导致python找不到默认的sock文件，可以用一个软连接将实际文件链接到这个默认的目录下面</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1829,7 +1828,7 @@ cursor.executemany(stmt, data)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">141</span>
+              <span class="site-state-item-count">142</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

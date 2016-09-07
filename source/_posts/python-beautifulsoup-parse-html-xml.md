@@ -1,6 +1,7 @@
 ---
 title: "Python使用beautifulsoup解析HTML、XML"
 date: 2015-05-22 23:21:57
+updated: 2016-09-05 23:46:00
 categories: 编程之路
 ---
 Python官方文档都说自己解析XML的方式存在漏洞了，那我也只能用他推荐的了。
@@ -38,16 +39,18 @@ soup = BeautifulSoup(content)          # 解析，生成一个bs4.BeautifulSoup
 comment = soup.b.string                # 获取<b>标签的内容
 ```
 ## 查找
-```
+```python
 # 查找标签
 soup.a             # 查找第一个a标签，返回值就是一个TAG<class 'bs4.element.Tag'>
-    soup.find('a')     # 同上，都只是查找满足条件的第一个
-    soup.find_all('a') # 查找所有的a标签，返回一个list获取内容
-    soup.find_all('a', class_='name')  # 根据标签的属性进行查找，比如这里查找class这个属性为name的a标签
-    soup.find_all(text="") # 在整个文档中查找一个字符串
-    soup.find_all('a', limit=3) # 限制只找三个结果
-    soup.find_all('a', recursive=False) # 只找直接子节点而不递归查找# CSS选择器  
+soup.find('a')     # 同上，都只是查找满足条件的第一个
+soup.find_all('a') # 查找所有的a标签，返回一个list获取内容
+soup.find_all('a', class_='name')  # 根据标签的属性进行查找，比如这里查找class这个属性为name的a标签
+soup.find_all(text="") # 在整个文档中查找一个字符串
+soup.find_all('a', limit=3) # 限制只找三个结果
+soup.find_all('a', recursive=False) # 只找直接子节点而不递归查找#
+soup.find('a', {'class': 'title abc'})	# 直接指定css，适用于比较复杂的css
 
+# CSS选择器
 soup.select('a') # 查找a标签，结果是列表
 soup.select('.title') # 查找类为title的标签
 soup.select('#name')  # 查找id为name的标签
