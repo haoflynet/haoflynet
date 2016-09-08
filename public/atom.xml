@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://haofly.net/"/>
-  <updated>2016-09-07T14:31:07.000Z</updated>
+  <updated>2016-09-08T10:38:44.000Z</updated>
   <id>https://haofly.net/</id>
   
   <author>
@@ -14,6 +14,209 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>权限系统的构想(少用户多权限)</title>
+    <link href="https://haofly.net/permissions-system-little-user-much-privileges/"/>
+    <id>https://haofly.net/permissions-system-little-user-much-privileges/</id>
+    <published>2016-09-08T10:40:30.000Z</published>
+    <updated>2016-09-08T10:38:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近团队由于项目需求的增多，需要单独设计一个权限系统出来，参考了网上很多的权限/访问控制系统以及一些设计原则比如RBAC(Role-Based Access Control)，这里，记录一下自己对权限系统的一种构想。需要注意的是，RBAC中也有分组的概念，但是它的分组仅仅是为了将相同权限的人集中在一起。我的构想虽然没有分组的概念，但是也符合RBAC原则的，只是因为我做的更彻底，不仅将角色与权限直接关联，更是将用户与权限直接关联，产生了一定的冗余，更适用于人数少但是权限多的情况。</p>
+<h3 id="实体表"><a href="#实体表" class="headerlink" title="实体表"></a>实体表</h3><p><strong>应用表</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>字段注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>app_id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>角色表</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>字段注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>role_id</td>
+</tr>
+<tr>
+<td>app_id</td>
+<td>应用ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>名称(英文)</td>
+</tr>
+<tr>
+<td>beta</td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p><strong>权限表</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>字段注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>privilege_id</td>
+</tr>
+<tr>
+<td>app_id</td>
+<td>应用ID，不提供表示通用的权限</td>
+</tr>
+<tr>
+<td>name</td>
+<td>名称(英文)</td>
+</tr>
+<tr>
+<td>beta</td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p><strong>操作表</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>字段注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>operator_id</td>
+</tr>
+<tr>
+<td>app_id</td>
+<td>不提供表示通用的操作</td>
+</tr>
+<tr>
+<td>name</td>
+<td>名称(英文)，例如: add, delete, edit, query</td>
+</tr>
+<tr>
+<td>beta</td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关联表"><a href="#关联表" class="headerlink" title="关联表"></a>关联表</h3><p><strong>用户与权限关联表</strong>:此表与角色权限对应表之间是有一定冗余的，但是考虑到个性化需求以及第三方APP的需要，所以在可以忍受的范围内</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>字段注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>用户ID</td>
+</tr>
+<tr>
+<td>role_id</td>
+<td>角色ID: 为0表示该权限是独立分配的，独立分配的优先</td>
+</tr>
+<tr>
+<td>privilege_id</td>
+<td>权限ID</td>
+</tr>
+<tr>
+<td>operator_id</td>
+<td>操作ID</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>boolean</td>
+</tr>
+</tbody>
+</table>
+<p><strong>角色与权限对应表</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>字段注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>role_id</td>
+<td>角色ID</td>
+</tr>
+<tr>
+<td>privilege_id</td>
+<td>权限ID</td>
+</tr>
+<tr>
+<td>operator_id</td>
+<td>操作ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>用户与角色对应表</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>字段注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>role_id</td>
+<td>角色ID</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>用户ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><p>添加权限: 直接添加<br>给单独用户添加权限: 保存在角色与权限表中，并将role_id标志为单独的那一个id<br>删除用户角色: 直接根据role_id进行disabled，添加了就不直接删除<br>删除用户权限：直接根据role_id进行disabled，也不直接删除<br>其他平台登录：只需要在登录的时候获取该用户在该平台的所有的额权限即可，连分组都不需要，因为权限都是在权限系统中进行统一登记注册的，所以其他平台不用单独存储权限列表，而只需要获取获取当前用户的权限，放到缓存里面即可，例如redis，可以直接存储为一个列表<code>user:privileges []</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近团队由于项目需求的增多，需要单独设计一个权限系统出来，参考了网上很多的权限/访问控制系统以及一些设计原则比如RBAC(Role-Based Access Control)，这里，记录一下自己对权限系统的一种构想。需要注意的是，RBAC中也有分组的概念，但是它的分组仅仅是
+    
+    </summary>
+    
+      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>读《解忧杂货店》</title>
@@ -698,43 +901,6 @@ MySQL unknown column &apos;password_last_changed&apos;
     <summary type="html">
     
       &lt;p&gt;参考地址：&lt;a href=&quot;http://dev.mysql.com/doc/refman/5.6/en/linux-installation-debian.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dev.mysql.com/
-    
-    </summary>
-    
-      <category term="编程之路" scheme="https://haofly.net/categories/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Mysql之主从复制</title>
-    <link href="https://haofly.net/mysql-master-slave/"/>
-    <id>https://haofly.net/mysql-master-slave/</id>
-    <published>2016-01-05T23:35:43.000Z</published>
-    <updated>2016-04-13T07:00:52.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>参考地址：<a href="http://369369.blog.51cto.com/319630/790921" target="_blank" rel="external">http://369369.blog.51cto.com/319630/790921</a><br>原来想要简单地实现MySQL的主从复制其实也是很简单的(<br>这里当然不包括服务监控和容错处理啦)</p>
-<p>1.要检查主从服务器的MySQL版本，最好版本一致，不然会出现各种问题，特别是，5.5和5.6是不会兼容的  </p>
-<p>2.修改两个服务器的mysql配置<code>vim /etc/my.cnf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">log-bin=mysql-bin    // 打开二进制日志</div><div class="line">server-id=41         // 服务器的唯一ID，为0表示拒绝所有从服务器的连接</div></pre></td></tr></table></figure></p>
-<p>分别修改两个服务器配置然后分别重启</p>
-<p>3.主服务器建立账户：这个账户与普通账户不一样，它只能用于主从复制中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; GRANT REPLICATION SLAVE ON *.* to &apos;master&apos;@&apos;%&apos; identified by &apos;mysql&apos;;</div></pre></td></tr></table></figure></p>
-<p>4.查看服务器状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show master status;</div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |  </div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">| mysql-bin.000004 |   615261 |              |                  |                   |  </div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure></p>
-<p>需要注意的是，这两个值都得记下来哟</p>
-<p>5.将主服务器数据库dump然后导入到从服务器，记下了Position就不用担心dump后新增数据的情况，会自动同步的</p>
-<p>6.配置从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; change master to master_host=&apos;192.168.1.41&apos;, master_user=&apos;xiaohao&apos;, master_password=&apos;mysql&apos;, master_log_file=&apos;mysql-bin.000004&apos;, master_log_pos=615261;  // 这里就是刚才的Position</div></pre></td></tr></table></figure></p>
-<p>7.启动从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; start slave;   # 同理，停止用stop slave</div></pre></td></tr></table></figure></p>
-<p>8.查看复制状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">    mysql&gt; show slave status\G  </div><div class="line">**_*_****_*_****_*_****_*_* 1. row ****_*_****_*_****_*_******  </div><div class="line">               Slave_IO_State: Waiting for master to send event  </div><div class="line">                  Master_Host: 192.168.1.41  </div><div class="line">                  Master_User: xiaohao  </div><div class="line">                  Master_Port: 3306  </div><div class="line">                Connect_Retry: 60  </div><div class="line">              Master_Log_File: mysql-bin.000004  </div><div class="line">          Read_Master_Log_Pos: 652289  </div><div class="line">               Relay_Log_File: ubuntu-relay-bin.000002  </div><div class="line">                Relay_Log_Pos: 37345  </div><div class="line">        Relay_Master_Log_File: mysql-bin.000004  </div><div class="line">             Slave_IO_Running: Yes  </div><div class="line">            Slave_SQL_Running: Yes  </div><div class="line">              Replicate_Do_DB:</div></pre></td></tr></table></figure></p>
-<p>必须保证Slave_IO_Running和Slave_SQL_Running都为Yes的时候才正确的</p>
-<h1 id="TroubleShooting："><a href="#TroubleShooting：" class="headerlink" title="TroubleShooting："></a><strong>TroubleShooting：</strong></h1><ul>
-<li><p>出现错误：Slave SQL for channel ‘’: Slave failed to initialize relay log info structure from the repository, Error_code: 1872<br>是因为relay-log有问题，这时候修改从服务器mysql配置，在[mysqld]中加入relay-log-<br>recovery=1，这样表示，服务器启动之后，删除所有已有的relay日志，重新接收主库的relay日志</p>
-</li>
-<li></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参考地址：&lt;a href=&quot;http://369369.blog.51cto.com/319630/790921&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://369369.blog.51cto.com/319630/790921&lt;/a&gt;&lt;b
     
     </summary>
     
