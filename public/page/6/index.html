@@ -269,6 +269,139 @@
             
               
                 
+                <a class="post-title-link" href="/python-encode-decode/" itemprop="url">
+                  Python编码格式各种问题的解决方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-04-07T09:45:56+08:00" content="2015-04-07">
+              2015-04-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/python-encode-decode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="python-encode-decode/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>其实Python3的字符串默认是unicode格式了，但utf-8并不能解决所有问题。首先，我们得在所有的文件前加上这样一句：</p>
+<pre><code># -_- coding:utf-8 -_-
+或者
+
+
+
+
+# coding: utf-8
+</code></pre><p>其次，就是注意一般的常见的编码格式，爬去某些奇葩的网页时可能会遇到的，这时候只需要使用对应的转换进行了，如果不知道网页的格式就只能一个一个猜了，常见的有</p>
+<pre><code>ASCII
+GB18030
+GB2312
+GBK
+UTF-8
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/programmer-internal-strength/" itemprop="url">
                   程序员之内功修炼
                 </a>
@@ -1546,134 +1679,6 @@ os.system(&apos;git pull -f git@github.com:haoflynet/admin.git 2&gt;&amp;1&apos;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/the-plan-of-2015/" itemprop="url">
-                  2015，没有规划的规划
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-02-23T22:11:48+08:00" content="2015-02-23">
-              2015-02-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/边走边想/" itemprop="url" rel="index">
-                    <span itemprop="name">边走边想</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/the-plan-of-2015/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="the-plan-of-2015/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>根据以往的经验，做规划最好是做一些能够量化的目标，这样会更加有行动力。但今年，我不打算这样做，很多时候我觉得我的大学过得太理性了，一点儿都不精彩，每天除了写<br>代码就是去学习如何写代码。我不想再每天都窝在寝室了，虽然现实让我不得不面对未来，但今年我想在大量的未知中体会后青春时代的精彩。所以今年，就围绕以下几个关键词<br>：<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/2015.jpg" alt=""></p>
-<ul>
-<li>实习：等了好久终于等到今天，终于可以验证这几年的学习成果了，终于可以用自己的双手为未来打拼了。</li>
-<li>减肥：额，说实话，我身高160体重70，但看起来其实不胖的，只是身体已经因为脂肪太多出现一些毛病了，所以今年必须狠下心了。</li>
-<li>健康：自打前年得了肾结石后就非常关注身体健康了，虽然我从来没想过要多长寿，今朝有酒今朝醉呗，但就目前看来再这样宅下去，我真正的人生还没开始就溘然长逝了。</li>
-<li>女朋友：采访过多位学长学姐，十有八九说大学最遗憾的事情就是没有谈恋爱。我不是别人都在谈恋爱我就去谈恋爱，也不是不想谈恋爱，是一直找不到那个人，希望今年能加一把劲。</li>
-<li>换装备：每次回家家人都强烈要求我去买几件成熟的衣服，而我却一直觉得衣服没穿烂就不用去买新的，而且衣服多了对于我这个重度选择困难患者简直是一种折磨，但是，毕竟该找工作了，还是换一换装备吧。</li>
-<li>说到做到：我一直自诩为一个重信用的人，不过总是答应了别人的事情到最后时间却有点畏惧了，归根结底是自己不够勇敢和太爱做承诺了，所以今后一定少说什么承诺，但每个承诺务必保证说到做到。正如漩涡鸣人：说到做到，这就是我的忍道！</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1719,7 +1724,7 @@ os.system(&apos;git pull -f git@github.com:haoflynet/admin.git 2&gt;&amp;1&apos;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">142</span>
+              <span class="site-state-item-count">143</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
