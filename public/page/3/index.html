@@ -269,6 +269,142 @@
             
               
                 
+                <a class="post-title-link" href="/mysql-master-slave/" itemprop="url">
+                  Mysql之主从复制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-06T07:35:43+08:00" content="2016-01-06">
+              2016-01-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mysql-master-slave/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="mysql-master-slave/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考地址：<a href="http://369369.blog.51cto.com/319630/790921" target="_blank" rel="external">http://369369.blog.51cto.com/319630/790921</a><br>原来想要简单地实现MySQL的主从复制其实也是很简单的(<br>这里当然不包括服务监控和容错处理啦)</p>
+<p>1.要检查主从服务器的MySQL版本，最好版本一致，不然会出现各种问题，特别是，5.5和5.6是不会兼容的  </p>
+<p>2.修改两个服务器的mysql配置<code>vim /etc/my.cnf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">log-bin=mysql-bin    // 打开二进制日志</div><div class="line">server-id=41         // 服务器的唯一ID，为0表示拒绝所有从服务器的连接</div></pre></td></tr></table></figure></p>
+<p>分别修改两个服务器配置然后分别重启</p>
+<p>3.主服务器建立账户：这个账户与普通账户不一样，它只能用于主从复制中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; GRANT REPLICATION SLAVE ON *.* to &apos;master&apos;@&apos;%&apos; identified by &apos;mysql&apos;;</div></pre></td></tr></table></figure></p>
+<p>4.查看服务器状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show master status;</div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |  </div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">| mysql-bin.000004 |   615261 |              |                  |                   |  </div><div class="line">+------------------+----------+--------------+------------------+-------------------+  </div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>需要注意的是，这两个值都得记下来哟</p>
+<p>5.将主服务器数据库dump然后导入到从服务器，记下了Position就不用担心dump后新增数据的情况，会自动同步的</p>
+<p>6.配置从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; change master to master_host=&apos;192.168.1.41&apos;, master_user=&apos;xiaohao&apos;, master_password=&apos;mysql&apos;, master_log_file=&apos;mysql-bin.000004&apos;, master_log_pos=615261;  // 这里就是刚才的Position</div></pre></td></tr></table></figure></p>
+<p>7.启动从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; start slave;   # 同理，停止用stop slave</div></pre></td></tr></table></figure></p>
+<p>8.查看复制状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">    mysql&gt; show slave status\G  </div><div class="line">**_*_****_*_****_*_****_*_* 1. row ****_*_****_*_****_*_******  </div><div class="line">               Slave_IO_State: Waiting for master to send event  </div><div class="line">                  Master_Host: 192.168.1.41  </div><div class="line">                  Master_User: xiaohao  </div><div class="line">                  Master_Port: 3306  </div><div class="line">                Connect_Retry: 60  </div><div class="line">              Master_Log_File: mysql-bin.000004  </div><div class="line">          Read_Master_Log_Pos: 652289  </div><div class="line">               Relay_Log_File: ubuntu-relay-bin.000002  </div><div class="line">                Relay_Log_Pos: 37345  </div><div class="line">        Relay_Master_Log_File: mysql-bin.000004  </div><div class="line">             Slave_IO_Running: Yes  </div><div class="line">            Slave_SQL_Running: Yes  </div><div class="line">              Replicate_Do_DB:</div></pre></td></tr></table></figure></p>
+<p>必须保证Slave_IO_Running和Slave_SQL_Running都为Yes的时候才正确的</p>
+<h1 id="TroubleShooting："><a href="#TroubleShooting：" class="headerlink" title="TroubleShooting："></a><strong>TroubleShooting：</strong></h1><ul>
+<li><p>出现错误：Slave SQL for channel ‘’: Slave failed to initialize relay log info structure from the repository, Error_code: 1872<br>是因为relay-log有问题，这时候修改从服务器mysql配置，在[mysqld]中加入relay-log-<br>recovery=1，这样表示，服务器启动之后，删除所有已有的relay日志，重新接收主库的relay日志</p>
+</li>
+<li></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/python-multithreading-multiprocess/" itemprop="url">
                   Python多进程和多线程
                 </a>
@@ -1656,133 +1792,6 @@ if &apos;__name__ == &apos;__main__&apos;:
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog-revision/" itemprop="url">
-                  博客再次改版
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-02T12:46:10+08:00" content="2015-12-02">
-              2015-12-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/编程之路/" itemprop="url" rel="index">
-                    <span itemprop="name">编程之路</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog-revision/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="blog-revision/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>经过长达5个月的艰辛历程(实际的编程时间少之又少)，终于自己打造出了一个静态博客。虽然没有wordpress那么方便，虽然没有预期中那么漂亮，虽然还有很多功<br>能还没有完善，但是这是我第一次用自己的技术为自己做了一个“会用”的东西。</p>
-<p>开博两年多了，从Github的octopress到wordpress再到自己搭建静态博客，写了总共一百多篇文章，由于本次改版采用的是大重构，所以我是一篇文章<br>一篇文章的迁移过来的，只是格式有些还没改动，不过大体能成型了。目前博客有我很喜欢的几大特点：</p>
-<p>1.静态化，直接使用nginx实现html文件的静态访问</p>
-<p>2.ajax异步提交评论，评论不会立即出发更新html的接口，而是后台审核后才能更新</p>
-<p>3.SEO自己做，这个还有很多学习的地方</p>
-<p>4.每篇文章对应一张大图，其实是自己爱上摄影后才选择的这个主题，因为这样不仅让我在每篇文章编写时用心，还能用心拍照片(当然，实在没照片的时候就使用的Pixe<br>bay的免费可商用的图片)</p>
-<p>5.采用我最喜欢的Python语言进行编写(Djanago框架)</p>
-<p>总之，这几个月很少更新博客，原因是公司的事情太多，自己没有合理利用好时间，所以导致这种这个局面。其实，最近几个月的实习，自己还是有很多感悟的，以后会陆续写成<br>文章发表出来的。也不知道有没有人看，反正，开心就好咯。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1828,7 +1837,7 @@ if &apos;__name__ == &apos;__main__&apos;:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">142</span>
+              <span class="site-state-item-count">143</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
