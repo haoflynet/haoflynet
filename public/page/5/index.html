@@ -269,6 +269,181 @@
             
               
                 
+                <a class="post-title-link" href="/python-beautifulsoup-parse-html-xml/" itemprop="url">
+                  Python使用beautifulsoup解析HTML、XML
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-22T23:21:57+08:00" content="2015-05-22">
+              2015-05-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/python-beautifulsoup-parse-html-xml/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="python-beautifulsoup-parse-html-xml/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python官方文档都说自己解析XML的方式存在漏洞了，那我也只能用他推荐的了。</p>
+<p>这里我使用的BeautifulSoup，因为其中文文档十分完整清晰，而且相比于defusedxml，它不仅可以解析XML还可以解析HTML，非常方便。<a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html" target="_blank" rel="external">文档<br>地址</a></p>
+<p>另外，如果是简单的网页解析任务，可以直接将获取到的网页进行正则表达式匹配也可以达到效果，只是可能会出现各种编码各种错误问题</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 直接apt安装</div><div class="line">$ sudo apt-get install Python3-bs4  # 这将安装下面两个包</div><div class="line"></div><div class="line"># pip方式安装</div><div class="line">$ pip3 install beautifulsoup4   # 这样直接安装或者下载源码进行安装</div><div class="line">$ pip3 install lxml             # 如果是解析xml必须安装一个解析器，文档里说的那个解析器只有这个好安装点，需要提前安装好依赖，apt-get install libxml2-dev, libxslt1-dev, python-dev，还可以使用html.parser这个解析器，这个解析器不会自动添加body元素,CentOS用yum -y install python-devel gcc libxml2 libxml2-devel libxslt libxslt-devel</div></pre></td></tr></table></figure>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>TAG：表示xml/html里面的一个元素(节点)，包括标签以及其里面的内容</p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>最简单的使用例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import urllib.request</div><div class="line">from bs4 import BeautifulSoup</div><div class="line"></div><div class="line">content = &quot;&lt;b&gt;&lt;!--Hey, buddy--&gt;&lt;/b&gt;&quot;   # 表示网页内容</div><div class="line">content = urllib.request.urlopen(url)  # 通常做爬虫的时候html来自于网页</div><div class="line">soup = BeautifulSoup(content)          # 解析，生成一个bs4.BeautifulSoup</div><div class="line">comment = soup.b.string                # 获取&lt;b&gt;标签的内容</div></pre></td></tr></table></figure>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查找标签</span></div><div class="line">soup.a             <span class="comment"># 查找第一个a标签，返回值就是一个TAG&lt;class 'bs4.element.Tag'&gt;</span></div><div class="line">soup.find(<span class="string">'a'</span>)     <span class="comment"># 同上，都只是查找满足条件的第一个</span></div><div class="line">soup.find_all(<span class="string">'a'</span>) <span class="comment"># 查找所有的a标签，返回一个list获取内容</span></div><div class="line">soup.find_all(<span class="string">'a'</span>, class_=<span class="string">'name'</span>)  <span class="comment"># 根据标签的属性进行查找，比如这里查找class这个属性为name的a标签</span></div><div class="line">soup.find_all(text=<span class="string">""</span>) <span class="comment"># 在整个文档中查找一个字符串</span></div><div class="line">soup.find_all(<span class="string">'a'</span>, limit=<span class="number">3</span>) <span class="comment"># 限制只找三个结果</span></div><div class="line">soup.find_all(<span class="string">'a'</span>, recursive=<span class="keyword">False</span>) <span class="comment"># 只找直接子节点而不递归查找#</span></div><div class="line">soup.find(<span class="string">'a'</span>, &#123;<span class="string">'class'</span>: <span class="string">'title abc'</span>&#125;)	<span class="comment"># 直接指定css，适用于比较复杂的css</span></div><div class="line"></div><div class="line"><span class="comment"># CSS选择器</span></div><div class="line">soup.select(<span class="string">'a'</span>) <span class="comment"># 查找a标签，结果是列表</span></div><div class="line">soup.select(<span class="string">'.title'</span>) <span class="comment"># 查找类为title的标签</span></div><div class="line">soup.select(<span class="string">'#name'</span>)  <span class="comment"># 查找id为name的标签</span></div></pre></td></tr></table></figure>
+<h2 id="获取内容"><a href="#获取内容" class="headerlink" title="获取内容"></a>获取内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">tag.name        # 如果是Tag，那么返回它本身，例如，如果是a标签，那就返回a；如果是soup对象，那么返回[document]，返回值都是str类型</div><div class="line">tag.attrs       # 获取该标签的属性，返回的是一个字典，例如，如果有个a标签是&lt;a class=&quot;a&quot; href=&quot;#&quot;&gt;&lt;/a&gt;那么返回\&#123;&apos;class&apos;: &apos;a&apos;, &apos;href&apos;: &apos;#&apos;\&#125;</div><div class="line">soup.a[&apos;class&apos;] # 直接获取a标签的class属性值</div><div class="line">soup.a.get(&apos;class&apos;] # 同上</div><div class="line"></div><div class="line">soup.a.string   # 获取标签内的内容，&lt;a&gt;文字部分&lt;/a&gt;</div><div class="line">soup.a.text     # 获取标签内文字部分&lt;span&gt;abc&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/span&gt; 获取abc</div><div class="line">soup.prettify() # 获取所有内容</div></pre></td></tr></table></figure>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>获取tag内的字符串用tag.string，可以通过unicode方法将NavigableString对象转换成Unicode字符串，如unicode_st<br>ring = unicode(tag.string)</p>
+<h2 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h2><ul>
+<li>如果出现无法找到某些真的存在的标签，可能原因是选择的解析器有问题，可以将lxml换成html5lib</li>
+</ul>
+<p>如果要获取xml/html中的注释使用Comment对象，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">markup = &quot;&lt;b&gt;&lt;!--Hey, buddy. Want to buy a used parser?--&gt;&lt;/b&gt;&quot;</div><div class="line">soup = BeautifulSoup(markup)</div><div class="line">comment = soup.b.string</div><div class="line">commment就是注释的东西</div><div class="line">print(comment)</div><div class="line">&gt;&gt;&gt;u&apos;Hey, buddy. Want to buy a used parser&apos;</div><div class="line">可以</div><div class="line">print(soup.b.prettify())打印全部&lt;b&gt;</div><div class="line">也可以用CDATA替代注释：如</div><div class="line">from bs4 import CData</div><div class="line">cdata = CData(&quot;A CDATA block&quot;)</div><div class="line">comment.replace_with(cdata)</div><div class="line"></div><div class="line"></div><div class="line">print(soup.b.prettify())</div><div class="line">打印：</div><div class="line">&lt;b&gt;&lt;![CDATA[A CDATA block]]&gt;&lt;/b&gt;</div></pre></td></tr></table></figure>
+<p>通过点去属性的方式只能获得当前名字的第一个tag，如果要得到所有的就用soup.find_all(‘a’)</p>
+<p>tag的.contents属性可以将tag的子节点以列表的方式输出(包括子节点的所有内容)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">head_tag = soup.head</div><div class="line">head_tag # &lt;head&gt;&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;&lt;/head&gt;  </div><div class="line"></div><div class="line">head_tag.contents</div><div class="line">[&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;]</div><div class="line"></div><div class="line">title_tag = head_tag.contents[0]</div><div class="line">title_tag</div><div class="line"></div><div class="line">#&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;  </div><div class="line"></div><div class="line">title_tag.contents</div><div class="line"></div><div class="line">[u&apos;The Dormouse&apos;s story&apos;]</div></pre></td></tr></table></figure>
+<p>BeautifulSoup对象本身一定会包含子节点，也就是说<html>标签也是该对象的子节点，如 soup.contents[0].name就是html</html></p>
+<p>通过tag的.children生成器，可以对tag的子节点进行循环：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for child in title_tag.children:</div><div class="line">    print(child)</div><div class="line">    # The Dormouse&apos;s story</div></pre></td></tr></table></figure>
+<p>。desendants属性可以对所有tag的子孙节点进行递归循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for child in head_tag.descendants:</div><div class="line">    print(child)</div><div class="line">    # &lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;</div><div class="line">    # The Dormouse&apos;s story</div><div class="line">字符串也是一个子节点</div></pre></td></tr></table></figure>
+<p>如果tag只有一个NavigableString类型的子节点，就可以用title_tag.string访问子节点</p>
+<p>如果tag包含多个字符串就用.strings来循环，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">for string in soup.strings:</div><div class="line">    print(repr(string))</div><div class="line">    # u&quot;The Dormouse&apos;s story&quot;</div><div class="line">    # u&apos;\\n\\n&apos;</div><div class="line">    # u&quot;The Dormouse&apos;s story&quot;</div><div class="line">    # u&apos;\\n\\n&apos;</div></pre></td></tr></table></figure>
+<p>使用soup.stripped_strings代替soup.strings可以去掉空白或空行项</p>
+<p>父节点就正好相反了，.parent得到父节点，.parents递归得到元素的所有父节点</p>
+<p>兄弟节点：.next_sibling，.previous_sibling来访问，通过.next_siblings和.previous_siblings属性对<br>当前节点的兄弟节点迭代输出for sibling in soup.a.next_siblings:这样子</p>
+<p>回退和前进：.next_element和.previouw_element，.next_elements和.previous_elements</p>
+<p>查找</p>
+<p>find和find_all，还可以传入正则表达式，如soup.find_all(re.compile(“^b”))如果传入的是列表，将会与列表中任一元素匹配<br>的内容返回，true可以匹配任何标签，如soup.find_all(True)</p>
+<p>检查是否包含属性tag.has_attr(‘class’)</p>
+<p>find_all( <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh
+.html#id32" target="_blank" rel="external">name</a> , <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/ind
+ex.zh.html#css" target="_blank" rel="external">attrs</a> , <a href="http://www.crummy.com/software/BeautifulSoup/bs4
+/doc/index.zh.html#recursive" title="Link:
+http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html#recursive" target="_blank" rel="external">recursive</a> , <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html#
+text" target="_blank" rel="external">text</a> , <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.
+zh.html#keyword" target="_blank" rel="external">**kwargs</a> )</p>
+<p>attr表示具有该属性的name标签，text可以搜索非标签的字符串内容，如soup.find_all(text=”wang”)</p>
+<pre><code>soup.find_all(id=&quot;link2&quot;)[&lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt;]
+</code></pre><p>limit参数：find_all()方法返回全部的搜索结果，如果文档数很大那么搜索会很慢，如果不需要全部结果，可以用limit参数，类似于SQL中的limi<br>t，如soup.find_all(“a”, limit=2)</p>
+<p>如果只搜索直接子节点，就加上recursive=False参数</p>
+<p>可以不用指明find_all，如soup.find_all(“a”)可以用soup(“a”)代替，soup.title.find_all(text=True<br>)可以用soup.title(text=True)代替</p>
+<p>其他功能，按CSS搜索、支持CSS选择器，支持修改文档树</p>
+<p>find()方法至返回一个，其他的还有find_parents()和find_parent()，find_next_siblings()，find_next<br>_sibling()，find_previous_siblings()，find_previous_sibling()，find_all_next()，fi<br>nd_next()，find_all_previous()，find_previous()</p>
+<p>如果只想得到tag中包含的文本内容，那么就可以用get_text()方法，获取到tag包含的所有文本内容包括子孙tag中的内容</p>
+<p>注：beautifulsoup会自动将tag变为小写，只有添加”xml”选项才能大小写敏感，因为不指定就默认是html，html的标签对大小写不敏感，所以推<br>荐还是把lxml XML解析器安上，不过要先弄上什么C语言库</p>
+<h1 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h1><pre><code># 删除当前节点
+tag.extract()  
+
+# 插入节点
+new_tag = &apos;&lt;url&gt;dagasgga&lt;/url&gt;&apos;
+new_tag = BeautifulSoup(new_url, &apos;html.parser&apos;)
+soup.tag.insert(位置如1, new_tag)
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/laravel-IoC-DI/" itemprop="url">
                   Laravel使用IoC模式(DI、依赖注入)
                 </a>
@@ -1616,139 +1791,6 @@ edia/#request-specific-version" target="_blank" rel="external">Github</a>采用�
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/python-encode-decode/" itemprop="url">
-                  Python编码格式各种问题的解决方案
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-04-07T09:45:56+08:00" content="2015-04-07">
-              2015-04-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/编程之路/" itemprop="url" rel="index">
-                    <span itemprop="name">编程之路</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/python-encode-decode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="python-encode-decode/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>其实Python3的字符串默认是unicode格式了，但utf-8并不能解决所有问题。首先，我们得在所有的文件前加上这样一句：</p>
-<pre><code># -_- coding:utf-8 -_-
-或者
-
-
-
-
-# coding: utf-8
-</code></pre><p>其次，就是注意一般的常见的编码格式，爬去某些奇葩的网页时可能会遇到的，这时候只需要使用对应的转换进行了，如果不知道网页的格式就只能一个一个猜了，常见的有</p>
-<pre><code>ASCII
-GB18030
-GB2312
-GBK
-UTF-8
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1794,7 +1836,7 @@ UTF-8
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">142</span>
+              <span class="site-state-item-count">143</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

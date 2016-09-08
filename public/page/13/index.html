@@ -269,6 +269,158 @@
             
               
                 
+                <a class="post-title-link" href="/hdu-4267/" itemprop="url">
+                  Hdu 4267 the Ghost Blows Light
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-26T19:22:51+08:00" content="2014-03-26">
+              2014-03-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/hdu-4267/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="hdu-4267/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>封面图片来自Pixabay</p>
+<p>题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=4276" target="_blank" rel="external">http://acm.hdu.edu.cn/showproblem.php?pid=4276</a>)<br>参考链接：<a href="http://blog.csdn.net/u012841845/article/details/18739425" target="_blank" rel="external">http://blog.csdn.net/u012841845/article/details/18739425</a><br>以及：<a href="http://blog.csdn.net/xianxingwuguan1/article/details/18954537" target="_blank" rel="external">http://blog.csdn.net/xianxingwuguan1/article/details/18954537</a><br>手写邻接表：<a href="http://blog.csdn.net/ooooooooe/article/details/17035501" target="_blank" rel="external">http://blog.csdn.net/ooooooooe/article/details/17035501</a></p>
+<p>分析：先寻找1到N的最短路径和走这段路所用的时间，再把路径的权置为0,如果时间有多的，就把剩余的时间拿来进行树上背包，具体过程我已经写在了程序的注释里，之所<br>以要写这个，是因为网上关于这道题的文章虽然很多，但逗讲解得不是很清楚。<br>head数组是一种手写邻接表的方法，在上面的网址可以找到，但是该博并没有说明，所以我特地去请教了另外的人。它是图的另一种存储方法，head[a]表示以a为起<br>点的边的编号，下面的add函数中的head[u] = tol++是在更新编号(即改为当前边的编号)，表面上看起来它是在一直变化，但是每一次add它都会把自己<br>的指存储在的edge结构体中，这样就可以根据一个head值一直找到它的父亲的父亲的父亲…<br>另外，之所以说最短路上的边指走一遍是因为财宝只有那么多，拿了一次就没有了</p>
+<blockquote>
+<p>#include <cstdio>  </cstdio></p>
+<p>#include <cstring>  </cstring></p>
+<p>#include <iostream><br>using namespace std;</iostream></p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>const int maxn = 200;<br>int head[maxn], tol, dp[maxn][5*maxn], weight[maxn], T, t, n;</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>// 此结构体表示各条边(这里其实是把room当做是有向无环图来看待，<br>// 每一条边都以两个方向来表示，该结构体的元素含义如下：<br>// next：表示下一条以当前边为起点的边(和邻接表的实现有些类似)<br>// to：表示这条边的终点<br>// time：表示走这条边所需要的时间<br>// 另外两个就是默认构造函数和构造函数了<br>struct node<br>{<br>int next, to, time;<br>node(){};<br>node(int _next, int _to, int _time) : next(_next), to(_to), time(_time){}<br>}edge[5*maxn];</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>// add函数用来添加边(每条边用edge结构体表示)<br>void add(int u, int v, int time)<br>{<br>edge[tol] = node(head[u], v, time);<br>head[u] = tol++;<br>}</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>// 深度搜索找到1到N的最短路径(即花费时间最少)<br>// 并把该路径上的所有边所要的时间置为0，方便之后搜索，并得到最短时间为t<br>// 其中u表示当前节点，pre表示上一个节点<br>bool dfs(int u, int pre)<br>{<br>if(u == n)<br>return 1;<br>for(int i = head[u]; i != -1; i = edge[i].next)<br>{<br>int v = edge[i].to;<br>if( v == pre )<br>continue;<br>if(dfs(v, u)) // 当返回1时就表示采取了那一条边<br>{<br>t += edge[i].time;<br>edge[i].time = 0;<br>return 1;<br>}<br>}<br>return 0;<br>}</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>// 深度搜索，统计了所有节点在一定时间范围内所有时间所能获得的最大价值<br>// dp[u][j]：表示从u点出发到回到u点，花费时间j所能获得的最大的财富<br>void dfs1(int u, int pre)<br>{<br>for(int i = 0; i &lt;= T; i++) // T为剩下的总时间<br>dp[u][i] = weight[u]; // 只要是经过了这个节点的都应该把它的财宝即weight加起来<br>for(int i = head[u]; i != -1; i = edge[i].next) // 这就是上面使用邻接表的作用，方便深度搜索<br>{<br>int v = edge[i].to;<br>if( v == pre ) // 如果是指向上一条边的就直接略过<br>continue;<br>dfs1(v, u); // 递归<br>int pp = 2*edge[i].time; // 与u点直接相连的那一条边的时间，因为如果要继续下去，就必然会经过该边<br>for(int j = T; j &gt;= pp; j–) // j必须大于走那条边的时间，它表示的是从该边走的总时间<br>for(int k = 0; k &lt;= j-pp; k++) // k表示走了那条边后从那条边的终点继续走所用的时间<br>dp[u][j] = max(dp[u][j], dp[v][k]+dp[u][j-pp-k]); // j-pp-k表示剩下的从u点出发走的时间<br>}<br>}</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>int main()<br>{<br>int i, j, k, p;<br>while(~scanf(“\%d\%d”, &amp;n, &amp;T))<br>{<br>memset(head, -1, sizeof(head));<br>tol = 0;<br>for(i = 1; i &lt; n; i++)<br>{<br>scanf(“\%d\%d\%d”, &amp;j, &amp;k, &amp;p);<br>add(j, k, p);<br>add(k, j, p);<br>}<br>for(i = 1; i &lt;= n; i++)<br>scanf(“\%d”, &amp;weight[i]);<br>t = 0;<br>dfs(1, 1);<br>if(t &gt; T)<br>{<br>puts(“Human beings die in pursuit of wealth, and birds die in pursuit of<br>food!”);<br>continue;<br>}<br>memset(dp, 0, sizeof(dp));<br>T -= t;<br>dfs1(1, -1);<br>cout&lt;&lt; dp[1][T] &lt;&lt;endl; // 应该无论是否从1出发都能得到同样的结果的<br>}<br>return 0;<br>}</p>
+</blockquote>
+<p>这道题花了两天时间，写了七八张纸都没有完全理解清楚，难道真的是我太愚笨了吗？</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014-plan/" itemprop="url">
                   大二下学期计划(回顾2013展望2014)
                 </a>
@@ -1555,132 +1707,6 @@ ppa/mainline/" target="_blank" rel="external">下载地址</a>（带了rc的内�
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/student-should-buy-genuine/" itemprop="url">
-                  学生应尽量购买正版
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-12-29T12:52:26+08:00" content="2013-12-29">
-              2013-12-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/边走边想/" itemprop="url" rel="index">
-                    <span itemprop="name">边走边想</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/student-should-buy-genuine/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="student-should-buy-genuine/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>昨晚去学校外面买了两本书，一本《计算机网络》，一本《C和指针》，</p>
-<p>分别是15元和19元。买的时候很是高兴，但买回来我就后悔了，不是因为质量差，而是因为内心感到的不安，经过一夜的辗转反侧，决定写下这篇文章，激励自己以后尽量买<br>正版产品，无论是书籍、软件还是其它。  </p>
-<p>说实话，作为一个生活都还要向父母伸手的学生党，而且是在这个神奇的<br>国度，要想完全支持正版是不可能的，我又不是富二代，不过还好，我们学校参与了微软的dreamspark计划可以免费获得很多微软的正版软件，比如我现在所使用的w<br>indows7操作系统和visiual studio<br>2013，当然，我更喜欢使用linux。在书籍方面我最喜欢的是在亚马逊购书，不仅全部是正版，而且价格相对其它网上书店便宜（这里就不提淘宝了），服务也很不错。</p>
-<p>其实盗版书最大的危害不是自己拿到了一本下等质量的书，而是可能让很多作者对知识产权的保护感到失望，从而打击了大师们的创作积极性。换句话说，盗版越多，我们以后看<br>到经典书籍的机会就会越来越少。很多人说正版书是价格虚高，我想说的是，什么叫虚高？我不说天朝的正版相对于美国还算便宜的了，你的意思应该是那本书的分量比不上他的<br>价格吗？那很好，你可以直接放下那本书，没必要看了。（注：我所说的不是那些包装极富奢华之势的书籍，用包装来提高书的价格是对书籍的侮辱，爱收集精装书的人除外）</p>
-<p>至于盗版的好处，这里我就不说了，反正天朝已经过了没盗版就活不下去的低不了，我们现在应一步一步，走向正版化。</p>
-<p>其实对知识版权的尊重主要是来自于各大开源社区，开源是一种精神，我很高兴世界上有这样一群人，乐于把自己的东西奉献出来，大家一起学习。当然开源不等于免费，商业软<br>件也不等于一定要收费。</p>
-<p>支持正版是个人素质问题，法律目前还不能完全管制，而我们作为大学生自应为知识产权做一些力所能及的事情。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1726,7 +1752,7 @@ ppa/mainline/" target="_blank" rel="external">下载地址</a>（带了rc的内�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">142</span>
+              <span class="site-state-item-count">143</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
