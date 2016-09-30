@@ -1,19 +1,25 @@
 ---
 title: "使用Supervisor管理进程"
 date: 2015-08-11 10:07:33
+updated: 2016-09-23 11:03:00
 categories: 编程之路
 ---
-参考文章：<http://segmentfault.com/a/1190000002991175>(原文中还有使用OneAPM安装Python探针的应用，可
-以实时监控web应用数据，暂时还未实践)
+参考文章：<http://segmentfault.com/a/1190000002991175>(原文中还有使用OneAPM安装Python探针的应用，可以实时监控web应用数据，暂时还未实践)
 
-supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理
-Nginx、Apache等，都比较方便，这里是其使用方法：
+supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理Nginx、Apache等，都比较方便，这里是其使用方法：
 
 ## 安装
 
+    # ubuntu
+    apt-get install supervisor
+    service supervisor restart
+    
+    # centos
+    yum install supervisor
+    /etc/init.d/supervisord restart
 
 
-    # 不要用apt-get的方式安装，如果安装出现unix:///var/run/supervisor.sock no such file这样的错误，那么请参考：http://tuzii.me/diary/522dc528848eea683d7724f2/\%E8\%A7\%A3\%E5\%86\%B3ubuntu-supervisor-unix:var-run-supervisor.sock-no-such-file.\%E7\%9A\%84\%E6\%96\%B9\%E6\%B3\%95
+    # 如果安装出现unix:///var/run/supervisor.sock no such file这样的错误，那么请参考：http://tuzii.me/diary/522dc528848eea683d7724f2/\%E8\%A7\%A3\%E5\%86\%B3ubuntu-supervisor-unix:var-run-supervisor.sock-no-such-file.\%E7\%9A\%84\%E6\%96\%B9\%E6\%B3\%95
 
 
 
