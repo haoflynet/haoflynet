@@ -246,7 +246,7 @@ mathjax:
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: d06802e96e214bdb413a40b263d4cc15
 
 # Duoshuo ShortName
 duoshuo_shortname: haoflynet
