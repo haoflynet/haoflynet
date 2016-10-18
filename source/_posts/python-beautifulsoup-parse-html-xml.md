@@ -1,13 +1,12 @@
 ---
 title: "Python使用beautifulsoup解析HTML、XML"
 date: 2015-05-22 23:21:57
-updated: 2016-09-05 23:46:00
+updated: 2016-10-18 09:46:00
 categories: 编程之路
 ---
 Python官方文档都说自己解析XML的方式存在漏洞了，那我也只能用他推荐的了。
 
-这里我使用的BeautifulSoup，因为其中文文档十分完整清晰，而且相比于defusedxml，它不仅可以解析XML还可以解析HTML，非常方便。[文档
-地址](http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html)
+这里我使用的BeautifulSoup，因为其中文文档十分完整清晰，而且相比于defusedxml，它不仅可以解析XML还可以解析HTML，非常方便。[文档地址](http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html)
 
 另外，如果是简单的网页解析任务，可以直接将获取到的网页进行正则表达式匹配也可以达到效果，只是可能会出现各种编码各种错误问题
 
@@ -57,15 +56,31 @@ soup.select('#name')  # 查找id为name的标签
 ```
 ## 获取内容
 ```
-    tag.name        # 如果是Tag，那么返回它本身，例如，如果是a标签，那就返回a；如果是soup对象，那么返回[document]，返回值都是str类型
-    tag.attrs       # 获取该标签的属性，返回的是一个字典，例如，如果有个a标签是<a class="a" href="#"></a>那么返回\{'class': 'a', 'href': '#'\}
-    soup.a['class'] # 直接获取a标签的class属性值
-    soup.a.get('class'] # 同上
+soup.prettify()	# 直接获取所有内容
 
-    soup.a.string   # 获取标签内的内容，<a>文字部分</a>
-    soup.a.text     # 获取标签内文字部分<span>abc<a href=""></a></span> 获取abc
-    soup.prettify() # 获取所有内容
+tag.name        # 如果是Tag，那么返回它本身，例如，如果是a标签，那就返回a；如果是soup对象，那么返回[document]，返回值都是str类型
+tag.attrs       # 获取该标签的属性，返回的是一个字典，例如，如果有个a标签是<a class="a" href="#"></a>那么返回{'class': 'a', 'href': '#'}
+soup.a['class'] # 直接获取a标签的class属性值
+soup.a.get('class'] # 同上
+
+soup.a.string   # 获取标签内的内容，内部所有的字符串，<a>文字部分</a>
+soupo.a.stripped_strings	# 获取标签内所有的字符串，可以去除空白和空行
+soup.a.text     # 获取标签内文字部分<span>abc<a href=""></a></span> 获取abc
+soup.prettify() # 获取所有内容
 ```
+## 操作
+
+```python
+tag.string = ''	# 修改标签内部的字符串
+tag.append("hello")	# 直接在内部字符串后面添加字符串
+new_tag = soup.new_tag('a', href='https://haofly.net')	# 添加一个tag
+original_tag.append(new_tag)
+
+tag.clear()		# 移除tag内部所有的内容
+tag.decompose()	# 移除tag内部所有内容以及tag本身
+tag.extract()	# 移除当前tag
+```
+
 ## 遍历
 
 获取tag内的字符串用tag.string，可以通过unicode方法将NavigableString对象转换成Unicode字符串，如unicode_st
