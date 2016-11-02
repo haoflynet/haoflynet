@@ -15,25 +15,13 @@ redis-py使用一个连接池来管理Redis server。每个Redis实例都默认�
 
 ## 基本使用
 
-
-
     import redis
-
-
-
-
     # 数据库的连接
-
-
-
-
     r = redis.StrictRedis(host='localhost', port=6379, db=0)
     r.set('foo', 'bar')   # 添加一条记录
     r.get('foo')          # 获取某字段的值
 
 如果是使用连接池创建的，那么可以直接从连接池获取对象实例：
-
-
 
     pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
     r = redis.Redis(connection_pool=pool)
