@@ -12,9 +12,8 @@ categories: 就是爱玩
 镜像下载：<https://www.raspberrypi.org/downloads/>，我下载的是RASPBIAN分支，因为其是官方提供且基于Debian，和Ubuntu操作一样  
 **Mac环境**：  
 ```
-    $ df  # 查看当前已经挂载的卷
-    一般sd卡在最后，Filesystem是/dev/disk2s1，Mounted on /Volumes/No Name，可以在Finder里面将sd卡的名字改为Pi(我那个默认是No Name)
-    $ diskutil unmount /dev/disk2s1   #将sd卡卸载
+$ df  # 查看当前已经挂载的卷,一般sd卡在最后，Filesystem是/dev/disk2s1，Mounted on /Volumes/No Name，可以在Finder里面将sd卡的名字改为Pi(我那个默认是No Name)
+$ diskutil unmount /dev/disk2s1   #将sd卡卸载
     Volume Pi on disk2s1 unmounted
     $ diskutil list # 查看是否有sd卡设备
     $ dd bs=4m if=pi.img of=/dev/rdisk2   #将镜像文件pi.img写入sd卡
@@ -46,9 +45,10 @@ deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib
 deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib
 ```
 - 最后，安装必要的软件
-```		
-		sudo apt-get update && apt-get upgrade 
-		sudo apt-get install vim tree ttf-wqy-microhei python python3 python-dev python3-dev python-pip python3-pip zsh git -y
+  ```	
+  	sudo apt-get update && apt-get upgrade 
+  	sudo apt-get install vim tree ttf-wqy-microhei python python3 python-dev python3-dev python-pip python3-pip zsh git -y
+  ```
 ```
 - 中文环境配置
 ```
@@ -67,7 +67,7 @@ deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contr
     iface wlan0 inet dhcp
     wpa-ssid WIFI名称
     wpa-psk WIFI密码
-
+    
     # 然后通过如下命令重启网卡
     sudo ifdown wlan0 && sudo ifup wlan0
 ```
@@ -85,15 +85,15 @@ deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contr
     sudo apt-get install php5-common php5-cli php5-fpm
     sudo apt-get install nginx
     sudo apt-get install mysql-server mysql-client
-
+    
     # 配置MySQL，ownCloud需要提前创建用户、数据库和分配权限
     > create database 库名 character set utf8 collate utf8_general_ci;  
     > grant ALL on 库名.* 用户名@localhost identified by "密码"   # 注意，ownCloud是不允许root用户的，因为权限太多
-
+    
     # 配置文件权限
     chmod 775 -R owncloud/        # 不要分配777，分配了也不能用
     chown -R www-data:www-data owncloud/
-
+    
     # 配置php5-fpm
     $ printenv PATH 获取系统环境变量
     vim /etc/php5/fpm/pool.d/www.conf，将下面几行前面的注释去掉
@@ -102,9 +102,9 @@ deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contr
     ;env[TMP] = /tmp  
     ;env[TMPDIR] = /tmp  
     ;env[TEMP] = /tmp
-
+    
     # 配置nginx，按照官网的教程配置Nginx conf：https://doc.owncloud.org/server/7.0/admin_manual/installation/nginx_configuration.html
-
+    
     对于官网的配置，我做了如下几项修改：
     location ~ .php(?:$|/)$这里面修改为：
     location ~ ^(.+?.php)(/.*)?$ \{  
@@ -137,3 +137,5 @@ in.xyz/raspberry-
 init/https://github.com/ccforward/cc/issues/25?utm_source=tuicool "Link:
 http://blog.akarin.xyz/raspberry-
 init/https://github.com/ccforward/cc/issues/25?utm_source=tuicool" )  
+
+```
