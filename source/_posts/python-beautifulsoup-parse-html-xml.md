@@ -64,7 +64,7 @@ soup.a['class'] # 直接获取a标签的class属性值
 soup.a.get('class'] # 同上
 
 soup.a.string   # 获取标签内的内容，内部所有的字符串，<a>文字部分</a>
-soupo.a.stripped_strings	# 获取标签内所有的字符串，可以去除空白和空行
+soup.a.stripped_strings	# 获取标签内所有的字符串，可以去除空白和空行
 soup.a.text     # 获取标签内文字部分<span>abc<a href=""></a></span> 获取abc
 soup.prettify() # 获取所有内容
 
