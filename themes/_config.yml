@@ -34,8 +34,8 @@ canonical: true
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  about: /about
-  archives: /archives
+  about: /about/
+  archives: /archives/
   favorites: /favorites.html
   wiki: https://wiki.haofly.net
   #sitemap: /sitemap.xml
