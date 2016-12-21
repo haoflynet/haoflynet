@@ -74,5 +74,6 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
-
+  type: git
+  repo: git@github.com:haoflynet/haoflynet.github.io.git
+  branch: master

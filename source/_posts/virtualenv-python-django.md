@@ -12,8 +12,6 @@ Virtualenv可用于创建独立的Python环境，在这些环境里面可以选�
 
 安装Virtualenv和Python3(因为有些Linux发行版默认没有安装Python3的)
 
-
-
     sudo pip install virtualenv
     sudo apt-get install python3
 
@@ -77,7 +75,7 @@ django`安装django
     (test_env)➜  virtualenv  ls
     mysite  test_env
     (test_env)➜  virtualenv  cd mysite     
-
+    
     (test_env)➜  mysite  python manage.py runserver
     Performing system checks...
 
