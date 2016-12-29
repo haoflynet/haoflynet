@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2016-08-07 07:51:39
-updated: 2016-12-20 16:02:00
+updated: 2016-12-29 16:02:00
 categories: tools
 ---
 # Docker 使用指南
@@ -12,19 +12,21 @@ categories: tools
 	boot2docker默认用户名是docker，密码是tcuser
 ## 镜像和容器
 
-	docker pull ubuntu:14.04.1 # 拉取官方镜像
-	docker pull registry.hub.docker.com/ubuntu:14.04  # 拉取特定网站的镜像
-	docker pull index.alauda.cn/library/centos:centos6.6 # 灵雀云的镜像，镜像中心https://hub.alauda.cn/
-	docker images # 列出所有的镜像
-	
-	docker ps    		# 列出正在运行的容器
-	docker ps -a -s	# 列出所有容器,-s可以列出大小信息
-	docker ps -q 		# 只列出容器的ID
-	
-	docker rm # 删除容器
-	docker rmi # 删除镜像
-	
-	docker tag id name:tag	# 给镜像更改名称
+```shell
+docker pull ubuntu:14.04.1 # 拉取官方镜像
+docker pull registry.hub.docker.com/ubuntu:14.04  # 拉取特定网站的镜像
+docker pull index.alauda.cn/library/centos:centos6.6 # 灵雀云的镜像，镜像中心https://hub.alauda.cn/
+docker images # 列出所有的镜像
+
+docker ps    		# 列出正在运行的容器
+docker ps -a -s	# 列出所有容器,-s可以列出大小信息
+docker ps -q 		# 只列出容器的ID
+
+docker rm # 删除容器
+docker rmi # 删除镜像
+
+docker tag id name:tag	# 给镜像更改名称
+```
 
 
 ## 创建容器
@@ -75,6 +77,50 @@ ARG: 指定参数，比如ockerfile里面定义了`ARG JAVA_HOME`，那么可以
 
 ## Docker Compose 
 
+Docker Compose主要用于快速在集群中部署分布式应用，主要有两个概念:
+
+- 服务(Service): 一个应用的容器，实际上可以包括若干个运行相同镜像的容器实例
+- 项目(Project): 由一组关联的应用容器组成的一个完整业务单元
+
+一个例子:
+
+```shell
+weba:				# 给容器取名
+    build: ./web	# 如果容器需要使用特定的Dockerfile可以在这里指定
+    expose:			# 暴露的接口
+        - 80
+
+webb:				# 第二个容器
+    build: ./web
+    extra_hosts:
+      - "haofly.net:172.0.0.1"	# 添加hosts
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"	# 如果要在开机之后执行命令可以这样子做
+    expose:
+        - 80
+
+haproxy:			# 第三方容器
+    image: haproxy:latest	# 直接从镜像启动，而不是Dockerfile启动
+    volumes:				# 挂在的卷
+        - ./haproxy:/haproxy-override
+    links:					# 连接另外的容器
+        - weba
+        - webb:test.haofly.net	# 分配一个别名，都能ping通的
+        - webc
+    ports:					# 映射的端口
+        - "80:80"
+    expose:					# 暴露的端口
+        - "80"
+```
+
+docker-compose常用命令
+
+```shell
+docker-compose stop		# 暂停所有容器
+docker-compose up -d	# start所有的容器
+docker-compose rm -f 	# 删除所有容器
+docker-compose ps 		# 列出所有的容器
+```
+
 ## 迁移
 
 ```shell
@@ -82,6 +128,7 @@ docker save -o ubuntu_14.04.tar ubuntu:14.04  # 导出镜像到本地
 docker load < ubuntu_14.04.tar   #　加载本地镜像
 docker export 容器ID > ubuntu.tar # 导出容器快照到本地
 docker import # 导入本地快照
+docker commit -m "说明信息" -a "用户信息" # 更改容器后直接将容器作为镜像
 
 # 如果要将本地镜像推送到目标仓库，这样做
 docker login hub.haofly.net	# 先登录
@@ -98,6 +145,12 @@ docker push hub.haofly.net/haofly/test:tag	# 推送
 	docker run -it -v /Users/haofly/workspace/ZBJ_dbm:/share --name dbm -d index.alauda.cn/library/centos:centos6.6 /bin/bash
 	docker run -it -v /Users/haofly/workspace/share:/share --name salt_client --privileged 750109855bc0 /usr/sbin/init	# 对于7.x，如果想在容器里执行systemctl，需要添加privileged参数，并且后面应该用init
 
+### NodeJS容器
+
+```shell
+docker run -it -v /Users/haofly/workspace:/workspace -p 4000:4000 -p 4001:4001 --name node -d node:latest /bin/bash
+```
+
 ### Nginx代理
 
 太好用了，这个
@@ -111,12 +164,12 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
 
 ## TroubleShooting
 
-- 动态添加端口映射
+- **docker动态添加端口映射**
 
         方法一：此方法据说不安全，就是在run的时候--net host
         方法二：在virtualbox中添加映射，这个其实没试验过
 
-- 官方mysql镜像打开二进制日志
+- **官方mysql镜像打开二进制日志**
 
         docker run -v /var/lib/mysql:/var/lib/mysql \
                     mysql:5.7 \
@@ -127,16 +180,16 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
                     --log-bin=/var/log/mysql/mysql-bin.log \
                     --binlog_do_db=test
 
-- CentOS7容器无法使用systemctl命令，提示`Failed to get D-Bus connection: No connection to service manager.`不知道为何不能支持，但可以有其他方法，在创建容器的时候使用如下命令`docker run --privileged XXX /usr/sbin/init`
+- **CentOS7容器无法使用systemctl命令**，提示`Failed to get D-Bus connection: No connection to service manager.`不知道为何不能支持，但可以有其他方法，在创建容器的时候使用如下命令`docker run --privileged XXX /usr/sbin/init`
 
-- 出现`Exit status 255`错误，可能是虚拟机长期开启未关闭导致的，进入virtualBox将该docker machine关闭即可再次重新打开了
+- **出现`Exit status 255`错误**，可能是虚拟机长期开启未关闭导致的，进入virtualBox将该docker machine关闭即可再次重新打开了
 
 - **时区不对: 不是相差8个小时这么简单，反正很乱**
   在新建容器的时候加上这个参数` -v /etc/localtime:/etc/localtime:ro` 
 
-- 树莓派安装后出现错误`libapparmor.so.1: cannot open shared object file: No such file or directory`，需要执行`apt-get install lxc`
+- **树莓派安装docker后出现错误`libapparmor.so.1: cannot open shared object file: No such file or directory`**，需要执行`apt-get install lxc`
 
-- 更换docker网段: 目前存在的问题是docker容器的网段为`172.17.0.1/24`，但是公司的内网也是这个网段，导致冲突过后，我在我的容器里面ping不通别人的机器，所以就尝试着在mac上更换docker的默认网段
+- **更换docker网段**: 目前存在的问题是docker容器的网段为`172.17.0.1/24`，但是公司的内网也是这个网段，导致冲突过后，我在我的容器里面ping不通别人的机器，所以就尝试着在mac上更换docker的默认网段
 
   ```shell
   cd /Users/haofly/Library/Containers/com.docker.docker/Data/database/com.docker.driver.amd64-linux	# 没错，这里默认是一个git仓库
@@ -144,53 +197,6 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
   git add etc/docker/daemon.json && git commit -m "configure bip"	# 提交过后，docker会自动重启，重启过后，所有的容器以及新开的容器就都会是新的网段了，终于能ping通了
   ```
 
-  ​
+- **Mac下`~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux`目录占用内存过大**: 目测是一个一直没有被修复的bug，是由于镜像反复拉，容器反复删除重建，但是存储从来不释放造成的，我现在的解决方法是把想要的镜像拉下来到处到存储中去，以后要使用直接拉取，这样避免了每次pull不下来的时候重新pull导致存储不释放的问题
 
-
-
-
-
-
-
-
-	  * docker commit : 更改容器后要把更改后的容器作为一个镜像,注意这里和直接用Dockerfile不一样
-
-	        docker commit -m "说明信息" -a "用户信息
-
-	  * docker save : 导出镜像到本地
-
-	        docker save -o ubuntu_14.04.1.tar ubuntu:14.04.1
-
-	  * docker load : 加载本地镜像,导入用docker save命令保存的本地镜像
-
-	        docker load < ubuntu_14.04.1.tar
-
-	  * docker export : 导出容器快照到本地
-
-	        docker export 容器ID > ubuntu.tar
-
-	  * docker import : 导出本地快照
-	  * docker kill : 杀死正在运行的容器,后跟容器ID
-	
-	        docker kill $(docker ps -a -q)
-	
-	  * docker rm : 移除容器,后跟容器ID
-	
-	        docker rm $(docker ps -a -q)  # 删除所有已停止的容器
-	
-	  * docker rmi : 删除镜像,后跟镜像名称或ID
-	
-	        docker rmi $(docker images -q -a)
-	
-	  *
-		---
-		title: "Docker 之Dockerfile的使用"
-		date: 2015-02-01 08:58:06
-		categories: docker
-		---
-		使用Dockerfile可以方便地build自己的Docker镜像,并且Dockerfile语法简单,清晰明了.Dockerfile中每一条指令都对应镜像中
-		的一层,后面的层会依赖前面的层,每一层都会有一个唯一的ID,这样前半部分都相同的Dockerfile那前半部分构建时都一样,会自动复用.
-	
-		一般,如果Dockerfile就位于当前目录,那么可以直接执行一下命令进行构建(-t参数指定REPOSITORY名称,默认的Tag为latest)`dock
-		er build -t="haofly" .`
 
