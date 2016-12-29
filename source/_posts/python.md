@@ -17,7 +17,6 @@ yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel xz-libs
 # for Ubuntu
 apt-get install -y libssl-dev
 
-
 wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz
 xz -d Python-3.5.2.tar.xz
 tar -xvf Python-3.5.2.tar
@@ -118,6 +117,19 @@ getattr(foo, 'bar')()
 g = lambda x: x*2
 g(3) # 输出6
 ```
+#### 类型检查(Type Hint)
+
+从3.5开始，Python提供了类型检查功能，当然类型检查仅仅用于检查，并不会对程序的执行有任何的影响，但是配合IDE有代码提示过后，一切都变得方便了起来
+
+```python
+def func(a: int) -> int	# 这表示该函数的参数a要求是整型，返回值是整型号
+
+# 返回组合类型
+from typing import List, Tuple
+Result = Tuple[Tuple[int, int], str]
+def foo(strings: str, lines: List[str], line_number: int) -> Result:	# 这样子定义组合的返回类型
+```
+
 #### 数字
 
 ```python
@@ -422,6 +434,34 @@ plus3(4)	# 输出7
 # total_ordering
 ```
 
+#### smtplib: 用于发送邮件
+
+```python
+import smtplib
+from email import encoders
+from email.mime.text import MIMEText
+from email.header import Header
+
+# 腾讯SMTP
+mail_host = '发件服务器'
+mail_user = '发件人'
+mail_pass = '收件人'
+
+sender = '发件人'
+receivers = ['收件人']
+
+message = MIMEText('这是邮件内容', 'plain', 'utf-8')
+message['From'] = "\"%s\" <%s>" % (Header('发件人', 'utf-8'), Header('发件人', 'utf-8'))
+message['To'] = Header('to', 'utf-8')
+message['Subject'] = Header('邮件主题', 'utf-8')
+
+smtpObj = smtplib.SMTP()
+smtpObj.connect(mail_host)
+smtpObj.login(mail_user, mail_pass)
+smtpObj.sendmail(sender, receivers, message.as_string())
+print('邮件发送成功')
+```
+
 #### timeit: 时间度量
 
 ```python
@@ -431,12 +471,6 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 ```
 
 
-
-- **asyncore**：socket的一个封装
-
-- **ConfigParser**: 配置文件解析模块
-
-- **contextlib**：作为装饰器来使用，可以将一个生成器函数转换成上下文管理器，这样就可以用with了
 
 - **collections**：[参考](http://my.oschina.net/leejun2005/blog/222236)，提供额外的数据类型
   - **namedtuple()**：生成可以使用名字来访问元素内容的tuple子类
@@ -487,33 +521,6 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
           self.parent = weakref.proxy(parent)
   ```
 
-  ​
-
-- **smtplib**: 用于发送邮件
-
-  	import smtplib
-  	from email import encoders
-  	from email.mime.text import MIMEText
-  	from email.header import Header
-  	
-  	# 腾讯SMTP
-  	mail_host = '发件服务器'
-  	mail_user = '发件人'
-  	mail_pass = '收件人'
-  	
-  	sender = '发件人'
-  	receivers = ['收件人']
-  	
-  	message = MIMEText('这是邮件内容', 'plain', 'utf-8')
-  	message['From'] = "\"%s\" <%s>" % (Header('发件人', 'utf-8'), Header('发件人', 'utf-8'))
-  	message['To'] = Header('to', 'utf-8')
-  	message['Subject'] = Header('邮件主题', 'utf-8')
-  	
-  	smtpObj = smtplib.SMTP()
-  	smtpObj.connect(mail_host)
-  	smtpObj.login(mail_user, mail_pass)
-  	smtpObj.sendmail(sender, receivers, message.as_string())
-  	print('邮件发送成功')
 
 ## 语言本身
 
