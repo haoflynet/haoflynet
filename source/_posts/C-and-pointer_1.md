@@ -1,7 +1,7 @@
 ---
 title: "《C和指针》——C语言补漏(函数篇)"
 date: 2014-05-14 19:06:28
-updated: 2016-12-22 11:13:00
+updated: 2016-12-29 11:13:00
 categories: 韦编三绝
 ---
 1. strcpy: 复制字符串,`char * strcpy(char _dst, char const _src);  `
@@ -62,50 +62,50 @@ categories: 韦编三绝
 
 10. 改变缓冲方式
 
-    ```C
-    void setbuf( FILE _stream, char _buf);设置了另一个数组，用于对流进行缓冲，为一个流自行指定缓冲区可以防止I/O函数库为它动态分配一个缓冲区  
-    int setvbuf( FILE _stream, char _buf, int mode, size_t size );参数中mode用于指定缓冲的类型
-    ```
+   ```C
+   void setbuf( FILE _stream, char _buf);设置了另一个数组，用于对流进行缓冲，为一个流自行指定缓冲区可以防止I/O函数库为它动态分配一个缓冲区  
+   int setvbuf( FILE _stream, char _buf, int mode, size_t size );参数中mode用于指定缓冲的类型
+   ```
 
 11. 临时文件
 
-    ```C
-    FILE _tmpfile(void);会创建一个文件，当文件被关闭或程序终止时这个文件便自动删除  
-    char _tmpnam(char _name);临时文件的名字
-    ```
+   ```C
+   FILE _tmpfile(void);会创建一个文件，当文件被关闭或程序终止时这个文件便自动删除  
+   char _tmpnam(char _name);临时文件的名字
+   ```
 
 12. 删除文件
 
-    ```C
-    int remove(char const _filename);删除文件  
-    int rename(char const _oldname, char const _newname);文件重命名
-    ```
+   ```C
+   int remove(char const _filename);删除文件  
+   int rename(char const _oldname, char const _newname);文件重命名
+   ```
 
 13. 随机数<stdlib.h>
 
-    ```C
-    int rand(void);  
-    void srand(unsigned int seed); 
-    // 上面两句会产生伪随机数，如果实现真正的随即需要再加一句：  
-    srand( (unsigned int)time( 0 ) );
-    ```
+   ```C
+   int rand(void);  
+   void srand(unsigned int seed); 
+   // 上面两句会产生伪随机数，如果实现真正的随即需要再加一句：  
+   srand( (unsigned int)time( 0 ) );
+   ```
 
 14. 字符串与数值的相互转换
 
-    ```C
-    int atoi(char const _string);转换为十进制  
-    long int atol(char const _string);转换为十进制  
-    long int strtol(char const string, char * __unused, int base);可指定基数  
-    unsigned long int strtoul( char const string, char * __unused, int base);可指定基数  
-    double atof(char const _string);转换为float  
-    double strtod(char const string, char _***unused);转换为double
-    ```
+   ```C
+   int atoi(char const _string);转换为十进制  
+   long int atol(char const _string);转换为十进制  
+   long int strtol(char const string, char * __unused, int base);可指定基数  
+   unsigned long int strtoul( char const string, char * __unused, int base);可指定基数  
+   double atof(char const _string);转换为float  
+   double strtod(char const string, char _***unused);转换为double
+   ```
 
 15. 执行系统命令(stdlib.h)，`void system( char const _command );`可以执行cmd的命令
 
 16. 排序和查找
 
-    ```c
-    void qsort(void base, size_t n_elements, size_t el_size, int (compare)(void const _, void const _));第一个参数指向需要排序的数组，第二个参数指定数组中元素的数目，第三个参数指定每个元素的长度，第四个参数是一个比较函数  
-    void _bsearch(void const _key, void const _base, size_t n_elements, size_t el_size, int (_compare)(void const _, void const _));在一个已经排好序的数组中用二分法查找一个特定的元素  
-    ```
+   ```c
+   void qsort(void base, size_t n_elements, size_t el_size, int (compare)(void const _, void const _));第一个参数指向需要排序的数组，第二个参数指定数组中元素的数目，第三个参数指定每个元素的长度，第四个参数是一个比较函数  
+   void _bsearch(void const _key, void const _base, size_t n_elements, size_t el_size, int (_compare)(void const _, void const _));在一个已经排好序的数组中用二分法查找一个特定的元素  
+   ```
