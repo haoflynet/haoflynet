@@ -8,8 +8,8 @@
 #### 安装
 
 ```javascript
-npm install hexo --save
-npm install
+npm install hexo-cli -g
+npm install --save
 ```
 
 
