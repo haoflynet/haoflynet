@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2016-12-20 14:44:00
+updated: 2016-12-30 14:44:00
 categories: python
 ---
 # Python
@@ -432,6 +432,59 @@ plus3(4)	# 输出7
 
 # cmp_to_key：将一个函数转换为比较函数
 # total_ordering
+```
+
+#### logging日志模块
+
+日志格式
+
+```tex
+%(name)s Logger的名字
+%(levelno)s 数字形式的日志级别
+%(levelname)s 文本形式的日志级别
+%(pathname)s 调用日志输出函数的模块的完整路径名，可能没有
+%(filename)s 调用日志输出函数的模块的文件名
+%(module)s 调用日志输出函数的模块名|
+%(funcName)s 调用日志输出函数的函数名|
+%(lineno)d 调用日志输出函数的语句所在的代码行
+%(created)f 当前时间，用UNIX标准的表示时间的浮点数表示|
+%(relativeCreated)d 输出日志信息时的，自Logger创建以来的毫秒数|
+%(asctime)s 字符串形式的当前时间。默认格式是“2003-07-08 16:49:45,896”。逗号后面的是毫秒
+%(thread)d 线程ID。可能没有
+%(threadName)s 线程名。可能没有
+%(process)d 进程ID。可能没有
+%(message)s 用户输出的消息
+```
+
+实例:
+
+```python
+# 最复杂的使用
+import logging
+
+logger = logging.getLogger('AppName')	# 初始化日志处理器实例，可以用AppName来区分不同的模块
+formatter = logging.Formatter('%(asctime)s %(levelname)-8s: %(message)s')	# 定义日志格式
+
+file_handler = logging.FileHandler("test.log")		# 文件日志
+console_handler = logging.StreamHandler(sys.stdout)	# 控制台日志
+file_handler.setFormatter(formatter)				# 设置日志格式
+
+logger.addHandler(file_handler)			# 为logger添加的日志处理器
+logger.removeHandler(file_handler)		# 移除日志处理器
+
+logger.setLevel(logging.INFO)		# 设置日志输出最低级别
+
+logger.debug('this is debug info')
+logger.info('this is information')
+logger.warn('this is warning message')
+logger.error('this is error message')	# 与logger.exception()相同
+logger.fatal('this is fatal message, it is same as logger.critical')
+logger.critical('this is critical message')
+
+logger.error('%s service is down', 'own')	# 格式化输出日志
+
+# 比较简单的使用
+logging.basicConfig(filename='test.log', level=logging.DEBUG)	# 这样接口
 ```
 
 #### smtplib: 用于发送邮件
