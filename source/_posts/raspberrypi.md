@@ -1,61 +1,61 @@
 ---
 title: "玩转树莓派2"
 date: 2015-12-08 02:58:50
+updated: 2016-12-30 11:03:00
 categories: 就是爱玩
 ---
-想在家里做NAS、DNS等私有云服务，但是无奈家里淘汰下来的电脑已无力承担如此重任。没办法了，就只能试试树莓派。不试不知道，一试吓一跳，完全就是一手掌大小的
-电脑，听说desktop版本还能使用word等软件，虽然只有1GB内存，但是200多块(淘宝店)就能买到这个东西，那是非常值了。当然，作为一个技术爱好者，别
-人是完全无法体会这种快乐的。要是其功耗再低点或者能采用其它的供电方式(比如无线供电、电池供电)，感觉完全能颠覆智能市场。  
+想在家里做NAS、DNS等私有云服务，但是无奈家里淘汰下来的电脑已无力承担如此重任。没办法了，就只能试试树莓派。不试不知道，一试吓一跳，完全就是一手掌大小的电脑，听说desktop版本还能使用word等软件，虽然只有1GB内存，但是200多块(淘宝店)就能买到这个东西，那是非常值了。当然，作为一个技术爱好者，别人是完全无法体会这种快乐的。要是其功耗再低点或者能采用其它的供电方式(比如无线供电、电池供电)，感觉完全能颠覆智能市场。  
 
 ## **制作启动镜像**
 
 镜像下载：<https://www.raspberrypi.org/downloads/>，我下载的是RASPBIAN分支，因为其是官方提供且基于Debian，和Ubuntu操作一样.
 **Mac环境**：  
-```
-$ df  # 查看当前已经挂载的卷,一般sd卡在最后，Filesystem是/dev/disk2s1，Mounted on /Volumes/No Name，可以在Finder里面将sd卡的名字改为Pi(我那个默认是No Name)
-$ diskutil unmount /dev/disk2s1   #将sd卡卸载
-Volume Pi on disk2s1 unmounted
-$ diskutil list # 查看是否有sd卡设备
-$ dd bs=4m if=pi.img of=/dev/rdisk2   #将镜像文件pi.img写入sd卡，需要注意这条命令使用的是rdisk2，这是原始字符设备
-$ diskutil unmountDisk /dev/disk2  # 再卸载sd卡，此时可以拔出来插入树莓派的sd卡槽了  
+```shell
+df  # 查看当前已经挂载的卷,一般sd卡在最后，Filesystem是/dev/disk2s1，Mounted on /Volumes/No Name，可以在Finder里面将sd卡的名字改为Pi(我那个默认是No Name)
+diskutil unmount /dev/disk2s1   #将sd卡卸载
+>> Volume Pi on disk2s1 unmounted
+diskutil list # 查看是否有sd卡设备
+dd bs=4m if=pi.img of=/dev/rdisk2   #将镜像文件pi.img写入sd卡，需要注意这条命令使用的是rdisk2，这是原始字符设备
+diskutil unmountDisk /dev/disk2  # 再卸载sd卡，此时可以拔出来插入树莓派的sd卡槽了  
 ```
 
 ## **启动操作系统**
 
-收到货的那天，发现其有一个DC接口，还以为是通过DC接口供电，出门走了一圈都没发现有卖这货的，于是回家，自习已看，发现可以用Android的电源为期供电的，
-那接口名字忘了。和网上建议的一样，我采用的是5V 2A的供电设备(其实是直接插到小米插线板上的)  
-然后，我又发现，我家里没多的网线，那怎么办，我装的不是desktop版本，没有网线就不能SSH进去。不过还好，它支持HDMI，于是我把它功过HDMI连接上了
-家里40英寸的电视，(HDMI高清显示，真他妈爽)就像这样，还通过USB插了外置键盘。  
+收到货的那天，发现其有一个DC接口，还以为是通过DC接口供电，出门走了一圈都没发现有卖这货的，于是回家，自习已看，发现可以用Android的电源为期供电的，那接口名字忘了。和网上建议的一样，我采用的是5V 2A的供电设备(其实是直接插到小米插线板上的)  
+
+然后，我又发现，我家里没多的网线，那怎么办，我装的不是desktop版本，没有网线就不能SSH进去。不过还好，它支持HDMI，于是我把它功过HDMI连接上了家里40英寸的电视，(HDMI高清显示，真他妈爽)就像这样，还通过USB插了外置键盘。  
+
 ![](http://7xnc86.com1.z0.glb.clouddn.com/raspberrypi_1.jpg)  
 
 默认是通电自动启动的，所以插上电就会进入系统了，默认用户名pi，默认密码是raspberry，接着就做一些基本的配置，通过`sudo raspi-config`来运行设置工具：
 
 - 第一项将sd卡的剩余空间全部用来使用
+
 - 然后修改`Internationalisaton Options`里面的时区及默认字符编码`zh_CN GB2312/zh_CN.UTF-8 UTF-8`
+
 - 接着修改源，这个国度没办法的事  
 
-```
-$ sudo nano /etc/apt/sources.list.d/raspi.list
-修改为如下：
-deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/debian/ jessie main
-	
-$ sudo nano /etc/apt/sources.list  
-修改为如下：
-deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
-deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib
-```
+  ```shell
+  # sudo nano /etc/apt/sources.list.d/raspi.list，修改如下
+  deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/debian/ jessie main
+
+  # sudo nano /etc/apt/sources.list，修改为如下：
+  deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib  
+  deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib
+  ```
+
+
 - 最后，安装必要的软件
-  ```	
+  ```	shell
   sudo apt-get update && sudo apt-get upgrade 
   sudo apt-get install vim tree ttf-wqy-microhei git
-
-  # 根据python.md安装python3
+  sudo rpi-update	# 如果想要升级固件，可以这样升级，如果提示命令找不到可以先install rpi-update
   ```
 
 - WIFI设置
 
   ```shell
-  当然，我不可能一直用电视作显示器吧，这时候我买的无线设备就有用场了，直接通过USB插到树莓派上，然后设置wifi  
+  # 当然，我不可能一直用电视作显示器吧，这时候我买的无线设备就有用场了，直接通过USB插到树莓派上，然后设置wifi  
   $ ifconfig # 可以看到wlan0，表示已经识别无线网卡
   $ sudo vim /etc/network/interfaces添加或修改关于wlan0的配置
   auto wlan0
