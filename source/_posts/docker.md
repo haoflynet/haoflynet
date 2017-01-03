@@ -142,7 +142,7 @@ docker push hub.haofly.net/haofly/test:tag	# 推送
 ### PHP容器
 	docker run --name php-apache -v /Users/haofly/workspace/share/yangqing:/var/www/html -p 80:80 --link some-mysql:mysql -d b664eb500b48 # 这是php-apache，并且连接mysql容器,如果要安装mysql扩展需要在Dockerfile里面去安装
 ### CentOS容器
-	docker run -it -v /Users/haofly/workspace/ZBJ_dbm:/share --name dbm -d index.alauda.cn/library/centos:centos6.6 /bin/bash
+	docker run -it -v /Users/haofly/workspace/dbm:/share --name dbm -d index.alauda.cn/library/centos:centos6.6 /bin/bash
 	docker run -it -v /Users/haofly/workspace/share:/share --name salt_client --privileged 750109855bc0 /usr/sbin/init	# 对于7.x，如果想在容器里执行systemctl，需要添加privileged参数，并且后面应该用init
 
 ### NodeJS容器
