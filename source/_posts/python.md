@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2016-12-30 14:44:00
+updated: 2017-01-05 14:44:00
 categories: python
 ---
 # Python
