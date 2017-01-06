@@ -47,7 +47,7 @@ diskutil unmountDisk /dev/disk2  # 再卸载sd卡，此时可以拔出来插入�
 
 - 最后，安装必要的软件
   ```	shell
-  sudo apt-get update && sudo apt-get upgrade 
+  sudo apt-get update && sudo apt-get upgrade -y
   sudo apt-get install vim tree ttf-wqy-microhei git
   sudo rpi-update	# 如果想要升级固件，可以这样升级，如果提示命令找不到可以先install rpi-update
   ```
