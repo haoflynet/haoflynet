@@ -1,30 +1,47 @@
 ---
 title: "express 教程"
 date: 2015-11-01 07:52:39
+updated: 2016-01-06 16:22:00
 categories: frontend
 ---
-#  Express
-
 [官网](http://expressjs.com/zh-cn/)说: "高度包容、快速而极简的Node.js Web框架"，我认为Express最大的优点是可用于API开发，而不是web开发，首先，它的路由定义简单，其次，nodejs天生的异步特性使得其性能极佳。
 
-### 安装方式
+## 安装与启动
 
 ```
 npm install express-generator -g   # 安装应用程序生成器
 express myapp  # 生成一个名为myapp的工程目录
 cd myapp && npm install # 安装依赖项
 DEBUG=myapp:* npm start # MacOS或Linux上启动
+
+DEBUG=express:* node app.js	# 打开调试模式
 ```
 
-然后在浏览器访问`http://localhost:3000/`即可访问应用程序了.
+然后在浏览器访问`http://localhost:3000/`即可访问应用程序了。
 
-## 请求与相应
+最简单的例子(这个例子基本不能处理任何其他的请求，除非用上面的生成器来生成，就会带了一些解析请求生成响应的功能):
+
+```javascript
+var express = require('express');
+var app = express();
+
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
+```
+
+## 请求与响应
 
 ### 请求
 
 ``` 
 # 获取请求参数
-req.query.name
+req.query.name	# 获取get参数
+req.body.name	# 获取POST参数
 ```
 
 ## 路由
@@ -35,6 +52,8 @@ req.query.name
 app.get('/', function(req, res){
   res.send('Hello World!');
 })
+
+app.post('/*', function(req, res){});	# 使用通配符的路由参数
 ```
 
 ## 中间件
