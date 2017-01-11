@@ -123,7 +123,7 @@ find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK�
 
 #### 包管理
 
-    dpkg -i # 安装deb包，但是它不会自动解决依赖，安装完成后还要使用apt-get -f install这条命令来安装没有安装好的依赖
+    dpkg -i *.deb # 安装deb包，但是它不会自动解决依赖，安装完成后还要使用apt-get -f install这条命令来安装没有安装好的依赖
     apt-cache show 包名 # 显示apt库里面的软件的版本号
     sudo apt-get clean # 自动清理安装程序时缓存的deb包
     sudo apt-get autoclean  # 清理已卸载软件的无用的依赖包
