@@ -1,14 +1,15 @@
 ---
 title: "Python使用Splinter(Selenium)进行浏览器模拟测试"
 date: 2016-08-10 19:56:39
+updated: 2017-01-10 13:43:00
 categories: python
 ---
 每次看到selenium都觉得很牛，但是苦于文档(包括英文)太少，我到今天才真正完整地安装使用了一把。我不喜欢来一个项目就在自己电脑上搭一个运行环境，而是喜欢在docker或者虚拟机里进行操作，问题是docker或者虚拟机里并没有任何的可视化的浏览器，而Selenium又依赖于这些浏览器驱动，我是最讨厌安装驱动的，因为驱动这个东西电脑不同差距特别大，总是会出现各种问题。而在服务器上如何安装selenium或者splinter，这个过程在网上基本是找不到的，所以这里记录下自己的安装方法。
-# Linux install Splinter(Selenium)
+## Linux install Splinter(Selenium)
 
 首先，需要安装必要的python包`pip3 install splinter selenium xvfbwrapper`需要注意的是，splinter只有在使用浏览器的时候才需要安装selenium，如果仅仅是在flask或者django中进行测试是不需要的。
 
-## 安装chromedriver
+### 安装chromedriver
 
 [ChromeDriver首页-WebDriver for Chrome](https://sites.google.com/a/chromium.org/chromedriver/)，下载对应操作系统的最新的chromedriver
 
@@ -18,6 +19,27 @@ unzip chromedriver_linux64.zip
 mv chromedriver /usr/bin	# 添加到PATH即可
 
 chromedriver	# 运行命令进行测试，没抛错则表示正确了
+```
+
+### Linux Server(Raspberry Pi)安装浏览器
+
+上面的方式是直接打开浏览器的方式，但是在Server上面没有界面，也就没有浏览器，这种情况就得安装单独的真对server的浏览器了。最先我想使用ChromeDriver，但是无论怎么折腾也安装不上，于是就用了Firefox，发现一篇很好的[教程](http://www.installationpage.com/selenium/how-to-run-selenium-headless-firefox-in-ubuntu/)。它这个版本被称作`Selenium headless firefox`。安装步骤如下:
+
+```shell
+# 添加repository，并安装firefox
+sudo add-apt-repository ppa:mozillateam/firefox-stable
+sudo apt-get update
+sudo apt-get install firefox
+
+# 安装Xvfb: 是用来虚拟X服务程序，实现X11显示的协议
+sudo apt-get install xvfb
+sudo Xvfb :10 -ac  # 10表示编号
+
+# 设置环境变量
+export DISPLAY=:10
+
+# 就可以使用了
+firefox
 ```
 
 ## 开始Splinter(Selenium)

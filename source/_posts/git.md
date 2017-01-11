@@ -9,7 +9,10 @@ categories: tools
 
 这里所列举的通用配置无论是在Windows还是Linux，都要用到
 
-## 安装Git软件
+## 安装与配置
+
+### 安装Git软件
+
 Windows平台：[Git for Windows](http://msysgit.github.io/)(在安装的时候注意那些选项的设置)  
 Linux平台：`sudo apt-get install git`
 
@@ -31,7 +34,12 @@ Linux平台：`sudo apt-get install git`
     ssh-keygen -t rsa -C "haoflynet@gmail.com"
     # 然后一路默认就可以，注意看其中的密钥存放位置，其中公钥文件Windows默认为/c/Users/用户名/.ssh/id_rsa.pub# Linux默认为 ~/.ssh/rsa_pub
 
+### Git相关文件
+
+**.gitkeep**: 这个文件当前所在的空目录可以加入到版本控制里面去
+
 ## Github的使用
+
 打开公钥文件，然后复制其中的内容到Github上的setting->SSH keys->Add SSH key，如下  
 ![](http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_0.png)  
 点击Add Key后会要求输入github密码，因为这是特别敏感的操作  
@@ -90,6 +98,7 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 ```
 
 ## 多人协作指南
+
 参考文章：[廖雪峰的官方网站](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013760174128707b935b0be6fc4fc6ace66c4f15618f8d000)
 前提：已经在Github上创建了库并创建了一个新的分支，假设新分支名为dev，那么开发步骤如下：
 
