@@ -4,7 +4,10 @@ date: 2013-01-01 08:22:39
 updated: 2017-01-06 10:39
 categories: tools
 ---
+作为一个谷歌的"中毒"用户，用五年的使用经验告诉大家，谷歌浏览器真的是世界上最好的浏览器。该有的插件都有，该有 的调试功能都有，开源的不开源的也都有。至于很多人吐槽谷歌的唯一缺点: 内存占用大的问题，当我切换到Mac上以后就不再关心这个问题了，因为在mac上，内存占用越大，基本上可以保证程序运行越快，谷歌有理由占用大内存。 用过这么多年的谷歌浏览器，已经向多人安利了它，使得他们纷纷放弃原来的浏览器，毕竟，每次他们问我问题的时候，我基本上用谷歌都能快速地调试出来。谷歌浏览器也一次又一次地让我有互联网的未来入口都在浏览器的错觉，直到后来，微信出现了。。。
+
 ## 谷歌插件推荐
+
 - **Adblock Plus**：屏蔽广告插件，真的不是有意的，确实有些网站做得有点过分了，看一分钟视频得先看一分钟广告，有些网站不登陆还不准看，更有甚者看到一半给你插一段广告。。。
 
 - **EditThisCookie**: 快速查看与编辑Cookie，web站点调试利器
@@ -48,6 +51,8 @@ categories: tools
 ## 常用快捷键
 
 - Ctrl + F：查找网页内容
+- Ctrl + N: 新打开标签页
+- Ctro + w: 关闭当前标签页
 
 ## 奇淫技巧
 
@@ -55,21 +60,19 @@ categories: tools
     ![调试的时候保留浏览器请求](http://ojccjqhmb.bkt.clouddn.com/chrome_0.jpg)
 
 -   **直接复制请求的cURL**: cURL能做到一切你想要的，有了cURL就可以方便地写爬虫代码了
-    ![从Chrome复制cURL](http://ojccjqhmb.bkt.clouddn.com/chrome-1.jpg)
+        ![从Chrome复制cURL](http://ojccjqhmb.bkt.clouddn.com/chrome-1.jpg)
 
--   **直接在搜索框使用多个搜索引擎**: 众所周知，Chrome顶部最方便的搜索框只能有一个默认的搜索引擎，就是谷歌自带的，但是如果你要查找什么无聊的东西需要用到百度，这里有个比直接到百度网站更方便的方法:
-    Chrome设置->搜索->管理搜索引擎，这里可以设置默认的搜索引擎也可以增加其他的搜索引擎，例如我这里的设置，g表示用google搜索，b表示用百度搜索:
-    ![Chrome设置搜索引擎](http://ojccjqhmb.bkt.clouddn.com/chrome_3.jpg)
+-   **直接在搜索框使用多个搜索引擎**: 众所周知，Chrome顶部最方便的搜索框只能有一个默认的搜索引擎，就是谷歌自带的，但是如果你要查找什么无聊的东西需要用到百度，这里有个比直接到百度网站更方便的方法:  Chrome设置->搜索->管理搜索引擎，这里可以设置默认的搜索引擎也可以增加其他的搜索引擎，例如我这里的设置，g表示用google搜索，b表示用百度搜索:
+        ![Chrome设置搜索引擎](http://ojccjqhmb.bkt.clouddn.com/chrome_3.jpg)
 
-    这样如果我想在顶部搜索框直接使用百度搜索就可以这样:
-    ![谷歌浏览器里面使用百度搜索](http://ojccjqhmb.bkt.clouddn.com/chrome_2.jpg)
+        这样如果我想在顶部搜索框直接使用百度搜索就可以这样:
+        ![谷歌浏览器里面使用百度搜索](http://ojccjqhmb.bkt.clouddn.com/chrome_2.jpg)
 
 ## 浏览器管理
 
 -   chrome://dns/ ：显示DNS状态
-
 -   chrome://cache/：查看缓存状态
-    - chrome://memory-redirect/ ：查看内存信息
+-   chrome://memory-redirect/ ：查看内存信息
 
 
 ## TroubleShooting
