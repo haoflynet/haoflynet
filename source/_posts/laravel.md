@@ -732,7 +732,7 @@ factory(App\User::class, 50)->create()->each(function($u) {
 ```
 
 ## TroubleShooting
-- **禁止全局csrf认证**：在`app/Http/Kernel.php`中，`$middleware`表示全局中间件，而`$routeMiddleware`表示针对某个路由的中间件，所以只需要把csrf在`$middleware`中注释屌，然后在`$routeMiddleware`中添加`'csrf' => 'App\Http\Middleware\VerifyCsrfToken'`
+- **禁止全局csrf认证**：在`app/Http/Kernel.php`中，`$middleware`表示全局中间件，而`$routeMiddleware`表示针对某个路由的中间件，所以只需要把csrf在`$middleware`中注释掉，然后在`$routeMiddleware`中添加`'csrf' => 'App\Http\Middleware\VerifyCsrfToken'`
   如果要在某个路由上使用就这样：
 
   	Route::group(['middleware' => 'csrf'], function(){     // csrf保护的接口
