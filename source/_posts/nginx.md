@@ -1,13 +1,16 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
+updated: 2017-01-18 18:04:00
 categories: server
 ---
-# nginx教程
+# nginx手册
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理.  
-[Centos使用nginx安装方法](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-6-with-yum)
+
+安装方法见: [Centos使用nginx安装方法](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-6-with-yum)
 
 ## 配置文件详解
+
 nginx配置文件地址在`/etc/nginx/nginx.conf`，nginx的配置文件里，最重要的section是http区块，里面包含了全局设置、主机设置(server)、上游服务器设置(upstream)、URL设置
 
 	user www-data;           # nginx所属用户
@@ -70,11 +73,19 @@ nginx配置文件地址在`/etc/nginx/nginx.conf`，nginx的配置文件里，�
 			# 禁用非必要的请求方法，比如只处理GET、POST请求
 			if ($request_method !~ ^(GET|HEAD|POST)$ ){
 				return 444;
-			}            
+			}
+			
+			location = /{
+	          # 完全匹配 =
+	          # 大小写敏感 ~
+	          # 忽略大小写 ~*
+	          # 前半部分匹配 ^~
+	          # 正则匹配，例如~* \.(.gif|jpg|png)$
+			}
 			
 			location / {
-				root /var/www/haofly;                    
-				index index.html;                                 
+				root /var/www/haofly;      # 设置根目录              
+				index index.html;          # 首页设置                     
 				proxy_pass http://name;  # 上面设置的负载均衡服务器列表的名字                    
 				proxy_connect_timeout 60; # nginx到后台服务器连接超时时间                    
 				proxy_set_header Host $http_host;                    
@@ -82,7 +93,12 @@ nginx配置文件地址在`/etc/nginx/nginx.conf`，nginx的配置文件里，�
 				proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;            
 			}            
 			
-			location /static {    # 静态文件由nginx自己处理                					root /var/www/haofly;
+			location /blog {
+	          alias /var/www/blog;	# 别名设置
+			}
+			
+			location /static {    # 静态文件由nginx自己处理                					
+				root /var/www/haofly;
 			} 
 		}
 

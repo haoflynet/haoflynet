@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-01-05 14:44:00
+updated: 2017-01-18 14:44:00
 categories: python
 ---
 # Python
@@ -36,6 +36,9 @@ python3.3 get-pip.py
 #### 列表
 
 ```python
+all([])	# 判断列表里面是否所有的值都为1
+any([])	# 判断列表里面是否有值都为1
+
 li[::-1]	# 逆序列表
 li[::2]		# 列表里面的奇数位，最后那个2表示不长，前面::表示整个数组
 li[1::2]	# 列表里面的偶数位
@@ -116,6 +119,13 @@ getattr(foo, 'bar')()
 # lambda表达式，相当于一个简单的函数，例如:
 g = lambda x: x*2
 g(3) # 输出6
+
+# 自定义Beans，类似Java Beans，将字典直接转换为对象的形式，例如
+from collections import namedtuple
+UserResponse = namedtuple('UserResponse', [
+  'uid',
+  'name'
+])
 ```
 #### 类型检查(Type Hint)
 
@@ -123,6 +133,8 @@ g(3) # 输出6
 
 ```python
 def func(a: int) -> int	# 这表示该函数的参数a要求是整型，返回值是整型号
+
+name: str = 'haofly'	# 直接给变量指定类型
 
 # 返回组合类型
 from typing import List, Tuple

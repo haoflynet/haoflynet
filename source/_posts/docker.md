@@ -46,6 +46,12 @@ docker tag id name:tag	# 给镜像更改名称
 	exit # 退出容器
 	docker logs 容器名称  # 获取容器的输出信息，但是通过docker exec进入容器的时候，其标准输出并未被主进程相关联，所以docker exec所执行进程的标准输出不会进入容器的日志文件。即docker容器的日志只负责应用本身的标准输出，不包括docker exec衍生进程的标准输出(http://docs.daocloud.io/allen-docker/docker-exec)
 	docker run -t -i -d -p 80:80 -v /home/haofly/docker/test/mysite:/mysite django-apache:latest # 我当前机器上的一条执行自己创建的镜像的命令
+	
+	# 网络模式
+	--net=host(host模式): 容器不会获得独立的Network Namspace，而是和宿主机公用一个Network Namespace。容器将不会虚拟网卡，配置自己的IP，而是使用宿主机器的IP和端口。
+	--net=container:NAME_or_ID(container模式): 指定新创建的容器和已经存在的一个容器共享一个Network Namespace，和指定的容器共享IP、端口范围等。
+	--net=none(none模式): 没有网络
+	--net=bridge(bridge模式): docker默认的网络设置。
 
 ## 容器操作
 
