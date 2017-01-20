@@ -8,6 +8,12 @@ categories: php
 
 垃圾框架，用了`Laravel`过后感觉其他的PHP框架都是垃圾。但是由于生活所迫，不得不研究一下ThinkPHP框架了，哎。
 
+## 帮助函数
+
+```php
+$this->redirect('')	# 重定向
+```
+
 ## 数据库
 
 ```php
