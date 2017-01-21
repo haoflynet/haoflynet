@@ -23,8 +23,7 @@ Django另一个我特别喜欢的特性就是Application，它与Project的概�
    django_test
    ├── db.sqlite3
    ├── django_test
-   │   ├── **init**.py
-   │   ├── **pycache**
+   │   ├── __init__.py
    │   ├── settings.py
    │   ├── urls.py
    │   └── wsgi.py
@@ -61,7 +60,7 @@ Django另一个我特别喜欢的特性就是Application，它与Project的概�
    		url(r'^admin/', include(admin.site.urls)),
    		url(r'^hello/', 'testapp.views.hello'),
    	]
-5. 运行 `python manage.py runserver` 如果要以daemon的方式在后台运行，可以使用nohup命令 `nohup python manage.py runserver 0.0.0.0:8000 &gt; log &amp;` 使用它可以打开Django自带的默认Web引擎，可以在 <http://127.0.0.1:8000中查>看 在测试的时候可以使用该引擎，它不仅轻量，而且在打开后还会自动检测代码的更改，进行自动更新，这样就不用每次对代码变动了都来重启一次
+5. 运行 `python manage.py runserver` 如果要以daemon的方式在后台运行，可以使用nohup命令 `nohup python manage.py runserver 0.0.0.0:8000 &` 使用它可以打开Django自带的默认Web引擎，可以在 <http://127.0.0.1:8000中查>看 在测试的时候可以使用该引擎，它不仅轻量，而且在打开后还会自动检测代码的更改，进行自动更新，这样就不用每次对代码变动了都来重启一次
 
 ## 配置项
 

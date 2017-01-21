@@ -152,3 +152,35 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 - **`413 request entity too large`**
 
   发生这个问题是因为采用的是https而不是ssh方式来push仓库，而https传输数据的大小一般是由服务器，即nginx来控制的，太大了是传不上去的，这时候只需要更改为ssh方式即可。
+
+- **修改提交作者和邮箱**: git可以通过`git filter-branch`修改已经提交了的commit的作者和邮箱，这里有一个来自[若有所思-胡磊](http://i.dotidea.cn/2015/04/git-amend-author/)的批量修改的脚本:
+
+  ```shell
+  #!/bin/sh
+   
+  git filter-branch --env-filter '
+   
+  an="$GIT_AUTHOR_NAME"
+  am="$GIT_AUTHOR_EMAIL"
+  cn="$GIT_COMMITTER_NAME"
+  cm="$GIT_COMMITTER_EMAIL"
+   
+  if [ "$GIT_COMMITTER_EMAIL" = "[Your Old Email]" ]
+  then
+      cn="[Your New Author Name]"
+      cm="[Your New Email]"
+  fi
+  if [ "$GIT_AUTHOR_EMAIL" = "[Your Old Email]" ]
+  then
+      an="[Your New Author Name]"
+      am="[Your New Email]"
+  fi
+   
+  export GIT_AUTHOR_NAME="$an"
+  export GIT_AUTHOR_EMAIL="$am"
+  export GIT_COMMITTER_NAME="$cn"
+  export GIT_COMMITTER_EMAIL="$cm"
+  '
+  ```
+
+- ​
