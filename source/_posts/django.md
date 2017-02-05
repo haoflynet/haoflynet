@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2016-11-28 17:03:00
+updated: 2017-01-23 17:03:00
 categories: python
 ---
 # Django教程
@@ -64,30 +64,49 @@ Django另一个我特别喜欢的特性就是Application，它与Project的概�
 
 ## 配置项
 
-	DEBUG = True		# DEBUG模式
-	TEMPLATE_DEBUG = True	# TEMPLATE的DEBUG模式
-	
-	ALLOWED_HOSTS = []   # 设置哪些域名可以访问，当debug为false时必须为其指定一个值，['*']表示允许所有的访问
-	
-	INSTALLED_APPS = [默认APP+自己的APP]
-	MIDDLEWARE_CLASSES = [中间件]
-	
-	ROOT_URLCONF = 'admin.urls'	# 读取的默认的url文件
-	
-	# Database 数据库的配置
-	DATABASES = {
-	    'default': {
-	        'ENGINE': 'django.db.backends.sqlite3',
-	        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-	    }
-	}
-	
-	LANGUAGE_CODE = 'en-us'  # 语言，中文可用zh-Hans、zh-CN，完整列表见：http://www.i18nguy.com/unicode/language-identifiers.html
-	TIME_ZONE = 'Asia/Chongqing'        # 时区
-	
-	# Static files (CSS, JavaScript, Images) 静态文件目录  
-	STATIC_URL = '/static/'
-	STATIC_ROOT = os.path.join(BASE_DIR, 'static') # 这个选项默认是没有的，在编码时将静态文件放在APP中的static目录下，部署时用python manage.py collectstatic就可以把静态文件收集到STATIDC_ROOT目录
+需要注意的是，Django官方并没有默认的分离配置文件的方案，我觉得最佳的方式是，建立多个配置文件，然后在默认的配置文件里面进行导入即可。例如:
+
+```python
+env = 'local'
+
+if env == 'local':
+    from settings_local import *
+else:
+    from settings_prod import *
+```
+
+配置文件内容
+
+```python
+DEBUG = True			# DEBUG模式
+TEMPLATE_DEBUG = True	# TEMPLATE的DEBUG模式
+
+ALLOWED_HOSTS = []   	# 设置哪些域名可以访问，当debug为false时必须为其指定一个值，['*']表示允许所有的访问
+
+INSTALLED_APPS = [默认APP+自己的APP]
+MIDDLEWARE_CLASSES = [中间件]
+
+ROOT_URLCONF = 'admin.urls'	# 读取的默认的url文件
+
+# Database 数据库的配置
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',	# MySQL/Mariadb数据库设置
+        'NAME': 'admin',
+        'USER': 'root',
+        'PASSWORD': 'mysql',
+        'HOST': '127.0.0.1',
+        'PORT': 3307
+    }
+}
+
+LANGUAGE_CODE = 'en-us'  # 语言，中文可用zh-Hans、zh-CN，完整列表见：http://www.i18nguy.com/unicode/language-identifiers.html
+TIME_ZONE = 'Asia/Chongqing'        # 时区
+
+# Static files (CSS, JavaScript, Images) 静态文件目录  
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # 这个选项默认是没有的，在编码时将静态文件放在APP中的static目录下，部署时用python manage.py collectstatic就可以把静态文件收集到STATIDC_ROOT目录
+```
 
 在其他文件访问全局配置项，可以这样访问：
 
@@ -129,7 +148,7 @@ Django的路由是采用正则表达式来匹配的，同样能使用命名组�
 	]
 这样就可以通过`/app1/`，来访问app1下的hello方法了
 
-## Model
+## 数据库
 Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系映射)的方式，每个model类代表一张数据库的表，每一个属性代表其一个字段(这种特性的实现依赖于python的元类)。 
 ### 数据表定义
 定义model的文件是`project/app/models.py`里面，例如，要定义一张用户表：
@@ -907,13 +926,9 @@ in Django](https://docs.djangoproject.com/en/1.8/topics/auth/customizing/)
 
 ## Django Model
 
-### 数据库设置 
-              *
-              ---
-              title: "Django请求与响应"
-              date: 2015-05-15 15:12:11
-              categories: django
-              ---
+
+
+    
               官方文档：[Request and response
               objects](https://docs.djangoproject.com/en/1.8/ref/request-response/)
               当请求一个页面的时候，Django会建立一个HttpRequest对象，它包含了请求的一些数据，该对象就是每个views函数里面的第一个参数request.
