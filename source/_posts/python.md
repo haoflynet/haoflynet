@@ -765,6 +765,8 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 
   相对路径问题，所谓的相对路径其实是相对于当前module的路径，而不是当前目录的路径，如果当前目录不是module，那么当前module的name就是`__main__`，所以会出错
 
+- **Python中一切都是对象，a=1，b=1，两个是同一个对象，所以Python是无法通过变量名获取同名字符串的**
+
 ## 推荐阅读
 
 [Hidden features of Python](http://stackoverflow.com/questions/101268/hidden-features-of-python)

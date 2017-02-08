@@ -106,6 +106,15 @@ IP地址处理模块，可用于计算大量的IP地址，包括IPv4、IPv6网�
 
 [**MRQ**](https://github.com/pricingassistant/mrq): Python的分布式worker任务队列，使用Redis和gevent。既有RQ那样简单，又有Celery的性能。，具有强大的用户面板，可以控制队列中的任务、当前任务、workder的状态，并且能按任务区分日志。
 
+[mysqlclient](https://github.com/PyMySQL/mysqlclient-python): Python3链接MySQL/Mariadb数据库的库，相比于官方的库以及众多其他第三方库，这个库虽然只有一个人在维护开发，但是Pypi的权重值有9，而且Github一直有更新。在安装的时候需要先安装依赖：`sudo apt-get install python-dev libmysqlclient-dev`，Python3要加3，windows下可以直接安装，如果是OS X，那么可能是没有将mysql添加到环境变量，在_.profile_做如下修改
+
+```shell
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin/python3:/usr/local/mysql/bin:${PATH}"
+export PATH
+DYLD_LIBRARY_PATH="/usr/local/mysql/lib/${DYLD_LIBRARY_PATH}"
+export DYLD_LIBRARY_PATH  
+```
+
 ##### [paramiko](https://pypi.python.org/pypi/paramiko/1.15.2)([官方文档](http://docs.paramiko.org/en/1.15/api/client.html#paramiko.client.SSHClient))
 
 基于Python2/3实现的SSH2的库，支持认证及密钥方式，可以实现远程命令执行、文件传输、中间SSH代理等功能。windows安装的时候会有依赖问题，可见这个[issue](https://github.com/onyxfish/relay/issues/11)
@@ -202,16 +211,7 @@ Java里面非常好用的HTTP client，用起来显得十分简洁，简化了HT
 
 
 
-**[mysqlclient](https://pypi.python.org/pypi/mysqlclient/1.3.6 "Link: https://pypi.python.org/pypi/mysqlclient/1.3.6" )**：Python3连接MySQL数据库，相比于官方的python connector它更新更快，而且安全，所以我选择它，在安装的时候需要先安装依赖：_sudo apt-get install python-dev libmysqlclient-dev_，Python3要加3哟，windows下可以直接安装，如果是OS X，那么可能是没有将mysql添加到环境变量，在_.profile_做如下修改
 
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin/pyt
-hon3:/usr/local/mysql/bin:$\{PATH\}"
-
-export PATH
-
-DYLD_LIBRARY_PATH="/usr/local/mysql/lib/$\{DYLD_LIBRARY_PATH\}"
-
-export DYLD_LIBRARY_PATH  
 
 ---|---  
 
