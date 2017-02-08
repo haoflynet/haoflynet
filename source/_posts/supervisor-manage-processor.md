@@ -1,7 +1,7 @@
 ---
 title: "使用Supervisor管理进程"
 date: 2015-08-11 10:07:33
-updated: 2016-09-23 11:03:00
+updated: 2017-02-08 11:03:00
 categories: 编程之路
 ---
 参考文章：<http://segmentfault.com/a/1190000002991175>(原文中还有使用OneAPM安装Python探针的应用，可以实时监控web应用数据，暂时还未实践)
@@ -18,8 +18,8 @@ supervisor是使用Python编写的进程管理软件，在实际开发中，一�
     yum install supervisor
     /etc/init.d/supervisord restart
 
+安装过程如果安装出现unix:///var/run/supervisor.sock no such file这样的错误，那么请参考：http://tuzii.me/diary/522dc528848eea683d7724f2/\%E8\%A7\%A3\%E5\%86\%B3ubuntu-supervisor-unix:var-run-supervisor.sock-no-such-file.\%E7\%9A\%84\%E6\%96\%B9\%E6\%B3\%95
 
-    # 如果安装出现unix:///var/run/supervisor.sock no such file这样的错误，那么请参考：http://tuzii.me/diary/522dc528848eea683d7724f2/\%E8\%A7\%A3\%E5\%86\%B3ubuntu-supervisor-unix:var-run-supervisor.sock-no-such-file.\%E7\%9A\%84\%E6\%96\%B9\%E6\%B3\%95
 
 
 
@@ -55,3 +55,23 @@ supervisor是使用Python编写的进程管理软件，在实际开发中，一�
     start name    # 开始一个进程
     stop name    # 终止一个进程
     status   # 查看当前管理状态
+
+### TroubleShooting
+
+- **安装过程出现`unix:///var/run/supervisor.sock no such file`**:
+
+  ```she
+  # 首先删除通过apt-get安装的supervisor
+  sudo apt-get remove supervisor
+  # 然后把相应的进程kill掉
+  sudo ps -ef | grep supervisor
+  # 最后直接用easy_install安装
+  sudo easy_install supervisor
+  # 然后生成配置文件
+  sudo echo_supervisor_conf > /etc/supervisord.conf
+  # 最后启动
+  sudo supervisord
+  sudo supervisorctl
+  ```
+
+- ​

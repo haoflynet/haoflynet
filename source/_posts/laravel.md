@@ -394,6 +394,35 @@ class User extends Model{
 	}
 	
 	$roles = User::find(1)->roles;	# 这样可以直接查出来，如果想查出来roles也需要在roles里面进行定义
+##### 多态关联
+
+一个模型同时与多种模型相关联，可以一对多(morphMany)、一对一(morphOne)
+
+例如: 三个实例，文章、评论、点赞，其中点赞可以针对文章和评论，点赞表里面有两个特殊的字段`target_id`、`target_type`，其中`target_type`表示对应的表的Model，`target_id`表示对应的表的主键值
+
+```php
+# 点赞Model
+class Like extends Model {
+  public function target() {
+    return $this->morphTo(); // 如果主键不叫id，那么可以指定morphTo(null, null, 'uuid')
+  }
+}
+// 文章Model
+class Post extends Model {
+  public function likes(){	# 获取文章所有的点赞
+    return $this->morphMany('App\Like', 'target');
+  }
+}
+// 评论Model
+class Comment extends Model {
+  public function likes() {	# 获取评论所有的点赞
+    return $this->morphMany('App\Like', 'target');
+  }
+}
+```
+
+
+
 #### 数据库填充
 
 Laravel使用数据填充类来填充数据，在`app/database/seeds/DatabaseSeeder.php`中定义。可以在其中自定义一个填充类，但最
@@ -449,6 +478,7 @@ User::where([
   ['name', 'haofly']
 )			# where语句能够传递一个数组
 User::where()					# 如果不加->get()或者其他的是不会真正查询数据库的，所以可以用这种方式来拼接，例如$a_where=User::where();$result =$a_where->where()->get();
+User::whereIn('name', ['hao', 'fly'])	# in查询
 User::where()->firstOrFail()	# 查找第一个，找不到就抛异常
 User::where('user_id', 1)->get()# 返回一个Collection对象
 User::where(...)->first()		# 只取出第一个model对象
