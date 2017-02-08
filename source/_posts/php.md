@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2016-12-21 15:21:21
+updated: 2017-02-02 10:21:21
 categories: php
 ---
 # PHP
@@ -48,9 +48,6 @@ mb_substr($str, $start, $length, 'utf-8'): 字符串分割，可以分割中文�
 nl2br() # 将字符串中的\n转换成网页的换行符<br>
 strlen() # 求字符串长度
 str_replace(搜索值，替换值，目标)	# 字符串替换
-
-
-
 
 strpos('abc', 'a'): 在字符串中查找第一次出现位置，没找到返回false
 $a . $b . 'abc':字符串连接直接用点号
@@ -221,7 +218,6 @@ PHP_INT_MIN	# 最小整数
 - **isset()**：查看某个变量是否已经被定义，未赋值或赋NULL都会返回false
 - **@header('Content-type: text/html;charset=UTF-8');**PHP文件中添加中文支持，在脚本开始的地方添加给行即可
 - **多行输出**：其中最后一个EOF必须写在一行的开头，且里面如果要用变量这样用{ $php_var }
-  ​	
   	echo <<<EOF
   	内容
   	EOF;
@@ -240,6 +236,7 @@ composer require package_name --dev	# 安装包，并将其写入composer.json�
 
 ## TroubleShooting
 - **Call to undefined function getallheaders()**  
+
   版本问题，如果是老版本可以使用如下代码代替
 
   	if (!function_exists('getallheaders')) { 
@@ -256,7 +253,7 @@ composer require package_name --dev	# 安装包，并将其写入composer.json�
   		} 
   	}
 
-- **毁掉函数中访问外部变量**
+- **回掉函数中访问外部变量**
 
   方法一：使用类的静态变量
 

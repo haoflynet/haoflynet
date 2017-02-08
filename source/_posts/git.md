@@ -97,7 +97,25 @@ git push origin :refs/tags/v1.0.0		# 本地删除标签后远程也要删除
 git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | gawk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END { printf "added lines: %s removed lines : %s total lines: %s\n",add,subs,loc }' -
 ```
 
-## 多人协作指南
+## 贡献PR(Fork别人的项目)
+
+如果希望给开源项目贡献代码或者直接修复bug，那么就需要涉及到fork了并提交了。步骤如下:
+
+1. fork别人的仓库到自己这里: 直接在github里面点击fork，即可在自己的代码仓库里面创建一个一模一样的仓库。
+
+2. 从自己的代码仓库clone下来，并开发。
+
+3. 开发完成后，commit到自己的代码仓库
+
+4. 在自己的项目创建Pull Request，指向到原开源项目中去。
+
+   ![](http://ojccjqhmb.bkt.clouddn.com/git_1.jpg)
+
+![](http://ojccjqhmb.bkt.clouddn.com/git_2.jpg)
+
+记得添加commit说明。
+
+## 多人协作
 
 参考文章：[廖雪峰的官方网站](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013760174128707b935b0be6fc4fc6ace66c4f15618f8d000)
 前提：已经在Github上创建了库并创建了一个新的分支，假设新分支名为dev，那么开发步骤如下：
@@ -153,7 +171,7 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 
   发生这个问题是因为采用的是https而不是ssh方式来push仓库，而https传输数据的大小一般是由服务器，即nginx来控制的，太大了是传不上去的，这时候只需要更改为ssh方式即可。
 
-- **修改提交作者和邮箱**: git可以通过`git filter-branch`修改已经提交了的commit的作者和邮箱，这里有一个来自[若有所思-胡磊](http://i.dotidea.cn/2015/04/git-amend-author/)的批量修改的脚本:
+- **修改提交作者和邮箱**: git可以通过`git filter-branch`修改已经提交了的commit的作者和邮箱。如果仅仅想修改一次的，可以直接`git commit --amend --author="haoflynet <haoflynet@gmail.com>"`。这里有一个来自[若有所思-胡磊](http://i.dotidea.cn/2015/04/git-amend-author/)的批量修改的脚本:
 
   ```shell
   #!/bin/sh

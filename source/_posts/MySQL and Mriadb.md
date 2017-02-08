@@ -15,32 +15,43 @@ categories: database
 ## 常用命令
 ### 增删改查
 
-	# 创建数据库，如果是gbk编码，分别用gbk、gbk_chinese_ci;
-	CREATE DATABASE 库名 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci; 
-	
-	# 执行sql文件
-	mysql -uroot -pmysql --default-character-set=gbk  jpkc_db < jpkc_db.sql # 这里可以执行编码格式
-	
-	# 修改字段
-	ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
-	
-	# 外键约束操作
-	ALTER TABLE 表明 DROP FOREIGN KEY '外键名';			# 删除外键
-	
-	TRUNCATE tablename	# 清空数据表
+```shell
+# 创建数据库，如果是gbk编码，分别用gbk、gbk_chinese_ci;
+CREATE DATABASE 库名 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci; 
+
+# 执行sql文件
+mysql -uroot -pmysql --default-character-set=gbk  jpkc_db < jpkc_db.sql # 这里可以执行编码格式
+
+# 修改字段
+ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
+
+# 外键约束操作
+ALTER TABLE 表明 DROP FOREIGN KEY '外键名';			# 删除外键
+
+TRUNCATE tablename	# 清空数据表
+DROP database_name	# 删除数据库
+```
 ### 系统相关
 
-	# 更改密码
-	如果提示权限不足，可以先停止服务，然后这样启动service mysql start --skip-grant-tables
-	use mysql;
-	update user set password=PASSWORD('mysql') WHERE user="root";
-	flush privileges;
-	
-	# 查找系统常用变量
-	show global variables like 'log_error'; # 日志文件路径
-	
-	# 记录下所有的sql命令
-	bin-log = /tmp/mysql.log	# 直接在配置文件里面
+```shell
+# 更改密码
+## 如果提示权限不足，可以先停止服务，然后这样启动service mysql start --skip-grant-tables
+use mysql;
+update user set password=PASSWORD('mysql') WHERE user="root";
+update user set authentication_string=PASSWORD('mysql') WHERE user="root";	# MySQL5.7以后password字段改为了authentication_string字段
+flush privileges;
+
+# 打开远程登录权限
+GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "mysql";
+flush privileges;                更新权限
+select host, user from user;     查看更改
+
+# 查找系统常用变量
+show global variables like 'log_error'; # 日志文件路径
+
+# 记录下所有的sql命令
+bin-log = /tmp/mysql.log	# 直接在配置文件里面
+```
 ### 数据库维护
 
 ```shell
@@ -51,7 +62,8 @@ mysqldump -uroot -pmysql --databases -h127.0.0.1 abc | gzip > test.sql.1.gz # �
 # 备份多个数据库
 mysqldump -u... -p... -h... --databases data1 data2 > backup.sql
 
-# 倒入bz2格式的数据
+# 倒入数据
+mysql -uroot -pmysql db_name < test.sql
 bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
 ```
 
@@ -91,7 +103,7 @@ bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
 * 常用函数  
 
 
-        left(str, length) # 字符串截取
+    left(str, length) # 字符串截取
     right(str, length) # 字符串截取
     substring(str, pos, len) # 字符串截取
     concat(str1, str2)  # 字符串相加
@@ -134,12 +146,9 @@ bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
 
         # 设置数据库不区分大小写，vim /etc/mysql/my.cnf
     在[mysqld]后面添加：lower_case_table_names=1，然后重启
-    
-    # 打开远程登录权限
-    GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "mysql";
-    flush privileges;                更新权限
-    select host, user from user;     查看更改
-    
+
+
+​    
     # 新建用户
     grant 权限 on 数据库名.表名 用户名@主机地址identified by "密码";
     
