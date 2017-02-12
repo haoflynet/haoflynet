@@ -1,9 +1,8 @@
 ---
 title: "Git 教程"
 date: 2016-08-07 07:12:39
-updated: 2016-11-04 16:36:00
+updated: 2017-02-10 16:36:00
 categories: tools
-
 ---
 # Git指南
 
@@ -74,17 +73,22 @@ git branch -a  # 查看当前分支
 git checkout origin/dev	# 检出远程分支到本地，此时会显示如下:
 *(HEAD detached at origin/dev)
 master
-# 要想讲本地之内提交到远程dev分支，只需要再
+## 要想将本地之内提交到远程dev分支，只需要再
 git checkout -b dev # 这样就好了
-
-git checkout -b dev origin/dev    # 新建并切换分支
+## 新建并切换分支
+git checkout -b dev
+## 强制覆盖本地分支
+git fetch --all
+git reset --hard origin/master
+## 合并分支
+### 在新的分支如bug-fix修改完成后，执行以下操作
+git checkout dev	# 切换回dev分支
+git merge bug-fix	# 将bug-fix合并到当前分支，即dev分支
 ```
 
 
 ```shell
-# 强制覆盖本地分支
-git fetch --all
-git reset --hard origin/master
+
 
 # 标签操作
 git tag 									# 查看当前所有的标签
