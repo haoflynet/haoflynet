@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-01-18 14:44:00
+updated: 2017-02-20 17:44:00
 categories: python
 ---
 # Python
@@ -499,6 +499,23 @@ logger.error('%s service is down', 'own')	# 格式化输出日志
 logging.basicConfig(filename='test.log', level=logging.DEBUG)	# 这样接口
 ```
 
+#### SimpleHTTPServer
+
+最简单的web服务器，十分方便，最多的用途是用来进行局域网其他设备访问本机文件目录`python -m SimpleHTTPServer 8000`即可，另外，如果要想使`SimpleHTTPServer`能增加CORS特性，可以创建一个这样的文件`simple-cors-http-server.py`，之后直接用python执行即可，文件内容如下:
+
+```python
+from SimpleHTTPServer import SimpleHTTPRequestHandler
+import BaseHTTPServer
+
+class CORSRequestHandler (SimpleHTTPRequestHandler):
+    def end_headers (self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        SimpleHTTPRequestHandler.end_headers(self)
+
+if __name__ == '__main__':
+    BaseHTTPServer.test(CORSRequestHandler, BaseHTTPServer.HTTPServer)
+```
+
 #### smtplib: 用于发送邮件
 
 ```python
@@ -601,7 +618,6 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 
 
 - **Python设计模式**：https://github.com/faif/python-patterns
-- **SimpleHTTPServer**：最简单的web服务，十分方便，可以方便局域网其它设备访问本机文件目录`python -m SimpleHTTPServer 8000`
 - **静态方法(@staticmethod)**：跟类有管，和实例无关.静态方法没有默认的第一个参数.
 - **类方法(@classmethod)**：跟类有管，和实例无关.默认的第一个参数是类本身，而不像其它函数那样是对象本身
 - **元类**：[参考](http://blog.jobbole.com/21351/) [参考2](http://www.jianshu.com/p/d643d6f0ec82) [参考3](http://www.cnblogs.com/russellluo/p/3409602.html)元类的主要用途是创建API，比如Django的Model里面，record.field，这会返回该字段的值，而不是model定义里面的Field对象.最简单的例子：
