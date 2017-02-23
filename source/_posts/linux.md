@@ -1,15 +1,17 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2016-09-05 23:40:00
+updated: 2017-02-22 14:40:00
 categories: system
 ---
 # Linux指南
 
 ## 基础安装
 
-    # CentOS
-    sudo yum install epel-release
+```shell
+# CentOS
+sudo yum install epel-release
+```
 
 ## 命令行Tips
 #### 进程及端口
@@ -29,20 +31,24 @@ lsof -i -n -P | egrep -c ':8000.+ESTABLISHED' # 查看8000端口的连接数字
 kill -s 9 进程ID
 ```
 
-#### 查找与统计
+#### 查找、统计、替换
 
-    ls -lR | grep "^-" | wc -l # 递归统计文件夹下所有文件的个数
-    wc -l: 统计行数
-    grep -c "词语"   # 统计出现的次数
-    grep 字符串 文件名  # 在文件中查找某个字符串
-    grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
-    grep [0-9] 文件名  # 在文件中查找包含数字的行
-    grep 字符串 -r 目录 # 在特定目录及其子目录中的文件查找str
-    fdupes：快速查找重复文件
-    find / -name filename	# 精确查找某个文件
-    find / -name '*.txt'	# 模糊查找某个文件
-    find / -mmin -60    # 查找60分钟内修改的文章
-    find / -type d -mtime -1 # 查找1天内修改过的文件夹(好吧，我用了rm -rf / 命令才知道的)
+```shell
+ls -lR | grep "^-" | wc -l # 递归统计文件夹下所有文件的个数
+wc -l: 统计行数
+grep -c "词语"   # 统计出现的次数
+grep 字符串 文件名  # 在文件中查找某个字符串
+grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
+grep [0-9] 文件名  # 在文件中查找包含数字的行
+grep 字符串 -r 目录 # 在特定目录及其子目录中的文件查找str
+fdupes：快速查找重复文件
+find / -name filename	# 精确查找某个文件
+find / -name '*.txt'	# 模糊查找某个文件
+find / -mmin -60    # 查找60分钟内修改的文章
+find / -type d -mtime -1 # 查找1天内修改过的文件夹(好吧，我用了rm -rf / 命令才知道的)
+sed '5s/^.*$/xxxxx/' filename	# 替换某个文件的第五行，并输出结果，不写入
+sed -i 's/^abc$/xxxxx/g' filename > filename 	# 替换某个文件的abc字符串，并写入指定文件
+```
 
 #### 文件操作
 
@@ -98,36 +104,40 @@ find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK�
 
 #### 远程ssh
 
-    # 配置免密码登录
-    ssh-keygen -t dsa # 生成自己的ssh，然后将~/.ssh/id_dsa.pub的内容添加到主机的~/.ssh/authorized_keys里面面去
-    
-    # CentOS下的安装
-    yum install openssh-clients
-    
-    # 传输文件
-    scp 用户名@地址:远程路径 本地路径  # 获取/下载远程服务器的文件，目录加-r参数
-    scp 本地路径 用户名@地址:远程路径  # 将本地文件上传到远程目录，目录加-r
-    
-    # 仅允许SSH登录，vim /etc/ssh/sshd_conf
-    PubkeyAuthentication yes
-    AuthorizedKeysFile .ssh/authorized_keys
-    PasswordAuthentication no
-    
-    #保存，然后重启ssh服务
-    service sshd restart
-    
-    # 进制特定IP登录，vim /etc/hosts.deny
-    sshd:IP
-    
-    # 登录shell和非登录shell的区别: 加载的文件不同，登录式shell加载/etc/profile、/.bash_profile和~/.profile，而非登录式shell加载/etc/bashrc或者/etc/bash.bashrc、~/.bash_rc，所以在切换用户是最好加上-，即su - haofly就切换到那个心的地方了
+```shell
+# 配置免密码登录
+ssh-keygen -t dsa # 生成自己的ssh，然后将~/.ssh/id_dsa.pub的内容添加到主机的~/.ssh/authorized_keys里面面去
+
+# CentOS下的安装
+yum install openssh-clients
+
+# 传输文件
+scp 用户名@地址:远程路径 本地路径  # 获取/下载远程服务器的文件，目录加-r参数
+scp 本地路径 用户名@地址:远程路径  # 将本地文件上传到远程目录，目录加-r
+
+# 仅允许SSH登录，vim /etc/ssh/sshd_conf
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+PasswordAuthentication no
+
+#保存，然后重启ssh服务
+service sshd restart
+
+# 进制特定IP登录，vim /etc/hosts.deny
+sshd:IP
+
+# 登录shell和非登录shell的区别: 加载的文件不同，登录式shell加载/etc/profile、/.bash_profile和~/.profile，而非登录式shell加载/etc/bashrc或者/etc/bash.bashrc、~/.bash_rc，所以在切换用户是最好加上-，即su - haofly就切换到那个心的地方了
+```
 
 #### 包管理
 
-    dpkg -i *.deb # 安装deb包，但是它不会自动解决依赖，安装完成后还要使用apt-get -f install这条命令来安装没有安装好的依赖
-    apt-cache show 包名 # 显示apt库里面的软件的版本号
-    sudo apt-get clean # 自动清理安装程序时缓存的deb包
-    sudo apt-get autoclean  # 清理已卸载软件的无用的依赖包
-    rpm -ql 包名	# 查询已经安装的包的文件路径
+```shell
+dpkg -i *.deb # 安装deb包，但是它不会自动解决依赖，安装完成后还要使用apt-get -f install这条命令来安装没有安装好的依赖
+apt-cache show 包名 # 显示apt库里面的软件的版本号
+sudo apt-get clean # 自动清理安装程序时缓存的deb包
+sudo apt-get autoclean  # 清理已卸载软件的无用的依赖包
+rpm -ql 包名	# 查询已经安装的包的文件路径
+```
 
 #### 磁盘管理
 
@@ -145,21 +155,23 @@ sudo du -h -d 1 /path	# 获取指定目录下一级的各个目录的大小
 
 #### 用户管理
 
-    # 添加用户
-    sudo useradd -s /bin/bash -d /home/username -m username
-    
-    # 修改用户密码
-    sudo passwd username
-    
-    # 给用户添加sudo权限
-    vim /etc/sudoers 修改如下内容
-    # User privilege specification  
-    root    ALL=(ALL:ALL) ALL      # 在这一行下面写  
-    username1 ALL=(ALL:ALL) ALL    # 该用户可以执行所有sudo操作
-    username2 ALL=NOPASSWD:/usr/bin/git # 该用户可以执行'sudo git'的操作
-    
-    # 查看所有用户
-    cat /etc/passwd  
+```shell
+# 添加用户
+sudo useradd -s /bin/bash -d /home/username -m username
+
+# 修改用户密码
+sudo passwd username
+
+# 给用户添加sudo权限
+vim /etc/sudoers 修改如下内容
+# User privilege specification  
+root    ALL=(ALL:ALL) ALL      # 在这一行下面写  
+username1 ALL=(ALL:ALL) ALL    # 该用户可以执行所有sudo操作
+username2 ALL=NOPASSWD:/usr/bin/git # 该用户可以执行'sudo git'的操作
+
+# 查看所有用户
+cat /etc/passwd  
+```
 
 #### 系统相关
 
@@ -191,9 +203,11 @@ sudo swapon /swapfile
 
 #### 防火墙
 
-    service iptables status     # 查询防火墙状态
-    vim /etc/sysconfig/iptables # 新增端口
-    service iptables restart    # 重启防火墙
+```shell
+service iptables status     # 查询防火墙状态
+vim /etc/sysconfig/iptables # 新增端口
+service iptables restart    # 重启防火墙
+```
 
 ## 其它工具
 
@@ -201,23 +215,27 @@ sudo swapon /swapfile
 
 进程监控工具，`apt-get install supervisor`进行安装，默认的监控配置都放在`/etc/supervisor/conf.d`里面，配置文件语法如下:
 
-	[group:fenzu]
-	programs:一个进程名,另一个进程名	# 这样可以分组控制一批program
-	
-	[program:去一个进程名称]
-	process_name=%(program_name)s_%(process_num)02d # 当前进程的名称
-	directory=/home/...     # 工作目录，启动程序前会切换到这个地方
-	command=python manage.py runserver ....   # 启动命令
-	autostart=true				# 在supervisord启动的时候自动启动
-	autorestart=true			# 程序异常退出后自动重启
-	startretries=3 			# 启动失败自动重试次数，默认是3
-	user=root					# 用哪个用户启动
-	numprocs=8					# 进程数
-	redirect_stderr=true		# 把stderr重定向到stdout，默认为false
-	stdout_logfile=/var/log/...	# 日志文件位置，若该目录不存在则无法正常启动，需要手动创建目录
+```shell
+[group:fenzu]
+programs:一个进程名,另一个进程名	# 这样可以分组控制一批program
+
+[program:去一个进程名称]
+process_name=%(program_name)s_%(process_num)02d # 当前进程的名称
+directory=/home/...     # 工作目录，启动程序前会切换到这个地方
+command=python manage.py runserver ....   # 启动命令
+autostart=true				# 在supervisord启动的时候自动启动
+autorestart=true			# 程序异常退出后自动重启
+startretries=3 			# 启动失败自动重试次数，默认是3
+user=root					# 用哪个用户启动
+numprocs=8					# 进程数
+redirect_stderr=true		# 把stderr重定向到stdout，默认为false
+stdout_logfile=/var/log/...	# 日志文件位置，若该目录不存在则无法正常启动，需要手动创建目录
+```
 常用操作
 
-	supervisord	# 启动所有监控			
+```shell
+supervisord	# 启动所有监控			
+```
 #### CURL
 
 ```shell
@@ -252,62 +270,72 @@ service rsyslog restart		# 重启rsyslog
 
 **其他命令**
 
-	cd -: 返回上一次的目录，真他妈实用
-	history：查看历史命令，如果需要查看命令执行时间，需要先export HISTTIMEFORMAT='\%F \%T '
-	tzselect：更改时区
-	# 命令命名，例如如果想通过python命令调用python3而不是默认的python2，那么可以这样子：
-	alias python=python3
-	alias pip=pip3
-	alias run8000='python manage.py runserver 0.0.0.0:8000'
-	
-	# yes命令：重复输出字符串，不带参数则默认输出y。例如 `yes | apt-get install xxx`会默认输出y
-	
-	# 网络相关
-	ifdown eth0 # 禁用eth网卡
-	ifup eth0
-	
-	# 随机数
-	echo $RANDOM
-	
-	# 除法
-	echo $RANDOM / 28 | bc
-	echo $RANDOM % 28 | bc
+```shell
+cd -: 返回上一次的目录，真他妈实用
+history：查看历史命令，如果需要查看命令执行时间，需要先export HISTTIMEFORMAT='\%F \%T '
+tzselect：更改时区
+# 命令命名，例如如果想通过python命令调用python3而不是默认的python2，那么可以这样子：
+alias python=python3
+alias pip=pip3
+alias run8000='python manage.py runserver 0.0.0.0:8000'
+
+# yes命令：重复输出字符串，不带参数则默认输出y。例如 `yes | apt-get install xxx`会默认输出y
+
+# 网络相关
+ifdown eth0 # 禁用eth网卡
+ifup eth0
+
+# 随机数
+echo $RANDOM
+
+# 除法
+echo $RANDOM / 28 | bc
+echo $RANDOM % 28 | bc
+```
 
 ## Shell Script
 **数据结构**
 
-	VAR2=${VAR:-haofly}	# 如果变量VAR不存在，后面就是它的默认值
-	VAR2=${VAR/.tar.gz}	# 如果VAR的值为haofly.tar.gz，那么VAR2=haofly，一种替换
-	length=$(#array[@]}或者length=$(#array[*]} # 获取数组长度
+```shell
+VAR2=${VAR:-haofly}	# 如果变量VAR不存在，后面就是它的默认值
+VAR2=${VAR/.tar.gz}	# 如果VAR的值为haofly.tar.gz，那么VAR2=haofly，一种替换
+length=$(#array[@]}或者length=$(#array[*]} # 获取数组长度
+```
 
 **流程控制**
 
-	if语句：
-		-z：为空
-		-n：不为空
-		-gt：大于
-		
-	# 判断文件是否存在
-	if [ ! -f "$filename" ]; then
-	touch "$filename"
-	fi
+```shell
+if语句：
+	-z：为空
+	-n：不为空
+	-gt：大于
 	
-	# 判断文件是否为空
-	if [[ ! -s filename ]]; then
-	echo 'a'
-	fi
+# 判断文件是否存在
+if [ ! -f "$filename" ]; then
+touch "$filename"
+fi
+
+# 判断文件是否为空
+if [[ ! -s filename ]]; then
+echo 'a'
+fi
+```
 
 **特殊符号**
 
-	[[]]：双中括号，之间的字符不会发生文件名扩展或者单词分割
-	(())：双小括号，整数扩展，其中的变量可以不适用$符号前缀
-	$?：上一条命令的退出码
+```shell
+[[]]：双中括号，之间的字符不会发生文件名扩展或者单词分割
+(())：双小括号，整数扩展，其中的变量可以不适用$符号前缀
+$?：上一条命令的退出码
+```
 
 **日期处理**
 
-	date +"%s"	# 按照时间戳来显示
-	date +"%m-%d-%y"	# mm-dd-yy格式
-	date +"%T"	# 仅显示时间，比如10:44:00
+```shell
+date +"%s"	# 按照时间戳来显示
+date +"%m-%d-%y"	# mm-dd-yy格式
+date +"%T"	# 仅显示时间，比如10:44:00
+```
 
 **随机数**
 	$RANDOM	# 生成一个随机数

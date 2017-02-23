@@ -174,6 +174,16 @@ public function show($photoId, $commentId)
 route('post.comment.store', ['id'=> 12]) # 这样子就获取到id为12的post的comment的创建接口地址
 ```
 
+### 视图/静态资源
+
+#### 提供文件下载
+
+```php
+return response()->download($pathToFile);	# 直接提供文件下载
+return response()->download($pathToFile, $name, $headers);	# 设置文件名和响应头
+return response()->download($pathToFile)->deleteFileAfterSend(true); # 设置为下载后删除
+```
+
 ### 模板Template
 
 #### 标签
