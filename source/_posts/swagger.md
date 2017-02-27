@@ -1,4 +1,8 @@
-swagger教程
+---
+title: "Swagger 教程"
+date: 2017-02-26 23:26:00
+categories: tools
+---
 
 ### swagger特点
 
@@ -102,44 +106,110 @@ securityDefinitions:	# 在根路径上添加这个字段
 虽然`json`比`yaml`好用，但是在这里我还是觉得`yaml`更好看，更方便，所以我这里都用`yaml`来用，并且如果要`json`，它都是可以互相转换的，语法都一样。
 
 ```yaml
-swagger: '2.0'
+swagger: '2.0'						# swagger的版本
 info:
   title: 文档标题
   description:  描述
   version: "v1.0"					# 版本号
+  termsOfService: ""				# 文档支持截止日期
+  contact:							# 联系人的信息
+  	name: ""						# 联系人姓名
+  	url: ""							# 联系人URL
+  	email: ""						# 联系人邮箱
+  license:							# 授权信息
+  	name: ""						# 授权名称，例如Apache 2.0
+  	url: ""							# 授权URL
 
-host: api.haofly.net				# 域名
+host: api.haofly.net				# 域名，可以包含端口，如果不提供host，那么默认为提供yaml文件的host
+basePath: /							# 前缀，比如/v1
 
-schemes:							# http和https都可以
+schemes:							# 传输协议
   - http
   - https
   
-securityDefinitions:				# 用于OAuth2
-  Bearer:
+securityDefinitions:				# 安全设置
+  api_key:
     type: apiKey
-    name: Authorization
-    in: header
-    
-basePath: /							# 前缀，比如/v1
+    name: Authorization				# 实际的变量名比如，Authorization
+    in: header						# 认证变量放在哪里，query或者header
+  OauthSecurity:					# oauth2的话有些参数必须写全
+    type: oauth2
+    flow: accessCode				# 可选值为implicit/password/application/accessCode
+    authorizationUrl: 'https://oauth.simple.api/authorization'
+    tokenUrl: 'https://oauth.simple.api/token'
+    scopes:
+      admin: Admin scope
+      user: User scope
+      media: Media scope
+  auth:
+  	type: oauth2
+  	description: ""					# 描述
+  	authorizationUrl: http://haofly.net/api/oauth/
+  	name: Authorization				# 实际的变量名比如，Authorization
+  	tokenUrl:
+  	flow: implicit					# oauth2认证的几种形式，implicit/password/application/accessCode
+  	scopes:
+  	  write:post: 修改文件
+  	  read:post: 读取文章
+  	  
+security:							# 全局的安全设置的一个选择吧
+  auth:
+    - write:pets
+    - read:pets
+  	  
 
-consumes:
+consumes:							# 接收的MIME types列表
   - application/json				# 接收响应的Content-Type
+  - application/vnd.github.v3+json
   
-produces:
+produces:							# 请求的MIME types列表
   - application/vnd.knight.v1+json	# 请求头的Accept值
-  
-paths:
+  - text/plain; charset=utf-8
+
+tags:								# 相当于一个分类
+  - name: post	
+    description: 关于post的接口
+    
+externalDocs:
+  description: find more info here
+  url: https://haofly.net
+    
+paths:								# 定义接口的url的详细信息
   /projects/{projectName}:			# 接口后缀，可以定义参数
     get:
-      summary: 接口描述
+      tags:							# 所属分类的列表
+        - post	
+      summary: 接口描述				 # 简介
+      description: 					# 详细介绍
+      externalDocs:					# 这里也可以加这个
+      	description:
+      	url:
+      operationId: ""				# 操作的唯一ID
+      consumes: [string]			# 可接收的mime type列表
+      produces: [string]			# 可发送的mime type列表
+      schemes: [string]				# 可接收的协议列表
+      deprecated: false				# 该接口是否已经弃用
       security:						# OAuth2认证用
-        - Bearer: []
+        - auth: 
+        	- write:post
+        	- read: read
       parameters:					# 接口的参数
         - name: projectName			# 参数名
-          in: path					# 该参数应该在哪个地方，例如path、body、query等
+          in: path					# 该参数应该在哪个地方，例如path、body、query等，但是需要注意的是如果in body，只能用schema来指向一个定义好的object，而不能直接在这里定义
           type: string				# 参数类型
+          allowEmptyValue: boolean			# 是否允许为空值
           description: 项目名		  # 参数描述
           required: true			# 是否必须
+          default: *				# 设置默认值
+          maximum: number			# number的最大值
+          exclusiveMaximum: boolean	# 是否排除最大的那个值
+          minimum: number			# number的最小值
+          exclusiveMinimum: boolean
+          maxLength: integer		# int的最大值
+          minLength: integer
+          enum: [*]					# 枚举值
+          items:					# type为数组的时候可以定义其项目的类型
+        - $ref: "#/parameters/uuidParam"	# 这样可以直接用定义好的
       responses:					# 设置响应
         200:						# 通过http状态来描述响应
           description: Success		# 该响应的描述
@@ -171,9 +241,34 @@ definitions:			# Model/Response的定义，这里的定义不强制要求返回�
   	properties:
   		data:
   			$ref: '#/definitions/ProjectResponse'	# model之间的关联，表示在data字段里面包含的是一个ProjectResponse对象
+
+parameters:				# 可以供很多接口使用的params
+  limitParam:
+    name: limit
+    in: query
+    description: max records to return
+    required: true
+    type: integer
+    format: int32
+
+responses:				# 可以供很多接口使用的responses
+  NotFound:
+    description: Entity not found.	
+	
 ```
 
+#### 支持的数据类型
 
-
-
-
+```tex
+integer: int32
+long: int64
+float
+double
+string
+byte
+binary
+boolean
+date
+dateTime
+password
+```
