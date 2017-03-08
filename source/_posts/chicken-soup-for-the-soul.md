@@ -17,6 +17,7 @@ categories: 韦编三绝
 - [我今年二十七八岁](http://www.miaopai.com/show/QOOHNbAkLLhNm8tgTujs5g__.htm "Link: http://www.miaopai.com/show/QOOHNbAkLLhNm8tgTujs5g__.htm" )
 - [再一次，为平凡人喝彩](http://www.miaopai.com/show/g1YsnG3zN58ce0dAfL8IPQ__.htm "Link: http://www.miaopai.com/show/g1YsnG3zN58ce0dAfL8IPQ__.htm" )
 - [星空日记](http://www.miaopai.com/show/QVe50grNG0tRcYdS-VMyHQ__.htm "Link: http://www.miaopai.com/show/QVe50grNG0tRcYdS-VMyHQ__.htm" )：
+- [You will never ready follow dreams passions goals](https://motivationgrid.com/will-never-ready-follow-dreams-passions-goals/): 你永远也不会准备好
 
 ## 歌曲类鸡汤
 
