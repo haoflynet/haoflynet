@@ -1,11 +1,20 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2016-11-21 17:08:00
+updated: 2017-03-07 17:08:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
 ## 基本语法
+
+### 变量
+
+```javascript
+var $a;	// es6以前定义变量，if (true) {var a = 1;} console.log(a); 输出为1
+let $b;	// es6用于定义跨级作用域本地变量，if (true) {let b = 1;} console.log(b);输出为undefined
+const $c;	// 定义常量
+```
+
 ### 数组
 
 ```javascript
@@ -59,6 +68,8 @@ append()	// 在被选元素的结尾插入内容
 prepend()	// 在被选元素的开头插入内容
 after()		// 在被选元素之后插入内容
 before()	// 在被选元素之前插入内容
+remove()	// 删除当前元素
+empty()		// 清空当前元素的子元素
 
 // 属性更改
 addClass('')	// 给元素添加类
@@ -228,19 +239,19 @@ $.post('some.php', {name: 'haofly'})
 
 * **获取当前元素的父元素**，使用target，但有时候也可以不用target...我也是醉了 获取同级的元素：prev()和next()
 
-          $('button#post').bind('click', function(ele){
-          $.ajax({
-              url: port,
-              type: "POST",
-              dataType: "json",
-              error: function(error){
-                  alert('出错啦');
-              },
-              success: function(data){
-                  alert($(ele.target).parent().parent().attr('id'));
-              }
-          });
-      });
+         $('button#post').bind('click', function(ele){
+         $.ajax({
+             url: port,
+             type: "POST",
+             dataType: "json",
+             error: function(error){
+                 alert('出错啦');
+             },
+             success: function(data){
+                 alert($(ele.target).parent().parent().attr('id'));
+             }
+         });
+     });
 
 
 *   在ajax的url里面，默认是相对于当前地址的url，例如
@@ -249,18 +260,18 @@ $.post('some.php', {name: 'haofly'})
         当前地址是http://localhost/a/b，那么url: 'publish'表示http://localhost/hehe/publish
         只有写为url: '/publish'才表示相对于根域名，即http://localhost/publish
 
-*   **给生成的元素动态绑定事件**：SegmentFault说直接用.on方法可以实现1.7之前.live的动态绑定功能，但是我就是不行，这里使用.on的另外一种方法，绑定到document上去就行了，原理就是将事件委托给父元素，然后由父元素绑定给子元素：
+* **给生成的元素动态绑定事件**：SegmentFault说直接用.on方法可以实现1.7之前.live的动态绑定功能，但是我就是不行，这里使用.on的另外一种方法，绑定到document上去就行了，原理就是将事件委托给父元素，然后由父元素绑定给子元素：
 
-              $(document).on('click', 'button', function(){
-              	alert('dg');
-              });
+         $(document).on('click', 'button', function(){
+         	alert('dg');
+         });
 
-*   绑定回车事件：
+* 绑定回车事件：
 
-              $(document).on('keypress', 'input', function(event){
-              if(event.keyCode == '13'){
-                  alert('success');
-              });
+         $(document).on('keypress', 'input', function(event){
+         if(event.keyCode == '13'){
+             alert('success');
+         });
 
 
 
@@ -271,7 +282,7 @@ $.post('some.php', {name: 'haofly'})
   $('#form1').append($(input));
   ```
 
-* `<select>`元素的选择`<option>`事件是`change`，而获得所选择元素使用的是`val()`，默认被选择：`<option selected="true" value="xxx">xxx</option>`
+* `<select>`元素的选择`<option>`事件是`change`，而获得所选择元素使用的是`val()`，默认被选择：`<option selected="true" value="xxx">xxx</option>`，获取文本内容用`text()`
 
 * **避免表单回车自动提交**：有时候想在表单提交前进行一些操作，但又不想在回车时自动提交表单(当只有input的时候，会强制提交)，这时候只需要在button的回车事件中添加`return false`即可
 

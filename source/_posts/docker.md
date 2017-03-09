@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2016-12-29 16:02:00
+updated: 2017-03-08 16:02:00
 categories: tools
 ---
 # Docker 使用指南
@@ -202,7 +202,17 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
   vim etc/docker/daemon.json		# 在json文件里面添加一个字段"bip":"172.18.0.1/24"
   git add etc/docker/daemon.json && git commit -m "configure bip"	# 提交过后，docker会自动重启，重启过后，所有的容器以及新开的容器就都会是新的网段了，终于能ping通了
   ```
+  **2017年3月份最近更新的docker里面发现已经没有上面那个文件夹了，所以这里我用了另外一种方式**，而这时候我才知道为什么我的docker又出现了网络不通的问题，原因是`docker-compse`启动的容器组会新建一个单独的网桥，而这个网桥的网段每一个都不一样，建多了几个过后就发现，又和内网冲突了。。。
 
-- **Mac下`~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux`目录占用内存过大**: 目测是一个一直没有被修复的bug，是由于镜像反复拉，容器反复删除重建，但是存储从来不释放造成的，我现在的解决方法是把想要的镜像拉下来到处到存储中去，以后要使用直接拉取，这样避免了每次pull不下来的时候重新pull导致存储不释放的问题
+  ```shell
+  docker network ls		# 列出所有的网桥
+  docker network prune	# 删除没有使用的网桥
+  docker network info name	# 查看某个网桥的详细信息
+  docker network rm name		# 删除某个网桥
+  ```
+
+  删除完有冲突的网桥过后，新建`docker-compose`即可。
+
+- Mac下`~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux`目录占用内存过大**: 目测是一个一直没有被修复的bug，是由于镜像反复拉，容器反复删除重建，但是存储从来不释放造成的，我现在的解决方法是把想要的镜像拉下来到处到存储中去，以后要使用直接拉取，这样避免了每次pull不下来的时候重新pull导致存储不释放的问题
 
 
