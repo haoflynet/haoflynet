@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-02-02 10:21:21
+updated: 2017-03-08 17:21:21
 categories: php
 ---
 # PHP
@@ -12,6 +12,7 @@ categories: php
 array_chunk($array, $size): 将数组按size大小分为多个数组
 array_diff($a, $b): 比较数组的不同，可以用来判断两个数组是否相等，需要注意的是这里返回的是在array1中但是不在array2中的值，而不是两个的交集
 array_key_exists("key",$a)  # 查看key是否存在于某个字典
+array_intersect($array1, $array2[,$array $...])	# 返回一个数组，该数组包含了所有在array1同时也出现在其他参数数组中的值
 array_merge()			# 合并数组，相同的key直接覆盖
 array_merge_recursive()	# 合并数组，相同的key不覆盖
 array_push($source, "red", "gree")	# 给数组添加元素
@@ -22,6 +23,7 @@ array_sum($arr): 计算数组中所有值的和
 count()函数：输出数组的长度
 empty()函数：判断数组是否为空
 end()		// 返回当前数组的最后一个值，需要注意的是这个函数不仅仅是返回最后一个值，还会把数组当前的指针指向最后一个数据
+explode(',', $str)	# 将字符串分割为数组	
 implode(',', $arr)	# 将数组拼接成字符串
 in_array('a', $a)				# 查看数组是否存在某个元素
 json_encode($arr)	# 数组转换城字符串
@@ -92,6 +94,19 @@ sprintf('%04d', 2)	// 数字前补零
 	date('Y-m-d H:i:s'); // 如果要单独获取或者修改格式，那么直接按照里面的格式修改即可
 	# 输出指定格式
 	date('Y-m-d H:i', time())
+
+### 文件操作
+
+```php
+$fp = fopen("test", "r") or die("Unable to open file!");	# 打开文件
+$fp = fopen('test', 'w')	# 写入
+fread($fp,filesize("webdictionary.txt"));	# 读取指定大小的内容
+fgetc($fp)		# 读取一个字符
+fgets($fp)		# 读取一行
+feof($fp)		# 判断指针是否指向文件尾了
+fwrite($fp, 'haofly')	# 写入字符串到文件
+fclose($fp);	# 关闭文件
+```
 
 ### 函数/类/对象
 
@@ -205,22 +220,22 @@ PHP_INT_MIN	# 最小整数
 - **@操作符**: 错误控制运算符，写在一行的前面，可以控制改行不输出warning信息或错误信息
 - **var_dump(变量名)**：打印变量，这个函数还会打印变量的类型可以把一个变量的各个部分全部信息输出，包括每个部分的数据类型和长度等信息，但是默认情况下，输出有限制，如果层数深了或者数据长了可能会表示成省略号，可以在`C:\wamp\bin\apache\\apache2.4.9\bin\php.ini`里面修改xdebug节点，添加如下内容
 
-  	xdebug.var_display_max_children=128
-  	xdebug.var_display_max_data=512
-  	xdebug.var_display_max_depth=5
-  另外，将var_dump的输出转换为一个字符串以便web前端显示，可以这样用：
-  	ob_start();
-  	var_dump($data);
-  	$result = ob_get_clean();
-  	# 或者用另外的函数
-  	var_export: 输出或返回一个变量的字符串表示
+   xdebug.var_display_max_children=128
+   	xdebug.var_display_max_data=512
+   	xdebug.var_display_max_depth=5
+   另外，将var_dump的输出转换为一个字符串以便web前端显示，可以这样用：
+   	ob_start();
+   	var_dump($data);
+   	$result = ob_get_clean();
+   	# 或者用另外的函数
+   	var_export: 输出或返回一个变量的字符串表示
 - **file_get_contents**：获取文件或http内容，如果要从http获得json数据可以直接使用它
 - **isset()**：查看某个变量是否已经被定义，未赋值或赋NULL都会返回false
 - **@header('Content-type: text/html;charset=UTF-8');**PHP文件中添加中文支持，在脚本开始的地方添加给行即可
 - **多行输出**：其中最后一个EOF必须写在一行的开头，且里面如果要用变量这样用{ $php_var }
-  	echo <<<EOF
-  	内容
-  	EOF;
+   echo <<<EOF
+   	内容
+   	EOF;
 - **print_r**:打印关于变量的易于理解的信息。如果给出的是 string、integer 或 float，将打印变量值本身。如果给出的是 array，将会按照一定格式显示键和元素。这点在调试的时候很有用
 - **类的方法尽量写成static，速度比public快**
 
@@ -234,7 +249,26 @@ composer show 	# 获取所有安装的包的列表
 composer require package_name --dev	# 安装包，并将其写入composer.json的require-dev中去
 ```
 
+### auttoload
+
+在`composer.json`中有四种自动加载类型
+
+- classmap: `development`相关的
+
+  ```php
+  {
+    "classmap": ["src/"]	# 这样composer就会读取这个文件夹下所有的文件，然后再vendor/composer/autoload_classmap.php中将所有的class的namespace+classname生成一个key=>value的数组
+  }
+  ```
+
+- psr-0: 已经被弃用
+
+- psr-4: 一般用于项目代码的自动加载
+
+- files: `helper`相关的
+
 ## TroubleShooting
+
 - **Call to undefined function getallheaders()**  
 
   版本问题，如果是老版本可以使用如下代码代替
