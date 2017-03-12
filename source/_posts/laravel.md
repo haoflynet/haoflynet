@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-02-13 10:33:00
+updated: 2017-03-09 17:33:00
 categories: php
 ---
 # Laravel指南
@@ -61,10 +61,14 @@ $validation = Validator::make($request->all(), [
 # 常用框架自带的认证类型
 active_url			# 该url一定能访问
 array				# 仅允许为数组
-between:min,max		# 介于最小值和最大值之间
+between:min,max		# 介于最小值和最大值之间，两边都是闭区间，如果是数字，一定要先声明当前字段为integer
 boolean				# 必须是true,false,1,0,"1","0"
 date				# 必须是时间类型
-in:value1,value2,...# 字段值必须是这些值中的一个
+exists:table,column	# 判断字段的值是否存在于某张表的某一列里面
+exists:table,column1,column2,value	# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值为多少
+exists:table,column1,column2,!value	# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值不为多少
+exists:table,column1,column2,{$field}# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值和前面的某个字段提供的值一样
+in:value1,value2,...# 字段值必须是这些值中的一个，枚举值
 integer				# 必须是整数
 ip					# 必须是IP字符串
 json				# 必须是JSON字符串
@@ -72,11 +76,17 @@ max:value			# 规定最大值
 min:value			# 规定最小值
 numeric				# 是数字
 required			# 必填
+required_with:字段名 # 当某个字段存在的时候当前字段必填
+required_if:anotherfield,value	# 当某个字段的某个值为多少的时候，当前字段为必填
 string				# 必须是字符串
 url					# 必须是合法的url
 regex				# 必须符合这个正则表达式，例如regex:/^[a-z]{1}[a-z0-9-]+$/
 
 # 自定义错误提示的消息，可以通过传递进去，不过也可以直接在语言包文件resources/lang/xx/validation.php文件的的custom数组中进行设置
+
+# 验证数组里面的字段用这样的方式
+'person.email' => 'email|unique:users'
+'person.first_name' => 'required_with:person.*.last_name'
 
 # 将表单的验证提取出来作为单独的表单请求验证Form Request Validation
 # 使用php artisan make:request BlogPostRequest创建一个表单请求验证类，会在app/Http/Requests里面生成相应的类，之后表单验证逻辑就只需要在这里写上就行了，例如
@@ -137,6 +147,18 @@ Route::resource('photos.comments', 'PhotoCommentController');
 # 控制器只需要这样子定义即可
 public function show($photoId, $commentId)
 ```
+
+##### 资源控制器对应的路由
+
+| Verb      | URI                  | Action  | Route Name     |
+| --------- | -------------------- | ------- | -------------- |
+| GET       | /photos              | index   | photos.index   |
+| GET       | /photos/create       | create  | photos.create  |
+| POST      | /photos              | store   | photos.store   |
+| GET       | /photos/{photo}      | show    | photos.show    |
+| GET       | /photos/{photo}/edit | edit    | photos.edit    |
+| PUT/PATCH | /photos/{photo}      | update  | photos.update  |
+| DELETE    | /photos/{photo}      | destroy | photos.destroy |
 
 ### 路由url
 
@@ -414,7 +436,7 @@ class User extends Model{
 # 点赞Model
 class Like extends Model {
   public function target() {
-    return $this->morphTo(); // 如果主键不叫id，那么可以指定morphTo(null, null, 'uuid')
+    return $this->morphTo(); // 如果主键不叫id，那么可以指定morphTo(null, null, 'target_uuid')最后这个参数是字段名哟
   }
 }
 // 文章Model
@@ -429,6 +451,9 @@ class Comment extends Model {
     return $this->morphMany('App\Like', 'target');
   }
 }
+
+$comment->likes;
+$comment->likes;
 ```
 
 
@@ -543,8 +568,27 @@ DB::commit();
 with在laravel的ORM中被称为预加载，作用与关联查询上
 
 ```php
-# 例如，在Users的Model里面有个public function posts(){hasMany}
-User::with('posts')->get()	# 这样就能实现预加载，不用多次查询了
+# 例如要查询所有文章的作者的名字，可以这样子做
+$posts = App\Post::all();
+foreach($posts as $post) {
+  var_dump($post->user->name);
+}
+# 但是，这样做的话，每一篇文章都会查询一次用户，而如果这些文章的用户都是一个人，那岂不是要查询n次了。这时候预加载就有用了。
+$posts = App\Post::with('user')->get();
+foreach ( $books as $book) {
+  var_dump($post->user->name);
+}
+# 这样子做，所有的数据在foreach前就都读取出来了，后面循环的时候并没有查询数据库，总共只需要查询2次数据库。
+
+# with还可以一次多加几张关联表
+App\Post::wth('user', 'author')->get();
+# 嵌套使用
+App\Post::with('user.phone')->get(); # 取出用户并且取出其电话
+
+# 也可以不用全部取出来
+$users = User::with(['posts' => function ($query) {
+  $query->where('title', '=', 'test');
+}])->get();
 ```
 
 ##### Cache
@@ -715,6 +759,9 @@ $record->update($request->intersect([
     'year',
     'type'
 ]));
+
+str_contains('Hello foo bar.', 'foo');	# 判断给定字符串是否包含指定内容
+str_random(25);			# 产生给定长度的随机字符串
 ```
 
 ### 错误和日志
@@ -793,32 +840,32 @@ factory(App\User::class, 50)->create()->each(function($u) {
 
 - **处理上传文件**：
 
-  	$file = Input::file('upload_file");// 获取上传文件对象
-  	$file->isValid()                   // 检验文件是否有效
-  	$file->getClientOriginalName();    // 获取文件原名
-  	$file->getFileName();              // 获取上传后缓存的文件的名字
-  	$file->getRealPath();              // 获取缓存文件的绝对路径
-  	$file->getClientOriginalExtension();// 获取上传文件的后缀
-  	$file->getMimeType();              // 获取上传文件的MIME类型
-  	$file->getSize();                  // 获取上传文件的大小
+   $file = Input::file('upload_file");// 获取上传文件对象
+   	$file->isValid()                   // 检验文件是否有效
+   	$file->getClientOriginalName();    // 获取文件原名
+   	$file->getFileName();              // 获取上传后缓存的文件的名字
+   	$file->getRealPath();              // 获取缓存文件的绝对路径
+   	$file->getClientOriginalExtension();// 获取上传文件的后缀
+   	$file->getMimeType();              // 获取上传文件的MIME类型
+   	$file->getSize();                  // 获取上传文件的大小
 
 - **获取输入信息**
-  	$id = Input::get('id');
-  	$id = Input::get('id', 2);  // 还可以指定默认值
+   $id = Input::get('id');
+   	$id = Input::get('id', 2);  // 还可以指定默认值
 
 - **获取请求信息**：
-  	Request::url();      // 获取请求url
-  	$request = new Request;
-  	$request->get('id'); // 同样实现获取数据的功能
+   Request::url();      // 获取请求url
+   	$request = new Request;
+   	$request->get('id'); // 同样实现获取数据的功能
 
 - **手动清理配置缓存 **
 
-  	php artisan config:cache
+   php artisan config:cache
 
 - **插入数据的时候出现`MassAssignmentException in Laravel`错误**  
 
-  	# 需要给数据表设置可访问的字段，在Model里面
-  	protected $fillable = array('字段1', '字段2');
+   # 需要给数据表设置可访问的字段，在Model里面
+   	protected $fillable = array('字段1', '字段2');
 
 - **php artisan db:seed出现`[ReflectionException] Claxx XXXTableSeeder dows not exist`错误**
   这是因为新增加了文件但是composer没有感知到，需要先执行`composer dump-autoload`
