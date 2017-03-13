@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-02-20 17:44:00
+updated: 2017-03-07 17:44:00
 categories: python
 ---
 # Python
@@ -15,14 +15,17 @@ categories: python
 yum groupinstall -y 'development tools'
 yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel xz-libs
 # for Ubuntu
-apt-get install -y libssl-dev
+apt-get install -y build-essential libssl-dev
 
-wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz
-xz -d Python-3.5.2.tar.xz
-tar -xvf Python-3.5.2.tar
-cd Python-3.5.2
+# Linux下不区分64和32位
+wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz	
+xz -d Python-3.6.0.tar.xz
+tar -xvf Python-3.6.0.tar
+cd Python-3.6.0
 ./configure && make && make altinstall
 cd
+
+# 如果默认没有安装pip，那么可以这样安装
 wget https://bootstrap.pypa.io/get-pip.py
 python3.5 get-pip.py
 
@@ -622,17 +625,17 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 - **类方法(@classmethod)**：跟类有管，和实例无关.默认的第一个参数是类本身，而不像其它函数那样是对象本身
 - **元类**：[参考](http://blog.jobbole.com/21351/) [参考2](http://www.jianshu.com/p/d643d6f0ec82) [参考3](http://www.cnblogs.com/russellluo/p/3409602.html)元类的主要用途是创建API，比如Django的Model里面，record.field，这会返回该字段的值，而不是model定义里面的Field对象.最简单的例子：
 
-  	# 给类添加作者信息
-  	class AuthorTag(type):
-  	    def __new__(cls, name, bases, dict):
-  	        dict['__author__'] = 'RussellLuo'
-  	        return super(AuthorTag, cls).__new__(cls, name, bases, dict)
-  	
-  	class MyBlog:
-  	    __metaclass__ = AuthorTag
-  	
-  	class MyGitHub:
-  	    __metaclass__ = AuthorTag
+   # 给类添加作者信息
+   	class AuthorTag(type):
+   	    def __new__(cls, name, bases, dict):
+   	        dict['__author__'] = 'RussellLuo'
+   	        return super(AuthorTag, cls).__new__(cls, name, bases, dict)
+   	
+   	class MyBlog:
+   	    __metaclass__ = AuthorTag
+   	
+   	class MyGitHub:
+   	    __metaclass__ = AuthorTag
 - **自省**：[参考](https://www.ibm.com/developerworks/cn/linux/l-pymeta/)自省对象能够描述自己：实例属于哪个类？类有哪些祖先？对象可以用哪些方法和属性？自省让处理对象的函数或方法根据传递给函数或方法的对象类型来做决定
 - **管理属性**：
   - **\_\_new\_\_**：在构造函数之前，可以决定是否用\_\_init\_\_方法来实例化类，是一个静态方法.
@@ -640,11 +643,11 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
   - **\_\_del\_\_**：类的析构函数
   - **\_\_call\_\_**：在定义类的时候，实现该函数，这样该类的实例就变成可调用的了，相当于重载了括号运算符.例如，md5那几个库，使用的时候就是md5(...)，但其实它肯定是个类的实例而不是个简单的函数撒.[使用场景](http://qa.helplib.com/523801)例如：
 
-    	class A():
-    		def __call__(self, key):
-    			print(key)
-    	a = A()
-    	a('key')	# 打印'key'
+     class A():
+     		def __call__(self, key):
+     			print(key)
+     	a = A()
+     	a('key')	# 打印'key'
 - **多态**：Python中的多态，就相当于重载的方法
 - **Mixin**：在运行期间动态改变类的基类或类的方法，哦，就是在运行时给改变基类，这样随之所有的子类都改变了
 - **迭代器**：[参考](https://github.com/lzjun567/note/blob/master/note/python/iterator_generator.md)对象的类有next和iter方法返回自身
@@ -652,8 +655,8 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 - **下划线**: 单下划线开头的变量可以理解为不重要的需要抛弃的变量，比如循环中的计数，而如果是一根下划线作为函数，通常用于翻译功能
 - **包管理器pip**:
 
-  	# 升级所有的包
-  	pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U
+   # 升级所有的包
+   	pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U
 
 
 
@@ -760,9 +763,9 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 ## TroubleShooting
 - **CentOS安装pip**  
 
-  	yum install epel-release
-  	rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-  	yum install -y python-pip
+   yum install epel-release
+   	rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+   	yum install -y python-pip
 
 - **AttributeError: 'EntryPoint' object has no attribute 'resolve'**
   原因是`cryptography`版本过高或过低，需要制定版本，一般是`pip install cryptography==1.2.1`
@@ -786,3 +789,5 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 ## 推荐阅读
 
 [Hidden features of Python](http://stackoverflow.com/questions/101268/hidden-features-of-python)
+
+[PyMOTW-3](https://pymotw.com/3/): 由 [Doug Hellmann](http://doughellmann.com/ )所写的Python标准库的示例用法。
