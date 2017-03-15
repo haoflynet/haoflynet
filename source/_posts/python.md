@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-03-07 17:44:00
+updated: 2017-03-13 17:44:00
 categories: python
 ---
 # Python
@@ -502,9 +502,9 @@ logger.error('%s service is down', 'own')	# 格式化输出日志
 logging.basicConfig(filename='test.log', level=logging.DEBUG)	# 这样接口
 ```
 
-#### SimpleHTTPServer
+#### http.server(SimpleHTTPServer)
 
-最简单的web服务器，十分方便，最多的用途是用来进行局域网其他设备访问本机文件目录`python -m SimpleHTTPServer 8000`即可，另外，如果要想使`SimpleHTTPServer`能增加CORS特性，可以创建一个这样的文件`simple-cors-http-server.py`，之后直接用python执行即可，文件内容如下:
+最简单的web服务器，十分方便，最多的用途是用来进行局域网其他设备访问本机文件目录`python -m SimpleHTTPServer 8000`即可，`Python3`里面，模块更改为`python3 -m http.server`另外，如果要想使`SimpleHTTPServer`能增加CORS特性，可以创建一个这样的文件`simple-cors-http-server.py`，之后直接用python执行即可，文件内容如下:
 
 ```python
 from SimpleHTTPServer import SimpleHTTPRequestHandler
