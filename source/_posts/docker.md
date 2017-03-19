@@ -79,6 +79,7 @@ CMD: 一般写于最后,因为它是容器启动时才执行的命令,并且无�
 ENTRYPOINT: 和CMD类似,但是如果docker run中指定了命令,它仍然会被执行
 ENV: 指定环境变量
 ARG: 指定参数，比如ockerfile里面定义了`ARG JAVA_HOME`，那么可以在构建的时候用docker build JAVA_HOME=$JAVA_HOME对该参数进行赋值
+ONBUILD: 后面跟的是其他的普通指令，例如ONBUILDI RUN mkdir test，实际上它是创建了一个模版景象，后续根据该景象创建的子镜像不用重复写它后面的指令，就会执行该指令了
 ```
 
 ## Docker Compose 

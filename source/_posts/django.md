@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2017-01-23 17:03:00
+updated: 2017-03-16 15:03:00
 categories: python
 ---
 # Django教程
@@ -33,12 +33,13 @@ Django另一个我特别喜欢的特性就是Application，它与Project的概�
 
    ```shell
    django_test/testapp
-   ├── admin.py
+   ├── admin.py	# 注册models，用于admin管理
    ├── __init__.py
-   ├── migrations
-   ├── models.py
-   ├── tests.py
-   └── views.py
+   ├── migrations	# 数据库迁移
+   ├── models.py	# 定义models
+   ├── tests.py	# 单元测试
+   ├── apps.py		# App的配置类，AppConfig用于存储应用程序的元数据
+   └── views.py	# 视图文件
    ```
 
    如过添加了APP，那么需要在主配置文件`settings.py`里面的`INSTALLED_APPS`里面添加该APP的名称
@@ -63,6 +64,8 @@ Django另一个我特别喜欢的特性就是Application，它与Project的概�
 5. 运行 `python manage.py runserver` 如果要以daemon的方式在后台运行，可以使用nohup命令 `nohup python manage.py runserver 0.0.0.0:8000 &` 使用它可以打开Django自带的默认Web引擎，可以在 <http://127.0.0.1:8000中查>看 在测试的时候可以使用该引擎，它不仅轻量，而且在打开后还会自动检测代码的更改，进行自动更新，这样就不用每次对代码变动了都来重启一次
 
 ## 配置项
+
+### 全局配置
 
 需要注意的是，Django官方并没有默认的分离配置文件的方案，我觉得最佳的方式是，建立多个配置文件，然后在默认的配置文件里面进行导入即可。例如:
 
@@ -113,7 +116,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static') # 这个选项默认是没有的�
 	from django.conf import settings
 	settings.DEBUG
 
+### 应用配置
+
+在上面新建的app的目录结构里面又一个`apps.py`文件，它存储了应用的元数据，通过继承`AppConfig`来配置其属性，可配置的选项如下:
+
+```tex
+可配置的属性
+AppConfig.name			# 应用的完整Python路径，例如django.crontrib.admin，在整个Django项目中必须是唯一的
+AppConfig.label			# 应用的缩写，例如admin，
+AppConfig.verbose_name	# 应用的适合阅读的名称
+AppConfig.path			# 应用目录的文件系统路径，例如/usr/lib/python3.4/dist-packages/django/contrib/admin
+
+可配置的方法
+AppConfig.get_models()			# 返回可迭代的Model类
+AppConfig.get_model(model_name)	# 返回具体的Model
+AppConfig.ready()				# 执行初始化任务
+```
+
 ## 路由与视图
+
 **url**: web访问请求的入口(相当于Laravel里的路由)
 **view**：应用的逻辑部分，从客户端接收请求，处理并返回数据，一般返回到template模板进行渲染(相当于Laravel里的控制器)  
 将`/test`定位到article这个APP里面的views里面的home方法来处理的形式
@@ -653,14 +674,15 @@ in Django](https://docs.djangoproject.com/en/1.8/topics/auth/customizing/)
 	)
 这样，就可以依然使用刚才的代码对用户登录进行验证了。
 
-## 退出登录
+### 退出登录
 
 	from django.contrib.auth import logout
 
 	def logout_view(request):
 		logout(request)
 
-## 限制登录用户访问路由
+### 限制登录用户访问路由
+
 某些路由只能登录用户才能访问，那么只需要添加这个装饰器：
 
 	from django.contrib.auth.decorators import login_required
@@ -767,6 +789,72 @@ in Django](https://docs.djangoproject.com/en/1.8/topics/auth/customizing/)
 
 
 
+## django-crontab插件
+
+Django下的定时任务插件，依赖于Linux的cron服务。
+
+### 安装
+
+`pip install django-crontab`进行安装，然后在django的配置文件中添加一个APP
+
+```python
+INSTALLED_APPS = (
+	'django_crontab',
+    ...
+)
+```
+
+### 使用
+
+编写完定时任务逻辑以后，需要在配置文件中添加上，例如
+
+```python
+CRONJOBS = [
+    ('*/5 * * * *', 'myapp.cron.my_scheduled_job')
+    ('*/5 * * * *', 'myapp.cron.other_scheduled_job', ['arg1', 'arg2'], {'verbose': 0}),
+    ('0 4 * * *', 'django.core.management.call_command', ['clearsessions']),
+]
+```
+
+最后，将其添加到系统`cron`服务中去
+
+```shell
+python manage.py crontab add	# 将当前配置文件中的定时任务添加到cron中去，当add以后，会在crontab -e里面出现类似这样的一条记录
+# */5 * * * * /usr/local/bin/python /usr/src/app/manage.py crontab run e0418752956c4dd997212171486888ff # django-cronjobs for admin
+# 前面是命令部分，后面是根据定义的函数计算出来的hash值，最后面则是自带的注释
+python manage.py crontab show	# 列出当前已经添加到cron中的定时任务
+python manage.py crontab remove	# 移除所有的定时任务
+```
+
+## TroubleShooting
+
+- **如果想要直接执行_./manage.py_来启动runserver**，那么可以修改manage.py文件如下：
+
+  ```python
+  #!/usr/bin/env python
+  import os
+  import sys
+  if __name__ == "__main__":
+      os.environ.setdefault("DJANGO_SETTINGS_MODULE", "frontend.settings")
+      from django.core.management import execute_from_command_line
+      sys.argv = ['manage.py', 'runserver', '0.0.0.0:8000']
+  	execute_from_command_line(sys.argv)
+  ```
+
+- **保存用户上传的图片或文件**：使用Django自带的文件存储系统：
+
+  ```python
+  from django.core.files.storage import FileSystemStorage
+  storage = FileSystemStorage(
+                      location = '/var/www/site/upfiles',
+                      base_url = '/upfiles'
+                    )
+  content = request.FILES['the_file']
+  name = storage.save(None, content)
+  url = storage.url(name)
+  ```
+
+  ​
 
 
 
@@ -774,57 +862,6 @@ in Django](https://docs.djangoproject.com/en/1.8/topics/auth/customizing/)
 
 
 
-
-# TroubleShooting
-
-1.如果想要直接执行_./manage.py_来启动runserver，那么可以修改manage.py文件如下：
-
-
-
-    #!/usr/bin/env python
-    import os
-    import sys
-
-
-
-
-    if **name** == "**main**":
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "frontend.settings")
-
-
-
-
-
-    from django.core.management import execute_from_command_line
-
-
-
-
-    sys.argv = ['manage.py', 'runserver', '0.0.0.0:8000']
-    execute_from_command_line(sys.argv)
-
-
-2.保存用户上传的图片或文件：使用Django自带的文件存储系统：
-
-
-
-    from django.core.files.storage import FileSystemStorage
-
-
-
-
-    storage = FileSystemStorage(
-                        location = '/var/www/site/upfiles',
-                        base_url = '/upfiles'
-                      )
-    content = request.FILES['the_file']
-    name = storage.save(None, content)
-    url = storage.url(name)
-
-
-##url
-##model
-##template
 ##signal
 [参考](http://www.weiguda.com/blog/38/)django中signal与操作系统的signal是完全不一样的.Django的signal是一种同步的消息队列.通常在以下情况进行使用：
 
@@ -928,7 +965,7 @@ in Django](https://docs.djangoproject.com/en/1.8/topics/auth/customizing/)
 
 
 
-    
+
               官方文档：[Request and response
               objects](https://docs.djangoproject.com/en/1.8/ref/request-response/)
               当请求一个页面的时候，Django会建立一个HttpRequest对象，它包含了请求的一些数据，该对象就是每个views函数里面的第一个参数request.
