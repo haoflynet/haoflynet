@@ -1,9 +1,8 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2016-10-11 09:02:00
+updated: 2017-03-15 16:02:00
 categories: database
-
 ---
 # MySQL/MariaDB使用教程
 ## 安装方法
@@ -15,21 +14,53 @@ categories: database
 ## 常用命令
 ### 增删改查
 
-```shell
-# 创建数据库，如果是gbk编码，分别用gbk、gbk_chinese_ci;
-CREATE DATABASE 库名 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci; 
+#### SQL文件操作
 
+```shell
 # 执行sql文件
 mysql -uroot -pmysql --default-character-set=gbk  jpkc_db < jpkc_db.sql # 这里可以执行编码格式
+```
 
-# 修改字段
-ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
+#### 数据库操作
 
-# 外键约束操作
-ALTER TABLE 表明 DROP FOREIGN KEY '外键名';			# 删除外键
-
+```shell
+## 创建数据库，如果是gbk编码，分别用gbk、gbk_chinese_ci;
+CREATE DATABASE 库名 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 TRUNCATE tablename	# 清空数据表
 DROP database_name	# 删除数据库
+```
+
+#### 数据表操作
+
+```shell
+ALTER TABLE 表明 DROP FOREIGN KEY '外键名';		# 删除外键
+## 清空数据表
+DELETE FROM 表名; # 这种方式比较慢，但是可以恢复
+TRUNCATE TABLE 表名 # 这种方式很快，但不会产生二进制日志，无法回复数据
+## 给表添加字段
+ALTER TABLE 表名 ADD 字段名 属性
+## 给表删除字段
+ALTER TABLE 表名 DROP COLUMN 字段名  
+```
+
+#### 数据记录操作
+
+```shell
+# 字段操作
+update table_1 as a, (select id from biao_2 where name='a') as b set a.title='xx' where a.id=b.id								# 多表子查询
+SELECT * FROM table WHERE id >= (SELECT FLOOR(RAND() * (SELECT MAX(id) FROM table))) ORDER BY id LIMIT 1								 # 随机读取数据库记录
+SELECT * FROM table_name limit m, n		# 分页功能，获取m开始的n条记录
+
+## 修改字段
+ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
+## 插入数据
+INSERT INTO 表名(属性列表) VALUES(值列表)
+INSERT IGNORE INTO ...  # 忽略重复的记录
+## 更改某字段的值
+UPDATE 表名 SET 字段=新值 WHERE 条件
+
+
+
 ```
 ### 系统相关
 
@@ -62,84 +93,57 @@ mysqldump -uroot -pmysql --databases -h127.0.0.1 abc | gzip > test.sql.1.gz # �
 # 备份多个数据库
 mysqldump -u... -p... -h... --databases data1 data2 > backup.sql
 
-# 倒入数据
+# 导入数据
 mysql -uroot -pmysql db_name < test.sql
 bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
 ```
 
+### 帮助函数
+
+```shell
+left(str, length) # 字符串截取
+right(str, length) # 字符串截取
+substring(str, pos, len) # 字符串截取
+concat(str1, str2)  # 字符串相加
+
+# 关于时间
+YEAR(datetime)    # 获取年份
+QUARTER(datetime)    # 获取季度数
+MONTH(datetime)    # 获取月份
+MONTHNAME(datetime)    # 获取月份名字
+MONTHNAME(datetime)    # 获取星期名字(比如'Thursday')
+WEEKDAY(datetime)    # 获取星期索引
+WEEK(date, first)    # 获取当前是一周的第几天，first表示周几算一周的开始
+DAYOFMONTH(datetime)  # 获取日期(几号)
+DAYOFYEAR(date)    # 返回date在一年中的日数(1-366)
+HOUR(datetime)    # 获取小时数
+MINUTE(datetime)    # 获取分钟数
+SECOND(datetime)    # 获取秒数
+```
+
+
 
 ## TroubleShooting
-### 启动错误，提示server PID file could not be found
-一般是因为MySQL服务卡死了，此时查看进程`ps aux | grep mysql*`，然后把卡死的给kill掉就行了
-### Access denied for user 'root'@'localhost'
-出现这种情况，可能是给用户分配了'%'权限，而没有分配localhost权限，我去...
+
+- **启动错误，提示server PID file could not be found**
+
+  一般是因为MySQL服务卡死了，此时查看进程`ps aux | grep mysql*`，然后把卡死的给kill掉就行了
+
+- **Access denied for user 'root'@'localhost'**
+
+  出现这种情况，可能是给用户分配了'%'权限，而没有分配localhost权限，我去...
+
+- **WorkBench保持连接不断开**: `Edit->Preferences->SQL Editor，设置DBMS connection read time out(in seconds)`
+
+  ​
+
+  ​
 
 
 
-*   数据库的增删改查  
-
-*   # 创建数据库
 
 
-    # 插入一组数据
-    INSERT INTO 表名(属性列表) VALUES(值列表)
-    INSERT IGNORE INTO ...  # 忽略重复的记录
-    
-    # 更改某字段的值
-    UPDATE 表名 SET 字段=新值 WHERE 条件
-    
-    # 删除数据库
-    drop database User;
-    # 清空数据表
-    DELETE FROM 表名; # 这种方式比较慢，但是可以恢复
-    TRUNCATE TABLE 表名 # 这种方式很快，但不会产生二进制日志，无法回复数据
-    
-    # 给表添加字段
-    ALTER TABLE 表名 ADD 字段名 属性
-    # 给表删除字段
-    ALTER TABLE 表名 DROP COLUMN 字段名  
 
-
-* 常用函数  
-
-
-    left(str, length) # 字符串截取
-    right(str, length) # 字符串截取
-    substring(str, pos, len) # 字符串截取
-    concat(str1, str2)  # 字符串相加
-    
-    # 关于时间
-    YEAR(datetime)    # 获取年份
-    QUARTER(datetime)    # 获取季度数
-    MONTH(datetime)    # 获取月份
-    MONTHNAME(datetime)    # 获取月份名字
-    MONTHNAME(datetime)    # 获取星期名字(比如'Thursday')
-    WEEKDAY(datetime)    # 获取星期索引
-    WEEK(date, first)    # 获取当前是一周的第几天，first表示周几算一周的开始
-    DAYOFMONTH(datetime)  # 获取日期(几号)
-    DAYOFYEAR(date)    # 返回date在一年中的日数(1-366)
-    HOUR(datetime)    # 获取小时数
-    MINUTE(datetime)    # 获取分钟数
-    SECOND(datetime)    # 获取秒数
-
-
-* workbench使用：  
-
-
-        # 保持连接不断开：
-    Edit->Preferences->SQL Editor，设置DBMS connection read time out(in seconds)
-
-* 查询语句的技巧  
-
-
-        # 多表子查询
-    update table_1 as a, (select id from biao_2 where name='a') as b set a.title='xx' where a.id=b.id
-    
-    # 随机读取数据库记录
-    SELECT * FROM table WHERE id >= (SELECT FLOOR(RAND() * (SELECT MAX(id) FROM table))) ORDER BY id LIMIT 1
-    
-    # 分页功能，获取m开始的n条记录
-    SELECT * FROM table_name limit m, n
 
 * MySQL配置  
 

@@ -319,6 +319,12 @@ fi
 if [[ ! -s filename ]]; then
 echo 'a'
 fi
+
+或且非
+# -a 与
+# -o 或
+# ！非
+
 ```
 
 **特殊符号**
@@ -472,7 +478,7 @@ WIFI网络设置
 
 - **CentOS安装Nginx/Tengine出现"configure: error: the HTTP rewrite requires the PCRE library"**
 
-    	yum -y install pcre-devel openssl openssl-devel
+     yum -y install pcre-devel openssl openssl-devel
 
 - **全局中文utf8环境**
 
@@ -519,16 +525,16 @@ WIFI网络设置
 
 - **make: yacc: Command not found**  
 
-  	sudo apt-get install bison -y
-  	sudo apt-get install byacc -y
+   sudo apt-get install bison -y
+   	sudo apt-get install byacc -y
 
 - **/bin/bash: line 9: makeinfo: command not found**
 
-  	sudo apt-get install texinfo
+   sudo apt-get install texinfo
 
 - **g++: command not found**
 
-  	yum install gcc-c++
+   yum install gcc-c++
 
 
 - `Too many levels of symbolic links `
