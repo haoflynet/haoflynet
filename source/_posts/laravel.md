@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-03-09 17:33:00
+updated: 2017-03-20 17:33:00
 categories: php
 ---
 # Laravel指南
@@ -334,8 +334,10 @@ public function up()
 
 ```php
 class User extends Model{
+  public $timestamps = false;			// 设置该表不需要使用时间戳，updated_at和created_at字段
   protected $connection = 'second';		// 设置为非默认的那个数据库连接
   protected $fillable = ['id', 'name']; // 设置可直接通过->访问或者直接提交保存的字段
+  protected $table = 'my_flights';		// 自定义表明，默认的表明会以model的复数形式，需要注意的是，英语单词复数的变化有所不同，如果取错了表明活着以中文拼音作为表明，有时候就需要明确表的名称了
 }
 ```
 
@@ -393,14 +395,16 @@ class User extends Model{
 
 ##### 一对多hasMany
 
-	public function posts(){
-		return $this->hasMany('App\Post');
-	}
-	# 可以这样使用
-	Users::find(1)->posts
-	
-	# 指定外键
-	$this->hasMany('App\Post', 'foreign_key', 'local_key')
+```php
+public function posts(){
+	return $this->hasMany('App\Post');
+}
+# 可以这样使用
+Users::find(1)->posts
+
+# 指定外键
+$this->hasMany('App\Post', 'foreign_key', 'local_key')
+```
 ##### 一对一hasOne
 
 	public function father(){
@@ -428,7 +432,7 @@ class User extends Model{
 	$roles = User::find(1)->roles;	# 这样可以直接查出来，如果想查出来roles也需要在roles里面进行定义
 ##### 多态关联
 
-一个模型同时与多种模型相关联，可以一对多(morphMany)、一对一(morphOne)
+一个模型同时与多种模型相关联，可以一对多(morphMany)、一对一(morphOne)、多对多(mar)
 
 例如: 三个实例，文章、评论、点赞，其中点赞可以针对文章和评论，点赞表里面有两个特殊的字段`target_id`、`target_type`，其中`target_type`表示对应的表的Model，`target_id`表示对应的表的主键值
 
@@ -454,6 +458,10 @@ class Comment extends Model {
 
 $comment->likes;
 $comment->likes;
+
+
+$this->morphedByMany('App\Models\Posts', 'target', 'table_name'); // 一种多对多关联的morphedby
+
 ```
 
 
@@ -527,6 +535,7 @@ User::withTrashed()->where()	# 包括软删除了的一起查询
 User::onlyTrashed()->where()	# 仅查找软删除了的
 User::find(1)->posts			# 取出一对多关联，返回值为Collection
 User::find(1)->posts()			# 取出一对多关联，返回值为hasMany
+User::find(1)->posts->count()	# 判断关联属性是否存在stackoverflow上面用的这种方法  
 
 # 访问器，如果在Model里面有定义这样的方法
 public function getNameAttribute(){
@@ -597,9 +606,21 @@ $users = User::with(['posts' => function ($query) {
 
 #### ORM对象方法
 
-	# Collection对象
-	return $this->hasMany('Logs', 'for_id', 'id')->where('result', '<', 114)->where('execute_state', 1)  # 不能直接对Collection对象使用where方法(和普通的where使用不一样)，但是可以直接在定义关系的使用使用
-	$ob->count()	# 计数
+```php
+# hasMany对象的查询
+$posts = User::find(1)->posts()	# 返回hasMany对象，并未真正查询数据库
+$posts = User::find(1)->posts	# 返回Collection对象，数据库的查询结果集
+$posts->get()					# 返回Collection对象，数据库的查询结果集
+```
+
+##### Collection对象
+
+```php
+$obj->count()	# 计数
+$obj->first()	# 取出第一个对象
+$obj->last()	# 取出最后一个对象
+$obj->isEmpty()	# 是否为空
+```
 
 ### 认证相关
 
@@ -827,7 +848,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 factory(App\User::class, 50)->create()->each(function($u) {
   $u->posts()->save(factory(App\Post::class)->make());
 });
-
 ```
 
 ## TroubleShooting
