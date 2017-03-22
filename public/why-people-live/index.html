@@ -1,0 +1,838 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="此书采购于Amazon的0元限时购活动，同时，我表示很激动，终于能拜读期待已久的“初代程序员”王小波的作品了。第一次那么想了解王小波是在我读了《把时间当作朋友》过后，果然，不出半年，我就读到了王小波的作品。和《把时间当作朋友》一样，《人为什么活着》也是一本杂文集，署名只是取了其中某一篇的标题，当然是最富有吸引力的标题。
+在我的关于王小波的种种映象里，他应该是一个，很正统，并且很有写鸡汤文潜质的那么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《人为什么活着》——传奇程序员王小波">
+<meta property="og:url" content="https://haofly.net/why-people-live/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="此书采购于Amazon的0元限时购活动，同时，我表示很激动，终于能拜读期待已久的“初代程序员”王小波的作品了。第一次那么想了解王小波是在我读了《把时间当作朋友》过后，果然，不出半年，我就读到了王小波的作品。和《把时间当作朋友》一样，《人为什么活着》也是一本杂文集，署名只是取了其中某一篇的标题，当然是最富有吸引力的标题。
+在我的关于王小波的种种映象里，他应该是一个，很正统，并且很有写鸡汤文潜质的那么">
+<meta property="og:image" content="http://7mnpj8.com1.z0.glb.clouddn.com/image/why-people-live.png">
+<meta property="og:updated_time" content="2016-10-03T06:17:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《人为什么活着》——传奇程序员王小波">
+<meta name="twitter:description" content="此书采购于Amazon的0元限时购活动，同时，我表示很激动，终于能拜读期待已久的“初代程序员”王小波的作品了。第一次那么想了解王小波是在我读了《把时间当作朋友》过后，果然，不出半年，我就读到了王小波的作品。和《把时间当作朋友》一样，《人为什么活着》也是一本杂文集，署名只是取了其中某一篇的标题，当然是最富有吸引力的标题。
+在我的关于王小波的种种映象里，他应该是一个，很正统，并且很有写鸡汤文潜质的那么">
+<meta name="twitter:image" content="http://7mnpj8.com1.z0.glb.clouddn.com/image/why-people-live.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/why-people-live/"/>
+
+
+
+
+
+  <title> 《人为什么活着》——传奇程序员王小波 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/why-people-live/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《人为什么活着》——传奇程序员王小波
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-02T15:38:44+00:00">
+                2016-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/韦编三绝/" itemprop="url" rel="index">
+                    <span itemprop="name">韦编三绝</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/why-people-live/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="why-people-live/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>此书采购于<a href="https://www.amazon.cn/b/ref=asw1_33a33f50-c60b-3949-a622-f72461d31482_1_kind_KINDLE?_encoding=UTF8&amp;ie=UTF8&amp;node=1841469071&amp;pf_rd_p=354279cf-91dc-46db-8dd0-b5f8da015308&amp;pf_rd_s=desktop-takeover&amp;pf_rd_t=36701&amp;pf_rd_i=desktop&amp;pf_rd_m=A1AJ19PSB66TGU&amp;pf_rd_r=4NN4991RM0DBPG0NPM2A" target="_blank" rel="external">Amazon的0元限时购活动</a>，同时，我表示很激动，终于能拜读期待已久的“初代程序员”王小波的作品了。第一次那么想了解王小波是在我读了<a href="https://haofly.net/bashijiandangzuopengyou/">《把时间当作朋友》</a>过后，果然，不出半年，我就读到了王小波的作品。和《把时间当作朋友》一样，《人为什么活着》也是一本杂文集，署名只是取了其中某一篇的标题，当然是最富有吸引力的标题。</p>
+<p>在我的关于王小波的种种映象里，他应该是一个，很正统，并且很有写鸡汤文潜质的那么一个伟大的作家，不过在阅读了这本书过后，我只想说，这TM是怎样一个有趣的人呀？他反对儒家思想，反对道德至上，以他独特的眼光反抗者外部的不解，哪怕他用脏话骂一个人我都觉得毫不做作，反而要拍手称绝，骂得有理有据，骂得头头是道，骂得真爽。和近现代的一些作家比起来，他的人生经历了这个国家太多的路程，但是作品却没有流露出太多的历史厚重感，没有那么多的包袱，他的文章读起来便有趣多了。看到不到十分之一的时候我最大的感受就是，这个作家，太接地气了。</p>
+<p>也是通过这本书，我第一次，对孔孟时期的思想有了深一步的思考。求学的时候，我们只知道这些名家的思想中最出名的几句名言(这就像我每次看完一本书，下面都会摘了很多名言一样)，却不了解他们的知识体系，体系必然有一个中心，然而，孔孟思想的中心，似乎都不太正确，或许只能说是政治正确。他们为我们当今的世界定了太多的规矩，其中，很大一部分是我们一直沿用的，只是，很少有人去问对不对，反正周围的人只是认为不按照那样做，便是不对的。</p>
+<p>最最让我佩服的是，他一个经历过文革的作家，居然也是一名程序员，他对知识的涉猎程度完全超乎我的想象。首先，他是我知道的唯一一位经历过文革的还会写代码的人，其次他还是上个世纪的程序员，也就是说，电脑刚在国内发展起来的时候，他就已经开始使用电脑，并能自己编写软件解决自己的需求。放在今天，这完全就是一位极客了。肯定会有无数的粉丝。今天的程序员作家也不少，但是经历像他这么丰富的人，肯定是没有的。所以关上书的时候，我感慨了一句：经历丰富的人，写日记都像是在写诗。</p>
+<p>最后，这是我女朋友最近和她母亲聊天的截图:</p>
+<p><img src="http://7mnpj8.com1.z0.glb.clouddn.com/image/why-people-live.png" alt="宝宝">真的好庆幸，我有这么“不管我”的父母，让我从小能拥有一般农村孩子无法理解的自由，他们带给我的不仅仅是生活上的轻松，更是我一辈子的财富。也很高兴女朋友和我一样能有自由的思想，而不是唯父母命是从。</p>
+<p>看了全书，我还是不知道人为什么活着，或许，好好玩儿，活在当下，这才是人生的答案。自由，哪怕仅仅是思维能够自由，那就足够了。</p>
+<h5 id="名言"><a href="#名言" class="headerlink" title="名言"></a>名言</h5><ul>
+<li>只希望你和我好，互不猜忌，也互不称誉，安如平日，你和我说话像对自己说话一样，我和你说话也像对自己说话一样。说吧，和我好吗？——《孤独的灵魂多么寂寞啊》</li>
+<li>我不喜欢稀里糊涂地过日子。我妈妈有时说：真奇怪啊，我们稀里糊涂地就过来了。他们真的是这样。我们的生活就是我们本身。我们本身不傻，也不斤斤计较大衣柜一头沉。干嘛要求我们有什么外在的样子，比方说，规规矩矩，和某些人一样等等。有时候我真想叉着腰骂：滚你的，什么样子！真的，我们的生活是一些给人看的仪式吗？或者叫人安分守己。不知什么叫“分”，假如人活到世上之前“分”都叫人安排好了，不如再死回去的好。——《人为什么活着》</li>
+<li>理性就像贞操，失去了就不会再有；只要碰上了开心的事，乐观还会回来的。——《积极的结论》</li>
+<li>我现在所教的数学，你们也许一生都用不到，但我还要教，因为这些知识是好的，应该让你们知道。——《跳出手掌心》</li>
+<li>在文学艺术及其他人文的领域之内，国人的确是在使用一种双重标准，那就是对外国人的作品，用艺术或科学的标准来审评；而对中国人的作品，则用道德的标准来审评。——《跳出手掌心》</li>
+<li>我最赞成罗素先生的一句话：”须知参差多台，乃是幸福的本源。”——《思维的乐趣》</li>
+<li>能够带来思想快乐的东西，只能是人类智慧之高的产物。——《思维的乐趣》</li>
+<li>假设有某君思想高尚，我是十分敬佩的；可是如果你因此想把我的脑子扔出来挖掉，换上他的，我决不肯，除非你能够证明我罪大恶极，死有余辜。人既然活着，就有权保证他思想的连续性，到死方休。更何况那些高尚和地下完全是以他们自己的立场来度量的，假如我全盘接受，无异于请那些善良的思想母鸡到我脑子里下蛋，而我总不肯相信，自己的脖子上方，原来是长了一座鸡窝。——《思维的乐趣》</li>
+<li>于是人人盛赞节烈妇女。翻开历史一看，女人味了节烈，割鼻子拉耳朵的都有。鼻子耳朵不比头发指甲，割了张不出来，而且人身上有此零件，必有用处，拿掉了肯定有不便处。若是为“节烈”之名而自杀，肯定是更加不妥的了。此类行为，就像那条抽疯的海豚。——《西方快乐观区别之我见》</li>
+<li>罗素在讨论伦理问题时曾经指出，人人都希求幸福。假如说，人得到自己希求的东西就是幸福，那就言之成理；倘若说因为某件事是幸福的，所以我们就希求它，那就是错误的。——《西方快乐观之我见》</li>
+<li>大多数人在受到重视之后，行为就会好。——《居住环境与尊严》</li>
+<li>从孔孟到如今，中国的哲学家从来不挑担、不推车，所以他们的智慧从不考虑降低肉体的痛苦，专门营造站着说话不腰疼的理论。——《人生的逆转》</li>
+<li>假如从整个人类来考虑问题，早就回发现，趋利避害，直截了当地解决实际问题最重要——说实话，中国人在这方面已经很不像样了——这不是什么哲学的思辨，而是我们的生活经验。我们的社会里，必须有改变物质生活的原动力，这样才能把未来的命脉握在自己的手里。——《人生的逆转》</li>
+<li>花钱不说，还下了很多功夫，现在用的软件都是我自己写的。——《从Internet说起》</li>
+<li>不知为什么，傻人道德上的敏感度总是很高，也许这纯属巧合。——《奸近杀》</li>
+<li>我既不是同性恋，也不想自杀，所以我对计算机没兴趣。得的全是三分。但我现在时常用得着它，所以还要买书看看，关心一下最新的进展，以免用时抓瞎。这是因为我写文章的软件时自己编的，别人编的软件我即使不惯，也信不过，就这么点原因。但就因为这点小原因，握在编程这件事上，还真正有点修为。由此可见，为研究某种学问这件事感兴趣和对这门学问本身感兴趣可以完全是两回事。——《苏东坡与东坡肉》</li>
+<li>有人告诉我说，没你这么写杂文的！杂文里应该有点典故，有点考证，有点文化气味。典故我知道一些，考证也会，但就是不肯这么些。——《有关天圆地方》</li>
+<li>罗素举这个例子是要说，人们的见识总要受处境的限制，这种限制既不知不觉，又牢不可破——这是一个极好的说明。——《有关天圆地方》</li>
+<li>很不幸的是，任何一种负面的生活都能产生很多乱七八糟的细节，使它变得蛮有趣的。人就在这种趣味中沉沦下去，从根本上忘记了这种生活需要改进。——《有关贫穷》</li>
+<li>古人说，食色性也。想爱和想吃都是人性的一部分，如果得不到，就称为人性的障碍。——《从&lt;黄金时代&gt;谈小说艺术》</li>
+<li>我们的生活有这么多的障碍，真他妈的有意思。——《从&lt;黄金时代&gt;谈小说艺术》</li>
+<li>我相信如果不能把已写出的每一根线索都记在心里，就不能写出好的结构；如果不能把写出的每一句话记在心里，就不能写出好的风格。——《&lt;怀疑三部曲&gt;序》</li>
+<li>当然，人有贤愚之分。但一个人认为思维是快乐的，那他就可说是热爱智慧的。——《&lt;怀疑三部曲&gt;序》</li>
+<li>我认为没有智慧、性爱而且没意思的生活不足取，但有些人却以为这样的生后就是一切。他们还说，假如有什么需要热爱，那就是这种生活里面的规矩——在我看来，这种生活态度简直是种怪癖。很不幸的事，有这种怪癖的人是很多的，有人甚至把这种怪癖叫做文化，甚至当做了生活本身。——《&lt;怀疑三部曲&gt;序》</li>
+<li>细读过《孟子》之后，我发现里面全是这样的一些想法。这世界上有很多书都是这样的：内容不可挑剔，只是很没有意思。除了显而易见的坏处，这种书还有一种害人之处就在于：有人从这些书中受到了鼓舞，把整个生活朝更没意思的方向推动。——《&lt;怀疑三部曲&gt;序》</li>
+<li>一切人间的荒唐事，整个社会的环境虽是一个原因，但不主要。主要的是：那个闹事的人是在借酒撒疯。——《肚子里的故事》</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/swift/" rel="next" title="Swift教程">
+                <i class="fa fa-chevron-left"></i> Swift教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/buy-my-house/" rel="prev" title="买房了，但我不做房奴">
+                买房了，但我不做房奴 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="why-people-live/"
+     data-title="《人为什么活着》——传奇程序员王小波"
+     data-content=""
+     data-url="https://haofly.net/why-people-live/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="why-people-live/"
+           data-title="《人为什么活着》——传奇程序员王小波" data-url="https://haofly.net/why-people-live/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#名言"><span class="nav-number">1.</span> <span class="nav-text">名言</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,823 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="strcpy: 复制字符串,char * strcpy(char _dst, char const _src);如果字符串比数组长，多余的字符仍被复制，它们将覆盖原先存储于数组后面的内存空间的值。strcpy无法解决这个问题，因为它无法判断目标字符数组的长度 
+
+strncpy: 复制指定长度的字符串，比strcpy安全，char _strncpy(char _dst, char const _">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《C和指针》——C语言补漏(函数篇)">
+<meta property="og:url" content="https://haofly.net/C-and-pointer_1/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="strcpy: 复制字符串,char * strcpy(char _dst, char const _src);如果字符串比数组长，多余的字符仍被复制，它们将覆盖原先存储于数组后面的内存空间的值。strcpy无法解决这个问题，因为它无法判断目标字符数组的长度 
+
+strncpy: 复制指定长度的字符串，比strcpy安全，char _strncpy(char _dst, char const _">
+<meta property="og:updated_time" content="2016-12-29T03:13:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《C和指针》——C语言补漏(函数篇)">
+<meta name="twitter:description" content="strcpy: 复制字符串,char * strcpy(char _dst, char const _src);如果字符串比数组长，多余的字符仍被复制，它们将覆盖原先存储于数组后面的内存空间的值。strcpy无法解决这个问题，因为它无法判断目标字符数组的长度 
+
+strncpy: 复制指定长度的字符串，比strcpy安全，char _strncpy(char _dst, char const _">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/C-and-pointer_1/"/>
+
+
+
+
+
+  <title> 《C和指针》——C语言补漏(函数篇) | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/C-and-pointer_1/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《C和指针》——C语言补漏(函数篇)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-05-14T11:06:28+00:00">
+                2014-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/韦编三绝/" itemprop="url" rel="index">
+                    <span itemprop="name">韦编三绝</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/C-and-pointer_1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="C-and-pointer_1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li><p>strcpy: 复制字符串,<code>char * strcpy(char _dst, char const _src);</code><br>如果字符串比数组长，多余的字符仍被复制，它们将覆盖原先存储于数组后面的内存空间的值。strcpy无法解决这个问题，因为它无法判断目标字符数组的长度 </p>
+</li>
+<li><p>strncpy: 复制指定长度的字符串，比strcpy安全，<code>char _strncpy(char _dst, char const _src, size_t len);</code></p>
+</li>
+<li><p>其它的和上面两口子类似的有:<br>剪切: <code>char _strcat(char _dst, char const _src);</code></p>
+<p>比较: <code>int strcmp(char const _s1, char const _s2);</code><br>​    <code>int strncmp(char const _s1, char const _s2, size_t len);</code></p>
+</li>
+<li><p>字符串查找</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> _strchr(<span class="keyword">char</span> <span class="keyword">const</span> _str, <span class="keyword">int</span> ch);第二个参数其实是字符  </div><div class="line"><span class="keyword">char</span> _strrchr(<span class="keyword">char</span> <span class="keyword">const</span> _str, <span class="keyword">int</span> ch);这是查找字符最后一次出现的位置  </div><div class="line"><span class="keyword">char</span> _strpbrk(<span class="keyword">char</span> <span class="keyword">const</span> _str, <span class="keyword">char</span> const_group);这是在查找str中第一个匹配group中任何一个字符的字符位置  </div><div class="line"><span class="keyword">char</span> _strstr(<span class="keyword">char</span> <span class="keyword">const</span> _s1, <span class="keyword">char</span> const_s2);在s1中查找整个s2第一次出现的起始位置，并返回一个指向该位置的指针</div><div class="line"><span class="keyword">size_t</span> <span class="built_in">strspn</span>(<span class="keyword">char</span> <span class="keyword">const</span> _str, <span class="keyword">char</span> <span class="keyword">const</span> _group);对字符计数  </div><div class="line"><span class="keyword">size_t</span> <span class="built_in">strcspn</span>(<span class="keyword">char</span> <span class="keyword">const</span> _str, <span class="keyword">char</span> <span class="keyword">const</span> _group);</div></pre></td></tr></table></figure>
+</li>
+<li><p>上面这些都只能处理字符串，下面的可以处理任意的字节序列</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> _memcpy(<span class="keyword">void</span> _dst, <span class="keyword">void</span> <span class="keyword">const</span> _src, <span class="keyword">size_t</span> length);  </div><div class="line"><span class="keyword">void</span> _memmove(<span class="keyword">void</span> _dst, <span class="keyword">void</span> <span class="keyword">const</span> _src, <span class="keyword">size_t</span> length);  </div><div class="line"><span class="keyword">void</span> _memcmp(<span class="keyword">void</span> <span class="keyword">const</span> _a, <span class="keyword">void</span> <span class="keyword">const</span> _b, <span class="keyword">size_t</span> length);  </div><div class="line"><span class="keyword">void</span> _memchr(<span class="keyword">void</span> <span class="keyword">const</span> _a, <span class="keyword">int</span> ch, <span class="keyword">size_t</span> length);  </div><div class="line"><span class="keyword">void</span> _memset(<span class="keyword">void</span> _a, <span class="keyword">int</span> ch, <span class="keyword">size_t</span> length);</div></pre></td></tr></table></figure>
+</li>
+<li><p>动态内存分配:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> _malloc(<span class="keyword">size_t</span> size);动态内存分配  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">free</span><span class="params">(<span class="keyword">void</span> _pointer)</span></span>;内存释放  </div><div class="line">如果操作系统无法向<span class="built_in">malloc</span>提供更多的内存，<span class="built_in">malloc</span>就返回一个<span class="literal">NULL</span>指针  </div><div class="line"><span class="keyword">void</span> _calloc(<span class="keyword">size_t</span> num_elements, <span class="keyword">size_t</span> element_size);与<span class="built_in">malloc</span>的区别是能够在返回指向内存的指针之前把它初始化为零，参数表示所需元素的数量和每个元素的字节数  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">realloc</span><span class="params">(<span class="keyword">void</span> _ptr, <span class="keyword">size_t</span> new_size)</span></span>;用于新修改一个原先已经分配的内存块的大小</div></pre></td></tr></table></figure>
+</li>
+<li><p>ungetc: 撤销字符I/O，<code>int ungetc( int character, FILE * stream );</code>，把一个先前读入的字符返回到流中，这样它可以在以后被重新读入</p>
+</li>
+<li><p>fflush: 迫使一个输出流的缓冲区内的数据进行物理写入，不管它是否已经写满，<code>int fflush(FILE _stream)</code></p>
+</li>
+<li><p>文件指针的定位</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">ftell</span><span class="params">( FILE _stream )</span></span>;返回流的当前位置，即下一个读取或写入将要开始的位置距离文件起始位置的偏移量  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fseek</span><span class="params">( FILE _stream, <span class="keyword">long</span> offset, <span class="keyword">int</span> from)</span></span>;在一个流中定位。  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewind</span><span class="params">( FILE * stream )</span></span>;将读/写指针设置回指定流的起始位置  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetpos</span><span class="params">( FILE _stream, <span class="keyword">fpos_t</span> _position )</span></span>;在这个位置存储文件的当前位置  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fsetpos</span><span class="params">( FILE _stream, <span class="keyword">fpos_t</span> <span class="keyword">const</span> _position )</span></span>;把文件位置设置为存储在这个位置的值</div></pre></td></tr></table></figure>
+</li>
+<li><p>改变缓冲方式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setbuf</span><span class="params">( FILE _stream, <span class="keyword">char</span> _buf)</span></span>;设置了另一个数组，用于对流进行缓冲，为一个流自行指定缓冲区可以防止I/O函数库为它动态分配一个缓冲区  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">setvbuf</span><span class="params">( FILE _stream, <span class="keyword">char</span> _buf, <span class="keyword">int</span> mode, <span class="keyword">size_t</span> size )</span></span>;参数中mode用于指定缓冲的类型</div></pre></td></tr></table></figure>
+</li>
+<li><p>临时文件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">FILE _tmpfile(<span class="keyword">void</span>);会创建一个文件，当文件被关闭或程序终止时这个文件便自动删除  </div><div class="line"><span class="keyword">char</span> _tmpnam(<span class="keyword">char</span> _name);临时文件的名字</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除文件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">remove</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> _filename)</span></span>;删除文件  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">rename</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> _oldname, <span class="keyword">char</span> <span class="keyword">const</span> _newname)</span></span>;文件重命名</div></pre></td></tr></table></figure>
+</li>
+<li><p>随机数<stdlib.h></stdlib.h></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">rand</span><span class="params">(<span class="keyword">void</span>)</span></span>;  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">srand</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> seed)</span></span>; </div><div class="line"><span class="comment">// 上面两句会产生伪随机数，如果实现真正的随即需要再加一句：  </span></div><div class="line">srand( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)time( <span class="number">0</span> ) );</div></pre></td></tr></table></figure>
+</li>
+<li><p>字符串与数值的相互转换</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">atoi</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> _string)</span></span>;转换为十进制  </div><div class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">int</span> <span class="title">atol</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> _string)</span></span>;转换为十进制  </div><div class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">int</span> <span class="title">strtol</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> <span class="built_in">string</span>, <span class="keyword">char</span> * __unused, <span class="keyword">int</span> base)</span></span>;可指定基数  </div><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> <span class="title">strtoul</span><span class="params">( <span class="keyword">char</span> <span class="keyword">const</span> <span class="built_in">string</span>, <span class="keyword">char</span> * __unused, <span class="keyword">int</span> base)</span></span>;可指定基数  </div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">atof</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> _string)</span></span>;转换为<span class="function"><span class="keyword">float</span>  </span></div><div class="line"><span class="keyword">double</span> <span class="title">strtod</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> <span class="built_in">string</span>, <span class="keyword">char</span> _***unused)</span>;转换为<span class="keyword">double</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>执行系统命令(stdlib.h)，<code>void system( char const _command );</code>可以执行cmd的命令</p>
+</li>
+<li><p>排序和查找</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">void qsort(void base, size_t n_elements, size_t el_size, int (compare)(void const _, void const _));第一个参数指向需要排序的数组，第二个参数指定数组中元素的数目，第三个参数指定每个元素的长度，第四个参数是一个比较函数  </div><div class="line">void _bsearch(void const _key, void const _base, size_t n_elements, size_t el_size, int (_compare)(void const _, void const _));在一个已经排好序的数组中用二分法查找一个特定的元素</div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/C-and-pointer_0/" rel="next" title="《C和指针》——C语言补漏(指针篇)">
+                <i class="fa fa-chevron-left"></i> 《C和指针》——C语言补漏(指针篇)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/C-and-pointer_2/" rel="prev" title="《C和指针》——C语言补漏(基本用法篇)">
+                《C和指针》——C语言补漏(基本用法篇) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="C-and-pointer_1/"
+     data-title="《C和指针》——C语言补漏(函数篇)"
+     data-content=""
+     data-url="https://haofly.net/C-and-pointer_1/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="C-and-pointer_1/"
+           data-title="《C和指针》——C语言补漏(函数篇)" data-url="https://haofly.net/C-and-pointer_1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

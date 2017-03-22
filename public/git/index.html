@@ -1,0 +1,894 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Git指南这里所列举的通用配置无论是在Windows还是Linux，都要用到
+安装与配置安装Git软件Windows平台：Git for Windows(在安装的时候注意那些选项的设置)Linux平台：sudo apt-get install git
+基础配置打开终端，在windows平台就用上一步安装上的git bash
+# 全局配置，这里的用户名和邮箱填写你自己的帐号，可以是github上的帐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 教程">
+<meta property="og:url" content="https://haofly.net/git/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="Git指南这里所列举的通用配置无论是在Windows还是Linux，都要用到
+安装与配置安装Git软件Windows平台：Git for Windows(在安装的时候注意那些选项的设置)Linux平台：sudo apt-get install git
+基础配置打开终端，在windows平台就用上一步安装上的git bash
+# 全局配置，这里的用户名和邮箱填写你自己的帐号，可以是github上的帐">
+<meta property="og:image" content="http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_0.png">
+<meta property="og:image" content="http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_1.png">
+<meta property="og:image" content="http://ojccjqhmb.bkt.clouddn.com/git_1.jpg">
+<meta property="og:image" content="http://ojccjqhmb.bkt.clouddn.com/git_2.jpg">
+<meta property="og:updated_time" content="2017-02-10T08:36:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 教程">
+<meta name="twitter:description" content="Git指南这里所列举的通用配置无论是在Windows还是Linux，都要用到
+安装与配置安装Git软件Windows平台：Git for Windows(在安装的时候注意那些选项的设置)Linux平台：sudo apt-get install git
+基础配置打开终端，在windows平台就用上一步安装上的git bash
+# 全局配置，这里的用户名和邮箱填写你自己的帐号，可以是github上的帐">
+<meta name="twitter:image" content="http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/git/"/>
+
+
+
+
+
+  <title> Git 教程 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/git/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git 教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-06T23:12:39+00:00">
+                2016-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/git/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="git/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Git指南"><a href="#Git指南" class="headerlink" title="Git指南"></a>Git指南</h1><p>这里所列举的通用配置无论是在Windows还是Linux，都要用到</p>
+<h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><h3 id="安装Git软件"><a href="#安装Git软件" class="headerlink" title="安装Git软件"></a>安装Git软件</h3><p>Windows平台：<a href="http://msysgit.github.io/" target="_blank" rel="external">Git for Windows</a>(在安装的时候注意那些选项的设置)<br>Linux平台：<code>sudo apt-get install git</code></p>
+<h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><p>打开终端，在windows平台就用上一步安装上的git bash</p>
+<pre><code># 全局配置，这里的用户名和邮箱填写你自己的帐号，可以是github上的帐号信息
+git config --global user.name &quot;haoflyent&quot;
+git config --global user.email &quot;haoflynet@gmail.com&quot;
+
+# 如果要同一台机器多个git账户，那么可以取消全局设置
+git config --global --unset user.name
+git config --global --unset user.email
+git config user.email &quot;x@xx.com&quot;    # 在仓库里面单独设置
+git config user.name &quot;xx&quot;
+
+# 生成密钥
+ssh-keygen -t rsa -C &quot;haoflynet@gmail.com&quot;
+# 然后一路默认就可以，注意看其中的密钥存放位置，其中公钥文件Windows默认为/c/Users/用户名/.ssh/id_rsa.pub# Linux默认为 ~/.ssh/rsa_pub
+</code></pre><h3 id="Git相关文件"><a href="#Git相关文件" class="headerlink" title="Git相关文件"></a>Git相关文件</h3><p><strong>.gitkeep</strong>: 这个文件当前所在的空目录可以加入到版本控制里面去</p>
+<h2 id="Github的使用"><a href="#Github的使用" class="headerlink" title="Github的使用"></a>Github的使用</h2><p>打开公钥文件，然后复制其中的内容到Github上的setting-&gt;SSH keys-&gt;Add SSH key，如下<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_0.png" alt=""><br>点击Add Key后会要求输入github密码，因为这是特别敏感的操作<br>然后进行新建仓库，无论是github还是其他托管网站都可以新建远程库，新建完成后都会提示你下一步该怎么做<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_1.png" alt=""><br>按照上图给出 操作指南，有三种方法分别是</p>
+<ul>
+<li>在本地建立一个新库，并新建一个README.md到远程库</li>
+<li>直接将本地库的代码推送到远程库，不过在本地需要将文件夹编程一个库</li>
+<li>从别的库导入代码到该库<br>具体的命令在途中均有给出</li>
+</ul>
+<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"># 日志/历史查看</div><div class="line">git log  # 查看提交的历史,--oneline按行显示，--graph查看分支的合并情况，--all显示所有分支的历史</div><div class="line">git reflog	# 查看HEAD的历史情况</div><div class="line"></div><div class="line"># 代码改动</div><div class="line">git blame filename   # 查看某文件的改动历史</div><div class="line">git diff + 分知名   # 比较当前分支和目标分支的不同</div><div class="line">git diff master</div><div class="line"></div><div class="line"># 版本回退/回滚,--hard表示将该次提交之前所有的更改都丢弃，git reset是把HEAD向历史移动，而git revert是HEAD继续向前，新的commit就和revert的内容刚好相反，所以推荐使用revert，reset的target是要会退到的版本，而revert得target是要取消的版本</div><div class="line">git reset --hard HEAD^  # 回退到上一个版本</div><div class="line">git reset --hard HEAD^^ # 回退到上上个版本</div><div class="line">git reset --hard 233333 # 指定提交ID的回退</div><div class="line">git push -f origin master	# remote端也更新</div><div class="line"></div><div class="line"># 分支操作</div><div class="line">git branch -a  # 查看当前分支</div><div class="line">git checkout origin/dev	# 检出远程分支到本地，此时会显示如下:</div><div class="line">*(HEAD detached at origin/dev)</div><div class="line">master</div><div class="line">## 要想将本地之内提交到远程dev分支，只需要再</div><div class="line">git checkout -b dev # 这样就好了</div><div class="line">## 新建并切换分支</div><div class="line">git checkout -b dev</div><div class="line">## 强制覆盖本地分支</div><div class="line">git fetch --all</div><div class="line">git reset --hard origin/master</div><div class="line">## 合并分支</div><div class="line">### 在新的分支如bug-fix修改完成后，执行以下操作</div><div class="line">git checkout dev	# 切换回dev分支</div><div class="line">git merge bug-fix	# 将bug-fix合并到当前分支，即dev分支</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"># 标签操作</div><div class="line">git tag 									# 查看当前所有的标签</div><div class="line">git tag v1.0.0							# 在当前commit打一个标签</div><div class="line">git tag -d v1.0.0						# 删除一个标签</div><div class="line">git push origin v1.0.0					# 将打的标签推送到仓库</div><div class="line">git push origin :refs/tags/v1.0.0		# 本地删除标签后远程也要删除</div><div class="line"></div><div class="line"># 统计代码行数</div><div class="line">git log --author=&quot;$(git config --get user.name)&quot; --pretty=tformat: --numstat | gawk &apos;&#123; add += $1 ; subs += $2 ; loc += $1 - $2 &#125; END &#123; printf &quot;added lines: %s removed lines : %s total lines: %s\n&quot;,add,subs,loc &#125;&apos; -</div></pre></td></tr></table></figure>
+<h2 id="贡献PR-Fork别人的项目"><a href="#贡献PR-Fork别人的项目" class="headerlink" title="贡献PR(Fork别人的项目)"></a>贡献PR(Fork别人的项目)</h2><p>如果希望给开源项目贡献代码或者直接修复bug，那么就需要涉及到fork了并提交了。步骤如下:</p>
+<ol>
+<li><p>fork别人的仓库到自己这里: 直接在github里面点击fork，即可在自己的代码仓库里面创建一个一模一样的仓库。</p>
+</li>
+<li><p>从自己的代码仓库clone下来，并开发。</p>
+</li>
+<li><p>开发完成后，commit到自己的代码仓库</p>
+</li>
+<li><p>在自己的项目创建Pull Request，指向到原开源项目中去。</p>
+<p><img src="http://ojccjqhmb.bkt.clouddn.com/git_1.jpg" alt=""></p>
+</li>
+</ol>
+<p><img src="http://ojccjqhmb.bkt.clouddn.com/git_2.jpg" alt=""></p>
+<p>记得添加commit说明。</p>
+<h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><p>参考文章：<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013760174128707b935b0be6fc4fc6ace66c4f15618f8d000" target="_blank" rel="external">廖雪峰的官方网站</a><br>前提：已经在Github上创建了库并创建了一个新的分支，假设新分支名为dev，那么开发步骤如下：</p>
+<ol>
+<li><p>抓取远程分支到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone git@github.com:haoflynet/test.git</div><div class="line">git branch      # 查看当前分支</div><div class="line">git checkout -b dev origin/dev  # 将本地的dev分支对应远程的origin/dev分支并切换到该分支</div><div class="line"></div><div class="line">git clone -b mybranch --single-branch git://sub.domain.com/repo.git # 直接拉取指定分支到本地</div></pre></td></tr></table></figure>
+</li>
+<li><p>在该分支下进行开发</p>
+</li>
+<li><p>修改完成后推送到远程dev分支</p>
+<pre><code>git add .
+git commit -m &quot;some modification&quot;
+git push origin dev
+</code></pre></li>
+<li><p>修改并合并到master分支</p>
+<pre><code>git checkout master # 首先切换到本地的master分支
+git merge --no-ff   # 将本地的dev分支与本地的master分支合并
+git pull            # 获取远程索引
+</code></pre><p> 这一步可能这一步可能会冲突，原因当然是其他人在你之前对远程的master分支进行了修改并提交上去<br> 如果没有错，就直接推送<br> git push origin master</p>
+</li>
+</ol>
+<h2 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h2><ul>
+<li><p><strong>git checkout -b dev origin/dev出现错误fatal: cannot update paths and switch to branch ‘origin/dev’</strong><br>原因是未在远程创建dev分支，或者未在本地更新分支信息</p>
+</li>
+<li><p><strong>git remote add origin git@github.com:haoflynet/test，出现错误fatal: remote origin already exists</strong><br>原因是克隆别人的库下来修改后push到自己的库可能会出现这种错误，要先执行git remote rm origin  </p>
+</li>
+<li><p><strong>.gitignore无效，该忽略的依然没有被忽略</strong></p>
+<pre><code>git rm -r --cached .
+git add .
+git commit -m &quot;fixed untracked files
+</code></pre><p>这样会删除github上面已经提交了的但是现在忽略了的文件，如果要在github上面保留一份，那么执行git add -f filename</p>
+</li>
+<li><p><strong>There was a problem with the editor ‘vi’</strong><br>vi编辑器的问题吧，直接换成vim<br><code>git config --global core.editor $(which vim)</code></p>
+</li>
+<li><p><strong>更改文件名后，远程居然没有过更新</strong><br>git默认对文件名的大小写不敏感，需要在仓库执行<code>git config core.ignorecase false</code>让它对大小写敏感</p>
+</li>
+<li><p><strong><code>413 request entity too large</code></strong></p>
+<p>发生这个问题是因为采用的是https而不是ssh方式来push仓库，而https传输数据的大小一般是由服务器，即nginx来控制的，太大了是传不上去的，这时候只需要更改为ssh方式即可。</p>
+</li>
+<li><p><strong>修改提交作者和邮箱</strong>: git可以通过<code>git filter-branch</code>修改已经提交了的commit的作者和邮箱。如果仅仅想修改一次的，可以直接<code>git commit --amend --author=&quot;haoflynet &lt;haoflynet@gmail.com&gt;&quot;</code>。这里有一个来自<a href="http://i.dotidea.cn/2015/04/git-amend-author/" target="_blank" rel="external">若有所思-胡磊</a>的批量修改的脚本:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line"> </div><div class="line">git filter-branch --env-filter &apos;</div><div class="line"> </div><div class="line">an=&quot;$GIT_AUTHOR_NAME&quot;</div><div class="line">am=&quot;$GIT_AUTHOR_EMAIL&quot;</div><div class="line">cn=&quot;$GIT_COMMITTER_NAME&quot;</div><div class="line">cm=&quot;$GIT_COMMITTER_EMAIL&quot;</div><div class="line"> </div><div class="line">if [ &quot;$GIT_COMMITTER_EMAIL&quot; = &quot;[Your Old Email]&quot; ]</div><div class="line">then</div><div class="line">    cn=&quot;[Your New Author Name]&quot;</div><div class="line">    cm=&quot;[Your New Email]&quot;</div><div class="line">fi</div><div class="line">if [ &quot;$GIT_AUTHOR_EMAIL&quot; = &quot;[Your Old Email]&quot; ]</div><div class="line">then</div><div class="line">    an=&quot;[Your New Author Name]&quot;</div><div class="line">    am=&quot;[Your New Email]&quot;</div><div class="line">fi</div><div class="line"> </div><div class="line">export GIT_AUTHOR_NAME=&quot;$an&quot;</div><div class="line">export GIT_AUTHOR_EMAIL=&quot;$am&quot;</div><div class="line">export GIT_COMMITTER_NAME=&quot;$cn&quot;</div><div class="line">export GIT_COMMITTER_EMAIL=&quot;$cm&quot;</div><div class="line">&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>​</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/fpm/" rel="next" title="Fpm 打包工具">
+                <i class="fa fa-chevron-left"></i> Fpm 打包工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/decorator装饰器/" rel="prev" title="Python装饰器">
+                Python装饰器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="git/"
+     data-title="Git 教程"
+     data-content=""
+     data-url="https://haofly.net/git/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="git/"
+           data-title="Git 教程" data-url="https://haofly.net/git/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git指南"><span class="nav-number">1.</span> <span class="nav-text">Git指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装与配置"><span class="nav-number">1.1.</span> <span class="nav-text">安装与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Git软件"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装Git软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">基础配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git相关文件"><span class="nav-number">1.1.3.</span> <span class="nav-text">Git相关文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github的使用"><span class="nav-number">1.2.</span> <span class="nav-text">Github的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用操作"><span class="nav-number">1.3.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贡献PR-Fork别人的项目"><span class="nav-number">1.4.</span> <span class="nav-text">贡献PR(Fork别人的项目)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多人协作"><span class="nav-number">1.5.</span> <span class="nav-text">多人协作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TroubleShooting"><span class="nav-number">1.6.</span> <span class="nav-text">TroubleShooting</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

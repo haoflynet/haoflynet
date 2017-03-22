@@ -1,0 +1,826 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="作者：Paul Graham(保罗·格雷厄姆))
+翻译：阮一峰
+关于本书我一向不喜欢在文章里介绍作者以及译者，因为我的文笔及对他们的理解不可能会比他们自己的网站或者维基百科相近透彻，所以如果想了解他们可以直接点击他们的名字进入相应的网站。
+第一次听说这本书还以为是讲黑客的，但之后在微博上书本上了解了这本书后就立马决定买下来，想一探究竟，这本书到底为什么会成为经典。本书的目标读者不仅仅是程序员，还有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《黑客与画家》——读后感">
+<meta property="og:url" content="https://haofly.net/hacker-and-painter/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="作者：Paul Graham(保罗·格雷厄姆))
+翻译：阮一峰
+关于本书我一向不喜欢在文章里介绍作者以及译者，因为我的文笔及对他们的理解不可能会比他们自己的网站或者维基百科相近透彻，所以如果想了解他们可以直接点击他们的名字进入相应的网站。
+第一次听说这本书还以为是讲黑客的，但之后在微博上书本上了解了这本书后就立马决定买下来，想一探究竟，这本书到底为什么会成为经典。本书的目标读者不仅仅是程序员，还有">
+<meta property="og:updated_time" content="2016-09-30T06:30:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《黑客与画家》——读后感">
+<meta name="twitter:description" content="作者：Paul Graham(保罗·格雷厄姆))
+翻译：阮一峰
+关于本书我一向不喜欢在文章里介绍作者以及译者，因为我的文笔及对他们的理解不可能会比他们自己的网站或者维基百科相近透彻，所以如果想了解他们可以直接点击他们的名字进入相应的网站。
+第一次听说这本书还以为是讲黑客的，但之后在微博上书本上了解了这本书后就立马决定买下来，想一探究竟，这本书到底为什么会成为经典。本书的目标读者不仅仅是程序员，还有">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/hacker-and-painter/"/>
+
+
+
+
+
+  <title> 《黑客与画家》——读后感 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/hacker-and-painter/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《黑客与画家》——读后感
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-11T15:37:39+00:00">
+                2014-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/韦编三绝/" itemprop="url" rel="index">
+                    <span itemprop="name">韦编三绝</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/hacker-and-painter/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="hacker-and-painter/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作者：<a href="http://en.wikipedia.org/wiki/Paul_Graham_\\(computer_
+programmer\\" target="_blank" rel="external">Paul Graham(保罗·格雷厄姆)</a>)</p>
+<p>翻译：<a href="http://www.ruanyifeng.com/home.html" target="_blank" rel="external">阮一峰</a></p>
+<h1 id="关于本书"><a href="#关于本书" class="headerlink" title="关于本书"></a>关于本书</h1><p>我一向不喜欢在文章里介绍作者以及译者，因为我的文笔及对他们的理解不可能会比他们自己的网站或者维基百科相近透彻，所以如果想了解他们可以直接点击他们的名字进入相<br>应的网站。</p>
+<p>第一次听说这本书还以为是讲黑客的，但之后在微博上书本上了解了这本书后就立马决定买下来，想一探究竟，这本书到底为什么会成为经典。本书的目标读者不仅仅是程序员，<br>还有现实中的普通人、职员以及创业者。本书虽然是阮一峰翻译的，但不知道是不是因为我阅读外国著作的数量还不够还是怎么的，我始终感觉作者的话有很多累赘的地方，有时<br>一个概念要用很多句话来解释(其实，在翻译一些外国文章的时候我也遇到过类似的问题，前后要么不搭边要么有点累赘要么没有过度语句)。在<a href="http
+://haofly.net/daimadeweilai/">《代码的未来》</a>里我也将两本书对比过，但其实我是先看《黑客与画家》再看《代码的未来》的，《黑客与画家》描述的是从计<br>算机开始至二十一世纪初的一些互联网发展规律以及一些概念，从历史发展的角度来延伸到未来的计算机潮流，虽然具有一定的时代性，但此书一定能打开你的眼光，更好地看待<br>现在的互联网世界。</p>
+<h1 id="书呆子？宅男吧！"><a href="#书呆子？宅男吧！" class="headerlink" title="书呆子？宅男吧！"></a>书呆子？宅男吧！</h1><p>书中所说的书呆子，其实就是现在所说的宅男。“为什么他们不受欢迎？因为他们把心思都放在了别的地方。”宅，就要宅出技术。技术宅，他们不善交际，他们不爱参加公共活<br>动，他们不乱花钱(钱只花在数码产品上)，技术宅与普通宅不同，技术宅不是因为别的，而是因为热衷于技术才那么宅，他们可能为了钻研某个技术而几天几夜不出门，他们可<br>能为了修改某个bug而茶不思饭不想，但总归来说他们是为了技术，为了自己所热爱的技术。我对这种生活还是很向往的，但是现在貌似这样不行了，还是应该出去锻炼一下自<br>己的社交能力的，这点我不多说，相信现代人都能够理解，因为这已经不是那个“酒好不怕巷子深”的年代了。</p>
+<h1 id="黑客与画家"><a href="#黑客与画家" class="headerlink" title="黑客与画家"></a>黑客与画家</h1><p>我很赞同书中所提到的黑客伦理，诚然，我对黑客的理解从来都不是媒体眼中的那样，而就是作者这样的，”黑客不服从管教，具有叛逆精神“，这句话是对的，但绝不是贬义的<br>，因为黑客就是自由的象征，hacker not blacker。黑客总会以自己的方式去捍卫自己的权利，实现自己的想法。他们会因为政府的某些不公而去攻击政府网<br>站，会因为自己的某个新奇的想法而日夜编码，为了自由，他们发明了Linux，发明了RSS，发明了社交网站……</p>
+<p>黑客应该与画家一样，是创造艺术的一群人，而不是搞破坏的一群人。只有懂得艺术精华的人才能像黑客那样写出伟大的程序。在此书的影响下，我现在也在有意无意地提高自己<br>在其他方面的理解，比如会话、歌曲等。</p>
+<p>黑客并不神秘，他们可能就是你身边的书呆子！</p>
+<h1 id="关于创业"><a href="#关于创业" class="headerlink" title="关于创业"></a>关于创业</h1><p>随着90后的崛起，书中所提到的创业观念我觉得有些也应该值得商榷，现在的创业观念和以前不大一样了。作者所说，要创业就要让对手无法理解你的技术，无法复制你的商业<br>模式，但现在这个知识爆炸的年代，这一点绝对是难上加难。正确的创业应该是利用大家都知道的技术，但只有你最先想到把那项技术用到可以发挥其长的地方，并能迅速推广，<br>那么你就是赢家，即使是大公司来复制，也难以复制第一批的客户。</p>
+<h1 id="黑客伦理-Hacker-ethic"><a href="#黑客伦理-Hacker-ethic" class="headerlink" title="黑客伦理(Hacker ethic)"></a>黑客伦理(Hacker ethic)</h1><p>(1)Access to computers–and anything that might teach you something about the<br>way the world work–should be unlimited and total. Always yield to the Hands-On<br>Imperative!(使用计算机以及所有有助于了解这个世界本质的事物都不应受到任何限制。任何事情都应该亲手尝试)</p>
+<p>(2)All information should be free.(所有信息应该都是自由的)</p>
+<p>(3)Mistrust Authority–Promote Decentralization(不信任权威，提倡去中心化)</p>
+<p>(4)Hackers should be judged by their hacking, not bogus criteria such as<br>degrees, age, race, or position.(判断一名黑客的水平应该看他的技术能力，而不是看他的学历、年龄或低位等其他标准)</p>
+<p>(5)You can create art and beauty on a computer.(你可以用计算机创造美和艺术)</p>
+<p>(6)Computers can change your life for the better(计算机使生活更美好)</p>
+<p><strong>语录</strong></p>
+<p>为什么书呆子不受欢迎？他们的心思在别的地方<br>致富的最好方法就是为社会创造财富。创造财富的最好方法就是创业<br>正确的合作方法是将项目分割成严格定义的模块，每一个模块由一个人明确负责。模块与模块之间的接口经过精心设计，如果可能的话，最好能把文档说明写得像编程语言规范那<br>样清晰<br>程序写出来是给人看的，附带能在机器上运行<br>毕竟生命只有一次，你可能想用它来做一些伟大的事情<br>公民自由真的是国家富强的原因，而不是结果吗？<br>你开办创业公司不是单纯地为了解决问题，而是为了解决那些用户关心的问题<br>以永不过时作为目标是一种帮助自己找到最佳答案的方法：如果你不愿别人的答案取代你的答案，你就只好自己做出最佳答案</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/the-future-of-coding/" rel="next" title="《代码的未来》——新一代程序员的未来">
+                <i class="fa fa-chevron-left"></i> 《代码的未来》——新一代程序员的未来
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/eclipse-git-coding-net/" rel="prev" title="项目成员使用eclipse的Git插件进行版本管理的流程(基于coding.net)">
+                项目成员使用eclipse的Git插件进行版本管理的流程(基于coding.net) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="hacker-and-painter/"
+     data-title="《黑客与画家》——读后感"
+     data-content=""
+     data-url="https://haofly.net/hacker-and-painter/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="hacker-and-painter/"
+           data-title="《黑客与画家》——读后感" data-url="https://haofly.net/hacker-and-painter/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于本书"><span class="nav-number">1.</span> <span class="nav-text">关于本书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#书呆子？宅男吧！"><span class="nav-number">2.</span> <span class="nav-text">书呆子？宅男吧！</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#黑客与画家"><span class="nav-number">3.</span> <span class="nav-text">黑客与画家</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于创业"><span class="nav-number">4.</span> <span class="nav-text">关于创业</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#黑客伦理-Hacker-ethic"><span class="nav-number">5.</span> <span class="nav-text">黑客伦理(Hacker ethic)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

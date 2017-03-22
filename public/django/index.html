@@ -1,0 +1,1656 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Django教程Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Python的Web框架。在Django和Tornado之间我选择了前者，没有特别的原因，网上人云亦云的，肯定不会有一方离另一方差很远，我就直接去看了看Github上两个项目的活跃度，所以选择了前者。
+应该说Django坚持自己造轮子，确实为开发者节约了不少的时间，我很看重它的扩展功能，packages数量十分丰富。Dja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django教程">
+<meta property="og:url" content="https://haofly.net/django/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="Django教程Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Python的Web框架。在Django和Tornado之间我选择了前者，没有特别的原因，网上人云亦云的，肯定不会有一方离另一方差很远，我就直接去看了看Github上两个项目的活跃度，所以选择了前者。
+应该说Django坚持自己造轮子，确实为开发者节约了不少的时间，我很看重它的扩展功能，packages数量十分丰富。Dja">
+<meta property="og:updated_time" content="2017-03-16T07:03:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django教程">
+<meta name="twitter:description" content="Django教程Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Python的Web框架。在Django和Tornado之间我选择了前者，没有特别的原因，网上人云亦云的，肯定不会有一方离另一方差很远，我就直接去看了看Github上两个项目的活跃度，所以选择了前者。
+应该说Django坚持自己造轮子，确实为开发者节约了不少的时间，我很看重它的扩展功能，packages数量十分丰富。Dja">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/django/"/>
+
+
+
+
+
+  <title> Django教程 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/django/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-03-14T00:44:39+00:00">
+                2015-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/django/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="django/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Django教程"><a href="#Django教程" class="headerlink" title="Django教程"></a>Django教程</h1><p>Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Python的Web框架。在Django和Tornado之间我选择了前者，没有特别的原因，网上人云亦云的，肯定不会有一方离另一方差很远，我就直接去看了看Github上两个项目的活跃度，所以选择了前者。</p>
+<p>应该说Django坚持自己造轮子，确实为开发者节约了不少的时间，我很看重它的扩展功能，packages数量十分丰富。Django采用的是最流行也是我最熟悉的MVC设计模式，虽然在之前的一个PHP(Laravel)项目中也是采用的MVC模式，但一直都没怎么吃透，始终在各层分离的时候不是很清晰，所以也可趁学习Django对MVC的概念进行强化。</p>
+<p>Django另一个我特别喜欢的特性就是Application，它与Project的概念不同，一个APP就相当于一个功能模块，一个Project可以包含多个APP，一个APP可以同时被多个Project引用，App增加了代码的复用机会，提高了扩展性和松耦合性，Django中很多的packages都是以APP的形式存在的。</p>
+<p>另外，我学习主要参考的是开源书籍 <a href="http://andrew-liu.gitbooks.io/django-blog/" title="Link: http://andrew-liu.gitbooks.io/django-blog/" target="_blank" rel="external">Django搭建简易博客教程</a></p>
+<p>下面是搭建一个Django环境的基本步骤：</p>
+<ol>
+<li><a href="http://haofly.net/virtualenv-python-django/">使用Virtualenv搭建Python3的Django环境</a></li>
+<li><p>新建项目 <code>django-admin startproject 项目名</code> 这样会在当前目录新建一个目录，里面已经有一些基本的配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">django_test</div><div class="line">├── db.sqlite3</div><div class="line">├── django_test</div><div class="line">│   ├── __init__.py</div><div class="line">│   ├── settings.py</div><div class="line">│   ├── urls.py</div><div class="line">│   └── wsgi.py</div><div class="line">└── manage.py</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建APP <code>django-admin startapp APP名称</code> 如果是搭建一个非常简单的应用，那么不使用APP也行，只需要吧路由指向目标view就可以了，但是如果要搭建复杂的应用并且需要良好的隔离性，那最好使用APP。同样，使用该命令也会在当前目录下新建一个目录，里面已经包含一些配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">django_test/testapp</div><div class="line">├── admin.py	# 注册models，用于admin管理</div><div class="line">├── __init__.py</div><div class="line">├── migrations	# 数据库迁移</div><div class="line">├── models.py	# 定义models</div><div class="line">├── tests.py	# 单元测试</div><div class="line">├── apps.py		# App的配置类，AppConfig用于存储应用程序的元数据</div><div class="line">└── views.py	# 视图文件</div></pre></td></tr></table></figure>
+<p>如过添加了APP，那么需要在主配置文件<code>settings.py</code>里面的<code>INSTALLED_APPS</code>里面添加该APP的名称</p>
+</li>
+<li><p>Hello World！ 所有入门教程都必须要有一个Hello World! 首先，在APP的视图文件views.py里添加函数，该函数直接返回一个字符串的响应：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(request)</span>:</span></div><div class="line">	<span class="keyword">return</span> HttpResponse(<span class="string">'Hello World!'</span>)</div></pre></td></tr></table></figure>
+<p>然后添加URL，在Project目录里的<code>urls.py</code>里进行管理，添加hello的url如下：</p>
+<pre><code>from django.conf.urls import patterns, include, url
+from django.contrib import admin
+
+urlpatterns = [
+    url(r&apos;^admin/&apos;, include(admin.site.urls)),
+    url(r&apos;^hello/&apos;, &apos;testapp.views.hello&apos;),
+]
+</code></pre></li>
+<li>运行 <code>python manage.py runserver</code> 如果要以daemon的方式在后台运行，可以使用nohup命令 <code>nohup python manage.py runserver 0.0.0.0:8000 &amp;</code> 使用它可以打开Django自带的默认Web引擎，可以在 <a href="http://127.0.0.1:8000中查" target="_blank" rel="external">http://127.0.0.1:8000中查</a>看 在测试的时候可以使用该引擎，它不仅轻量，而且在打开后还会自动检测代码的更改，进行自动更新，这样就不用每次对代码变动了都来重启一次</li>
+</ol>
+<h2 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h2><h3 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h3><p>需要注意的是，Django官方并没有默认的分离配置文件的方案，我觉得最佳的方式是，建立多个配置文件，然后在默认的配置文件里面进行导入即可。例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">env = <span class="string">'local'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> env == <span class="string">'local'</span>:</div><div class="line">    <span class="keyword">from</span> settings_local <span class="keyword">import</span> *</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">from</span> settings_prod <span class="keyword">import</span> *</div></pre></td></tr></table></figure>
+<p>配置文件内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">DEBUG = <span class="keyword">True</span>			<span class="comment"># DEBUG模式</span></div><div class="line">TEMPLATE_DEBUG = <span class="keyword">True</span>	<span class="comment"># TEMPLATE的DEBUG模式</span></div><div class="line"></div><div class="line">ALLOWED_HOSTS = []   	<span class="comment"># 设置哪些域名可以访问，当debug为false时必须为其指定一个值，['*']表示允许所有的访问</span></div><div class="line"></div><div class="line">INSTALLED_APPS = [默认APP+自己的APP]</div><div class="line">MIDDLEWARE_CLASSES = [中间件]</div><div class="line"></div><div class="line">ROOT_URLCONF = <span class="string">'admin.urls'</span>	<span class="comment"># 读取的默认的url文件</span></div><div class="line"></div><div class="line"><span class="comment"># Database 数据库的配置</span></div><div class="line">DATABASES = &#123;</div><div class="line">    <span class="string">'default'</span>: &#123;</div><div class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,	<span class="comment"># MySQL/Mariadb数据库设置</span></div><div class="line">        <span class="string">'NAME'</span>: <span class="string">'admin'</span>,</div><div class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,</div><div class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'mysql'</span>,</div><div class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</div><div class="line">        <span class="string">'PORT'</span>: <span class="number">3307</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">LANGUAGE_CODE = <span class="string">'en-us'</span>  <span class="comment"># 语言，中文可用zh-Hans、zh-CN，完整列表见：http://www.i18nguy.com/unicode/language-identifiers.html</span></div><div class="line">TIME_ZONE = <span class="string">'Asia/Chongqing'</span>        <span class="comment"># 时区</span></div><div class="line"></div><div class="line"><span class="comment"># Static files (CSS, JavaScript, Images) 静态文件目录  </span></div><div class="line">STATIC_URL = <span class="string">'/static/'</span></div><div class="line">STATIC_ROOT = os.path.join(BASE_DIR, <span class="string">'static'</span>) <span class="comment"># 这个选项默认是没有的，在编码时将静态文件放在APP中的static目录下，部署时用python manage.py collectstatic就可以把静态文件收集到STATIDC_ROOT目录</span></div></pre></td></tr></table></figure>
+<p>在其他文件访问全局配置项，可以这样访问：</p>
+<pre><code>from django.conf import settings
+settings.DEBUG
+</code></pre><h3 id="应用配置"><a href="#应用配置" class="headerlink" title="应用配置"></a>应用配置</h3><p>在上面新建的app的目录结构里面又一个<code>apps.py</code>文件，它存储了应用的元数据，通过继承<code>AppConfig</code>来配置其属性，可配置的选项如下:</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">可配置的属性</div><div class="line">AppConfig.name			# 应用的完整Python路径，例如django.crontrib.admin，在整个Django项目中必须是唯一的</div><div class="line">AppConfig.label			# 应用的缩写，例如admin，</div><div class="line">AppConfig.verbose_name	# 应用的适合阅读的名称</div><div class="line">AppConfig.path			# 应用目录的文件系统路径，例如/usr/lib/python3.4/dist-packages/django/contrib/admin</div><div class="line"></div><div class="line">可配置的方法</div><div class="line">AppConfig.get_models()			# 返回可迭代的Model类</div><div class="line">AppConfig.get_model(model_name)	# 返回具体的Model</div><div class="line">AppConfig.ready()				# 执行初始化任务</div></pre></td></tr></table></figure>
+<h2 id="路由与视图"><a href="#路由与视图" class="headerlink" title="路由与视图"></a>路由与视图</h2><p><strong>url</strong>: web访问请求的入口(相当于Laravel里的路由)<br><strong>view</strong>：应用的逻辑部分，从客户端接收请求，处理并返回数据，一般返回到template模板进行渲染(相当于Laravel里的控制器)<br>将<code>/test</code>定位到article这个APP里面的views里面的home方法来处理的形式</p>
+<pre><code>url(r&apos;^test$&apos;, &apos;article.views.home&apos;)
+</code></pre><h4 id="url传递参数"><a href="#url传递参数" class="headerlink" title="url传递参数"></a>url传递参数</h4><p>Django的路由是采用正则表达式来匹配的，同样能使用命名组，比如<code>(?P&lt;name&gt;)</code>，这样就可以通过URL给views传递参数了，例如：</p>
+<pre><code># 有如下视图
+def hello(request, name):
+    return HttpResponse(&apos;name is %s&apos;, % name)
+# 在url中可以这样写
+url(r&apos;^(?P&lt;name&gt;\d+)/$&apos;, &apos;testapp.views.hello)
+</code></pre><h4 id="url命名"><a href="#url命名" class="headerlink" title="url命名"></a>url命名</h4><pre><code>url(r&apos;^add/$&apos;, &apos;app.views.add&apos;, name=&apos;add&apos;)
+</code></pre><p>给url命名可以方便我们进行统一修改url样式，比如之前用<code>a-and-b</code>的url可以访问到add这个方法，但现在如果想改成<code>a/b</code>的方式来访问，那么由于后端的模板渲染等都是用的其命名<code>add</code>，就无需修改后端逻辑了</p>
+<h4 id="路由按照app分组"><a href="#路由按照app分组" class="headerlink" title="路由按照app分组"></a>路由按照app分组</h4><p>首先主urls.py里面使用include包含应用下的urls.py文件</p>
+<pre><code>from django.conf.urls import include
+urlpatterns = [
+    url(r&apos;^app1&apos;, include(&apos;app1.urls&apos;)),
+]
+</code></pre><p>然后在app1下的urls.py文件里面，进行如下设置:</p>
+<pre><code>from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r&apos;^/$&apos;, views.hello),
+]
+</code></pre><p>这样就可以通过<code>/app1/</code>，来访问app1下的hello方法了</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系映射)的方式，每个model类代表一张数据库的表，每一个属性代表其一个字段(这种特性的实现依赖于python的元类)。 </p>
+<h3 id="数据表定义"><a href="#数据表定义" class="headerlink" title="数据表定义"></a>数据表定义</h3><p>定义model的文件是<code>project/app/models.py</code>里面，例如，要定义一张用户表：</p>
+<pre><code>fromo django.db import models
+
+class User(models.Model):
+    username = models.CharField(max_length = 20)    # 用户名字段
+    create_time = models.DateTimeField(auto_now_add = True)    # 注册日期字段，如果同时有两个字段对应着同一个外键，那么久得重命名字段名了，比如：
+    receiver = models.ForeignKey(Users, null=True, related_name=&apos;receiver&apos;)
+    poster = models.ForeignKey(Users, null=True, related_name=&apos;poster&apos;)
+
+    def __str__(self):
+        &apos;&apos;&apos;这个函数可以用于str(obj)函数来输出该对象的信息，默认是表名&apos;&apos;&apos;
+        return self.username
+</code></pre><p>当建立好models过后，执行如下命令就可以在数据库中新建或更新数据表了：</p>
+<pre><code>python manage.py makemigrations
+python manage.py migrate
+</code></pre><p>注：如果是有修改的，那么新添加的数据必须要允许null或者设置默认值，否则会报错，这其实是为了保护已经存在了的数据，当然在添加完该字段后把null去掉再更新数据库就可以了。</p>
+<h3 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h3><p>注：Django默认为每张表设置了一个int(11)的自增主键，不需要自己去定义了。</p>
+<h4 id="字段通用参数"><a href="#字段通用参数" class="headerlink" title="字段通用参数"></a>字段通用参数</h4><pre><code>primary_key = False/True   # 是否设置为主键
+blank = False/True         # 是否可为空，这其实是用于Field的判断
+null = False/True          # 是否可为空，这才是真正的数据库里面是否可以为null
+max_length = 3             # 最大长度，对整型无效
+default = &apos;&apos;               # 设置默认值
+verbose_name =             # 相当于备注，如果没给出那么就是该字段,当然，要指定的话，可以直接第一个参数一个字符串就可以指定了
+editable = False/True      # 是否可编辑
+unique = False/True        # 是否唯一
+auto_now = False/True      # 用于时间，每次更新记录的时候更新该字段
+auto_now_add = False/True  # 用于时间，创建新纪录的时候自动更新该字段
+choices # 很实用的一个功能，相当于存储一个枚举列表，其中左边的key是实际存储在数据库中的值，例如，可以这样定义一个字段：
+    YEAR_IN_SCHOOL_CHOICES= (
+        (&apos;FR&apos;, &apos;Freshman&apos;),
+        (&apos;SO&apos;, &apos;Sophomore&apos;),
+        (&apos;JR&apos;, &apos;Junior&apos;),
+        (&apos;SR&apos;, &apos;Senior&apos;),
+    )
+    然后在定义字段的时候给个参数choices=YEAR_IN_SCHOOL_CHOICES，在插入字段的时候，使用&apos;RF&apos;这样的，在获取字段值的时候这样：p.get_year_in_school_display()即可显示&apos;Freshman&apos;
+verbose_name        # 定义字段的注释
+</code></pre><h4 id="常用类型"><a href="#常用类型" class="headerlink" title="常用类型"></a>常用类型</h4><pre><code>数字类型：
+AutoField：自增长字段
+IntegerField：长度为11的整数
+PositiveIntegerField：
+SmallIntegerField
+PositiveSmallIntegerField
+BigIntegerField：
+BinaryField：
+BooleanField：
+NullBooleanField：
+DecimalField(max_digits = None, decimal_places = None)
+FloatField
+
+字符类型：
+CharField：字符串类型，可用max_length指定长度
+TextField：text类型
+CommaSeparatedIntegerField：用逗号分隔的整数，我擦，这有用
+
+时间类型：
+DateField
+TimeField：datetime.time，时间
+DateTimeField()：datetime类型，包括了日期和时间，需要注意的是Django默认的TIME_ZONE是UTC，其fixture数据(初始化数据)的时候，格式如&quot;2015-04-27T15:01:00Z&quot;，它属于python里面的datetime.datetime类型，可分别用year/month/day等获取时间
+unique_for_date属性：比如，如果有一个title字段，其有一个参数unique_for_date = &quot;pub_date&quot;，那么该表就不会出现title和pub_date同时相同的情况，其它的还有unique_for_month,unique_for_year
+
+其它很有用的类型：
+EmailField：Email邮箱类型
+FileField：文件类型，不过不能设置为primary_key和unique，要使用该字段还有很多需要注意的地方，具体的见官方文档
+FilePathField：同上
+ImageField
+IPAddressField：从1.7开始已经不建议使用了，应该使用下面这个
+GenericIPAddressField：
+URLField
+UUIDField
+</code></pre><h3 id="数据库SQL操作"><a href="#数据库SQL操作" class="headerlink" title="数据库SQL操作"></a>数据库SQL操作</h3><p>要使用model，必须先导入它，例如<code>from app.models import Blog</code>，一条记录就是一个model类的实例，要获取其字段值，直接用点号访问即可，例如有Blog对象blog，那么可以直接用blog.userName访问其值。<br>如果想要在执行数据库操作的时候查看数据库的实际的SQL语句，可以这样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> connection</div><div class="line">print(Blogobjects.filter(name=<span class="string">""</span>).query)	<span class="comment"># 这样可以将SQL语句打印出来</span></div><div class="line"></div><div class="line">connection.queries			<span class="comment"># 会返回一个所有执行过的SQL的列表，并且每条时一个字典，包含了SQL语句以及SQL所执行的时间</span></div></pre></td></tr></table></figure>
+<h4 id="查询记录"><a href="#查询记录" class="headerlink" title="查询记录"></a>查询记录</h4><pre><code>Blog.objects.all()   # 获取该表的所有记录，返回的是记录对象组成的列表
+Blog.objects.get(pk=1)      # 根据主键获取数据
+Blog.objects.get(name=&quot;&quot;)  # 只会找到第一个匹配的数据
+Blog.objects.filter(name=&quot;&quot;)# 这个就会找到匹配的多个数据
+Blog.objects.filter(name__contains=&quot;&quot;)  # 模糊查找name字段的值，返回列表
+Blog.objects.order_by(&quot;字段1&quot;, &quot;字段2&quot;)   # 排序
+Blog.objects.all().order_by(&quot;字段&quot;)
+Blog.objects.count()     # 返回记录总数
+Blog.objects.values(&apos;id&apos;, &apos;name&apos;)  # 相当于select id name from Blog
+Blog.objects.values(&apos;name&apos;).distinct()   # distinct在django的mysql引擎中无法对field进行distinct操作，所以需要这样做
+Blog.objects.values_list(&apos;id&apos;, flat=True) # 查询该字段的所有值并且返回的是id的列表，而不是包括了名字的字典
+Blog.objects.latest(&apos;id&apos;)  # 根据某个字段查找其最后一条记录
+Blog.objects.filter(time__gte = &apos;2015-07-23&apos;, time__lte = &apos;2015-07-24&apos;) # 大于等于并且小于等于，不加e表示不能等于
+Blog.objects.filter(time__isnull = True)  # 判断某个字段是否为空
+Blog.objects.all().exclude(id=7)  # 排除
+Blog.objects.filter(&apos;time__year&apos;: &apos;2015&apos;, &apos;time__month&apos;: &apos;08&apos;, &apos;time__day&apos;: &apos;17&apos;)：按年月日查询日期，可仅查询其中某一个条件
+
+# Q查询，可以对关键字参数进行封装，可以使用&amp;,|,~等操作
+from django.db.models import Q
+Blog.objects.filter( Q(name__startswith=&apos;wang&apos;) | ~Q(name__startswith=&apos;hao&apos;) )
+Blog.objects.get( Q(name__startswith=&apos;wang&apos;), Q(name__startswith=&apos;hao&apos;)) # 逗号就可以直接表示and了
+
+
+        print(People.objects.filter(
+        (Q(birth_lunar__month=old_month) &amp; Q(birth_lunar__day=old_day)) |
+        (Q(birth_new__month=new_month) &amp; Q(birth_new__day=new_day))
+    ).query)
+</code></pre><h4 id="新增记录"><a href="#新增记录" class="headerlink" title="新增记录"></a>新增记录</h4><pre><code>post = Blog(userName=&quot;wanghao&quot;, userId=12)
+post.save()
+
+# 批量插入/新增
+posts = []
+for i in title:
+    posts.append(Posts(title = title))
+Posts.objects.bulk_create(posts)
+</code></pre><h4 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h4><pre><code>post = Blog.objects.filter(id=1).update(userName=&quot;new&quot;) #1.7之前更新单条记录如果要用字典的话就只能这样了
+Blog.objects.all().update(userName=&quot;new&quot;)  # 还可以批量更新
+obj, created = Posts.objects.update_or_create(pk = 3, title=&apos;wang&apos;, defaults = updated_values)   # 1.7之后可以用这种方法来更新或者创建一个，如果没找到对象，那么就新建，新建或者更新的字典是defaults的值，返回值中，obj表示该对象，created是一个布尔值
+get_or_create(title=&apos;wang&apos;, defaults=\{\})：获取或者新建
+</code></pre><h4 id="删除记录"><a href="#删除记录" class="headerlink" title="删除记录"></a>删除记录</h4><pre><code>Blog.objects.get(userName=&quot;xiao&quot;).delete()
+Blog.objects.all().delete()
+Blog.author.through.objects.filter(author = author.id).delete()  # 删除多对多关系，仅仅是删除关系，而不是删除对象
+</code></pre><h3 id="数据约束"><a href="#数据约束" class="headerlink" title="数据约束"></a>数据约束</h3><h4 id="ForeignKey"><a href="#ForeignKey" class="headerlink" title="ForeignKey"></a>ForeignKey</h4><p>例如：</p>
+<pre><code># modles.py
+class System(models.Model):
+    name = models.CharField(max_length = 20)
+        **ForeignKey**，实例如下：
+
+class Server(models.Model):
+    ip = models.GenericIPAddressField(default = &apos;127.0.0.1&apos;)
+    system = models.ForeignKey(System)
+
+# views.py里面这样子使用
+server = Server.objects.get(id=1)
+server_system = server.system.name # 这样就可以获取到那个name了
+</code></pre><h4 id="OneToMany-hasMany"><a href="#OneToMany-hasMany" class="headerlink" title="OneToMany(hasMany)"></a>OneToMany(hasMany)</h4><p>一对多关系，同样使用ForeighKey实现，例如</p>
+<pre><code># 在models.py中定义
+class Posts(models.Model):
+    title = models.CharField(&apos;标题&apos;, max_length = 50)
+
+class Comments(models.Model):
+    post = models.ForeignKey(Posts, related_name = &apos;comments_set&apos;)
+
+# 在views.py中这么用
+post = Posts.objects.get(pk = 1)    # 获取一篇文章
+comments = post.comments_set.all()  # 获取该文章的所有评论，是一个列表
+</code></pre><h4 id="ManyToManyField"><a href="#ManyToManyField" class="headerlink" title="ManyToManyField"></a>ManyToManyField</h4><p>多对多关系，有一种特殊情况，如果需要对这种关系添加额外的字段，可以使用through，添加额外的表来表示，例如，用户一张表，被使用的物品一张表，用户与物品是多对多的关系，但是有时候我们需要记录下用户使用该物品的一些其他属性，比如使用了多少次什么的，这时候就需要给这个多对多关系添加额外的字段来表示，那就需要添加额外的表了，示例如下：</p>
+<pre><code>class User(models.Model):
+    username = models.CharField(max_length = 20)
+    goods = models.ManyToManyField(&apos;物品&apos;, &apos;Goods&apos;, through=&apos;user_goods&apos;)
+
+class Goods(models.Model):
+    goodsname = models.CharField(max_length = 20)
+
+class user_goods(models.Model):
+    user = models.ForeignKey(User)
+    goods = models.ForeignKey(Goods)
+    clicks = models.IntegerField(&apos;点击量&apos;, default=0)
+</code></pre><h4 id="OneToOneField"><a href="#OneToOneField" class="headerlink" title="OneToOneField"></a>OneToOneField</h4><p>必须是一对一，而不是多对一或一对多</p>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><p>Django使用内建的paginator模块进行分页的操作，十分方便。使用方法见例子：</p>
+<pre><code>from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # 导入模块
+def listing(request):
+    contact_list = Contacts.objects.all()   # 获取所有model对象
+    paginator = Paginator(contact_list, 25) # 第二个参数是每页显示的数量
+    page = request.GET.get(&apos;page&apos;)          # 获取URL参数中的page number
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:                # 若不是整数则跳到第一页
+        contacts = paginator.page(1)
+    except EmptyPage:                       # 若超过了则最后一页
+        contacts = paginator.page(paginator.num_pages)
+
+    return render_to_response(&apos;list.html&apos;, {&quot;contacts&quot;: contacts})
+</code></pre><p>虽然contacts是一个Page对象，但是在模板中仍然可以使用for循环对其进行遍历，它其实是一个对象所组成的list。下面是分页按钮html模板例子：</p>
+<pre><code>&lt;nav&gt;
+    &lt;ul class=&quot;pagination&quot;&gt;
+        &lt;li class=&quot;{% if current_page == 1 %}disabled{% endif %}"><a href="#" aria-label="Previous"><span aria-hidden="true"></span></a>
+			{% for index in page_index %}
+				{% if index == current_page %}class="active"{% endif %}&lt;a href=&quot;#&quot;;{{ index }}&lt;span class=&quot;sr-only&quot;(current)/&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            {% endfor %}
+        &lt;li class=&quot;{% if current_page == num_pages %}disabled{% endif %}<a href="#" aria-label="Previous"><span aria-hidden="true"></span></a>
+		
+	
+### 初始化数据
+为了方便迁移,让别人使用你的APP,有时候需要为APP里面的表提供demo数据,这时候就需要预先填充一些数据.这里使用Django的fixtures方式填充(Django提供两种[填充方式](https://docs.djangoproject.com/en/1.8/howto/initial-data/))。使用JSON格式，我们可以首先使用`manage.py dumpdata data.json`方式到处原来数据库中内容看看该格式，类似如下：
+
+	[
+		{
+			"fields": {
+			"userName": "小豪",
+			"title": "第一篇文章",
+			"userId": 1,
+			"update": "2015-04-27T15:01:03Z",
+			"datetime": "2015-04-27T15:01:00Z",
+			"content": "这是文章的内容"
+			},
+			"model": "digital.blog",
+			"pk": 1
+		},
+		{
+			"fields": {
+				"userName": "笑总",
+				"title": "第二篇文章",
+				"userId": 2,
+				"update": "2015-04-28T15:01:03Z",
+				"datetime": "2015-04-28T15:01:03Z",
+				"content": "这是文章的内容吗"
+			},
+			"model": "digital.blog",
+			"pk": 2
+		},
+	]
+我们可以自己按照这个模板新建填充数据，其中pk指的是主键值。当建立好json文件过后，执行`python manage.py loaddata data.json`即可导入数据。
+
+## Template: Django模板
+和所有的MVC框架一样，模板功能是必须有的。这里介绍一下Django模板的使用方法。
+
+### 模板定义
+为了方便管理，最好在app的目录下新建templates文件夹用于存放模板文件，然后在project的配置文件settings.py中指明模板文件夹的位置:
+
+	TEMPLATES['DIRS']这个变量中添加即可，比如
+	'DIRS': [
+		os.path.join(BASE_DIR, 'dashboard/templates').replace('\\', '/'),
+	]
+
+这样，在该app的view中就可以这样使用templates下的test.html模板文件了。例如：
+
+	def test(request):
+		return render(request, 'test.html')
+### 参数传递
+要向模板中传递参数，可以给render添加第三个参数，该参数其实是一个字典，在模板中可以直接使用该字典的key，例如：
+​	
+	return render(request, 'test.html', {'name1': value1, 'name2': value2} )
+这样，在模板文件test.html中就可以直接`{{ name1 }}`来使用`name1`的值了。
+
+### 继承与引用
+模板方便之处就是可以使用继承将代码分块并且将重复的地方都写在一个base.html里。当要实现继承的时候在html文件第一行写上`{% extends 'base.html' %}`，然后分别实现其区块即可。 在base模板中一般这样定义区块：
+
+	{% block 块名 %}
+		这里直接写html代码
+	{% endblock %}
+
+如果子模块没有定义某个block的内容，那么就采用父模板的，如果需要使用父模板的内容可以用`{{ block.super }}`  
+模板也可以通过引用其它模板的代码，例如，在要引用的地方使用：
+
+	{% include 'nav.html' %}
+	{% include 'includes/nav.html' %}
+
+### 静态文件css、js、img
+静态文件一般当然是要存放在自己的app里面，这时候，就应该指定静态文件的路径，在project的配置文件settings.py中添加如下配置：
+​	
+	STATICFILES_DIRS = (
+		os.path.join(BASE_DIR, 'static'),
+		'f:/project/app/static', # 无论是windows还是linux都要用左斜杠哟
+	)
+在模板中使用静态文件就这样：
+​	
+	{% load staticfiles %}
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+### 模板标签
+Django内置了一些比较常用又实用的标签：
+
+<!--￼7-->
+
+### 过滤器
+可以直接格式化输出，是一种最便捷的转换变量输出格式的方式。
+
+	{{ today | data: "F j, Y" }}
+这里可以将today这个变量直接按照规定格式输出。  
+这里是常见的过滤器：
+
+	add：将该数字加上一个数字，例如 `{{ value|add:"2" }}`，如果原来的值为4，那么新的值就为6，不仅进可以作用与int，还能作用与列表，将列表中每个值都加
+	addslashes：添加反斜杠到需要转义的地方前
+	capfirst：第一个字母大写
+	center：在字符串前后加空格，并让该字符串位于中间，例如 `{{ value|center: "5" }}`，那么输出时前后都是5个空格
+	cut：去除字符串中的指定字符，例如`{{ value|cut:" " }}`，表示去除字符串中的所有空格
+	date：按指定的格式字符串参数格式化date或者datetime对象，参数太多了，看[文档](https://docs.djangoproject.com/en/1.8/ref/templates/builtins/)
+	default：参数没赋值的情况下给定默认值，例如`{{ value|default: "nothing" }}`
+	default_if_none：如果它是none就给定默认值
+	dictsort：将一个字典组成的列表排序，例如`{{ value|dictsort:"name" }}`意思是将value这个列表里面的字典按照字典里的name的顺序来排序
+	dictsortreversed：与上面顺序相反
+	divisibleby：是否能被整除，返回True/False，例如`{{ value|divisibleby:"3" }}`
+	filesizeformat：-h方式输出文件的大小，例如`{{ value|filesizeformat}}`，如果value=123456789，那么输出将是117.7MB
+	first：返回列表的第一个值
+	floatformat：设置浮点数的显示形式
+	get_digit：获取一个整数的倒数第几个数字，例如`{{ value|get_digit:"2" }}`,那么123456789的值为8
+	join：将一个列表的值添加一个分隔符并以字符串形式输出，例如`{{ value|join:"//"}}`那么['a', 'b', 'c']输出将是"a//b//c"
+	last：返回列表的最后yield值
+	length：返回变量的长度，也可以在if语句里面使用，例如 {% if messages|length >= 100%} ...{% endif %}
+length_is：判断一长度是否是某个值，例如`{{ vlaue|length_is:"4" }}`如果value长度是4那么就返回True
+linebreaks：替换换行符，例如如果value的值是Joel\nis a slug，那么输出就是&lt;&lt;p&gt;Joel&lt;br /&gt; is a slug&lt;/p&gt;
+linenumbers：在输出的tex前加上标号
+ljust：在字符串后面加上指定长度的宽度，例如`{{ value|ljust:"10" }}`
+make_list：将整型或字符串转换为单个单个的列表元素组成一个列表
+random：在列表里面随机选取一个元素
+lower：转换为小写
+rjust：在字符串前面加上指定长度的宽度
+slice：列表分片，例如`{{ some_list|slice:":2"}}`就表示前面两个元素妈
+slugify：
+stringformat：
+striptags：取出HTML中的tag，只去内容
+time：同date
+timesince：
+timeuntil
+title：将一个字符串转换为title的形式，即一般的第一个字母大写那种标题
+truncatewords: &quot;30&quot;：表示只显示前面30个字符
+truncatechars_html：
+truncatewords：显示前面多少个字符，单位是词，而不是字符
+truncatewords_html：
+unordered_list：
+upper：转换为大写
+urlencode：将url进行编码，例如&quot;http://www.example.org/foo?a=b&amp;c=d&quot;被编码为“http\%3A//www.example.org/foo\%3Fa\%3Db\%26c\%3Dd”
+urlize：
+urlizetrunc：
+wordcount：统计字符串中单词的数量
+wordwrap：指定特定的长度来分隔字符串
+yesno：
+</code></pre><h3 id="其他标签"><a href="#其他标签" class="headerlink" title="其他标签"></a>其他标签</h3><pre><code># autoescape标签
+{% autoescape on %}       # 去掉自动转义
+	{{ body }}
+	{% endautoescape %}
+
+# cycle标签：每次使用该标签，标签中的值就会变化，比如下面这个，第一次该值为row1，第二次则为row2，第三次又变为了1，感觉可以用于循环里面的奇偶什么的
+{% for o in some_list %}
+	<tr class="{% cycle 'row1' 'row'2 %}
+	...
+	</tr>
+	{% endfor %}
+
+# now 标签，直接将当前时间按指定格式输出：
+{% now " js="" f="" y="" h:i"="" %}="" #="" spaceless标签：移出html="" tags之间的空白="" {%="" spaceless="" <p="">
+	...
+	<p></p>
+	{% endspaceless %}
+
+# verbatim：停止模版引擎，一般用于在模板里面写Javascript什么的
+{% verbatim %}
+	...
+	{% endverbatim %}
+
+# with标签：和语法里面的with类似
+{% with total=business.employees.count %}
+	{{ total }} employee{{ total|pluralize }}
+	{% endwith %}
+</tr></code></pre><h2 id="用户认证系统"><a href="#用户认证系统" class="headerlink" title="用户认证系统"></a>用户认证系统</h2><p>Django项目默认添加了用户认证系统的，可以通过</p>
+<pre><code>python manage.py makemigrations
+python manage.py migrate
+</code></pre><p>将认证系统的数据表添加到数据库中去.</p>
+<h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><pre><code>from django.contrib.auth.models import User
+user = User.objects.create_user(&apos;john&apos;, &apos;lennon@thebeatles.com&apos;, &apos;johnpassword&apos;)
+user.save()
+</code></pre><h3 id="创建超级用户"><a href="#创建超级用户" class="headerlink" title="创建超级用户"></a>创建超级用户</h3><pre><code>$ python manage.py createsuperuser --email=896499825@qq.com --username=wanghao
+Password:
+Password (again):
+Superuser created successfully.
+</code></pre><h3 id="验证用户登录"><a href="#验证用户登录" class="headerlink" title="验证用户登录"></a>验证用户登录</h3><p>需要注意的是，为了不与login冲突，views最好不要写成login</p>
+<pre><code>from django.contrib.auth import authenticate, login
+user = authenticate(username=&apos;hao&apos;, password=&apos;test&apos;)
+if user is not None:
+    if user.is_activate:
+        print(&apos;用户验证并登录成功&apos;)
+        login(request, user)     # 这才是登录，才会写入session
+    else:
+        print(&apos;密码正确，但是用户无法登录&apos;)
+    return HttpResponse(&apos;居然有这个用户&apos;)
+else:
+    return HttpResponse(&apos;用户不存在&apos;)
+</code></pre><p>若登录成功，则会返回一个user对象，否则返回None，但是Django默认的认证系统只能认证username和password，却不能认证其它的字段，比如<br>email字段，看似非常糟糕，但是Django却提供了十分方便的功能来扩展默认的验证组件。查看文档：<a href="https://docs.djangoproject.com/en/1.8/topics/auth/customizing/" target="_blank" rel="external">Customizing authentication<br>in Django</a></p>
+<p>如果要验证用户名或email可以这样做：首先，在myapp目录下新建一个文件，姑且取名叫<code>backends.py</code>，其内容如下：</p>
+<pre><code>from django.conf import settings
+from django.contrib.auth.models import User
+
+class EmailOrUsernameModelBackend(object):
+    def authenticate(self, username=None, password=None):
+        if &apos;@&apos; in username:
+            kwargs = {&apos;email&apos;: username}
+        else:
+            kwargs = {&apos;username&apos;: username}
+        try:
+            user = User.objects.get(**kwargs)
+            if user.check_password(password):
+                return user
+            except User.DoesNotExist:
+                return None
+
+def get_user(self, user_id):
+    try:
+        return User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        return None&lt;/pre&gt;
+</code></pre><p>然后在settings.py中添加如下代码：</p>
+<pre><code># 该字段指定了默认的验证后台，从上到下顺序验证，如果上面验证不成功就验证下面的
+AUTHENTICATION_BACKENDS = (
+    &apos;myapp.backends.EmailOrUsernameModelBackend&apos;,   # 自定义的认证后台
+    &apos;django.contrib.auth.backends.ModelBackend&apos;,    # 这是默认的认证后台
+)
+</code></pre><p>这样，就可以依然使用刚才的代码对用户登录进行验证了。</p>
+<h3 id="退出登录"><a href="#退出登录" class="headerlink" title="退出登录"></a>退出登录</h3><pre><code>from django.contrib.auth import logout
+
+def logout_view(request):
+    logout(request)
+</code></pre><h3 id="限制登录用户访问路由"><a href="#限制登录用户访问路由" class="headerlink" title="限制登录用户访问路由"></a>限制登录用户访问路由</h3><p>某些路由只能登录用户才能访问，那么只需要添加这个装饰器：</p>
+<pre><code>from django.contrib.auth.decorators import login_required
+
+@login_required
+def my_view(request):
+    ......
+</code></pre><p> 未登录的用户将会重定向到<code>settings.LOGIN_URL</code>去       </p>
+<pre><code>          # TroubleShooting
+
+          1.for循环获取index：
+
+
+
+              \{\% for item in item_list \%\}
+                  \{\{ forloop.counter \}\}  \{\# 从1开始的序号 \#\}
+                  \{\{ forloop.counter0 \}\} \{\# 从0开始的序号 \#\}
+              \{\% endfor \%\}
+
+          2.直接将html生成成变量：
+
+
+
+              from django.template import Context, Template
+              t = Template(&quot;My name is \{\{ my_name \}\}.&quot;)
+              c = Context(\{&quot;my_name&quot;: &quot;Adrian&quot;\})
+              output = t.render(c)
+              return HttpResponse(output)  # 还能直接将HTML返回成页面
+
+          3.使模板对HTML字符串进行转义 如果有一个HTML格式字符串，比如&apos;&lt;strong&gt;haofly&lt;/strong&gt;&apos;，那么当把它作为一个变量传递到htm
+          l中区的时候，会原封不动的保留，很明显我们有时候并不想这样，而是真的想将&apos;haofly&apos;进行加粗，可以这样做：
+
+
+
+              \{\{ variable name | safe\}\}
+
+
+
+
+
+
+
+## TroubleShooting：
+
+  * 自定义表名：在class model名()里面指明meta类，例如：
+
+        class Server(models.Model):
+        object_id = models.AutoField(primary_key = True)
+
+
+
+
+        class Meta:
+        db_table = &apos;自定义表名&apos;
+
+
+  * migrate的时候出现类似这样的错误：
+
+        django.db.utils.OperationalError: (1091, &quot;Can&apos;t DROP &apos;os_id_id&apos;; check that column/key exists&quot;)
+
+原因是你在试图创建一个已经存在的column或者删除一个已经删除的column，这时候需要在migrate后面添加一个参数忽略这些：
+
+
+        python manage.py migrate --fake
+
+
+  * 通过字符串来获取model类，django的apps模块包含了所有注册的app的配置以及model信息([Application文档](https://docs.djangoproject.com/en/1.8/ref/applications/))
+
+        from django.apps import apps
+
+
+
+
+    print(apps.get_model(&apos;myapp&apos;, &apos;Classify_cpu&apos;))
+
+  * 多个键联合unique，增加一个Meta即可：
+
+        class Meta:
+        db_table = &apos;posts&apos;
+        unique_together = (&apos;product_1&apos;, &apos;product_2&apos;)
+
+  * 如果要与默认的auth_user表做外键，那么可以这样做：
+
+        from django.db import models
+    from django.contrib.auth.models import User
+
+
+
+
+    class UserInfo(models.Model):
+        user_id = models.ForeignKey(User)
+
+
+  * 如果通过查询语句始终查询不到数据并且数据库的设置也是正确的，那么可能是model里面定义的字段名与数据库实际的字段不一致，这样既不会跑错，也不会提示，就说查找结果为空，很难debug
+  * 根据对象获取model的名称：
+
+        Blog.**class**.**name** # 会输出&apos;Blog&apos;
+</code></pre><h2 id="django-crontab插件"><a href="#django-crontab插件" class="headerlink" title="django-crontab插件"></a>django-crontab插件</h2><p>Django下的定时任务插件，依赖于Linux的cron服务。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>pip install django-crontab</code>进行安装，然后在django的配置文件中添加一个APP</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">INSTALLED_APPS = (</div><div class="line">	<span class="string">'django_crontab'</span>,</div><div class="line">    ...</div><div class="line">)</div></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>编写完定时任务逻辑以后，需要在配置文件中添加上，例如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CRONJOBS = [</div><div class="line">    (<span class="string">'*/5 * * * *'</span>, <span class="string">'myapp.cron.my_scheduled_job'</span>)</div><div class="line">    (<span class="string">'*/5 * * * *'</span>, <span class="string">'myapp.cron.other_scheduled_job'</span>, [<span class="string">'arg1'</span>, <span class="string">'arg2'</span>], &#123;<span class="string">'verbose'</span>: <span class="number">0</span>&#125;),</div><div class="line">    (<span class="string">'0 4 * * *'</span>, <span class="string">'django.core.management.call_command'</span>, [<span class="string">'clearsessions'</span>]),</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>最后，将其添加到系统<code>cron</code>服务中去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">python manage.py crontab add	# 将当前配置文件中的定时任务添加到cron中去，当add以后，会在crontab -e里面出现类似这样的一条记录</div><div class="line"># */5 * * * * /usr/local/bin/python /usr/src/app/manage.py crontab run e0418752956c4dd997212171486888ff # django-cronjobs for admin</div><div class="line"># 前面是命令部分，后面是根据定义的函数计算出来的hash值，最后面则是自带的注释</div><div class="line">python manage.py crontab show	# 列出当前已经添加到cron中的定时任务</div><div class="line">python manage.py crontab remove	# 移除所有的定时任务</div></pre></td></tr></table></figure>
+<h2 id="TroubleShooting"><a href="#TroubleShooting" class="headerlink" title="TroubleShooting"></a>TroubleShooting</h2><ul>
+<li><p><strong>如果想要直接执行<em>./manage.py</em>来启动runserver</strong>，那么可以修改manage.py文件如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"frontend.settings"</span>)</div><div class="line">    <span class="keyword">from</span> django.core.management <span class="keyword">import</span> execute_from_command_line</div><div class="line">    sys.argv = [<span class="string">'manage.py'</span>, <span class="string">'runserver'</span>, <span class="string">'0.0.0.0:8000'</span>]</div><div class="line">	execute_from_command_line(sys.argv)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>保存用户上传的图片或文件</strong>：使用Django自带的文件存储系统：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.core.files.storage <span class="keyword">import</span> FileSystemStorage</div><div class="line">storage = FileSystemStorage(</div><div class="line">                    location = <span class="string">'/var/www/site/upfiles'</span>,</div><div class="line">                    base_url = <span class="string">'/upfiles'</span></div><div class="line">                  )</div><div class="line">content = request.FILES[<span class="string">'the_file'</span>]</div><div class="line">name = storage.save(<span class="keyword">None</span>, content)</div><div class="line">url = storage.url(name)</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<p>##signal<br><a href="http://www.weiguda.com/blog/38/" target="_blank" rel="external">参考</a>django中signal与操作系统的signal是完全不一样的.Django的signal是一种同步的消息队列.通常在以下情况进行使用：</p>
+<ul>
+<li>signal的receiver需要同时修改对多个model时</li>
+<li>将多个app的相同signal引到同一receiver中处理时</li>
+<li>在某一model保存之后将cache清除时</li>
+<li>无法使用其他方法, 但需要一个被调函数来处理某些问题时</li>
+</ul>
+<pre><code>---
+title: &quot;Django forms表单&quot;
+date: 2015-06-12 22:08:26
+categories: django
+---
+Django有一个十分重要的特色功能就是将表单功能独立了出来，使得表单构造和验证更加灵活可控。其实际使用方法如下：
+
+首先，在app目录下新建`forms.py`文件，内容如下：
+
+
+
+    from django import forms
+
+
+
+
+    class LoginForm(forms.Form):
+        username = forms.CharField(label=&apos;用户名&apos;, max_length = 50)
+        password = forms.CharField(label=&apos;密码&apos;, max_length = 50)
+
+然后，在views.py有如下代码
+
+
+
+    from .forms import LoginForm  # 引入该表单
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(request)</span>:</span></div><div class="line">        <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</div><div class="line">            form = LoginForm(request.POST)</div><div class="line">            <span class="keyword">if</span> form.is_valid():     <span class="comment"># 判断合法性</span></div><div class="line">                <span class="keyword">return</span> HttpResponse(<span class="string">'数据合法'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            form = LoginForm()</div><div class="line">            <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, \&#123;<span class="string">'form'</span>: form\&#125;</div><div class="line"></div><div class="line">最后，在templates里面这样使用：</div></pre></td></tr></table></figure>
+<pre><code>    &lt;form class=&quot;form-horizontal&quot; method=&quot;post&quot;}
+        {% csrf_token %}
+        {{ form }}
+        &lt;p class=&quot;form-actions&quot; style=&quot;margin: 0&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;登录&quot; class=&quot;btn btn-primary&quot;&gt;
+        &lt;a href=&quot;#&quot;&gt;&lt;input type=&quot;button&quot; value=&quot;注册&quot; class=&quot;btn btn-success&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;#&quot;&gt;忘记密码&lt;/a&gt;
+        &lt;/p&gt;
+    &lt;/form&gt;
+
+## 获取表单的值
+
+
+
+    if request.method == &apos;POST&apos;:
+        form = Login(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data[&apos;username&apos;]   # 如果需要单独获取表单的值用这个方法
+
+        form = ProfileLoginForm(request.POST)
+
+        warning = &quot;&quot;
+        if form.is_valid():
+            username = form.cleaned_data[&apos;username&apos;]
+            password = form.cleaned_data[&apos;password&apos;]&lt;/pre&gt;
+
+
+## django-bootstrap3的使用
+
+默认的form表单没有任何的css样式，如果要让默认的表单拥有bootstrap样式，那么可以使用django-
+bootstrap3这个库，不仅提供了表单的bootstrap样式，而且还提供了bootstrap其它组件的样式，文档见&lt;http://django-
+bootstrap3.readthedocs.org/en/latest/templatetags.html#bootstrap-form&gt;
+
+## TroubleShooting
+
+1.给表单添加样式，例如：
+
+
+
+    username = forms.CharField(label=&apos;用户名&apos;, max_length = 50, widget = forms.TextInput(attrs=\{&apos;class&apos;: &apos;one&apos;\}))
+
+
+2.Form表单可以不整个使用，而使用其中单个的field，比如form.username，这样就可以很方便地为表单中的每个field设置不同的css样式了
+</code></pre><h2 id="Django-Model"><a href="#Django-Model" class="headerlink" title="Django Model"></a>Django Model</h2><pre><code>官方文档：[Request and response
+objects](https://docs.djangoproject.com/en/1.8/ref/request-response/)
+当请求一个页面的时候，Django会建立一个HttpRequest对象，它包含了请求的一些数据，该对象就是每个views函数里面的第一个参数request.
+需要注意的是，Django的HTTP动词(get/post等)在url上没有区分，只需要在view里面进行判断即可。
+
+例子：
+
+
+
+    if request.method == &apos;GET&apos;:    # GET请求
+        do_something()
+    elif request.method == &apos;POST&apos;: # POST请求
+        request.POST[&apos;变量名&apos;]   # 获取请求参数
+
+### JsonResponse
+
+如果要返回JSON数据(常见于Ajax请求)，可以在view里面这样构造json数据
+
+
+
+    from django.http import JsonResponse
+
+
+
+
+    reponse = JsonResponse(字典)  # JsonResponse(data, encoder=编码方式默认是utf-8
+    response = JsonResponse([1, 2, 3], safe = False)   # 如果要返回一个单纯的列表数据而不是字典类型的数据，就这样
+    return response
+
+### HttpResponse
+
+直接响应字符串或者html
+
+
+
+    response = HttpResponse(&apos;响应一个字符串&apos;)
+    response.write(&apos;给那个字符串再添加东西&apos;)
+
+
+
+
+    # 如果响应一个字典类型
+
+
+
+
+    response = HttpResponse()
+    response[&apos;Age&apos;] = 120
+
+
+
+
+    # 常用构建方法
+
+
+
+
+    HttpResponse(&apos;字符串&apos;, content_type=&quot;text/plain&quot;) # 指定content_type
+
+常用属性：
+
+
+
+    HttpRequest.method   # 请求种类
+    HttpRequest.GET      # 获取所有的GET参数(字典)
+    HttpRequest.POST     # 获取POST的参数(字典)
+    HttpRequest.scheme   # 表示请求的模式，是http还是https
+    HttpRequest.cookies  # 包含了所有的cookie信息
+    HttpRequest.session  # session信息
+    HttpRequest.FILES    # 包含了上传的文件
+    HttpRequest.meta     # 包含了http请求的各种headers
+    HttpRequest.user     # 当前的登录的用户，配合着auth使用
+
+常用方法：
+
+
+
+    get_host()           #不解释了吧
+    get_full_path()      # 获取路径，不包含域名
+    build_absolute_uri() # 获取完整路径
+    is_secure()          # 如果是https返回true，否则false
+    is_ajax()            # 是否是ajax请求
+
+### StreamingHttpResponse
+
+媒体数据等
+
+### FileResponse
+
+文件数据等
+
+# TroubleShooting
+
+1.设置GET请求的默认值：
+
+
+
+    date = request.GET.get(&apos;value&apos;, &apos;2&apos;)
+
+2.返回状态码：
+
+
+
+    return JsonResponse(error, status = 422)
+
+3.将上传的文件写入到本地，使用chunks()生成器可以将文件一块一块地写入，而不使用read方法，这样可以防止大文件写入失败
+
+
+
+    destination = open(&apos;temp/&apos; + filename, &apos;wb+&apos;)
+    for chunk in file.chunks():
+        destination.write(chunk)
+    destination.close()
+
+4.获取用户IP地址：
+
+
+
+    ip = request.META.get(&apos;REMOTE_ADDR&apos;)
+
+5.退出登录功能：直接添加一个URL：
+
+
+
+    (r&apos;^logout$&apos;, &apos;django.contrib.auth.views.logout&apos;,\{&apos;next_page&apos;: &apos;login&apos;\}, name = &apos;logout&apos;)
+
+
+6.通过Ajax发送多维数组，原生不支持的，不过可以在前端以及后端同时传输JSON格式的
+
+
+    # 在前端使用Ajax进行传输
+    $.ajax(
+        url: &apos;test&apos;,
+        datatype: &apos;json&apos;,
+        data: JSON.stringify(\{
+            &apos;one&apos;: 123,
+            &apos;two&apos;: {
+                &apos;two_one&apos;: &apos;test&apos;
+            \}
+        \})
+    )
+
+    # 在后端使用JSON进行解析
+    def test(request):
+        data = json.loads(request.POST)
+     或者前端不变，后端用这个来接收request.POST.getlist(&apos;taskIdList[]&apos;)
+</code></pre><p>​                          </p>
+<pre><code># TroubleShooting
+
+  1. POST请求403错误：
+
+        Forbidden (403)
+    CSRF verification failed. Request aborted.
+
+原因是Django默认给所有的post请求都添加了CSRF验证中间件，要想对某个路由(url)忽略，可以使用csrf_exempt，关于CSRF的其它一些装
+饰器见&lt;https://docs.djangoproject.com/en/1.7/ref/contrib/csrf/&gt;
+
+
+        from django.views.decorators.csrf import csrf_exempt
+
+
+
+
+    @csrf_exempt
+    def webhook(request):
+        pass
+
+  2. 统一APP的路由 Django是以app的形式定义一个应用的，所以为了保持应用的隔离性，就需要将应用的url分离开来，相当于一个前缀，例如，先在setting.py里面添加APP
+
+        INSTALLED_APPS = (
+        &apos;django.contrib.admin&apos;,
+        &apos;django.contrib.auth&apos;,
+        &apos;django.contrib.contenttypes&apos;,
+        &apos;django.contrib.sessions&apos;,
+        &apos;django.contrib.messages&apos;,
+        &apos;django.contrib.staticfiles&apos;,
+        &apos;haofly&apos;,                # 需要添加的APP名称
+    )
+
+然后在工程的urls.py文件里定义APP的主url：
+
+
+        from django.conf.urls import include, url
+
+
+
+
+    urlpatterns = [
+        url(r&apos;^前缀/&apos;, include(&apos;haofly.urls&apos;)), # haofly下的urls.py
+    ]
+
+
+然后再在haofly这个APP下建立一个独立的urls.py：
+
+
+        from django.conf.urls import include, url
+
+
+
+
+    urlpatterns = [
+        url(r&apos;^test/&apos;, &apos;haofly.views.test&apos;),
+    ]
+
+  3. 在设置路由参数的时候出现如下错误：
+
+        TypeError at /operation/servers/13/commands
+    commands() got an unexpected keyword argument &apos;id&apos;
+
+原因是没有将该参数加入views的定义中去，需要将id加入该views的第二个参数
+
+  4. 跳转功能：
+
+        return HttpResponseRedirect(&apos;/&apos;)
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/weibo/" rel="next" title="感谢微博——1000条微博纪念">
+                <i class="fa fa-chevron-left"></i> 感谢微博——1000条微博纪念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/wamp/" rel="prev" title="Wamp环境设置虚拟目录">
+                Wamp环境设置虚拟目录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="django/"
+     data-title="Django教程"
+     data-content=""
+     data-url="https://haofly.net/django/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="django/"
+           data-title="Django教程" data-url="https://haofly.net/django/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Django教程"><span class="nav-number">1.</span> <span class="nav-text">Django教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置项"><span class="nav-number">1.1.</span> <span class="nav-text">配置项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局配置"><span class="nav-number">1.1.1.</span> <span class="nav-text">全局配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">应用配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由与视图"><span class="nav-number">1.2.</span> <span class="nav-text">路由与视图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#url传递参数"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">url传递参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#url命名"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">url命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由按照app分组"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">路由按照app分组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">1.3.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据表定义"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据表定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段类型"><span class="nav-number">1.3.2.</span> <span class="nav-text">字段类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字段通用参数"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">字段通用参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用类型"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">常用类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库SQL操作"><span class="nav-number">1.3.3.</span> <span class="nav-text">数据库SQL操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询记录"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">查询记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增记录"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">新增记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新记录"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">更新记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除记录"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">删除记录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据约束"><span class="nav-number">1.3.4.</span> <span class="nav-text">数据约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ForeignKey"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">ForeignKey</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OneToMany-hasMany"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">OneToMany(hasMany)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ManyToManyField"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">ManyToManyField</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OneToOneField"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">OneToOneField</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">1.3.5.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他标签"><span class="nav-number">1.3.6.</span> <span class="nav-text">其他标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户认证系统"><span class="nav-number">1.4.</span> <span class="nav-text">用户认证系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建用户"><span class="nav-number">1.4.1.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建超级用户"><span class="nav-number">1.4.2.</span> <span class="nav-text">创建超级用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证用户登录"><span class="nav-number">1.4.3.</span> <span class="nav-text">验证用户登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出登录"><span class="nav-number">1.4.4.</span> <span class="nav-text">退出登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限制登录用户访问路由"><span class="nav-number">1.4.5.</span> <span class="nav-text">限制登录用户访问路由</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#django-crontab插件"><span class="nav-number">1.5.</span> <span class="nav-text">django-crontab插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.5.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.5.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TroubleShooting"><span class="nav-number">1.6.</span> <span class="nav-text">TroubleShooting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Django-Model"><span class="nav-number">1.7.</span> <span class="nav-text">Django Model</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

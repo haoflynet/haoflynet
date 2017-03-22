@@ -1,0 +1,890 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="原文地址：https://www.digitalocean.com/community/tutorials/apache-vs-nginx-
+practical-considerations
+
+总之就是各有各的优点，最好的方式就是nginx在前面做反向代理，并顺便处理静态内容，而apache则负责处理动态内容。
+
+IntroductionApache and Nginx are the two m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]Apache vs Nginx: Practical Considerations">
+<meta property="og:url" content="https://haofly.net/apache-vs-nginx/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="原文地址：https://www.digitalocean.com/community/tutorials/apache-vs-nginx-
+practical-considerations
+
+总之就是各有各的优点，最好的方式就是nginx在前面做反向代理，并顺便处理静态内容，而apache则负责处理动态内容。
+
+IntroductionApache and Nginx are the two m">
+<meta property="og:updated_time" content="2016-09-30T06:30:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[转]Apache vs Nginx: Practical Considerations">
+<meta name="twitter:description" content="原文地址：https://www.digitalocean.com/community/tutorials/apache-vs-nginx-
+practical-considerations
+
+总之就是各有各的优点，最好的方式就是nginx在前面做反向代理，并顺便处理静态内容，而apache则负责处理动态内容。
+
+IntroductionApache and Nginx are the two m">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/apache-vs-nginx/"/>
+
+
+
+
+
+  <title> [转]Apache vs Nginx: Practical Considerations | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/apache-vs-nginx/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [转]Apache vs Nginx: Practical Considerations
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-07-18T01:34:47+00:00">
+                2015-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/apache-vs-nginx/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="apache-vs-nginx/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文地址：<a href="https://www.digitalocean.com/community/tutorials/apache-vs-nginx-
+practical-considerations" target="_blank" rel="external">https://www.digitalocean.com/community/tutorials/apache-vs-nginx-
+practical-considerations</a></p>
+<blockquote>
+<p><strong>总之就是各有各的优点，最好的方式就是nginx在前面做反向代理，并顺便处理静态内容，而apache则负责处理动态内容。</strong></p>
+</blockquote>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Apache and Nginx are the two most common open source web servers in the world.<br>Together, they are responsible for serving over 50\% of traffic on the<br>internet. Both solutions are capable of handling diverse workloads and working<br>with other software to provide a complete web stack.</p>
+<p>While Apache and Nginx share many qualities, they should not be thought of as<br>entirely interchangeable. Each excels in its own way and it is important to<br>understand the situations where you may need to reevaluate your web server of<br>choice. This article will be devoted to a discussion of how each server stacks<br>up in various areas.</p>
+<h2 id="General-Overview"><a href="#General-Overview" class="headerlink" title="General Overview"></a>General Overview</h2><p>Before we dive into the differences between Apache and Nginx, let’s take a<br>quick look at the background of these two projects and their general<br>characteristics.</p>
+<h4 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h4><p>The Apache HTTP Server was created by Robert McCool in 1995 and has been<br>developed under the direction of the Apache Software Foundation since 1999.<br>Since the HTTP web server is the foundation’s original project and is by far<br>their most popular piece of software, it is often referred to simply as<br>“Apache”.</p>
+<p>The Apache web server has been the most popular server on the internet since</p>
+<ol>
+<li>Because of this popularity, Apache benefits from great documentation and<br>integrated support from other software projects.</li>
+</ol>
+<p>Apache is often chosen by administrators for its flexibility, power, and<br>widespread support. It is extensible through a dynamically loadable module<br>system and can process a large number of interpreted languages without<br>connecting out to separate software.</p>
+<h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><p>In 2002, Igor Sysoev began work on Nginx as an answer to the C10K problem,<br>which was a challenge for web servers to begin handling ten thousand<br>concurrent connections as a requirement for the modern web. The initial public<br>release was made in 2004, meeting this goal by relying on an asynchronous(异步),<br>events-driven(事件驱动) architecture.</p>
+<p>Nginx has grown in popularity since its release due to its light-weight<br>resource utilization and its ability to scale easily on minimal hardware.<br>Nginx excels at serving static content(静态内容) quickly and is designed to pass<br>dynamic requests off to other software that is better suited for those<br>purposes.</p>
+<p>Nginx is often selected by administrators for its resource efficiency and<br>responsiveness under load. Advocates welcome Nginx’s focus on core web server<br>and proxy features.</p>
+<h2 id="Connection-Handling-Architecturel-连接处理架构"><a href="#Connection-Handling-Architecturel-连接处理架构" class="headerlink" title="Connection Handling Architecturel(连接处理架构)"></a>Connection Handling Architecturel(连接处理架构)</h2><p>One big difference between Apache and Nginx is the actual way that they handle<br>connections and traffic. This provides perhaps the most significant difference<br>in the way that they respond to different traffic conditions.</p>
+<h4 id="Apache-1"><a href="#Apache-1" class="headerlink" title="Apache"></a>Apache</h4><p>Apache provides a variety of multi-processing modules (Apache calls these<br>MPMs) that dictate(决定) how client requests are handled. Basically, this allows<br>administrators to swap out its connection handling architecture easily. These<br>are:</p>
+<ul>
+<li><strong>mpm_prefork</strong>: This processing module spawns(产生) processes with a single thread each to handle request(一个请求一个线程). Each child can handle a single connection at a time. As long as the number of requests is fewer than the number of processes, this MPM is very fast(请求数量比进程数量少的时候会很快). However, performance degrades quickly after the requests surpass the number of processes, so this is not a good choice in many scenarios. Each process has a significant impact on RAM consumption, so this MPM is difficult to scale effectively. This may still be a good choice though if used in conjunction with other components that are not built with threads in mind. For instance, PHP is not thread-safe, so this MPM is recommended as the only safe way of working with mod_php, the Apache module for processing these files.</li>
+<li><strong>mpm_worker</strong>: This module spawns processes that can each manage multiple threads(每个进程可以管理多个线程). Each of these threads can handle a single connection. Threads are much more efficient than processes(线程比进程更高效), which means that this MPM scales better than the prefork MPM. Since there are more threads than processes, this also means that new connections can immediately take a free thread instead of having to wait for a free process(处理新的连接只需要有新的线程而不需要等待进程释放).</li>
+<li><strong>mpm_event</strong>: This module is similar to the worker module in most situations, but is optimized to handle keep-alive connections(对持久连接进行了优化). When using the worker MPM, a connection will hold a thread regardless of whether a request is actively being made for as long as the connection is kept alive. The event MPM handles keep alive connections by setting aside dedicated(专用的) threads for handling keep alive connections and passing active requests off to other threads. This keeps the module from getting bogged down by keep-alive requests, allowing for faster execution. This was marked stable with the release of Apache 2.4. As you can see, Apache provides a flexible architecture for choosing different connection and request handling algorithms. The choices provided are mainly a function of the server’s evolution and the increasing need for concurrency as the internet landscape has changed.</li>
+</ul>
+<h4 id="Nginx-1"><a href="#Nginx-1" class="headerlink" title="Nginx"></a>Nginx</h4><p>Nginx came onto the scene after Apache, with more awareness of the concurrency<br>problems that would face sites at scale(更注重并发问题). Leveraging(利用) this<br>knowledge, Nginx was designed from the ground up to use an asynchronous, non-<br>blocking, event-driven connection handling algorithm.</p>
+<p>Nginx spawns worker processes, each of which can handle thousands of<br>connections(产生的是worker进程，每个都可以处理上千个连接). The worker processes accomplish this<br>by implementing a fast looping mechanism(快速的循环机制) that continuously checks for<br>and processes events. Decoupling(解耦) actual work from connections allows each<br>worker to concern itself with a connection only when a new event has been<br>triggered.</p>
+<p>Each of the connections handled by the worker are placed within the event loop<br>where they exist with other connections. Within the loop, events are processed<br>asynchronously, allowing work to be handled in a non-blocking manner. When the<br>connection closes, it is removed from the loop.</p>
+<p>This style of connection processing allows Nginx to scale incredibly far with<br>limited resources. Since the server is single-threaded and processes are not<br>spawned to handle each new connection, the memory and CPU usage tends to stay<br>relatively consistent, even at times of heavy load.</p>
+<h1 id="Static-vs-Dynamic-Content"><a href="#Static-vs-Dynamic-Content" class="headerlink" title="Static vs Dynamic Content"></a>Static vs Dynamic Content</h1><p>In terms of real world use-cases, one of the most common comparisons between<br>Apache and Nginx is the way in which each server handles requests for static<br>and dynamic content.</p>
+<h4 id="Apache-2"><a href="#Apache-2" class="headerlink" title="Apache"></a>Apache</h4><p>Apache servers can handle static content using its conventional file-based<br>methods. The performance of these operations is mainly a function of the MPM<br>methods described above.</p>
+<p>Apache can also process dynamic content by embedding(嵌入) a processor of the<br>language in question into each of its worker instances. This allows it to<br>execute dynamic content within the web server itself without having to rely on<br>external components. These dynamic processors can be enabled through the use<br>of dynamically loadable modules.</p>
+<p>Apache’s ability to handle dynamic content internally means that configuration<br>of dynamic processing tends to be simpler. Communication does not need to be<br>coordinated with an additional piece of software and modules can easily be<br>swapped out if the content requirements change.</p>
+<h4 id="Nginx-2"><a href="#Nginx-2" class="headerlink" title="Nginx"></a>Nginx</h4><p>Nginx does not have any ability to process dynamic content<br>natively(本身无法处理动态内容). To handle PHP and other requests for dynamic content,<br>Nginx must pass to an external processor for execution and wait for the<br>rendered content to be sent back(必须使用外部的执行程序然后等待返回). The results can then be<br>relayed to the client.</p>
+<p>For administrators, this means that communication must be configured between<br>Nginx and the processor over one of the protocols Nginx knows how to speak<br>(http, FastCGI, SCGI, uWSGI, memcache). This can complicate things slightly,<br>especially when trying to anticipate the number of connections to allow, as an<br>additional connection will be used for each call to the processor.</p>
+<p>However, this method has some advantages as well. Since the dynamic<br>interpreter is not embedded in the worker process, its overhead will only be<br>present for dynamic content. Static content can be served in a straight-<br>forward manner and the interpreter will only be contacted when needed. Apache<br>can also function in this manner, but doing so removes the benefits in the<br>previous section.</p>
+<h1 id="Distributed-vs-Centralized-Configuration"><a href="#Distributed-vs-Centralized-Configuration" class="headerlink" title="Distributed vs Centralized Configuration"></a>Distributed vs Centralized Configuration</h1><p>For administrators, one of the most readily apparent differences between these<br>two pieces of software is whether directory-level configuration is permitted<br>within the content directories.</p>
+<h4 id="Apache-3"><a href="#Apache-3" class="headerlink" title="Apache"></a>Apache</h4><p>Apache includes an option to allow additional configuration on a per-directory<br>basis by inspecting and interpreting directives in hidden files within the<br>content directories themselves. These files are known as .htaccess<br>files.(可以管理每个目录)</p>
+<p>Since these files reside within the content directories themselves, when<br>handling a request, Apache checks each component of the path to the requested<br>file for an .htaccess file and applies the directives found within. This<br>effectively allows decentralized configuration of the web server, which is<br>often used for implementing URL rewrites, access restrictions, authorization<br>and authentication, even caching policies.</p>
+<p>While the above examples can all be configured in the main Apache<br>configuration file,.htaccess files have some important advantages. First,<br>since these are interpreted each time they are found along a request path,<br>they are implemented immediately without reloading the server. Second, it<br>makes it possible to allow non-privileged users to control certain aspects of<br>their own web content without giving them control over the entire<br>configuration file.</p>
+<p>This provides an easy way for certain web software, like content management<br>systems, to configure their environment without providing access to the<br>central configuration file. This is also used by shared hosting providers to<br>retain control of the main configuration while giving clients control over<br>their specific directories.</p>
+<h4 id="Nginx-3"><a href="#Nginx-3" class="headerlink" title="Nginx"></a>Nginx</h4><p>Nginx does not interpret .htaccess files, nor does it provide any mechanism<br>for evaluating per-directory configuration outside of the main configuration<br>file. This may be less flexible than the Apache model, but it does have its<br>own advantages.</p>
+<p>The most notable improvement over the .htaccess system of directory-level<br>configuration is increased performance. For a typical Apache setup that may<br>allow .htaccess in any directory, the server will check for these files in<br>each of the parent directories leading up to the requested file, for each<br>request. If one or more .htaccess files are found during this search, they<br>must be read and interpreted. By not allowing directory overrides, Nginx can<br>serve requests faster by doing a single directory lookup and file read for<br>each request (assuming that the file is found in the conventional directory<br>structure).</p>
+<p>Another advantage is security related(安全). Distributing directory-level<br>configuration access also distributes the responsibility of security to<br>individual users, who may not be trusted to handle this task well. Ensuring<br>that the administrator maintains control over the entire web server can<br>prevent some security missteps that may occur when access is given to other<br>parties.</p>
+<p>Keep in mind that it is possible to turn off .htaccess interpretation in<br>Apache if these concerns resonate with you.</p>
+<h1 id="File-vs-URI-Based-Interpretation"><a href="#File-vs-URI-Based-Interpretation" class="headerlink" title="File vs URI-Based Interpretation"></a>File vs URI-Based Interpretation</h1><p>How the web server interprets requests and maps them to actual resources on<br>the system is another area where these two servers differ.</p>
+<h4 id="Apache-4"><a href="#Apache-4" class="headerlink" title="Apache"></a>Apache</h4><p>Apache provides the ability to interpret a request as a physical resource on<br>the filesystem or as a URI location that may need a more abstract evaluation.<br>In general, for the former Apache uses <directory> or <files> blocks, while it<br>utilizes <location> blocks for more abstract resources.</location></files></directory></p>
+<p>Because Apache was designed from the ground up as a web server, the default is<br>usually to interpret requests as filesystem resources. It begins by taking the<br>document root and appending the portion of the request following the host and<br>port number to try to find an actual file. Basically, the filesystem hierarchy<br>is represented on the web as the available document tree.</p>
+<p>Apache provides a number of alternatives for when the request does not match<br>the underlying filesystem. For instance, an Alias directive can be used to map<br>to an alternative location. Using <location> blocks is a method of working<br>with the URI itself instead of the filesystem. There are also regular<br>expression variants which can be used to apply configuration more flexibly<br>throughout the filesystem.</location></p>
+<p>While Apache has the ability to operate on both the underlying filesystem and<br>the webspace, it leans heavily towards filesystem methods. This can be seen in<br>some of the design decisions, including the use of .htaccess files for per-<br>directory configuration. The Apache docs themselves warn against using URI-<br>based blocks to restrict access when the request mirrors the underlying<br>filesystem.</p>
+<h4 id="Nginx-4"><a href="#Nginx-4" class="headerlink" title="Nginx"></a>Nginx</h4><p>Nginx was created to be both a web server and a proxy server. Due to the<br>architecture required for these two roles, it works primarily with URIs,<br>translating to the filesystem when necessary.</p>
+<p>This can be seen in some of the ways that Nginx configuration files are<br>constructed and interpreted.Nginx does not provide a mechanism for specifying<br>configuration for a filesystem directory and instead parses the URI itself.</p>
+<p>For instance, the primary configuration blocks for Nginx are server and<br>location blocks. The server block interprets the host being requested, while<br>the location blocks are responsible for matching portions of the URI that<br>comes after the host and port. At this point, the request is being interpreted<br>as a URI, not as a location on the filesystem.</p>
+<p>For static files, all requests eventually have to be mapped to a location on<br>the filesystem. First, Nginx selects the server and location blocks that will<br>handle the request and then combines the document root with the URI, adapting<br>anything necessary according to the configuration specified.</p>
+<p>This may seem similar, but parsing requests primarily as URIs instead of<br>filesystem locations allows Nginx to more easily function in both web, mail,<br>and proxy server roles. Nginx is configured simply by laying out how to<br>respond to different request patterns. Nginx does not check the filesystem<br>until it is ready to serve the request, which explains why it does not<br>implement a form of .htaccess files.</p>
+<h1 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h1><p>Both Nginx and Apache are extensible through module systems, but the way that<br>they work differ significantly.</p>
+<h4 id="Apache-5"><a href="#Apache-5" class="headerlink" title="Apache"></a>Apache</h4><p>Apache’s module system allows you to dynamically load or unload modules to<br>satisfy your needs during the course of running the server. The Apache core is<br>always present, while modules can be turned on or off, adding or removing<br>additional functionality and hooking into the main server.</p>
+<p>Apache uses this functionality for a large variety tasks. Due to the maturity<br>of the platform, there is an extensive library of modules available. These can<br>be used to alter some of the core functionality of the server, such as<br>mod_php, which embeds a PHP interpreter into each running worker.</p>
+<p>Modules are not limited to processing dynamic content, however. Among other<br>functions, they can be used for rewriting URLs, authenticating clients,<br>hardening the server, logging, caching, compression, proxying, rate limiting,<br>and encrypting. Dynamic modules can extend the core functionality considerably<br>without much additional work.</p>
+<h4 id="Nginx-5"><a href="#Nginx-5" class="headerlink" title="Nginx"></a>Nginx</h4><p>Nginx also implements a module system, but it is quite different from the<br>Apache system. In Nginx, modules are not dynamically loadable, so they must be<br>selected and compiled into the core software(模块居然不是动态加载的).</p>
+<p>For many users, this will make Nginx much less flexible. This is especially<br>true for users who are not comfortable maintaining their own compiled software<br>outside of their distribution’s conventional packaging system. While<br>distributions’ packages tend to include the most commonly used modules, if you<br>require a non-standard module, you will have to build the server from source<br>yourself.</p>
+<p>Nginx modules are still very useful though, and they allow you to dictate what<br>you want out of your server by only including the functionality you intend to<br>use. Some users also may consider this more secure, as arbitrary components<br>cannot be hooked into the server. However, if your server is ever put in a<br>position where this is possible, it is likely compromised already.</p>
+<p>Nginx modules allow many of the same capabilities as Apache modules. For<br>instance, Nginx modules can provide proxying support, compression, rate<br>limiting, logging, rewriting, geolocation, authentication, encryption,<br>streaming, and mail functionality.</p>
+<h2 id="Support-Compatibility-Ecosystem-and-Documentation"><a href="#Support-Compatibility-Ecosystem-and-Documentation" class="headerlink" title="Support, Compatibility, Ecosystem, and Documentation"></a>Support, Compatibility, Ecosystem, and Documentation</h2><p>A major point to consider is what the actual process of getting up and running<br>will be given the landscape of available help and support among other<br>software.</p>
+<h4 id="Apache-6"><a href="#Apache-6" class="headerlink" title="Apache"></a>Apache</h4><p>Because Apache has been popular for so long, support for the server is fairly<br>ubiquitous. There is a large library of first- and third-party documentation<br>available for the core server and for task-based scenarios involving hooking<br>Apache up with other software.</p>
+<p>Along with documentation, many tools and web projects include tools to<br>bootstrap themselves within an Apache environment. This may be included in the<br>projects themselves, or in the packages maintained by your distribution’s<br>packaging team.</p>
+<p>Apache, in general, will have more support from third-party projects simply<br>because of its market share and the length of time it has been available.<br>Administrators are also somewhat more likely to have experience working with<br>Apache not only due to its prevalence, but also because many people start off<br>in shared-hosting scenarios which almost exclusively rely on Apache due to the<br>.htaccess distributed management capabilities.</p>
+<h4 id="Nginx-6"><a href="#Nginx-6" class="headerlink" title="Nginx"></a>Nginx</h4><p>Nginx is experiencing increased support as more users adopt it for its<br>performance profile, but it still has some catching up to do in some key<br>areas.</p>
+<p>In the past, it was difficult to find comprehensive English-language<br>documentation regarding Nginx due to the fact that most of the early<br>development and documentation were in Russian. As interest in the project<br>grew, the documentation has been filled out and there are now plenty of<br>administration resources on the Nginx site and through third parties.</p>
+<p>In regards to third-party applications, support and documentation is becoming<br>more readily available, and package maintainers are beginning, in some cases,<br>to give choices between auto-configuring for Apache and Nginx. Even without<br>support, configuring Nginx to work with alternative software is usually<br>straight-forward so long as the project itself documents its requirements<br>(permissions, headers, etc).</p>
+<h2 id="Using-Apache-and-Nginx-Together"><a href="#Using-Apache-and-Nginx-Together" class="headerlink" title="Using Apache and Nginx Together"></a>Using Apache and Nginx Together</h2><p>After going over the benefits and limitations of both Apache and Nginx, you<br>may have a better idea of which server is more suited to your needs. However,<br>many users find that it is possible to leverage each server’s strengths by<br>using them together.</p>
+<p>The conventional configuration for this partnership is to place Nginx in front<br>of Apache as a reverse proxy(Nginx做反向代理). This will allow Nginx to handle all<br>requests from clients. This takes advantage of Nginx’s fast processing speed<br>and ability to handle large numbers of connections concurrently.</p>
+<p>For static content, which Nginx excels at, the files will be served quickly<br>and directly to the client. For dynamic content, for instance PHP files, Nginx<br>will proxy the request to Apache, which can then process the results and<br>return the rendered page. Nginx can then pass the content back to the client.</p>
+<p>This setup works well for many people because it allows Nginx to function as a<br>sorting machine. It will handle all requests it can and pass on the ones that<br>it has no native ability to serve. By cutting down on the requests the Apache<br>server is asked to handle, we can alleviate some of the blocking that occurs<br>when an Apache process or thread is occupied.</p>
+<p>This configuration also allows you to scale out by adding additional backend<br>servers as necessary. Nginx can be configured to pass to a pool of servers<br>easily, increasing this configuration’s resilience to failure and performance.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>As you can see, both Apache and Nginx are powerful, flexible, and capable.<br>Deciding which server is best for you is largely a function of evaluating your<br>specific requirements and testing with the patterns that you expect to see.</p>
+<p>There are differences between these projects that have a very real impact on<br>the raw performance, capabilities, and the implementation time necessary to<br>get each solution up and running. However, these usually are the result of a<br>series of trade offs that should not be casually dismissed. In the end, there<br>is no one-size-fits-all web server, so use the solution that best aligns with<br>your objectives.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/pdb-	debug-python/" rel="next" title="使用PDB调试Python程序">
+                <i class="fa fa-chevron-left"></i> 使用PDB调试Python程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/function-coding-coolshell/" rel="prev" title="[转]函数式编程——CoolShell">
+                [转]函数式编程——CoolShell <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="apache-vs-nginx/"
+     data-title="[转]Apache vs Nginx: Practical Considerations"
+     data-content=""
+     data-url="https://haofly.net/apache-vs-nginx/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="apache-vs-nginx/"
+           data-title="[转]Apache vs Nginx: Practical Considerations" data-url="https://haofly.net/apache-vs-nginx/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#General-Overview"><span class="nav-number">2.</span> <span class="nav-text">General Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache"><span class="nav-number">2.0.1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx"><span class="nav-number">2.0.2.</span> <span class="nav-text">Nginx</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connection-Handling-Architecturel-连接处理架构"><span class="nav-number">3.</span> <span class="nav-text">Connection Handling Architecturel(连接处理架构)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-1"><span class="nav-number">3.0.1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx-1"><span class="nav-number">3.0.2.</span> <span class="nav-text">Nginx</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Static-vs-Dynamic-Content"><span class="nav-number"></span> <span class="nav-text">Static vs Dynamic Content</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-2"><span class="nav-number">0.0.1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx-2"><span class="nav-number">0.0.2.</span> <span class="nav-text">Nginx</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Distributed-vs-Centralized-Configuration"><span class="nav-number"></span> <span class="nav-text">Distributed vs Centralized Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-3"><span class="nav-number">0.0.1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx-3"><span class="nav-number">0.0.2.</span> <span class="nav-text">Nginx</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File-vs-URI-Based-Interpretation"><span class="nav-number"></span> <span class="nav-text">File vs URI-Based Interpretation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-4"><span class="nav-number">0.0.1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx-4"><span class="nav-number">0.0.2.</span> <span class="nav-text">Nginx</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Modules"><span class="nav-number"></span> <span class="nav-text">Modules</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-5"><span class="nav-number">0.0.1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx-5"><span class="nav-number">0.0.2.</span> <span class="nav-text">Nginx</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Support-Compatibility-Ecosystem-and-Documentation"><span class="nav-number">1.</span> <span class="nav-text">Support, Compatibility, Ecosystem, and Documentation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-6"><span class="nav-number">1.0.1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx-6"><span class="nav-number">1.0.2.</span> <span class="nav-text">Nginx</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Apache-and-Nginx-Together"><span class="nav-number">2.</span> <span class="nav-text">Using Apache and Nginx Together</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
