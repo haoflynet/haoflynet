@@ -1,0 +1,845 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="即使我写了这样的文章，我依然坚信设计模式只是某些垃圾语言用来规避其语言本身弊端的规范而已，不然，就只能写出糟糕的代码了。
+
+
+创建型Factory Method(工厂方法模式)工厂模式是一种类，提供了创建对象的某些方法，可以直接使用工厂类创建对象，而不是直接使用new。
+优点：如果要改变所创建对象的类型，只需要修改该工厂即可。比如有个类需要读取用户数据来创建，原本是读取的数据库，现在要从文本读取，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式-Php实现">
+<meta property="og:url" content="https://haofly.net/design-pattern设计模式/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="即使我写了这样的文章，我依然坚信设计模式只是某些垃圾语言用来规避其语言本身弊端的规范而已，不然，就只能写出糟糕的代码了。
+
+
+创建型Factory Method(工厂方法模式)工厂模式是一种类，提供了创建对象的某些方法，可以直接使用工厂类创建对象，而不是直接使用new。
+优点：如果要改变所创建对象的类型，只需要修改该工厂即可。比如有个类需要读取用户数据来创建，原本是读取的数据库，现在要从文本读取，">
+<meta property="og:updated_time" content="2016-10-10T03:27:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式-Php实现">
+<meta name="twitter:description" content="即使我写了这样的文章，我依然坚信设计模式只是某些垃圾语言用来规避其语言本身弊端的规范而已，不然，就只能写出糟糕的代码了。
+
+
+创建型Factory Method(工厂方法模式)工厂模式是一种类，提供了创建对象的某些方法，可以直接使用工厂类创建对象，而不是直接使用new。
+优点：如果要改变所创建对象的类型，只需要修改该工厂即可。比如有个类需要读取用户数据来创建，原本是读取的数据库，现在要从文本读取，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/design-pattern设计模式/"/>
+
+
+
+
+
+  <title> 设计模式-Php实现 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/design-pattern设计模式/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                设计模式-Php实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-30T03:40:30+00:00">
+                2016-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/design-pattern设计模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="design-pattern设计模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>即使我写了这样的文章，我依然坚信设计模式只是某些垃圾语言用来规避其语言本身弊端的规范而已，不然，就只能写出糟糕的代码了。</p>
+<script src="https://gist.github.com/haoflynet/15019abeaba71d880801.js"></script>
+
+<h1 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h1><h3 id="Factory-Method-工厂方法模式"><a href="#Factory-Method-工厂方法模式" class="headerlink" title="Factory Method(工厂方法模式)"></a>Factory Method(工厂方法模式)</h3><p>工厂模式是一种类，提供了创建对象的某些方法，可以直接使用工厂类创建对象，而不是直接使用new。</p>
+<p>优点：如果要改变所创建对象的类型，只需要修改该工厂即可。比如有个类需要读取用户数据来创建，原本是读取的数据库，现在要从文本读取，就得把那个类及其所有依赖都更改一遍。</p>
+<p>php示例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IPost</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span> <span class="keyword">implements</span> <span class="title">IPost</span></span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($id)</span></span>&#123;&#125;</div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">Load</span><span class="params">($id)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Post($id);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">Create</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Post(<span class="keyword">null</span>);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"haofly"</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$post = Post::Load(<span class="number">1</span>);</div><div class="line"><span class="keyword">echo</span> $post-&gt;getName();</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="AbstractFactory-抽象工厂模式"><a href="#AbstractFactory-抽象工厂模式" class="headerlink" title="AbstractFactory(抽象工厂模式)"></a>AbstractFactory(抽象工厂模式)</h3><p>抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。客户端程序不需要知道（或关心）它从这些内部的工厂方法中获得对象的具体类型，因为客户端程序仅使用这些对象的通用接口。抽象工厂模式将一组对象的实现细节与他们的一般使用分离开来。</p>
+<p>php示例，代码来自<a href="https://zh.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82#PHP" target="_blank" rel="external">维基百科</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractFactory</span> </span>&#123;</div><div class="line">	<span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">CreateButton</span><span class="params">()</span></span>;</div><div class="line">	<span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">CreateBorder</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MacFactory</span> <span class="keyword">extends</span> <span class="title">AbstractFactory</span></span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">CreateButton</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> MacButton();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">CreateBorder</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> MacBorder();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WinFactory</span> <span class="keyword">extends</span> <span class="title">AbstractFactory</span></span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">CreateButton</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> WinButton();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">CreateBorder</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> WinBorder();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span></span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Border</span></span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MacButton</span> <span class="keyword">extends</span> <span class="title">Button</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">echo</span> <span class="string">'MacButton is created'</span> . <span class="string">"\n"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MacBorder</span> <span class="keyword">extends</span> <span class="title">Border</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">echo</span> <span class="string">'MacBorder is created'</span> . <span class="string">"\n"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WinButton</span> <span class="keyword">extends</span> <span class="title">Button</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">echo</span> <span class="string">'WinButton is created'</span> . <span class="string">"\n"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WinBorder</span> <span class="keyword">extends</span> <span class="title">Border</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">echo</span> <span class="string">'WinBorder is created'</span> . <span class="string">"\n"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div><div class="line"><span class="comment"># 客户端使用</span></div><div class="line"><span class="meta">&lt;?</span></div><div class="line">$type = <span class="string">'Mac'</span>; <span class="comment">//value by user.</span></div><div class="line"><span class="keyword">if</span>(!in_array($type, <span class="keyword">array</span>(<span class="string">'Win'</span>,<span class="string">'Mac'</span>)))</div><div class="line">    <span class="keyword">die</span>(<span class="string">'Type Error'</span>);</div><div class="line">$factoryClass = $type.<span class="string">'Factory'</span>;</div><div class="line">$factory=<span class="keyword">new</span> $factoryClass;</div><div class="line">$factory-&gt;CreateButton();</div><div class="line">$factory-&gt;CreateBorder();</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Prototype-原型模式"><a href="#Prototype-原型模式" class="headerlink" title="Prototype(原型模式)"></a>Prototype(原型模式)</h3><p>通过复制一个已经存在的实例来返回新的实例，而不是新建实例。</p>
+<p>优点: 多用于创建复杂的或者耗时的实例，这种情况，复制一个已经存在的实例使程序运行更高效，活着创建值相等，只是命名不一样的同类数据。</p>
+<h3 id="Singleton-单例模式"><a href="#Singleton-单例模式" class="headerlink" title="Singleton(单例模式)"></a>Singleton(单例模式)</h3><p>php示例，代码来自<a href="https://www.ibm.com/developerworks/cn/opensource/os-php-designptrns/" target="_blank" rel="external">IBM</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">require_once</span>(<span class="string">"DB.php"</span>);</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DatabaseConnectiono</span></span>&#123;</div><div class="line">  <span class="keyword">private</span> $_handle = <span class="keyword">null</span>;</div><div class="line">  </div><div class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">    $dsn = <span class="string">'mysql://root:password@localhost/photos'</span>;</div><div class="line">    <span class="keyword">$this</span>-&gt;_handle = &amp; DB::Connect($dsn, <span class="keyword">array</span>());</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">static</span> $db = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">if</span>($db == <span class="keyword">null</span>)</div><div class="line">      $db = <span class="keyword">new</span> DatabaseConnectioni();</div><div class="line">    <span class="keyword">return</span> $db;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;_handle;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">print</span>(<span class="string">"Handle="</span>.DatabaseConnection::get()-&gt;handle().<span class="string">"\n"</span>);</div><div class="line"><span class="keyword">print</span>(<span class="string">"Handle="</span>.DatabaseConnection::get()-&gt;handle().<span class="string">"\n"</span>);</div></pre></td></tr></table></figure>
+<h2 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h2><h3 id="Adapter-Class-Object-适配器-转换器"><a href="#Adapter-Class-Object-适配器-转换器" class="headerlink" title="Adapter Class/Object(适配器/转换器)"></a>Adapter Class/Object(适配器/转换器)</h3><p>介绍: 把一个类的接口变换成客户端所期待的另一种接口，Adapter模式使原本因接口不匹配或不兼容而无法在一起工作的两个类能够在一起工作。外部请求方式一样，内部实现方式不一样。</p>
+<p>应用场景: </p>
+<ol>
+<li>想使用一个已经存在的类，但是它的接口并不完全符合需求</li>
+<li>适用于第三方库的API会发生改变而选择不直接把第三方API给用户使用的情况下，在前面封装一层。</li>
+</ol>
+<p>php实例，代码来自<a href="http://blog.csdn.net/hguisu/article/details/7527842" target="_blank" rel="external">真实的归宿</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 目标角色</div><div class="line"> */  </div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 源类的方法：这个方法将来有可能继续改进 </div><div class="line">     */  </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span></span>;  </div><div class="line">   </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 目标点 </div><div class="line">     */  </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">world</span><span class="params">()</span></span>;  </div><div class="line">&#125;  </div><div class="line">   </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 源角色：修改后的方法</div><div class="line"> */  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> </span>&#123;  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 源类含有的方法 </div><div class="line">     */  </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">world</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">echo</span> <span class="string">' world &lt;br /&gt;'</span>;  </div><div class="line">    &#125;  </div><div class="line">   </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 将hello方法改为了greet方法</div><div class="line">     */  </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">greet</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">echo</span> <span class="string">' Greet '</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">   </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 类适配器角色 </div><div class="line"> */  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adapter</span>  <span class="keyword">implements</span> <span class="title">Target</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> $_adaptee;  </div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Adaptee $adaptee)</span> </span>&#123;  </div><div class="line">        <span class="keyword">$this</span>-&gt;_adaptee = $adaptee;  </div><div class="line">    &#125;  </div><div class="line">   </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 源类中没有hello方法，在此补充 </div><div class="line">     */  </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;  </div><div class="line">       <span class="keyword">$this</span>-&gt;_adaptee-&gt;greet();  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 客户端程序 </div><div class="line"> */  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;  </div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </div><div class="line">        $adaptee = <span class="keyword">new</span> Adaptee();  </div><div class="line">        $adapter = <span class="keyword">new</span> Adapter($adaptee);  </div><div class="line">        $adapter-&gt;hello();  	<span class="comment">// 无论内部怎么变，外部都用hello来引用</span></div><div class="line">        $adapter-&gt;world();  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">Client::main();  </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Bridge-桥接模式"><a href="#Bridge-桥接模式" class="headerlink" title="Bridge(桥接模式)"></a>Bridge(桥接模式)</h3><p>把事务对象和其具体行为、具体特征分离开来，使它们可以各自独立的变化。</p>
+<p>python实例，代码来自<a href="https://zh.wikipedia.org/wiki/%E6%A9%8B%E6%8E%A5%E6%A8%A1%E5%BC%8F#Python" target="_blank" rel="external">维基百科</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="string">"""圆形、三角形归于抽象的形状，而画圆、画三角形归于抽象的画图"""</span></div><div class="line"></div><div class="line"><span class="comment"># Implementor</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrawingAPI</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">drawCircle</span><span class="params">(x, y, radius)</span>:</span></div><div class="line">		<span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="comment"># ConcreteImplementor 1/2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrawingAPI1</span><span class="params">(DrawingAPI)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">drawCircle</span><span class="params">(self, x, y, radius)</span>:</span></div><div class="line">		<span class="keyword">print</span> <span class="string">"API1.circle at %f:%f radius %f"</span> % (x, y, radius)</div><div class="line"></div><div class="line"><span class="comment"># ConcreteImplementor 2/2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrawingAPI2</span><span class="params">(DrawingAPI)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">drawCircle</span><span class="params">(self, x, y, radius)</span>:</span></div><div class="line">		<span class="keyword">print</span> <span class="string">"API2.circle at %f:%f radius %f"</span> % (x, y, radius)</div><div class="line"></div><div class="line"><span class="comment"># Abstraction</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span>:</span></div><div class="line">	<span class="comment"># low-level</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">draw</span><span class="params">(self)</span>:</span></div><div class="line">		<span class="keyword">pass</span></div><div class="line"></div><div class="line">	<span class="comment"># high-level</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">resizeByPercentage</span><span class="params">(self, pct)</span>:</span></div><div class="line">		<span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="comment"># Refined Abstraction</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CircleShape</span><span class="params">(Shape)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x, y, radius, drawingAPI)</span>:</span></div><div class="line">		self.__x = x</div><div class="line">		self.__y = y</div><div class="line">		self.__radius = radius</div><div class="line">		self.__drawingAPI = drawingAPI</div><div class="line"></div><div class="line">	<span class="comment"># low-level i.e. Implementation specific</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">draw</span><span class="params">(self)</span>:</span></div><div class="line">		self.__drawingAPI.drawCircle(self.__x, self.__y, self.__radius)</div><div class="line"></div><div class="line">	<span class="comment"># high-level i.e. Abstraction specific</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">resizeByPercentage</span><span class="params">(self, pct)</span>:</span></div><div class="line">		self.__radius *= pct</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">	shapes = [</div><div class="line">		CircleShape(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, DrawingAPI1()),</div><div class="line">		CircleShape(<span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, DrawingAPI2())</div><div class="line">	]</div><div class="line"></div><div class="line">	<span class="keyword">for</span> shape <span class="keyword">in</span> shapes:</div><div class="line">		shape.resizeByPercentage(<span class="number">2.5</span>)</div><div class="line">		shape.draw()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">	main()</div></pre></td></tr></table></figure>
+<h3 id="Composite-组合模式"><a href="#Composite-组合模式" class="headerlink" title="Composite(组合模式)"></a>Composite(组合模式)</h3><h3 id="Decorator-装饰模式"><a href="#Decorator-装饰模式" class="headerlink" title="Decorator(装饰模式)"></a>Decorator(装饰模式)</h3><h3 id="Facade-外观"><a href="#Facade-外观" class="headerlink" title="Facade(外观)"></a>Facade(外观)</h3><h3 id="Flywight-享元"><a href="#Flywight-享元" class="headerlink" title="Flywight(享元)"></a>Flywight(享元)</h3><h3 id="Proxy-代理"><a href="#Proxy-代理" class="headerlink" title="Proxy(代理)"></a>Proxy(代理)</h3><h2 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h2><h3 id="Interpreter-解释器"><a href="#Interpreter-解释器" class="headerlink" title="Interpreter(解释器)"></a>Interpreter(解释器)</h3><h3 id="Template-Method-模板方法"><a href="#Template-Method-模板方法" class="headerlink" title="Template Method(模板方法)"></a>Template Method(模板方法)</h3><h3 id="Observer-观察者模式"><a href="#Observer-观察者模式" class="headerlink" title="Observer(观察者模式)"></a>Observer(观察者模式)</h3><p>优点: 被观察对象不用具体了解观察者具体实现，而是由观察者去实现。被观察者忽略了依赖它的对象，它要关注在事件发生时触发该事件并发送消息给观察者即可。这个和依赖注入有点相近的地方。</p>
+<p>php示例，代码来自<a href="https://www.ibm.com/developerworks/cn/opensource/os-php-designptrns/" target="_blank" rel="external">IBM</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 测试代码创建 UserList，并将 UserListLogger 观察者添加到其中。然后添加一个消费者，并将这一更改通知 UserListLogger</div><div class="line"> */</div><div class="line">  </div><div class="line"><span class="comment"># 定义要通过怎样的方法才能成为观察者</span></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IObserver</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">onChanged</span><span class="params">($sender, $args)</span></span>;</div><div class="line">&#125;</div><div class="line"><span class="comment"># 定义可以被观察的对象</span></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IObservable</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">addObserver</span><span class="params">($observer)</span></span>;</div><div class="line">&#125;</div><div class="line"><span class="comment"># 实现IOBbservable，以便将本身注册为可观察</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserList</span> <span class="keyword">implements</span> <span class="title">IObservable</span></span>&#123;</div><div class="line">  <span class="keyword">private</span> $_observers = <span class="keyword">array</span>();</div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addCustomer</span><span class="params">($name)</span></span>&#123;</div><div class="line">    <span class="keyword">foreach</span>(<span class="keyword">$this</span>-&gt;_observers <span class="keyword">as</span> $obs)&#123;</div><div class="line">      $obs-&gt;onChanged(<span class="keyword">$this</span>, $name);	<span class="comment"># 通知观察者</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addObserver</span><span class="params">($observer)</span></span>&#123;</div><div class="line">    <span class="keyword">$this</span>-&gt;_observers[] = $observer;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserListLogger</span> <span class="keyword">implements</span> <span class="title">IOBserver</span></span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onChanged</span><span class="params">($sender, $args)</span></span>&#123;</div><div class="line">    <span class="keyword">echo</span>(<span class="string">"'$args' added to user list\n"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ul = <span class="keyword">new</span> UserList();</div><div class="line">$ul-&gt;addObserver(<span class="keyword">new</span> UserListLogger());</div><div class="line">$ul-&gt;addCustomer(<span class="string">"Jack"</span>);</div></pre></td></tr></table></figure>
+<h3 id="Command-命令"><a href="#Command-命令" class="headerlink" title="Command(命令)"></a>Command(命令)</h3><h3 id="Chain-of-Respopnsibility-责任链"><a href="#Chain-of-Respopnsibility-责任链" class="headerlink" title="Chain of Respopnsibility(责任链)"></a>Chain of Respopnsibility(责任链)</h3><p>包含了一些命令对象和一系列的处理对象，每一个处理对象决定它能处理哪些命令对象，它也知道如何将它不能处理的命令对象传递给该链中的下一个处理对象。</p>
+<p>php示例，代码来自<a href="https://zh.wikipedia.org/wiki/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F#PHP" target="_blank" rel="external">维基百科</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">	<span class="keyword">const</span> ERR = <span class="number">3</span>;</div><div class="line">	<span class="keyword">const</span> NOTICE = <span class="number">5</span>;</div><div class="line">	<span class="keyword">const</span> DEBUG = <span class="number">7</span>;</div><div class="line"></div><div class="line">	<span class="keyword">protected</span> $mask;</div><div class="line">	<span class="keyword">protected</span> $next; <span class="comment">// The next element in the chain of responsibility</span></div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setNext</span><span class="params">(Logger $l)</span> </span>&#123;</div><div class="line">		<span class="keyword">$this</span>-&gt;next = $l;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">($msg, $priority)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DebugLogger</span> <span class="keyword">extends</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($mask)</span> </span>&#123;</div><div class="line">		<span class="keyword">$this</span>-&gt;mask = $mask;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">($msg, $priority)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> ($priority &lt;= <span class="keyword">$this</span>-&gt;mask) &#123;</div><div class="line">			<span class="keyword">echo</span> <span class="string">"Writing to debug output: &#123;$msg&#125;\n"</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (<span class="keyword">false</span> == is_null(<span class="keyword">$this</span>-&gt;next)) &#123;</div><div class="line">			<span class="keyword">$this</span>-&gt;next-&gt;message($msg, $priority);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EmailLogger</span> <span class="keyword">extends</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($mask)</span> </span>&#123;</div><div class="line">		<span class="keyword">$this</span>-&gt;mask = $mask;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">($msg, $priority)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> ($priority &lt;= <span class="keyword">$this</span>-&gt;mask) &#123;</div><div class="line">			<span class="keyword">echo</span> <span class="string">"Sending via email: &#123;$msg&#125;\n"</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (<span class="keyword">false</span> == is_null(<span class="keyword">$this</span>-&gt;next)) &#123;</div><div class="line">			<span class="keyword">$this</span>-&gt;next-&gt;message($msg, $priority);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StderrLogger</span> <span class="keyword">extends</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($mask)</span> </span>&#123;</div><div class="line">		<span class="keyword">$this</span>-&gt;mask = $mask;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">($msg, $priority)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> ($priority &lt;= <span class="keyword">$this</span>-&gt;mask) &#123;</div><div class="line">			<span class="keyword">echo</span> <span class="string">"Writing to stderr: &#123;$msg&#125;\n"</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (<span class="keyword">false</span> == is_null(<span class="keyword">$this</span>-&gt;next)) &#123;</div><div class="line">			<span class="keyword">$this</span>-&gt;next-&gt;message($msg, $priority);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChainOfResponsibilityExample</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">// build the chain of responsibility</span></div><div class="line">		$l = <span class="keyword">new</span> DebugLogger(Logger::DEBUG);</div><div class="line">		$e = <span class="keyword">new</span> EmailLogger(Logger::NOTICE);</div><div class="line">		$s = <span class="keyword">new</span> StderrLogger(Logger::ERR);</div><div class="line">		</div><div class="line">		$e-&gt;setNext($s);</div><div class="line">		$l-&gt;setNext($e);</div><div class="line"></div><div class="line">		$l-&gt;message(<span class="string">"Entering function y."</span>,		Logger::DEBUG);		<span class="comment">// handled by DebugLogger</span></div><div class="line">		$l-&gt;message(<span class="string">"Step1 completed."</span>,			Logger::NOTICE);	<span class="comment">// handled by DebugLogger and EmailLogger</span></div><div class="line">		$l-&gt;message(<span class="string">"An error has occurred."</span>,	Logger::ERR);		<span class="comment">// handled by all three Loggers</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> ChainOfResponsibilityExample();</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Iterator-迭代器"><a href="#Iterator-迭代器" class="headerlink" title="Iterator(迭代器)"></a>Iterator(迭代器)</h3><h3 id="Mediator-中介者"><a href="#Mediator-中介者" class="headerlink" title="Mediator(中介者)"></a>Mediator(中介者)</h3><h3 id="Memento-备忘录"><a href="#Memento-备忘录" class="headerlink" title="Memento(备忘录)"></a>Memento(备忘录)</h3><h3 id="State-状态"><a href="#State-状态" class="headerlink" title="State(状态)"></a>State(状态)</h3><h3 id="Strategy-策略"><a href="#Strategy-策略" class="headerlink" title="Strategy(策略)"></a>Strategy(策略)</h3><p>指对象有某种行为，但是在不同的场景中，该行为有不同的实现算法。</p>
+<p>抽象工厂与策略模式不同的地方在于，工厂是创建型模式，关注的是对象的创建，而策略是行为型模式，关注的是对行为的封装，对于工厂来说无论返回的对象内部是怎样的，只要是我想要的对象就行，而对于策略模式来说返回的对象即使不同也会有相同的方法/行为。</p>
+<p>php示例，代码来自<a href="https://zh.wikipedia.org/wiki/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F#PHP" target="_blank" rel="external">维基百科</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StrategyExample</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</div><div class="line">        $context = <span class="keyword">new</span> Context(<span class="keyword">new</span> ConcreteStrategyA());</div><div class="line">        $context-&gt;execute();</div><div class="line"></div><div class="line">        $context = <span class="keyword">new</span> Context(<span class="keyword">new</span> ConcreteStrategyB());</div><div class="line">        $context-&gt;execute();</div><div class="line"></div><div class="line">        $context = <span class="keyword">new</span> Context(<span class="keyword">new</span> ConcreteStrategyC());</div><div class="line">        $context-&gt;execute();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IStrategy</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">execute</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyA</span> <span class="keyword">implements</span> <span class="title">IStrategy</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Called ConcreteStrategyA execute method\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyB</span> <span class="keyword">implements</span> <span class="title">IStrategy</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Called ConcreteStrategyB execute method\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyC</span> <span class="keyword">implements</span> <span class="title">IStrategy</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Called ConcreteStrategyC execute method\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> $strategy;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(IStrategy $strategy)</span> </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;strategy = $strategy;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;strategy-&gt;execute();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> StrategyExample;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Visitor-放问者"><a href="#Visitor-放问者" class="headerlink" title="Visitor(放问者)"></a>Visitor(放问者)</h3>
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo/" rel="next" title="Hexo 教程">
+                <i class="fa fa-chevron-left"></i> Hexo 教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/mac-osx/" rel="prev" title="MAC OSX 教程">
+                MAC OSX 教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="design-pattern设计模式/"
+     data-title="设计模式-Php实现"
+     data-content=""
+     data-url="https://haofly.net/design-pattern设计模式/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="design-pattern设计模式/"
+           data-title="设计模式-Php实现" data-url="https://haofly.net/design-pattern设计模式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建型"><span class="nav-number">1.</span> <span class="nav-text">创建型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Factory-Method-工厂方法模式"><span class="nav-number">1.0.1.</span> <span class="nav-text">Factory Method(工厂方法模式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AbstractFactory-抽象工厂模式"><span class="nav-number">1.0.2.</span> <span class="nav-text">AbstractFactory(抽象工厂模式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototype-原型模式"><span class="nav-number">1.0.3.</span> <span class="nav-text">Prototype(原型模式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Singleton-单例模式"><span class="nav-number">1.0.4.</span> <span class="nav-text">Singleton(单例模式)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构型"><span class="nav-number">1.1.</span> <span class="nav-text">结构型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Adapter-Class-Object-适配器-转换器"><span class="nav-number">1.1.1.</span> <span class="nav-text">Adapter Class/Object(适配器/转换器)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bridge-桥接模式"><span class="nav-number">1.1.2.</span> <span class="nav-text">Bridge(桥接模式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Composite-组合模式"><span class="nav-number">1.1.3.</span> <span class="nav-text">Composite(组合模式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decorator-装饰模式"><span class="nav-number">1.1.4.</span> <span class="nav-text">Decorator(装饰模式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Facade-外观"><span class="nav-number">1.1.5.</span> <span class="nav-text">Facade(外观)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flywight-享元"><span class="nav-number">1.1.6.</span> <span class="nav-text">Flywight(享元)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Proxy-代理"><span class="nav-number">1.1.7.</span> <span class="nav-text">Proxy(代理)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行为型"><span class="nav-number">1.2.</span> <span class="nav-text">行为型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Interpreter-解释器"><span class="nav-number">1.2.1.</span> <span class="nav-text">Interpreter(解释器)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Template-Method-模板方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">Template Method(模板方法)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observer-观察者模式"><span class="nav-number">1.2.3.</span> <span class="nav-text">Observer(观察者模式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Command-命令"><span class="nav-number">1.2.4.</span> <span class="nav-text">Command(命令)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chain-of-Respopnsibility-责任链"><span class="nav-number">1.2.5.</span> <span class="nav-text">Chain of Respopnsibility(责任链)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator-迭代器"><span class="nav-number">1.2.6.</span> <span class="nav-text">Iterator(迭代器)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mediator-中介者"><span class="nav-number">1.2.7.</span> <span class="nav-text">Mediator(中介者)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memento-备忘录"><span class="nav-number">1.2.8.</span> <span class="nav-text">Memento(备忘录)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#State-状态"><span class="nav-number">1.2.9.</span> <span class="nav-text">State(状态)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strategy-策略"><span class="nav-number">1.2.10.</span> <span class="nav-text">Strategy(策略)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visitor-放问者"><span class="nav-number">1.2.11.</span> <span class="nav-text">Visitor(放问者)</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,884 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="swagger特点swagger是我见过唯一还算将就的一个API文档制作与展示工具，其实最终都没让我找到一款完美的API文档编写工具。
+swagger优点:
+
+一个文件就是一个文档
+
+
+只针对API，而不针对特定的语言的API，很多自动生成API的工具基本都是只针对特定的API的
+支持Json和yaml来编写API文档，并且支持导出为json、yaml、markdown等格式
+如果编写好了API了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swagger与其他API文档编写工具对比">
+<meta property="og:url" content="https://haofly.net/swagger/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="swagger特点swagger是我见过唯一还算将就的一个API文档制作与展示工具，其实最终都没让我找到一款完美的API文档编写工具。
+swagger优点:
+
+一个文件就是一个文档
+
+
+只针对API，而不针对特定的语言的API，很多自动生成API的工具基本都是只针对特定的API的
+支持Json和yaml来编写API文档，并且支持导出为json、yaml、markdown等格式
+如果编写好了API了">
+<meta property="og:updated_time" content="2017-03-08T07:30:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swagger与其他API文档编写工具对比">
+<meta name="twitter:description" content="swagger特点swagger是我见过唯一还算将就的一个API文档制作与展示工具，其实最终都没让我找到一款完美的API文档编写工具。
+swagger优点:
+
+一个文件就是一个文档
+
+
+只针对API，而不针对特定的语言的API，很多自动生成API的工具基本都是只针对特定的API的
+支持Json和yaml来编写API文档，并且支持导出为json、yaml、markdown等格式
+如果编写好了API了">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/swagger/"/>
+
+
+
+
+
+  <title> Swagger与其他API文档编写工具对比 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/swagger/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swagger与其他API文档编写工具对比
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-26T15:26:00+00:00">
+                2017-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/swagger/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="swagger/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="swagger特点"><a href="#swagger特点" class="headerlink" title="swagger特点"></a>swagger特点</h2><p>swagger是我见过唯一还算将就的一个API文档制作与展示工具，其实最终都没让我找到一款完美的API文档编写工具。</p>
+<p>swagger优点:</p>
+<ul>
+<li>一个文件就是一个文档</li>
+</ul>
+<ul>
+<li>只针对API，而不针对特定的语言的API，很多自动生成API的工具基本都是只针对特定的API的</li>
+<li>支持Json和yaml来编写API文档，并且支持导出为json、yaml、markdown等格式</li>
+<li>如果编写好了API了，可以自动生成相应的SDK，没错，可能你的API接口代码还没有开始写，它就能帮你制作相应的SDK了，而且支持几乎所有主流编程语言的SDK</li>
+<li>支持自动生成大量主流编程语言/框架的server端</li>
+<li>界面清晰，无论是editor的实时展示还是ui的展示都十分人性化，其他的API编写工具基本上都做不到这一点，如果自己仅仅用markdown来编写，又要纠结该如何展现，十分痛苦。</li>
+<li>官网有直接的demo，甚至都可以不用自己搞一套服务器</li>
+</ul>
+<p>swagger缺点:</p>
+<ul>
+<li>貌似无法更改主题</li>
+<li>中英文的文档都比较少，其主要原因应该是官网的文档本身就不完善，只有针对不同模块儿的介绍，却没有针对具体用户的文档</li>
+<li>yaml文件只能和API项目本身放在一起，这一点暂时还不知道有什么解决方案</li>
+</ul>
+<h3 id="其他的API文档编写工具"><a href="#其他的API文档编写工具" class="headerlink" title="其他的API文档编写工具"></a>其他的API文档编写工具</h3><h4 id="Apizza"><a href="#Apizza" class="headerlink" title="Apizza"></a>Apizza</h4><ul>
+<li>外观模仿postman，但是只有网页版，必须谷歌浏览器并且必须安装插件，不开源，不能确定以后是否收费</li>
+<li>由于外观模仿postman，所以ui上还是不大满意</li>
+<li>能够自定义环境变量，并且可以不同的环境不同的环境变量</li>
+<li>拥有团队协作功能，并且有一定的权限管理功能</li>
+<li>可直接在接口处编写文档，并且能够导出HTML文档，导入Postman Json或者Swagger Json</li>
+<li>偶尔会有缓存没有清理的问题</li>
+<li>没有mock server的功能</li>
+</ul>
+<h4 id="APIBlueprint"><a href="#APIBlueprint" class="headerlink" title="APIBlueprint"></a>APIBlueprint</h4><ul>
+<li>自定义markdown语法，用markdown来编写</li>
+<li>由于自定义了太多的语法，个人认为最后的markdown文件非常混乱，因为很多时候多空格多空行不会影响结果</li>
+<li>也能生成mock server</li>
+<li>界面美观，但是不是很直观</li>
+<li>能够导出markdown和yaml</li>
+</ul>
+<h4 id="RAP"><a href="#RAP" class="headerlink" title="RAP"></a>RAP</h4><ul>
+<li>淘宝出品，Github上start数4000+</li>
+<li>可以在公司内部搭建，不同的团队都可以在上面创建团队文档和分组</li>
+<li>不能定义GET、POST、PUT、DELETE之外的请求</li>
+<li>Model不能共享，写了一个地方另外一个地方还要写</li>
+<li>只能定义200的响应，无法定义请求头、请求格式和相应格式</li>
+<li>网页直接用js生成mock数据</li>
+<li>界面有些地方好看，有些地方很丑。。。</li>
+<li>只能导出为没有样式的html</li>
+</ul>
+<h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><p>我这里仅仅是简单地使用了swagger其中一项功能，即用<code>swagger-editor</code>编写API文档，生成yaml文件，然后通过<code>swagger-ui</code>来进行展示。由于仅仅是我本地搭建，所以两个组件都使用的docker搭建:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -i -t -p 8080:8080 --name swagger-ui -d swaggerapi/swagger-ui</div><div class="line">docker run -i -t -p 8081:8080 --name swagger-editor -d swaggerapi/swagger-editor</div></pre></td></tr></table></figure>
+<p>然后访问<code>http://127.0.0.1:8080</code>即可访问<code>swagger-ui</code>，<code>http://127.0.0.1:8081</code>即可访问<code>swagger-editor</code>了。</p>
+<p>接下来就是问题最多的如何使用的问题了，在第一次使用过程中，有诸多的问题需要解决，当然，主要的就是CROS问题。</p>
+<h4 id="CROS跨域问题"><a href="#CROS跨域问题" class="headerlink" title="CROS跨域问题"></a>CROS跨域问题</h4><p>在使用editor的时候你可能会用到<code>Try this operation</code>功能，即把接口定义好，想要直接进行请求调试，填上参数后网页可能会在js报这样的错误: <code>XMLHttpRequest cannot load http://api.haofly.net/projects/test. Response to preflight request doesn&#39;t pass access control check: No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;http://127.0.0.1:8081&#39; is therefore not allowed access.</code>这就是传说中的CROS问题了，原因是后台程序为了安全默认关闭了跨域的请求，这时候有两种方式，一种是修改nginx，使其能直接通过，一种是修改程序，使其在返回请求的时候能够附带加上CROS的信息。例如，我在Laravel下面，可以添加这样一个中间件:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Middleware</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Closure</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EnableCrossRequestMiddleware</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></div><div class="line">    &#123;</div><div class="line">        $response = $next($request);</div><div class="line">        $response-&gt;headers-&gt;set(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'http://127.0.0.1:8081'</span>);</div><div class="line">        $response-&gt;headers-&gt;set(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Origin, Content-Type, Cookie, Accept, Authorization, Application, X-Requested-With'</span>);</div><div class="line">        $response-&gt;headers-&gt;set(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET, POST, PATCH, PUT, OPTIONS, DELETE'</span>);</div><div class="line">        $response-&gt;headers-&gt;set(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">'true'</span>);</div><div class="line">        <span class="keyword">return</span> $response;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样，后台程序就允许<code>127.0.0.1:8081</code>这个域进行跨域访问了。</p>
+<h4 id="OAuth2认证问题"><a href="#OAuth2认证问题" class="headerlink" title="OAuth2认证问题"></a>OAuth2认证问题</h4><p>swagger是无法自定义请求头的，这一点，其Github上面的Issues有解释，现在已经忘了，但是针对特殊的头，它还是会有特定的办法，比如OAuth2的认证，它本身就是支持的。</p>
+<p>首先，需要在yaml文件中定义这样一些字段:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="attr">securityDefinitions:</span>	<span class="comment"># 在根路径上添加这个字段</span></div><div class="line"><span class="attr">  Bearer:</span></div><div class="line"><span class="attr">    type:</span> apiKey</div><div class="line"><span class="attr">    name:</span> Authorization</div><div class="line"><span class="attr">    in:</span> header</div><div class="line">    </div><div class="line">/projects/&#123;projectName&#125;:</div><div class="line"><span class="attr">  get:</span></div><div class="line"><span class="attr">    summary:</span> 获取指定项目名的项目信息</div><div class="line"><span class="attr">    security:</span>			<span class="comment"># 在需要有认证的接口添加这个字段</span></div><div class="line"><span class="attr">      - Bearer:</span> []</div><div class="line"><span class="attr">    parameters:</span></div><div class="line"><span class="attr">      - name:</span> projectName</div><div class="line"><span class="attr">        in:</span> path</div><div class="line"><span class="attr">        type:</span> string</div><div class="line"><span class="attr">        description:</span> 项目名</div><div class="line"><span class="attr">        required:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    responses:</span></div><div class="line">      <span class="number">200</span>:</div><div class="line"><span class="attr">        description:</span> 项目信息</div></pre></td></tr></table></figure>
+<p>之后，<code>swagger-editor</code>实时预览会出现<code>Security Authentication</code>的安全认证，可以将<code>token</code>填入其中，然后在<code>Try this operation</code>的时候勾选上<code>Security-&gt;Bearer</code>即可，可以看到自动在请求头中添加了<code>Authorization</code>字段了。</p>
+<h4 id="Swagger-ui获取解析文件的问题"><a href="#Swagger-ui获取解析文件的问题" class="headerlink" title="Swagger-ui获取解析文件的问题"></a>Swagger-ui获取解析文件的问题</h4><p>其实<code>Swagger-ui</code>仅仅是接收一个url，通过该url获取yaml文件，然后负责解析而已。但是，这里的坑也是不少的。</p>
+<p>首先，在<code>swagger-ui</code>中，默认发送的请求，是针对那个yaml文件所在的地方，这是十分坑的地方，所以yaml文件必须放在相应的API项目的文件里。暂时没有发现其他的解决方案。</p>
+<p>其次，给定的url并不直接指向该文件的静态路径，而是需要添加CROS的响应头，所以不能直接用nginx的静态文件来处理。哎，所以基本上要做到的是，你直接访问那个url的时候，浏览器会弹出下载狂而不是直接显示那个文件的内容。</p>
+<h3 id="文档编写语法"><a href="#文档编写语法" class="headerlink" title="文档编写语法"></a>文档编写语法</h3><p>虽然<code>json</code>比<code>yaml</code>好用，但是在这里我还是觉得<code>yaml</code>更好看，更方便，所以我这里都用<code>yaml</code>来用，并且如果要<code>json</code>，它都是可以互相转换的，语法都一样。以下来自<a href="http://swagger.io/specification/" target="_blank" rel="external">官方文档</a></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div></pre></td><td class="code"><pre><div class="line"><span class="attr">swagger:</span> <span class="string">'2.0'</span>						<span class="comment"># swagger的版本</span></div><div class="line"><span class="attr">info:</span></div><div class="line"><span class="attr">  title:</span> 文档标题</div><div class="line"><span class="attr">  description:</span>  描述</div><div class="line"><span class="attr">  version:</span> <span class="string">"v1.0"</span>					<span class="comment"># 版本号</span></div><div class="line"><span class="attr">  termsOfService:</span> <span class="string">""</span>				<span class="comment"># 文档支持截止日期</span></div><div class="line"><span class="attr">  contact:</span>							<span class="comment"># 联系人的信息</span></div><div class="line">  	name: <span class="string">""</span>						<span class="comment"># 联系人姓名</span></div><div class="line">  	url: <span class="string">""</span>							<span class="comment"># 联系人URL</span></div><div class="line">  	email: <span class="string">""</span>						<span class="comment"># 联系人邮箱</span></div><div class="line"><span class="attr">  license:</span>							<span class="comment"># 授权信息</span></div><div class="line">  	name: <span class="string">""</span>						<span class="comment"># 授权名称，例如Apache 2.0</span></div><div class="line">  	url: <span class="string">""</span>							<span class="comment"># 授权URL</span></div><div class="line"></div><div class="line"><span class="attr">host:</span> api.haofly.net				<span class="comment"># 域名，可以包含端口，如果不提供host，那么默认为提供yaml文件的host</span></div><div class="line"><span class="attr">basePath:</span> /							<span class="comment"># 前缀，比如/v1</span></div><div class="line"></div><div class="line"><span class="attr">schemes:</span>							<span class="comment"># 传输协议</span></div><div class="line"><span class="bullet">  -</span> http</div><div class="line"><span class="bullet">  -</span> https</div><div class="line">  </div><div class="line"><span class="attr">securityDefinitions:</span>				<span class="comment"># 安全设置</span></div><div class="line"><span class="attr">  api_key:</span></div><div class="line"><span class="attr">    type:</span> apiKey</div><div class="line"><span class="attr">    name:</span> Authorization				<span class="comment"># 实际的变量名比如，Authorization</span></div><div class="line"><span class="attr">    in:</span> header						<span class="comment"># 认证变量放在哪里，query或者header</span></div><div class="line"><span class="attr">  OauthSecurity:</span>					<span class="comment"># oauth2的话有些参数必须写全</span></div><div class="line"><span class="attr">    type:</span> oauth2</div><div class="line"><span class="attr">    flow:</span> accessCode				<span class="comment"># 可选值为implicit/password/application/accessCode</span></div><div class="line"><span class="attr">    authorizationUrl:</span> <span class="string">'https://oauth.simple.api/authorization'</span></div><div class="line"><span class="attr">    tokenUrl:</span> <span class="string">'https://oauth.simple.api/token'</span></div><div class="line"><span class="attr">    scopes:</span></div><div class="line"><span class="attr">      admin:</span> Admin scope</div><div class="line"><span class="attr">      user:</span> User scope</div><div class="line"><span class="attr">      media:</span> Media scope</div><div class="line"><span class="attr">  auth:</span></div><div class="line">  	type: oauth2</div><div class="line">  	description: <span class="string">""</span>					<span class="comment"># 描述</span></div><div class="line">  	authorizationUrl: http://haofly.net/api/oauth/</div><div class="line">  	name: Authorization				<span class="comment"># 实际的变量名比如，Authorization</span></div><div class="line">  	tokenUrl:</div><div class="line">  	flow: implicit					<span class="comment"># oauth2认证的几种形式，implicit/password/application/accessCode</span></div><div class="line">  	scopes:</div><div class="line">  	  write:post: 修改文件</div><div class="line">  	  read:post: 读取文章</div><div class="line">  	  </div><div class="line"><span class="attr">security:</span>							<span class="comment"># 全局的安全设置的一个选择吧</span></div><div class="line"><span class="attr">  auth:</span></div><div class="line"><span class="attr">    - write:</span>pets</div><div class="line"><span class="attr">    - read:</span>pets</div><div class="line">  	  </div><div class="line"></div><div class="line"><span class="attr">consumes:</span>							<span class="comment"># 接收的MIME types列表</span></div><div class="line"><span class="bullet">  -</span> application/json				<span class="comment"># 接收响应的Content-Type</span></div><div class="line"><span class="bullet">  -</span> application/vnd.github.v3+json</div><div class="line">  </div><div class="line"><span class="attr">produces:</span>							<span class="comment"># 请求的MIME types列表</span></div><div class="line"><span class="bullet">  -</span> application/vnd.knight.v1+json	<span class="comment"># 请求头的Accept值</span></div><div class="line"><span class="bullet">  -</span> text/plain; charset=utf<span class="bullet">-8</span></div><div class="line"></div><div class="line"><span class="attr">tags:</span>								<span class="comment"># 相当于一个分类</span></div><div class="line"><span class="attr">  - name:</span> post	</div><div class="line"><span class="attr">    description:</span> 关于post的接口</div><div class="line">    </div><div class="line"><span class="attr">externalDocs:</span></div><div class="line"><span class="attr">  description:</span> find more info here</div><div class="line"><span class="attr">  url:</span> https://haofly.net</div><div class="line">    </div><div class="line"><span class="attr">paths:</span>								<span class="comment"># 定义接口的url的详细信息</span></div><div class="line">  /projects/&#123;projectName&#125;:			<span class="comment"># 接口后缀，可以定义参数</span></div><div class="line"><span class="attr">    get:</span></div><div class="line"><span class="attr">      tags:</span>							<span class="comment"># 所属分类的列表</span></div><div class="line"><span class="bullet">        -</span> post	</div><div class="line"><span class="attr">      summary:</span> 接口描述				 <span class="comment"># 简介</span></div><div class="line"><span class="attr">      description:</span> 					<span class="comment"># 详细介绍</span></div><div class="line"><span class="attr">      externalDocs:</span>					<span class="comment"># 这里也可以加这个</span></div><div class="line">      	description:</div><div class="line">      	url:</div><div class="line"><span class="attr">      operationId:</span> <span class="string">""</span>				<span class="comment"># 操作的唯一ID</span></div><div class="line"><span class="attr">      consumes:</span> [string]			<span class="comment"># 可接收的mime type列表</span></div><div class="line"><span class="attr">      produces:</span> [string]			<span class="comment"># 可发送的mime type列表</span></div><div class="line"><span class="attr">      schemes:</span> [string]				<span class="comment"># 可接收的协议列表</span></div><div class="line"><span class="attr">      deprecated:</span> <span class="literal">false</span>				<span class="comment"># 该接口是否已经弃用</span></div><div class="line"><span class="attr">      security:</span>						<span class="comment"># OAuth2认证用</span></div><div class="line"><span class="attr">        - auth:</span> </div><div class="line">        	- write:post</div><div class="line">        	- read: read</div><div class="line"><span class="attr">      parameters:</span>					<span class="comment"># 接口的参数</span></div><div class="line"><span class="attr">        - name:</span> projectName			<span class="comment"># 参数名</span></div><div class="line"><span class="attr">          in:</span> path					<span class="comment"># 该参数应该在哪个地方，例如path、body、query等，但是需要注意的是如果in body，只能用schema来指向一个定义好的object，而不能直接在这里定义</span></div><div class="line"><span class="attr">          type:</span> string				<span class="comment"># 参数类型</span></div><div class="line"><span class="attr">          allowEmptyValue:</span> boolean			<span class="comment"># 是否允许为空值</span></div><div class="line"><span class="attr">          description:</span> 项目名		  <span class="comment"># 参数描述</span></div><div class="line"><span class="attr">          required:</span> <span class="literal">true</span>			<span class="comment"># 是否必须</span></div><div class="line"><span class="attr">          default:</span> *				<span class="comment"># 设置默认值</span></div><div class="line"><span class="attr">          maximum:</span> number			<span class="comment"># number的最大值</span></div><div class="line"><span class="attr">          exclusiveMaximum:</span> boolean	<span class="comment"># 是否排除最大的那个值</span></div><div class="line"><span class="attr">          minimum:</span> number			<span class="comment"># number的最小值</span></div><div class="line"><span class="attr">          exclusiveMinimum:</span> boolean</div><div class="line"><span class="attr">          maxLength:</span> integer		<span class="comment"># int的最大值</span></div><div class="line"><span class="attr">          minLength:</span> integer</div><div class="line"><span class="attr">          enum:</span> [*]					<span class="comment"># 枚举值</span></div><div class="line"><span class="attr">          items:</span>					<span class="comment"># type为数组的时候可以定义其项目的类型</span></div><div class="line"><span class="bullet">        -</span> $ref: <span class="string">"#/parameters/uuidParam"</span>	<span class="comment"># 这样可以直接用定义好的</span></div><div class="line"><span class="attr">      responses:</span>					<span class="comment"># 设置响应</span></div><div class="line">        <span class="number">200</span>:						<span class="comment"># 通过http状态来描述响应</span></div><div class="line"><span class="attr">          description:</span> Success		<span class="comment"># 该响应的描述</span></div><div class="line"><span class="attr">          schema:</span>					<span class="comment"># 定义返回数据的结构</span></div><div class="line">          	$ref: <span class="string">'#/definitions/ProjectDataResponse'</span>	<span class="comment"># 直接关联至某个model</span></div><div class="line">          </div><div class="line">  /another:	<span class="comment"># 另一个接口</span></div><div class="line">  	  responses:</div><div class="line">  	  	<span class="number">200</span>:</div><div class="line">  	  		description:</div><div class="line">  	  		schema:</div><div class="line">  	  		  type: object</div><div class="line">  	  		  properitis:</div><div class="line">  	  		  	data:</div><div class="line">  	  		  		$ref: <span class="string">'#/definitions/User'</span>	<span class="comment"># 关联</span></div><div class="line">  </div><div class="line"><span class="attr">definitions:</span>			<span class="comment"># Model/Response的定义，这里的定义不强制要求返回数据必须和这个一致，但是在swagger-ui上，会展示这里面的字段。</span></div><div class="line"><span class="attr">  Product:</span>				<span class="comment"># 定义一个model</span></div><div class="line"><span class="attr">    type:</span> object		<span class="comment"># model类型</span></div><div class="line"><span class="attr">    properties:</span>			<span class="comment"># 字段列表</span></div><div class="line"><span class="attr">      product_id:</span>		<span class="comment"># 字段名</span></div><div class="line"><span class="attr">        type:</span> integer	<span class="comment"># 字段类型</span></div><div class="line"><span class="attr">        description:</span> 	<span class="comment"># 字段描述</span></div><div class="line">	  product_name:</div><div class="line">	  	type: string</div><div class="line">	  	description: </div><div class="line"><span class="attr">  ProjectDataResponse:</span></div><div class="line">  	type: object</div><div class="line">  	properties:</div><div class="line">  		data:</div><div class="line">  			$ref: <span class="string">'#/definitions/ProjectResponse'</span>	<span class="comment"># model之间的关联，表示在data字段里面包含的是一个ProjectResponse对象</span></div><div class="line"></div><div class="line"><span class="attr">parameters:</span>				<span class="comment"># 可以供很多接口使用的params</span></div><div class="line"><span class="attr">  limitParam:</span></div><div class="line"><span class="attr">    name:</span> limit</div><div class="line"><span class="attr">    in:</span> query</div><div class="line"><span class="attr">    description:</span> max records to return</div><div class="line"><span class="attr">    required:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    type:</span> integer</div><div class="line"><span class="attr">    format:</span> int32</div><div class="line"></div><div class="line"><span class="attr">responses:</span>				<span class="comment"># 可以供很多接口使用的responses</span></div><div class="line"><span class="attr">  NotFound:</span></div><div class="line"><span class="attr">    description:</span> Entity not found.</div></pre></td></tr></table></figure>
+<h4 id="支持的数据类型"><a href="#支持的数据类型" class="headerlink" title="支持的数据类型"></a>支持的数据类型</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">integer: int32</div><div class="line">long: int64</div><div class="line">float</div><div class="line">double</div><div class="line">string</div><div class="line">byte</div><div class="line">binary</div><div class="line">boolean</div><div class="line">date</div><div class="line">dateTime</div><div class="line">password</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/beautiful-rchiecture/" rel="next" title="编程之美系列——架构之美">
+                <i class="fa fa-chevron-left"></i> 编程之美系列——架构之美
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/data-points/" rel="prev" title="编程之美系列——数据之美">
+                编程之美系列——数据之美 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="swagger/"
+     data-title="Swagger与其他API文档编写工具对比"
+     data-content=""
+     data-url="https://haofly.net/swagger/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="swagger/"
+           data-title="Swagger与其他API文档编写工具对比" data-url="https://haofly.net/swagger/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#swagger特点"><span class="nav-number">1.</span> <span class="nav-text">swagger特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其他的API文档编写工具"><span class="nav-number">1.1.</span> <span class="nav-text">其他的API文档编写工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apizza"><span class="nav-number">1.1.1.</span> <span class="nav-text">Apizza</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APIBlueprint"><span class="nav-number">1.1.2.</span> <span class="nav-text">APIBlueprint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RAP"><span class="nav-number">1.1.3.</span> <span class="nav-text">RAP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装与使用"><span class="nav-number">2.</span> <span class="nav-text">安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CROS跨域问题"><span class="nav-number">2.0.1.</span> <span class="nav-text">CROS跨域问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OAuth2认证问题"><span class="nav-number">2.0.2.</span> <span class="nav-text">OAuth2认证问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Swagger-ui获取解析文件的问题"><span class="nav-number">2.0.3.</span> <span class="nav-text">Swagger-ui获取解析文件的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档编写语法"><span class="nav-number">2.1.</span> <span class="nav-text">文档编写语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#支持的数据类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">支持的数据类型</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

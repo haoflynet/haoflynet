@@ -1,0 +1,917 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="python包／jQuery／Java／PHP包收集与整理Python如果要使用pip安装最新版本可以在后面加上版本号
+BeautifulSoup4XML/HTML解析组件
+coverage代码覆盖率检测工具
+django.contrib.syndication.viewsDjango自带的输出feed的工具
+django.core.paginator这是Django自带的分页工具，非常实用
+dj">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python包推荐,PHP包推荐,JS包推荐,Java包推荐">
+<meta property="og:url" content="https://haofly.net/packages/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="python包／jQuery／Java／PHP包收集与整理Python如果要使用pip安装最新版本可以在后面加上版本号
+BeautifulSoup4XML/HTML解析组件
+coverage代码覆盖率检测工具
+django.contrib.syndication.viewsDjango自带的输出feed的工具
+django.core.paginator这是Django自带的分页工具，非常实用
+dj">
+<meta property="og:updated_time" content="2016-11-28T09:03:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python包推荐,PHP包推荐,JS包推荐,Java包推荐">
+<meta name="twitter:description" content="python包／jQuery／Java／PHP包收集与整理Python如果要使用pip安装最新版本可以在后面加上版本号
+BeautifulSoup4XML/HTML解析组件
+coverage代码覆盖率检测工具
+django.contrib.syndication.viewsDjango自带的输出feed的工具
+django.core.paginator这是Django自带的分页工具，非常实用
+dj">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/packages/"/>
+
+
+
+
+
+  <title> Python包推荐,PHP包推荐,JS包推荐,Java包推荐 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/packages/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python包推荐,PHP包推荐,JS包推荐,Java包推荐
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-07T03:03:30+00:00">
+                2016-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/system/" itemprop="url" rel="index">
+                    <span itemprop="name">system</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/packages/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="packages/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="python包／jQuery／Java／PHP包收集与整理"><a href="#python包／jQuery／Java／PHP包收集与整理" class="headerlink" title="python包／jQuery／Java／PHP包收集与整理"></a>python包／jQuery／Java／PHP包收集与整理</h1><h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><p>如果要使用pip安装最新版本可以在后面加上版本号</p>
+<h5 id="BeautifulSoup4"><a href="#BeautifulSoup4" class="headerlink" title="BeautifulSoup4"></a><a href="http://beautifulsoup.readthedocs.org/zh_CN/latest/" target="_blank" rel="external">BeautifulSoup4</a></h5><p>XML/HTML解析组件</p>
+<h5 id="coverage"><a href="#coverage" class="headerlink" title="coverage"></a>coverage</h5><p>代码覆盖率检测工具</p>
+<h5 id="django-contrib-syndication-views"><a href="#django-contrib-syndication-views" class="headerlink" title="django.contrib.syndication.views"></a>django.contrib.syndication.views</h5><p>Django自带的输出feed的工具</p>
+<h5 id="django-core-paginator"><a href="#django-core-paginator" class="headerlink" title="django.core.paginator"></a><a href="https://docs.djangoproject.com/en/1.8/topics/pagination" target="_blank" rel="external">django.core.paginator</a></h5><p>这是Django自带的分页工具，非常实用</p>
+<h5 id="django-avatar"><a href="#django-avatar" class="headerlink" title="django-avatar"></a><a href="http://www.jianshu.com/p/da3de42a96b5" target="_blank" rel="external">django-avatar</a></h5><p>Django头像插件</p>
+<p><a href="https://github.com/django-extensions/django-extensions" target="_blank" rel="external"><strong>django-extensions</strong></a></p>
+<p>Django的扩展包的包，带有非常方便的一些工具，比如自动打印sql语句等。</p>
+<h5 id="django-debug-toolbar"><a href="#django-debug-toolbar" class="headerlink" title="django-debug-toolbar"></a><a href="https://github.com/django-debug-toolbar/django-debug-toolbar" target="_blank" rel="external">django-debug-toolbar</a></h5><p>Django的调试工具，应该非常好用，未使用过</p>
+<h5 id="django-haystack"><a href="#django-haystack" class="headerlink" title="django-haystack"></a><a href="https://pypi.python.org/pypi/django-haystack/2.4.0" target="_blank" rel="external">django-haystack</a></h5><p>Django的全文搜索功能</p>
+<h5 id="django-redis"><a href="#django-redis" class="headerlink" title="django-redis"></a><a href="https://pypi.python.org/pypi/django-redis/4.0.0" target="_blank" rel="external">django-redis</a></h5><p>在Django中使用Redis必备。需要注意的是，它对value做了序列化，而且在key前面加入了版本号，类似<em>:1:key，</em>而且，默认生存时间是300秒，需要加入参数<em>cache.set(“key”, “value”, timeout=None)</em>。Redis密码的格式应该是 “LOCATION”: “redis://:密码内容@104.236.170.169:6379/1″,真的服了官网那不明不白的表述了</p>
+<h5 id="django-rest-framework"><a href="#django-rest-framework" class="headerlink" title="django-rest-framework"></a><a href="http://www.django-rest-framework.org/" target="_blank" rel="external"><strong>django-rest-framework</strong></a></h5><p>Django的Restful框架</p>
+<h5 id="django-social-auth"><a href="#django-social-auth" class="headerlink" title="django-social-auth"></a><a href="https://github.com/omab/django-social-auth" target="_blank" rel="external"><strong>django-social-auth</strong></a></h5><p>Django社会化认证工具</p>
+<h5 id="django-socketio"><a href="#django-socketio" class="headerlink" title="django-socketio"></a><a href="https://github.com/stephenmcd/django-socketio" target="_blank" rel="external"><strong>django-socketio</strong></a></h5><p>Django的WebSockets ，好爽</p>
+<h5 id="django-wysiwyg"><a href="#django-wysiwyg" class="headerlink" title="django-wysiwyg"></a><a href="http://django-wysiwyg.readthedocs.org/en/latest/index.html" target="_blank" rel="external">django-wysiwyg</a></h5><p>Django使用wysiwyg作为富文本编辑器</p>
+<p><a href="https://github.com/spotify/dh-virtualenv" target="_blank" rel="external"><strong>dh-virtualenv</strong></a></p>
+<p>Python部署工具，弃用pip，而是将package打包成<code>Debian packages</code>的形式，自动解决各种依赖问题</p>
+<h5 id="difflib"><a href="#difflib" class="headerlink" title="difflib"></a>difflib</h5><p>Python自带模块，比较文本之间的差异，且支持输出可读性强的HTML文档</p>
+<p><a href="https://github.com/douban/dpark" target="_blank" rel="external"><strong>dpart</strong></a></p>
+<p>Spark的Python实现，分布式任务处理</p>
+<h5 id="fuzzywuzzy"><a href="#fuzzywuzzy" class="headerlink" title="fuzzywuzzy"></a><a href="https://github.com/seatgeek/fuzzywuzzy" target="_blank" rel="external">fuzzywuzzy</a></h5><p>计算字符串相似率</p>
+<p><a href="https://github.com/hashids/hashids.github.io" target="_blank" rel="external">hashids</a>:</p>
+<p>将整数转换为hash值，并且支持反解，这不仅仅是Pythond的一个库，而且支持几十种语言。可用于将后台生成的唯一ID转换成混淆的hash值。</p>
+<p><a href="https://github.com/reorx/httpstat" target="_blank" rel="external"><strong>httpstat</strong></a>:</p>
+<p>在命令行打印CURL请求的详细信息</p>
+<h5 id="IPy"><a href="#IPy" class="headerlink" title="IPy"></a>IPy</h5><p>IP地址处理模块，可用于计算大量的IP地址，包括IPv4、IPv6网段、网络掩码、广播地址、子网数、IP类型等。<a href="http://www.ipython.me/python/python-ipy.html" target="_blank" rel="external">参考文章</a></p>
+<h5 id="jieba-官方文档"><a href="#jieba-官方文档" class="headerlink" title="jieba(官方文档)"></a><a href="https://pypi.python.org/pypi/jieba/0.36.2" title="Link: https://pypi.python.org/pypi/jieba/0.36.2" target="_blank" rel="external">jieba</a>(<a href="https://github.com/fxsjy/jieba" target="_blank" rel="external">官方文档</a>)</h5><p>结巴中文分词，未使用过</p>
+<h5 id="lunardate"><a href="#lunardate" class="headerlink" title="lunardate"></a><a href="https://pypi.python.org/pypi/lunardate/0.1.5" target="_blank" rel="external">lunardate</a></h5><p>获取农历</p>
+<h5 id="MkDocs"><a href="#MkDocs" class="headerlink" title="MkDocs"></a><a href="http://markdown-docs-zh.readthedocs.org/zh_CN/latest/" target="_blank" rel="external">MkDocs</a></h5><p>项目文档工具，以markdown的方式攥写spinx烈性的文档</p>
+<p><strong><a href="http://zulko.github.io/moviepy/getting_started/audioclips.html?highlight=audio" target="_blank" rel="external">MoviePy</a></strong>：Python处理视频文件</p>
+<p><a href="https://github.com/pricingassistant/mrq" target="_blank" rel="external"><strong>MRQ</strong></a>: Python的分布式worker任务队列，使用Redis和gevent。既有RQ那样简单，又有Celery的性能。，具有强大的用户面板，可以控制队列中的任务、当前任务、workder的状态，并且能按任务区分日志。</p>
+<p><a href="https://github.com/PyMySQL/mysqlclient-python" target="_blank" rel="external">mysqlclient</a>: Python3链接MySQL/Mariadb数据库的库，相比于官方的库以及众多其他第三方库，这个库虽然只有一个人在维护开发，但是Pypi的权重值有9，而且Github一直有更新。在安装的时候需要先安装依赖：<code>sudo apt-get install python-dev libmysqlclient-dev</code>，Python3要加3，windows下可以直接安装，如果是OS X，那么可能是没有将mysql添加到环境变量，在<em>.profile</em>做如下修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin/python3:/usr/local/mysql/bin:$&#123;PATH&#125;&quot;</div><div class="line">export PATH</div><div class="line">DYLD_LIBRARY_PATH=&quot;/usr/local/mysql/lib/$&#123;DYLD_LIBRARY_PATH&#125;&quot;</div><div class="line">export DYLD_LIBRARY_PATH</div></pre></td></tr></table></figure>
+<h5 id="paramiko-官方文档"><a href="#paramiko-官方文档" class="headerlink" title="paramiko(官方文档)"></a><a href="https://pypi.python.org/pypi/paramiko/1.15.2" target="_blank" rel="external">paramiko</a>(<a href="http://docs.paramiko.org/en/1.15/api/client.html#paramiko.client.SSHClient" target="_blank" rel="external">官方文档</a>)</h5><p>基于Python2/3实现的SSH2的库，支持认证及密钥方式，可以实现远程命令执行、文件传输、中间SSH代理等功能。windows安装的时候会有依赖问题，可见这个<a href="https://github.com/onyxfish/relay/issues/11" target="_blank" rel="external">issue</a></p>
+<h5 id="pep8"><a href="#pep8" class="headerlink" title="pep8"></a>pep8</h5><p>PEP8规范检测工具，使用时直接<code>pep8 ./</code></p>
+<h5 id="Pillow"><a href="#Pillow" class="headerlink" title="Pillow"></a><a href="https://pillow.readthedocs.org/en/3.0.x/" target="_blank" rel="external">Pillow</a></h5><p>Python图像处理库，与PyLab互斥，只能安装一个哟</p>
+<h5 id="progressBar2"><a href="#progressBar2" class="headerlink" title="progressBar2"></a><a href="http://progressbar-2.readthedocs.org/en/latest/index.html" target="_blank" rel="external">progressBar2</a></h5><p>在终端显示进度条</p>
+<h5 id="psutil"><a href="#psutil" class="headerlink" title="psutil"></a><a href="https://pypi.python.org/pypi/psutil" target="_blank" rel="external">psutil</a></h5><p>跨平台的获取系统运行的进程和系统利用率(包括CPU、内存、磁盘、网络等)信息的库，主要用于系统监控，分析和限制系统资源及进程的管理。实现了一些命令行的工具(如：ps、top、lsof、netstat、ifconfig、who、df、kill、free、nice、ionice、iostat、iotop、uptime、pidof、tty、taskset、pmap等)</p>
+<h5 id="pyspider"><a href="#pyspider" class="headerlink" title="pyspider"></a><a href="https://github.com/binux/pyspider" target="_blank" rel="external">pyspider</a></h5><p>有图形界面的爬虫程序</p>
+<h5 id="python-nmap"><a href="#python-nmap" class="headerlink" title="python-nmap"></a>python-nmap</h5><p>使用Python实现的端口扫描工具</p>
+<h5 id="random-avatar"><a href="#random-avatar" class="headerlink" title="random-avatar"></a><a href="https://github.com/mozillazg/random-avatar" target="_blank" rel="external">random-avatar</a></h5><p>直接生成指定大小的随机头像，是按照你的IP来计算的</p>
+<h5 id="requests"><a href="#requests" class="headerlink" title="requests"></a><a href="https://pypi.python.org/pypi/requests/2.7.0" target="_blank" rel="external">requests</a></h5><p>(<a href="http://cn.python-requests.org/zh_CN/latest/" target="_blank" rel="external">官方文档</a>)，比SSL和HttpResponse更加高级，更方便，一句话就可以搞定人家几十句的功能，非常方便</p>
+<p><a href=""><strong>SaltStack</strong></a></p>
+<p>基于Python开发的一套C/S架构配置管理工具，底层使用ZeroMQ消息队列pub/sub方式通信，使用SSL整数签发的方式进行认证管理。而Ansible基于ssh协议传输数据，所以SaltStack普遍被认为比Puppet快，缺点是需要安装客户端。</p>
+<h5 id="SciPy"><a href="#SciPy" class="headerlink" title="SciPy"></a><a href="http://sourceforge.net/projects/scipy/?source=typ_redirect" target="_blank" rel="external">SciPy</a></h5><p>Python科学计算库</p>
+<p><a href="https://github.com/drathier/stack-overflow-import" target="_blank" rel="external"><strong>stackoverflow</strong></a></p>
+<p>直接通过关键字从stackoverflow上面抓去来作为一个工具函数，黑科技</p>
+<h5 id="xpinyin"><a href="#xpinyin" class="headerlink" title="xpinyin"></a><a href="https://github.com/lxneng/xpinyin" target="_blank" rel="external">xpinyin</a></h5><p>汉字拼音</p>
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><h5 id="config"><a href="#config" class="headerlink" title="config"></a><a href="https://github.com/hassankhan/config" target="_blank" rel="external">config</a></h5><p>轻量级的配置文件读取工具，支持PHP/INI/XML/JSON/YAML文件</p>
+<h5 id="jsonmapper"><a href="#jsonmapper" class="headerlink" title="jsonmapper"></a><a href="https://github.com/cweiske/jsonmapper" target="_blank" rel="external">jsonmapper</a></h5><p>自动将JSON对象转换为相应的类对象，相当于Java里面的bean</p>
+<h5 id="PhpSms"><a href="#PhpSms" class="headerlink" title="PhpSms"></a><a href="https://github.com/toplan/phpsms" target="_blank" rel="external">PhpSms</a></h5><p>可能是目前最聪明、优雅的php短信发送哭了。从此不再为各种原因造成的个别发送失败而烦忧。。。。</p>
+<h5 id="requests-1"><a href="#requests-1" class="headerlink" title="requests"></a><a href="https://github.com/rmccue/Requests" target="_blank" rel="external">requests</a></h5><p>PHP的requests包</p>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><h5 id="retrofit"><a href="#retrofit" class="headerlink" title="retrofit"></a><a href="https://github.com/square/retrofit" target="_blank" rel="external">retrofit</a></h5><p>Java里面非常好用的HTTP client，用起来显得十分简洁，简化了HTTP请求</p>
+<p>—|—  </p>
+<p>Pandas：大数据处理工具，可将大文件分段读取</p>
+<p>**[</p>
+<p>/`</p>
+<p>pexpect：相当于Linux下得expect，可以实现对ssh、ftp、passwd、telnet等命令进行自动交互。比如可以模拟一个FTP登录时的所有<br>交互，包括输入主机地址、用户名、密码、上传文件等等。</p>
+<p>[</p>
+<p><strong><a href="http://pybrain.org/" target="_blank" rel="external">PyBrain</a></strong>：Python神经网络库</p>
+<p>pyClamad：直接使用ClamAV病毒扫描守护进程clamd，来实现一个高效的病毒检测功能(ClamAV是一款免费而且开源的防毒软件，软件与病毒库的更新<br>皆由社区免费发布)</p>
+<p>pycurl：支持的操作协议有FTP、HTTP、HTTPS、TELNET等</p>
+<p><a href="https://github.com/trentm/python-
+markdown2" target="_blank" rel="external"><strong>python-markdown2</strong></a>：Python解析markdown文件</p>
+<h1 id="如果出现以下错误："><a href="#如果出现以下错误：" class="headerlink" title="如果出现以下错误："></a>如果出现以下错误：</h1><p>/usr/local/lib/python2.7/dist-<br>packages/requests/packages/urllib3/util/ssl_.py:90: InsecurePlatformWarning: A<br>true SSLContext object is not available. This prevents urllib3 from<br>configuring SSL appropriately and may cause certain SSL connections to fail.<br>For more information, see <a href="https://urllib3.readthedocs.org/en/latest/security.h" target="_blank" rel="external">https://urllib3.readthedocs.org/en/latest/security.h</a><br>tml#insecureplatformwarning.</p>
+<p>InsecurePlatformWarning</p>
+<h1 id="那么这样操作："><a href="#那么这样操作：" class="headerlink" title="那么这样操作："></a>那么这样操作：</h1><p>pip uninstall requests</p>
+<p>pip \–no-cache-dir install requests[security]</p>
+<h1 id="如果出现如下错误："><a href="#如果出现如下错误：" class="headerlink" title="如果出现如下错误："></a>如果出现如下错误：</h1><p>[APP SUBMITTED]: ‘_socketobject’ object has no attribute<br>‘set_tlsext_host_name’</p>
+<h1 id="那么这样操作：-1"><a href="#那么这样操作：-1" class="headerlink" title="那么这样操作："></a>那么这样操作：</h1><p>apt-get purge python-openssl</p>
+<p>apt-get install libffi-dev python-pip</p>
+<p>pip2.7 install -U pyopenssl  </p>
+<p>—|—  </p>
+<p>rrdtool：rrdtoo是换装数据库的存储格式，round robin是一种处理定量数据以及当前元素指针的技术，rrdtool主要用来跟踪对象的变化情况<br>，生成这些变化的走势图，如业务的访问流量、系统性能、磁盘利用率等趋势图</p>
+<p>**[</p>
+<p><strong><a href="https://github.com/scrapinghub/scrapy-splash" target="_blank" rel="external">scrapy-splash</a></strong>：Scrapy对于Splash的封装</p>
+<p><strong><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzU0MzU0Nw==&amp;mid=2651370531&amp;idx=1&amp;sn=f7192f06e274c1cff24bab83a30b90dd&amp;scene=23&amp;srcid=06066k74UbShOJyQUZWBcp2H#rd" target="_blank" rel="external">Silly</a></strong>: 测试用数据生成器</p>
+<p><strong><a href="https://github.com/scrapinghub/splash" target="_blank" rel="external">splash</a></strong>：用于获取经过Javascript处理后的html页面，十分有用，只需要将请求的url改为<a href="http://localhost:8050/render.html?url=" target="_blank" rel="external">http://localhost:8050/render.html?url=</a>‘ + url，即可向Splash服务器发送，并获取到js渲染过后的html页面</p>
+<p><strong>suds</strong>：Python仅作为客户端调用webservice</p>
+<p><strong><a href="https://github.com/PyMySQL/Tornado-MySQL" target="_blank" rel="external">Tornado-MySQL</a></strong>：MySQL对于Tornado的异步实现，支持线程池直接操作</p>
+<h1 id="PHP-1"><a href="#PHP-1" class="headerlink" title="PHP"></a>PHP</h1><p><strong>[laravel-5-markdown-editor](</strong><a href="https://github.com/yccphp/laravel-5-markdown-editor**)**" target="_blank" rel="external">https://github.com/yccphp/laravel-5-markdown-editor**)**</a>: Laravel5 Markdown编辑器</p>
+<p><a href="https://github.com/maximebf/php-debugbar" target="_blank" rel="external"><strong>PHP Debug Bar</strong></a>：方便调试，可以直接在浏览器里面看到变量信息，而不用var_dump()了</p>
+<p><strong><a href="http://laravel5-book.kejyun.com/package/tool/package-tool-carbon.html" target="_blank" rel="external">Carbon</a></strong>: 各种时间处理</p>
+<h1 id="jQuery-JS"><a href="#jQuery-JS" class="headerlink" title="jQuery/JS"></a>jQuery/JS</h1><p><strong><a href="http://leaverou.github.io/awesomplete/#basic-usage" title="Link: http://leaverou.github.io/awesomplete/#basic-usage" target="_blank" rel="external">Awesomplete</a></strong>：jQuery的联想次插件，必须异步加载哟，例如：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+$(function(){
+    var input = document.getElementById(&quot;myinput&quot;);
+    var awesomplete = new Awesomplete(input);
+    awesomplete.list = [&quot;Ada&quot;, &quot;Java&quot;, &quot;JavaScript&quot;, &quot;Brainfuck&quot;, &quot;LOLCODE&quot;,&quot;Node.js&quot; , &quot;Ruby on Rails&quot;];
+
+});
+&lt;/script&gt;  
+</code></pre><p><strong><a href="http://www.htmleaf.com/jQuery/Menu-Navigation/201505131825.html" target="_blank" rel="external">BootSideMenu</a></strong>：Bootstrap隐藏滑动侧边栏jQuery插件，虽然不大好看，依赖还有点多，不过好用</p>
+<p><strong><a href="https://silviomoreto.github.io/bootstrap-select/" target="_blank" rel="external">bootstrap-select</a></strong>: 基于Bootstrap和jQuery的下拉选择输入列表插件</p>
+<p><strong><a href="https://github.com/zenorocha/clipboard.js" target="_blank" rel="external">clipboard.js</a></strong>：纯HTML5实现的复制到粘贴板的插件</p>
+<p><strong><a href="https://datatables.net/" target="_blank" rel="external">DataTables</a></strong>:表格插件，几乎涵盖了所有想要的功能，定制化非常强</p>
+<p><strong><a href="https://github.com/lepture/editor" target="_blank" rel="external">editor</a></strong>：一个十分漂亮的markdown编辑器</p>
+<p><strong><a href="https://github.com/Valve/fingerprintjs" target="_blank" rel="external">fingerprintjs</a></strong>: 浏览器唯一性解决方案</p>
+<p><strong><a href="http://jslite.io/hotkeys/" target="_blank" rel="external">hotkeys</a></strong>：无任何依赖的键盘事件捕获插件</p>
+<p><a href="https://github.com/raphaelcruzeiro/jquery-
+notebook?utm_source=next.36kr.com" target="_blank" rel="external"><strong>jquery-notebook</strong></a>：简洁的网页编辑器</p>
+<p><strong><a href="https://github.com/mycolorway/simditor" title="Link: https://github.com/mycolorway/simditor" target="_blank" rel="external">simditor</a></strong>：采程设计的wysiwyg类型的编辑器</p>
+<p><strong><a href="http://threejs.org/" title="Link: http://threejs.org/" target="_blank" rel="external">three.js</a></strong>: 有太多酷炫的效果了</p>
+<p><a href="https://github.com/Voog/wysihtml" target="_blank" rel="external"><strong>wysihtml</strong></a>：十分强大的网页编辑器，但是文档几乎没有，上面有Django<br>版本</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/requests/" rel="next" title="Python Requests模块">
+                <i class="fa fa-chevron-left"></i> Python Requests模块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/string/" rel="prev" title="Python字符串">
+                Python字符串 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="packages/"
+     data-title="Python包推荐,PHP包推荐,JS包推荐,Java包推荐"
+     data-content=""
+     data-url="https://haofly.net/packages/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="packages/"
+           data-title="Python包推荐,PHP包推荐,JS包推荐,Java包推荐" data-url="https://haofly.net/packages/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python包／jQuery／Java／PHP包收集与整理"><span class="nav-number">1.</span> <span class="nav-text">python包／jQuery／Java／PHP包收集与整理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">1.0.1.</span> <span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#BeautifulSoup4"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">BeautifulSoup4</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#coverage"><span class="nav-number">1.0.1.0.2.</span> <span class="nav-text">coverage</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-contrib-syndication-views"><span class="nav-number">1.0.1.0.3.</span> <span class="nav-text">django.contrib.syndication.views</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-core-paginator"><span class="nav-number">1.0.1.0.4.</span> <span class="nav-text">django.core.paginator</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-avatar"><span class="nav-number">1.0.1.0.5.</span> <span class="nav-text">django-avatar</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-debug-toolbar"><span class="nav-number">1.0.1.0.6.</span> <span class="nav-text">django-debug-toolbar</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-haystack"><span class="nav-number">1.0.1.0.7.</span> <span class="nav-text">django-haystack</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-redis"><span class="nav-number">1.0.1.0.8.</span> <span class="nav-text">django-redis</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-rest-framework"><span class="nav-number">1.0.1.0.9.</span> <span class="nav-text">django-rest-framework</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-social-auth"><span class="nav-number">1.0.1.0.10.</span> <span class="nav-text">django-social-auth</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-socketio"><span class="nav-number">1.0.1.0.11.</span> <span class="nav-text">django-socketio</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#django-wysiwyg"><span class="nav-number">1.0.1.0.12.</span> <span class="nav-text">django-wysiwyg</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#difflib"><span class="nav-number">1.0.1.0.13.</span> <span class="nav-text">difflib</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fuzzywuzzy"><span class="nav-number">1.0.1.0.14.</span> <span class="nav-text">fuzzywuzzy</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#IPy"><span class="nav-number">1.0.1.0.15.</span> <span class="nav-text">IPy</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#jieba-官方文档"><span class="nav-number">1.0.1.0.16.</span> <span class="nav-text">jieba(官方文档)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lunardate"><span class="nav-number">1.0.1.0.17.</span> <span class="nav-text">lunardate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MkDocs"><span class="nav-number">1.0.1.0.18.</span> <span class="nav-text">MkDocs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#paramiko-官方文档"><span class="nav-number">1.0.1.0.19.</span> <span class="nav-text">paramiko(官方文档)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pep8"><span class="nav-number">1.0.1.0.20.</span> <span class="nav-text">pep8</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Pillow"><span class="nav-number">1.0.1.0.21.</span> <span class="nav-text">Pillow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#progressBar2"><span class="nav-number">1.0.1.0.22.</span> <span class="nav-text">progressBar2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#psutil"><span class="nav-number">1.0.1.0.23.</span> <span class="nav-text">psutil</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pyspider"><span class="nav-number">1.0.1.0.24.</span> <span class="nav-text">pyspider</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#python-nmap"><span class="nav-number">1.0.1.0.25.</span> <span class="nav-text">python-nmap</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#random-avatar"><span class="nav-number">1.0.1.0.26.</span> <span class="nav-text">random-avatar</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#requests"><span class="nav-number">1.0.1.0.27.</span> <span class="nav-text">requests</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SciPy"><span class="nav-number">1.0.1.0.28.</span> <span class="nav-text">SciPy</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#xpinyin"><span class="nav-number">1.0.1.0.29.</span> <span class="nav-text">xpinyin</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP"><span class="nav-number">1.0.2.</span> <span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#config"><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">config</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#jsonmapper"><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">jsonmapper</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PhpSms"><span class="nav-number">1.0.2.0.3.</span> <span class="nav-text">PhpSms</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#requests-1"><span class="nav-number">1.0.2.0.4.</span> <span class="nav-text">requests</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java"><span class="nav-number">1.0.3.</span> <span class="nav-text">Java</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#retrofit"><span class="nav-number">1.0.3.0.1.</span> <span class="nav-text">retrofit</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如果出现以下错误："><span class="nav-number">2.</span> <span class="nav-text">如果出现以下错误：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#那么这样操作："><span class="nav-number">3.</span> <span class="nav-text">那么这样操作：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如果出现如下错误："><span class="nav-number">4.</span> <span class="nav-text">如果出现如下错误：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#那么这样操作：-1"><span class="nav-number">5.</span> <span class="nav-text">那么这样操作：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP-1"><span class="nav-number">6.</span> <span class="nav-text">PHP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-JS"><span class="nav-number">7.</span> <span class="nav-text">jQuery/JS</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

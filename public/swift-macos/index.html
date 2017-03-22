@@ -1,0 +1,825 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="基本概念及程序框架主要目录文件AppDelegate.swift: 所有应用开始都有一个AppDelegate，是整个应用程序的一个代理，在应用启动的时候，最先被调用的就是这个AppDelegate中的applicationDidFinishLaunching方法，可以在这里做全局初始化，但一般为了保持代码的整洁，具体逻辑并不放在这里
+ViewController.swift: 这是主Contro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift开发MacOS应用">
+<meta property="og:url" content="https://haofly.net/swift-macos/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="基本概念及程序框架主要目录文件AppDelegate.swift: 所有应用开始都有一个AppDelegate，是整个应用程序的一个代理，在应用启动的时候，最先被调用的就是这个AppDelegate中的applicationDidFinishLaunching方法，可以在这里做全局初始化，但一般为了保持代码的整洁，具体逻辑并不放在这里
+ViewController.swift: 这是主Contro">
+<meta property="og:image" content="https://haofly.net/../../../../Downloads/绝对定位想对定位.jpg">
+<meta property="og:updated_time" content="2016-12-30T06:44:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift开发MacOS应用">
+<meta name="twitter:description" content="基本概念及程序框架主要目录文件AppDelegate.swift: 所有应用开始都有一个AppDelegate，是整个应用程序的一个代理，在应用启动的时候，最先被调用的就是这个AppDelegate中的applicationDidFinishLaunching方法，可以在这里做全局初始化，但一般为了保持代码的整洁，具体逻辑并不放在这里
+ViewController.swift: 这是主Contro">
+<meta name="twitter:image" content="https://haofly.net/../../../../Downloads/绝对定位想对定位.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/swift-macos/"/>
+
+
+
+
+
+  <title> Swift开发MacOS应用 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/swift-macos/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift开发MacOS应用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-10T04:05:30+00:00">
+                2016-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/swift/" itemprop="url" rel="index">
+                    <span itemprop="name">swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/swift-macos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="swift-macos/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基本概念及程序框架"><a href="#基本概念及程序框架" class="headerlink" title="基本概念及程序框架"></a>基本概念及程序框架</h2><h3 id="主要目录文件"><a href="#主要目录文件" class="headerlink" title="主要目录文件"></a>主要目录文件</h3><p><code>AppDelegate.swift</code>: 所有应用开始都有一个AppDelegate，是整个应用程序的一个代理，在应用启动的时候，最先被调用的就是这个AppDelegate中的applicationDidFinishLaunching方法，可以在这里做全局初始化，但一般为了保持代码的整洁，具体逻辑并不放在这里</p>
+<p><code>ViewController.swift</code>: 这是主Controller，Controller对应着view，view的拥有者则是Controller。所以新建Controller的时候默认继承NSViewController，创建Controller的时候可以同时创建相应的.xib文件。而关联Controller和View的方式有两种，一种是通过代码，一种是通过IB。在IB里面修改，只需要添加Object Library，然后将它的controller指定到目标即可。</p>
+<p><code>Assets.xcasserts</code>:</p>
+<p><code>Main.storyboard</code>: 项目主要的UI文件</p>
+<p><code>Info.plist</code>: 项目的基础配置</p>
+<h2 id="IB-Interface-Builder"><a href="#IB-Interface-Builder" class="headerlink" title="IB(Interface Builder)"></a>IB(Interface Builder)</h2><h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><h4 id="Labels-and-Text-Field"><a href="#Labels-and-Text-Field" class="headerlink" title="Labels and Text Field"></a>Labels and Text Field</h4><h4 id="Combo-Boxes"><a href="#Combo-Boxes" class="headerlink" title="Combo Boxes"></a>Combo Boxes</h4><h4 id="Popup-Buttons"><a href="#Popup-Buttons" class="headerlink" title="Popup Buttons"></a>Popup Buttons</h4><h4 id="Text-Views"><a href="#Text-Views" class="headerlink" title="Text Views"></a>Text Views</h4><h4 id="Sliders"><a href="#Sliders" class="headerlink" title="Sliders"></a>Sliders</h4><h4 id="Date-Pickers"><a href="#Date-Pickers" class="headerlink" title="Date Pickers"></a>Date Pickers</h4><h4 id="Buttons"><a href="#Buttons" class="headerlink" title="Buttons"></a>Buttons</h4><h4 id="Radio-Buttons"><a href="#Radio-Buttons" class="headerlink" title="Radio Buttons"></a>Radio Buttons</h4><h4 id="Check-Buttons"><a href="#Check-Buttons" class="headerlink" title="Check Buttons"></a>Check Buttons</h4><h4 id="Image-Views"><a href="#Image-Views" class="headerlink" title="Image Views"></a>Image Views</h4><h3 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h3><h4 id="居中定位"><a href="#居中定位" class="headerlink" title="居中定位"></a>居中定位</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># 直接选择该Object右下角的Align的Horizontally in Container和Vertically in Container全部设置为0，然后选择Update Frame修改为Items of New Constraints，再点击Add 2 Constraints button.</div></pre></td></tr></table></figure>
+<p>widget也都可以通过代码来设置他们的属性，例如</p>
+<p>在applicationDidFinishLaunching函数内部写上</p>
+<p>label1.stringValue = “wanghao”<br>button1.title = “Change Text”<br>Toolbar 菜单栏<br>view controller，也就是最开始的那种storyboard<br>container view，这里应该是可以放其他的view，相当于网页里面的iframe<br>custom view<br>vertical Split view/horizontal split view :水平或者垂直分割的view<br>Collection view：就是将一些列的数据以表格的形式展（包含了Collecotion Item），datasource可以直接outlets到view controller<br>object：就是一个对象，它可以与类帮顶起来（右上角custom class进行定义），定义了过后，又可以将它与下面的view相联系(control＋拖曳，选择outlets)，<br>table view：表格</p>
+<p>Array Controller：好像是管理一组controller</p>
+<p>menu bar：</p>
+<p>要连接两个view，也是control拖曳</p>
+<p>这个地方可以添加绝对定位或者想对定位 <img src="../../../../Downloads/绝对定位想对定位.jpg" alt="绝对定位想对定位"></p>
+<p>右边那个按钮则是像html里面的margin</p>
+<p>上面是Day 2:auto layout</p>
+<p>创建新的类的时候也可以同时创建xib文件，上面的collection controller，如果要有一个复杂的item那么久需要自己创建一个类</p>
+<p>menu bar</p>
+<p>直接在appdelegate里面：要设置application is agent</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)</div><div class="line">//let menu = NSMenu()</div><div class="line">let popover = NSPopover()</div><div class="line"></div><div class="line">func applicationDidFinishLaunching(...)&#123;</div><div class="line">  if let button = statusItem.button &#123;</div><div class="line">    button.image = NSImage(named: &quot;图片名称&quot;)// 在asets里面添加了的图片</div><div class="line">  	//button.action = Selector(&quot;showWeatheraaa&quot;)</div><div class="line">  	</div><div class="line">  	button.actoin = Selector(&quot;toggleWeather:&quot;)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  //menu.addItem(NSMenuItem(title: &quot;直接加&quot;, action: Selector(&quot;showWeather:&quot;), keyEquivalent:&quot;S&quot;))</div><div class="line">  //menu.addItem(NSMEnuItem.separatorItem())</div><div class="line">  //menu.addItem(NSMenuItem(title:&quot;quit&quot;, action: Selector(&quot;terminate:&quot;), keyEquivalent:&quot;q&quot;))</div><div class="line">  </div><div class="line"> // statusItem.menu = menu</div><div class="line"> popover.contentViewController = </div><div class="line">&#125;</div><div class="line"></div><div class="line">func showWeather(sender: NSStatusBarButton)&#123;</div><div class="line">  print(&quot;我靠&quot;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func toogleWeather(sender: NSStatusBarButton)&#123;</div><div class="line">  if popover.shown&#123;</div><div class="line">    popover.performClose(sender)</div><div class="line">  &#125;else&#123;</div><div class="line">    if let button = statusItem.button &#123;</div><div class="line">      popover.shownRelativeToRect(button.bounds, ofView: button, perferredEdge: .MinY)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>新建了NSOBbject过后，要让它MainMenu .xib加载的时候久被加载，需要把它以object的形式添加到XIB中去</p>
+<p>而这个object的Outlets就是相对应的view，比如Status Menu</p>
+<p>同理如果创建的是一个NSview，那么一个view泽可以与之关联</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angularjs/" rel="next" title="AngularJS">
+                <i class="fa fa-chevron-left"></i> AngularJS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/python/" rel="prev" title="Python教程">
+                Python教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="swift-macos/"
+     data-title="Swift开发MacOS应用"
+     data-content=""
+     data-url="https://haofly.net/swift-macos/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="swift-macos/"
+           data-title="Swift开发MacOS应用" data-url="https://haofly.net/swift-macos/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念及程序框架"><span class="nav-number">1.</span> <span class="nav-text">基本概念及程序框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要目录文件"><span class="nav-number">1.1.</span> <span class="nav-text">主要目录文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IB-Interface-Builder"><span class="nav-number">2.</span> <span class="nav-text">IB(Interface Builder)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组件"><span class="nav-number">2.1.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Labels-and-Text-Field"><span class="nav-number">2.1.1.</span> <span class="nav-text">Labels and Text Field</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Combo-Boxes"><span class="nav-number">2.1.2.</span> <span class="nav-text">Combo Boxes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Popup-Buttons"><span class="nav-number">2.1.3.</span> <span class="nav-text">Popup Buttons</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Text-Views"><span class="nav-number">2.1.4.</span> <span class="nav-text">Text Views</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sliders"><span class="nav-number">2.1.5.</span> <span class="nav-text">Sliders</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Date-Pickers"><span class="nav-number">2.1.6.</span> <span class="nav-text">Date Pickers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Buttons"><span class="nav-number">2.1.7.</span> <span class="nav-text">Buttons</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Radio-Buttons"><span class="nav-number">2.1.8.</span> <span class="nav-text">Radio Buttons</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Check-Buttons"><span class="nav-number">2.1.9.</span> <span class="nav-text">Check Buttons</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Image-Views"><span class="nav-number">2.1.10.</span> <span class="nav-text">Image Views</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位"><span class="nav-number">2.2.</span> <span class="nav-text">定位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#居中定位"><span class="nav-number">2.2.1.</span> <span class="nav-text">居中定位</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

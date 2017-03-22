@@ -1,0 +1,883 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="参考文章： http://zh.lucida.me/blog/sublime-text-complete-guide/
+http://blog.jobbole.com/40660/ 
+汉化参考：http://jingyan.baidu.com/article/a501d80ced31d5ec630f5e22.html 和http://www.cnblogs.com/kingwell/archive">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sublime Text  使用技巧">
+<meta property="og:url" content="https://haofly.net/sublimetext/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="参考文章： http://zh.lucida.me/blog/sublime-text-complete-guide/
+http://blog.jobbole.com/40660/ 
+汉化参考：http://jingyan.baidu.com/article/a501d80ced31d5ec630f5e22.html 和http://www.cnblogs.com/kingwell/archive">
+<meta property="og:updated_time" content="2016-12-03T03:05:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sublime Text  使用技巧">
+<meta name="twitter:description" content="参考文章： http://zh.lucida.me/blog/sublime-text-complete-guide/
+http://blog.jobbole.com/40660/ 
+汉化参考：http://jingyan.baidu.com/article/a501d80ced31d5ec630f5e22.html 和http://www.cnblogs.com/kingwell/archive">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/sublimetext/"/>
+
+
+
+
+
+  <title> Sublime Text  使用技巧 | 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/sublimetext/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Sublime Text  使用技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-28T06:40:56+00:00">
+                2014-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/sublimetext/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="sublimetext/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考文章： <a href="http://zh.lucida.me/blog/sublime-text-complete-
+guide/" target="_blank" rel="external">http://zh.lucida.me/blog/sublime-text-complete-guide/
+</a><a href="http://blog.jobbole.com/40660/" target="_blank" rel="external">http://blog.jobbole.com/40660/</a><a href="http://zh.lucida.me/blog/sublime-
+text-complete-guide/" target="_blank" rel="external"> </a></p>
+<h2 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h2><p>参考：<a href="http://ji
+ngyan.baidu.com/article/a501d80ced31d5ec630f5e22.html" target="_blank" rel="external">http://jingyan.baidu.com/article/a501d80ced31d5ec630f5e22.html </a>和<a href="http://www.cnblogs.com/kingwell/ar
+chive/2012/11/22/2782991.html" target="_blank" rel="external">http://www.cnblogs.com<br>/kingwell/archive/2012/11/22/2782991.html </a>sublime3见<a href="http://jingyan.baidu.com/article/ce09321b22fc7d2bff858f87.html" target="_blank" rel="external">http://jingyan.baidu.com/article/ce093<br>21b22fc7d2bff858f87.html
+</a>汉化包在我的云盘上是有个的</p>
+<p>需要注意的是，汉化版的如果直接点击Perferences里面的设置文件并修改并不会有效，真正的配置文件可以在浏览程序包里面找到<code>Preferences.su
+blime-settings</code>这个文件，只有在这里面的修改才是有效的，不信，你在这儿修改一下主题试试，立马就会生效。</p>
+<pre><code>{
+    //&quot;color_scheme&quot;: &quot;Packages/Color Scheme - Default/IDLE.tmTheme&quot;,
+    &quot;color_scheme&quot;: &quot;Packages/Color Scheme - Default/Monokai.tmTheme&quot;,
+    &quot;font_size&quot;: 11,
+    &quot;ignored_packages&quot;:
+    [
+    ]
+}
+</code></pre><h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><pre><code>Ctrl + `                打开控制台(和QQ拼音有冲突，改一下QQ拼音的设置)
+Ctrl + ←/→         逐词移位
+Ctrl + ↑/↓             移动当前显示区域
+Ctrl + Shift + F    多文件搜索
+Ctrl + G               跳转到指定行
+</code></pre><h2 id="Python编译系统"><a href="#Python编译系统" class="headerlink" title="Python编译系统"></a>Python编译系统</h2><p>(注：如果是Sublime3的绿色版，可以在C:\software\sublime\Data\Packages\User下新建Python.sublime-<br>build文件)默认情况下，应该是可以直接编译(即Ctrl +<br>B)执行的，但是由于我的电脑上python.exe的路径太多，所以需要重新设置，偏好-&gt;浏览程序包，在该文件夹下搜索<em><strong>Python.sublime-bu<br>ild</strong></em>该文件就是sublime编译python的配置文件，此时需要将Python的路径修改为正确的路径，比如(如果找不到该文件，那就在tools里面新<br>建编译系统)：</p>
+<pre><code>{
+    &quot;cmd&quot;: [&quot;python&quot;, &quot;-u&quot;, &quot;$file&quot;],
+    &quot;path&quot;: &quot;C:/Python34&quot;,
+    &quot;file_regex&quot;: &quot;^[ ]_File \\&quot;(..._?)\\&quot;, line ([0-9]*)&quot;,
+    &quot;selector&quot;: &quot;source.python&quot;
+}
+</code></pre><p>如果出现<em><strong>[Decode error - output not utf-8]</strong></em>错误，那么可以在该配置文件中添加<em><strong>“encoding”:”cp93<br>6”</strong></em>，我当时配置的时候正在用os.system执行curl命令，但是却说curl不是内部命令，关键是我已经把它加进了系统的环境变量了，在windows<br>的cmd中能够执行curl。之前找不到解决方案，就用直接在Terminal中执行python文件的，现在我知道了sublime里的python的环境变量(通<br>过<em>os.getenv(‘PATH’)</em>获取)里的PATH的值只是它自己的执行路径，而要添加其它的路径，则要在代码中添加</p>
+<pre><code>os.environ[&apos;PATH&apos;] = os.environ[&apos;PATH&apos;] + u&apos;; C:\\Program Files (x86)\\Git\\bin&apos;
+</code></pre><p>另外,Linux下,如果要使用Python3,那么需要自己新建build文件,Tools-&gt;Build System&gt;New Build<br>System,然后写入如下代码,保存为python3开头的build文件</p>
+<pre><code>\{
+    &quot;cmd&quot;: [&quot;python3&quot;, &quot;$file&quot;]
+\}
+</code></pre><p>在Mac下，可能出现没有显示输出或者编码错误，例如：UnicodeEncodeError: ‘ascii’ codec can’t encode<br>characters in position 0-2: ordinal not in range(128)</p>
+<p>可以将build system改为如下：</p>
+<pre><code>\{
+&quot;cmd&quot;: [&quot;python3&quot;, &quot;-u&quot;, &quot;$file&quot;],
+&quot;file_regex&quot;: &quot;^[ ]_File \\&quot;(..._?)\\&quot;, line ([0-9]*)&quot;,
+&quot;selector&quot;: &quot;source.python&quot;,
+&quot;env&quot;: \{&quot;LANG&quot;: &quot;en_US.UTF-8&quot;\}
+\}
+</code></pre><p>并讲该文件的Build System为Python3即可.擦,要使用input,还是只能用SublimeREPL.</p>
+<h2 id="推荐插件"><a href="#推荐插件" class="headerlink" title="推荐插件"></a>推荐插件</h2><p><strong>Package Control</strong>：sublime很好的插件管理器，<a href="https://sublime.wbond.net/installation#st2" target="_blank" rel="external">安装方式</a> ，之后安装插件就可以直接使用它来安装了，如果要安装插件，点击<em><strong>Preferences-&gt;Package Control</strong></em>或者Ctrl + Shift + P ，然后选择<em><strong>Package Control: Install Package</strong></em>，然后输入相应的插件名称，而某些插件的功能如git的功能也可以通过Ctrl+Shift+P来选择</p>
+<p><strong>AllAutocomplete</strong>：可以在所有打开的文件里面查找关键词来提示代码</p>
+<p><strong>Anaconda</strong>：真正可以将sublime打造成Python的IDE，功能非常全，比如语法检查、函数跳转等IDE才有的功能，当然，最好把warning提醒给去掉，做自己的项目，从头做起，遵守PEP8规范，很好，但是打开公司之前的项目，全是warning，忍无可忍了，所以需要给其添加一个user配置：</p>
+<pre><code>\{
+    &quot;pep8_error_levels&quot;: \{&quot;E&quot;: &quot;W&quot;,&quot;V&quot;: &quot;V&quot;\},
+\}
+</code></pre><p><strong>Bracket Highlighter</strong>：匹配标签，比Sublime默认的匹配明显多了</p>
+<p><strong>ConvertToUtf8</strong>：可以解决很多编码问题，比如打开txt乱码</p>
+<p><strong>Djaneiro</strong>：支持Django模版和关键字高亮，还可以方便得到代码片，例如，输入var 可以新建<code>\{\{\}\}</code>，输入tag可以新建<code>\{\%\%\}</code></p>
+<p><strong>DocBlockr</strong>：可快速生成代码注释，对于PHP输入/**然后回车即可</p>
+<p><strong>Emmet</strong>：十分强大的html、css代码自动补全工具，常用使用方法：</p>
+<pre><code>1.适用于tr(th)/ul(li)/select(option)中
+tr&gt;th*3 会生成如下代码：
+&lt;tr&gt;
+    &lt;th&gt;&lt;/th&gt;
+    &lt;th&gt;&lt;/th&gt;
+    &lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+</code></pre><p><strong>HtmlPretty</strong>：Ctrl + Shift + H快速格式化CSS、Html、Js等文件，但需要先安装上NodeJS</p>
+<p><strong>Git</strong>：Sublime也支持git，真是太好了</p>
+<p><strong>IMESupport：</strong>解决中文输入法不跟随问题(只针对win，linux下无解)</p>
+<p><strong>Markdown Preview</strong>：非常使用的markdown扩展，ctrl + shift + p，然后输入mrkdown使用相应的命令,ctrl + B构建当前文件为html</p>
+<p><strong>SublimeCodeIntel</strong>：增强Python等语言的自动完成功能(暂时不考虑了，妈蛋，顺序永远不变)</p>
+<p><strong>SublimeLinter-php</strong>：PHP代码审查工具</p>
+<p><strong>SublimeREPL</strong>：强大的Python调试工具，具体有多强大，我还没弄清楚，Sublime默认的Python终端太low了，中文总是不对，但是在&gt;&gt;&gt;这里确实对的，所以以后直接用SublimeREPL的run current file功能就可以相当于在&gt;&gt;&gt;中执行输出了。快捷键Ctrl+Shift+P</p>
+<p><strong>SyncedSideBar</strong>：Mac上保存打开的项目</p>
+<p><strong>VAlign</strong>：代码对齐插件，比那个alignment好用多了，快捷键是Ctrl + \</p>
+<p><strong>View in Browser</strong>：在浏览器中预览，右键即可，注意我的谷歌是64位，要把配置文件最下面那一行的firefox改为chrome64（把default配置拷贝到user配置再修改）</p>
+<p><strong>Vintage</strong>：可以打开VIM模式，默认是安装了的，只需要用package control来enable一下即可</p>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><p>1.Linux下Sublime text 3无法输入中文，参见<a href="http://jingyan.baidu.com/article/f3ad7d0ff8731
+609c3345b3b.html" target="_blank" rel="external">http://jingyan.baidu.com/article/f3ad7d0ff8731
+609c3345b3b.html</a>，唯一需要注意的是，编译so文件之前得先安装gtk的dev，<code>sudo apt-get install
+libgtk2.0-dev2</code></p>
+<p>2.打开sublime的调试模式查看哪儿出错了： 在Preferences.sublime-settings里面添加”debug”:<br>true，这样重启后Ctrl+`即可查看启动中的错误信息</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg" alt="haofly wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeb6iosux.bkt.clouddn.com/image/wechat.png" alt="haofly WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeb6iosux.bkt.clouddn.com/image/alipay.png" alt="haofly Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Gitosis-Git/" rel="next" title="使用Gitosis搭建Git服务器的过程">
+                <i class="fa fa-chevron-left"></i> 使用Gitosis搭建Git服务器的过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/python-Chrome-QQ-friends/" rel="prev" title="使用Python3和Chrome获取QQ好友列表">
+                使用Python3和Chrome获取QQ好友列表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="sublimetext/"
+     data-title="Sublime Text  使用技巧"
+     data-content=""
+     data-url="https://haofly.net/sublimetext/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="sublimetext/"
+           data-title="Sublime Text  使用技巧" data-url="https://haofly.net/sublimetext/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#汉化"><span class="nav-number">1.</span> <span class="nav-text">汉化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用快捷键"><span class="nav-number">2.</span> <span class="nav-text">常用快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python编译系统"><span class="nav-number">3.</span> <span class="nav-text">Python编译系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐插件"><span class="nav-number">4.</span> <span class="nav-text">推荐插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他问题"><span class="nav-number">5.</span> <span class="nav-text">其他问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

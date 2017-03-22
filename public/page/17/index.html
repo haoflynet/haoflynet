@@ -1,0 +1,2822 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="豪翔天下,Python开发工程师,全栈开发工程师" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="豪翔天下" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="豪翔天下的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="豪翔天下">
+<meta property="og:url" content="https://haofly.net/page/17/index.html">
+<meta property="og:site_name" content="豪翔天下">
+<meta property="og:description" content="豪翔天下的个人博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="豪翔天下">
+<meta name="twitter:description" content="豪翔天下的个人博客">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://haofly.net/page/17/"/>
+
+
+
+
+
+  <title> 豪翔天下 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-47480072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d06802e96e214bdb413a40b263d4cc15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">豪翔天下</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Change My World by Program</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-favorites">
+          <a href="/favorites.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-flag"></i> <br />
+            
+            menu.favorites
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="https://wiki.haofly.net" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-key"></i> <br />
+            
+            menu.wiki
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/virtualbox-guest-host-share-file/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/virtualbox-guest-host-share-file/" itemprop="url">
+                  VirtualBox虚拟机(windows系列)与主机共享文件的方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-30T08:36:28+08:00">
+                2014-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/virtualbox-guest-host-share-file/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="virtualbox-guest-host-share-file/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在我的印象里，虚拟机在安装增强功能后是可以直接互相拖放文件的，但不知道为什么最近几个月我安装的都不行啊，所以这里记录一下通过映射来共享文件的方法。</p>
+<h1 id="虚拟Linux-Server"><a href="#虚拟Linux-Server" class="headerlink" title="虚拟Linux Server"></a>虚拟Linux Server</h1><ol>
+<li>和win一样，点击虚拟机的<em>设备-&gt;安装增强功能</em></li>
+<li><p>不同的是linux_server 上面不会自动弹出安装界面，而是需要挂载在安装，执行如下命令：</p>
+<p>   $ sudo mount /dev/cdrom /media/cdrom<br>block device /dev/sr0 is write-protected, mounting read-only<br>$ cd /media/cdrom<br>$ sudo ./VBoxLinuxAdditions.run</p>
+</li>
+<li><p>在设置里面添加共享文件夹：<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/virtualbox-guest-host-share-
+file_0.jpg" alt="">  </p>
+</li>
+<li><p>记住上面的共享的名称，比如company，那么在linux<em>server里面就可以看到</em>/media/sf<em>company</em>这一个目录。</p>
+</li>
+<li><p>如果在linux_server往那个目录添加东西时出现<em>Read-only</em>错误，可能是VirtualBox默认禁止在共享目录里建立链接(<a href="http://stackoverflow.com/questions/16724543/executing-collectstatic-on-vbox-shared-folder-gives-read-only-error" title="Link: http://stackoverflow.com/questions/16724543/executing-collectstatic-on-vbox-shared-folder-gives-read-only-error" target="_blank" rel="external">stackoverflow解答</a>)，此时应该执行如下命令，其中，VM_NAME表示你的虚拟机的名称，SHARE<em>NAME表示共享的名称(不加前缀sf</em>) 如果是windows主机，在cmd里执行：</p>
+<p>   VBoxManage.exe setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1</p>
+</li>
+</ol>
+<p>如果是linux主机，在shell里执行：</p>
+<pre><code>VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1
+</code></pre><h1 id="虚拟Windows"><a href="#虚拟Windows" class="headerlink" title="虚拟Windows"></a>虚拟Windows</h1><h3 id="1-还是要安装增强功能"><a href="#1-还是要安装增强功能" class="headerlink" title="1.还是要安装增强功能"></a>1.还是要安装增强功能</h3><p><img src="http://7xnc86.com1.z0.glb.clouddn.com/virtualbox-guest-host-share-
+file_1.png" alt="">  </p>
+<p>安装完成后关机，之所以不重启，是因为还有要设置的地方。</p>
+<h3 id="2-设置共享文件夹"><a href="#2-设置共享文件夹" class="headerlink" title="2.设置共享文件夹"></a>2.设置共享文件夹</h3><p><img src="http://7xnc86.com1.z0.glb.clouddn.com/virtualbox-guest-host-share-
+file_2.png" alt=""><br>我一般喜欢把共享文件夹设置为固定分配、自动挂载、完全访问权限。</p>
+<h3 id="3-添加映射"><a href="#3-添加映射" class="headerlink" title="3.添加映射"></a>3.添加映射</h3><p><a href="http://haofly.net/wp-content/uploads/2014/10/virtualbox-share-
+file-4.png"><img src="http://7xnc86.com1.z0.glb.clouddn.com/virtualbox-guest-host-share-
+file_3.png" alt="">  
+</a><img src="http://7xnc86.com1.z0.glb.clouddn.com/virtualbox-guest-host-
+share-file_4.png" alt=""><br><img src="http://7xnc86.com1.z0.glb.clouddn.com/virtualbox-guest-host-share-
+file_5.png" alt=""><br>点击浏览，找到文件夹，确定</p>
+<p><img src="http://7xnc86.com1.z0.glb.clouddn.com/virtualbox-guest-host-share-
+file_6.png" alt=""><br><img src="http://7xnc86.com1.z0.glb.clouddn.com/virtualbox-guest-host-share-
+file_7.png" alt=""><br>成功！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/python-execute-pythonfile-effiency/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/python-execute-pythonfile-effiency/" itemprop="url">
+                  在Python3代码里执行另一个python文件的几种访问及其效率的比较
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-29T18:27:38+08:00">
+                2014-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/python-execute-pythonfile-effiency/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="python-execute-pythonfile-effiency/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近做一个项目，需要从一个Python文件里执行其他的Python文件，因为数量可能有点大，所以考虑了一下性能的问题，就去简单地测试了一下其效率，结果如下：</p>
+<p>首先，我的<code>另一个Python文件test1.py</code>里内容如下，执行一条command命令</p>
+<pre><code>import os
+os.putenv(&apos;PATH&apos;, &apos;C:\\Program Files (x86)\\Git\\bin&apos;)    # 我的ls命令在git下面
+os.system(&apos;ls -ls&apos;)
+</code></pre><h1 id="1-使用exec函数"><a href="#1-使用exec函数" class="headerlink" title="1.使用exec函数"></a>1.使用exec函数</h1><p>在Python3中无法直接使用execfile()函数，execfile被分解为了open()和exec()，<a href="https://docs.pyt
+hon.org/3/library/functions.html#exec" target="_blank" rel="external">详见文档</a>，必须先将文件打开，再把文件浏览当作参数传入exec函数中去。代码如下：</p>
+<pre><code>import os
+
+
+
+
+for time in range(0, 1000):
+        fp = open(&apos;test1.py&apos;)
+        exec(fp.read(), None, None)
+        #os.popen(&apos;ls -l&apos;)
+</code></pre><p>执行一千次该文件，结果如下：内存几乎无变化，CPU使用率62\%左右，耗时86.3s<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-execute-pythonfile-
+effiency.png" alt=""></p>
+<h1 id="2-使用os-popen-函数"><a href="#2-使用os-popen-函数" class="headerlink" title="2.使用os.popen()函数"></a>2.使用os.popen()函数</h1><p>os模块的popen()函数是相当于执行的是一条command命令，并可以通过read()方法获取命令的输出，代码如下：</p>
+<pre><code>import os
+
+
+
+
+for time in range(0, 1000):
+        fp = open(&apos;test1.py&apos;)
+        #exec(fp.read(), None, None)
+        os.popen(&apos;ls -l&apos;)
+</code></pre><p>执行一千次该循环，结果如下：内存几乎无变化，CPU使用率90\%左右，耗时118.1s</p>
+<h1 id="http-7xnc86-com1-z0-glb-clouddn-com-python-execute-pythonfile"><a href="#http-7xnc86-com1-z0-glb-clouddn-com-python-execute-pythonfile" class="headerlink" title="![](http://7xnc86.com1.z0.glb.clouddn.com/python-execute-pythonfile-"></a>![](<a href="http://7xnc86.com1.z0.glb.clouddn.com/python-execute-pythonfile-" target="_blank" rel="external">http://7xnc86.com1.z0.glb.clouddn.com/python-execute-pythonfile-</a></h1><p>effiency_1.png)  </p>
+<h1 id="3-结果"><a href="#3-结果" class="headerlink" title="3.结果"></a>3.结果</h1><p>从上面很明显的就能发现，使用Python3里面的exec不仅占用CPU率较低，并且执行时间也较快，而在占用内存方面两者几乎都一样。所以，还是使用exec吧。</p>
+<h1 id="4-扩展"><a href="#4-扩展" class="headerlink" title="4.扩展"></a>4.扩展</h1><p>顺便测试了一下使用os.system()函数和os.popen()函数的区别，当然这里的测试是在单个文件里执行一千次该命令，如下：</p>
+<pre><code>import os
+
+
+
+
+os.putenv(&apos;PATH&apos;, &apos;C:\\Program Files (x86)\\Git\\bin&apos;)    # 我的ls命令在git下面
+
+
+
+
+for time in range(0, 1000):
+        os.system(&apos;ls -l&apos;)
+    # os.popen(&apos;ls -l&apos;)
+</code></pre><p>os.system()的结果：CPU占用65\%左右，内存几乎不变，耗时83.5s<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-execute-pythonfile-
+effiency_2.png" alt=""><br>os.popen()的结果：CPU占用90\%左右，内存几乎不变，耗时38.4s  </p>
+<p><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-execute-pythonfile-
+effiency_3.png" alt="">  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/nginx-multi-apache-load-balance/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/nginx-multi-apache-load-balance/" itemprop="url">
+                  Nginx + 多Apache 做反向代理实现负载均衡并设置二级域名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-23T08:03:02+08:00">
+                2014-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/nginx-multi-apache-load-balance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="nginx-multi-apache-load-balance/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考文章：<a href="http://blog.csdn.net/yanggd1987/article/details/31375573" target="_blank" rel="external">http://blog.csdn.net/yanggd1987/article/details/31375573
+</a><br><a href="http://www.oschina.net/question/56436_109188" target="_blank" rel="external">http://www.oschina.net/question/56436_109188</a></p>
+<p>在网上找了几天时间，发现网上的方法都有一定的局限性，因为我想要的是在同一台服务器上实现一个nginx做反向代理到多个apache(再一次感叹网上好多教程的落<br>后和千篇一律)。这里再次记录本次的配置过程。</p>
+<p>环境：Ubuntu14.04 server + nginx(1.4.6) + apache2(2.4.7)<br>目的：使用nginx做代理，分别代理到apache的四个监听端口8080/8081/8082/8083 优点：Nginx可应付高并发，使用Proxy做代理效<br>率也较高，占用资源少，再使用apache处理后端，也更稳定，现在一般的做法是是用nginx处理前端，apache处理后端，我这里暂时全部交由apache处理<br>。当然，我这里都是在同一台服务器上做的，除了减少单个apache的并发处理数量，对性能来说并没有显著的提升。</p>
+<h3 id="1-安装nginx和apache2"><a href="#1-安装nginx和apache2" class="headerlink" title="1.安装nginx和apache2"></a>1.安装nginx和apache2</h3><p>安装到没什么好说的，直接<code>apt-get</code>安装即可。</p>
+<h3 id="2-修改nginx的配置文件-etc-nginx-nginx-etc"><a href="#2-修改nginx的配置文件-etc-nginx-nginx-etc" class="headerlink" title="2.修改nginx的配置文件/etc/nginx/nginx.etc"></a>2.修改nginx的配置文件/etc/nginx/nginx.etc</h3><p>在http字段(就是那个大括号里面)添加如下内容：</p>
+<pre><code>upstream balance\{
+    server localhost:8080;
+    server localhost:8081;
+    server localhost:8082;
+    server localhost:8083;
+\}
+
+
+
+
+server\{
+    listen 80;
+    server_name haofly.net;
+    localhost /\{
+        proxy_pass http://balance;
+    \}
+\}
+</code></pre><p>其中nginx是让upstream里面的各个IP/端口实现轮询访问，研究一下nginx的配置文件，还可以对轮询访问加上一些限制条件，比如轮训机制、权值分配等<br>，这里不做详述。</p>
+<p>需要注意的是如果是二级域名，那么upstream里面的server依然写成<code>localhost:port</code>的形式，而不用去写什么二级域名，二级域名在apac<br>he的配置文件里面定义，nginx会直接将那些都传给它的。</p>
+<h3 id="3-修改apache的配置文件"><a href="#3-修改apache的配置文件" class="headerlink" title="3.修改apache的配置文件"></a>3.修改apache的配置文件</h3><p>主配置文件<code>/etc/apache2/apache2.conf</code>，在#ServerRoot<br>“/etc/apache”下添加一行指明ServerName，例如：</p>
+<pre><code>#ServerRoot &quot;/etc/apache2&quot;
+ServerName haofly.net
+</code></pre><p>虚拟目录配置文件(这就相当于为apache多开了几个线程，就好像是有多个apache在同时工作一样) <code>vim /etc/apache2/sites-
+available/000-default.conf</code>(这是默认的那个80端口的配置文件)，只需要把里面的80端口改为8080即可。然后再新建几个配置文件<br><code>vim /etc/apache2/sites-available/proxy01.conf</code>内容如下：</p>
+<pre><code>&lt;VirtualHost *:8081&gt;
+    ServerAdmin localhost:8081
+    DocumentRoot /var/www/html
+
+
+
+
+
+ErrorLog $\{APACHE_LOG_DIR\}/error.log
+CustomLog $\{APACHE_LOG_DIR\}/access.log combined
+</code></pre><p></p>
+<p>8082端口的配置文件proxy02.conf只需要把端口改为8082即可，另外为方便测试，我们需要把8083端口的配置文件特殊化一下，<code>vim
+/etc/apache2/sites-available/proxy03.conf</code>，内容如下：</p>
+<pre><code>&lt;VirtualHost *:8083&gt;
+    ServerAdmin localhost:8083
+    DocumentRoot /var/www/test
+
+
+
+
+
+ErrorLog $\{APACHE_LOG_DIR\}/error.log
+CustomLog $\{APACHE_LOG_DIR\}/access.log combined
+</code></pre><p></p>
+<p>其实只是修改了DocumentRoot，使它指向/var/www/test，这样就方便测试了，在/var/www/test下新建一个文件<code>vim
+/var/www/test/index.html</code>，内容如下</p>
+<pre><code>&lt;html&gt;
+ hehe
+&lt;/html&gt;
+</code></pre><p>在把配置文件链接到<code>/etc/apache2/sites-available</code>文件夹：</p>
+<pre><code>cd ../sites-enabled
+sudo ln -s ../sites-available/proxy01.conf
+sudo ln -s ../sites-available/proxy02.conf
+sudo ln -s ../sites-available/proxy03.conf
+</code></pre><p>最后再修改apache的端口文件<code>vim /etc/apache2/ports.conf</code>，把Listen *80修改为：</p>
+<pre><code>Listen 8080
+Listen 8081
+Listen 8082
+Listen 8083
+</code></pre><h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h3><p>首先检查配置文件是否有语法错误</p>
+<pre><code>nginx -t
+apachectl -t
+</code></pre><p>如果都OK，就可以重启了：</p>
+<pre><code>service apache2 restart
+service nginx stop
+service nginx start
+</code></pre><p>然后在浏览器输入上面的Servername，即<a href="http://haofly.net，多刷新几次，就会发现，有时候出现的是apache的界面，有时候出现的是te" target="_blank" rel="external">http://haofly.net，多刷新几次，就会发现，有时候出现的是apache的界面，有时候出现的是te</a><br>st下那个hehe界面。</p>
+<h3 id="5-nginx添加二级域名"><a href="#5-nginx添加二级域名" class="headerlink" title="5.nginx添加二级域名"></a>5.nginx添加二级域名</h3><p>比apache简单多了，我这里不仅添加了二级域名，并且也实现了一个反向代理，在/etc/nginx/nginx.conf里面的http里面添加一个upstr<br>eam和一个server即可：</p>
+<pre><code>upstream \{
+   server localhost:8084;
+\}
+server \{
+    server_name aa.hostname.com;
+    listen               80;
+    location / \{
+      proxy_pass http://er;
+      proxy_redirect default;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection $http_connection;
+    \}
+\}
+</code></pre><p>然后就像<a href="http://haofly.net/linuxvirtualhost/" title="Link:
+http://haofly.net/linuxvirtualhost/">Linux使用虚拟主机设置一、二级域名和虚拟目录</a> 那样设置apache即可。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/python-configparser/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/python-configparser/" itemprop="url">
+                  Python3使用configparser模块设置配置信息
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-19T20:47:37+08:00">
+                2014-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程之路/" itemprop="url" rel="index">
+                    <span itemprop="name">编程之路</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/python-configparser/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="python-configparser/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考文档：<a href="https://docs.python.org/3/library/configparser.html#module-configparser" target="_blank" rel="external">https://docs.python.org/3/library/configparser.html#module-configparser</a></p>
+<p>今天在研究MySQL Connector for Python的时候无意间发现原来Python自带了设置与读取配置信息的模块的，有了这么一个功能就能够在一个<br>单独的文件里面写上一些敏感信息，比如你的数据库的用户名密码等，以后要使用的时候直接读取该文件即可。这里简要描述一下其使用方法。</p>
+<p>首先，得要有一个文件用来保存配置信息，格式如下setting.conf：</p>
+<pre><code>[DATABASE]
+Port = 21
+Username = haofly
+Password = 123456
+Database = test
+
+
+
+
+[DEFAULT]
+User = hg
+</code></pre><p>需要注意的是，在配置文件里字符串是不加引号的，因为无论是字符串还是数字，读取出来都是字符串的形式。</p>
+<p>在另一个文件中使用方法如下：</p>
+<pre><code>import configparser
+
+
+
+
+config = configparser.ConfigParser()
+config.sections()
+config.read(&apos;co.config&apos;)
+print(config[&apos;DATABASE&apos;][&apos;Username&apos;])
+</code></pre><p>打印出来<code>haofly</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/python-Chrome-QQ-album/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/python-Chrome-QQ-album/" itemprop="url">
+                  使用Python和Chrome下载所有QQ好友相册
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-08T08:23:13+08:00">
+                2014-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/就是爱玩/" itemprop="url" rel="index">
+                    <span itemprop="name">就是爱玩</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/python-Chrome-QQ-album/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="python-Chrome-QQ-album/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>上一次用cURL获取了QQ的好友列表，跳过了验证过程，感觉特别爽，所以趁热打铁，直接又写了个获取所有QQ好友相册的代码。</p>
+<p>环境：Python3 + Chrome + Windows7</p>
+<p>首先得要获取到所有QQ好友的QQ号码，直接参考<a href="http://haofly.net/qqlist/" title="Link: http://haofly.net/qqlist/">《使用Python3和Chrome获取QQ好友列表》</a>，当然，如果你想要指定的号码，那么直接在<strong><em>qqlist.txt</em></strong>里写上其QQ号<br>码即可(不过获取之后是不用处理末尾的’\n’的，因为我当时写入的时候加入了)。</p>
+<p>然后，和那篇文章一样，获取cURL。<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-Chrome-QQ-album_0.png" alt=""><br>首先在任意一个<em><strong>user.qzone.qq.com/QQ号码/4</strong></em>页面刷新，在审查里面的Network获取_fcg_list<em>album</em>的cURL<br>，然后，再随便点进一个相册获取_cgi_list<em>photo</em>的cURL，其中一个是获取相册列表的，一个是获取某相册下照片列表的。</p>
+<p>然后将两个字符串分别替换代码16/17行的get_album和get_photo</p>
+<pre><code>#-_- coding: UTF-8 -_-
+import os, sys
+import re
+import subprocess
+import shlex
+import urllib.request
+import json
+import codecs
+import datetime
+
+
+
+
+# 我最先是把get_album和get_photo的值存储在request_curl.py文件里面的
+
+
+
+
+# from request_curl import *
+
+
+
+
+# 添加curl的环境变量
+
+
+
+
+os.putenv(&apos;PATH&apos;, &apos;C:\\Program Files (x86)\\Git\\bin&apos;)
+
+
+
+
+# 获取原始curl请求
+
+
+
+
+origin_album = get_album
+origin_photo = get_photo
+
+
+
+
+# 获取目标QQ
+
+
+
+
+fp = open(&apos;qqlist.txt&apos;, &apos;r&apos;)
+qqlist = fp.readlines()
+for i in range(len(qqlist)):
+    qqlist[i] = qqlist[i][:-1]
+fp.close()
+
+
+
+
+for target in qqlist:
+        log = \{\}                    # 下载日志
+        log[&apos;qq&apos;] = target          # QQ号
+        log[&apos;access&apos;] = 1           # 是否允许访问
+        log[&apos;time&apos;] = datetime.datetime.now()   # 下载完成后记录花费的时间
+        log[&apos;album_count&apos;] = 0      # 相册总数
+        log[&apos;photo_count&apos;] = 0      # 照片总数
+
+
+
+
+
+    print(&apos;当前QQ：&apos; + target)
+    try:
+        os.makedirs(&apos;photos/&apos; + target)                                             # 建立相应的文件夹
+    except:
+        os.removedirs(&apos;photos/&apos; + target)
+        os.makedirs(&apos;photos/&apos; + target)
+    # 先得到正确的curl，然后执行获取json数据
+    curl = origin_album.replace(&apos;&amp;amp;hostUin=1129029735&apos;, &apos;&amp;amp;hostUin=&apos; + target)    # 被访问者
+    curl = curl.replace(&apos;&amp;amp;pageNumModeSort=40&apos;, &apos;&amp;amp;pageNumModeSort=100&apos;)          # 显示相册数量
+    args = shlex.split(curl)
+    result = subprocess.check_output(args).decode(&apos;utf-8&apos;)
+    convert = result[result.find(&apos;(&apos;) + 1 : result.find(&apos;)&apos;, -1) -1]            # 去除不标准的json数据
+    output = json.loads(convert)                                                # 最终json数据
+    if(output[&apos;code&apos;] == -4009):
+        log[&apos;access&apos;] = 0           # 是否允许访问
+        fp = open(&apos;photos/&apos; + target + &apos;/log.txt&apos;, &apos;w&apos;, encoding=&apos;utf-8&apos;)       # 日志文件，记录时间与数量
+        fp.writelines(str(log))
+        fp.close()
+        continue
+
+    # output[&apos;data&apos;][&apos;albumListModeSort&apos;]就是相册列表
+    # 艹，也有可能output[&apos;data&apos;][&apos;albumListModeClass&apos;][0][&apos;albumList&apos;]是相册列表
+    # 最后才发现，output[&apos;data&apos;][&apos;albumListModeClass&apos;]也有可能是相册列表
+    try:
+        if(output[&apos;data&apos;][&apos;albumListModeSort&apos;] == None):
+            albumList = None
+        else:
+            albumList = output[&apos;data&apos;][&apos;albumListModeSort&apos;]
+    except:
+        if(output[&apos;data&apos;][&apos;albumListModeClass&apos;] == None):
+            albumList = None
+        else:
+            albumList = output[&apos;data&apos;][&apos;albumListModeClass&apos;][0][&apos;albumList&apos;]
+
+    # 我服都服了，这么大个人了，居然还有没有相册的
+    if(albumList == None):
+        continue
+
+    theSameAlbumName = 0    # 防止同名相册的出现
+    print(albumList)
+    for album in albumList:
+        log[&apos;album_count&apos;] += 1
+        print(&apos;当前相册：&apos; + album[&apos;name&apos;])
+        if(album[&apos;allowAccess&apos;] == 0):                  # 相册无法直接访问(需要密码或者禁止访问)
+            continue
+
+        # album[&apos;id&apos;]就是照片列表的ID
+        # 获取照片列表数据
+        curl = origin_photo.replace(&apos;&amp;amp;hostUin=1129029735&apos;, &apos;&amp;amp;hostUin=&apos; + target)
+        curl = curl.replace(&apos;&amp;amp;topicId=V10HYl1S33NLS5&apos;, &apos;&amp;amp;topicId=&apos; + album[&apos;id&apos;])
+        curl = curl.replace(&apos;&amp;amp;pageNum=30&apos;, &apos;&amp;amp;pageNum=600&apos;)  # QQ空间每个相册最大貌似不会超过512
+        args = shlex.split(curl)
+        result = subprocess.check_output(args).decode(&apos;utf-8&apos;)
+        convert = result[result.find(&apos;(&apos;) + 1 : result.find(&apos;)&apos;, -1) -1]
+        output = json.loads(convert)
+
+        if(output[&apos;code&apos;] == -4404):
+            continue
+
+        # 相册名里面会不会也有奇葩名字呢
+        filt = re.compile(r&apos;\\\\|/|:|\\*|\\?|&amp;lt;|&amp;gt;|\\||\\.&apos;)
+        album[&apos;name&apos;] = re.sub(filt, &apos;&apos;, album[&apos;name&apos;])
+        # 我服都服了，QQ空间居然还允许同名的相册。。。
+        albumname = album[&apos;name&apos;].replace(&apos; &apos;, &apos;&apos;)
+        filelist = os.listdir(&apos;photos/&apos; + target + &apos;/&apos;)
+        if (albumname in filelist) or (len(albumname) == 0):
+            albumname = albumname + &apos;_&apos; + str(theSameAlbumName)
+            theSameAlbumName += 1
+
+        os.makedirs(&apos;photos/&apos; + target + &apos;/&apos; + albumname)
+        same = 0    # 防止同名
+
+        # 获取该相册下的每一张照片，如果相册为空，那么output[&apos;data&apos;][&apos;photoList&apos;] = None，艹
+        photoList = output[&apos;data&apos;][&apos;photoList&apos;]
+        if(photoList == None):
+            continue
+
+        for photo in photoList:
+            log[&apos;photo_count&apos;] += 1
+            print(&apos;当前照片&apos; + photo[&apos;name&apos;])
+
+            # 图片格式由photo[&apos;phototype&apos;]字段(整型)控制
+            # 1：jpg
+            # 3：png
+            phototype = \{&apos;1&apos;: &apos;.jpg&apos;, &apos;2&apos;: &apos;.gif&apos;, &apos;3&apos;: &apos;.png&apos;, &apos;5&apos;: &apos;.jpg&apos;, &apos;10&apos;: &apos;.jpg&apos;\}
+            try:
+                format = phototype[str(photo[&apos;phototype&apos;])]
+            except:
+                format = &apos;.jpg&apos;
+
+            # 建立文件夹并下载图片
+            # QQ图片里面有太多的特殊字符了
+            photoname = photo[&apos;name&apos;]
+            filelist = os.listdir(&apos;photos/&apos; + target + &apos;/&apos; + albumname)
+            for i in range(len(filelist)):
+                filelist[i] = filelist[i][:-4]
+            photoname = photoname.replace(&apos; &apos;,&apos;&apos;)
+
+            if (photoname in filelist) or (len(photoname) == 0):
+                photoname = photoname + &apos;_&apos; + str(same)
+                same += 1
+            # 文件名中不能有特殊字符
+            filt = re.compile(r&apos;\\\\|/|:|\\*|\\?|&amp;lt;|&amp;gt;|\\||\\.|\\n|\\t|\\&quot;&apos;)
+            photoname = re.sub(filt, &apos;&apos;, photoname)
+
+            path = &apos;photos\\\\&apos; + target + &apos;\\\\&apos; + albumname + &apos;\\\\&apos; + photoname + format
+            try:
+                urllib.request.urlretrieve(photo[&apos;url&apos;], path)
+            except urllib.error.ContentTooShortError as e:
+                print(&apos;啥子错误哟&apos;)
+
+    fp = open(&apos;photos/&apos; + target + &apos;/log.txt&apos;, &apos;w&apos;, encoding=&apos;utf-8&apos;)       # 日志文件，记录时间与数量
+    log[&apos;time&apos;] = (datetime.datetime.now() - log[&apos;time&apos;]).seconds
+    log[&apos;time&apos;] = str(log[&apos;time&apos;]) + &apos;s&apos;
+    fp.writelines(str(log))
+    fp.close()
+    print(&apos;当前QQ：&apos; + target + &apos;下载完毕&apos;)&lt;/pre&gt;
+</code></pre><p>以下是我获取到的结果，可以说，百分之九十九都成功获取到了，但是有几个好友反映貌似他们的没有获取完，我去看了下，又是获取的json数据结构的问题，我真的服了，<br>腾讯同一个功能搞那么多数据结构来干嘛，操蛋。<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-Chrome-QQ-album_1.png" alt=""><br>另外写了一个统计耗时的脚本，因为我在每个相册的日志里都记录了下载时间的，所以直接就统计了</p>
+<pre><code># 统计log.txt里面所有的数据
+
+
+
+
+# 根目录是photos
+
+
+
+
+import os
+import json
+alltime = 0
+for i in os.walk(&apos;photos&apos;):
+    if(len(i[2]) == 1 and i[2][0] == &apos;log.txt&apos;):
+        fp = open(i[0] + &apos;/&apos; + &apos;log.txt&apos;, &apos;r&apos;)
+        data = fp.read()
+        data = data.replace(&apos;\\&apos;&apos;, &apos;&quot;&apos;)
+        if(data.find(&apos;datetime&apos;) &lt; 0):
+            #print(data)
+            output = json.loads(data)
+            time = output[&apos;time&apos;][:-1]
+            alltime += int(time)
+            fp.close()
+print(str(alltime/60/60) + &apos;h&apos;)
+</code></pre><p>结果是13.797500000000001h，和我预计的差不多，虽然是4M的网速，但是建立连接建立过多，而且没有用到多线程，这个时间还是合情合理的。</p>
+<p>PS：正在把这些照片上传到云盘，哈哈，要是泄漏了可不要说我是故意的 还有就是请勿模仿，我虽然总共下载了400个好友，但是停下来了十多次，都是数据结构出现问题<br>，请千万不要为此折腾，我纯属是为了完成自己以前的愿望罢了，下载下来也没用。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/python3-get-qqalbum/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/python3-get-qqalbum/" itemprop="url">
+                  使用Python和Chrome下载所有QQ好友相册
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-08T08:23:13+08:00">
+                2014-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/就是爱玩/" itemprop="url" rel="index">
+                    <span itemprop="name">就是爱玩</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/python3-get-qqalbum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="python3-get-qqalbum/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>上一次用cURL获取了QQ的好友列表，跳过了验证过程，感觉特别爽，所以趁热打铁，直接又写了个获取所有QQ好友相册的代码。</p>
+<p>环境：Python3 + Chrome + Windows7</p>
+<p>首先得要获取到所有QQ好友的QQ号码，直接参考<a href="http://haofly.net/qqlist/" title="Link: http://haofly.net/qqlist/">《使用Python3和Chrome获取QQ好友列表》</a>，当然，如果你想要指定的号码，那么直接在<strong><em>qqlist.txt</em></strong>里写上其QQ号<br>码即可(不过获取之后是不用处理末尾的’\n’的，因为我当时写入的时候加入了)。</p>
+<p>然后，和那篇文章一样，获取cURL。<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-Chrome-QQ-album_0.png" alt=""><br>首先在任意一个<em><strong>user.qzone.qq.com/QQ号码/4</strong></em>页面刷新，在审查里面的Network获取_fcg_list<em>album</em>的cURL<br>，然后，再随便点进一个相册获取_cgi_list<em>photo</em>的cURL，其中一个是获取相册列表的，一个是获取某相册下照片列表的。</p>
+<p>然后将两个字符串分别替换代码16/17行的get_album和get_photo</p>
+<pre><code>#-_- coding: UTF-8 -_-
+import os, sys
+import re
+import subprocess
+import shlex
+import urllib.request
+import json
+import codecs
+import datetime
+
+
+
+
+# 我最先是把get_album和get_photo的值存储在request_curl.py文件里面的
+
+
+
+
+# from request_curl import *
+
+
+
+
+# 添加curl的环境变量
+
+
+
+
+os.putenv(&apos;PATH&apos;, &apos;C:\\Program Files (x86)\\Git\\bin&apos;)
+
+
+
+
+# 获取原始curl请求
+
+
+
+
+origin_album = get_album
+origin_photo = get_photo
+
+
+
+
+# 获取目标QQ
+
+
+
+
+fp = open(&apos;qqlist.txt&apos;, &apos;r&apos;)
+qqlist = fp.readlines()
+for i in range(len(qqlist)):
+    qqlist[i] = qqlist[i][:-1]
+fp.close()
+
+
+
+
+for target in qqlist:
+        log = \{\}                    # 下载日志
+        log[&apos;qq&apos;] = target          # QQ号
+        log[&apos;access&apos;] = 1           # 是否允许访问
+        log[&apos;time&apos;] = datetime.datetime.now()   # 下载完成后记录花费的时间
+        log[&apos;album_count&apos;] = 0      # 相册总数
+        log[&apos;photo_count&apos;] = 0      # 照片总数
+
+
+
+
+
+    print(&apos;当前QQ：&apos; + target)
+    try:
+        os.makedirs(&apos;photos/&apos; + target)                                             # 建立相应的文件夹
+    except:
+        os.removedirs(&apos;photos/&apos; + target)
+        os.makedirs(&apos;photos/&apos; + target)
+    # 先得到正确的curl，然后执行获取json数据
+    curl = origin_album.replace(&apos;&amp;amp;hostUin=1129029735&apos;, &apos;&amp;amp;hostUin=&apos; + target)    # 被访问者
+    curl = curl.replace(&apos;&amp;amp;pageNumModeSort=40&apos;, &apos;&amp;amp;pageNumModeSort=100&apos;)          # 显示相册数量
+    args = shlex.split(curl)
+    result = subprocess.check_output(args).decode(&apos;utf-8&apos;)
+    convert = result[result.find(&apos;(&apos;) + 1 : result.find(&apos;)&apos;, -1) -1]            # 去除不标准的json数据
+    output = json.loads(convert)                                                # 最终json数据
+    if(output[&apos;code&apos;] == -4009):
+        log[&apos;access&apos;] = 0           # 是否允许访问
+        fp = open(&apos;photos/&apos; + target + &apos;/log.txt&apos;, &apos;w&apos;, encoding=&apos;utf-8&apos;)       # 日志文件，记录时间与数量
+        fp.writelines(str(log))
+        fp.close()
+        continue
+
+    # output[&apos;data&apos;][&apos;albumListModeSort&apos;]就是相册列表
+    # 艹，也有可能output[&apos;data&apos;][&apos;albumListModeClass&apos;][0][&apos;albumList&apos;]是相册列表
+    # 最后才发现，output[&apos;data&apos;][&apos;albumListModeClass&apos;]也有可能是相册列表
+    try:
+        if(output[&apos;data&apos;][&apos;albumListModeSort&apos;] == None):
+            albumList = None
+        else:
+            albumList = output[&apos;data&apos;][&apos;albumListModeSort&apos;]
+    except:
+        if(output[&apos;data&apos;][&apos;albumListModeClass&apos;] == None):
+            albumList = None
+        else:
+            albumList = output[&apos;data&apos;][&apos;albumListModeClass&apos;][0][&apos;albumList&apos;]
+
+    # 我服都服了，这么大个人了，居然还有没有相册的
+    if(albumList == None):
+        continue
+
+    theSameAlbumName = 0    # 防止同名相册的出现
+    print(albumList)
+    for album in albumList:
+        log[&apos;album_count&apos;] += 1
+        print(&apos;当前相册：&apos; + album[&apos;name&apos;])
+        if(album[&apos;allowAccess&apos;] == 0):                  # 相册无法直接访问(需要密码或者禁止访问)
+            continue
+
+        # album[&apos;id&apos;]就是照片列表的ID
+        # 获取照片列表数据
+        curl = origin_photo.replace(&apos;&amp;amp;hostUin=1129029735&apos;, &apos;&amp;amp;hostUin=&apos; + target)
+        curl = curl.replace(&apos;&amp;amp;topicId=V10HYl1S33NLS5&apos;, &apos;&amp;amp;topicId=&apos; + album[&apos;id&apos;])
+        curl = curl.replace(&apos;&amp;amp;pageNum=30&apos;, &apos;&amp;amp;pageNum=600&apos;)  # QQ空间每个相册最大貌似不会超过512
+        args = shlex.split(curl)
+        result = subprocess.check_output(args).decode(&apos;utf-8&apos;)
+        convert = result[result.find(&apos;(&apos;) + 1 : result.find(&apos;)&apos;, -1) -1]
+        output = json.loads(convert)
+
+        if(output[&apos;code&apos;] == -4404):
+            continue
+
+        # 相册名里面会不会也有奇葩名字呢
+        filt = re.compile(r&apos;\\\\|/|:|\\*|\\?|&amp;lt;|&amp;gt;|\\||\\.&apos;)
+        album[&apos;name&apos;] = re.sub(filt, &apos;&apos;, album[&apos;name&apos;])
+        # 我服都服了，QQ空间居然还允许同名的相册。。。
+        albumname = album[&apos;name&apos;].replace(&apos; &apos;, &apos;&apos;)
+        filelist = os.listdir(&apos;photos/&apos; + target + &apos;/&apos;)
+        if (albumname in filelist) or (len(albumname) == 0):
+            albumname = albumname + &apos;_&apos; + str(theSameAlbumName)
+            theSameAlbumName += 1
+
+        os.makedirs(&apos;photos/&apos; + target + &apos;/&apos; + albumname)
+        same = 0    # 防止同名
+
+        # 获取该相册下的每一张照片，如果相册为空，那么output[&apos;data&apos;][&apos;photoList&apos;] = None，艹
+        photoList = output[&apos;data&apos;][&apos;photoList&apos;]
+        if(photoList == None):
+            continue
+
+        for photo in photoList:
+            log[&apos;photo_count&apos;] += 1
+            print(&apos;当前照片&apos; + photo[&apos;name&apos;])
+
+            # 图片格式由photo[&apos;phototype&apos;]字段(整型)控制
+            # 1：jpg
+            # 3：png
+            phototype = \{&apos;1&apos;: &apos;.jpg&apos;, &apos;2&apos;: &apos;.gif&apos;, &apos;3&apos;: &apos;.png&apos;, &apos;5&apos;: &apos;.jpg&apos;, &apos;10&apos;: &apos;.jpg&apos;\}
+            try:
+                format = phototype[str(photo[&apos;phototype&apos;])]
+            except:
+                format = &apos;.jpg&apos;
+
+            # 建立文件夹并下载图片
+            # QQ图片里面有太多的特殊字符了
+            photoname = photo[&apos;name&apos;]
+            filelist = os.listdir(&apos;photos/&apos; + target + &apos;/&apos; + albumname)
+            for i in range(len(filelist)):
+                filelist[i] = filelist[i][:-4]
+            photoname = photoname.replace(&apos; &apos;,&apos;&apos;)
+
+            if (photoname in filelist) or (len(photoname) == 0):
+                photoname = photoname + &apos;_&apos; + str(same)
+                same += 1
+            # 文件名中不能有特殊字符
+            filt = re.compile(r&apos;\\\\|/|:|\\*|\\?|&amp;lt;|&amp;gt;|\\||\\.|\\n|\\t|\\&quot;&apos;)
+            photoname = re.sub(filt, &apos;&apos;, photoname)
+
+            path = &apos;photos\\\\&apos; + target + &apos;\\\\&apos; + albumname + &apos;\\\\&apos; + photoname + format
+            try:
+                urllib.request.urlretrieve(photo[&apos;url&apos;], path)
+            except urllib.error.ContentTooShortError as e:
+                print(&apos;啥子错误哟&apos;)
+
+    fp = open(&apos;photos/&apos; + target + &apos;/log.txt&apos;, &apos;w&apos;, encoding=&apos;utf-8&apos;)       # 日志文件，记录时间与数量
+    log[&apos;time&apos;] = (datetime.datetime.now() - log[&apos;time&apos;]).seconds
+    log[&apos;time&apos;] = str(log[&apos;time&apos;]) + &apos;s&apos;
+    fp.writelines(str(log))
+    fp.close()
+    print(&apos;当前QQ：&apos; + target + &apos;下载完毕&apos;)&lt;/pre&gt;
+</code></pre><p>以下是我获取到的结果，可以说，百分之九十九都成功获取到了，但是有几个好友反映貌似他们的没有获取完，我去看了下，又是获取的json数据结构的问题，我真的服了，<br>腾讯同一个功能搞那么多数据结构来干嘛，操蛋。<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-Chrome-QQ-album_1.png" alt=""><br>另外写了一个统计耗时的脚本，因为我在每个相册的日志里都记录了下载时间的，所以直接就统计了</p>
+<pre><code># 统计log.txt里面所有的数据
+
+
+
+
+# 根目录是photos
+
+
+
+
+import os
+import json
+alltime = 0
+for i in os.walk(&apos;photos&apos;):
+    if(len(i[2]) == 1 and i[2][0] == &apos;log.txt&apos;):
+        fp = open(i[0] + &apos;/&apos; + &apos;log.txt&apos;, &apos;r&apos;)
+        data = fp.read()
+        data = data.replace(&apos;\\&apos;&apos;, &apos;&quot;&apos;)
+        if(data.find(&apos;datetime&apos;) &lt; 0):
+            #print(data)
+            output = json.loads(data)
+            time = output[&apos;time&apos;][:-1]
+            alltime += int(time)
+            fp.close()
+print(str(alltime/60/60) + &apos;h&apos;)
+</code></pre><p>结果是13.797500000000001h，和我预计的差不多，虽然是4M的网速，但是建立连接建立过多，而且没有用到多线程，这个时间还是合情合理的。</p>
+<p>PS：正在把这些照片上传到云盘，哈哈，要是泄漏了可不要说我是故意的 还有就是请勿模仿，我虽然总共下载了400个好友，但是停下来了十多次，都是数据结构出现问题<br>，请千万不要为此折腾，我纯属是为了完成自己以前的愿望罢了，下载下来也没用。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/kanaiji/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/kanaiji/" itemprop="url">
+                  《卡耐基三部曲》
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-07T23:36:13+08:00">
+                2014-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/韦编三绝/" itemprop="url" rel="index">
+                    <span itemprop="name">韦编三绝</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/kanaiji/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="kanaiji/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>不知道是因为以前看过太多成功学书籍还是译者没有翻译好，还是我买的版本不对，反正我总感觉这本书，不大好。文笔有点枯燥，和很多成功学书籍差不多。当时买这本书的时<br>候还是京东上打折，谁知道买来纸质非常差，而且比32开还小，每本也只有300页左右，一股盗版的感觉，我一直以为京东上是不会买到盗版书的哟。</p>
+<p>《人性的弱点》《人性的优点》《语言的突破》，分别出版于1937年、1948年、1926年，我相信，在上个世纪，这本书肯定是给很多人带来了很多的启发，无论是为<br>人处事还是商业活动都对一个人有很大的影响，但是现在已经21世纪，书中的观点和很多方法都没有过时，只是这样的书在现在已经泛滥成灾了。任何一个书店的“成功学”分<br>类中都能一抓一大把，或许其始祖就是卡耐基的三部曲。</p>
+<p>唉，比较失望，也没大从中学到什么。</p>
+<p>语录</p>
+<p><strong>什么是进取精神呢？我可以告诉各位：那就是在没有人告诉你应该怎样行事的情况下，就能做出最正确的行动。</strong></p>
+<p><strong>让自己不停地忙着。忧虑的人一定要让自己沉浸在工作里，否则只有在绝望中挣扎。</strong></p>
+<p><strong>每个人都会死，但并非每个人都真正地活着。</strong></p>
+<p><strong>如果你想成为有勇气的人，那么你就去尝试一些至今从没有做过，但却令你胆怯的事情，而且一直做到有相当的成绩为止。</strong></p>
+<p><strong>一个人的成功，只有15\%归结于他的专业也只是，还有85\%归于他表达思想、领导他人及唤起他人热情的能力。</strong></p>
+<p><strong>人类天性中最深切的冲动，那是“成为重要人物的欲望”。</strong></p>
+<p><strong>批评是没有用的，因它使人增加一层防御，而且竭力地替自己辩护。批评也是危险的，它会伤害了一个人的自尊和自重的感觉，并激起他的反抗。</strong></p>
+<p><strong>你所认识的人，你愿意他改变、调整，或是进步吗？是的，那是最好不过的。可是为什么不从你自己先开始呢？</strong></p>
+<p><strong>要显示一个伟大人物的伟大之处，那就要看他如何对待一个卑微的人。——卡莱尔</strong></p>
+<p><strong>如果我们是那样的卑贱自私，不从别人身上得到什么，就不愿意分给别人一点快乐，假如我们的气量比一个酸苹果还小，那我们所要遇到的，也绝对是失败。</strong></p>
+<p><strong>永远使别人感觉重要。</strong></p>
+<p><strong>在辩论中，获得最大利益的唯一方法，就是避免讨论。</strong></p>
+<p><strong>称赞最细微的进步，而且称赞每一个进步。</strong></p>
+<p><strong>婚姻的成功，那不只是寻找一个适当的人，而是自己该如何做一个适当的人。</strong></p>
+<p><strong>这条路，我只能经过一次，所以，凡我所能为人做的任何好事，任何一点仁慈，让我现在就做吧！不要延迟，不要忽略，因为我将不会再从这里经过了。</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/to-the-future-of-me/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/to-the-future-of-me/" itemprop="url">
+                  致多年后的自己
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-07T13:57:42+08:00">
+                2014-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/边走边想/" itemprop="url" rel="index">
+                    <span itemprop="name">边走边想</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/to-the-future-of-me/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="to-the-future-of-me/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>光阴似箭，日月如梭。日子看起来很慢很慢，但每次回首往事的时候我们又突然发觉时间原来早已在不经意间悄悄溜走了。我想，人在每个时期都有特定的价值观，人总是会改变<br>，但是改变这种东西却是可以参考的，只要你还知道曾经的自己到底是什么样的。很多人都会成长为自己曾经讨厌的样子，我还未长大，我不知道这句话是真是假，只知道无数的<br>“大人”都对这句话深信不疑，但，至少现在，我还坚持着。</p>
+<p>对于这种“致未来”的主题，有时候我想写五年，有时候想写十年，但是我自己也不知道到底什么时候会改变，所以干脆写一篇文章，以后经常提醒自己看看。</p>
+<h1 id="注：下面列出的所有点，今后都不准删除"><a href="#注：下面列出的所有点，今后都不准删除" class="headerlink" title="注：下面列出的所有点，今后都不准删除"></a>注：下面列出的所有点，今后都不准删除</h1><h2 id="1-多年以后，你还有梦想吗？"><a href="#1-多年以后，你还有梦想吗？" class="headerlink" title="1.多年以后，你还有梦想吗？"></a>1.多年以后，你还有梦想吗？</h2><p>今天的我21岁，如果按照新历来算，今天正好是我21岁的生日。人生大概已经过了四分之一，我，还有梦想。不过，我现在对梦想有点模糊，我知道自己有梦想，但说不出具<br>体是什么，只知道心中有一把火，有一个小宇宙。我想要创业，就在重庆创业，到时候能够养活自己、家人以及公司的员工们。我还想要祖国能够实现真正的民主自由，这么大了<br>，我也想要行使一下自己的选举权和被选举权，我也想让家人看看twitter和facebook，google是什么样子的。我还想以后能不能通过自己的经济实力来限<br>制到政府的某些腐败问题。</p>
+<h2 id="2-多年以后，你还像当初那样对金钱不敏感吗？"><a href="#2-多年以后，你还像当初那样对金钱不敏感吗？" class="headerlink" title="2.多年以后，你还像当初那样对金钱不敏感吗？"></a>2.多年以后，你还像当初那样对金钱不敏感吗？</h2><p>这里之所以说“敏感”，是因为我早已经过了视金钱如粪土的年纪了。现在的我，知道了金钱的作用，钱不是万能的，但没有钱是万万不能的。人是社会动物，不可能离开钱的。<br>但是我是绝对不会有拜金主义的，我相信自己永远不会因为钱的问题闹起家庭矛盾，不会因为钱的问题而做伤天害理的事情，不会因为钱的问题而去街头乞讨。哪怕再穷再苦，也<br>要通过自己的双手来挣钱。千万别做什么事情都为了钱，钱，够用就行。</p>
+<h2 id="3-多年以后，你会像现在所想的一样不收礼金吗？"><a href="#3-多年以后，你会像现在所想的一样不收礼金吗？" class="headerlink" title="3.多年以后，你会像现在所想的一样不收礼金吗？"></a>3.多年以后，你会像现在所想的一样不收礼金吗？</h2><p>这是一直以来我自认为的一个非常“崇高”的想法。以后自己办生日酒席或者其他人来访的时候，我绝不会理把钱当作礼物的人(当然，仅限于同龄人，上一辈肯定无法理解的，<br>没准还怪我不给他们面子)。大家可以送一下礼物，我想，朋友精挑细选的几块钱的礼物绝对比得上两三百一个的红包！</p>
+<h2 id="4-多年以后，你还会坚持自己的教育方法吗？"><a href="#4-多年以后，你还会坚持自己的教育方法吗？" class="headerlink" title="4.多年以后，你还会坚持自己的教育方法吗？"></a>4.多年以后，你还会坚持自己的教育方法吗？</h2><p>没错，一直都觉得自己肯定会是个好爸爸。幼稚的男人绝对会是一个好爸爸的，我会陪孩子一起玩耍，陪他一起疯，而不是让他一个人在旁边受冷落。我会回答孩子一切的问题，<br>哪怕我不知道，也不会说“别问这么天真的问题”，而是“来，爸爸教你用谷歌”。每次我说以后自己的孩子如果不想认真读书那不读也行的时候，大人们都说笑我说以后我就不<br>这样想了。我想，我会从小教孩子寻找自己的兴趣所在，如果真对读书不感兴趣并且认为读书真的不能给自己的兴趣带来什么，那么，不读吧，去追逐自己想要的东西。无论男女<br>，一定要在十八岁前谈一场恋爱，因为多年后他们回忆的时候肯定会怀念那段十分青涩的年华，要知道，你们的爸爸我当年和初恋谈了两年就只牵过一次手哇。但你们要记住，性<br>虽然是爱的升华，但在你们身体还未成熟之前，严禁性生活。不要像。。。额。。。 反正争取在他大学阶段就能完全撒手，我和老伴去过二人世界去了。</p>
+<h2 id="5-多年以后，你还会那么爱学习吗？"><a href="#5-多年以后，你还会那么爱学习吗？" class="headerlink" title="5.多年以后，你还会那么爱学习吗？"></a>5.多年以后，你还会那么爱学习吗？</h2><p>其实我一直庆幸自己能踏上计算机这条路，因为计算机行业的人员必须不停地学习。我从小就喜欢看书，无论什么书都看，希望自己这个爱好能一直发扬下去，到时候自己家的书<br>房就已经能成为一个小型的图书馆了，那该多好。</p>
+<h2 id="6-多年以后，你还会爱自己的家庭、爱自己的朋友吗？"><a href="#6-多年以后，你还会爱自己的家庭、爱自己的朋友吗？" class="headerlink" title="6.多年以后，你还会爱自己的家庭、爱自己的朋友吗？"></a>6.多年以后，你还会爱自己的家庭、爱自己的朋友吗？</h2><p>现在我的家庭，虽然偶有一些小争执，但是我知道全家六口人都爱着这个家(过年，应该就会有七口人啦)。我和我哥绝不会像其他兄弟一样争过来争过去的。我会一直孝顺爸妈<br>，等到我自己有经济能力的时候，我会每年都带他们去进行一次全身体检，我要让他们活得更久，过得更快乐。另外，如果以后有了自己的家庭，我绝对不能成为一个工作狂(目<br>前看来，我很有可能成为一个工作狂)，答应老婆的事情一定要实现。我绝对不会让老婆住租来的房子，我绝对不会让怀孕的老婆挤公交车。</p>
+<p>现在的我，有一些朋友。希望以后的我不要滥交朋友，朋友绝对不是越多越好，我也希望以后的朋友能体谅我，因为虽然是我朋友，我也不大喜欢和朋友聊心里事的。但我绝对是<br>会把你们当作朋友的，要看我有没有把你当作朋友，找我借钱吧，哈哈！</p>
+<h2 id="7-多年以后，你真的会经常去旅游吗？"><a href="#7-多年以后，你真的会经常去旅游吗？" class="headerlink" title="7.多年以后，你真的会经常去旅游吗？"></a>7.多年以后，你真的会经常去旅游吗？</h2><p>今天正是国庆节，我又没出去玩，感觉大学时期出去旅游的基本上都是女生，男生要么宅在寝室要么宅在家里，反正几乎不会出去的。其实我也很想玩，但是找不到同伴(好吧，<br>我承认，我不大喜欢和男生一起出去玩)，不过以后有的是时间。很多人说，以后有时间才怪，以后上班什么的绝对没时间。我想，上班有没有时间不是老板能决定的，而是自己<br>。时间就像乳沟，挤一挤总会有的。当然，尽量别挑节假日，挑个小小的周末，来一个小小的自驾游，这才是生活啊！</p>
+<h2 id="8-多年以后，你真的会那么关注健康吗？"><a href="#8-多年以后，你真的会那么关注健康吗？" class="headerlink" title="8.多年以后，你真的会那么关注健康吗？"></a>8.多年以后，你真的会那么关注健康吗？</h2><p>现在的我不运动，是因为场地受限，以后自己上下班应该尽量走路或者跑步，身体好的时候，每天来个四五公里。每周给老婆做一个养生的菜，平时嘛做一些家常菜就够了。然后<br>，每年来一个全身体检。以前的我说不喝酒，现在已经破戒了。但现在的我依然坚持着不抽烟，以后也会吗？</p>
+<h2 id="9-多年以后，你会麻木吗？"><a href="#9-多年以后，你会麻木吗？" class="headerlink" title="9.多年以后，你会麻木吗？"></a>9.多年以后，你会麻木吗？</h2><p>我想，任何一个接受过教育的人都不应该像鲁迅《藤野先生》里面所写的那样麻木。但现实确实，很多人不敢做自己应该做的事情或者本身就认为那不是自己应该做的事情。多年<br>以后，面对香港、台湾问题，我还会这么认真地去分析吗，至少现在的我能够理性地认为，谁都有对有错，但某些人却从来不改变一下自己，反而变本加厉，我草。我爱国，但我<br>不爱党。多年以后，面对摔倒的老人，我会不会不计后果地去扶起来呢？现在的我面对这样的情况我都不知道，只能按照本能去做了，本能，好吧，我肯定会去扶的。</p>
+<h2 id="10-多年以后，你还能回答下面这些问题吗？"><a href="#10-多年以后，你还能回答下面这些问题吗？" class="headerlink" title="10.多年以后，你还能回答下面这些问题吗？"></a>10.多年以后，你还能回答下面这些问题吗？</h2><p>你爸爸的生日、妈妈的生日、老婆的生日、朋友的生日、自己的生日是什么时候？ 你的初恋是谁？ 你家乡在哪儿？ 你还记得当年的朋友都有哪些？你现在的朋友又有哪些？</p>
+<h1 id="最后，老的时候，告诉自己，答应自己的，全部做到了。如果没有，那么请尽量别讨厌现在的自己。希望多年以后当有人问“你为什么和别人不一样”的时候，我依然能反问"><a href="#最后，老的时候，告诉自己，答应自己的，全部做到了。如果没有，那么请尽量别讨厌现在的自己。希望多年以后当有人问“你为什么和别人不一样”的时候，我依然能反问" class="headerlink" title="最后，老的时候，告诉自己，答应自己的，全部做到了。如果没有，那么请尽量别讨厌现在的自己。希望多年以后当有人问“你为什么和别人不一样”的时候，我依然能反问"></a>最后，老的时候，告诉自己，答应自己的，全部做到了。如果没有，那么请尽量别讨厌现在的自己。希望多年以后当有人问“你为什么和别人不一样”的时候，我依然能反问</h1><p>到：“我为什么要和别人一样？”</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/nixidaxue/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/nixidaxue/" itemprop="url">
+                  《逆袭大学》——传给IT学子的正能量
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-07T09:45:24+08:00">
+                2014-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/韦编三绝/" itemprop="url" rel="index">
+                    <span itemprop="name">韦编三绝</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/nixidaxue/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="nixidaxue/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我从没见过任何一个大学老师有如此的教育心态。我也只是一等书生，还未进入社会，但是对贺利坚这种老师，我也非常喜欢的。我母亲总是叫我要么当官、要么学医、要么从教<br>，为什么？因为这两个职位在他们看来是最赚钱的。每次面对他们的说法，我只能以呵呵面对，当官我不会当贪官，学医我不会收贿赂，从教我不会只教学生读书，如果要我当老<br>师，我一定会去当大学老师，因为大学老师不用担心学生的升学考试，可以全身心的教育学生该怎么做人，而不是该怎么应付考试。</p>
+<p>本书基本上是摘录整理自<a href="http://blog.csdn.net/sxhelijian/" target="_blank" rel="external">贺老师的CSDN博客</a>语言很朴实，和网上很多的说教型文章不一样的<br>是，该书几乎全是干货。虽然说是写给计算机学子看的，但是我认为其他任何专业，任何学生，任何老师都值得去一看。详细的介绍可以看作者自己的<a href="http://blog.csdn.net/sxhelijian/article/details/21276999" target="_blank" rel="external">《走在&lt;逆袭大学&gt;的征<br>途上》</a>。此书真的是有满满的正能量，在大<br>学，我们迷茫过，踌躇过，退缩过，有的女生也因性别问题困扰过，看完此书，我们总会找到自己解决困难的方法。</p>
+<p>我在大二下学期看了两边此书，因为大二下学期是我心态变化最大的一个学期。刚开始时，我一心想要考研，但当实验室的老师给我看了几篇论文过后，我果断放弃了。没错，论<br>文是全英文的，很多地方都看不懂，但是这不是我放弃的原因，我绝不可能因为一点点的困难就轻言放弃的，其主要原因是经过跟随实验室老师的几个月学习，并且询问了一些研<br>究生，我了解了一些研究生的生活。在研究生早期(我这里所说的是爱学习的研究生)，基本上是看理论，看论文，后期就和本科生一样了，去实习，找工作。我不喜欢这样的生<br>活，我不大喜欢看理论，我更喜欢用代码来敲出新的东西，哪怕他功能并不强大，哪怕他用户极少，但我也能从中获得足够多的满足感。当然，或许我还是图样图森破，但是谁又<br>能肯定我不是对的呢？我也不能肯定，但我想试试，我有自己的忍道！之后我就打算去工作，但过了没几天我就决定去创业了。那时候想了很久，其实我一直有一个很好的朋友在<br>等着我一起创业，就等我一个答复了，而我，终于答应了他。决定创业后，我又把此书看了一遍，依然受益匪浅。</p>
+<p>书中有很多观点我是十分赞同的(摘抄了一部分在语录部分)。贺老师鼓励我们关心国家大事，这几天，香港问题非常尖锐，但是国内的媒体集体失声，大陆人士基本上无从知晓<br>，只能从CCAV里面获知只言片语，不过那能信吗？每次有这种事情的时候我都是在微博上先看到，然后我就会去twitter或者facebook里面查询是否属实，最<br>后再去草榴等网站看看人们的评论，有时候转发一下微博，当然，生活在这样的环境里，为了不被查水表，也只能小声地发几句言了。但我至少会去关心，会因为深灰上的某些不<br>公感到愤怒，其他人呢。</p>
+<p>另外一个观点，大学最重要是要学到什么？我认为，大学最重要的是要学会学习。这里所说的学习不是普通的按照课本，按照老师的要求来学习，如果真那样，那我们和专业院校<br>又有什么区别。首先我们要学会自我学习，现在我都大三了，但进入大学这么久，学校就只教了C语言(不是谭浩强的，但我觉得那本教材连谭浩强都不如)，幸好，我经常浏览<br>一些开放的论坛和微博等，对新技术新知识了解了很多，所以自己自学了很多东西，C++/MySQL/Python等。另外，跟重要的，我建立了自我学习的意识，不仅仅<br>是计算机相关的专业知识，还要学习一些人文知识和其他学科的知识，在Coursera上面我已经获得了三个Statement of<br>Finished，虽然只是完成证明，但我都是认真学习了的，在Coursera上不适合做专业的学习，所以学习人文课程就非常好。</p>
+<p>最后享受大学最后两年吧！</p>
+<p>语录</p>
+<p><strong>如果不是感到迷茫，就不知道突破；如果不是克服迷茫的过程，就找不到自信。</strong></p>
+<p><strong>现在的大学，谈个人理想、民族命运的声音渐微，上大学被视为谋生、当官、发财的途径和资本，而有些立志从事实业，担负民族振兴职责的学子常常遭到鄙视。大学应该是“追求学问的地方，而非资格养成之所”。</strong></p>
+<p><strong>享受自由的大学是需要资格的。陷入迷茫，只因为不能享受这份曾经渴望的自由。</strong></p>
+<p><strong>大学的精彩在于自学，这不是指自己一个人闷头去学，而是一种有帮助的自学，一种到处都可以借力的自主性学习，只不过，帮助你的力量需要自己去发现。</strong></p>
+<p><strong>学编程不拘于语言，学语言不限于平台。</strong></p>
+<p><strong>练出的功夫不只是体现在拳脚上，而是无论哪里发力，使什么样的兵器，丹田之气都能随之跟进。</strong></p>
+<p><strong>会学习意味着会根据自身的基础和主客观条件，去极化、调控和评价学习。</strong><br><strong>会学习意味着会利用最少的时间、尽量少的经历，以最快的速度获取尽可能多的知识和技能。</strong><br><strong>会学习意味着会自己把握学习的重点，不满足于只获取某种知识，而是重点掌握思维过程和方法。</strong><br><strong>会学习意味着会把所学知识应用到生产和社会需要的实践中去。</strong></p>
+<p><strong>课内学习主要保证抽象能力的发展，而在课外自主的学习中，让实践成为主流，朝着打开个人经验的方向，安排出有效的学习。</strong></p>
+<p><strong>最有效的办法谁都知道，那就是找到学习、生活该有的节奏，稳定地行动，坚定地前进。</strong></p>
+<p><strong>没有自学，不是大学。</strong></p>
+<p><strong>教是为了不教。</strong></p>
+<p><strong>大学所能给予的只是成长。大学，从某种意义上讲，本来就不是要用来做什么的。只有摆脱附加在其上的各种功利的期望，才能够获得与心灵成长、能力增长一致的学习。</strong></p>
+<p><strong>在我理想的大学中，同学们的学习将是这样的：接受着一项专业教育，由学校系统地传授者专业知识，接受着一种“正规”的训练，另一方面，学生能够根据自己的兴趣和感觉自由地拓展，拓展的内容有的是和现有“系统”相关的，有的完全是”节外生枝“。如此形成的是每个人个性的系统。这是大学里最有生命力的独特风景。</strong></p>
+<p><strong>吃多了拉是队列，吃多了吐就是栈。</strong></p>
+<p><strong>20岁的人对30岁的事不用纠结，20岁不用将别人30岁遇到的困扰当作理由而退缩。</strong></p>
+<p><strong>计算机是如此重要，因为不能把它只留给男人去做！</strong></p>
+<p><strong>兴趣本来是前行中最好的老师，但现在也是为逃避现实，不去努力找到的最好的理由和借口。</strong></p>
+<p><strong>一个要面对现实的人，必须原谅过去在自己身上发生的一切，要有这种大度。</strong></p>
+<p><strong>以兴趣为理由放慢前行的脚步是对青春的一种亵渎，兴趣很重要但其作用并没有大到成为决定性的和唯一的因素。</strong></p>
+<p><strong>因项目决定人如何参加。————————————————————这也是我认为的</strong></p>
+<p><strong>”开发经验“不是”工作经验“，他们似乎更在乎有个借口，将那些读了几年死书的人挡在门外。</strong></p>
+<p><strong>大一大二是夯实基础和开阔视野期，大三大四是目标实现期。大二结束大三开始的那段时间确定目标，而目标中必须明确主要的应用方向。</strong></p>
+<p><strong>大一不知道自己不知道，大二知道自己不知道，大三不知道自己知道，而大四知道自己知道。</strong></p>
+<p><strong>在年少轻狂之时想别人不敢想的，做别人不敢做的 ，实在是一件幸运的事，这也成就了许多追梦人。做了却没有达到是正常的，但不敢想不敢做，无论何时都是一种遗憾。即使这个梦想没有实现，努力也会积淀下来，成为新的能量来源。</strong></p>
+<p><strong>有人将迷茫常挂在嘴上，任由该做的事情一拖再拖，这样的迷茫，就是一个借口！</strong></p>
+<p><strong>坚决前行，就是给知道一个机会。</strong></p>
+<p><strong>给予求学越多的功利，意味着越多的走样，其中的失望也会越大。</strong></p>
+<p><strong>面对一次次“裸考”不过，还要调侃高中只会考试，大学连考试也不会了的大学生，我不作评论。</strong></p>
+<p><strong>有效的学习是根本，学有所成是核心，外在的东西可以有，内在的东西不可少。</strong></p>
+<p><strong>让这种奋斗来得更坚决一些，不要为自己暂时不能拥有的而纠结，不必为我们不屑的丑陋现实而低头，我们就用读书人的方式面对浮躁的社会。</strong></p>
+<p><strong>在进取的方向上，选择了做草根，就是要向泥土的深处钻，这是作为草根应该选择的方向。</strong></p>
+<p><strong>其实，我们那没有战斗力的爹将你送到这个平台已经付出了很多的努力了。二代们总是吸引人眼球的，个别无能的二代总得造出点什么来告诉人们他的存在。</strong></p>
+<p><strong>许多人对精神世界失去了兴趣，又在对物质的追求中迷失了方向。</strong></p>
+<p><strong>写作，是让一个人活得更明白的方法。</strong></p>
+<p><strong>有勇气来改变可以改变的事情，有胸怀来接收不可改变的事情，有智慧来分辨两者的不同。——李开复。</strong></p>
+<p><strong>上大学，并不是每个人成才成长的必经之路，但大学却的确是一个值得经历的阶段，这和毕业证无关，和找工作或许有关，也许无关。其实很多人把“知识改变命运”想成了“大学改变命运”。“大学改变命运”是一个绝对的伪命题，但有些人就迷信这个。 </strong></p>
+<p>封面图片来自Pixebay</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://haofly.net/python-Chrome-QQ-friends/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="haofly">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="豪翔天下">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="豪翔天下" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/python-Chrome-QQ-friends/" itemprop="url">
+                  使用Python3和Chrome获取QQ好友列表
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-28T15:22:01+08:00">
+                2014-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/就是爱玩/" itemprop="url" rel="index">
+                    <span itemprop="name">就是爱玩</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/python-Chrome-QQ-friends/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="python-Chrome-QQ-friends/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近想获得所有QQ好友的QQ帐号列表，但是腾讯居然没有提供这个功能，这让我很苦恼。由于QQ客户端上的数据我并不知道怎么获取(有人说可以提取手机QQ的数据库来<br>获取，但我对那个也是一无所知)，于是我想到了通过QQ空间里的某些地方来寻找。其实QQ空间的寻找好友功能里面就能够查看到很多的好友，但是却只能查看亲密度前面2<br>00的好友，对于我这种QQ好友比较多的人来说实在没办法。其实我对http等不大了解，最终是通过一个很笨的方法来获取的，如下：</p>
+<p>首先，在QQ空间顶部面板处有一个搜索好友和用户的搜索框，输入一个数字即可显示以该数字为关键词的好友，最多显示5个。于是通过Chrome的<strong>右键-&gt;审查元素
+</strong>功能获取我的请求信息：<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-Chrome-QQ-album_0.jpg" alt=""><br>随便输入一个数字，在下面的Network监听处会出现所请求的cgi脚本的信息<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-Chrome-QQ-album_1.jpg" alt=""><br>点击JS脚本，找到Preview里面有刚才显示的QQ帐号信息的那个就是它了，然后鼠标右键，copy as<br>cURL即可得到curl请求信息(如果在linux下直接命令行就搞定了)</p>
+<p>注：经过研究发现，在处理_<strong>subprocess.check_output(args)</strong><em>的返回值时，直接</em><strong>subprocess.check_out<br>put(args).decode(‘utf-8’)</strong>_，直接将含有中文的bytes转换utf编码的str，这样可以避免很多编码问题</p>
+<pre><code>#-_- coding: UTF-8 -_-
+import os, sys
+import re
+import subprocess
+import shlex
+import json
+import codecs
+
+
+
+
+# 添加curl的环境变量
+
+
+
+
+os.putenv(&apos;PATH&apos;, &apos;C:\\Program Files (x86)\\Git\\bin&apos;)
+
+
+
+
+# 分解原始请求
+
+
+
+
+origin = &apos;&apos;        # 这里粘贴从浏览器copy过来的cURL请求
+temp = origin.split(&apos;&amp;search=1&apos;)
+temp[0] += &apos;&amp;search=&apos;
+
+
+
+
+# 结果集合
+
+
+
+
+qqlist = set()
+
+
+
+
+# 查找并移去含有中文的字段
+
+
+
+
+# 应该默认遇到逗号结束，如果遇到的是大括号，那么就相当于在最后
+
+
+
+
+def remove(convert, char):
+    while(convert.find(char) &gt; 0):
+        pre = convert.find(char)    # pre 表示前面的位置
+        now = pre + 1
+        while(True):
+            if(convert[now] == &apos;\}&apos; and convert[now+1] == &apos;,&apos; and convert[now+2] == &apos;\{&apos;):
+                break
+            # \}]
+            elif(convert[now] == &apos;\}&apos; and convert[now+1] == &apos;]&apos;):
+                break
+            elif(convert[now] == &apos;,&apos; and convert[now+1] == &apos;&quot;&apos;):
+                break
+            else:
+                now += 1
+        if(convert[now] == &apos;,&apos;):
+            if(convert[now+1] == &apos;&quot;&apos; and convert[now+2] == &apos;,&apos;):
+                now += 3
+            else:
+                now += 1
+        else:
+            pre -= 1
+        leave = convert[: pre]
+        leave += convert[now :]
+        convert = leave
+    return convert
+
+
+
+
+def search(pre):
+    for i in range(10):
+
+
+
+
+
+        curl = temp[0] + pre + str(i) + temp[1]
+        print(&apos;当前&apos; + pre + str(i))
+
+        # 执行curl命令并获取返回结果，并对结果字符串进行处理转换为json对象
+        args = shlex.split(curl)
+        result = str(subprocess.check_output(args)).replace(&apos; &apos;, &apos;&apos;)
+        convert = result.replace(&apos; &apos;, &apos;&apos;).split(&apos;callback(&apos;)[1].split(&apos;);&apos;)[0]
+
+        # 这一句话可以减少很多时间
+        if(convert.find(&apos;100006&apos;) &amp;lt; 0):
+            continue
+
+        # 我郁闷，我要直接把那几个字段给删除，这些人起昵称太奇葩了
+        convert = remove(convert, &apos;&quot;CA&quot;&apos;)
+        convert = remove(convert, &apos;&quot;TA&quot;&apos;)
+        convert = remove(convert, &apos;&quot;CB&quot;&apos;)
+        convert = remove(convert, &apos;&quot;TB&quot;&apos;)
+        convert = remove(convert, &apos;&quot;hitFieldContent&quot;&apos;)
+        convert = remove(convert, &apos;&quot;TF&quot;&apos;)           
+        output = json.loads(convert)
+
+        &quot;&quot;&quot;
+        如果想获取其中的中文信息，可以改变一下其编码的字符
+        regex = re.compile(r&apos;\\\\(?![/u&quot;])&apos;)
+        fixed = regex.sub(r&quot;\\\\\\\\&quot;, convert)
+        &quot;&quot;&quot;
+
+        if(&apos;data&apos; not in output):
+            continue
+        for sub in output[&apos;data&apos;]:
+            if(sub[&apos;llBoxType&apos;] == 100006):
+                for one in sub[&apos;sData&apos;][&apos;resultData&apos;]:
+                    if(one[&apos;intimacy&apos;] == &apos;0&apos;):
+                        continue
+                    qqlist.add(one[&apos;NM&apos;])
+                if(len(sub[&apos;sData&apos;][&apos;resultData&apos;]) == 5):
+                    search(pre + str(i))
+</code></pre><p>for i in range(10, 100): search(str(i))</p>
+<h1 id="输出最终结果"><a href="#输出最终结果" class="headerlink" title="输出最终结果"></a>输出最终结果</h1><p>fp = codecs.open(‘1129029735.txt’, ‘a’, ‘utf-8’) fp.write(‘总共搜索到’ +<br>str(len(qqlist)) + ‘个QQ\n’) result = [qq + ‘\n’ for qq in sorted(qqlist)]<br>fp.writelines(result) fp.close()</p>
+<p>由于前面两位QQ号基本上都可以搜索到大于5位的好友，所以，我从100到999逐个开始搜索，如果发现小于5个就进入下一个，如果等于5个，那就递归。这个请求所返<br>回的不是标准的JSON数据，总是有这样或者那样的干扰，看我的remove函数你们就可以发现其中出现的诸多问题，其实我最先还想把QQ昵称一起提取出来的，后来发<br>现QQ昵称里面的奇葩字符太多了，真不知道腾讯的人是怎么处理的，还是我对中文字符处理技术比较薄弱。最终，搜索我QQ上400多个好友花费时间约为9分钟(忘了统计<br>请求数量了，应该只有1000多次的请求)：<br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-Chrome-QQ-album_2.jpg" alt=""><a href="http://haofly.net/wp-content/uploads/2014/09/qqlist3.jpg"><br><img src="http://7xnc86.com1.z0.glb.clouddn.com/python-Chrome-QQ-album_3.jpg" alt="">  
+</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="haofly" />
+          <p class="site-author-name" itemprop="name">haofly</p>
+          <p class="site-description motion-element" itemprop="description">豪翔天下的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">228</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haoflynet" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/haoflynet" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              小伙伴们
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.phodal.com" title="Phodal" target="_blank">Phodal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zkzhao.github.io/" title="zkzhao" target="_blank">zkzhao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.qingguoing.com/" title="倾国倾城的博客" target="_blank">倾国倾城的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haofly</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoflynet"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
