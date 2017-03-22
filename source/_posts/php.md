@@ -43,15 +43,21 @@ $arr['a'][] = 'b';
 ```
 
 ### 字符串
+
+PHP里面单引号和双引号确实有些地方的用法是不同的，比如匹配换行符的时候
+
 ```php
 json_decode(string, $assoc=false)	# 将字符串转换为json对象,$assoc=true时返回array而不是object
 mb_strlen($str, 'utf-8') # 求中文字符串长度
 mb_substr($str, $start, $length, 'utf-8'): 字符串分割，可以分割中文哟，如果要获得所有右边的，那么$length不用填或者填上NULL，如果版本不行那就是用功能弱一点的substr
 nl2br() # 将字符串中的\n转换成网页的换行符<br>
 strlen() # 求字符串长度
+strpos('abc', 'a'); 	# 在字符串中查找第一次出现位置，没找到返回false
 str_replace(搜索值，替换值，目标)	# 字符串替换
+str_replace("\n", "", $content);	# 去除换行符
+trim($string);	# 去除字符串前后的空白字符，如果要去除所有的字符只能使用preg_replace('/\s+/', '', $string)，这是stackoverflow上面给出的答案
 
-strpos('abc', 'a'): 在字符串中查找第一次出现位置，没找到返回false
+
 $a . $b . 'abc':字符串连接直接用点号
 explode(',', $str)	# 字符串分割，第三个参数大于0表示限制分组数量
 array_map('strrev', explode('-', strrev($a), 2))	# 字符串分割，逆向
