@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-03-20 17:33:00
+updated: 2017-03-23 17:33:00
 categories: php
 ---
 # Laravel指南
@@ -764,11 +764,23 @@ $this->app['Mailer']					# 这样也可以
 public function __construct(Mailer $mailer)	# 在控制器、事件监听器、队列任务、过滤器中进行注册
 ```
 
-
-
 ### 事件Event
 
 应用场景: 1.缓存机制的松散耦合，比如在获取一个资源时先看是否有缓存，有则直接读缓存，没有则走后短数据库，此时，通常做法是在原代码里面直接用`if...else...`进行判断，但有了缓存后，我们可以用事件来进行触发
+
+### 重要对象
+
+#### Request
+
+```php
+$request->route()	# 通过request获取Route对象
+```
+
+#### Route
+
+```php
+$route->parameters()	# 获取路由上的参数，即不是GET和POST之外的，定义在路由上面的参数
+```
 
 ### 帮助函数
 
