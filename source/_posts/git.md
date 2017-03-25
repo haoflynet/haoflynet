@@ -69,7 +69,8 @@ git reset --hard 233333 # 指定提交ID的回退
 git push -f origin master	# remote端也更新
 
 # 分支操作
-git branch -a  # 查看当前分支
+git branch -a  # 查看所有分支
+git branch remotes/origin/2.0.0	# 直接切换到远程分支
 git checkout origin/dev	# 检出远程分支到本地，此时会显示如下:
 *(HEAD detached at origin/dev)
 master
@@ -159,10 +160,10 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 
 - **.gitignore无效，该忽略的依然没有被忽略**
 
-  	git rm -r --cached .
-  	git add .
-  	git commit -m "fixed untracked files
-  这样会删除github上面已经提交了的但是现在忽略了的文件，如果要在github上面保留一份，那么执行git add -f filename
+   git rm -r --cached .
+   	git add .
+   	git commit -m "fixed untracked files
+   这样会删除github上面已经提交了的但是现在忽略了的文件，如果要在github上面保留一份，那么执行git add -f filename
 
 - **There was a problem with the editor 'vi'**  
   vi编辑器的问题吧，直接换成vim
