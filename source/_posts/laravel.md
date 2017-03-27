@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-03-23 17:33:00
+updated: 2017-03-25 17:33:00
 categories: php
 ---
 # Laravel指南
@@ -830,6 +830,10 @@ $this->visit('/')->click('About')->seePageIs('/about-us') # 直接点击按钮�
 $this->seePageIs('/next')	# 验证当前url的后缀是不是这个
 $this->visit('/')->see('Laravel 5')->dontSee('Rails')	# 查看页面是否存在某个字符串或者不存在
   
+# 用户登录
+$user = User::find(1)
+$this->be($user)		# 直接在测试用例添加这个即可
+  
 # 表单填写
 $this->type($text, $elementName)	# 输入文本
 $this->select($value, $elementName)	# 选择一个单选框或者下拉式菜单的区域
@@ -860,6 +864,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 factory(App\User::class, 50)->create()->each(function($u) {
   $u->posts()->save(factory(App\Post::class)->make());
 });
+
+# 直接对控制器进行测试可以这样做
+public function setUp(){
+  $this->xxxController = new xxxController()
+}
+
+public function testIndex{
+  $re = $this->xxxController->index(new Request([]));
+  var_dump($re->content);
+  var_dump($re->isSuccessful());
+}
 ```
 
 ## TroubleShooting

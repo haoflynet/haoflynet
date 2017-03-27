@@ -127,11 +127,15 @@ serialize()
 unserialize()
   
 # 一些自省(反射)方法
+func_get_args()					# 获取当前方法所有的参数
 get_class(className)			# 取得当前语句所在的类名
 get_class_methods(className)	# 取得相应class所包含的所有的方法名
 get_class_vars(clasName)		# 取得相应class所包含的所有的变量名
-func_get_args()					# 获取当前方法所有的参数
+get_object_vars($object)		# 获取类或者对象的属性，返回数组
+property_exists($object, $key)	# 类或者对象是否存在某个属性
 setAttribute($name, $value)		# 设置函数的属性或者直接设置函数的内部变量
+$this->{$key} = $value			# 给类动态添加属性
+$this->{$key}					# 返回对象指定的属性
 
 # 根据类名知道类的定义文件
 $reflector = new ReflectionClass('className');
