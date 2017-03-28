@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-03-25 17:33:00
+updated: 2017-03-27 17:33:00
 categories: php
 ---
 # Laravel指南
@@ -911,7 +911,8 @@ public function testIndex{
 
 - **插入数据的时候出现`MassAssignmentException in Laravel`错误**  
 
-   # 需要给数据表设置可访问的字段，在Model里面
+   需要给数据表设置可访问的字段，在Model里面
+
    	protected $fillable = array('字段1', '字段2');
 
 - **php artisan db:seed出现`[ReflectionException] Claxx XXXTableSeeder dows not exist`错误**
@@ -920,7 +921,7 @@ public function testIndex{
 - **定义/修改字段类型为timestamp时出现错误:"Unknown column type "timestamp" requested."**
   按照[[How do I make doctrine support timestamp columns?](http://stackoverflow.com/questions/34774628/how-do-i-make-doctrine-support-timestamp-columns)]的做法，目前最简单的方式是直接用`DB::statement()`来写SQL语句
 
-- ​
+- **POST数据的时候出现`The payload is invalid`**，我遇到这个情况是因为在做复杂的表单提交，直接提取`X-XSRF-TOKEN`的值，但是由于没有转移，导致后端token揭秘失败
 
 ## 相关文章
 
