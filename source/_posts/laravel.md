@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-03-27 17:33:00
+updated: 2017-03-28 20:33:00
 categories: php
 ---
 # Laravel指南
@@ -330,18 +330,19 @@ public function up()
 }
 ```
 
-#### 表的定义
+#### 表/Model的定义
 
 ```php
 class User extends Model{
   public $timestamps = false;			// 设置该表不需要使用时间戳，updated_at和created_at字段
+  protected $primaryKey = 'typeid'		// 不以id为主键的时候需要单独设置
+  protected $primaryKey = null;			// 没有主键的情况
+  protected $incrementing	= false;	// 不使用自增主键
   protected $connection = 'second';		// 设置为非默认的那个数据库连接
   protected $fillable = ['id', 'name']; // 设置可直接通过->访问或者直接提交保存的字段
   protected $table = 'my_flights';		// 自定义表明，默认的表明会以model的复数形式，需要注意的是，英语单词复数的变化有所不同，如果取错了表明活着以中文拼音作为表明，有时候就需要明确表的名称了
 }
 ```
-
-
 
 #### 字段的定义
 
