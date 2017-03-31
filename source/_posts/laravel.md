@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-03-28 20:33:00
+updated: 2017-03-29 20:33:00
 categories: php
 ---
 # Laravel指南
@@ -673,7 +673,7 @@ class PostPolicy{
 ```php
 # 控制器中使用
 use Gate;
-Gate::denies('update-post', $post) {abort(403, 'Unauthorized action')}
+if (Gate::denies('update-post', $post)) {abort(403, 'Unauthorized action')}
 Gate::forUser($user)->allows('update-post', $post) {}
 Gate::define('delete-comment', function($user, $post, $comment){})	# 传递多个参数
 Gate::allows('delete-comment', [$post, $comment])	# 也可这样传递多个参数
