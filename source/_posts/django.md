@@ -263,33 +263,40 @@ connection.queries			# 会返回一个所有执行过的SQL的列表，并且每
 
 #### 查询记录
 
-	Blog.objects.all()   # 获取该表的所有记录，返回的是记录对象组成的列表
-	Blog.objects.get(pk=1)      # 根据主键获取数据
-	Blog.objects.get(name="")  # 只会找到第一个匹配的数据
-	Blog.objects.filter(name="")# 这个就会找到匹配的多个数据
-	Blog.objects.filter(name__contains="")  # 模糊查找name字段的值，返回列表
-	Blog.objects.order_by("字段1", "字段2")   # 排序
-	Blog.objects.all().order_by("字段")
-	Blog.objects.count()     # 返回记录总数
-	Blog.objects.values('id', 'name')  # 相当于select id name from Blog
-	Blog.objects.values('name').distinct()   # distinct在django的mysql引擎中无法对field进行distinct操作，所以需要这样做
-	Blog.objects.values_list('id', flat=True) # 查询该字段的所有值并且返回的是id的列表，而不是包括了名字的字典
-	Blog.objects.latest('id')  # 根据某个字段查找其最后一条记录
-	Blog.objects.filter(time__gte = '2015-07-23', time__lte = '2015-07-24') # 大于等于并且小于等于，不加e表示不能等于
-	Blog.objects.filter(time__isnull = True)  # 判断某个字段是否为空
-	Blog.objects.all().exclude(id=7)  # 排除
-	Blog.objects.filter('time__year': '2015', 'time__month': '08', 'time__day': '17')：按年月日查询日期，可仅查询其中某一个条件
-	
-	# Q查询，可以对关键字参数进行封装，可以使用&,|,~等操作
-	from django.db.models import Q
-	Blog.objects.filter( Q(name__startswith='wang') | ~Q(name__startswith='hao') )
-	Blog.objects.get( Q(name__startswith='wang'), Q(name__startswith='hao')) # 逗号就可以直接表示and了
+```python
+Blog.objects.all()   		# 获取该表的所有记录，返回的是记录对象组成的列表
+Blog.objects.get(pk=1)      # 根据主键获取数据
+Blog.objects.get(name="")  	# 只会找到第一个匹配的数据
+Blog.objects.filter(name="")# 这个就会找到匹配的多个数据
+Blog.objects.filter(name__contains="") 	# 模糊查找name字段的值，返回列表
+Blog.objects.order_by("字段1", "字段2")  # 排序，order_by不加任何参数表示不需要排序
+Blog.objects.all().order_by("字段")
+Blog.objects.count()     				# 返回记录总数
+
+Blog.objects.values('id', 'name')  		# 相当于select id name from Blog，返回的事是一个字典
+Blog.objects.values('name').distinct()  # distinct在django的mysql引擎中无法对field进行distinct操作，所以需要这样做
+Blog.objects.values_list('id', flat=True)# 查询该字段的所有值并且返回的是id的列表，而不是包括了名字的字典
+Blog.objects.all().defer('title')		# 仅仅取某个字段，这里返回是一个model对象
+Blog.objects.all().only('title')		# 仅仅取某个字段，也是返回一个model对戏那个
+Blog.objects.all().values_list('title')	# 仅仅取某个字段，这里返回一个数组
+
+Blog.objects.latest('id')  				# 根据某个字段查找其最后一条记录
+Blog.objects.filter(time__gte = '2015-07-23', time__lte = '2015-07-24') # 大于等于并且小于等于，不加e表示不能等于
+Blog.objects.filter(time__isnull = True)# 判断某个字段是否为空
+Blog.objects.all().exclude(id=7)  		# 排除
+Blog.objects.filter('time__year': '2015', 'time__month': '08', 'time__day': '17')：按年月日查询日期，可仅查询其中某一个条件
 
 
-	        print(People.objects.filter(
-	        (Q(birth_lunar__month=old_month) & Q(birth_lunar__day=old_day)) |
-	        (Q(birth_new__month=new_month) & Q(birth_new__day=new_day))
-	    ).query)
+# Q查询，可以对关键字参数进行封装，可以使用&,|,~等操作
+from django.db.models import Q
+Blog.objects.filter( Q(name__startswith='wang') | ~Q(name__startswith='hao') )
+Blog.objects.get( Q(name__startswith='wang'), Q(name__startswith='hao')) # 逗号就可以直接表示and了
+        print(People.objects.filter(
+        (Q(birth_lunar__month=old_month) & Q(birth_lunar__day=old_day)) |
+        (Q(birth_new__month=new_month) & Q(birth_new__day=new_day))
+    ).query)
+```
+
 #### 新增记录
 
 	post = Blog(userName="wanghao", userId=12)
