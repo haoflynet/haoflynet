@@ -247,6 +247,8 @@ curl -O url			# 将文件下载到本地用它本来的命名
 
 #### Crontab定时任务
 
+要使用`cron`服务，首先要安装启动`cron`: `sudo apt-get install cron -y && cron`
+
 ```shell
 crontab -e # 直接打开定时任务文件进行编辑
 格式如下：
@@ -263,7 +265,7 @@ crontab -e # 直接打开定时任务文件进行编辑
 */2 * * * 			# 每隔两分钟
 需要注意的是coontab是不会自动加载环境变量的哟，所以有时候发现命令没有被执行，可能是这个原因
 
-# crontab日志，默认是关闭的，如果要打开可以在配置文件里面进行打开,vim /etc/rsyslog.d/50-defaullt.conf
+# crontab日志，默认是关闭的，如果要打开可以在配置文件里面进行打开,vim /etc/rsyslog.d/50-defaullt.conf，当然要看日志首先也得有日志服务apt-get instal rsyslog
 cron.*	/var/log/cron.log	# 将cron前面的注释去掉
 service rsyslog restart		# 重启rsyslog
 ```
