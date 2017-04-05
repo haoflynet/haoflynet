@@ -36,7 +36,7 @@ Django的扩展包的包，带有非常方便的一些工具，比如自动打�
 
 ##### [django-debug-toolbar](https://github.com/django-debug-toolbar/django-debug-toolbar)
 
-Django的调试工具，应该非常好用，未使用过
+Django的调试工具集，包含了很多的调试及性能优化工具，应该非常好用，未使用过
 
 ##### [django-haystack](https://pypi.python.org/pypi/django-haystack/2.4.0)
 
@@ -173,6 +173,10 @@ Python科学计算库
 
 轻量级的配置文件读取工具，支持PHP/INI/XML/JSON/YAML文件
 
+##### [guzzle](https://github.com/guzzle/guzzle)
+
+比[requests](https://github.com/rmccue/Requests)更好用的请求库，已经放弃`requests`库了，更新很慢，无法上传文件，目测作者也已经放弃这个库了，已经没有回复PR了。。。
+
 ##### [jsonmapper](https://github.com/cweiske/jsonmapper)
 
 自动将JSON对象转换为相应的类对象，相当于Java里面的bean
@@ -180,10 +184,6 @@ Python科学计算库
 ##### [PhpSms](https://github.com/toplan/phpsms)
 
 可能是目前最聪明、优雅的php短信发送哭了。从此不再为各种原因造成的个别发送失败而烦忧。。。。
-
-##### [requests](https://github.com/rmccue/Requests)
-
-PHP的requests包
 
 ### Java
 

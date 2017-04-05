@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-03-15 16:02:00
+updated: 2017-03-31 16:02:00
 categories: database
 ---
 # MySQL/MariaDB使用教程
@@ -41,27 +41,45 @@ TRUNCATE TABLE 表名 # 这种方式很快，但不会产生二进制日志，�
 ALTER TABLE 表名 ADD 字段名 属性
 ## 给表删除字段
 ALTER TABLE 表名 DROP COLUMN 字段名  
+# 修改列属性
+ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	
 ```
 
 #### 数据记录操作
 
+##### 查询
+
 ```shell
-# 字段操作
-update table_1 as a, (select id from biao_2 where name='a') as b set a.title='xx' where a.id=b.id								# 多表子查询
-SELECT * FROM table WHERE id >= (SELECT FLOOR(RAND() * (SELECT MAX(id) FROM table))) ORDER BY id LIMIT 1								 # 随机读取数据库记录
-SELECT * FROM table_name limit m, n		# 分页功能，获取m开始的n条记录
-
-## 修改字段
-ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
-## 插入数据
-INSERT INTO 表名(属性列表) VALUES(值列表)
-INSERT IGNORE INTO ...  # 忽略重复的记录
-## 更改某字段的值
-UPDATE 表名 SET 字段=新值 WHERE 条件
-
-
-
+# 普通查询
+SELECT * FROM table_A
+# 分组查询
+SELECT count(column_a) as count FROM table_A GROUP_BY coulumn_b
+# 多表子查询
+update table_1 as a, (select id from biao_2 where name='a') as b set a.title='xx' where a.id=b.id
+# 随机读取数据库记录
+SELECT * FROM table WHERE id >= (SELECT FLOOR(RAND() * (SELECT MAX(id) FROM table))) ORDER BY id LIMIT 1
+# 分页功能，获取m开始的n条记录
+SELECT * FROM table_name limit m, n		
 ```
+##### 修改/更新
+
+```shell
+## 更改某字段的值，特别需要注意的是，mysql和mariadb是没有update from的，sql server才有
+UPDATE 表名 SET 字段=新值 WHERE 条件
+UPDATE table_A, table_B SET table_A.a=table_B.a 
+```
+
+##### 删除
+
+##### 插入
+
+```shell
+# 插入数据
+INSERT INTO 表名(属性列表) VALUES(值列表)
+# 忽略重复的记录
+INSERT IGNORE INTO ... 
+```
+
 ### 系统相关
 
 ```shell
