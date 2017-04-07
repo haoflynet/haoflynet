@@ -133,6 +133,32 @@ AppConfig.get_model(model_name)	# 返回具体的Model
 AppConfig.ready()				# 执行初始化任务
 ```
 
+## 请求与响应
+
+```python
+HttpResponse('字符串', content_type="text/plain") # 指定content_type的响应
+    
+HttpRequest.method   # 请求种类
+HttpRequest.GET      # 获取所有的GET参数(字典)
+HttpRequest.POST     # 获取POST的参数(字典)
+HttpRequest.scheme   # 表示请求的模式，是http还是https
+HttpRequest.cookies  # 包含了所有的cookie信息
+HttpRequest.session  # session信息
+HttpRequest.FILES    # 包含了上传的文件
+HttpRequest.meta     # 包含了http请求的各种headers
+HttpRequest.user     # 当前的登录的用户，配合着auth使用
+
+get_host()           #不解释了吧
+get_full_path()      # 获取路径，不包含域名
+build_absolute_uri() # 获取完整路径
+is_secure()          # 如果是https返回true，否则false
+is_ajax()            # 是否是ajax请求
+
+return JsonResponse(error, status = 422)	# 返回指定状态码
+ip = request.META.get('REMOTE_ADDR')	# 获取用户IP
+return HttpResponseRedirect('/')		# 重定向
+```
+
 ## 路由与视图
 
 **url**: web访问请求的入口(相当于Laravel里的路由)
@@ -176,15 +202,21 @@ Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系
 
 	fromo django.db import models
 
-	class User(models.Model):
-		username = models.CharField(max_length = 20)	# 用户名字段
-		create_time = models.DateTimeField(auto_now_add = True)	# 注册日期字段，如果同时有两个字段对应着同一个外键，那么久得重命名字段名了，比如：
-		receiver = models.ForeignKey(Users, null=True, related_name='receiver')
-		poster = models.ForeignKey(Users, null=True, related_name='poster')
-		
-		def __str__(self):
-			'''这个函数可以用于str(obj)函数来输出该对象的信息，默认是表名'''
-			return self.username
+```python
+class User(models.Model):
+	username = models.CharField(max_length = 20)	# 用户名字段
+	create_time = models.DateTimeField(auto_now_add = True)	# 注册日期字段，如果同时有两个字段对应着同一个外键，那么久得重命名字段名了，比如：
+	receiver = models.ForeignKey(Users, null=True, related_name='receiver')
+	poster = models.ForeignKey(Users, null=True, related_name='poster')
+	
+	def __str__(self):
+		'''这个函数可以用于str(obj)函数来输出该对象的信息，默认是表名'''
+		return self.username
+    
+    class Meta:
+        db_table = '自定义表名'
+        unique_together = ('column_1', 'column_2')	# 联合唯一键
+```
 当建立好models过后，执行如下命令就可以在数据库中新建或更新数据表了：
 
 	python manage.py makemigrations
@@ -441,12 +473,15 @@ Django使用内建的paginator模块进行分页的操作，十分方便。使�
 
 这样，在该app的view中就可以这样使用templates下的test.html模板文件了。例如：
 
-	def test(request):
-		return render(request, 'test.html')
+```python
+def test(request):
+	return render(request, 'test.html')
+```
 ### 参数传递
 要向模板中传递参数，可以给render添加第三个参数，该参数其实是一个字典，在模板中可以直接使用该字典的key，例如：
-​	
-	return render(request, 'test.html', {'name1': value1, 'name2': value2} )
+```python
+return render(request, 'test.html', {'name1': value1, 'name2': value2} )
+```
 这样，在模板文件test.html中就可以直接`{{ name1 }}`来使用`name1`的值了。
 
 ### 继承与引用
@@ -464,13 +499,11 @@ Django使用内建的paginator模块进行分页的操作，十分方便。使�
 
 ### 静态文件css、js、img
 静态文件一般当然是要存放在自己的app里面，这时候，就应该指定静态文件的路径，在project的配置文件settings.py中添加如下配置：
-​	
 	STATICFILES_DIRS = (
 		os.path.join(BASE_DIR, 'static'),
 		'f:/project/app/static', # 无论是windows还是linux都要用左斜杠哟
 	)
 在模板中使用静态文件就这样：
-​	
 	{% load staticfiles %}
 	<link href="{% static 'css/style.css' %}" rel="stylesheet">
 
@@ -683,118 +716,35 @@ in Django](https://docs.djangoproject.com/en/1.8/topics/auth/customizing/)
 
 ### 退出登录
 
-	from django.contrib.auth import logout
-
-	def logout_view(request):
-		logout(request)
-
+```python
+from django.contrib.auth import logout
+def logout_view(request):
+	logout(request)
+```
 ### 限制登录用户访问路由
 
 某些路由只能登录用户才能访问，那么只需要添加这个装饰器：
 
-	from django.contrib.auth.decorators import login_required
+```python
+from django.contrib.auth.decorators import login_required
+@login_required
+def my_view(request):
+    ......
+```
+ 未登录的用户将会重定向到`settings.LOGIN_URL`去
 
-	@login_required
-	def my_view(request):
-	    ......
- 未登录的用户将会重定向到`settings.LOGIN_URL`去       
+## Channels
 
+用于与websockets通信
 
+## signal
 
+[参考](http://www.weiguda.com/blog/38/)django中signal与操作系统的signal是完全不一样的.Django的signal是一种同步的消息队列.通常在以下情况进行使用：
 
-                      # TroubleShooting
-
-                      1.for循环获取index：
-
-
-
-                          \{\% for item in item_list \%\}
-                              \{\{ forloop.counter \}\}  \{\# 从1开始的序号 \#\}
-                              \{\{ forloop.counter0 \}\} \{\# 从0开始的序号 \#\}
-                          \{\% endfor \%\}
-    
-                      2.直接将html生成成变量：
-
-
-
-                          from django.template import Context, Template
-                          t = Template("My name is \{\{ my_name \}\}.")
-                          c = Context(\{"my_name": "Adrian"\})
-                          output = t.render(c)
-                          return HttpResponse(output)  # 还能直接将HTML返回成页面
-    
-                      3.使模板对HTML字符串进行转义 如果有一个HTML格式字符串，比如'<strong>haofly</strong>'，那么当把它作为一个变量传递到htm
-                      l中区的时候，会原封不动的保留，很明显我们有时候并不想这样，而是真的想将'haofly'进行加粗，可以这样做：
-
-
-
-                          \{\{ variable name | safe\}\}
-
-
-
-
-
-
-
-            ## TroubleShooting：
-
-              * 自定义表名：在class model名()里面指明meta类，例如：
-
-                    class Server(models.Model):
-                    object_id = models.AutoField(primary_key = True)
-
-
-
-
-                    class Meta:
-                    db_table = '自定义表名'
-
-
-              * migrate的时候出现类似这样的错误：
-
-                    django.db.utils.OperationalError: (1091, "Can't DROP 'os_id_id'; check that column/key exists")
-
-            原因是你在试图创建一个已经存在的column或者删除一个已经删除的column，这时候需要在migrate后面添加一个参数忽略这些：
-
-
-                    python manage.py migrate --fake
-
-
-              * 通过字符串来获取model类，django的apps模块包含了所有注册的app的配置以及model信息([Application文档](https://docs.djangoproject.com/en/1.8/ref/applications/))
-
-                    from django.apps import apps
-
-
-
-
-                print(apps.get_model('myapp', 'Classify_cpu'))
-
-              * 多个键联合unique，增加一个Meta即可：
-
-                    class Meta:
-                    db_table = 'posts'
-                    unique_together = ('product_1', 'product_2')
-    
-              * 如果要与默认的auth_user表做外键，那么可以这样做：
-    
-                    from django.db import models
-                from django.contrib.auth.models import User
-
-
-
-
-                class UserInfo(models.Model):
-                    user_id = models.ForeignKey(User)
-
-
-              * 如果通过查询语句始终查询不到数据并且数据库的设置也是正确的，那么可能是model里面定义的字段名与数据库实际的字段不一致，这样既不会跑错，也不会提示，就说查找结果为空，很难debug
-              * 根据对象获取model的名称：
-    
-                    Blog.**class**.**name** # 会输出'Blog'
-
-
-
-
+- signal的receiver需要同时修改对多个model时
+- 将多个app的相同signal引到同一receiver中处理时
+- 在某一model保存之后将cache清除时
+- 无法使用其他方法, 但需要一个被调函数来处理某些问题时
 
 ## django-crontab插件
 
@@ -861,333 +811,57 @@ python manage.py crontab remove	# 移除所有的定时任务
   url = storage.url(name)
   ```
 
-  ​
+- **Django模板for循环index**
+
+  ```python
+  {% for item in item_list %}
+  	{{ forloop.counter }}  {# 从1开始的序号 #}
+      {{ forloop.counter0 }} {# 从0开始的序号 #}
+  {% endfor %}
+  ```
+
+- **Django模板对HTML字符串进行转移**，如果有一个HTML格式字符串，比如'<strong>haofly</strong>'，那么当把它作为一个变量传递到html中区的时候，会原封不动的保留，很明显我们有时候并不想这样，而是真的想将'haofly'进行加粗，可以这样做：` {{ variable name | safe}}`
+
+- **migrate的时候出现类似这样的错误：`django.db.utils.OperationalError: (1091, "Can't DROP 'os_id_id'; check that column/key exists")`**，原因是你在试图创建一个已经存在的column或者删除一个已经删除的column，这时候需要在migrate后面添加一个参数忽略这些：`python manage.py migrate —fake`
+
+- **将上传的文件写入到本地，使用chunks()生成器可以将文件一块一块地写入，而不使用read方法，这样可以防止大文件写入失败**:
+
+  ```python
+  destination = open('temp/' + filename, 'wb+')
+  for chunk in file.chunks():
+      destination.write(chunk)
+      destination.close()
+  ```
+
+- **通过Ajax发送多维数组，原生不支持的，不过可以在前端以及后端同时传输JSON格式的**
+
+  ```javascript
+  $.ajax(
+    url: 'test',
+    datatype: 'json',
+    data: JSON.stringify({
+    'one': 123,
+    'two': {
+    'two_one': 'test'
+    }
+    })
+  )
+
+  # 在后端使用JSON进行解析
+  def test(request):
+  data = json.loads(request.POST)
+  或者前端不变，后端用这个来接收request.POST.getlist('taskIdList[]')
+  ```
+
+- **POST请求发生403错误：`Forbidden (403)  CSRF verification failed. Request aborted.`**: 原因是Django默认给所有的post请求都添加了CSRF验证中间件，要想对某个路由(url)忽略，可以使用csrf_exempt，关于CSRF的其它一些装饰器见<https://docs.djangoproject.com/en/1.7/ref/contrib/csrf/>
+
+  ```python
+  from django.views.decorators.csrf import csrf_exempt
+  @csrf_exempt
+  def webhook(request):
+      pass
+  ```
+
+- ​
 
 
-
-
-
-
-
-##signal
-[参考](http://www.weiguda.com/blog/38/)django中signal与操作系统的signal是完全不一样的.Django的signal是一种同步的消息队列.通常在以下情况进行使用：
-
-- signal的receiver需要同时修改对多个model时
-- 将多个app的相同signal引到同一receiver中处理时
-- 在某一model保存之后将cache清除时
-- 无法使用其他方法, 但需要一个被调函数来处理某些问题时
-
-
-
-            ---
-            title: "Django forms表单"
-            date: 2015-06-12 22:08:26
-            categories: django
-            ---
-            Django有一个十分重要的特色功能就是将表单功能独立了出来，使得表单构造和验证更加灵活可控。其实际使用方法如下：
-    
-            首先，在app目录下新建`forms.py`文件，内容如下：
-
-
-
-                from django import forms
-
-
-
-
-                class LoginForm(forms.Form):
-                    username = forms.CharField(label='用户名', max_length = 50)
-                    password = forms.CharField(label='密码', max_length = 50)
-    
-            然后，在views.py有如下代码
-
-
-
-                from .forms import LoginForm  # 引入该表单
-
-```python
-            def login(request):
-                if request.method == 'POST':
-                    form = LoginForm(request.POST)
-                    if form.is_valid():     # 判断合法性
-                        return HttpResponse('数据合法')
-                else:
-                    form = LoginForm()
-                    return render(request, 'login.html', \{'form': form\}
-
-        最后，在templates里面这样使用：
-```
-
-
-
-                <form class="form-horizontal" method="post"}
-                    {% csrf_token %}
-                    {{ form }}
-                    <p class="form-actions" style="margin: 0">
-                        <input type="submit" value="登录" class="btn btn-primary">
-                    <a href="#"><input type="button" value="注册" class="btn btn-success"></a>
-                    <a href="#">忘记密码</a>
-                    </p>
-                </form>
-    
-            ## 获取表单的值
-
-
-
-                if request.method == 'POST':
-                    form = Login(request.POST)
-                    if form.is_valid():
-                        username = form.cleaned_data['username']   # 如果需要单独获取表单的值用这个方法
-    
-                    form = ProfileLoginForm(request.POST)
-    
-                    warning = ""
-                    if form.is_valid():
-                        username = form.cleaned_data['username']
-                        password = form.cleaned_data['password']</pre>
-
-
-            ## django-bootstrap3的使用
-
-            默认的form表单没有任何的css样式，如果要让默认的表单拥有bootstrap样式，那么可以使用django-
-            bootstrap3这个库，不仅提供了表单的bootstrap样式，而且还提供了bootstrap其它组件的样式，文档见<http://django-
-            bootstrap3.readthedocs.org/en/latest/templatetags.html#bootstrap-form>
-    
-            ## TroubleShooting
-    
-            1.给表单添加样式，例如：
-
-
-
-                username = forms.CharField(label='用户名', max_length = 50, widget = forms.TextInput(attrs=\{'class': 'one'\}))
-
-
-            2.Form表单可以不整个使用，而使用其中单个的field，比如form.username，这样就可以很方便地为表单中的每个field设置不同的css样式了
-
-
-
-
-
-## Django Model
-
-
-
-
-              官方文档：[Request and response
-              objects](https://docs.djangoproject.com/en/1.8/ref/request-response/)
-              当请求一个页面的时候，Django会建立一个HttpRequest对象，它包含了请求的一些数据，该对象就是每个views函数里面的第一个参数request.
-              需要注意的是，Django的HTTP动词(get/post等)在url上没有区分，只需要在view里面进行判断即可。
-    
-              例子：
-
-
-
-                  if request.method == 'GET':    # GET请求
-                      do_something()
-                  elif request.method == 'POST': # POST请求
-                      request.POST['变量名']   # 获取请求参数
-    
-              ### JsonResponse
-    
-              如果要返回JSON数据(常见于Ajax请求)，可以在view里面这样构造json数据
-
-
-
-                  from django.http import JsonResponse
-
-
-
-
-                  reponse = JsonResponse(字典)  # JsonResponse(data, encoder=编码方式默认是utf-8
-                  response = JsonResponse([1, 2, 3], safe = False)   # 如果要返回一个单纯的列表数据而不是字典类型的数据，就这样
-                  return response
-    
-              ### HttpResponse
-    
-              直接响应字符串或者html
-
-
-
-                  response = HttpResponse('响应一个字符串')
-                  response.write('给那个字符串再添加东西')
-
-
-
-
-                  # 如果响应一个字典类型
-
-
-
-
-                  response = HttpResponse()
-                  response['Age'] = 120
-
-
-
-
-                  # 常用构建方法
-
-
-
-
-                  HttpResponse('字符串', content_type="text/plain") # 指定content_type
-
-              常用属性：
-
-
-
-                  HttpRequest.method   # 请求种类
-                  HttpRequest.GET      # 获取所有的GET参数(字典)
-                  HttpRequest.POST     # 获取POST的参数(字典)
-                  HttpRequest.scheme   # 表示请求的模式，是http还是https
-                  HttpRequest.cookies  # 包含了所有的cookie信息
-                  HttpRequest.session  # session信息
-                  HttpRequest.FILES    # 包含了上传的文件
-                  HttpRequest.meta     # 包含了http请求的各种headers
-                  HttpRequest.user     # 当前的登录的用户，配合着auth使用
-    
-              常用方法：
-
-
-
-                  get_host()           #不解释了吧
-                  get_full_path()      # 获取路径，不包含域名
-                  build_absolute_uri() # 获取完整路径
-                  is_secure()          # 如果是https返回true，否则false
-                  is_ajax()            # 是否是ajax请求
-    
-              ### StreamingHttpResponse
-    
-              媒体数据等
-    
-              ### FileResponse
-    
-              文件数据等
-    
-              # TroubleShooting
-    
-              1.设置GET请求的默认值：
-
-
-
-                  date = request.GET.get('value', '2')
-
-              2.返回状态码：
-
-
-
-                  return JsonResponse(error, status = 422)
-
-              3.将上传的文件写入到本地，使用chunks()生成器可以将文件一块一块地写入，而不使用read方法，这样可以防止大文件写入失败
-
-
-
-                  destination = open('temp/' + filename, 'wb+')
-                  for chunk in file.chunks():
-                      destination.write(chunk)
-                  destination.close()
-    
-              4.获取用户IP地址：
-
-
-
-                  ip = request.META.get('REMOTE_ADDR')
-
-              5.退出登录功能：直接添加一个URL：
-
-
-
-                  (r'^logout$', 'django.contrib.auth.views.logout',\{'next_page': 'login'\}, name = 'logout')
-
-
-              6.通过Ajax发送多维数组，原生不支持的，不过可以在前端以及后端同时传输JSON格式的
-
-
-                  # 在前端使用Ajax进行传输
-                  $.ajax(
-                      url: 'test',
-                      datatype: 'json',
-                      data: JSON.stringify(\{
-                          'one': 123,
-                          'two': {
-                              'two_one': 'test'
-                          \}
-                      \})
-                  )
-    
-                  # 在后端使用JSON进行解析
-                  def test(request):
-                      data = json.loads(request.POST)
-                   或者前端不变，后端用这个来接收request.POST.getlist('taskIdList[]')
-
-
-
-
-​                          
-                          # TroubleShooting
-
-                            1. POST请求403错误：
-
-                                  Forbidden (403)
-                              CSRF verification failed. Request aborted.
-    
-                          原因是Django默认给所有的post请求都添加了CSRF验证中间件，要想对某个路由(url)忽略，可以使用csrf_exempt，关于CSRF的其它一些装
-                          饰器见<https://docs.djangoproject.com/en/1.7/ref/contrib/csrf/>
-
-
-                                  from django.views.decorators.csrf import csrf_exempt
-
-
-
-
-                              @csrf_exempt
-                              def webhook(request):
-                                  pass
-    
-                            2. 统一APP的路由 Django是以app的形式定义一个应用的，所以为了保持应用的隔离性，就需要将应用的url分离开来，相当于一个前缀，例如，先在setting.py里面添加APP
-    
-                                  INSTALLED_APPS = (
-                                  'django.contrib.admin',
-                                  'django.contrib.auth',
-                                  'django.contrib.contenttypes',
-                                  'django.contrib.sessions',
-                                  'django.contrib.messages',
-                                  'django.contrib.staticfiles',
-                                  'haofly',                # 需要添加的APP名称
-                              )
-    
-                          然后在工程的urls.py文件里定义APP的主url：
-
-
-                                  from django.conf.urls import include, url
-
-
-
-
-                              urlpatterns = [
-                                  url(r'^前缀/', include('haofly.urls')), # haofly下的urls.py
-                              ]
-
-
-                          然后再在haofly这个APP下建立一个独立的urls.py：
-
-
-                                  from django.conf.urls import include, url
-
-
-
-
-                              urlpatterns = [
-                                  url(r'^test/', 'haofly.views.test'),
-                              ]
-    
-                            3. 在设置路由参数的时候出现如下错误：
-    
-                                  TypeError at /operation/servers/13/commands
-                              commands() got an unexpected keyword argument 'id'
-    
-                          原因是没有将该参数加入views的定义中去，需要将id加入该views的第二个参数
-    
-                            4. 跳转功能：
-    
-                                  return HttpResponseRedirect('/')
