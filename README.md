@@ -10,6 +10,9 @@
 ```javascript
 npm install hexo-cli -g
 npm install --save
+
+npm install hexo-generator-sitemap
+npm install hexo-generator-feed
 ```
 
 
