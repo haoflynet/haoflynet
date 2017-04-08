@@ -13,7 +13,7 @@ keywords: "豪翔天下,Python开发工程师,全栈开发工程师"
 rss:
 
 # Specify the date when the site was setup
-#since: 2013
+since: 2017
 
 # icon between year and author @Footer
 authoricon: heart
@@ -25,6 +25,9 @@ copyright: true
 # See: https://support.google.com/webmasters/answer/139066
 # Tips: Before you open this tag, remeber set up your URL in hexo _config.yml ( ex. url: http://yourdomain.com )
 canonical: true
+
+# Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.
+seo: true
 
 
 # ---------------------------------------------------------------
@@ -219,12 +222,25 @@ post_meta:
   updated_at: false
   categories: true
 
+# Post wordcount display settings
+# Dependencies: https://github.com/willin/hexo-wordcount
+post_wordcount:
+  item_text: true
+  wordcount: false
+  min2read: false
+
 
 # Wechat Subscriber
 wechat_subscriber:
   enabled: true
   qcode: http://oeb6iosux.bkt.clouddn.com/image/wechat-public.jpg
   description: 欢迎您扫一扫上面的微信公众号，订阅我的博客！
+
+# Declare license on posts
+post_copyright:
+  enable: true
+  license: CC BY-NC-SA 3.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 
 
 # ---------------------------------------------------------------
@@ -266,13 +282,22 @@ mathjax:
 baidu_analytics: d06802e96e214bdb413a40b263d4cc15
 
 # Duoshuo ShortName
-duoshuo_shortname: haoflynet
+#duoshuo_shortname: haoflynet
 
 # Disqus
-#disqus_shortname:
+disqus:
+  enable: true
+  shortname: haoflynet
+  count: true
 
 # Hypercomments
 #hypercomments_id:
+
+# changyan
+changyan:
+  enable: false
+  appid:
+  appkey:
 
 # Baidu Share
 # Available value:
@@ -474,3 +499,14 @@ alipay: http://oeb6iosux.bkt.clouddn.com/image/alipay.png
 search:
   path: search.xml
   field: post
+
+plugins:
+  - hexo-generator-feed
+  - hexo-generator-sitemap
+
+feed:
+    type: atom
+    path: atom.xml
+    limit: 0
+    hub:
+    content: 
