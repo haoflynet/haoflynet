@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2017-03-16 15:03:00
+updated: 2017-04-09 15:03:00
 categories: python
 ---
 # Django教程
@@ -105,6 +105,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'  # 语言，中文可用zh-Hans、zh-CN，完整列表见：http://www.i18nguy.com/unicode/language-identifiers.html
 TIME_ZONE = 'Asia/Chongqing'        # 时区
+USE_TZ = False	# 数据库中要使用时间戳就应该关闭这个
 
 # Static files (CSS, JavaScript, Images) 静态文件目录  
 STATIC_URL = '/static/'
@@ -248,39 +249,41 @@ class User(models.Model):
 	verbose_name		# 定义字段的注释
 #### 常用类型
 
-	数字类型：
-	AutoField：自增长字段
-	IntegerField：长度为11的整数
-	PositiveIntegerField：
-	SmallIntegerField
-	PositiveSmallIntegerField
-	BigIntegerField：
-	BinaryField：
-	BooleanField：
-	NullBooleanField：
-	DecimalField(max_digits = None, decimal_places = None)
-	FloatField
-	
-	字符类型：
-	CharField：字符串类型，可用max_length指定长度
-	TextField：text类型
-	CommaSeparatedIntegerField：用逗号分隔的整数，我擦，这有用
-	
-	时间类型：
-	DateField
-	TimeField：datetime.time，时间
-	DateTimeField()：datetime类型，包括了日期和时间，需要注意的是Django默认的TIME_ZONE是UTC，其fixture数据(初始化数据)的时候，格式如"2015-04-27T15:01:00Z"，它属于python里面的datetime.datetime类型，可分别用year/month/day等获取时间
-	unique_for_date属性：比如，如果有一个title字段，其有一个参数unique_for_date = "pub_date"，那么该表就不会出现title和pub_date同时相同的情况，其它的还有unique_for_month,unique_for_year
-	
-	其它很有用的类型：
-	EmailField：Email邮箱类型
-	FileField：文件类型，不过不能设置为primary_key和unique，要使用该字段还有很多需要注意的地方，具体的见官方文档
-	FilePathField：同上
-	ImageField
-	IPAddressField：从1.7开始已经不建议使用了，应该使用下面这个
-	GenericIPAddressField：
-	URLField
-	UUIDField
+```python
+数字类型：
+AutoField：自增长字段
+IntegerField：长度为11的整数
+PositiveIntegerField：
+SmallIntegerField
+PositiveSmallIntegerField
+BigIntegerField：
+BinaryField：
+BooleanField：
+NullBooleanField：
+DecimalField(max_digits = None, decimal_places = None)
+FloatField
+
+字符类型：
+CharField：字符串类型，可用max_length指定长度
+TextField：text类型
+CommaSeparatedIntegerField：用逗号分隔的整数，我擦，这有用
+
+# 时间类型
+DateField	# DATE类型
+TimeField	# datetime.time，时间
+DateTimeField()	# DATETIME类型，包括了日期和时间，需要注意的是Django默认的TIME_ZONE是UTC，在初始化的时候，格式如"2015-04-27T15:01:00Z"，它属于python里面的datetime.datetime类型，可分别用year/month/day等获取时间。另外Django如果要实用MySQL里面的TIMESTAMP类型也是用该字段表示，并且在插入的时候不能直接插入一个整数，依然只能插入一个datetime.datetime对象，用时间戳的时候USE_TZ必须为False
+unique_for_date属性：比如，如果有一个title字段，其有一个参数unique_for_date = "pub_date"，那么该表就不会出现title和pub_date同时相同的情况，其它的还有unique_for_month,unique_for_year
+
+其它很有用的类型：
+EmailField：Email邮箱类型
+FileField：文件类型，不过不能设置为primary_key和unique，要使用该字段还有很多需要注意的地方，具体的见官方文档
+FilePathField：同上
+ImageField
+IPAddressField：从1.7开始已经不建议使用了，应该使用下面这个
+GenericIPAddressField：
+URLField
+UUIDField
+```
 
 ### 数据库SQL操作
 要使用model，必须先导入它，例如`from app.models import Blog`，一条记录就是一个model类的实例，要获取其字段值，直接用点号访问即可，例如有Blog对象blog，那么可以直接用blog.userName访问其值。  
@@ -745,6 +748,7 @@ def my_view(request):
 - 将多个app的相同signal引到同一receiver中处理时
 - 在某一model保存之后将cache清除时
 - 无法使用其他方法, 但需要一个被调函数来处理某些问题时
+- 作为网站的通知
 
 ## django-crontab插件
 
@@ -820,7 +824,11 @@ python manage.py crontab remove	# 移除所有的定时任务
   {% endfor %}
   ```
 
-- **Django模板对HTML字符串进行转移**，如果有一个HTML格式字符串，比如'<strong>haofly</strong>'，那么当把它作为一个变量传递到html中区的时候，会原封不动的保留，很明显我们有时候并不想这样，而是真的想将'haofly'进行加粗，可以这样做：` {{ variable name | safe}}`
+- Django模板对HTML字符串进行转移，如果有一个HTML格式字符串，比如`<strong>haofly</strong>`那么当把它作为一个变量传递到html中区的时候，会原封不动的保留，很明显我们有时候并不想这样，而是真的想将`haofly`进行加粗，可以这样做
+
+  ```python
+  {{ variable name | safe}}
+  ```
 
 - **migrate的时候出现类似这样的错误：`django.db.utils.OperationalError: (1091, "Can't DROP 'os_id_id'; check that column/key exists")`**，原因是你在试图创建一个已经存在的column或者删除一个已经删除的column，这时候需要在migrate后面添加一个参数忽略这些：`python manage.py migrate —fake`
 
