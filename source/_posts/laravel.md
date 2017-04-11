@@ -811,7 +811,8 @@ Log::warning('Something could be going wrong.');
 
 ### Artisan Console
 
-使用命令的方式执行脚本，这时候如果要打印一些日志信息，可以直接用预定义的方法，还能显示特定的颜色:
+- `php artisna config:cache`: 把所有的配置文件组合成一个单一的文件，让框架能够更快地去加载。
+- 使用命令的方式执行脚本，这时候如果要打印一些日志信息，可以直接用预定义的方法，还能显示特定的颜色:
 
 ```php
 $this->info('')	# 绿色
@@ -878,7 +879,15 @@ public function testIndex{
 }
 ```
 
+在实际的测试过程中，我有这样的几点体会:
+
+- 测试类本身就不应该继承的，因为单元测试本身就应该独立开来
+- 直接对控制器测试是一种简单直接有效的测试方法，而无需再单独给service或者model层进行测试
+
+
+
 ## TroubleShooting
+
 - **禁止全局csrf认证**：在`app/Http/Kernel.php`中，`$middleware`表示全局中间件，而`$routeMiddleware`表示针对某个路由的中间件，所以只需要把csrf在`$middleware`中注释掉，然后在`$routeMiddleware`中添加`'csrf' => 'App\Http\Middleware\VerifyCsrfToken'`
   如果要在某个路由上使用就这样：
 
