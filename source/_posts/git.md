@@ -52,21 +52,33 @@ Linux平台：`sudo apt-get install git`
 
 ## 常用操作
 
+#### 日志/历史/版本
+
 ```shell
-# 日志/历史查看
 git log  # 查看提交的历史,--oneline按行显示，--graph查看分支的合并情况，--all显示所有分支的历史
 git reflog	# 查看HEAD的历史情况
-
-# 代码改动
-git blame filename   # 查看某文件的改动历史
-git diff + 分知名   # 比较当前分支和目标分支的不同
-git diff master
 
 # 版本回退/回滚,--hard表示将该次提交之前所有的更改都丢弃，git reset是把HEAD向历史移动，而git revert是HEAD继续向前，新的commit就和revert的内容刚好相反，所以推荐使用revert，reset的target是要会退到的版本，而revert得target是要取消的版本
 git reset --hard HEAD^  # 回退到上一个版本
 git reset --hard HEAD^^ # 回退到上上个版本
 git reset --hard 233333 # 指定提交ID的回退
 git push -f origin master	# remote端也更新
+```
+
+#### 代码更改
+
+```shell
+git blame filename   # 查看某文件的改动历史
+git diff + 分知名   # 比较当前分支和目标分支的不同
+git diff master
+
+git reset HEAD filename		# 把已经commit了的文件取消暂存
+git checkout -- filename	# 放弃指定文件的更改
+```
+
+#### 分支操作
+
+```shell
 
 # 分支操作
 git branch -a  # 查看所有分支
@@ -87,17 +99,19 @@ git checkout dev	# 切换回dev分支
 git merge bug-fix	# 将bug-fix合并到当前分支，即dev分支
 ```
 
+#### 标签
 
 ```shell
-
-
-# 标签操作
 git tag 									# 查看当前所有的标签
 git tag v1.0.0							# 在当前commit打一个标签
 git tag -d v1.0.0						# 删除一个标签
 git push origin v1.0.0					# 将打的标签推送到仓库
 git push origin :refs/tags/v1.0.0		# 本地删除标签后远程也要删除
+```
 
+#### 其他功能
+
+```shell
 # 统计代码行数
 git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | gawk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END { printf "added lines: %s removed lines : %s total lines: %s\n",add,subs,loc }' -
 ```
