@@ -1,18 +1,19 @@
 ---
 title: "Git 教程"
 date: 2016-08-07 07:12:39
-updated: 2017-02-10 16:36:00
+updated: 2017-04-12 16:36:00
 categories: tools
 ---
 # Git指南
 
-这里所列举的通用配置无论是在Windows还是Linux，都要用到
+这里所列举的通用配置无论是在Windows还是Linux，都要用到。
 
 ## 安装与配置
 
 ### 安装Git软件
 
 Windows平台：[Git for Windows](http://msysgit.github.io/)(在安装的时候注意那些选项的设置)  
+
 Linux平台：`sudo apt-get install git`
 
 ### 基础配置
@@ -78,10 +79,18 @@ git checkout -- filename	# 放弃指定文件的更改
 
 #### 分支操作
 
-```shell
+分支命名规范:
 
-# 分支操作
-git branch -a  # 查看所有分支
+- 功能(feature)分支: `feature-*`
+- 预发布(release)分支: `release-版本号`
+- 修补bug(fixbug)分支: `fixbug-*`
+
+```shell
+git branch -a  				# 查看所有分支
+git push origin :serverfix	# 直接删除远程分支
+
+
+
 git branch remotes/origin/2.0.0	# 直接切换到远程分支
 git checkout origin/dev	# 检出远程分支到本地，此时会显示如下:
 *(HEAD detached at origin/dev)
