@@ -87,6 +87,7 @@ git checkout -- filename	# 放弃指定文件的更改
 
 ```shell
 git branch -a  				# 查看所有分支
+git checkout -b new-branch	# 在本地新建分支并切换到新分支
 git push origin :serverfix	# 直接删除远程分支
 
 
@@ -95,10 +96,6 @@ git branch remotes/origin/2.0.0	# 直接切换到远程分支
 git checkout origin/dev	# 检出远程分支到本地，此时会显示如下:
 *(HEAD detached at origin/dev)
 master
-## 要想将本地之内提交到远程dev分支，只需要再
-git checkout -b dev # 这样就好了
-## 新建并切换分支
-git checkout -b dev
 ## 强制覆盖本地分支
 git fetch --all
 git reset --hard origin/master
