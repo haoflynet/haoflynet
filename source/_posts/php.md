@@ -16,10 +16,12 @@ array_intersect($array1, $array2[,$array $...])	# 返回一个数组，该数组
 array_merge()			# 合并数组，相同的key直接覆盖
 array_merge_recursive()	# 合并数组，相同的key不覆盖
 array_push($source, "red", "gree")	# 给数组添加元素
-array_search(): 搜索一个key的索引
+array_search(): 搜索一个key的索引，如果是二维的数组，那么就是通过value搜索key
 array_search(strtolower($search), array_map('strtolower', $array)): array_search忽略大小写
 array_slice($arr, 0, 1) # 数组分片
 array_sum($arr): 计算数组中所有值的和
+array_values($arr): 获取数组所有的value值
+  
 count()函数：输出数组的长度
 empty()函数：判断数组是否为空
 end()		// 返回当前数组的最后一个值，需要注意的是这个函数不仅仅是返回最后一个值，还会把数组当前的指针指向最后一个数据
@@ -182,7 +184,29 @@ $o->sayHello();		// 输出的是Hello World
 
 ### 发送CURL请求
 
-[字段参考](http://php.net/manual/zh/function.curl-setopt.php): 可实现各种action操作，以及异步等操作
+注意：使用CURL之前一定要先确定服务器是否已经安装php的curl扩展，如果没有，可能会报奇怪的错误，安装完扩展后记得重启php进程。
+
+```php
+$ch = curl_init();								// 初始化curl
+curl_setopt();									// 设置参数
+curl_setopt($ch, CURLOPT_URL, 'url');			// 设置URL
+curl_setop($ch, CURLOPT_POST, true);			// 发送POST请求
+curl_setop($ch, CURL_POSTFIELDS, $data);		// POST的数据
+curl_setop($ch, CURLOPT_RETURNTRANSFER, true);	// 获取返回结果，如果不加这个，那么$result=true
+$result = curl_exec($ch);						// 执行curl请求
+curl_getinfo($ch, CURLINFO_HTTP_CODE)			// 获取http_code
+
+curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['Accept: application/json']);	// 添加HTTP头
+curl_close($ch);								// 关闭连接
+
+# 如果要通过CURL 上传文件，那么需要这样对$data进行处理
+if (function_exists('curl_file_create')) { // php 5.6+
+  $cFile = curl_file_create($scriptPath);
+} else { //
+  $cFile = '@' . realpath($scriptPath);
+}
+$data = ['file' => $cFile];
+```
 
 ### WEB程序
 
@@ -257,6 +281,8 @@ PHP_INT_MIN	# 最小整数
 composer config --list	# 列出当前所有的配置
 composer show 	# 获取所有安装的包的列表
 composer require package_name --dev	# 安装包，并将其写入composer.json的require-dev中去
+  
+"package/ppkg": "2.7.*@beta"	# 安装beta版
 ```
 
 ### auttoload

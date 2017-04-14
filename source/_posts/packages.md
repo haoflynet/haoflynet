@@ -1,7 +1,7 @@
 ---
 title: "Python包推荐,PHP包推荐,JS包推荐,Java包推荐"
 date: 2016-08-07 11:03:30
-updated: 2016-11-28 17:03:00
+updated: 2017-04-08 17:03:00
 categories: system
 ---
 # python包／jQuery／Java／PHP包收集与整理
@@ -13,6 +13,10 @@ categories: system
 ##### [BeautifulSoup4](http://beautifulsoup.readthedocs.org/zh_CN/latest/)
 
 XML/HTML解析组件
+
+##### [better-exceptions](https://github.com/Qix-/better-exceptions)
+
+能够将异常打印得非常直观好看，并且能显示某些具体的值
 
 ##### coverage
 
@@ -98,6 +102,10 @@ IP地址处理模块，可用于计算大量的IP地址，包括IPv4、IPv6网�
 
 获取农历
 
+##### [memory_profiler](https://github.com/fabianp/memory_profiler)
+
+能够分析每行代码每个变量的内存使用量，用于优化效率
+
 ##### [MkDocs](http://markdown-docs-zh.readthedocs.org/zh_CN/latest/)
 
 项目文档工具，以markdown的方式攥写spinx烈性的文档
@@ -166,6 +174,26 @@ Python科学计算库
 ##### [xpinyin](https://github.com/lxneng/xpinyin)
 
 汉字拼音
+
+#### Python-GUI
+
+##### Camelot
+
+##### Cocoa
+
+##### GTk
+
+##### Kivy
+
+跨平台，完全免费
+
+##### PyObjC
+
+仅仅OS X可用，但是也非常方便
+
+##### PyQT
+
+跨平台，但商业使用需要商业许可证
 
 ### PHP
 
