@@ -5,22 +5,16 @@ categories: 编程之路
 ---
 参考文档：<https://docs.python.org/3/library/configparser.html#module-configparser>
 
-今天在研究MySQL Connector for Python的时候无意间发现原来Python自带了设置与读取配置信息的模块的，有了这么一个功能就能够在一个
-单独的文件里面写上一些敏感信息，比如你的数据库的用户名密码等，以后要使用的时候直接读取该文件即可。这里简要描述一下其使用方法。
+今天在研究MySQL Connector for Python的时候无意间发现原来Python自带了设置与读取配置信息的模块的，有了这么一个功能就能够在一个单独的文件里面写上一些敏感信息，比如你的数据库的用户名密码等，以后要使用的时候直接读取该文件即可。这里简要描述一下其使用方法。
 
 首先，得要有一个文件用来保存配置信息，格式如下setting.conf：
-
-
 
     [DATABASE]
     Port = 21
     Username = haofly
     Password = 123456
     Database = test
-
-
-
-
+    
     [DEFAULT]
     User = hg
 
@@ -29,16 +23,12 @@ categories: 编程之路
 
 在另一个文件中使用方法如下：
 
+```python
+import configparser
 
-
-    import configparser
-
-
-
-
-    config = configparser.ConfigParser()
-    config.sections()
-    config.read('co.config')
-    print(config['DATABASE']['Username'])
-
+config = configparser.ConfigParser()
+config.sections()
+config.read('co.config')
+print(config['DATABASE']['Username'])
+```
 打印出来`haofly`

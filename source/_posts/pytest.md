@@ -1,9 +1,17 @@
 ---
-title: "pytest教程"
+title: "python测试教程，pytest的使用"
 date: 2015-09-07 3:12:30
+updated: 2017-03-13 15:34:00
 categories: python
 ---
+## Python自带和测试相关的功能
+
+```python
+assert 1=1	# 直接断言
+```
+
 # pytest
+
 Python的测试类，调研了一下nose和pytest，虽然nose的使用量确实比pytest多一点，但是活跃度并不高，从15年后就没发布新版本了，而pytest的github还在一直刷。所以选择了pytest来学习python的测试。
 
 #### 单元测试原则：分离、简单，两个测试用例不能有任何依赖
