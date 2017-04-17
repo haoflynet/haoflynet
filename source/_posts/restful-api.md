@@ -1,6 +1,7 @@
 ---
 title: "[转]RESTful API设计指南"
 date: 2015-04-11 23:24:07
+updated: 2017-04-06 15:02:00
 categories: 编程之路
 ---
 原文地址：[阮一峰的网络日志](http://www.ruanyifeng.com/blog/2014/05/restful_api.html "Link:
@@ -52,8 +53,7 @@ edia/#request-specific-version)采用这种做法。
 
 路径又称"终点"（endpoint），表示API的具体网址。
 
-在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库
-中的表都是同种记录的"集合"（collection），所以API中的名词也应该使用复数。
+在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的"集合"（collection），所以API中的名词也应该使用复数。
 
 举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。
 
@@ -146,20 +146,20 @@ RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其�
 
 比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档。
 
-```
-    {"link": {
-    "rel": "collection https://www.example.com/zoos",
-    "href": "https://api.example.com/zoos",
-    "title": "List of zoos",
-    "type": "application/vnd.yourformat+json"
-    }}
+```json
+{
+  	"link": {
+      "rel": "collection https://www.example.com/zoos",
+      "href": "https://api.example.com/zoos",
+      "title": "List of zoos",
+      "type": "application/vnd.yourformat+json"
+	}
+}
 ```
 
-上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给
-出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型。
+上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型。
 
-Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)。Github的API
-就是这种设计，访问[api.github.com](https://api.github.com/)会得到一个所有可用API的网址列表。
+Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)。Github的API就是这种设计，访问[api.github.com](https://api.github.com/)会得到一个所有可用API的网址列表。
 
 ```
     {
@@ -169,8 +169,7 @@ Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)�
     }
 ```
 
-从上面可以看到，如果想获取当前用户的信息，应该去访问[api.github.com/user](https://api.github.com/user)，然
-后就得到了下面结果。
+从上面可以看到，如果想获取当前用户的信息，应该去访问[api.github.com/user](https://api.github.com/user)，然后就得到了下面结果。
 
 ```
     {
@@ -183,12 +182,15 @@ Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)�
 
 # 十一、其他
 
-（1）API的身份认证应该使用[OAuth
-2.0](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)框架。
+（1）API的身份认证应该使用[OAuth 2.0](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)框架。
 
 （2）服务器返回的数据格式，应该尽量使用JSON，避免使用XML。
 
 （完）
 
 ## 个人总结
-RESTful设计风格是仅仅针对API的设计，其他的，比如新建功能页面的url还是需要自己另外定义的，当然可以在后面直接加参数，比如`GET /zoos?add=1`
+- RESTful设计风格是仅仅针对API的设计，其他的，比如新建功能页面的url还是需要自己另外定义的，当然可以在后面直接加参数，比如`GET /zoos?add=1`
+- 对于文件的上传，无法使用`application/json`，而只能使用`Multipart/form-data`的方式
+
+
+
