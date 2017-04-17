@@ -1,7 +1,7 @@
 ---
 title: "Python使用Splinter(Selenium)进行浏览器模拟测试"
 date: 2016-08-10 19:56:39
-updated: 2017-01-10 13:43:00
+updated: 2017-03-30 15:43:00
 categories: python
 ---
 每次看到selenium都觉得很牛，但是苦于文档(包括英文)太少，我到今天才真正完整地安装使用了一把。我不喜欢来一个项目就在自己电脑上搭一个运行环境，而是喜欢在docker或者虚拟机里进行操作，问题是docker或者虚拟机里并没有任何的可视化的浏览器，而Selenium又依赖于这些浏览器驱动，我是最讨厌安装驱动的，因为驱动这个东西电脑不同差距特别大，总是会出现各种问题。而在服务器上如何安装selenium或者splinter，这个过程在网上基本是找不到的，所以这里记录下自己的安装方法。
@@ -44,6 +44,8 @@ firefox
 
 ## 开始Splinter(Selenium)
 
+### 无桌面环境
+
 ```python
 from splinter import Browser
 from xvfbwrapper import Xvfb
@@ -67,6 +69,8 @@ browser.quit()
 vdisplay.stop()
 ```
 
+### 桌面环境
+
 如果直接在本地有桌面环境的情况下进行测试那么，直接这样子:
 
 ```python
@@ -74,11 +78,18 @@ from splinter import Browser
 from selenium.webdriver.chrome.options import Options
 
 chrome_options = Options()
-chrome_options.add_argument('--incognito')	# 这个参数是为了设置浏览器的大小
-browser = Browser('chrome', executable_path='/Users/haofly/share/chromedriver, user_agent='User-Agent设置', optionso=chrome_options)
+browser = Browser('chrome', executable_path='/Users/haofly/share/chromedriver, user_agent='User-Agent设置', option=chrome_options)
 browser.driver.set_window_size(1500, 900)	# 设置浏览器的size
 browser.visit('https://wiki.haofly.net')
 print(browser.title)
+```
+
+### Options选项
+
+通过`chrome_options.add_argument('')`可以设置非常多的浏览器的参数
+
+```she
+disable-infobars	// 禁用网页上部的提示栏，比如2.28的webdriver开始会提示你Chrome正受到自动测试软件的控制，这个特性应该是chrome为了安全给加的
 ```
 
 ## 浏览器操作
@@ -163,10 +174,10 @@ browser.find_link_by_partial_href()
 browser.find_by_tag('div').first.find_by_name('name')
 ```
 
-
-
 ## TroubleShooting
 
 - **Chrome driver crashes when opens a new tab**
 
   原因可能是服务器内存太低了，需要加大虚拟内存
+
+- **selenium.common.exceptions.WebDriverException: Message: session not created exception**，将webdriver更新到最新版基本上能解决问题
