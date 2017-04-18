@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-03-13 17:44:00
+updated: 2017-04-08 17:44:00
 categories: python
 ---
 # Python
@@ -107,6 +107,8 @@ li.extend([1,2])	# 添加多个元素
 	c = ChainMap(a, b)
 #### 类/函数
 
+- 定义在`__init__`外的属性相当于静态变量，所有对象公用，`__init__`内部的才是对象私有的
+
 ```python
 # 几个特殊的方法
 x.__class__.__name__  # 获取实例的类名
@@ -129,6 +131,13 @@ UserResponse = namedtuple('UserResponse', [
   'uid',
   'name'
 ])
+
+# 定义静态方法
+@staticmethod
+def get():
+    
+#定义类方法
+def get(cls):
 ```
 #### 类型检查(Type Hint)
 
@@ -138,6 +147,7 @@ UserResponse = namedtuple('UserResponse', [
 def func(a: int) -> int	# 这表示该函数的参数a要求是整型，返回值是整型号
 
 name: str = 'haofly'	# 直接给变量指定类型
+people: People			# 可以用自定义的类
 
 # 返回组合类型
 from typing import List, Tuple
@@ -171,6 +181,38 @@ range(1, 2) // 生成[1]
 range(0, 6, 2)	// 生成(0, 2, 4)
 xrange用法与range一样，只是返回的不是一个生成好的列表，而是一个生成器，所以性能更好
 ```
+#### 其他类型
+
+##### NamedTuple类似结构体
+
+```python
+from typing import NamedTuple
+class Student(NamedTuple):
+	name: str
+    address: str
+    age: int = 13
+haofly = Student(name='haofly', address='abc', age=12)
+isinstance(haofly, tuple) # True
+haofly[0]	# haofly
+```
+
+##### MappingProxyType只读字典
+
+```python
+from types import MappingProxyType
+data = MappingProxyType({'a': 1})
+```
+
+##### SimpleNamespace简单的“基类”
+
+类似于其他语言的基类，仅仅提供属性的快速访问与设置
+
+```python
+from types import SimpleNamespace
+data = SimpleNamespace(a=1)
+data.b = 2	# 这样data就是namespace(a=1, b=2)
+```
+
 #### 文件目录
 
 ```python
@@ -271,6 +313,10 @@ pip install git+git@github.com:lynzt/python_people_names.git
 
 # 使用豆瓣的PIP源，例如
 sudo pip3 install scrapy -i https://pypi.douban.com/simple
+    
+# 从指定目录引入包
+import sys
+sys.path.append('..')
 ```
 #### 名字空间
 
@@ -283,11 +329,44 @@ sudo pip3 install scrapy -i https://pypi.douban.com/simple
 # __builtins__: 内置模块空间
 ```
 
-## 魔术/自省方法
+#### 输入输出
 
 ```python
-# __dir__
-# 实现动态属性
+# 输出重定向的方法
+import sys
+from io import StringIO
+
+old_stdout = sys.stdout
+old_stderr = sys.stderr
+my_stdout = sys.stdout = StringIO()
+my_stderr = sys.stderr = StringIO()
+
+# blah blah lots of code ...
+
+sys.stdout = self.old_stdout
+sys.stderr = self.old_stderr
+
+print(my_stdout.getvalue())
+print(my_stderr.getvalue())
+
+my_stdout.close()
+my_stderr.close()
+```
+
+## 魔术/自省方法
+
+### 生命周期
+
+```python
+__new__		# 用来创建类并返回这个类的实例，在构造函数之前执行，可以决定是否用__init__方法来实例化类，是一个静态方法，创建实例的时候一定会调用
+__init__	# 用传入的参数来初始化一个实例，在创建实例的时候不一定会调用，比如反序列化的时候就不会执行
+__del__		# 类的析构函数，对象在内存中被清理时执行，即使对象在执行中报错也依然会执行
+```
+
+### 属性
+
+```python
+__dir__		# 实现动态属性
 class AttrDict(dict):
     def __getattr__(self, item):	# 是为了直接用点号可以访问动态属性
         return self[item]
@@ -295,20 +374,10 @@ class AttrDict(dict):
     def __dir__(self):				# 是为了能自动完成，和用__dir__能够查找到该动态属性
         return super().__dir__() + [str(k) for k in self.keys()]
     
-# __new__和__init__
-## __new__用来创建类并返回这个类的实例，而__init__只是将传入的参数来初始化实例。__new__在创建一个实例的过程中必定会被调用，但__init__不一定，比如通过pickle.load方式反序列化一个实例就不会调用__init__
-
-# __getattr__(self, name)
-## 定义了试图访问一个不存在的属性时的行为，重载该方法可以实现捕获错误拼写然后进行重定向, 或者对一些废弃的属性进行警告
-
-# __setattr__(self, name, value)
-## 定义了对属性进行赋值和修改操作时的行为
-
-# __delattr__(self, name)
-## 定义删除属性时的行为
-
-# __getattribute__(self, name)
-## 定时访问属性时的行为，无论属性存不存在
+__getattr__(self, name)			# 定义了试图访问一个不存在的属性时的行为，重载该方法可以实现捕获错误拼写然后进行重定向, 或者对一些废弃的属性进行警告
+__setattr__(self, name, value)	# 定义了对属性进行赋值和修改操作时的行为
+__delattr__(self, name)			# 定义删除属性时的行为
+__getattribute__(self, name)	# 定时访问属性时的行为，无论属性存不存在
 
 # __get__(self, instance, owner)
 ## 描述起对象，instance是拥有者类的实例，参数owner是拥有者类本身。__get__在其拥有者对其读值的时候调用。
@@ -336,27 +405,11 @@ class AttrDict(dict):
 
 # __missing__(slef, key)
 ## 定义key不在容器中的触发行为
+```
 
-# with关键字的几个魔术方法，用with可以实现在函数前后执行某些语句
-## __enter__(self): 会返回一个值，并赋值给as关键词之后的变量
-## __exit__(self, exception_type, exception_value, traceback): 定义代码段结束后的一些操作，如果返回True，那么下面的异常会被屏蔽，如果返回None，那么会抛出
-class Count():
-    def __enter__(self):
-        print(time())
-    def __exit__(self):
-        print(time())
-with Count():
-    func()		# 这样在函数的开始与结束都能打印出时间了，这只是一个简单例子而已
+### 运算符
 
-# 用于序列化的魔术方法
-## __getinitargs__(self): 
-## __getnewargs__(self)
-## __getstate__(self)
-## __setstate__(self, state)
-## __reduce__(self)
-## __reduce_ex__(self)
-
-# 运算符相关的魔术方法，相当于重载运算符
+```python
 ## __cmp__(self, other)
 ## __eq__(self, other)
 ## __ne__(self, other)
@@ -384,8 +437,11 @@ with Count():
 ## __and__(self, other)
 ## __or__(self, other)
 ## __xor__(self, other)
+```
 
-# 类型转换相关魔术方法
+### 类型
+
+```python
 ## __int__(self): 实现了类型转化为int的行为
 ## __long__(self)
 ## __float__(self)
@@ -395,6 +451,39 @@ with Count():
 ## __index__(self)
 ## __str__(self)
 ## __sizeof__(self)
+```
+
+### 序列化
+
+```python
+## __getinitargs__(self): 
+## __getnewargs__(self)
+## __getstate__(self)
+## __setstate__(self, state)
+## __reduce__(self)
+## __reduce_ex__(self)
+```
+
+### 特殊方法
+
+```python
+__call__	# 在定义类的时候，实现该函数，这样该类的实例就变成可调用的了，相当于重载了括号运算符.例如，md5那几个库，使用的时候就是md5(...)，但其实它肯定是个类的实例而不是个简单的函数撒.使用场景例如：
+class A():
+    def __call__(self, key):
+        print(key)
+        a = A()
+        a('key')	# 打印'key'
+        
+with		# 关键字的几个魔术方法，用with可以实现在函数前后执行某些语句
+## __enter__(self): 会返回一个值，并赋值给as关键词之后的变量
+## __exit__(self, exception_type, exception_value, traceback): 定义代码段结束后的一些操作，如果返回True，那么下面的异常会被屏蔽，如果返回None，那么会抛出
+class Count():
+    def __enter__(self):
+        print(time())
+    def __exit__(self):
+        print(time())
+with Count():
+    func()		# 这样在函数的开始与结束都能打印出时间了，这只是一个简单例子而已
 ```
 
 ## 装饰器
@@ -607,6 +696,10 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
   ```
 
 
+## PIP版本管理
+
+`pip`可以使用`==、>=、<=、>、<`几个符号来指定需要安装的依赖版本，并且可以同时使用多个，例如`Django>1.0,<2.0`则安装的是她们之间的最新版本
+
 ## 语言本身
 
 #### 性能分析与优化
@@ -637,18 +730,7 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
    	class MyGitHub:
    	    __metaclass__ = AuthorTag
 - **自省**：[参考](https://www.ibm.com/developerworks/cn/linux/l-pymeta/)自省对象能够描述自己：实例属于哪个类？类有哪些祖先？对象可以用哪些方法和属性？自省让处理对象的函数或方法根据传递给函数或方法的对象类型来做决定
-- **管理属性**：
-  - **\_\_new\_\_**：在构造函数之前，可以决定是否用\_\_init\_\_方法来实例化类，是一个静态方法.
-  - **\_\_init\_\_**：负责将类实例化
-  - **\_\_del\_\_**：类的析构函数
-  - **\_\_call\_\_**：在定义类的时候，实现该函数，这样该类的实例就变成可调用的了，相当于重载了括号运算符.例如，md5那几个库，使用的时候就是md5(...)，但其实它肯定是个类的实例而不是个简单的函数撒.[使用场景](http://qa.helplib.com/523801)例如：
-
-     class A():
-     		def __call__(self, key):
-     			print(key)
-     	a = A()
-     	a('key')	# 打印'key'
-- **多态**：Python中的多态，就相当于重载的方法
+- 多态**：Python中的多态，就相当于重载的方法
 - **Mixin**：在运行期间动态改变类的基类或类的方法，哦，就是在运行时给改变基类，这样随之所有的子类都改变了
 - **迭代器**：[参考](https://github.com/lzjun567/note/blob/master/note/python/iterator_generator.md)对象的类有next和iter方法返回自身
 - **生成器**：[参考](https://github.com/lzjun567/note/blob/master/note/python/iterator_generator.md)生成器都是迭代器，使用yield来生成的结果
@@ -657,8 +739,6 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 
    # 升级所有的包
    	pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U
-
-
 
 
 
@@ -679,8 +759,6 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 				  * 输入与输出  
 
 
-				        # 在调试某些代码的时候发现print没有输出，这是有可能将print重定向了，这是用sys.stdout.write('')可以实现打印输出到控制台
-
 				    # 将输出重定向到文件
 				    fp = open('log', 'w')
 				    sys.stdout = fp
@@ -696,16 +774,9 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 				    os.environ['name'] = value  # 设置系统环境变量  
 
 
-				  * 执行系统命令  
 
 
-				        import os, sys
-				    os.system('命令')
-				    os.popen('命令')  # 这个的返回值直接就是输出内容了
-	
-				    exec：总是返回None
-				    eval：会获取到返回值
-	
+​	
 				  * 动态导入模块  
 
 
@@ -713,9 +784,7 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 				    __import__(name = module_name, formlist=[a,b]) # 相当于from module_name import a, b
 
 
-				  * 类、函数、对象  
-
-
+				  * 类、函数、对象 
 				        x.__class__  # 获取对象的类名
 				    id(x)   # 返回对象标识，即内存地址
 				    setattr(my_model, 'name', 'value')  # 给对象动态添加属性
@@ -741,24 +810,16 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 				        collections.Counter：找出序列中出现次数最多的元素
 				    heqpq：查找最大或最小的几个元素
 				    itertoolrs：排列组合
-	
-				  * 装饰器  
 
 
-​	
-
-				  * 变量  
-
-
+				  * 变量
 				        sys.getsizeof(name)  # 获取变量占用内存的大小
-
+	
 				    # 如果要改变全局变量的值，那么需要用global来声明，如果仅仅是使用该值那么可以不用global声明
-
+	
 				    del name  # 删除一个变量
-
+	
 				    # 弱引用：在不增加引用计数的情况下使用对象的引用，以防止对象错误回收
-
-				  *   
 
 ## TroubleShooting
 - **CentOS安装pip**  
@@ -785,6 +846,8 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
   相对路径问题，所谓的相对路径其实是相对于当前module的路径，而不是当前目录的路径，如果当前目录不是module，那么当前module的name就是`__main__`，所以会出错
 
 - **Python中一切都是对象，a=1，b=1，两个是同一个对象，所以Python是无法通过变量名获取同名字符串的**
+
+- **在调试某些代码的时候发现print没有输出**: 这是有可能将print重定向了，这是用sys.stdout.write('')可以实现打印输出到控制台
 
 ## 推荐阅读
 

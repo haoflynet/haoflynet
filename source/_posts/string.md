@@ -1,7 +1,7 @@
 ---
 title: "Python字符串"
 date: 2016-08-07 11:06:30
-updated: 2016-12-28 19:48:00
+updated: 2017-04-09 19:48:00
 categories: python
 ---
 # Python字符串
@@ -140,6 +140,9 @@ a = str(datetime.date.today())
 print(a)  # 格式为2015-07-17
 a = time.strftime('%H:%M:%S')  # 格式为11:20:00
 time.strftime('%Y-%m-%d %H:%M:%S')
+
+# 获取当前时间时间戳
+time.time()
 
 # 字符串转时间：
 time_str='Tue, 11 Nov 2014 06:37:20 +0000'
