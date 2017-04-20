@@ -557,7 +557,8 @@ $author->posts()->detach([1,2,3])
 $author->posts()->attach([1,2,3=>['expires'=>$expires]])
 
 # 修改
-$user->update(['name' => 'wang'])
+$user->fill(['name' => 'wang'])->save()	# fill必须save过后才会更新到数据库
+$user->update(['name' => 'wang'])	# update会立即更新数据库
 $user->increment('age', 5)	# 如果是数字类型，可以直接相加，不带5就表示之内加1
 $user->decrement('age', 5)	# 或者减
 # 删除
