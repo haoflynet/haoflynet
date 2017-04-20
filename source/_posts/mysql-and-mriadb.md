@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-03-31 16:02:00
+updated: 2017-04-19 17:02:00
 categories: database
 ---
 # MySQL/MariaDB使用教程
@@ -49,7 +49,7 @@ ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;
 
 ##### 查询
 
-```shell
+```mysql
 # 普通查询
 SELECT * FROM table_A
 # 分组查询
@@ -59,7 +59,10 @@ update table_1 as a, (select id from biao_2 where name='a') as b set a.title='xx
 # 随机读取数据库记录
 SELECT * FROM table WHERE id >= (SELECT FLOOR(RAND() * (SELECT MAX(id) FROM table))) ORDER BY id LIMIT 1
 # 分页功能，获取m开始的n条记录
-SELECT * FROM table_name limit m, n		
+SELECT * FROM table_name limit m, n
+
+# 模糊查询
+SELECT * FROM table_name like '%abc_';	# 模糊查询，其中%贪婪匹配任意数量的任意字符，_匹配一个任意字符
 ```
 ##### 修改/更新
 
@@ -184,20 +187,22 @@ SECOND(datetime)    # 获取秒数
 * 查询数据库信息  
 
 
-        # 查询数据库数据存放目录
-    show variables like '\%datadir\%';
-    
-    # 查看所有的警告
-    show warnings
-    
-    # 查看MySQL版本
-    select @@version
-    
-    # 查看表的结构
-    show columns from 表名;
-    
-    # 修改表的字符集
-    alter table 表名 convert to character set utf8 collate utf8_general_ci;
+```mysql
+# 查询数据库数据存放目录
+show variables like '%datadir%';
+
+# 查看所有的警告
+show warnings
+
+# 查看MySQL版本
+select @@version
+
+# 查看表的结构
+show columns from 表名;
+
+# 修改表的字符集
+alter table 表名 convert to character set utf8 collate utf8_general_ci;
+```
 
 
 *   关于整型数据长度问题，需要注意的是MySQL里面的整型后面跟的长度并不是指该字段的实际长度，而是客户端显示的长度，实际存储的长度可以更长。这是几个整型数据对应的长度表(来自[MySQL官网](http://dev.mysql.com/doc/refman/5.7/en/integer-types.html)):
