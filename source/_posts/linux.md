@@ -207,6 +207,10 @@ sudo swapon /swapfile
 service iptables status     # 查询防火墙状态
 vim /etc/sysconfig/iptables # 新增端口
 service iptables restart    # 重启防火墙
+
+
+# CentOS7 
+firewall-cmd --add-port=3306/tcp	# 添加端口
 ```
 
 ## 其它工具
