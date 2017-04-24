@@ -210,7 +210,7 @@ service iptables restart    # 重启防火墙
 
 
 # CentOS7 
-firewall-cmd --add-port=3306/tcp	# 添加端口
+firewall-cmd --add-port=3306/tcp --permanent	# 添加端口
 ```
 
 ## 其它工具
