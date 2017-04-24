@@ -8,9 +8,11 @@ categories: database
 ## 安装方法
 **CentOS**：[使用yum安装MariaDB](https://mariadb.com/kb/zh-cn/installing-mariadb-with-yum/)，CentOS安装client直接yum install mysql而不是client，而安装mysql则直接用`yum install -y mysql mysql-server mysql-dev mysql-devel`，CentOS7上已经用mariadb代替了mysql，这样子使用：
 
-	yum install mariadb-server mariadb mariadb-devel -y
-	systemctl start mariadb.service # 启动服务
-	systemctl enable mariadb.service	# 开机启动
+```shell
+yum install mariadb-server mariadb mariadb-devel -y
+systemctl start mariadb.service # 启动服务
+systemctl enable mariadb.service	# 开机启动
+```
 ## 常用命令
 ### 增删改查
 
@@ -93,7 +95,7 @@ update user set password=PASSWORD('mysql') WHERE user="root";
 update user set authentication_string=PASSWORD('mysql') WHERE user="root";	# MySQL5.7以后password字段改为了authentication_string字段
 flush privileges;
 
-# 打开远程登录权限
+# 打开远程登录权限，如果是CentOS7还需要打开防火墙firewall-cmd --add-port=3306/tcp
 GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "mysql";
 flush privileges;                更新权限
 select host, user from user;     查看更改
