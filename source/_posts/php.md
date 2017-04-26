@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-03-08 17:21:21
+updated: 2017-04-18 17:21:21
 categories: php
 ---
 # PHP
@@ -250,6 +250,8 @@ class_exists()		# 检查类是否已经定义
   
 PHP_INT_MAX	# 最大整数
 PHP_INT_MIN	# 最小整数
+  
+hash_hmac(算法名, 明文, 盐)	# hash加密函数，可以选定加密算法，例如hash_hmac('sha1', 'mingwen', 'salt')
 ```
 - **@操作符**: 错误控制运算符，写在一行的前面，可以控制改行不输出warning信息或错误信息
 - **var_dump(变量名)**：打印变量，这个函数还会打印变量的类型可以把一个变量的各个部分全部信息输出，包括每个部分的数据类型和长度等信息，但是默认情况下，输出有限制，如果层数深了或者数据长了可能会表示成省略号，可以在`C:\wamp\bin\apache\\apache2.4.9\bin\php.ini`里面修改xdebug节点，添加如下内容
