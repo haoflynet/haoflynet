@@ -1,19 +1,52 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-02-22 14:40:00
+updated: 2017-04-25 14:40:00
 categories: system
 ---
 # Linux指南
+
+## 系统安装
+
+CentOS版本说明
+
+- BinDVD: 最完整的版本，可以选择安装所有的软件
+- LiveDVD: 光盘安装版
+- LiveCD:比LiveDVD体积小而已
+- minimal: 精简版，连基本软件都没带，最好不要安装这个
+- netinstall: 网络安装版
 
 ## 基础安装
 
 ```shell
 # CentOS
 sudo yum install epel-release
+## vim /etc/sysconfig/network-scripts/ifcfg-eth0把ONBOOT=no改成yes即可让网卡开机自动启动
 ```
 
 ## 命令行Tips
+
+#### shell
+
+```shell
+# shell配置文件的区别
+~/.bash_profile: 用户登录时被读取执行
+~/.bashrc: 启动新的shell时被读取执行
+~/.bash_logout: shell退出时被读取执行
+
+# shell登录过程
+/etc/profile -> ~/.bash_profile -> ~/.bash_login -> ~/.profile
+
+# 常见环境变量
+PATH: 指定shell在这些目录里面寻找命令
+HOME: 当前用户住目录
+MAIL: 当前用户存放邮件的目录
+SHELL: 当前用户使用的shell种类
+LOGNAME: 当前用户的登录名
+HOSTMANE: 当前主机名
+LANG/LANGUAGE: 语言
+```
+
 #### 进程及端口
 
 ```shell
@@ -549,5 +582,13 @@ WIFI网络设置
 
 - **ssh 出现"Too many authentication for "root""**
   连接的时候加一个参数:`ssh -o PubkeyAuthentication=no root@...`
+
+- **在server上面安装Teamviewer的时候提示`framebuffer not available,Please make sure that /dev/fb0 is accessible and it is configured to 32-bit depth.`相关问题**：需要安装相关的显示依赖:
+
+  ```shell
+  yum install centos-release-xen
+  yum update
+  reboot
+  ```
 
 - ​
