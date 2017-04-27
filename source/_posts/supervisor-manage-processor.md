@@ -20,18 +20,12 @@ supervisor是使用Python编写的进程管理软件，在实际开发中，一�
 
 安装过程如果安装出现unix:///var/run/supervisor.sock no such file这样的错误，那么请参考：http://tuzii.me/diary/522dc528848eea683d7724f2/\%E8\%A7\%A3\%E5\%86\%B3ubuntu-supervisor-unix:var-run-supervisor.sock-no-such-file.\%E7\%9A\%84\%E6\%96\%B9\%E6\%B3\%95
 
-
-
-
-
     sudo easy_install supervisor
     echo_supervisord_conf > supervisord.conf  # 生成一个配置文件
     sudo supervisord -c supervisord.conf      # 使用该配置文件启动supervisord
     sudo supervisorctl                        # 进入命令行界面管理进程
 
 ## 设置一个进程
-
-
 
     # 在supervisord.conf里面添加如下内容
     [program:frontend]                                           # 进程名
