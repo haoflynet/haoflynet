@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-03-29 20:33:00
+updated: 2017-04-26 20:33:00
 categories: php
 ---
 # Laravel指南
@@ -801,13 +801,20 @@ str_random(25);			# 产生给定长度的随机字符串
 
 ### 错误和日志
 
+`logger`用于直接输出`DEBUG`级别的日志，更好的是使用`use Illuminate\Support\Facades\Log;`，如果`storage/laravel.log`下面找不到日志，那么可能是重定向到`apache`或者`nginx`下面去了
+
 ```php
 # 日志的用法
 Log::useFiles(storage_path().'/logs/laravel.log')	# 如果发现无论什么都不输入到日志里面去，一是检查日志文件的权限，而是添加这个，直接指名日志文件
 
-Log::error('Something is really going wrong.');
+Log::emergency('紧急情况');
+Log::alert('警惕');
+Log::critical('严重');
+Log::error('错误');
+Log::warning('警告');
+Log::notice('注意');
 Log::info('This is some useful information.');
-Log::warning('Something could be going wrong.');
+Log::debug();
 ```
 
 ### Artisan Console
@@ -933,6 +940,8 @@ public function testIndex{
   按照[[How do I make doctrine support timestamp columns?](http://stackoverflow.com/questions/34774628/how-do-i-make-doctrine-support-timestamp-columns)]的做法，目前最简单的方式是直接用`DB::statement()`来写SQL语句
 
 - **POST数据的时候出现`The payload is invalid`**，我遇到这个情况是因为在做复杂的表单提交，直接提取`X-XSRF-TOKEN`的值，但是由于没有转移，导致后端token揭秘失败
+
+- **保存model的时候出现错误：`Missing argument 2 for Illuminate\Database\Eloquent\Model::setAttribute()`**，一般是`Model`的几个属性没有设正确，检查这几个值`incrementing/timestamps/primarykey/fillable`
 
 ## 相关文章
 
