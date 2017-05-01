@@ -250,9 +250,9 @@ class User(models.Model):
 #### 常用类型
 
 ```python
-数字类型：
-AutoField：自增长字段
-IntegerField：长度为11的整数
+# 数字类型：
+AutoField		# 自增长字段
+IntegerField	# 长度为11的整数
 PositiveIntegerField：
 SmallIntegerField
 PositiveSmallIntegerField
@@ -263,8 +263,8 @@ NullBooleanField：
 DecimalField(max_digits = None, decimal_places = None)
 FloatField
 
-字符类型：
-CharField：字符串类型，可用max_length指定长度
+# 字符类型
+CharField	# 字符串类型，可用max_length指定长度，枚举类型也使用该方式，只需要指定枚举枚举元组即可，例如type = models.CharField('类型', choices=CONTENT_TYPE)，其中CONTENT_TYPE=(('a', 'abc'))
 TextField：text类型
 CommaSeparatedIntegerField：用逗号分隔的整数，我擦，这有用
 
@@ -360,18 +360,19 @@ Blog.objects.get( Q(name__startswith='wang'), Q(name__startswith='hao')) # 逗�
 #### ForeignKey
 例如：
 
-	# modles.py
-	class System(models.Model):
-		name = models.CharField(max_length = 20)
-	        **ForeignKey**，实例如下：
-	
-	class Server(models.Model):
-		ip = models.GenericIPAddressField(default = '127.0.0.1')
-		system = models.ForeignKey(System)
-	
-	# views.py里面这样子使用
-	server = Server.objects.get(id=1)
-	server_system = server.system.name # 这样就可以获取到那个name了
+```python
+# modles.py
+class System(models.Model):
+	name = models.CharField(max_length = 20)
+
+class Server(models.Model):
+	ip = models.GenericIPAddressField(default = '127.0.0.1')
+	system = models.ForeignKey(System)
+
+# views.py里面这样子使用
+server = Server.objects.get(id=1)
+server_system = server.system.name # 这样就可以获取到那个name了
+```
 #### OneToMany(hasMany)
 一对多关系，同样使用ForeighKey实现，例如
 
