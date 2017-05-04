@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2017-03-08 16:02:00
+updated: 2017-05-02 18:02:00
 categories: tools
 ---
 # Docker 使用指南
@@ -28,14 +28,22 @@ docker rmi # 删除镜像
 docker tag id name:tag	# 给镜像更改名称
 ```
 
-
 ## 创建容器
 
+#### 启动参数
+
+```tex
+--add-host="host:IP"	# 给hosts添加一行
+-d						# 使容器在后台运行(detached mode)
+--name haofly			# 给容器命名
+--net=host				# 网络模式，host表示容器不会获得独立的Network Namspace，而是和宿主机公用一个Network Namespace。容器将不会虚拟网卡，配置自己的IP，而是使用宿主机器的IP和端口；none表示没有网络；bridge是docker默认的网络设置；container:NAME_or_ID表示container模式，指定新创建的容器和已经存在的一个容器共享一个Network Namespace，和指定的容器共享IP、端口范围等。
+--restart=no			# 容器的重启模式，no表示不自动重启，on-failure表示当容器推出码为非零的时候自动重启，always表示总是自动重启，docker重启后也会自动重启，unless-stopped表示只有在docker重启时不重启，其他时候都自动重启。
+-v /etc/test/:/etc/internal/test	# 将宿主机的/etc/test目录挂在到容器内部的/etc/internal/test目录
+```
+
+#### 启动命令
+
 	# docker run命令用于从镜像创建一个容器
-	# --add-host="host:IP"	# 给hosts添加一行，这个非常有用
-	# -d：使容器在后台运行(detached mode)，不加则默认是前台模式，启动后会将当前命令行窗口挂在到容器中
-	# --name：指定名称，如--name haofly
-	# -t：分配一个伪终端
 	# -i参数表示将STDIN持续打开而不管是否已经attached
 	docker run -t -i ubuntu:14.04.1      # 从ubuntu:14.04.1镜像创建一个容器
 	docker run -t -i ubuntu:14.04.1 /bin/bash # 从ubuntu:14.04.1创建容器并在容器中执行命令
@@ -47,11 +55,7 @@ docker tag id name:tag	# 给镜像更改名称
 	docker logs 容器名称  # 获取容器的输出信息，但是通过docker exec进入容器的时候，其标准输出并未被主进程相关联，所以docker exec所执行进程的标准输出不会进入容器的日志文件。即docker容器的日志只负责应用本身的标准输出，不包括docker exec衍生进程的标准输出(http://docs.daocloud.io/allen-docker/docker-exec)
 	docker run -t -i -d -p 80:80 -v /home/haofly/docker/test/mysite:/mysite django-apache:latest # 我当前机器上的一条执行自己创建的镜像的命令
 	
-	# 网络模式
-	--net=host(host模式): 容器不会获得独立的Network Namspace，而是和宿主机公用一个Network Namespace。容器将不会虚拟网卡，配置自己的IP，而是使用宿主机器的IP和端口。
-	--net=container:NAME_or_ID(container模式): 指定新创建的容器和已经存在的一个容器共享一个Network Namespace，和指定的容器共享IP、端口范围等。
-	--net=none(none模式): 没有网络
-	--net=bridge(bridge模式): docker默认的网络设置。
+	
 
 ## 容器操作
 
