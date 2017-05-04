@@ -315,10 +315,10 @@ Blog.objects.all().defer('title')		# 仅仅取某个字段，这里返回是一�
 Blog.objects.all().only('title')		# 仅仅取某个字段，也是返回一个model对戏那个
 Blog.objects.all().values_list('title')	# 仅仅取某个字段，这里返回一个数组
 
-Blog.objects.latest('id')  				# 根据某个字段查找其最后一条记录
+Blog.objects.latest('id')  				# 根据某个字段查找其最后一条记录，返回的是一个对戏那个，不是id
 Blog.objects.filter(time__gte = '2015-07-23', time__lte = '2015-07-24') # 大于等于并且小于等于，不加e表示不能等于
 Blog.objects.filter(time__isnull = True)# 判断某个字段是否为空
-Blog.objects.all().exclude(id=7)  		# 排除
+Blog.objects.all().exclude(id=7)  		# 排除，即不等于
 Blog.objects.filter('time__year': '2015', 'time__month': '08', 'time__day': '17')：按年月日查询日期，可仅查询其中某一个条件
 
 
