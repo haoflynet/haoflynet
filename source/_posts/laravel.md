@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-04-26 20:33:00
+updated: 2017-05-02 10:33:00
 categories: php
 ---
 # Laravel指南
@@ -31,6 +31,8 @@ MAIL_HOST=mailtrap.io
 MAIL_PORT=2525
 MAIL_USERNAME=null
 MAIL_PASSWORD=null
+
+EXAMPLE_PUBLIC_KEY=abc\ndef	# 要在配置里面换行，目前只有这种方式了，在读取的时候这样子读取: str_replace("\\n", "\n", env('MSGCENTER_PUBLIC_KEY'))
 ```
 
 还可以在该文件里配置其它的变量，然后在其它地方使用`env(name, default)`即可访问。例如，读取数据库可以用`config('database.redis.default.timeout', -1)`来。
