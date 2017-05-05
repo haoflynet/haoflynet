@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-04-25 14:40:00
+updated: 2017-05-04 15:40:00
 categories: system
 ---
 # Linux指南
@@ -165,11 +165,16 @@ sshd:IP
 #### 包管理
 
 ```shell
+# RedHat
 dpkg -i *.deb # 安装deb包，但是它不会自动解决依赖，安装完成后还要使用apt-get -f install这条命令来安装没有安装好的依赖
-apt-cache show 包名 # 显示apt库里面的软件的版本号
-sudo apt-get clean # 自动清理安装程序时缓存的deb包
-sudo apt-get autoclean  # 清理已卸载软件的无用的依赖包
-rpm -ql 包名	# 查询已经安装的包的文件路径
+dpkg -l			# 查看已经安装的包
+
+# Debian
+apt-cache show 包名 	   # 显示apt库里面的软件的版本号
+apt-get clean 			# 自动清理安装程序时缓存的deb包
+apt-get autoclean  		# 清理已卸载软件的无用的依赖包
+apt list --installed	# 查看已经安装的包
+rpm -ql 包名			   # 查询已经安装的包的文件路径
 ```
 
 #### 磁盘管理
@@ -234,13 +239,22 @@ sudo chmod 0600 /swapfile
 sudo swapon /swapfile
 ```
 
+#### systemctl/service
+
+```shell
+sudo systemctl start docker	# 开启服务
+sudo systemctl enable docker.service	# 开机启动服务
+sudo systemctl disable docker.service	# 禁用开机启动
+service httpd status	# 检查服务状态
+systemctl list-units --type=service	# 显示所有已启动的服务
+```
+
 #### 防火墙
 
 ```shell
 service iptables status     # 查询防火墙状态
 vim /etc/sysconfig/iptables # 新增端口
 service iptables restart    # 重启防火墙
-
 
 # CentOS7 
 firewall-cmd --add-port=3306/tcp --permanent	# 添加端口
