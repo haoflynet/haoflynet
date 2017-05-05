@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2016-09-28 09:48:00
+updated: 2017-05-02 10:48:00
 categories: python
 ---
 # python requests模块
@@ -82,7 +82,17 @@ response.status_code  #HTTP status，http状态码
 # 如果直接请求，如果发生重定向，那么response.status_code = 200, response.history = 301
 print([x for x,y in A.__dict__.items() if type(y) == FunctionType])
 ```
+#### 下载文件
+
+```python
+r = requests.get('https://haofly.net/test.mp4', stream=True)
+with open('filename.mp4', 'wb') as fd:
+    for chunk in r.iter_content(1024):
+        fd.write(chunk)
+```
+
 # TroubleShooting:
+
 - **设置最大重试次数**  
   之前发现设置了timeout时间却没反应，原来是因为查询不到ip地址，导致在timeout时间内就已经默认在重试了，要设置就得先执行语句`requests.adapters.DEFAULT_RETRIES=5`
 

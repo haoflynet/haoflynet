@@ -1,10 +1,13 @@
 ---
 title: "Python使用Splinter(Selenium)进行浏览器模拟测试"
 date: 2016-08-10 19:56:39
-updated: 2017-03-30 15:43:00
+updated: 2017-05-01 15:43:00
 categories: python
 ---
 每次看到selenium都觉得很牛，但是苦于文档(包括英文)太少，我到今天才真正完整地安装使用了一把。我不喜欢来一个项目就在自己电脑上搭一个运行环境，而是喜欢在docker或者虚拟机里进行操作，问题是docker或者虚拟机里并没有任何的可视化的浏览器，而Selenium又依赖于这些浏览器驱动，我是最讨厌安装驱动的，因为驱动这个东西电脑不同差距特别大，总是会出现各种问题。而在服务器上如何安装selenium或者splinter，这个过程在网上基本是找不到的，所以这里记录下自己的安装方法。
+
+注：这里之所以要使用`splinter`，而不只使用`selenium`是因为`splinter`在`selenium`之上又封装了一层，使得接口更为简单。
+
 ## Linux install Splinter(Selenium)
 
 首先，需要安装必要的python包`pip3 install splinter selenium xvfbwrapper`需要注意的是，splinter只有在使用浏览器的时候才需要安装selenium，如果仅仅是在flask或者django中进行测试是不需要的。
@@ -90,6 +93,26 @@ print(browser.title)
 
 ```she
 disable-infobars	// 禁用网页上部的提示栏，比如2.28的webdriver开始会提示你Chrome正受到自动测试软件的控制，这个特性应该是chrome为了安全给加的
+```
+
+### 获取所有网络请求
+
+很多时候访问一个页面，在该页面可能会同时访问其他的资源，例如js，css，甚至其他一些关键信息。这时候就要求我们能够获取中间的所有的请求，但是`selenium`是不带这个功能的，只能使用一些代理，例如：[browsermob-proxy](https://github.com/lightbody/browsermob-proxy)。其不需要安装，只需要下载`bin`包，然后在使用的时候指定路径即可。例如：
+
+```python
+from browsermobproxy import Server
+server = Server("~/browsermob-proxy-2.1.4/bin/browsermob-proxy")
+server.start()
+proxy = server.create_proxy()
+
+chrome_options = Options()
+chrome_options.add_argument('--proxy-server={host}:{port}'.format(host='localhost', port=proxy.port))
+browser = Browser('chrome', executable_path='~/share/chromedriver2.28', options=chrome_options)
+browser.driver.set_window_size(1500, 900)	# 设置浏览器的size
+
+proxy.new_har()
+browser.visit('https://haofly.net')
+print(proxy.har)		# 以json的形式打印出中间所有的网络请求
 ```
 
 ## 浏览器操作
