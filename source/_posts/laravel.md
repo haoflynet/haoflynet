@@ -845,6 +845,7 @@ $this->visit('/')->see('Laravel 5')->dontSee('Rails')	# 查看页面是否存在
 # 用户登录
 $user = User::find(1)
 $this->be($user)		# 直接在测试用例添加这个即可
+Auth::check()			# 用户是否登录，如果已经登录返回true
   
 # 表单填写
 $this->type($text, $elementName)	# 输入文本
