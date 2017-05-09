@@ -55,5 +55,5 @@ categories: tools
 
    ```shell
    nohup sslocal -c /etc/shadowsocks.json /dev/null 2>&1 &	# 后台执行
-   echo " nohup sslocal -c /etc/shadowsocks.json /dev/null 2>&1 &" /etc/rc.local	# 开机自动启动
+   echo " nohup sslocal -c /etc/shadowsocks.json /dev/null 2>&1 &" >> /etc/rc.local	# 开机自动启动
    ```
