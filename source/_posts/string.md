@@ -73,10 +73,10 @@ a = 'abc'
 print(a.zfill(5)) # 输出'00abc'
 
 # 去掉空格
-s.strip()          # 去掉两端空格
-s.lstrip()         # 去掉左边空格，加参数可以
-s.rstrip()         # 去掉右边空格
-s.replace(' ', '') # 去掉所有空格
+s.strip()          # 去掉两端空白
+s.lstrip()         # 去掉左边空白，加参数可以
+s.rstrip()         # 去掉右边空白
+s.replace(' ', '') # 去掉所有空白
 
 # 大小写转换
 s.upper()    # 全部转为大写
