@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-05-09 15:13:00
+updated: 2017-05-17 15:13:00
 categories: php
 ---
 # Laravel指南
@@ -525,6 +525,16 @@ User::where([
 )			# where语句能够传递一个数组
 User::where()					# 如果不加->get()或者其他的是不会真正查询数据库的，所以可以用这种方式来拼接，例如$a_where=User::where();$result =$a_where->where()->get();
 User::whereIn('name', ['hao', 'fly'])	# in查询
+User::whereNull('name')			# is null
+User::whereNotNull('name')		# is not null
+User::whereBetween('score', [1, 100])	# where between
+User::whereNotBetween('score', [1, 100])	# where not between
+User::whereDate('created_at', '2017-05-17')
+User::whereMonth('created_at', '5')
+User::whereDay('created_at', '17')
+User::whereYear('created_at', '2017')
+User::whereColumn('first_field', 'second_field')	# 判断两个字段是否相等
+User::where(...)->orWhere()		# or where
 User::where()->firstOrFail()	# 查找第一个，找不到就抛异常
 User::where('user_id', 1)->get()# 返回一个Collection对象
 User::where(...)->first()		# 只取出第一个model对象
