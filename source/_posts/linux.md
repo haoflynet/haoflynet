@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-05-04 15:40:00
+updated: 2017-05-19 10:40:00
 categories: system
 ---
 # Linux指南
@@ -416,8 +416,13 @@ date +"%T"	# 仅显示时间，比如10:44:00
 	
 	date+\%Y-\%m-\%d   # 获取今天的日期
 
+## 常用shell命令
+
+- 获取服务器核心数`cat /proc/cpuinfo | grep "model name" | wc -l`
+- 获取服务器内存大小`cat /proc/meminfo | grep MemTotal`
 
 # TroubleShooting
+
 - **Linux下笔记本触摸板无法使用的问题**  
   我的电脑是宏碁E1-471G, ubuntu13.04，以下几个方法依次尝试  
   方法一：Fn + F7  
