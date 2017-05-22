@@ -81,7 +81,22 @@ find / -mmin -60    # 查找60分钟内修改的文章
 find / -type d -mtime -1 # 查找1天内修改过的文件夹(好吧，我用了rm -rf / 命令才知道的)
 sed '5s/^.*$/xxxxx/' filename	# 替换某个文件的第五行，并输出结果，不写入
 sed -i 's/^abc$/xxxxx/g' filename > filename 	# 替换某个文件的abc字符串，并写入指定文件
+cat /proc/cpuinfo | grep "model name" | wc -l	# 获取服务器核心数
+free -h | sed -n '2p' | awk '{print $2}'		# 获取服务器内存大小
+df -h | sed -n '2p' | awk '{print $2}'			# 获取服务器磁盘大小
 ```
+
+##### awk
+
+以行为单位将输入进行处理，貌似这里的处理只能进行print
+
+	-F 参数将行做分割，例如：ps | awk -F ' ' '\{print $1\}'  # 将ps的第二列输出
+
+##### sed
+
+##### 同样以行为单位将输入进行处理
+
+    -n 输出第几行，例如：ps | sed -n '1p'  # 将ps的第一行输出
 
 #### 文件操作
 
@@ -405,21 +420,12 @@ date +"%T"	# 仅显示时间，比如10:44:00
 	find ./ -name "*.log" -mtime -1 | which read line; do tail -n 5 "$line" > ~/bak/"$line"; done # 查找，然后按行进行执行
 	while read line do 语句 done  # 一行一行地进行处理，真正的处理
 	
-	# awk：以行为单位将输入进行处理，貌似这里的处理智能进行print
-		-F 参数将行做分割，例如：ps | awk -F ' ' '\{print $1\}'  # 将ps的第二列输出
 	
-	# sed：同样以行为单位将输入进行处理
-	    -n 输出第几行，例如：ps | sed -n '1p'  # 将ps的第一行输出
 	
 	# xargs：将上一个管道的输出直接作为这个管道的输入
 	    ps | grep python | awk -F ' ' '\{print $1\}' | xargs kill
 	
 	date+\%Y-\%m-\%d   # 获取今天的日期
-
-## 常用shell命令
-
-- 获取服务器核心数`cat /proc/cpuinfo | grep "model name" | wc -l`
-- 获取服务器内存大小`cat /proc/meminfo | grep MemTotal`
 
 # TroubleShooting
 
