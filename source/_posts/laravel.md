@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-05-17 15:13:00
+updated: 2017-05-22 16:13:00
 categories: php
 ---
 # Laravel指南
@@ -71,6 +71,7 @@ exists:table,column1,column2,value	# 判断字段的值是否存在于某张表�
 exists:table,column1,column2,!value	# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值不为多少
 exists:table,column1,column2,{$field}# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值和前面的某个字段提供的值一样
 in:value1,value2,...# 字段值必须是这些值中的一个，枚举值
+not_in:value1,value2,...	# 字段值不为这其中的任何一个
 integer				# 必须是整数
 ip					# 必须是IP字符串
 json				# 必须是JSON字符串
@@ -706,7 +707,7 @@ $user->can('create', Post::class)	# 自动定位到某个model
 @can('create', [\App\Comment::class, $post])	# Comment的创建，针对CommentPolicy，并且应该这样子定义:public function create(User $user, $commentClassName, Project $project)
 ```
 
-### 任务队列
+### 任务队列Job
 
 通过`php artisan make:job CronJob`新建队列任务，会在`app/Jobs`下新建一个任务.
 
@@ -738,6 +739,7 @@ public function failed()
 1. 不要在`Jobs`的构造函数里面使用数据库操作，最多在那里面定义一些传递过来的常量，否则队列会出错或者无响应  
 2. job如果有异常，是不能被catch的，job只会重新尝试执行该任务，并且默认会不断尝试，可以在监听的时候指定最大尝试次数`--tries=3`
 3. 不要将太大的对象放到队列里面去，否则会超占内存，有的对象本身就有几兆大小
+4. 一个很大的坑是在5.4及以前，由于`queue:work`没有timeout参数，所以当它超过了队列配置中的`expire`时间后，会自动重试，但是不会销毁以前的进程，默认是60s，所以如果有耗时任务超过60s，那么队列很有可能在刚好1分钟的时候自动新建一条一模一样的任务，这就导致数据重复的情况。
 
 
 ### 事件
