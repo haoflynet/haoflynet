@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-05-19 10:40:00
+updated: 2017-05-23 17:40:00
 categories: system
 ---
 # Linux指南
@@ -20,7 +20,7 @@ CentOS版本说明
 
 ```shell
 # CentOS
-sudo yum install epel-release
+sudo yum install epel-release	# 安装epel源
 ## vim /etc/sysconfig/network-scripts/ifcfg-eth0把ONBOOT=no改成yes即可让网卡开机自动启动
 ```
 
@@ -97,6 +97,14 @@ df -h | sed -n '2p' | awk '{print $2}'			# 获取服务器磁盘大小
 ##### 同样以行为单位将输入进行处理
 
     -n 输出第几行，例如：ps | sed -n '1p'  # 将ps的第一行输出
+##### xargs
+
+给其他命令传递参数的过滤器，能够用于组合多个输入，将标准输入转换成命令行参数。
+
+```shell
+cat url-list.txt | xargs wget -c	# 下载一个文件中所有的链接
+cat folder-list.txt | xargs ls		# 列出一个文件夹文件中的所有文件
+```
 
 #### 文件操作
 
@@ -155,6 +163,12 @@ find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK�
 ```shell
 # 配置免密码登录
 ssh-keygen -t dsa # 生成自己的ssh，然后将~/.ssh/id_dsa.pub的内容添加到主机的~/.ssh/authorized_keys里面面去
+
+# SSH自动把host加入到known_hosts
+ssh -o StrictHostKeyChecking=no root@ip
+
+# 命令行直接输入密码，使用sshpass，当然，这样子在history就会记录下你的密码了，可以使用history的相关功能屏暂时屏蔽掉记录密码的功能
+sshpass -ppassword ssh 
 
 # CentOS下的安装
 yum install openssh-clients
@@ -419,9 +433,9 @@ date +"%T"	# 仅显示时间，比如10:44:00
 
 	find ./ -name "*.log" -mtime -1 | which read line; do tail -n 5 "$line" > ~/bak/"$line"; done # 查找，然后按行进行执行
 	while read line do 语句 done  # 一行一行地进行处理，真正的处理
-	
-	
-	
+
+
+​	
 	# xargs：将上一个管道的输出直接作为这个管道的输入
 	    ps | grep python | awk -F ' ' '\{print $1\}' | xargs kill
 	
