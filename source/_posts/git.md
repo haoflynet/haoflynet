@@ -1,7 +1,7 @@
 ---
 title: "Git 教程"
 date: 2016-08-07 07:12:39
-updated: 2017-04-12 16:36:00
+updated: 2017-05-27 16:36:00
 categories: tools
 ---
 # Git指南
@@ -87,7 +87,8 @@ git checkout -- filename	# 放弃指定文件的更改
 
 ```shell
 git branch -a  				# 查看所有分支
-git checkout -b new-branch	# 在本地新建分支并切换到新分支
+git checkout -b new-branch 	# 在本地新建分支并切换到新分支
+git checkout -b dev origin/dev	# 拉取远程分支到本地并命名为dev分支
 git push origin :serverfix	# 直接删除远程分支
 
 
