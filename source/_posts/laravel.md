@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-05-22 16:13:00
+updated: 2017-06-01 18:13:00
 categories: php
 ---
 # Laravel指南
@@ -550,6 +550,10 @@ User::onlyTrashed()->where()	# 仅查找软删除了的
 User::find(1)->posts			# 取出一对多关联，返回值为Collection
 User::find(1)->posts()			# 取出一对多关联，返回值为hasMany
 User::find(1)->posts->count()	# 判断关联属性是否存在stackoverflow上面用的这种方法  
+User::all()->orderBy('name', 'desc')	# 按降序排序
+User::all()->latest()					# 按created_at排序
+User::all()->oldest()					# 按created_at排序
+User::all()->inRandomOrder()->first()	# 随机顺序
 
 # 访问器，如果在Model里面有定义这样的方法
 public function getNameAttribute(){
@@ -752,11 +756,7 @@ public function failed()
 
 #### 事件监听器
 
-#### 事件的触发
-
-#### 事件的
-
-#####  
+#### 事件的触发 
 
 ### 服务容器
 
