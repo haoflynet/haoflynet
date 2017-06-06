@@ -1,7 +1,7 @@
 ---
 title: "Git 教程"
 date: 2016-08-07 07:12:39
-updated: 2017-05-27 16:36:00
+updated: 2017-06-05 18:36:00
 categories: tools
 ---
 # Git指南
@@ -86,20 +86,16 @@ git checkout -- filename	# 放弃指定文件的更改
 - 修补bug(fixbug)分支: `fixbug-*`
 
 ```shell
-git branch -a  				# 查看所有分支
-git checkout -b new-branch 	# 在本地新建分支并切换到新分支
+git branch -a  					# 查看所有分支
+git branch -D dev				# 删除本地分支
+git checkout -b new-branch 		# 在本地新建分支并切换到新分支
 git checkout -b dev origin/dev	# 拉取远程分支到本地并命名为dev分支
-git push origin :serverfix	# 直接删除远程分支
+git push origin :serverfix		# 直接删除远程分支
 
-
-
-git branch remotes/origin/2.0.0	# 直接切换到远程分支
-git checkout origin/dev	# 检出远程分支到本地，此时会显示如下:
-*(HEAD detached at origin/dev)
-master
 ## 强制覆盖本地分支
 git fetch --all
 git reset --hard origin/master
+
 ## 合并分支
 ### 在新的分支如bug-fix修改完成后，执行以下操作
 git checkout dev	# 切换回dev分支
@@ -227,4 +223,4 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
   '
   ```
 
-- ​
+- **error: you need to resolve your current index first**: 通常是因为合并冲突所致，可以简单地使用`git reset --merge`进行恢复
