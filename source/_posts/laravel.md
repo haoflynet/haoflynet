@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-06-01 18:13:00
+updated: 2017-06-07 18:13:00
 categories: php
 ---
 # Laravel指南
@@ -57,7 +57,8 @@ laravel可以直接通过命令创建一个控制器:
 ```
 # 通过Validator进行校验，第一个参数是一个key-value的数组
 $validation = Validator::make($request->all(), [
-  'ip' => 'required|ip'	// 校验key=ip的值是否真的是ip
+  'ip' => 'required|ip'			# 校验key=ip的值是否真的是ip
+  'arr.*.field'	=> 'required|'	# 验证数组内部的字段，5.1不支持
 ])
 
 # 常用框架自带的认证类型
@@ -83,7 +84,7 @@ required_with:字段名 # 当某个字段存在的时候当前字段必填
 required_if:anotherfield,value	# 当某个字段的某个值为多少的时候，当前字段为必填
 string				# 必须是字符串
 url					# 必须是合法的url
-regex				# 必须符合这个正则表达式，例如regex:/^[a-z]{1}[a-z0-9-]+$/
+regex				# 必须符合这个正则表达式，例如regex:/^[a-z]{1}[a-z0-9-]+$/，需要注意的是，如果正则表达式中用了|符号，必须用数组的方式来写正则表达式，否则会报错，例如['required', 'regex:/[0-9]([0-9]|-(?!-))+/']
 
 # 自定义错误提示的消息，可以通过传递进去，不过也可以直接在语言包文件resources/lang/xx/validation.php文件的的custom数组中进行设置
 
