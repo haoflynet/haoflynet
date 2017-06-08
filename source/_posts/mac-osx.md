@@ -1,7 +1,7 @@
 ---
 title: "MAC OSX 教程"
 date: 2016-09-06 01:02:30
-updated: 2017-03-28 15:08:00
+updated: 2017-06-03 15:08:00
 categories: system
 ---
 # MAC指南
@@ -10,6 +10,12 @@ categories: system
 
 ```shell
 export ALL_PROXY=socks5://127.0.0.1:1080	# homebrew走ss代理
+```
+
+## 常用命令
+
+```shell
+dscacheutil -q group	# 查看所有用户和组
 ```
 
 ## 更换文件图标
