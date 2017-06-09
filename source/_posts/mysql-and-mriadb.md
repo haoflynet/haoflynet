@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-04-19 17:02:00
+updated: 2017-05-31 17:02:00
 categories: database
 ---
 # MySQL/MariaDB使用教程
@@ -56,7 +56,9 @@ ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;
 SELECT * FROM table_A
 # 分组查询
 SELECT count(column_a) as count FROM table_A GROUP_BY coulumn_b
+
 # 多表子查询
+## 需要注意的是，子查询后面必须要AS一个别名
 update table_1 as a, (select id from biao_2 where name='a') as b set a.title='xx' where a.id=b.id
 # 随机读取数据库记录
 SELECT * FROM table WHERE id >= (SELECT FLOOR(RAND() * (SELECT MAX(id) FROM table))) ORDER BY id LIMIT 1
@@ -66,6 +68,16 @@ SELECT * FROM table_name limit m, n
 # 模糊查询
 SELECT * FROM table_name like '%abc_';	# 模糊查询，其中%贪婪匹配任意数量的任意字符，_匹配一个任意字符
 ```
+##### 连表查询
+
+```shell
+# LEFT JOIN ... ON ...
+## 会取出左表的全部记录，即使右表没有对应匹配的记录。用这种方式SELECT出来的数据，如果右表数据为空，那么会给NULL
+
+# INNER JOIN ... ON ...
+## 语法和LEFT JOIN其实是一样的，只不过右表没有匹配的记录的情况下，最终的结果就不会出现左表的那一条数据
+```
+
 ##### 修改/更新
 
 ```shell
@@ -105,6 +117,14 @@ show global variables like 'log_error'; # 日志文件路径
 
 # 记录下所有的sql命令
 bin-log = /tmp/mysql.log	# 直接在配置文件里面
+
+# 数据库编码
+show variables like 'character%';	# 查看关于编码的几个变量
+character_set_client				# 客户端编码方式
+character_set_connection			# 建立连接使用的编码方式
+character_set_database				# 数据库的编码
+character_set_results				# 结果集的编码
+character_set_server				# 数据库服务器的编码
 ```
 ### 数据库维护
 
