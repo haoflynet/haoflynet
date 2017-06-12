@@ -1,10 +1,9 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2017-01-18 18:04:00
+updated: 2017-06-09 17:04:00
 categories: server
 ---
-# nginx手册
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理.  
 
 安装方法见: [Centos使用nginx安装方法](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-6-with-yum)
@@ -157,8 +156,7 @@ nginx提供了默认的模块可以查看负载均衡的统计信息等，只需
 		auth_basic_user_file   /etc/nginx/htpasswd;  
 	}
 
-其中htpasswd是保存用户名和密码的文件，可以自定义位置，每一行一个用户`username:password`这样子保存的，使用crypt3(BASE6
-4)加密，可以用一个PHP文件来生成
+其中htpasswd是保存用户名和密码的文件，可以自定义位置，每一行一个用户`username:password`这样子保存的，使用crypt3(BASE64)加密，可以用一个PHP文件来生成
 
 	$password = 'hehe';
 	$password = crypt($password, base64_encode($password));
@@ -172,11 +170,29 @@ nginx提供了默认的模块可以查看负载均衡的统计信息等，只需
 	Reading: 0 Writing: 1 Waiting: 0
 
 ## TroubleShooting
+
 - CentOS下出现负载均衡出现错误：(13: Permission denied) while connecting to upstream:[nginx]，直接执行如下命令：
 
+  ```shell
+  sudo cat /var/log/audit/audit.log | grep nginx | grep denied | audit2allow -M mynginx
+  sudo semodule -i mynginx.pp  # 貌似在SELinux下，auditallowk可以讲禁止的规则加入到信任
+  ```
 
-    sudo cat /var/log/audit/audit.log | grep nginx | grep denied | audit2allow -M mynginx
-    sudo semodule -i mynginx.pp  # 貌似在SELinux下，auditallowk可以讲禁止的规则加入到信任
+- `php-fpm`没有打印错误日志，仅仅有访问日志，原因是php-fpm默认是关闭workder进程的错误输出，重定向到了`/dev/null`，所以在errlog里面看不到我们想看的日志，需要做以下更改:
+
+  ```shell
+  # vim /etc/php-fpm.conf
+  [www]
+  catch_workers_output = yes	# 更改为yes
+
+  # vim /etc/php.ini
+  log_errors = On
+  error_log = /var/log/error_log
+  error_reporting=E_ALL
+  ```
+
+- ​
+
 
 
 

@@ -729,6 +729,9 @@ dispatch(new App\Jobs\PerformTask);
 $jog = (new App\Jobs\..)->onQueue('name');
 dispatch($jog);
 
+# 指定延迟时间
+$job = (new App\Jobs\..)->delay(60);
+
 # 任务出错执行
 public function failed()
 {
