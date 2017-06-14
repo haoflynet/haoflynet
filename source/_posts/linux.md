@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-05-23 17:40:00
+updated: 2017-06-13 17:40:00
 categories: system
 ---
 # Linux指南
@@ -286,7 +286,9 @@ vim /etc/sysconfig/iptables # 新增端口
 service iptables restart    # 重启防火墙
 
 # CentOS7 
-firewall-cmd --add-port=3306/tcp --permanent	# 添加端口
+firewall-cmd --add-port=3306/tcp --permanent	# 添加端口，需要注意的是，很多时候需要重启firewall才能生效
+firewall-cmd --reload			# 重启CentOS
+firewall-cmd --list-ports		# 列出开放的端口
 ```
 
 ## 其它工具
