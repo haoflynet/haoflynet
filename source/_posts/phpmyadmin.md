@@ -1,11 +1,21 @@
 ---
 title: "phpMyAdmin教程"
 date: 2016-08-03 11:02:30
+updated: 2017-06-13 17:50:00
 categories: php
 ---
-# phpMyAdmin
+## 安装
 
 [CentOS 6.4安装phpMyAdmin](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-a-centos-6-4-vps)
+
+### Ubuntu安装
+
+```shell
+# apache
+sudo apt-get install phpmyadmin apache2-utils
+## vim /etc/apache2/apache2.conf，添加如下一行
+Include /etc/phpmyadmin/apache.conf
+```
 
 ### 连接多个主机的配置
 [参考文章](http://blog.51yip.com/mysql/1250.html)
