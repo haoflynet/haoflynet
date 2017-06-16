@@ -60,6 +60,7 @@ for x in reversed(list) # 列表的反向迭代
 list(set(list))  # 列表去重，不过会乱序
 li.append([1,2])	# 添加一个元素
 li.extend([1,2])	# 添加多个元素
+li_1 + li_2			# 列表相加，例如[1] + [2] = [1, 2]
 ```
 #### 字典
 
@@ -288,9 +289,15 @@ hashlib.md5(open('filename.exe', 'rb').read()).hexdigest()
 #### 系统相关
 
 ```python
+# subprocess
 # 执行系统命令
 import subprocess
-subprocess.check_output(command, shell=True)	# 这个命令就是为了代替os.system,os.spawn,os.popen,popen2,commands的
+command = '...'
+subprocess.check_output(command, shell=True)
+# 注意1: subprocess是不能实现ssh输入密码登录的。OpenSSH并不是使用STDOUT/STDIN与进程进行通信的，而是直接与终端进行通信。所以要实现用程序去与ssh进行交互，最好的方法是使用pexpect模块(pty模块)，它们会建立一个伪终端。另外，如果直接安装了linux的ssh扩展程序sshpass，则可以直接在命令行输入密码了。
+# 注意2: subprocess的communicate是管道通信，而不是直接在命令行后面添加参数，所以直接用communicate传输参数对于有些非管道命令(例如ls)是不可行的，例如:
+child = subprocess.Popen(['xargs', 'ls'], stdin=subprocess.PIPE,	# 这里必须加xargs universal_newlines=True)
+child.communicate(filepath)
 
 # 接收输入
 a = input('Input: ')
