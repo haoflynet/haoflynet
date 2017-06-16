@@ -1,7 +1,7 @@
 ---
 title: "Swift教程"
 date: 2016-09-28 16:05:30
-updated: 2016-09-28 16:44:00
+updated: 2017-05-31 16:44:00
 categories: apple
 ---
 ## 数据类型
@@ -180,25 +180,8 @@ struct teset {
 }
 ```
 
+### 参考实例
 
+[Prodigal-iOS](https://github.com/SpongeBobSun/Prodigal-iOS): 音乐播放器
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[AMM](https://github.com/15cm/AMM): Aria2 Menubar Monitor
