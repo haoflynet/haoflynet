@@ -218,6 +218,11 @@ vim /etc/fstab中添加
 UUID=硬盘的UUID  /挂载位置   ext4 defaults 0  0   # 在系统启动时自动挂载硬盘blkid /dev/sda1  查看硬盘UUID用sudo blkid
 
 sudo du -h -d 1 /path	# 获取指定目录下一级的各个目录的大小
+
+# Linux读写windows的NTFS磁盘分区，使用微软开源的NTFS-3G
+yum install ntfs-3g
+mkdir /mnt/test				# 创建一个挂在目录
+ntfs-3g /dev/sda5 /mnt/test	# 将windows的分区挂载到/mnt/test目录下面去
 ```
 
 #### 用户管理

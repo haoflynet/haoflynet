@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-05-31 17:21:21
+updated: 2017-06-16 18:21:21
 categories: php
 ---
 # PHP
@@ -234,6 +234,12 @@ $data = ['file' => $cFile];
 	}catch(Exception $e){
 		echo $e->getMessage();
 	}
+
+### PHP命令行
+
+```shell
+php --ini		# 查看php的配置文件
+```
 
 ### 帮助函数
 
