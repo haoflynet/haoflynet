@@ -1,6 +1,26 @@
-title: "vuejs 教程"
-date: 2017-05-25 17:09:00
-categories: python
+---
+title: "Vue.js教程"
+date: 2017-05-25 17:09:39
+updated: 2017-06-20 16:48:00
+categories: js
+---
+
+## 网络交互axios
+
+(Vue官方已经不推荐vue-resource，而是推荐axios了)用法其实与Ajax类似，例如:
+
+```javascript
+axios({
+    url: 'https://haofly.net',
+    method: 'post',
+    headers: {},
+    data: {}
+}).then(function (response) {
+    console.log(response.data);
+});
+```
+
+
 
 
 
