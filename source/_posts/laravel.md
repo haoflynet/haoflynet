@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-06-14 18:13:00
+updated: 2017-06-23 10:51:00
 categories: php
 ---
 # Laravel指南
@@ -536,6 +536,7 @@ User::whereDate('created_at', '2017-05-17')
 User::whereMonth('created_at', '5')
 User::whereDay('created_at', '17')
 User::whereYear('created_at', '2017')
+User::whereRaw('`name`="wang" and LENGT(`name`) > 1)				# 当有复杂点的where语句或者想直接写在mysql里面的那样的where语句，可以直接这样写
 User::whereColumn('first_field', 'second_field')	# 判断两个字段是否相等
 User::where(...)->orWhere()		# or where
 User::where()->firstOrFail()	# 查找第一个，找不到就抛异常
@@ -544,7 +545,7 @@ User::where(...)->first()		# 只取出第一个model对象
 User::find(1)->logs->where(...)	# 关系中的结果也能用where等字句
 User::->where('updated_at', '>=', date('Y-m-d H:i').':00')->where('updated_at', '<=', date('Y-m-d H:i').':59') 					# 按分钟数查询
 User::find(1)->sum('money')		# 求和SUM
-User::where(...)->get()->pluck('name')	# 只取某个字段的值，而不是每条记录取那一个字段，这是平铺的,这里的pluck针对的是一个Collection，注意，这里只能针对Collection，千万不要直接针对一个Model，这样只会取出那张表的第一条数据的那一列
+User::where(...)->get()->pluck('name')	# 只取某个字段的值，而不是每条记录取那一个字段，这是平铺的,这里的pluck针对的是一个Collection，注意，这里只能针对Collection，千万不要直接针对一个Model，这样只会取出那张表的第一条数据的那一列，需要注意的是这里是先get除了所有的记录，然后在Collection上面进行的pluck操作，如果想少去一点数据可以先用select()再用pluck
 User::select('name')->where()	# 也是只取出某个字段，但是这里不是平铺的
 User::where(...)->pluck('name')	# 这是取出单独的一个行的一个列，不再需要first
 User::withTrashed()->where()	# 包括软删除了的一起查询
@@ -807,6 +808,38 @@ $request->route()	# 通过request获取Route对象
 
 ```php
 $route->parameters()	# 获取路由上的参数，即不是GET和POST之外的，定义在路由上面的参数
+```
+
+### 帮助类
+
+#### Collection Laravel的集合
+
+`Illuminate\Support\Collection`类提供了一个非常方便的操作来操作数组
+
+```php
+$collection = collect([1, 2, 3]);		// 创建一个集合类
+User::where('name', 'wang')->get();		// 操作数据库经常会返回一个Collection
+
+all();					// 返回该集合所代表的底层数组[1, 2, 3]
+avg();					// 返回集合中所有项目的平均值
+avg('field');			// 指定键值的平均值
+chunk(n);				// 拆分集合
+collapse([1,2], [2,3])	// 合并数组为一个集合
+contains('key');		// 判断集合是否含有某个key
+count();				// 返回集合总数
+diff(arr2);				// 返回在第一个集合中存在而在第二个集合中不存在的值
+each(function ($item, $key) {return false;});	// 遍历集合，回调函数返回false的时候会中断循环
+every(function ($value, $key) {return 1>2;});	// 判断集合中的每个元素是否都满足条件
+except(['field']);		// 返回集合中除了制定键以外的所有项目
+filter(function ($value, $key) {return 1>2;});	// 在回调函数中筛选集合，只留下return true的项目
+filter();				// 不提供参数的时候，集合中为false的元素都被移除
+first(function ($value, $key) {return 1>2;});	// 返回第一个return true的项目
+first();				// 不提供参数则返回第一个项目
+forget('key');			// 根据key移除某个项目，如果是数组，应该输入序号
+forPage();				// 集合分页
+groupBy('field');		// 根据键值分组
+implode('field', ',');	// 合并集合中指定键的值为字符串，如果不提供field，则表示直接将项目进行合并
+map(function ($value, $key) {return 'a';});		// 遍历修改集合中的值
 ```
 
 ### 帮助函数

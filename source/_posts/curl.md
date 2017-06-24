@@ -1,6 +1,7 @@
 ---
 title: "curl 教程"
 date: 2016-04-07 08:01:39
+updated: 2017-06-23 15:17:00
 categories: tools
 ---
 # curl
@@ -18,3 +19,10 @@ categories: tools
 ```
 curl -X POST -F 'username=davidwalsh' -F 'password=something' http://domain.tld/post-to-me.php
 ```
+## 常用操作
+
+```shell
+# 只获取响应头
+curl -X HEAD -I http://haofly.net
+```
+
