@@ -1,11 +1,10 @@
 ---
 title: "设计模式-php实现"
 date: 2016-08-30 11:40:30
-updated: 2016-10-10 11:27:00
+updated: 2017-06-24 11:27:00
 categories: code
 ---
 即使我写了这样的文章，我依然坚信设计模式只是某些垃圾语言用来规避其语言本身弊端的规范而已，不然，就只能写出糟糕的代码了。
-<script src="https://gist.github.com/haoflynet/15019abeaba71d880801.js"></script>
 
 # 创建型
 
