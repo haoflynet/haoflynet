@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-06-23 10:51:00
+updated: 2017-06-26 10:51:00
 categories: php
 ---
 # Laravel指南
@@ -840,6 +840,7 @@ forPage();				// 集合分页
 groupBy('field');		// 根据键值分组
 implode('field', ',');	// 合并集合中指定键的值为字符串，如果不提供field，则表示直接将项目进行合并
 map(function ($value, $key) {return 'a';});		// 遍历修改集合中的值
+unique(function ($item) {return $item;} );		// 仅仅返回唯一的值，相当于去重
 ```
 
 ### 帮助函数
