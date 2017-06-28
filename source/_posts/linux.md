@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-06-13 17:40:00
+updated: 2017-06-22 17:40:00
 categories: system
 ---
 # Linux指南
@@ -233,6 +233,9 @@ sudo useradd -s /bin/bash -d /home/username -m username
 
 # 修改用户密码
 sudo passwd username
+
+# 批量修改用户密码
+chpasswd < user.txt	# 其中user.txt是用户名和密码的对应文件，格式为username:password
 
 # 给用户添加sudo权限
 vim /etc/sudoers 修改如下内容
@@ -637,4 +640,4 @@ WIFI网络设置
   reboot
   ```
 
-- ​
+- **切换用户出现`This account is currently not available`的问题**，原因是要切换的用户没有bash登录的权限，`cat /etc/passwd`可以看到该用户的shell是`/sbin/nologin`，应该直接把它改成`/bin/bash`，当然，安全着想，有些用户不建议使用bash shell
