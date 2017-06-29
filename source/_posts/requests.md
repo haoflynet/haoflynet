@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2017-05-02 10:48:00
+updated: 2017-06-22 10:48:00
 categories: python
 ---
 # python requests模块
@@ -40,6 +40,17 @@ r = s.get(next_url)
 
 with requests.Session() as s:
 	s.get(url)
+```
+
+#### 设置代理
+
+```python
+# 使用socks代理
+import socks, socket, requests
+
+socks.set_default_proxy(socks.SOCK5, '127.0.0.1', 1080)
+socket.socket = socks.socksocket
+requests.get('https//ifconfig.me/ip')
 ```
 
 #### 上传文件
