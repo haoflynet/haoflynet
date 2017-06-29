@@ -1,14 +1,9 @@
 ---
 title: "Python3 使用MySQL Connector操作数据库"
 date: 2015-11-04 17:48:41
-updated: 2016-11-01 14:41:22
+updated: 2017-06-28 14:45:22
 categories: 编程之路
 ---
-参考文档：  
-<https://dev.mysql.com/doc/connector-python/en/>  
-
-<http://mysql-python.sourceforge.net/MySQLdb.html>  
-
 ## 安装方法
 
 支持`python3`的`mysql driver`有`mysqlclient`和`pymysql`，不推荐只支持2的`MySQLdb`
@@ -128,3 +123,8 @@ rows = cursor.fetchmany(size=1)
   可能原因是由于MySQL是编译安装的，没有放在默认的目录，导致python找不到默认的sock文件，可以用一个软连接将实际文件链接到这个默认的目录下面
 
 
+##### 参考文章
+
+<https://dev.mysql.com/doc/connector-python/en/>  
+
+<http://mysql-python.sourceforge.net/MySQLdb.html>  
