@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2017-04-09 15:03:00
+updated: 2017-06-30 12:03:00
 categories: python
 ---
 # Django教程
@@ -11,8 +11,7 @@ Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Py
 
 Django另一个我特别喜欢的特性就是Application，它与Project的概念不同，一个APP就相当于一个功能模块，一个Project可以包含多个APP，一个APP可以同时被多个Project引用，App增加了代码的复用机会，提高了扩展性和松耦合性，Django中很多的packages都是以APP的形式存在的。
 
-另外，我学习主要参考的是开源书籍 [Django搭建简易博客教程](http://andrew-liu.gitbooks.io/django-blog/
-"Link: http://andrew-liu.gitbooks.io/django-blog/" )
+另外，我学习主要参考的是开源书籍 [Django搭建简易博客教程]( http://andrew-liu.gitbooks.io/django-blog/ )
 
 下面是搭建一个Django环境的基本步骤：
 
@@ -202,22 +201,19 @@ Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系
 定义model的文件是`project/app/models.py`里面，例如，要定义一张用户表：
 
 	fromo django.db import models
-
-```python
-class User(models.Model):
-	username = models.CharField(max_length = 20)	# 用户名字段
-	create_time = models.DateTimeField(auto_now_add = True)	# 注册日期字段，如果同时有两个字段对应着同一个外键，那么久得重命名字段名了，比如：
-	receiver = models.ForeignKey(Users, null=True, related_name='receiver')
-	poster = models.ForeignKey(Users, null=True, related_name='poster')
-	
-	def __str__(self):
-		'''这个函数可以用于str(obj)函数来输出该对象的信息，默认是表名'''
-		return self.username
-    
-    class Meta:
-        db_table = '自定义表名'
-        unique_together = ('column_1', 'column_2')	# 联合唯一键
-```
+	class User(models.Model):
+		username = models.CharField(max_length = 20)	# 用户名字段
+		create_time = models.DateTimeField(auto_now_add = True)	# 注册日期字段，如果同时有两个字段对应着同一个外键，那么久得重命名字段名了，比如：
+		receiver = models.ForeignKey(Users, null=True, related_name='receiver')
+		poster = models.ForeignKey(Users, null=True, related_name='poster')
+		
+		def __str__(self):
+			'''这个函数可以用于str(obj)函数来输出该对象的信息，默认是表名'''
+			return self.username
+	    
+	    class Meta:
+	        db_table = '自定义表名'
+	        unique_together = ('column_1', 'column_2')	# 联合唯一键
 当建立好models过后，执行如下命令就可以在数据库中新建或更新数据表了：
 
 	python manage.py makemigrations
