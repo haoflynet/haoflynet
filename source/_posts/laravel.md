@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-06-26 10:51:00
+updated: 2017-06-29 15:34:00
 categories: php
 ---
 # Laravel指南
@@ -854,6 +854,9 @@ $record->update($request->intersect([
     'type'
 ]));
 
+$re = request();	// 任何地方获取请求对象，5.1开始
+$re = response();	// 任何地方获取响应对象，5.1开始
+
 str_contains('Hello foo bar.', 'foo');	# 判断给定字符串是否包含指定内容
 str_random(25);			# 产生给定长度的随机字符串
 ```
@@ -875,6 +878,10 @@ Log::notice('注意');
 Log::info('This is some useful information.');
 Log::debug();
 ```
+
+#### 自定义错误处理类
+
+Laravel里面所有的异常默认都由`App\Exceptions\Handler`类处理，这个类包含`report`(用于记录异常或将其发送到外部服务)和`render`(负责将异常转换成HTTP响应发送给浏览器)方法。render是不会处理非HTTP异常的，这点要十分注意。
 
 ### Artisan Console
 
