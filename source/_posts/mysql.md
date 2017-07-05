@@ -1,10 +1,9 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-05-31 17:02:00
+updated: 2017-06-28 17:02:00
 categories: database
 ---
-# MySQL/MariaDB使用教程
 ## 安装方法
 **CentOS**：[使用yum安装MariaDB](https://mariadb.com/kb/zh-cn/installing-mariadb-with-yum/)，CentOS安装client直接yum install mysql而不是client，而安装mysql则直接用`yum install -y mysql mysql-server mysql-dev mysql-devel`，CentOS7上已经用mariadb代替了mysql，这样子使用：
 
@@ -67,6 +66,9 @@ SELECT * FROM table_name limit m, n
 
 # 模糊查询
 SELECT * FROM table_name like '%abc_';	# 模糊查询，其中%贪婪匹配任意数量的任意字符，_匹配一个任意字符
+
+# 分组GROUP BY
+SELECT * FROM table_name GROUP BY 'field';	# 分组显示，有多少不同的field就会有多少条记录，而其他的字段则是随机选择一条记录显示，当然，如果对其他字段进行SUM等操作，那么就可以获取分类的SUM，十分有用
 ```
 ##### 连表查询
 
@@ -80,10 +82,16 @@ SELECT * FROM table_name like '%abc_';	# 模糊查询，其中%贪婪匹配任�
 
 ##### 修改/更新
 
-```shell
-## 更改某字段的值，特别需要注意的是，mysql和mariadb是没有update from的，sql server才有
-UPDATE 表名 SET 字段=新值 WHERE 条件
-UPDATE table_A, table_B SET table_A.a=table_B.a 
+```mysql
+## 更改某字段的值，特别需要注意的是，mysql和mariadb是没有update from的，sql server才有。更新的时候WHERE语句一定是在SET语句后面，而JOIN语句则是在SET语句前面
+UPDATE 表名 SET 字段=新值 WHERE 条件;
+UPDATE table_A, table_B SET table_A.a=table_B.a;
+
+## 更新中也能使用CASE，例如
+UPDATE `table` SET `field` = CASE
+		WHEN id = 1 THEN 2
+END
+WHERE id in (1,2,3);
 ```
 
 ##### 删除
@@ -107,6 +115,9 @@ update user set password=PASSWORD('mysql') WHERE user="root";
 update user set authentication_string=PASSWORD('mysql') WHERE user="root";	# MySQL5.7以后password字段改为了authentication_string字段
 flush privileges;
 
+# 查看用户权限
+show grants for 用户名
+
 # 打开远程登录权限，如果是CentOS7还需要打开防火墙firewall-cmd --add-port=3306/tcp
 GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "mysql";
 flush privileges;                更新权限
@@ -125,6 +136,21 @@ character_set_connection			# 建立连接使用的编码方式
 character_set_database				# 数据库的编码
 character_set_results				# 结果集的编码
 character_set_server				# 数据库服务器的编码
+
+# 设置数据库不区分大小写，vim /etc/mysql/my.cnf，在[mysqld]后面添加这句话，然后重启
+lower_case_table_names=1
+
+# 查询数据库数据存放目录
+show variables like '%datadir%';
+
+# 查看所有的警告
+show warnings
+
+# 查看MySQL版本
+select @@version
+
+# 查看表的结构
+show columns from 表名;
 ```
 ### 数据库维护
 
@@ -143,7 +169,7 @@ bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
 
 ### 帮助函数
 
-```shell
+```mysql
 left(str, length) # 字符串截取
 right(str, length) # 字符串截取
 substring(str, pos, len) # 字符串截取
@@ -162,9 +188,14 @@ DAYOFYEAR(date)    # 返回date在一年中的日数(1-366)
 HOUR(datetime)    # 获取小时数
 MINUTE(datetime)    # 获取分钟数
 SECOND(datetime)    # 获取秒数
+
+# CASE条件语句
+CASE 
+	WHEN 'field' = 1 THEN 2
+	WHEN 'field' = 2 THEN 3
+	ELSE 'field' = 3 THEN 4
+END;
 ```
-
-
 
 ## TroubleShooting
 
@@ -178,53 +209,7 @@ SECOND(datetime)    # 获取秒数
 
 - **WorkBench保持连接不断开**: `Edit->Preferences->SQL Editor，设置DBMS connection read time out(in seconds)`
 
-  ​
 
-  ​
-
-
-
-
-
-
-
-* MySQL配置  
-
-
-        # 设置数据库不区分大小写，vim /etc/mysql/my.cnf
-    在[mysqld]后面添加：lower_case_table_names=1，然后重启
-
-
-​    
-    # 新建用户
-    grant 权限 on 数据库名.表名 用户名@主机地址identified by "密码";
-    
-    # 修改用户密码
-    update mysql.user set password=PASSWORD('新密码') where user='root';
-    flush privileges;
-    
-    # 查看用户权限
-    show grants for 用户名
-
-* 查询数据库信息  
-
-
-```mysql
-# 查询数据库数据存放目录
-show variables like '%datadir%';
-
-# 查看所有的警告
-show warnings
-
-# 查看MySQL版本
-select @@version
-
-# 查看表的结构
-show columns from 表名;
-
-# 修改表的字符集
-alter table 表名 convert to character set utf8 collate utf8_general_ci;
-```
 
 
 *   关于整型数据长度问题，需要注意的是MySQL里面的整型后面跟的长度并不是指该字段的实际长度，而是客户端显示的长度，实际存储的长度可以更长。这是几个整型数据对应的长度表(来自[MySQL官网](http://dev.mysql.com/doc/refman/5.7/en/integer-types.html)):
