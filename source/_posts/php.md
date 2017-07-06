@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-06-16 18:21:21
+updated: 2017-07-03 18:21:21
 categories: php
 ---
 # PHP
@@ -59,11 +59,12 @@ strpos('abc', 'a'); 	# 在字符串中查找第一次出现位置，没找到返
 str_repeat('abc', n)	# 将字符串重复n次
 str_replace(搜索值，替换值，目标)	# 字符串替换
 str_replace("\n", "", $content);	# 去除换行符
+substr_count($haystack, $needle, [$offset, $length]);	# 计算子字符串needle在字符串haystack中出现的次数
 trim($string);	# 去除字符串前后的空白字符，如果要去除所有的字符只能使用preg_replace('/\s+/', '', $string)，这是stackoverflow上面给出的答案
 
 
 $a . $b . 'abc':字符串连接直接用点号
-explode(',', $str)	# 字符串分割，第三个参数大于0表示限制分组数量
+explode(',', $str, [$limit])	# 字符串分割，第三个参数大于0表示限制分组数量，limit规定所返回的数组元素的个数，小于0时，返回包含除了最后的-limit个元素以外的所有元素的数组；0表示返回包含一个元素的数组
 array_map('strrev', explode('-', strrev($a), 2))	# 字符串分割，逆向
 iconv('utf-8', 'GBK', $data): 将字符编码从utf-8转换为GBK
 join("&", $arr)	# 拼接字符串
