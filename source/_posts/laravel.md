@@ -895,6 +895,33 @@ Log::debug();
 
 Laravel里面所有的异常默认都由`App\Exceptions\Handler`类处理，这个类包含`report`(用于记录异常或将其发送到外部服务)和`render`(负责将异常转换成HTTP响应发送给浏览器)方法。render是不会处理非HTTP异常的，这点要十分注意。
 
+#### 统一的异常处理
+
+Laravel可以在`app/Exceptions/Handler.php`里面自定义统一处理异常，需要注意的是，验证异常是不会到这个Handler里面的，验证失败的时候，会抛出`HttpResponseException`，它并不继承于`HttpException`。
+
+```php
+public function report(Exception $e)
+{
+  if ($e instanceoof NotFoundException) {
+    throw new NotFoundHttpException;
+  }
+  
+  // HTTP Exception按正常流程处理
+  if ($e instanceof HttpException) return parent::report($e);
+
+  $request = request();
+  $log = [
+    'msg'           => $e->getMessage(),
+    'file'          => $e->getFile(),
+    'line'          => $e->getLine(),
+    'request_path'  => $request->getPathInfo(),
+    'request_body'  => $request->all(),
+  ];
+  Log::error(json_encode($log));
+  throw new ResourceException('System Exception');
+}
+```
+
 ### Artisan Console
 
 - `php artisna config:cache`: 把所有的配置文件组合成一个单一的文件，让框架能够更快地去加载。
