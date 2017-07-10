@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-06-28 17:02:00
+updated: 2017-08-08 17:02:00
 categories: database
 ---
 ## 安装方法
@@ -53,14 +53,18 @@ ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;
 ```mysql
 # 普通查询
 SELECT * FROM table_A
+SELECT * FROM ... BETWEEN value1 AND value2
+SELECT * FROM ... NOT BETWEEN value1 AND value2
 # 分组查询
 SELECT count(column_a) as count FROM table_A GROUP_BY coulumn_b
 
 # 多表子查询
 ## 需要注意的是，子查询后面必须要AS一个别名
 update table_1 as a, (select id from biao_2 where name='a') as b set a.title='xx' where a.id=b.id
+
 # 随机读取数据库记录
 SELECT * FROM table WHERE id >= (SELECT FLOOR(RAND() * (SELECT MAX(id) FROM table))) ORDER BY id LIMIT 1
+
 # 分页功能，获取m开始的n条记录
 SELECT * FROM table_name limit m, n
 
@@ -170,12 +174,13 @@ bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
 ### 帮助函数
 
 ```mysql
+# 字符串相关
 left(str, length) # 字符串截取
 right(str, length) # 字符串截取
 substring(str, pos, len) # 字符串截取
 concat(str1, str2)  # 字符串相加
 
-# 关于时间
+# 时间相关
 YEAR(datetime)    # 获取年份
 QUARTER(datetime)    # 获取季度数
 MONTH(datetime)    # 获取月份
@@ -189,12 +194,21 @@ HOUR(datetime)    # 获取小时数
 MINUTE(datetime)    # 获取分钟数
 SECOND(datetime)    # 获取秒数
 
-# CASE条件语句
+# 统计相关
+SUM(field_name)
+COUNT(field_name)
+SUM(case when field='wang' then 1 else 0 end) as sum_if
+COUNT(IF(field='wang',1,NULL)) as count_if	# 使用if做统计
+
+# 逻辑相关
 CASE 
 	WHEN 'field' = 1 THEN 2
 	WHEN 'field' = 2 THEN 3
 	ELSE 'field' = 3 THEN 4
 END;
+
+IF(sex=1, '男', '女')				# if条件语句
+IF(sex=1 OR field='b', 1, NULL)		# 复杂的
 ```
 
 ## TroubleShooting
