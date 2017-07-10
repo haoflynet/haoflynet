@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-06-30 17:34:00
+updated: 2017-07-10 10:34:00
 categories: php
 ---
 # Laravel指南
@@ -511,33 +511,37 @@ Laravel使用数据填充类来填充数据，在`app/database/seeds/DatabaseSee
 #### ORM操作
 
 ```php
-# 获取查询SQL
-DB::connection('default')->enableQueryLog() # 如果不指定连接可以直接DB::enableQueryLog()
+# 数据库信息获取
+## 获取查询SQL
+DB::connection('default')->enableQueryLog(); # 如果不指定连接可以直接DB::enableQueryLog()
 ... # ORM操作
- dd(DB::connection('statistics')->getQueryLog()) # 打印sql
+dd(DB::connection('statistics')->getQueryLog()); # 打印sql
+
+DB::getTablePrefix();		# 获取数据表前缀
+$user->getTable();			# 获取数据表名称，不带前缀的
 
 # 查询
-User::all()						# 取出所有记录
-User::all(array('id', 'name'))  # 取出某几个字段
-User::find(1)					# 根据主键取出一条数据
-User::findOrFail(1)				# 根据主键取出一条数据或者抛出异常
+User::all();						# 取出所有记录
+User::all(array('id', 'name'));  # 取出某几个字段
+User::find(1);					# 根据主键取出一条数据
+User::findOrFail(1);				# 根据主键取出一条数据或者抛出异常
 User::where([
   ['id', 1],
   ['name', 'haofly']
-)			# where语句能够传递一个数组
-User::where()					# 如果不加->get()或者其他的是不会真正查询数据库的，所以可以用这种方式来拼接，例如$a_where=User::where();$result =$a_where->where()->get();
-User::where('field', 'like', '%test%')	# 模糊搜索
-User::whereIn('name', ['hao', 'fly'])	# in查询
-User::whereNull('name')			# is null
-User::whereNotNull('name')		# is not null
-User::whereBetween('score', [1, 100])	# where between
-User::whereNotBetween('score', [1, 100])	# where not between
-User::whereDate('created_at', '2017-05-17')
-User::whereMonth('created_at', '5')
-User::whereDay('created_at', '17')
-User::whereYear('created_at', '2017')
-User::whereRaw('`name`="wang" and LENGT(`name`) > 1)				# 当有复杂点的where语句或者想直接写在mysql里面的那样的where语句，可以直接这样写
-User::whereColumn('first_field', 'second_field')	# 判断两个字段是否相等
+);			# where语句能够传递一个数组
+User::where();					# 如果不加->get()或者其他的是不会真正查询数据库的，所以可以用这种方式来拼接，例如$a_where=User::where();$result =$a_where->where()->get();
+User::where('field', 'like', '%test%');	# 模糊搜索
+User::whereIn('name', ['hao', 'fly']);	# in查询
+User::whereNull('name');			# is null
+User::whereNotNull('name');		# is not null
+User::whereBetween('score', [1, 100]);	# where between
+User::whereNotBetween('score', [1, 100]);	# where not between
+User::whereDate('created_at', '2017-05-17');
+User::whereMonth('created_at', '5');
+User::whereDay('created_at', '17');
+User::whereYear('created_at', '2017');
+User::whereRaw('name="wang" and LENGT(name) > 1');				# 当有复杂点的where语句或者想直接写在mysql里面的那样的where语句，可以直接这样写
+User::whereColumn('first_field', 'second_field');	# 判断两个字段是否相等
 User::where(...)->orWhere()		# or where
 User::where()->firstOrFail()	# 查找第一个，找不到就抛异常
 User::where('user_id', 1)->get()# 返回一个Collection对象
@@ -556,7 +560,13 @@ User::find(1)->posts->count()	# 判断关联属性是否存在stackoverflow上�
 User::all()->orderBy('name', 'desc')	# 按降序排序
 User::all()->latest()					# 按created_at排序
 User::all()->oldest()					# 按created_at排序
-User::all()->inRandomOrder()->first()	# 随机顺序
+User::all()->inRandomOrder()->first();	# 随机顺序
+  
+## 关联查询
+User::select('name')->join('posts', 'users.id', '=', 'posts.user_id')->where(...);	# Inner Join语法
+User::select('name')->leftJoin('posts', 'users.id', '=', 'posts.user_id')->where(...);	# Left Join语法
+
+  
 
 # 访问器，如果在Model里面有定义这样的方法
 public function getNameAttribute(){
@@ -841,6 +851,7 @@ forPage();				// 集合分页
 groupBy('field');		// 根据键值分组
 implode('field', ',');	// 合并集合中指定键的值为字符串，如果不提供field，则表示直接将项目进行合并
 map(function ($value, $key) {return 'a';});		// 遍历修改集合中的值
+reject(function($item){return true;});			// 从集合中移除元素，当返回true的时候，该元素会被移除
 unique(function ($item) {return $item;} );		// 仅仅返回唯一的值，相当于去重
 ```
 
