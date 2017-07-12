@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-07-10 10:34:00
+updated: 2017-07-11 16:34:00
 categories: php
 ---
 # Laravel指南
@@ -889,6 +889,35 @@ Log::warning('警告');
 Log::notice('注意');
 Log::info('This is some useful information.');
 Log::debug();
+
+# 日志分割，使日志按天分割
+Log::useDailyFiles('路径', 30, 'debug')	# 30表示保存最近多少天的日志文件
+$monolog = Log::getMonolog();		 	# 获取monolog实例
+$monogo->getHandlers();					# 获取处理handlers
+$handler->setFormatter(new CustomFormatter());	# 自定义handler的输出格式
+
+# 定义日志输出格式
+class CustomFormatter extends Monolog\Formatter\LineFOrmatter
+{
+  /*重写这个方法就好了*/
+  public function format(array $record)
+  {
+	$msg = [
+	$record['datetime']->format('Y-m-d H:m:s.u'),
+            '[TxId : ' . '' . ' , SpanId : ' . '' . ']',
+            '[' . $record['level_name'] .']',
+            $record['message'],
+            "\n",
+        ];
+
+    return implode(' ', $msg);
+  }
+}
+
+# 新建处理方法
+$logStreamHandler = new StreamHandler('路径', Logger::DEBUG);
+$logStreamHandler->setFormatter(new CustomFormatter());
+Log::getMonolog()->pushHandler($logStreamHandler);
 ```
 
 #### 自定义错误处理类
