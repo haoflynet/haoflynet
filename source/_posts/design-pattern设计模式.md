@@ -1,14 +1,14 @@
 ---
 title: "设计模式-php实现"
 date: 2016-08-30 11:40:30
-updated: 2017-06-24 11:27:00
+updated: 2017-07-14 14:27:00
 categories: code
 ---
 即使我写了这样的文章，我依然坚信设计模式只是某些垃圾语言用来规避其语言本身弊端的规范而已，不然，就只能写出糟糕的代码了。
 
 # 创建型
 
-### Factory Method(工厂方法模式)
+### Factory Method(工厂方法模式/工厂模式)
 
 工厂模式是一种类，提供了创建对象的某些方法，可以直接使用工厂类创建对象，而不是直接使用new。
 
@@ -467,7 +467,7 @@ new ChainOfResponsibilityExample();
 ### Mediator(中介者)
 ### Memento(备忘录)
 ### State(状态)
-### Strategy(策略)
+### Strategy(策略模式)
 
 指对象有某种行为，但是在不同的场景中，该行为有不同的实现算法。
 
@@ -528,6 +528,37 @@ new StrategyExample;
 ?>
 ```
 
-
-
 ### Visitor(放问者)
+
+
+
+## TroubleShooting
+
+- **工厂模式和策略模式的区别**
+  如大多数网上的解释一样，工厂模式更注重对象的创建，策略模式更注重行为的不同。根据我的理解工厂模式更适用于创建不同的对象，这些对象拥有不同的方法。而策略模式则更多是针对有相同方法的对象。例如网上的文章经常举的例子一样，数据库的操作，其实每个数据库的操作都不一样，所以这里更适用于工厂模式。但是如果有后端一样的场景，那么策略模式就更方便了。例如
+
+  ```php
+  # 工厂模式
+  DBFactory::create(Redis::class)->record()->add();
+
+  # 策略模式(不同的公有云相同的create方法)
+  abstract class CloudContext
+  {
+    protected $cloud;
+    public function __construct(Cloud $cloud) {
+      $this->cloud = $cloud;
+    }
+  }
+  class HostContext extends CLoudContext
+  {
+    public function create(
+    	$this->cloud->create();
+    );
+  }
+  $host new HostContext(CloudFactory::create(AliyunCloud::class));
+  $host->create();
+  ```
+
+  ​
+
+- ​
