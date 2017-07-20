@@ -12,7 +12,14 @@ yum install mariadb-server mariadb mariadb-devel -y
 systemctl start mariadb.service # 启动服务
 systemctl enable mariadb.service	# 开机启动
 ```
+Ubuntu: 
+
+```shell
+sudo apt-get install mariadb-server mariadb-client libmariadbd-dev
+```
+
 ## 常用命令
+
 ### 增删改查
 
 #### SQL文件操作
@@ -222,8 +229,6 @@ IF(sex=1 OR field='b', 1, NULL)		# 复杂的
   出现这种情况，可能是给用户分配了'%'权限，而没有分配localhost权限，我去...
 
 - **WorkBench保持连接不断开**: `Edit->Preferences->SQL Editor，设置DBMS connection read time out(in seconds)`
-
-
 
 
 *   关于整型数据长度问题，需要注意的是MySQL里面的整型后面跟的长度并不是指该字段的实际长度，而是客户端显示的长度，实际存储的长度可以更长。这是几个整型数据对应的长度表(来自[MySQL官网](http://dev.mysql.com/doc/refman/5.7/en/integer-types.html)):
