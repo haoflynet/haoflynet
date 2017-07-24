@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-03-07 17:08:00
+updated: 2017-07-21 17:08:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -18,7 +18,7 @@ const $c;	// 定义常量
 ### 数组
 
 ```javascript
-arr.indexOf('元素')			// 获取某个元素在数组中的下表，没有在返回－11
+arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1
 JSON.stringify(Array)		// 将数组转换为JSON格式的字符串
 arr.toString(): 数组转字符串，中间会自动加上逗号
 arr.join(''): 数组转字符串，分隔符可自定义
