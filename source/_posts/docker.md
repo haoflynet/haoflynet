@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2017-05-02 18:02:00
+updated: 2017-07-22 18:22:00
 categories: tools
 ---
 # Docker 使用指南
@@ -54,8 +54,8 @@ docker tag id name:tag	# 给镜像更改名称
 	exit # 退出容器
 	docker logs 容器名称  # 获取容器的输出信息，但是通过docker exec进入容器的时候，其标准输出并未被主进程相关联，所以docker exec所执行进程的标准输出不会进入容器的日志文件。即docker容器的日志只负责应用本身的标准输出，不包括docker exec衍生进程的标准输出(http://docs.daocloud.io/allen-docker/docker-exec)
 	docker run -t -i -d -p 80:80 -v /home/haofly/docker/test/mysite:/mysite django-apache:latest # 我当前机器上的一条执行自己创建的镜像的命令
-	
-	
+
+​	
 
 ## 容器操作
 
@@ -66,6 +66,7 @@ docker tag id name:tag	# 给镜像更改名称
 	docker inspect 容器名：查看一个容器的详细信息
 
 ## Dockerfile
+
 Dockerfile是一个制作镜像的脚本工具，通过它可以比直接拷贝docker容器更方便地迁移，只需要拷贝一个Dockerfile然后在本地构建一个即可。
 
 	docker build -t local:mine .
@@ -148,6 +149,19 @@ docker push hub.haofly.net/haofly/test:tag	# 推送
 ```
 
 ## 常用容器/镜像
+
+### Alpine
+
+是一个非常简单的镜像，本身只有几兆，包含了linux最简单的内核，并且功能十分强大。很多的基础镜像都是基于它。当然，有一点特别注意，它没有自带apt-get，也没有bash(sh代替)。不过还好，也能使用阿里的镜像源。这里有它里面的一些基本操作
+
+```shell
+apk add --update	# 更新源
+apt add --no-cache python	# 安装软件
+apt del python			# 删除软件
+```
+
+
+
 ### MySQL/Mariadb容器
 	docker run --name some-mariadb -v /Users/haofly/workspace/share:/share --net host -e MYSQL_ROOT_PASSWORD=mysql -d mariadb:tag	# 开启一个mysql容器，可通过exec bash进入容器内
 ### PHP容器
