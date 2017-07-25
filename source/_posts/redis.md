@@ -1,6 +1,7 @@
 ---
 title: "redis 教程"
 date: 2016-04-11 11:02:40
+updated: 2017-07-21 14:40:00
 categories: database
 ---
 # Redis
@@ -36,7 +37,15 @@ categories: database
 	expired_keys：因为过期而呗自动删除的数据库建数量
 
 ## 常用操作
-## 通用
+### 系统
+
+```shell
+info		# 查询系统所有信息
+client list		# 列出所有的客户端连接
+client kill 127.0.0.1:44444 # 断开某个连接
+```
+
+### 通用
 
 ```shell
 flushall	# 删除所有数据库的key
