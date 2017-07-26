@@ -1,7 +1,7 @@
 ---
 title: "redis 教程"
 date: 2016-04-11 11:02:40
-updated: 2017-07-21 14:40:00
+updated: 2017-07-25 14:40:00
 categories: database
 ---
 # Redis
@@ -40,6 +40,9 @@ categories: database
 ### 系统
 
 ```shell
+# redis-cli
+redis-cli -h 127.0.0.1 -p 6379	# 连接服务端
+
 info		# 查询系统所有信息
 client list		# 列出所有的客户端连接
 client kill 127.0.0.1:44444 # 断开某个连接
@@ -138,6 +141,12 @@ SMEMBERS key # 返回集合key中的所有成员
   }
   pv:post:id:2016-08-22:15:list = []	# 那一个小时每分钟的数据，作为一个列表
   ```
+
+## Redis Sentinel高可用方案
+
+## Redis Cluster集群方案
+
+和`redis sentinel`不同的是，前者主要是高可用，每一个机器都保存完整的数据，而cluster则住重在分片，当内存占用大于每台机器实际内存时候更实用。
 
 ## TroubleShooting
 
