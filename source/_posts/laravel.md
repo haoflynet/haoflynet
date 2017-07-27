@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-07-12 16:04:00
+updated: 2017-07-22 16:04:00
 categories: php
 ---
 # Laravel指南
@@ -45,6 +45,12 @@ EXAMPLE_PUBLIC_KEY=abc\ndef	# 要在配置里面换行，目前只有这种方�
 $environment = App::environment();
 App::environment('local')	// true/false
 app()->environment()
+```
+
+配置文件中使用变量:
+
+```shell
+DOMAIN=
 ```
 
 ### 控制器
@@ -420,7 +426,9 @@ $this->hasMany('App\Post', 'foreign_key', 'local_key')
 ##### 相对关联belongsTo(多对一)
 
 	public function user(){
-		return $this->belongsTo('App\User')
+		return $this->belongsTo('App\User');
+		// return $this->belongsTo('App\User')->withDefault();	// 这样子如果找不到关联对象，则会返回一个空对象
+		// return $this->belongsTo('App\User')->withDefault(['name' => '不知道'] ); // 还可以给这个空对象赋予默认值
 	}
 	Posts::find(1)->user  # 可以找到作者
 ##### 多对多关系belongsToMany
