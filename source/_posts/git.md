@@ -1,7 +1,7 @@
 ---
 title: "Git 教程"
 date: 2016-08-07 07:12:39
-updated: 2017-06-05 18:36:00
+updated: 2017-07-21 17:36:00
 categories: tools
 ---
 # Git指南
@@ -56,6 +56,8 @@ Linux平台：`sudo apt-get install git`
 #### 日志/历史/版本
 
 ```shell
+git remote -v 	# 列出远程仓库地址
+
 git log  # 查看提交的历史,--oneline按行显示，--graph查看分支的合并情况，--all显示所有分支的历史
 git reflog	# 查看HEAD的历史情况
 
