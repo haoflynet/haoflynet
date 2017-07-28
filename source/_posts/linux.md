@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-06-22 17:40:00
+updated: 2017-07-22 18:40:00
 categories: system
 ---
 # Linux指南
@@ -164,6 +164,10 @@ find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK�
 # 配置免密码登录
 ssh-keygen -t dsa # 生成自己的ssh，然后将~/.ssh/id_dsa.pub的内容添加到主机的~/.ssh/authorized_keys里面面去
 
+# ssh直接执行命令
+ssh IP "ls"
+ssh IP "echo \`uname -a | awk '{print \$3}'\`"	# 特殊符号
+
 # SSH自动把host加入到known_hosts
 ssh -o StrictHostKeyChecking=no root@ip
 
@@ -251,8 +255,8 @@ cat /etc/passwd
 #### 系统相关
 
 ```shell
-lsb_release -a       // 查看系统信息
-echo $HOSTTYPE     // 查看系统位数
+lsb_release -a      # 查看系统信息
+echo $HOSTTYPE     	# 查看系统位数
 cat /proc/cpuinfo    # 查看CPU信息
 cat /etc/issue     // Debian系列查看系统版本
 cat /etc/redhat-release // redhat系列查看系统版本
@@ -274,6 +278,8 @@ sudo mkswap /swapfile
 sudo chown root:root /swapfile
 sudo chmod 0600 /swapfile
 sudo swapon /swapfile
+
+sudo service lightdm start	# Linux Mint关闭GUI
 ```
 
 #### systemctl/service
