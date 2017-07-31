@@ -1,9 +1,23 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
+updated: 2017-07-28 09:50:00
 categories: frontend
 ---
 # CSS
+
+## 各种属性
+
+#### border边框
+
+##### border-color
+
+设置4个边框的颜色。
+
+##### border-style
+
+设置4个边框的样式。可能的值有none(无边框)、hidden(对于表，用于解决边框冲突，和none一样)、dotted(点状边框)、dashed(虚线)、solid(实线)、double(双线)、groove(3D凹槽边框)、ridge(3D垄状边框)、inset(3D inset边框)、outset(3D outset边框)、inherit(从父元素继承)
+
 ## TroubleShooting
 #### 元素居中方法
 	方法一：
