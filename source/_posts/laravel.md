@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-07-22 16:04:00
+updated: 2017-08-01 15:04:00
 categories: php
 ---
 # Laravel指南
@@ -768,7 +768,8 @@ public function failed()
 2. job如果有异常，是不能被catch的，job只会重新尝试执行该任务，并且默认会不断尝试，可以在监听的时候指定最大尝试次数`--tries=3`
 3. 不要将太大的对象放到队列里面去，否则会超占内存，有的对象本身就有几兆大小
 4. 一个很大的坑是在5.4及以前，由于`queue:work`没有timeout参数，所以当它超过了队列配置中的`expire`时间后，会自动重试，但是不会销毁以前的进程，默认是60s，所以如果有耗时任务超过60s，那么队列很有可能在刚好1分钟的时候自动新建一条一模一样的任务，这就导致数据重复的情况。
-5. 如果是使用redis作为队列，那么队列任务默认是是Job的NAME命名，例如`queues:NAME`，是一个列表，过期时间为-1，没有消费者的情况是会一直存在于队列中。而如果是延迟执行的任务，则是单独放在一个有序集合中，其key为`queues:NAME:delayed`，其`score`值就是其执行的时间点
+5. 如果是使用redis作为队列，那么队列任务默认是是Job的NAME命名，例如
+6. `queues:NAME`，是一个列表，过期时间为-1，没有消费者的情况是会一直存在于队列中。而如果是延迟执行的任务，则是单独放在一个有序集合中，其key为`queues:NAME:delayed`，其`score`值就是其执行的时间点
 
 
 ### 事件
@@ -814,6 +815,32 @@ public function __construct(Mailer $mailer)	# 在控制器、事件监听器、�
 ### 事件Event
 
 应用场景: 1.缓存机制的松散耦合，比如在获取一个资源时先看是否有缓存，有则直接读缓存，没有则走后短数据库，此时，通常做法是在原代码里面直接用`if...else...`进行判断，但有了缓存后，我们可以用事件来进行触发
+
+### Service Provider
+
+Laravel提供了很方便的注入服务的方法，那就是`service provider`，当写完一个`service provider`以后，在`config/app.php`的provider里面添加该类名称即可实现注入。这样就可以给laravel编写第三方扩展包了。
+
+```php
+<?php
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\ServiceProvider;
+
+class TestServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        // 这里面可以将自己的配置文件push到laravel的config目录中区
+        $this->publishes([realpath(__DIR__.'/../../config/api.php') => config_path('api.php')]);
+      	$this->mergeConfigFrom(__DIR__.'/config/test.php', 'database');	// 将配置文件合并到已经存在的config下面里面去，动态合并的，并没有写入到文件中去
+    }
+
+  	// 这里面可以做一些初始化操作，程序启动的时候执行
+    public function register()
+    {
+      Config::set('database.redis', []);	// 设置可以在这里面修改config下的其他一些配置
+    }
+}
+```
 
 ### 重要对象
 
@@ -1086,6 +1113,8 @@ public function testIndex{
 - **POST数据的时候出现`The payload is invalid`**，我遇到这个情况是因为在做复杂的表单提交，直接提取`X-XSRF-TOKEN`的值，但是由于没有转移，导致后端token揭秘失败
 
 - **保存model的时候出现错误：`Missing argument 2 for Illuminate\Database\Eloquent\Model::setAttribute()`**，一般是`Model`的几个属性没有设正确，检查这几个值`incrementing/timestamps/primarykey/fillable`
+
+- **队列出现Cannot initialize a MULTI\/EXEC transaction over aggregate connections**: 升级到最新版laravel吧，然后将redis的扩展切换到phpredis，`laravel5.3`之前自带的`predis`不支持redis的sentinel，并且有些redis操作强依赖于predis的事务操作，各种纠结，最后都不能成功。
 
 ## 相关文章
 

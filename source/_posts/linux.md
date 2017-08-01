@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-07-22 18:40:00
+updated: 2017-08-01 11:40:00
 categories: system
 ---
 # Linux指南
@@ -307,6 +307,72 @@ firewall-cmd --list-ports		# 列出开放的端口
 
 ## 其它工具
 
+
+
+#### Crontab定时任务
+
+要使用`cron`服务，首先要安装启动`cron`: `sudo apt-get install cron -y && cron`
+
+```shell
+crontab -e # 直接打开定时任务文件进行编辑
+格式如下：
+第1列：分钟
+第2列：小时
+第3列：日
+第4列：月
+第5列：星期
+第6列：命令
+其中，每一列可以逗号和小横线表示特殊的意义，比如
+3,15 8-11 * * * 命令   # 表示在上午8点到11点的第3和15分钟执行
+* 23 * * * 命令			# 注意这个表示的是23点的每分钟都执行
+0 */1 * * * 命令			# 每隔一小时
+*/2 * * * 			# 每隔两分钟
+需要注意的是coontab是不会自动加载环境变量的哟，所以有时候发现命令没有被执行，可能是这个原因
+
+# crontab日志，默认是关闭的，如果要打开可以在配置文件里面进行打开,vim /etc/rsyslog.d/50-defaullt.conf，当然要看日志首先也得有日志服务apt-get install rsyslog
+cron.*	/var/log/cron.log	# 将cron前面的注释去掉
+service rsyslog restart		# 重启rsyslog
+```
+
+#### CURL
+
+```shell
+curl -o a.txt url	# 将文件下载到本地并命名为a.txt
+curl -O url			# 将文件下载到本地用它本来的命名
+```
+
+#### FTP
+
+#### Tmux
+
+相比于Mac下的iTerm2，其优势主要在于能够保存和恢复session。
+
+```tex
+# tmux的快捷键都是在先按下control+b键以后再按的
+
+## 窗口操作
+c 新建窗口
+p 切换至上一个窗口
+n 切换至下一个窗口
+w 窗口列表选择，mac下使用ctrl+p和ctrl+n进行上下选择
+& 关闭当前窗口
+0 切换至0号窗口
+f 根据窗口min搜索选择窗口
+
+## 会话操作
+tmux a 恢复至上一次的会话
+tmux nes -s test 新建名称为test的会话
+tmux ls  列出所有的tmux会话
+tmux a -t test 恢复名称为test的会话
+tmux kill-session -t test 删除名为test的会话
+tmux kill-server 删除所有会话
+
+## 窗格操作
+% 左右评分两个窗格
+" 上下评分两个窗格
+x 关闭当前窗格
+```
+
 #### supervisor
 
 进程监控工具，`apt-get install supervisor`进行安装，默认的监控配置都放在`/etc/supervisor/conf.d`里面，配置文件语法如下:
@@ -332,46 +398,13 @@ stdout_logfile=/var/log/...	# 日志文件位置，若该目录不存在则无�
 ```shell
 supervisord	# 启动所有监控			
 ```
-#### CURL
-
-```shell
-curl -o a.txt url	# 将文件下载到本地并命名为a.txt
-curl -O url			# 将文件下载到本地用它本来的命名
-```
-
-#### FTP
-
-#### Crontab定时任务
-
-要使用`cron`服务，首先要安装启动`cron`: `sudo apt-get install cron -y && cron`
-
-```shell
-crontab -e # 直接打开定时任务文件进行编辑
-格式如下：
-第1列：分钟
-第2列：小时
-第3列：日
-第4列：月
-第5列：星期
-第6列：命令
-其中，每一列可以逗号和小横线表示特殊的意义，比如
-3,15 8-11 * * * 命令   # 表示在上午8点到11点的第3和15分钟执行
-* 23 * * * 命令			# 注意这个表示的是23点的每分钟都执行
-0 */1 * * * 命令			# 每隔一小时
-*/2 * * * 			# 每隔两分钟
-需要注意的是coontab是不会自动加载环境变量的哟，所以有时候发现命令没有被执行，可能是这个原因
-
-# crontab日志，默认是关闭的，如果要打开可以在配置文件里面进行打开,vim /etc/rsyslog.d/50-defaullt.conf，当然要看日志首先也得有日志服务apt-get instal rsyslog
-cron.*	/var/log/cron.log	# 将cron前面的注释去掉
-service rsyslog restart		# 重启rsyslog
-```
-
 **其他命令**
 
 ```shell
 cd -: 返回上一次的目录，真他妈实用
 history：查看历史命令，如果需要查看命令执行时间，需要先export HISTTIMEFORMAT='\%F \%T '
 tzselect：更改时区
+ntpdate: 如果连时间戳都不对，那么用这个工具来同步时间
 # 命令命名，例如如果想通过python命令调用python3而不是默认的python2，那么可以这样子：
 alias python=python3
 alias pip=pip3
