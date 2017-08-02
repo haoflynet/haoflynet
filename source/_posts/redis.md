@@ -1,7 +1,7 @@
 ---
 title: "redis 教程"
 date: 2016-04-11 11:02:40
-updated: 2017-07-25 14:40:00
+updated: 2017-07-28 14:40:00
 categories: database
 ---
 # Redis
@@ -147,6 +147,16 @@ SMEMBERS key # 返回集合key中的所有成员
 ## Redis Cluster集群方案
 
 和`redis sentinel`不同的是，前者主要是高可用，每一个机器都保存完整的数据，而cluster则住重在分片，当内存占用大于每台机器实际内存时候更实用。
+
+## 客户端
+
+#### PHP: Predis
+
+Laravel默认带的
+
+#### NodeJs: Ioredis
+
+缺点是，针对`sentinel`不支持读写的分离操作，`master`挂了以后，无论是读操作还是写操作都会报错
 
 ## TroubleShooting
 
