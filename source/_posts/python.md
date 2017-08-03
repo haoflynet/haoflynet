@@ -22,7 +22,7 @@ wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
 xz -d Python-3.6.0.tar.xz
 tar -xvf Python-3.6.0.tar
 cd Python-3.6.0
-./configure && make && make altinstall
+./configure && make && sudo make altinstall
 cd
 
 # 如果默认没有安装pip，那么可以这样安装
