@@ -363,5 +363,7 @@ notebook?utm_source=next.36kr.com)：简洁的网页编辑器
 
 **[three.js](http://threejs.org/ "Link: http://threejs.org/" )**: 有太多酷炫的效果了
 
+[unslider](https://github.com/idiot/unslider): 用过最好用的图片轮播插件，而且用起来也特简单
+
 [**wysihtml**](https://github.com/Voog/wysihtml)：十分强大的网页编辑器，但是文档几乎没有，上面有Django
 版本
