@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2017-07-14 14:05:00
+updated: 2017-07-22 14:05:00
 categories: frontend
 ---
 # node.js教程
