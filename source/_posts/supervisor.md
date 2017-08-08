@@ -1,7 +1,7 @@
 ---
 title: "使用Supervisor管理进程"
 date: 2015-08-11 10:07:33
-updated: 2017-02-08 11:03:00
+updated: 2017-07-22 11:03:00
 categories: 编程之路
 ---
 参考文章：<http://segmentfault.com/a/1190000002991175>(原文中还有使用OneAPM安装Python探针的应用，可以实时监控web应用数据，暂时还未实践)
@@ -39,12 +39,11 @@ supervisor是使用Python编写的进程管理软件，在实际开发中，一�
     stdout_logfile=/root/log/8000_access.log                     # 访问日志
     stderr_logfile=/root/log/8000_error.log                      # 错误日志
 
+这样就创建了一个进程，进程的名称为frontend。
 
-这样就创建了一个进程，进程的名称为frontend
+由于ubuntu上面supervisor的配置文件可以放在`/etc/supervisor.d/*.ini`里面比较方便，但是会出现一些错误。如果是单独的ini文件，那么不仅要写`program`这个section还应该把`supervisord`、`supervisorctl`两个区块都加上，哪怕不写任何东西。
 
 ## supervisorctl常用命令：
-
-
 
     start name    # 开始一个进程
     stop name    # 终止一个进程
@@ -68,4 +67,4 @@ supervisor是使用Python编写的进程管理软件，在实际开发中，一�
   sudo supervisorctl
   ```
 
-- ​
+- **执行`sudo supervisorctl reload`**时出现错误`error: <class 'socket.error'>, [Errno 2] No such file or directory: file: /usr/lib64/python2.7/socket.py line: 224`原因是supervisor没有启动而重启造成的，我也不知道为什么报的错误会是这个错误。这时候只需要启动supervisor即可
