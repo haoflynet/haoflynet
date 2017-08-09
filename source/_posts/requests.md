@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2017-06-22 10:48:00
+updated: 2017-08-08 18:48:00
 categories: python
 ---
 # python requests模块
@@ -9,16 +9,20 @@ categories: python
 
 ## 发送请求
 
-	# GET请求
-	response = requests.get(url, timeout=5)
-	r = requests
-	
-	# POST请求
-	r = requests.post(url, data=参数字典) 
-	
-	# json请求
-	r = requests.post(url, data=json.dumps(data), headers={'content-type': 'applicationjson')
-	r = json()	# 获取json响应
+```python
+# GET请求
+response = requests.get(url, timeout=5)
+r = requests
+
+# POST请求
+r = requests.post(url, data=参数字典)
+
+# json请求
+r = requests.post(url, data=json.dumps(data), headers={'content-type': 'applicationjson')
+r = json()	# 获取json响应
+                                                       
+r = requests.post(url, verify=False)	# 禁用https的验证                                                    
+```
 
 #### 自定义HTTP头
 
@@ -114,11 +118,16 @@ with open('filename.mp4', 'wb') as fd:
 
   这是因为在发送https的时候未使用证书进行认证，如果一定要关闭这个警告添加这样的语句:
 
-  ```pythohn
+  ```python
+  # ways 1
   import requests
   from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
   requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+  # ways 2
+  from urllib3.exceptions import InsecureRequestWarning
+  urllib3.disable_warnings(InsecureRequestWarning)
   ```
 
 - **user-agent列表﻿**  
