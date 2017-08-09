@@ -1,10 +1,14 @@
 ---
 title: "Python包推荐,PHP包推荐,JS包推荐,Java包推荐"
 date: 2016-08-07 11:03:30
-updated: 2017-04-08 17:03:00
+updated: 2017-08-07 17:03:00
 categories: system
 ---
-# python包／jQuery／Java／PHP包收集与整理
+### Github Tools
+
+##### [rclone](https://github.com/ncw/rclone)
+
+云存储命令行工具，支持Google Drive, Amazon Drive, S3, Dropbox, Backblaze B2, One Drive, Swift Hubic, Cloudfiles, Google Cloud Storage, Yandex FIles
 
 ### Python
 
@@ -143,6 +147,10 @@ Python图像处理库，与PyLab互斥，只能安装一个哟
 
 跨平台的获取系统运行的进程和系统利用率(包括CPU、内存、磁盘、网络等)信息的库，主要用于系统监控，分析和限制系统资源及进程的管理。实现了一些命令行的工具(如：ps、top、lsof、netstat、ifconfig、who、df、kill、free、nice、ionice、iostat、iotop、uptime、pidof、tty、taskset、pmap等)
 
+##### [pyautogui](https://github.com/asweigart/pyautogui)
+
+跨平台的python自动化模拟输入模块，能够模拟鼠标和键盘
+
 ##### [pyspider](https://github.com/binux/pyspider)
 
 有图形界面的爬虫程序
@@ -219,7 +227,86 @@ Python科学计算库
 
 Java里面非常好用的HTTP client，用起来显得十分简洁，简化了HTTP请求
 
+### JS/Jquery
 
+##### [Awesomplete](http://leaverou.github.io/awesomplete/#basic-usage "Link: http://leaverou.github.io/awesomplete/#basic-usage" )：jQuery的联想次插件，必须异步加载哟，例如：
+
+```
+<script type="text/javascript">
+$(function(){
+	var input = document.getElementById("myinput");
+	var awesomplete = new Awesomplete(input);
+	awesomplete.list = ["Ada", "Java", "JavaScript", "Brainfuck", "LOLCODE","Node.js" , "Ruby on Rails"];
+
+});
+</script>  
+```
+
+##### [BootSideMenu](http://www.htmleaf.com/jQuery/Menu-Navigation/201505131825.html)
+
+Bootstrap隐藏滑动侧边栏jQuery插件，虽然不大好看，依赖还有点多，不过好用
+
+[bootstrap-select](https://silviomoreto.github.io/bootstrap-select/)
+
+基于Bootstrap和jQuery的下拉选择输入列表插件
+
+##### [clipboard.js](https://github.com/zenorocha/clipboard.js)
+
+纯HTML5实现的复制到粘贴板的插件
+
+##### [DataTables](https://datatables.net/)
+
+表格插件，几乎涵盖了所有想要的功能，定制化非常强
+
+##### [editor](https://github.com/lepture/editor)
+
+一个十分漂亮的markdown编辑器
+
+##### [fingerprintjs](https://github.com/Valve/fingerprintjs)
+
+浏览器唯一性解决方案
+
+##### [lightslider](http://sachinchoolur.github.io/lightslider/examples.html)
+
+图片平滑滚动插件
+
+##### [hotkeys](http://jslite.io/hotkeys/)
+
+无任何依赖的键盘事件捕获插件
+
+##### [jquery-notebook](https://github.com/raphaelcruzeiro/jquery-notebook?utm_source=next.36kr.com)
+
+简洁的网页编辑器
+
+##### [simditor](https://github.com/mycolorway/simditor "Link: https://github.com/mycolorway/simditor" ) 
+
+彩程设计的wysiwyg类型的编辑器
+
+##### [three.js](http://threejs.org/ "Link: http://threejs.org/" )
+
+有太多酷炫的效果了
+
+##### [unslider](https://github.com/idiot/unslider)
+
+用过最好用的图片轮播插件，而且用起来也特简单
+
+##### [wysihtml](https://github.com/Voog/wysihtml)
+
+十分强大的网页编辑器，但是文档几乎没有，上面有Django版本
+
+#### PHP
+
+##### [Carbon](http://laravel5-book.kejyun.com/package/tool/package-tool-carbon.html)
+
+各种时间处理
+
+##### [laravel-5-markdown-editor](**https://github.com/yccphp/laravel-5-markdown-editor**)
+
+Laravel5 Markdown编辑器
+
+##### [PHP Debug Bar](https://github.com/maximebf/php-debugbar)
+
+方便调试，可以直接在浏览器里面看到变量信息，而不用var_dump()了
 
 
 
@@ -320,50 +407,3 @@ rrdtool：rrdtoo是换装数据库的存储格式，round robin是一种处理�
 **suds**：Python仅作为客户端调用webservice
 
 **[Tornado-MySQL](https://github.com/PyMySQL/Tornado-MySQL)**：MySQL对于Tornado的异步实现，支持线程池直接操作
-
-# PHP
-
-**[laravel-5-markdown-editor](**https://github.com/yccphp/laravel-5-markdown-editor**)**: Laravel5 Markdown编辑器
-
-[**PHP Debug Bar**](https://github.com/maximebf/php-debugbar)：方便调试，可以直接在浏览器里面看到变量信息，而不用var_dump()了
-
-**[Carbon](http://laravel5-book.kejyun.com/package/tool/package-tool-carbon.html)**: 各种时间处理
-
-# jQuery/JS
-
-**[Awesomplete](http://leaverou.github.io/awesomplete/#basic-usage "Link: http://leaverou.github.io/awesomplete/#basic-usage" )**：jQuery的联想次插件，必须异步加载哟，例如：
-
-	<script type="text/javascript">
-	$(function(){
-		var input = document.getElementById("myinput");
-		var awesomplete = new Awesomplete(input);
-		awesomplete.list = ["Ada", "Java", "JavaScript", "Brainfuck", "LOLCODE","Node.js" , "Ruby on Rails"];
-	
-	});
-	</script>  
-
-**[BootSideMenu](http://www.htmleaf.com/jQuery/Menu-Navigation/201505131825.html)**：Bootstrap隐藏滑动侧边栏jQuery插件，虽然不大好看，依赖还有点多，不过好用
-
-**[bootstrap-select](https://silviomoreto.github.io/bootstrap-select/)**: 基于Bootstrap和jQuery的下拉选择输入列表插件
-
-**[clipboard.js](https://github.com/zenorocha/clipboard.js)**：纯HTML5实现的复制到粘贴板的插件
-
-**[DataTables](https://datatables.net/)**:表格插件，几乎涵盖了所有想要的功能，定制化非常强
-
-**[editor](https://github.com/lepture/editor)**：一个十分漂亮的markdown编辑器
-
-**[fingerprintjs](https://github.com/Valve/fingerprintjs)**: 浏览器唯一性解决方案
-
-**[hotkeys](http://jslite.io/hotkeys/)**：无任何依赖的键盘事件捕获插件
-
-[**jquery-notebook**](https://github.com/raphaelcruzeiro/jquery-
-notebook?utm_source=next.36kr.com)：简洁的网页编辑器
-
-**[simditor](https://github.com/mycolorway/simditor "Link: https://github.com/mycolorway/simditor" )**：采程设计的wysiwyg类型的编辑器
-
-**[three.js](http://threejs.org/ "Link: http://threejs.org/" )**: 有太多酷炫的效果了
-
-[unslider](https://github.com/idiot/unslider): 用过最好用的图片轮播插件，而且用起来也特简单
-
-[**wysihtml**](https://github.com/Voog/wysihtml)：十分强大的网页编辑器，但是文档几乎没有，上面有Django
-版本
