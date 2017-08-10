@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-08-01 11:40:00
+updated: 2017-08-03 14:32:00
 categories: system
 ---
 # Linux指南
@@ -62,6 +62,10 @@ lsof -i -n -P | egrep -c ':8000.+ESTABLISHED' # 查看8000端口的连接数字
 
 # 结束进程
 kill -s 9 进程ID
+
+# 监控每个进程的网络带宽
+sudo apt-get install nethogs -y
+sudo nethogs
 ```
 
 #### 查找、统计、替换
@@ -96,7 +100,19 @@ df -h | sed -n '2p' | awk '{print $2}'			# 获取服务器磁盘大小
 
 ##### 同样以行为单位将输入进行处理
 
-    -n 输出第几行，例如：ps | sed -n '1p'  # 将ps的第一行输出
+```shell
+# 参数 
+-n 输出第几行，例如：ps | sed -n '1p'  # 将ps的第一行输出
+
+# 功能
+a 新增
+c 取代
+d 删除
+s 替代
+
+# 常用命令
+sed '/^$/d' file > outputfile	# 去除文件中的空白行
+```
 ##### xargs
 
 给其他命令传递参数的过滤器，能够用于组合多个输入，将标准输入转换成命令行参数。
