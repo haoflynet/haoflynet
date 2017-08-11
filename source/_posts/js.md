@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-07-21 17:08:00
+updated: 2017-08-10 19:08:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -13,6 +13,12 @@ categories: frontend
 var $a;	// es6以前定义变量，if (true) {var a = 1;} console.log(a); 输出为1
 let $b;	// es6用于定义跨级作用域本地变量，if (true) {let b = 1;} console.log(b);输出为undefined
 const $c;	// 定义常量
+```
+
+### 对象
+
+```javascript
+object instanceof constructor	// 判断某个对象是否属于某个类
 ```
 
 ### 数组
@@ -28,11 +34,13 @@ $.each($array, function(k, v){});	# 遍历数组
 $.inArray('a', $arr): 判断数组是否包含某个元素
 ```
 ### 字符串
-	JSON.parse(text)	# 将字符串转换为JSON
-	str.replace(reg, function(s, value){})	# 替换字符串，reg可以是正则表达式
-	str.indexOf(substring)	# 查找子字符串出现的位置，-1表示没找到
-	str.split('#')	# 字符串分割，返回分割后的列表
-	 parseInt(数字)  # 将数字取整
+```javascript
+JSON.parse(text)	# 将字符串转换为JSON
+str.replace(reg, function(s, value){})	# 替换字符串，reg可以是正则表达式
+str.indexOf(substring)	# 查找子字符串出现的位置，-1表示没找到
+str.split('#')	# 字符串分割，返回分割后的列表
+parseInt(数字)  # 将数字取整
+```
 
 ## DOM操作
 ### 元素查找
@@ -57,6 +65,8 @@ document.getElementById('test:abc')	// 有特殊字符的元素的查找，jquer
 
 ```javascript
 $('#check').prop('checked')	// 获取checkbox是否被check了，不用给你用attr
+$('div').height()	// 获取元素高度
+$('div').height(20)	// 设置元素高度
 ```
 
 ### 编辑元素
@@ -76,6 +86,8 @@ addClass('')	// 给元素添加类
 removeClass('')	// 给元素移除某个类
 $('p').css('color', 'red')			// 修改CSS属性
 $('button').prop('disabled', true)	// 设置按钮不可点击disabled
+$('p').hide()	// 隐藏元素
+$('p').show()	// 显示元素
 ```
 
 ### 元素事件
@@ -101,8 +113,26 @@ $('#myModal').modal('show')  // bootstrap中modal的触发
 window.location.href 			// 获取当前的url
 window.lcoation.href = 'url'	// 跳转到某个url
 location.reload()				// 刷新当前页面
+
+// 获取url参数的方法，来自Stack Overflow
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+getUrlParameter('page')
 ```
 ### 特殊函数
+
 ```javascript
 t = setInterval("show()",3000)	// 每隔3秒执行该函数
 clearInterval(t)				// 清楚计时器

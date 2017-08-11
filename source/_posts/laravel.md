@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-08-01 15:04:00
+updated: 2017-08-07 16:04:00
 categories: php
 ---
 # Laravel指南
@@ -86,8 +86,13 @@ max:value			# 规定最大值
 min:value			# 规定最小值
 numeric				# 是数字
 required			# 必填
-required_with:字段名 # 当某个字段存在的时候当前字段必填
-required_if:anotherfield,value	# 当某个字段的某个值为多少的时候，当前字段为必填
+required_if:anotherfield,value1,value2	# 当指定的anotherfield字段等于任何一个value时，此字段必填
+required_unless:anotherfield,value1,value2 # 当指定的anotherfield字段等于任何一个value时，此字段不用必填
+required_with:foo,bar,...  # 当指定的字段中任何一个有值时，此字段为必填
+required_with_all:foo,bar,...	# 当指定的所有字段都有值时，此字段为必填
+required_without:foo,bar,...	# 如果缺少任意一个指定的字段，则自此字段为必填
+required_with_out_all:foo,bar,...	# 如果所有指定的字段你都没有值，则此字段为必填
+same:foo			# 必须和指定字段的值保持一致
 string				# 必须是字符串
 url					# 必须是合法的url
 regex				# 必须符合这个正则表达式，例如regex:/^[a-z]{1}[a-z0-9-]+$/，需要注意的是，如果正则表达式中用了|符号，必须用数组的方式来写正则表达式，否则会报错，例如['required', 'regex:/[0-9]([0-9]|-(?!-))+/']
@@ -1115,6 +1120,8 @@ public function testIndex{
 - **保存model的时候出现错误：`Missing argument 2 for Illuminate\Database\Eloquent\Model::setAttribute()`**，一般是`Model`的几个属性没有设正确，检查这几个值`incrementing/timestamps/primarykey/fillable`
 
 - **队列出现Cannot initialize a MULTI\/EXEC transaction over aggregate connections**: 升级到最新版laravel吧，然后将redis的扩展切换到phpredis，`laravel5.3`之前自带的`predis`不支持redis的sentinel，并且有些redis操作强依赖于predis的事务操作，各种纠结，最后都不能成功。
+
+- **Class 'Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory' not found**，偶尔安装了某些个第三方库会出现这种幺蛾子，可以用这种方式解决`composer require symfony/psr-http-message-bridge`
 
 ## 相关文章
 
