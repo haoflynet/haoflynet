@@ -574,6 +574,7 @@ User::all()->orderBy('name', 'desc')	# 按降序排序
 User::all()->latest()					# 按created_at排序
 User::all()->oldest()					# 按created_at排序
 User::all()->inRandomOrder()->first();	# 随机顺序
+User::select('name')->distinct()->get()	# 去重
   
 ## 关联查询
 User::select('name')->join('posts', 'users.id', '=', 'posts.user_id')->where(...);	# Inner Join语法
