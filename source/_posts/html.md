@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2016-01-05 11:10:00
+updated: 2018-08-02 10:10:00
 categories: frontend
 ---
 # Html
@@ -63,6 +63,8 @@ categories: frontend
 	
 	# 链接
 	<a href="url"></a>  # a标签的target属性: 默认为_self表示当前框架中打开网页，_blank表示新窗口中打开网页
+	<hr>	横线
+
 
 ## 语义标签
 
@@ -111,20 +113,11 @@ categories: frontend
 	# 将canvas内容转换为图片
 	var dt = canvas.toDataURL('image/png');	# 得到的值是图片的base64编码
 
-
-​	
-
 ## TroubleShooting
-- 合并单元格
+- **合并单元格**
 
-  	<td colspan="2">内容</td>
+   <td colspan="2">内容</td>
 
 
-
-**
-
-* a标签新增属性  
-
-**
-
-*     <a href="..." download></a> # 可以直接将a标签的内容进行下载  
+* **`<a href="..." download></a> `可以直接将a标签的内容进行下载  **
+* `&nbsp`html中的空格
