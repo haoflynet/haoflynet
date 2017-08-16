@@ -1,22 +1,33 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2017-07-28 09:50:00
+updated: 2017-08-07 18:50:00
 categories: frontend
 ---
 # CSS
 
 ## 各种属性
 
-#### border边框
+##### a链接
 
-##### border-color
+a:link：表示一个正常的未被点击过的a标签的属性
 
-设置4个边框的颜色。
+a:visited: 表示一个已经被点击过的a标签的属性
 
-##### border-style
+a:hover: 鼠标移动到a标签上面
 
-设置4个边框的样式。可能的值有none(无边框)、hidden(对于表，用于解决边框冲突，和none一样)、dotted(点状边框)、dashed(虚线)、solid(实线)、double(双线)、groove(3D凹槽边框)、ridge(3D垄状边框)、inset(3D inset边框)、outset(3D outset边框)、inherit(从父元素继承)
+a:active: a标签被点击的时候
+
+##### border边框
+
+- border-color: 设置4个边框的颜色
+- border-radius: 设置边框圆角大小
+- border-style: 设置4个边框的样式。可能的值有none(无边框)、hidden(对于表，用于解决边框冲突，和none一样)、dotted(点状边框)、dashed(虚线)、solid(实线)、double(双线)、groove(3D凹槽边框)、ridge(3D垄状边框)、inset(3D inset边框)、outset(3D outset边框)、inherit(从父元素继承)
+- border-width: 边框宽度
+
+##### p
+
+- text-indent: 段落缩进设置
 
 ## TroubleShooting
 #### 元素居中方法
@@ -76,11 +87,15 @@ categories: frontend
 
 以上，我的直觉告诉我会有更方便的方法，但是我居然没找到，谷歌上搜索出来几乎都是这个答案。
 
+#### 判断屏幕宽度
 
-
-
-判断屏幕宽度
+```css
 @media (min-width: 400px) {
 
 }
+```
+
+#### 各种情况的颜色渐变实现
+
+http://www.w3cplus.com/content/css3-gradient
 
