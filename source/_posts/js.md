@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-08-11 19:08:00
+updated: 2017-08-17 19:08:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -133,6 +133,9 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 getUrlParameter('page')
+
+// ready()方法
+$(document).ready(function);	// 当DOM已经加载，并且页面已经完全呈现时，会发生ready事件。
 ```
 ### 特殊函数
 
