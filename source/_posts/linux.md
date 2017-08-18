@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-08-03 14:32:00
+updated: 2017-08-17 18:32:00
 categories: system
 ---
 # Linux指南
@@ -131,6 +131,12 @@ tar -cjvf 结果.tar.bz2 目标/   # 打包并使用bzip2压缩
 zip *.zip file          # 压缩file为zip格式
 zip -r *.zip file dir   # 压缩文件或目录一起为zip格式
 zip -e 结果.zip 目标     # 压缩并加密(OSX可用)
+
+# 压缩格式对比
+# 压缩比率: tar.bz2=tar.bz>tgz>tar
+# 占用空间: tar.bz2=tar.bz<tgz<tar
+# 压缩时间: tar.bz>tar.bz2>tgz>tar
+# 解压时间: tar.bz2>tar.bz>tar>tgz
 
 # 解压
 xz -d *.tar.xz
