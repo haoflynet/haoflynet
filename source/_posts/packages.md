@@ -1,7 +1,7 @@
 ---
 title: "Python包推荐,PHP包推荐,JS包推荐,Java包推荐"
 date: 2016-08-07 11:03:30
-updated: 2017-08-07 17:03:00
+updated: 2017-08-18 17:03:00
 categories: system
 ---
 ### Github Tools
@@ -281,6 +281,10 @@ Bootstrap隐藏滑动侧边栏jQuery插件，虽然不大好看，依赖还有�
 ##### [simditor](https://github.com/mycolorway/simditor "Link: https://github.com/mycolorway/simditor" ) 
 
 彩程设计的wysiwyg类型的编辑器
+
+[**Smoothzoom**](https://github.com/kthornbloom/Smoothzoom)
+
+简单的图片点击放大组件
 
 ##### [three.js](http://threejs.org/ "Link: http://threejs.org/" )
 
