@@ -1,7 +1,7 @@
 ---
 title: "ShadowSocks 教程"
 date: 2015-10-06 11:02:30
-updated: 2017-04-24 14:05:00
+updated: 2017-08-19 14:05:00
 categories: tools
 ---
 # ShadowSocks
@@ -57,3 +57,16 @@ categories: tools
    nohup sslocal -c /etc/shadowsocks.json /dev/null 2>&1 &	# 后台执行
    echo " nohup sslocal -c /etc/shadowsocks.json /dev/null 2>&1 &" >> /etc/rc.local	# 开机自动启动
    ```
+
+## Socks5代理转换为HTTP代理
+
+使用的软件叫做`privoxy`
+
+```shell
+sudo apt-get install privoxy
+# sudo vim /etc/privoxy/config，将ss代理的配置设置进去
+forward-socks5 / 127.0.0.1:1086 .
+# 然后重启，sudo /etc/init.d/privoxy restart即可
+export HTTP_RPOXY=127.0.0.1:8118	# 默认代理端口是8118
+```
+
