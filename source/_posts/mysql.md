@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-08-01 17:02:00
+updated: 2017-08-17 18:02:00
 categories: database
 ---
 ## 安装方法
@@ -223,6 +223,9 @@ END;
 
 IF(sex=1, '男', '女')				# if条件语句
 IF(sex=1 OR field='b', 1, NULL)		# 复杂的
+
+# 字符串处理
+REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜索，例如UPDATE `table` SET `value` = REPLACE(`value`, 'abc', 'def')
 ```
 
 ## TroubleShooting
