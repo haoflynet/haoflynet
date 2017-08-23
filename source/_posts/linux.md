@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-08-17 18:32:00
+updated: 2017-08-22 18:32:00
 categories: system
 ---
 # Linux指南
@@ -66,6 +66,10 @@ kill -s 9 进程ID
 # 监控每个进程的网络带宽
 sudo apt-get install nethogs -y
 sudo nethogs
+
+# 监控内存占用
+top: 常用的命令
+gtop: 功能十分强大的系统监视器
 ```
 
 #### 查找、统计、替换
@@ -314,9 +318,12 @@ service httpd status	# 检查服务状态
 systemctl list-units --type=service	# 显示所有已启动的服务
 ```
 
-#### 防火墙
+#### 网络/防火墙
 
 ```shell
+# 查看进程的网速
+nethogs
+
 service iptables status     # 查询防火墙状态
 vim /etc/sysconfig/iptables # 新增端口
 service iptables restart    # 重启防火墙
@@ -328,8 +335,6 @@ firewall-cmd --list-ports		# 列出开放的端口
 ```
 
 ## 其它工具
-
-
 
 #### Crontab定时任务
 
@@ -363,7 +368,34 @@ curl -o a.txt url	# 将文件下载到本地并命名为a.txt
 curl -O url			# 将文件下载到本地用它本来的命名
 ```
 
-#### FTP
+#### FTP/SFTP/VSFTPD
+
+ftp: 很普通的文件传输协议
+
+sftp: 基于ssh协议的加密ftp传输协议
+
+vsftpd: ftp服务器，支持ftp协议，不支持sftp协议
+
+```shell
+# 安装方法
+sudo yum install vsftpd
+sudo vim /etc/vsftpd/vsftpd.conf 修改如下几项：
+anonymous_enable=NO
+local_enable=YES
+chroot_local_user=YES
+service vsftpd restart
+local_root=/	# 这个选项可以修改默认的登录目录
+chkconfig vsftpd on 	# 开机启动
+
+# 创建用户
+sudo adduser ftpuser
+sudo passwd ftpuser
+
+# 常用命令
+ftp domain/ip	# 连接目标ftp服务器
+put a.txt		# 上传当前目录的一个文件
+mput ./*		# 同时上传多个文件
+```
 
 #### Tmux
 
@@ -646,27 +678,6 @@ WIFI网络设置
 
 - **CentOS7 无法使用命令netstat，nmap**  
   原因是CentOS7抛弃了这几个老旧的命令，使用新的命令进行[替代](https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat)了，如果要使用那几条命令，可以`yum install net-tools`
-
-- **安装FTP/VSFTP**  
-
-  ```shell
-  	sudo yum install vsftpd
-  sudo vim /etc/vsftpd/vsftpd.conf 修改如下几项：
-  anonymous_enable=NO
-  local_enable=YES
-  chroot_local_user=YES
-  service vsftpd restart
-  chkconfig vsftpd on 	# 开机启动
-
-  # 创建用户
-  sudo adduser ftpuser
-  sudo passwd ftpuser
-
-  # 常用命令
-  ftp domain/ip	# 连接目标ftp服务器
-  put a.txt		# 上传当前目录的一个文件
-  mput ./*		# 同时上传多个文件
-  ```
 
 - **CentOS出现:"cannot find a valid baseurl for repo"**  
   CentOS minimal默认是没有开启网卡的，需要将`vim /etc/sysconfig/network-scripts/ifcfg-eth0
