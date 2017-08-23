@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-08-17 19:08:00
+updated: 2017-08-18 19:08:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -95,6 +95,7 @@ $('p').show()	// 显示元素
 
 ### 元素事件
 ```javascript
+// 事件列表
 change()	// 当元素发生改变时触发，常用于input、select
 blur()		// 元素失去焦点时触发
 click    	// 鼠标点击
@@ -105,11 +106,14 @@ mouseenter 	// 鼠标穿过元素
 mousedown	// 鼠标移动到元素上方，并按下鼠标按键
 mousesleave // 鼠标离开元素
 mouseup		// 在元素上松开鼠标按钮
-resize() 	// 大小调整，一般是$(window).resize(function()\{\})
+resize() 	// 大小调整，一般是$(window).resize(function(){})
 
-# 事件的触发
+// 事件的触发
 $('a').trigger('click')  // 触发a标签的click事件
 $('#myModal').modal('show')  // bootstrap中modal的触发
+
+// 事件的订阅
+$('p').bind('click', function(){})	// 用bind进行事件的绑定，即使是之后生成的元素也能与事件绑定
 ```
 ### 页面属性
 ```javascript
