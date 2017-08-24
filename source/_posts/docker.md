@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2017-07-22 18:22:00
+updated: 2017-08-22 18:22:00
 categories: tools
 ---
 # Docker 使用指南
@@ -38,7 +38,7 @@ docker tag id name:tag	# 给镜像更改名称
 --name haofly			# 给容器命名
 --net=host				# 网络模式，host表示容器不会获得独立的Network Namspace，而是和宿主机公用一个Network Namespace。容器将不会虚拟网卡，配置自己的IP，而是使用宿主机器的IP和端口；none表示没有网络；bridge是docker默认的网络设置；container:NAME_or_ID表示container模式，指定新创建的容器和已经存在的一个容器共享一个Network Namespace，和指定的容器共享IP、端口范围等。
 --restart=no			# 容器的重启模式，no表示不自动重启，on-failure表示当容器推出码为非零的时候自动重启，always表示总是自动重启，docker重启后也会自动重启，unless-stopped表示只有在docker重启时不重启，其他时候都自动重启。
--v /etc/test/:/etc/internal/test	# 将宿主机的/etc/test目录挂在到容器内部的/etc/internal/test目录
+-v /etc/test/:/etc/internal/test	# 将宿主机的/etc/test目录挂载到容器内部的/etc/internal/test目录
 ```
 
 #### 启动命令
@@ -112,7 +112,7 @@ webb:				# 第二个容器
 
 haproxy:			# 第三方容器
     image: haproxy:latest	# 直接从镜像启动，而不是Dockerfile启动
-    volumes:				# 挂在的卷
+    volumes:				# 挂载的卷
         - ./haproxy:/haproxy-override
     links:					# 连接另外的容器
         - weba
