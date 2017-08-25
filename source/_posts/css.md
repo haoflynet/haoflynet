@@ -1,10 +1,28 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2017-08-07 18:50:00
+updated: 2017-08-22 21:50:00
 categories: frontend
 ---
-# CSS
+## 浏览器兼容
+
+- 首行的`<!DOCTYPE html>`很关键
+
+- IE9以下需要专门调用这几个js
+
+  ```html
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  ```
+
+- IE浏览器兼容模式，并且针对IE浏览器首先使用edge内核，对于多核浏览器，首先使用Chrome内核
+
+  ```html
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+  ```
 
 ## 各种属性
 
@@ -25,22 +43,39 @@ a:active: a标签被点击的时候
 - border-style: 设置4个边框的样式。可能的值有none(无边框)、hidden(对于表，用于解决边框冲突，和none一样)、dotted(点状边框)、dashed(虚线)、solid(实线)、double(双线)、groove(3D凹槽边框)、ridge(3D垄状边框)、inset(3D inset边框)、outset(3D outset边框)、inherit(从父元素继承)
 - border-width: 边框宽度
 
-##### p
+##### text
 
 - text-indent: 段落缩进设置
 
+##### width元素宽度 
+
+- max-width设置最大宽度，默认为none
+
+##### word
+
+- white-space: nowrap 强制不换行
+
 ## TroubleShooting
 #### 元素居中方法
-	方法一：
-	<center>...</center>
-	方法二：
-	div {margin:0 auto}
-	方法三：
-	.Absolute-Center {
-		margin: auto;
-		position: absolute;
-		top: 0; left: 0; bottom: 0; right: 0;
-	}
+```css
+方法一：
+<center>...</center>
+方法二：
+div {margin:0 auto}
+方法三：
+.Absolute-Center {
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+# 方法四
+.col-center-block {  
+    float: none;  
+    display: block;  
+    margin-left: auto;  
+    margin-right: auto;  
+}  
+```
 
 #### 将某元素置于底层，使用z-index属性，例如：
 	div {
