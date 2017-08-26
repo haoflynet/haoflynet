@@ -1,17 +1,14 @@
 ---
 title: "BootStrap wiki"
 date: 2015-02-20 08:30:39
+updated: 2017-08-22 21:39:00
 categories: frontend
 ---
-# Bootstrap
-Bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其中包含了许多简洁大方的css样式和实用的js插件，当然，它是移动设备优先的响应式开
-发方式。
-
-
+ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其中包含了许多简洁大方的css样式和实用的js插件，当然，它是移动设备优先的响应式开发方式。
 
 ##  特殊功能(使用Tips)
 
-- 下拉选择列表(需要bootstrap.js)：
+- **下拉选择列表(需要bootstrap.js)**：
 
       <div class="form-group">
         <label for="sel1">Select list:</label>
