@@ -1,18 +1,31 @@
 ---
 title: "MAC使用Aria2高速下载百度网盘内容"
 date: 2017-01-18 13:47:00
-updated: 2017-07-28 14:50:00
+updated: 2017-08-20 14:50:00
 categories: tools
 ---
 ### Aria2简介
 
-[Aria2](https://github.com/aria2/aria2/)是一个轻量级的多源多线程的跨平台的命令行下载工具，支持HTTP/HTTPs、FTP、SFTP、BitTorrent和Metalink等下载方式。当然，目测，国内更多用于百度云的下载。
+[Aria2](https://github.com/aria2/aria2/)是一个轻量级的多源多线程的跨平台的命令行下载工具，支持HTTP/HTTPs、FTP、SFTP、BitTorrent和Metalink等下载方式。当然，目测，国内更多用于百度云的下载，不过，自从我家里用了linux的nas，并且迅雷已经不能用的情况下，我也更倾向于使用aria2。
 
 ## Aria2的安装
 
 **For Mac**: `brew install aria2`
 
 **For Debian**: `apt-get install aria2` 
+
+## Aria2的使用
+
+```shell
+# 参数说明
+--all-proxy=127.0.0.1:8181	# 设置http代理，包括了http/https/ftp
+-c: 断点续传，如果有只下载了部分的文件那么继续下载
+-k20M: 多大的缓存，默认是20M，建议修改为-k1M，因为网络环境不好
+-s5: 使用多少个连接数，默认为5，建议为10
+-x1: 每个服务器的最大连接数，默认为1，建议为16
+```
+
+
 
 
 
