@@ -1,11 +1,9 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-04-08 17:44:00
+updated: 2017-08-28 18:44:00
 categories: python
 ---
-# Python
-
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
 
 ##  安装方法
@@ -57,6 +55,7 @@ else:
 	aosdhgo
 
 for x in reversed(list) # 列表的反向迭代
+for index, value in enumerate(list)	# 遍历的时候带上序号
 list(set(list))  # 列表去重，不过会乱序
 li.append([1,2])	# 添加一个元素
 li.extend([1,2])	# 添加多个元素
@@ -68,6 +67,8 @@ li_1 + li_2			# 列表相加，例如[1] + [2] = [1, 2]
 	for key in dict:
 		print(key, dict[key])
 	for key, vlaue in dict.items():
+		print(key, value)
+	for key, value in dict.iteritems():
 		print(key, value)
 		
 	# 特殊的key
@@ -613,6 +614,21 @@ class CORSRequestHandler (SimpleHTTPRequestHandler):
 
 if __name__ == '__main__':
     BaseHTTPServer.test(CORSRequestHandler, BaseHTTPServer.HTTPServer)
+```
+
+#### pickle: 序列化工具
+
+将一个对象序列化为一个字节流，这样方便讲对象保存在文件中。对于那种需要在不同地方执行，或者直接想以文件的方式保留执行过程变量，而不借助复杂的数据库的情况，是非常方便的。
+
+```python
+import pickle
+fp = open('test', 'wb')
+pickle.dump(data, fp)		# 将变量写入文件
+s = pickle.dumps(data)		# 将对象转换为字符串
+
+fp = open('test', 'rb')
+data = pickle.load(fp)		# 将变量读取出来
+data = pickle.load(s)		# 将字符串反转成其对应的变量
 ```
 
 #### smtplib: 用于发送邮件
