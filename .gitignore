@@ -1,3 +1,5 @@
 node_module/*
 public/*
 qiniu_sync.py
+npm-debug.log
+package-lock.json
