@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2017-08-08 18:48:00
+updated: 2017-08-28 18:48:00
 categories: python
 ---
 # python requests模块
@@ -22,6 +22,12 @@ r = requests.post(url, data=json.dumps(data), headers={'content-type': 'applicat
 r = json()	# 获取json响应
                                                        
 r = requests.post(url, verify=False)	# 禁用https的验证                                                    
+```
+
+#### 设置请求
+
+```python
+requests.get(url, timeout=30)	# 设置连接超时时间为多少秒，不是响应时间
 ```
 
 #### 自定义HTTP头

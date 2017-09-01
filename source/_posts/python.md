@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-08-28 18:44:00
+updated: 2017-08-31 18:44:00
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -63,50 +63,51 @@ li_1 + li_2			# 列表相加，例如[1] + [2] = [1, 2]
 ```
 #### 字典
 
-	# 字典遍历
-	for key in dict:
-		print(key, dict[key])
-	for key, vlaue in dict.items():
-		print(key, value)
-	for key, value in dict.iteritems():
-		print(key, value)
-		
-	# 特殊的key
-	li = {
-		'a': 'b',
-		None: 'c',
-		'': ''
-	}
+```python
+# 字典遍历
+for key in dict:
+	print(key, dict[key])
+for key, vlaue in dict.items():
+	print(key, value)
 	
-	if 'a' in dict		# 判断key是否存在
-	dict.get('a', 'b')	# 如果不存在那么给一个默认值
-	dict.keys()			# 获取所有的key
-	
-	# 表达式解析
-	a = {'x': 1, 'y': 2}
-	globals().update(a)
-	print(x, y)
-	
-	# 漂亮地打印json数据
-	print(json.dump(sdata, indent=2))
-	
-	# 有序字典(占用的内存是普通字典的两倍)
-	from collections import OrderedDict
-	d = OrderedDict()
-	
-	# 字典组成的列表排序
-	通过某个关键字来排序
-	rows = [{}, {}]  # 假设这是一个由字典组成的列表
-	from operation import itemgetter
-	result = sorted(rows, key=itemgetter('onekey'))
-	通过某个值排序，使用zip()函数，它会先将键和值翻转过来，需要注意的是zip()函数是一个只能访问一次的迭代器
-	prices = {'A': 1, 'B': 2, 'C': 3}
-	min_price = min(zip(prices.values(), prices.keys()))  # 获取value最小的
-	prices_sorted = sorted(zip(prices.values(), prices.keys()))
-	
-	# 字典合并（ChainMap只是将两个字典在逻辑上变为一个，在它上面的修改只会影响第一个字典a)
-	from collections import ChainMap
-	c = ChainMap(a, b)
+# 特殊的key
+li = {
+	'a': 'b',
+	None: 'c',
+	'': ''
+}
+
+if 'a' in dict		# 判断key是否存在
+dict.get('a', 'b')	# 如果不存在那么给一个默认值
+dict.keys()			# 获取所有的key，这里返回的是一个dict_keys，一个迭代器
+list(dict)			# 如果仅仅想获得key的数组，可以这样子
+
+# 表达式解析
+a = {'x': 1, 'y': 2}
+globals().update(a)
+print(x, y)
+
+# 漂亮地打印json数据
+print(json.dump(sdata, indent=2))
+
+# 有序字典(占用的内存是普通字典的两倍)
+from collections import OrderedDict
+d = OrderedDict()
+
+# 字典组成的列表排序
+通过某个关键字来排序
+rows = [{}, {}]  # 假设这是一个由字典组成的列表
+from operation import itemgetter
+result = sorted(rows, key=itemgetter('onekey'))
+通过某个值排序，使用zip()函数，它会先将键和值翻转过来，需要注意的是zip()函数是一个只能访问一次的迭代器
+prices = {'A': 1, 'B': 2, 'C': 3}
+min_price = min(zip(prices.values(), prices.keys()))  # 获取value最小的
+prices_sorted = sorted(zip(prices.values(), prices.keys()))
+
+# 字典合并（ChainMap只是将两个字典在逻辑上变为一个，在它上面的修改只会影响第一个字典a)
+from collections import ChainMap
+c = ChainMap(a, b)
+```
 #### 类/函数
 
 - 定义在`__init__`外的属性相当于静态变量，所有对象公用，`__init__`内部的才是对象私有的
@@ -294,7 +295,8 @@ hashlib.md5(open('filename.exe', 'rb').read()).hexdigest()
 # 执行系统命令
 import subprocess
 command = '...'
-subprocess.check_output(command, shell=True)
+subprocess.check_output(command, shell=True)# 不能实时看到shell的输出
+subprocess.check_call(command, shell=True)	# 可以直接看到输出结果
 # 注意1: subprocess是不能实现ssh输入密码登录的。OpenSSH并不是使用STDOUT/STDIN与进程进行通信的，而是直接与终端进行通信。所以要实现用程序去与ssh进行交互，最好的方法是使用pexpect模块(pty模块)，它们会建立一个伪终端。另外，如果直接安装了linux的ssh扩展程序sshpass，则可以直接在命令行输入密码了。
 # 注意2: subprocess的communicate是管道通信，而不是直接在命令行后面添加参数，所以直接用communicate传输参数对于有些非管道命令(例如ls)是不可行的，例如:
 child = subprocess.Popen(['xargs', 'ls'], stdin=subprocess.PIPE,	# 这里必须加xargs universal_newlines=True)
