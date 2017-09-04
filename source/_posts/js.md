@@ -1,10 +1,13 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-08-18 19:08:00
+updated: 2017-08-30 19:08:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
+
+TODO: 逐步用原生方法替换jQuery，参考[You-Dont-Need-jQuery](https://github.com/oneuijs/You-Dont-Need-jQuery#query-selector)
+
 ## 基本语法
 
 ### 变量

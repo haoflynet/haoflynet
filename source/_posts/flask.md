@@ -3,7 +3,6 @@ title: "flask 教程"
 date: 2015-11-07 05:02:39
 categories: python
 ---
-# flask
 
 ## 基本框架
 	from flask import Flask, request
