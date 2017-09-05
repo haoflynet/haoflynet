@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2017-05-25 17:09:39
-updated: 2017-07-03 17:48:00
+updated: 2017-08-29 17:48:00
 categories: js
 ---
 
@@ -33,3 +33,7 @@ Objc中国的全平台客户端: https://github.com/halfrost/vue-objccn
 仿QQ音乐：https://github.com/yuxiuting/Vue-qqMusic
 
 仿闲鱼：https://github.com/Sukura7/vue-ali-xianyu
+
+仿知乎日报: https://github.com/yatessss/zhihudaily-vue
+
+仿hackernews: https://github.com/vuejs/vue-hackernews-2.0
