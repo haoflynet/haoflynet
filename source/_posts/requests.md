@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2017-08-28 18:48:00
+updated: 2017-09-05 18:48:00
 categories: python
 ---
 # python requests模块
@@ -55,6 +55,13 @@ with requests.Session() as s:
 #### 设置代理
 
 ```python
+# HTTP代理
+proxies = {
+    "http": "http://127.0.0.1:8118",
+  	"https": "http://127.0.0.1:8118",
+}
+requests.get("http://google.com", proxies=proxies)
+
 # 使用socks代理
 import socks, socket, requests
 

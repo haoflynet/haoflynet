@@ -29,13 +29,17 @@ explode(',', $str)	# 将字符串分割为数组
 implode(',', $arr)	# 将数组拼接成字符串
 in_array('a', $a)				# 查看数组是否存在某个元素
 json_encode($arr)	# 数组转换城字符串
+list($a, $b) = [1, 2]	# 分别赋值
 rsort(): 以降序对数组排序
 sort()：排序，可以给数组排序
 uasort($array, $cmp_function)	# 定义对比函数进行排序
 unset(arr[1]): 删除数组元素
 
+# 数组遍历
 foreach($array as $value): 数组遍历
 foreach($array as $key => $value): 数组(字典)遍历
+  
+# 数组用于函数
 func(*list): 将数组作为函数的输入
   
 # 在数组里面添加数组元素，在不确定key的情况下
