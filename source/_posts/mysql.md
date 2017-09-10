@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-08-17 18:02:00
+updated: 2017-09-05 18:02:00
 categories: database
 ---
 ## 安装方法
@@ -20,6 +20,9 @@ sudo apt-get install mariadb-server mariadb-client libmariadbd-dev
 # 如果是开发，还需要安装
 sudo apt-get install libmariadb-client-lgpl-dev
 sudo ln -s /usr/bin/mariadb_config /usr/bin/mysql_config
+
+# 第一次登录使用
+sudo mysql -u root
 ```
 
 ## 常用命令
