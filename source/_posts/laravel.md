@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-08-07 16:04:00
+updated: 2017-09-06 16:04:00
 categories: php
 ---
 # Laravel指南
@@ -996,15 +996,23 @@ public function report(Exception $e)
 ### Artisan Console
 
 - `php artisna config:cache`: 把所有的配置文件组合成一个单一的文件，让框架能够更快地去加载。
+
 - 使用命令的方式执行脚本，这时候如果要打印一些日志信息，可以直接用预定义的方法，还能显示特定的颜色:
 
-```php
-$this->info('')	# 绿色
-$this->line('')	# 黑色
-$this->comment('')	# 黄色
-$this->question('') # 绿色背景
-$this->error('')	# 红色背景
-```
+  ```shell
+  $this->info('')	# 绿色
+  $this->line('')	# 黑色
+  $this->comment('')	# 黄色
+  $this->question('') # 绿色背景
+  $this->error('')	# 红色背景
+  ```
+
+- Command添加参数
+
+  ```php
+  protected $signature = 'test:test {field?}'	# 添加参数，问号表示非必填
+  $this->argument('field')					# 获取参数
+  ```
 
 ### 测试
 

@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2017-08-22 21:50:00
+updated: 2017-09-08 21:50:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -69,7 +69,7 @@ div {margin:0 auto}
 	top: 0; left: 0; bottom: 0; right: 0;
 }
 # 方法四
-.col-center-block {  
+.test {  
     float: none;  
     display: block;  
     margin-left: auto;  
