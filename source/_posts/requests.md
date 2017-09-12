@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2017-09-05 18:48:00
+updated: 2017-09-11 18:48:00
 categories: python
 ---
 # python requests模块
@@ -11,7 +11,7 @@ categories: python
 
 ```python
 # GET请求
-response = requests.get(url, timeout=5)
+response = requests.get(url, params={}, timeout=5)
 r = requests
 
 # POST请求

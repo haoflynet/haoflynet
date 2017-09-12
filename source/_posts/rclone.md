@@ -1,6 +1,7 @@
 ---
 title: "rclone网盘同步工具"
 date: 2017-08-20 22:52:39
+updated: 2017-09-10 21:36:00
 categories: tools
 ---
 
@@ -24,7 +25,9 @@ categories: tools
 
 假设上一步添加配置时候取的名字叫`google`，`google drive`里面有目录叫`test`
 
-- rclone ls google:test	       # 列出远程目录下的所有文件 
-- rclone sync -v google:test   # 将远程目录下的所有文件同步到本地
-- rclone mount /path/本地目录 google:test   # 将远程目录直接挂载到本地，这一步就和很多的同步盘差不多了。我有个猜想是这个能拿来备份timemachine。远程的文件会显示在挂载的目录里面，但是不会下载，只有使用的时候才会下载，使用起来方便，并且节约本地资源。需要注意的是，这还只是个实验功能，可能会不稳定。我使用起来唯一的不爽是不能选择下载下来。
-- rcloen copy google: google1  # 直接两个网盘之间对拷文件，并且不会经过本地，真的是太方便了。
+```shell
+rclone ls google:test	       			# 列出远程目录下的所有文件 
+rclone sync -v google:test   			# 将远程目录下的所有文件同步到本地
+rclone mount /path/本地目录 google:test  	# 将远程目录直接挂载到本地，这一步就和很多的同步盘差不多了。我有个猜想是这个能拿来备份timemachine。远程的文件会显示在挂载的目录里面，但是不会下载，只有使用的时候才会下载，使用起来方便，并且节约本地资源。需要注意的是，这还只是个实验功能，可能会不稳定。我使用起来唯一的不爽是不能选择下载下来。
+rcloen copy google: google1  # 直接两个网盘之间对拷文件，并且不会经过本地，真的是太方便了。
+```
