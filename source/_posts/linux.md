@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-08-22 18:32:00
+updated: 2017-09-11 18:32:00
 categories: system
 ---
 # Linux指南
@@ -81,8 +81,8 @@ grep -c "词语"   # 统计出现的次数
 grep 字符串 文件名  # 在文件中查找某个字符串
 grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
 grep [0-9] 文件名  # 在文件中查找包含数字的行
-grep 字符串 -r 目录 # 在特定目录及其子目录中的文件查找str
-fdupes：快速查找重复文件
+grep 字符串 -r 目录 # 在特定目录及其子目录中的文件查找str，-d参数能进行删除操作，保留一个副本
+fdupes -r /home		# 快速查找重复文件
 find / -name filename	# 精确查找某个文件
 find / -name '*.txt'	# 模糊查找某个文件
 find / -mmin -60    # 查找60分钟内修改的文章
@@ -184,7 +184,7 @@ sdiff 文件1 文件2  # 以对比的方式找文件的不同
 find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK转换为UTF8
 ```
 
-#### 远程ssh
+#### ssh
 
 ```shell
 # 配置免密码登录
@@ -201,7 +201,7 @@ ssh -o StrictHostKeyChecking=no root@ip
 sshpass -ppassword ssh 
 
 # CentOS下的安装
-yum install openssh-clients
+yum install openssh-client openssh-server
 
 # 传输文件
 scp 用户名@地址:远程路径 本地路径  # 获取/下载远程服务器的文件，目录加-r参数
@@ -276,6 +276,9 @@ username2 ALL=NOPASSWD:/usr/bin/git # 该用户可以执行'sudo git'的操作
 
 # 查看所有用户
 cat /etc/passwd  
+
+# 将用户添加到组
+usermod -a -G groupName userName
 ```
 
 #### 系统相关
@@ -286,6 +289,7 @@ echo $HOSTTYPE     	# 查看系统位数
 cat /proc/cpuinfo    # 查看CPU信息
 cat /etc/issue     // Debian系列查看系统版本
 cat /etc/redhat-release // redhat系列查看系统版本
+lspci				# 显示当前主机的所有PCI总线信息
 
 # 更新系统
 sudo apt-get install update-manager-core
@@ -386,6 +390,9 @@ chroot_local_user=YES
 service vsftpd restart
 local_root=/	# 这个选项可以修改默认的登录目录
 chkconfig vsftpd on 	# 开机启动
+
+# sftp修改默认登录目录，vim /etc/ssh/sshd_config
+
 
 # 创建用户
 sudo adduser ftpuser
@@ -546,42 +553,52 @@ date +"%T"	# 仅显示时间，比如10:44:00
 
 # TroubleShooting
 
-- **Linux下笔记本触摸板无法使用的问题**  
-  我的电脑是宏碁E1-471G, ubuntu13.04，以下几个方法依次尝试  
-  方法一：Fn + F7  
-  方法二：Ctrl + Fn + F7  
-  方法三：执行命令`sudo modprobe -r psmouse`然后`sudo modprobe psmouse proto=imps`同时，为了开机有效，新建文件/etc/modprobe.d/options，添加代码`options psmouse proto=imps`
+- **Linux下笔记本触摸板无法使用的问题**
+  我的电脑是宏碁E1-471G, ubuntu13.04，以下几个方法依次尝试
 
-- **Ubuntu无法调节屏幕亮度**  
-  方法一：  
-  编辑/`etc/default/grub`文件，将  
-  `GRUB_CMDLINE_LINUX=""`修改为`GRUB_CMDLINE_LINUX="acpi_backlight=vendor"`  
-  然后执行`sudo update-grub`更新grub  
-  然后编辑`/etc/rc.local`文件，在exit 0这行代码之前加上`echo 100 > /sys/class/backlight/intel_backlight/brightness`  
-  再重启    
-  方法二：  
-  此方法来自[IT之家](http://www.ithome.com/html/soft/71265.htm)  
-  编辑文件`/usr/share/X11/xorg.conf.d/20-intel.conf`添加如下代码：
+  ```shell
+  # 方法一
+  Fn + F7 
+  # 方法二
+  Ctrl + Fn + F7 
+  # 方法三
+  执行命令sudo modprobe -r psmouse然后sudo modprobe psmouse proto=imps同时，为了开机有效，新建文件/etc/modprobe.d/options，添加代码options psmouse proto=imps
+  ```
 
+- **Ubuntu无法调节屏幕亮度** 
+
+  ```shell
+  # 方法一 
+  ## vim/etc/default/grub文件，将GRUB_CMDLINE_LINUX=""修改为
+  GRUB_CMDLINE_LINUX="acpi_backlight=vendor" 
+  ## 然后执行sudo update-grub更新grub 
+  ## vim /etc/rc.local文件，在exit 0这行代码之前加上
+  echo 100 > /sys/class/backlight/intel_backlight/brightness 
+  ## 再重启  
+
+  # 方法二 
+  ## vim /usr/share/X11/xorg.conf.d/20-intel.conf添加如下代码：
   Section "Device"
   Identifier "card0"
   Driver "intel"
   Option "Backlight" "intel_backlight"
   BusID "PCI:0:2:0"
   EndSection
-  最后重启
+  ## 重启
+  ```
 
-- **Linux内核的更新**  
+- **Linux内核的更新** 
   **CentOS**：[CentOS 6.5 升级内核到 3.10.28](http://cn.soulmachine.me/blog/20140123/)
   **Ubuntu**：[使用dpkg安装ubuntu内核](http://blog.skyx.in/archives/216/)
 
-- **Deepin升级时出现"这种情况的原因可能是本地依赖已经损坏"**  
-  刚装上Deepin(2014.2)发现在应用商店升级时，有3个安装包无法升级(使用apt-get也提示无法升级)，原因可能是下载的包的依赖关系发生改变而引起的，解决方法如下：  
-  执行以下命令对这三个不能更新的包进行更新：
+- **Deepin升级时出现"这种情况的原因可能是本地依赖已经损坏"** 
+  刚装上Deepin(2014.2)发现在应用商店升级时，有3个安装包无法升级(使用apt-get也提示无法升级)，原因可能是下载的包的依赖关系发生改变而引起的，解决方法如下： 
 
-      sudo apt-get clean    清除已经下载的安装包
-      sudo apt-get update   重新更新软件列表
-      sudo apt-get dist-upgrade	# 与upgrade不同，dist-upgrade能够忽略Packages中的相关性问题进行强制升级，在依赖关系前后发生改变后也仍然会进行升级。
+  ```shell
+  sudo apt-get clean    # 清除已经下载的安装包
+  sudo apt-get update   # 重新更新软件列表
+  sudo apt-get dist-upgrade	# 与upgrade不同，dist-upgrade能够忽略Packages中的相关性问题进行强制升级，在依赖关系前后发生改变后也仍然会进行升级。
+  ```
 
 
 - **XShell连接FTP出现`The data connection could not be established: ETIMEDOUT - Connection attempt timed out`错误**
@@ -589,7 +606,6 @@ date +"%T"	# 仅显示时间，比如10:44:00
   在连接管理里面讲当前ftp连接类型设置为普通ftp`only use plain FTP (insecure)`
 
 - **Linux网卡设置**  
-  查看网卡设置：
 
       # ifconfig
       enp2s0    Link encap:以太网  硬件地址 fc:aa:14:4e:ed:18    
@@ -610,91 +626,103 @@ date +"%T"	# 仅显示时间，比如10:44:00
                 碰撞:0 发送队列长度:0   
                 接收字节:628267 (628.2 KB)  发送字节:628267 (628.2 KB)  
 
-一般lo表示本地还回，eth0表示以太网卡，wlan0表示无线网，但是有时候非常奇葩，比如我这里这台服务器的以太网卡叫enp2s0，我树莓派上的网卡叫什么wl0  
-静态网络设置:
+  一般lo表示本地还回，eth0表示以太网卡，wlan0表示无线网，但是有时候非常奇葩，比如我这里这台服务器的以太网卡叫enp2s0，我树莓派上的网卡叫什么`wl0`
+  静态网络设置:
 
-    **# vim /etc/network/interfaces  # 这里仅设置eth0网卡  
-    auto eth0  
-    iface eth0 inet static  
-    address 192.168.1.100  
-    netmask 255.255.255.0  
-    gateway 192.168.1.1  
-    
-    # vim /etc/resolv.conf  # 不知道为什么有次设置了上面的还是无法联网，再修改DNS设置就行
-    nameserver 192.168.1.1  # 这里加一行，这里的IP是我路由的IP，如果重启后又不能联网了，可能是这个文件又复原了。。。  
-    
-    # 重启网卡  
-    /etc/init.d/networking restart**
+  ```shell
+  ## vim /etc/network/interfaces  # 这里仅设置eth0网卡  
+  auto eth0  
+  iface eth0 inet static  
+  address 192.168.1.100  
+  netmask 255.255.255.0  
+  gateway 192.168.1.1 
+  ## vim /etc/resolv.conf  # 不知道为什么有次设置了上面的还是无法联网，再修改DNS设置就行
+  nameserver 192.168.1.1  # 这里加一行，这里的IP是我路由的IP，如果重启后又不能联网了，可能是这个文件又复原了。。。  
+  # 重启网卡  
+  /etc/init.d/networking restart**
+  ```
 
-WIFI网络设置
+  WiFi网络设置
 
-    **$ vim /etc/network/interfaces  # 这里设置wlan0我那个卡
-    auto wlan0
-    allow-hotplug wlan0
-    iface wlan0 inet dhcp
-    wpa-ssid WIFI名称
-    wpa-psk WIFI密码  
-    
-    # 重启网卡  
-    sudo ifdown wlan0 && sudo ifup wlan0
-    **
+  ```shell
+  **$ vim /etc/network/interfaces  # 这里设置wlan0我那个卡
+  auto wlan0
+  allow-hotplug wlan0
+  iface wlan0 inet dhcp
+  wpa-ssid WIFI名称
+  wpa-psk WIFI密码  
 
-- **Virtualbox虚拟机网卡丢失**  
+  # 重启网卡  
+  sudo ifdown wlan0 && sudo ifup wlan0
+  ```
+
+
+- **Virtualbox虚拟机网卡丢失**
   一般发生在采用以前的vdi新建虚拟机之后，发现只有lo网卡，eth0网卡丢失，修复过程如下：
 
-      # 首先使用如下命令查看可用的网卡
-      ifconfig -a  # 这不仅会显示lo网卡，还会显示其它可用的网卡，如eth0，名字不固定，比如我这次是eth1
-      
-      # 记住上面以太网卡的名字，然后执行
-      sudo dhclient eth0   # 将该网卡打开
-      
-      # 当然很有可能在网络设置里面没有该网卡，导致重启后依然无法联网的情况，我的网卡设置里就是eth0但现在应该变为eth1了，参考上面的/etc/network/interfaces文件
+  ```shell
+  # 首先使用如下命令查看可用的网卡
+  ifconfig -a  # 这不仅会显示lo网卡，还会显示其它可用的网卡，如eth0，名字不固定，比如我这次是eth1
+
+  # 记住上面以太网卡的名字，然后执行
+  sudo dhclient eth0   # 将该网卡打开
+
+  # 当然很有可能在网络设置里面没有该网卡，导致重启后依然无法联网的情况，我的网卡设置里就是eth0但现在应该变为eth1了，参考上面的/etc/network/interfaces文件
+  ```
 
 - **apt-get update时出现Unknown error executing gpgv等问题** 
 
-      cd /usr/local/lib/
-      mv libreadline* /temp
-      ldconfig
-      apt-get update
+  ```shell
+  cd /usr/local/lib/
+  mv libreadline* /temp
+  ldconfig
+  apt-get update
+  ```
 
 - **CentOS安装Nginx/Tengine出现"configure: error: the HTTP rewrite requires the PCRE library"**
 
-     yum -y install pcre-devel openssl openssl-devel
+     `yum -y install pcre-devel openssl openssl-devel`
 
 - **全局中文utf8环境**
 
-      # CentOS
-      localedef -i zh_CN -c -f UTF-8 zh_CN.utf-8
-      export LANG=zh_CN.UTF-8
-      然后全局生效,vim /etc/locale.conf
-      LANG=zh_CN.UTF-8
-      LC_COLLATE=zh_CN.UTF-8
+  ```shell
+  # CentOS
+  localedef -i zh_CN -c -f UTF-8 zh_CN.utf-8
+  export LANG=zh_CN.UTF-8
+  然后全局生效,vim /etc/locale.conf
+  LANG=zh_CN.UTF-8
+  LC_COLLATE=zh_CN.UTF-8
+  ```
 
 - **免密码登录仍然要求输入密码**
 
-      # 权限问题
-      chmod 700 ~/.ssh
-      chmod 600 ~/.ssh/authorized_keys
+  ```shell
+  # 权限问题
+  chmod 700 ~/.ssh
+  chmod 600 ~/.ssh/authorized_keys
+  ```
 
-- **CentOS7 无法使用命令netstat，nmap**  
+- **CentOS7 无法使用命令netstat，nmap**
   原因是CentOS7抛弃了这几个老旧的命令，使用新的命令进行[替代](https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat)了，如果要使用那几条命令，可以`yum install net-tools`
 
-- **CentOS出现:"cannot find a valid baseurl for repo"**  
+- **CentOS出现:"cannot find a valid baseurl for repo"** 
   CentOS minimal默认是没有开启网卡的，需要将`vim /etc/sysconfig/network-scripts/ifcfg-eth0
   `中的`ONBOOT=no`修改为`ONBOOT=yes`，然后执行`dhclient`，再重启就可以了
 
 - **make: yacc: Command not found**  
 
+   ```shell
    sudo apt-get install bison -y
-   	sudo apt-get install byacc -y
+   sudo apt-get install bison -y
+   ```
 
 - **/bin/bash: line 9: makeinfo: command not found**
 
-   sudo apt-get install texinfo
+   `sudo apt-get install texinfo`
 
 - **g++: command not found**
 
-   yum install gcc-c++
+   `yum install gcc-c++`
 
 
 - `Too many levels of symbolic links `
@@ -713,3 +741,14 @@ WIFI网络设置
   ```
 
 - **切换用户出现`This account is currently not available`的问题**，原因是要切换的用户没有bash登录的权限，`cat /etc/passwd`可以看到该用户的shell是`/sbin/nologin`，应该直接把它改成`/bin/bash`，当然，安全着想，有些用户不建议使用bash shell
+
+- **`sudo echo > file`出现`Permission denied`错误**，没错，用sudo居然也会出现权限错误，因为重定向符号`>`也是bash的命令，也需要给它单独的root权限，所以这里一般这样子解决
+
+  ```shell
+  # 方法一
+  sudo sh -c "echo abc > target"
+  # 方法二
+  echo abc | sudo tee target
+  ```
+
+  ​
