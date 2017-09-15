@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-08-31 18:44:00
+updated: 2017-09-15 18:44:00
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -494,6 +494,10 @@ class Count():
         print(time())
 with Count():
     func()		# 这样在函数的开始与结束都能打印出时间了，这只是一个简单例子而已
+    
+## __slots__	可用于定义一种限制类，建议在有大量实例存在的情况下对类进行优化时才使用。该类没有__dict__属性，所有的属性都被显示地固定在__slots__中，不会中途添加属性或者减少属性。
+class test:
+	__slots__ = ['field1', 'field2']	# 即可定义
 ```
 
 ## 装饰器
