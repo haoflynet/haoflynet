@@ -1,7 +1,7 @@
 ---
 title: "Git 教程"
 date: 2016-08-07 07:12:39
-updated: 2017-08-08 14:36:00
+updated: 2017-09-15 14:36:00
 categories: tools
 ---
 # Git指南
@@ -227,3 +227,11 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
   ```
 
 - **error: you need to resolve your current index first**: 通常是因为合并冲突所致，可以简单地使用`git reset --merge`进行恢复
+
+- **在目录外面执行git参数，不进入目录提交git**:
+
+   ```shell
+     git --git-dir=~/foo/.git --work-tree=~/foo push
+   ```
+
+   ​

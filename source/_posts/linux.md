@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-09-11 18:32:00
+updated: 2017-09-15 18:32:00
 categories: system
 ---
 # Linux指南
@@ -83,6 +83,7 @@ grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
 grep [0-9] 文件名  # 在文件中查找包含数字的行
 grep 字符串 -r 目录 # 在特定目录及其子目录中的文件查找str，-d参数能进行删除操作，保留一个副本
 fdupes -r /home		# 快速查找重复文件
+fdupes -f /home | xargs rm -f	# fdupes居然没有直接删除的功能，-d参数必须询问，这样子就能直接进行删除了，-f参数表示忽略第一个文件，这样出来的就都是重复的了
 find / -name filename	# 精确查找某个文件
 find / -name '*.txt'	# 模糊查找某个文件
 find / -mmin -60    # 查找60分钟内修改的文章
