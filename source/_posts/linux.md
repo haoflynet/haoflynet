@@ -54,6 +54,7 @@ LANG/LANGUAGE: 语言
 netstat -ap | grep 端口号   # 查看某一个端口
 netstat -ntlp
 top -p 进程ID：查看进程的实时情况，包括内存大小，内存占用率、CPU占用率，运行时间
+gtop: 命令行式的活动监视器
 cat /proc/进程ID/status：查看进程详细信息，包括线程数，线程名称，线程状态，占用内存大小
 pstree -p 进程ID：查看线程的进程数以及进程ID
 lsof -i :端口号   # 查看端口占用情况，不仅能看到哪个进程开启的端口，还能查看谁在使用该端口
