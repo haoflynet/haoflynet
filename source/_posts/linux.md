@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-09-15 18:32:00
+updated: 2017-09-18 18:32:00
 categories: system
 ---
 # Linux指南
@@ -128,6 +128,14 @@ cat url-list.txt | xargs wget -c	# 下载一个文件中所有的链接
 cat folder-list.txt | xargs ls		# 列出一个文件夹文件中的所有文件
 ```
 
+##### while
+
+循环语句，可以直接在shell中单行写，例如
+
+```shell
+ls | while read line; do xargs zip $line.zip $line;done
+```
+
 #### 文件操作
 
 ```shell
@@ -137,6 +145,7 @@ tar -cjvf 结果.tar.bz2 目标/   # 打包并使用bzip2压缩
 zip *.zip file          # 压缩file为zip格式
 zip -r *.zip file dir   # 压缩文件或目录一起为zip格式
 zip -e 结果.zip 目标     # 压缩并加密(OSX可用)
+zip -P 密码 结果.zip 目标	# 压缩并加密，直接把密码写在命令行
 
 # 压缩格式对比
 # 压缩比率: tar.bz2=tar.bz>tgz>tar
