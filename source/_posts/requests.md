@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2017-09-11 18:48:00
+updated: 2017-09-20 18:48:00
 categories: python
 ---
 # python requests模块
@@ -60,14 +60,16 @@ proxies = {
     "http": "http://127.0.0.1:8118",
   	"https": "http://127.0.0.1:8118",
 }
+# socks代理
+## 安装依赖pip install requests[socks]
+proxies = {
+    'http': 'socks5://user:pass@host:port',
+    'https': 'socks5://user:pass@host:port'
+}
+
 requests.get("http://google.com", proxies=proxies)
 
-# 使用socks代理
-import socks, socket, requests
 
-socks.set_default_proxy(socks.SOCK5, '127.0.0.1', 1080)
-socket.socket = socks.socksocket
-requests.get('https//ifconfig.me/ip')
 ```
 
 #### 上传文件
