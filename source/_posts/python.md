@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-09-15 18:44:00
+updated: 2017-09-20 18:44:00
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -97,7 +97,7 @@ d = OrderedDict()
 # 字典组成的列表排序
 通过某个关键字来排序
 rows = [{}, {}]  # 假设这是一个由字典组成的列表
-from operation import itemgetter
+from operator import itemgetter
 result = sorted(rows, key=itemgetter('onekey'))
 通过某个值排序，使用zip()函数，它会先将键和值翻转过来，需要注意的是zip()函数是一个只能访问一次的迭代器
 prices = {'A': 1, 'B': 2, 'C': 3}
@@ -877,6 +877,10 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 - **Python中一切都是对象，a=1，b=1，两个是同一个对象，所以Python是无法通过变量名获取同名字符串的**
 
 - **在调试某些代码的时候发现print没有输出**: 这是有可能将print重定向了，这是用sys.stdout.write('')可以实现打印输出到控制台
+
+- **`zsh: no matches found: requests[socks]`**: 原因是zsh这个工具会把方括号解析为正则匹配，这时候只需要加上引号即可，例如`pip install 'requests[socks]'`
+
+  ​
 
 ## 推荐阅读
 
