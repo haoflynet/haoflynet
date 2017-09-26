@@ -1,7 +1,7 @@
 ---
 title: "Python包推荐,PHP包推荐,JS包推荐,Java包推荐"
 date: 2016-08-07 11:03:30
-updated: 2017-08-18 17:03:00
+updated: 2017-09-25 17:15:00
 categories: system
 ---
 ### Github Tools
@@ -13,6 +13,10 @@ categories: system
 ### Python
 
 如果要使用pip安装最新版本可以在后面加上版本号
+
+[**backoff**](https://github.com/litl/backoff)
+
+一个支持代码重试机制的装饰器
 
 ##### [BeautifulSoup4](http://beautifulsoup.readthedocs.org/zh_CN/latest/)
 
