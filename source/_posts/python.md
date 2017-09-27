@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-09-20 18:44:00
+updated: 2017-09-26 18:44:00
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -141,12 +141,15 @@ def get():
     
 #定义类方法
 def get(cls):
+  
+# 元类: Python里面所有的类也都是一个对象，type是Python用来创建所有类的元类，元类是用来创建“类”这个对象的东西。通过在类中定义__metaclass__属性，可以指定该类使用哪个元类来创建，如果没有改属性，并且父类里面都没有，那么默认就用type这个元类来创建。很好的元类使用的例子就是Django ORM，这就是元类的作用，把内部很复杂的东西变成一个简单的API
 ```
-#### 类型检查(Type Hint)
+#### 类型检查相关
 
 从3.5开始，Python提供了类型检查功能，当然类型检查仅仅用于检查，并不会对程序的执行有任何的影响，但是配合IDE有代码提示过后，一切都变得方便了起来
 
 ```python
+# 类型检查
 def func(a: int) -> int	# 这表示该函数的参数a要求是整型，返回值是整型号
 
 name: str = 'haofly'	# 直接给变量指定类型
@@ -156,6 +159,13 @@ people: People			# 可以用自定义的类
 from typing import List, Tuple
 Result = Tuple[Tuple[int, int], str]
 def foo(strings: str, lines: List[str], line_number: int) -> Result:	# 这样子定义组合的返回类型
+  
+# 抽象基类abstract base class
+from abc import ABCMeta, abstractmethod
+class IStream(metaclass=ABCMeta):
+  @abstractmethod
+  def read(self, abc):
+    pass
 ```
 
 #### 数字
@@ -305,6 +315,13 @@ child.communicate(filepath)
 # 接收输入
 a = input('Input: ')
 ```
+#### 网络相关
+
+```python
+# 通过主机名获取IP地址，由于该函数调用的是系统函数，所以可能出现无法及时更新host的情况，这种问题，socket并没有提供好的方法来刷新缓存，最好的解析DNS的方法是使用DNSPython库
+socket.gethostbyname('haofly.net')
+```
+
 #### 包
 
 ```python
@@ -887,3 +904,7 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 [Hidden features of Python](http://stackoverflow.com/questions/101268/hidden-features-of-python)
 
 [PyMOTW-3](https://pymotw.com/3/): 由 [Doug Hellmann](http://doughellmann.com/ )所写的Python标准库的示例用法。
+
+[深刻理解Python中的元类(metaclass)](http://blog.jobbole.com/21351/)
+
+[Python项目的配置管理](https://www.keakon.net/2016/10/22/Python%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86)
