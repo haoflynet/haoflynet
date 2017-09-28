@@ -1,29 +1,25 @@
 ---
-title: "python测试教程，pytest的使用"
+title: "python单元测试"
 date: 2015-09-07 3:12:30
-updated: 2017-03-13 15:34:00
+updated: 2017-09-27 21:32:00
 categories: python
 ---
-## Python自带和测试相关的功能
-
-```python
-assert 1=1	# 直接断言
-```
-
-# pytest
+## pytest
 
 Python的测试类，调研了一下nose和pytest，虽然nose的使用量确实比pytest多一点，但是活跃度并不高，从15年后就没发布新版本了，而pytest的github还在一直刷。所以选择了pytest来学习python的测试。
 
-#### 单元测试原则：分离、简单，两个测试用例不能有任何依赖
-
-## 常用方法
+### 测试类
 
 ```python
-# 测试类有如下几个特殊方法
-setup_class 	# 测试类开始的时候执行
-teardown_class	# 测试类结束的时候执行
-setup/setup_method			# 每个测试方法开始的时候执行
-teardown/teardown_method	# 每个测试方法结束的时候执行
+class TestName:
+  def setup_class(self):
+    """测试类开始的时候执行，相当于__init__"""
+  def teardown_class(self):
+    """测试类结束的时候执行，相当于__del__"""
+  def setup_method(self):
+    """每个测试方法开始的时候执行"""
+  def teardown_method(self):
+    """每个测试方法结束的时候执行"""
 ```
 
 ## mock对象
