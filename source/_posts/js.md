@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-08-30 19:08:00
+updated: 2017-09-30 19:08:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -27,6 +27,7 @@ object instanceof constructor	// 判断某个对象是否属于某个类
 ### 数组
 
 ```javascript
+arrA.concat(arrB)			// 合并两个数组
 arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1
 JSON.stringify(Array)		// 将数组转换为JSON格式的字符串
 arr.toString(): 数组转字符串，中间会自动加上逗号
