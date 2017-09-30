@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-09-26 18:44:00
+updated: 2017-09-29 22:44:00
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -123,6 +123,7 @@ super(ChildClass, self).func()	# 2里面调用父类的方法
 
 # 通过字符串调用方法
 getattr(foo, 'bar')()
+hasattr(foo, 'bar')	# 判断对象是否有某个属性
 
 # lambda表达式，相当于一个简单的函数，例如:
 g = lambda x: x*2
@@ -744,7 +745,9 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 
 ## PIP版本管理
 
-`pip`可以使用`==、>=、<=、>、<`几个符号来指定需要安装的依赖版本，并且可以同时使用多个，例如`Django>1.0,<2.0`则安装的是她们之间的最新版本
+`pip`可以使用`==、>=、<=、>、<`几个符号来指定需要安装的依赖版本，并且可以同时使用多个，例如`Django>1.0,<2.0`则安装的是她们之间的最新版本.
+
+`pip install Django —upgrade # 更新指定package`
 
 ## 语言本身
 
