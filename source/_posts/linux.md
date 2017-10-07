@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-09-27 18:32:00
+updated: 2017-10-05 23:03:30
 categories: system
 ---
 # Linux指南
@@ -220,6 +220,8 @@ yum install openssh-client openssh-server
 # 传输文件
 scp 用户名@地址:远程路径 本地路径  # 获取/下载远程服务器的文件，目录加-r参数
 scp 本地路径 用户名@地址:远程路径  # 将本地文件上传到远程目录，目录加-r
+## 使用finder直接选择文件进行上传和下载
+apt-get install lrzsz -y	# 安装rz和sz命令工具
 
 # 仅允许SSH登录，vim /etc/ssh/sshd_conf
 PubkeyAuthentication yes
