@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-09-1 18:02:00
+updated: 2017-10-05 22:34:00
 categories: database
 ---
 ## 安装方法
@@ -113,6 +113,10 @@ WHERE id in (1,2,3);
 ```
 
 ##### 删除
+
+```mysql
+DELETE `deadline` FROM `deadline` LEFT JOIN `job` 	# 有LEFT JOIN情况时删除指定表的数据
+```
 
 ##### 插入
 
