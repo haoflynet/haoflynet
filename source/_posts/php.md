@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-08-28 18:21:21
+updated: 2017-10-05 22:45:21
 categories: php
 ---
 # PHP
@@ -413,5 +413,7 @@ composer require package_name --dev	# 安装包，并将其写入composer.json�
 - **Error while reading line from server**
 
   这是在使用predis时报的错误，原因是没有设置`read_write_timeout=－1`使redis保持永久连接，否则会在一定时间后断开连接
+
+- `isset`和`empty`判断变量是否存在的问题。都不能用于静态数组变量的判断，最好用`array_key_exists`
 
   ​
