@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-09-29 22:44:00
+updated: 2017-10-08 15:39:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -98,7 +98,7 @@ d = OrderedDict()
 通过某个关键字来排序
 rows = [{}, {}]  # 假设这是一个由字典组成的列表
 from operator import itemgetter
-result = sorted(rows, key=itemgetter('onekey'))
+result = sorted(rows, key=itemgetter('onekey'))	# 更复杂的用法可以参见本文下面的sorted方法
 通过某个值排序，使用zip()函数，它会先将键和值翻转过来，需要注意的是zip()函数是一个只能访问一次的迭代器
 prices = {'A': 1, 'B': 2, 'C': 3}
 min_price = min(zip(prices.values(), prices.keys()))  # 获取value最小的
@@ -187,7 +187,9 @@ round(1.23, 1)   # 第二个参数表示保留几位小数
 format(x, '0.2f')  # 保留两位小数
 
 # 除法
-10%3 = 3  # 整除
+14/3 = 4.666666666666667	# 精确除法
+14//3 = 4			# 取整
+14%3 = 2  # 求余
 
 # 生成一组数
 range(2)	// 生成[0, 1]
@@ -681,6 +683,16 @@ smtpObj.connect(mail_host)
 smtpObj.login(mail_user, mail_pass)
 smtpObj.sendmail(sender, receivers, message.as_string())
 print('邮件发送成功')
+```
+
+#### sorted: 数组/字典排序
+
+```python
+sorted([5,4,3,2,1])	# 输出[1,2,3,4,5]
+sorted("This is a test string from Andrew".split(), key=str.lower)	# 用参数key指定比较所用的元素
+student_tuples = [('john', 'A', 15),('jane', 'B', 12),('dave', 'B', 10),]
+sorted(student_tuples, key=lambda student: student[2])   # 用元组内部的元素进行比较，这种方法同样可以应用于对象内部属性的比较，比如lambda student: student.age，其中lambda可以用itemgetter代替，例如key=itemgetter(2)。而类属性则可以用attrgetter代替，例如key=attrgetter('age')，甚至可以同时选择多个属性，例如itemgetter(2,3)，attrgetter('age', 'name')
+sorted([5,3], reverse=False)	# 倒序
 ```
 
 #### timeit: 时间度量
