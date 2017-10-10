@@ -1,21 +1,24 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
+updated: 2017-10-09 23:07:00
 categories: python
 ---
 
 ## 基本框架
-	from flask import Flask, request
-	app = Flask(__name__)
-		
-	@app.route('/', methods=['GET', 'POST'])
-	def hello():
-	    if request.method == 'POST':
-	        return "POST"
-	    return "Hello World!"
-		
-	if __name__ == "__main__":
-	    app.run(debug=True, host='0.0.0.0', port='5000')
+```python
+from flask import Flask, request
+app = Flask(__name__)
+	
+@app.route('/', methods=['GET', 'POST'])	# 定义仅接收哪些类型的请求
+def hello():
+    if request.method == 'POST':
+        return "POST"
+    return "Hello World!"
+	
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port='5000')
+```
 
 但是，业界普遍认为，`tornado`与`flask`同时使用能够同时发挥两个框架的有点，前者用于异步处理高并发请求，后者便于编写，这时候`torando`作为一个`httpserver`对外提供http访问，`flask`比`tornado`更加简单易用，只是因为`flask`在生产环境是需要`WSGI server`的，所以`Tornado`是非常适合的，至少比`Apache`作为server好，而前面的`nginx`也只是作为负载。`Flask's build-in server is not suitable for production as it doesn't scale well and by default serves only one request at a time`[——Deployment Options](http://flask.pocoo.org/docs/0.11/deploying/)
 
@@ -102,7 +105,7 @@ app1下的models.py
 ### request
 
 	# 获取表单提交数据, 仅用于表单
-	request.form['args']
+	request.form.get('begin', '')
 	
 	# 获取POST数据
 	request.json
