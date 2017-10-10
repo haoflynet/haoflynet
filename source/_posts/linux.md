@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-10-05 23:03:30
+updated: 2017-10-09 23:03:30
 categories: system
 ---
 # Linux指南
@@ -45,6 +45,9 @@ SHELL: 当前用户使用的shell种类
 LOGNAME: 当前用户的登录名
 HOSTMANE: 当前主机名
 LANG/LANGUAGE: 语言
+
+# 输入输出
+2>&1 	# 1代表标准输出，2代表标准错误输出，这个表示将标准错误输出也输入到标准输出中
 ```
 
 #### 进程及端口
