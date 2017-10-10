@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2017-07-22 14:05:00
+updated: 2017-10-10 14:05:00
 categories: frontend
 ---
 # node.js教程
@@ -45,6 +45,10 @@ npm update 包名		# 更新指定包
 npm install npm -g	# 升级npm
 npm install -g n && n stable # 升级node.js到最新稳定版
 升级node.js
+
+# 代理设置
+npm config set proxy=http://127.0.0.1:1080
+npm config set proxy=https://127.0.0.1:1080
 ```
 ##### 实例
 
