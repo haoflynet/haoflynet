@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2017-10-10 14:05:00
+updated: 2017-10-10 23:01:30
 categories: frontend
 ---
 # node.js教程
@@ -50,6 +50,10 @@ npm install -g n && n stable # 升级node.js到最新稳定版
 npm config set proxy=http://127.0.0.1:1080
 npm config set proxy=https://127.0.0.1:1080
 ```
+## TroubleShooting
+
+- **Permission Denied**问题，使用npm命令总是会出现这个问题，解决方法最简单的是把npm目录的拥有者修改为当前用户的名字` sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}`
+
 ##### 实例
 
 **[N-club](https://github.com/nswbmw/N-club):** 使用Koa + MongoDB + Redis搭建的论坛系统
