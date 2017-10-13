@@ -1,7 +1,7 @@
 ---
 title: "Git 教程"
 date: 2016-08-07 07:12:39
-updated: 2017-09-15 14:36:00
+updated: 2017-10-13 14:36:00
 categories: tools
 ---
 # Git指南
@@ -89,6 +89,7 @@ git checkout -- filename	# 放弃指定文件的更改
 
 ```shell
 git fetch						# 取回所有分支的更新
+git fetch -p					# 取回远程分支，并且在本地删除远程已经删除的分支
 git branch -a  					# 查看所有分支
 git branch -D dev				# 删除本地分支
 git checkout -b new-branch 		# 在本地新建分支并切换到新分支

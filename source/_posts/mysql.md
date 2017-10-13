@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-10-11 22:34:00
+updated: 2017-10-13 22:34:00
 categories: database
 ---
 ## 安装方法
@@ -82,8 +82,10 @@ SELECT * FROM table WHERE id >= (SELECT FLOOR(RAND() * (SELECT MAX(id) FROM tabl
 # 分页功能，获取m开始的n条记录
 SELECT * FROM table_name limit m, n
 
-# 模糊查询
+# 模糊查询/正则查找
 SELECT * FROM table_name like '%abc_';	# 模糊查询，其中%贪婪匹配任意数量的任意字符，_匹配一个任意字符
+SELECT * FROM table_name REGEXP '(.*?)wtf';
+
 
 # 分组GROUP BY
 SELECT * FROM table_name GROUP BY 'field';	# 分组显示，有多少不同的field就会有多少条记录，而其他的字段则是随机选择一条记录显示，当然，如果对其他字段进行SUM等操作，那么就可以获取分类的SUM，十分有用
