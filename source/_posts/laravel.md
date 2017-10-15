@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-09-06 16:04:00
+updated: 2017-10-13 16:04:00
 categories: php
 ---
 # Laravel指南
@@ -544,6 +544,8 @@ User::where([
 );			# where语句能够传递一个数组
 User::where();					# 如果不加->get()或者其他的是不会真正查询数据库的，所以可以用这种方式来拼接，例如$a_where=User::where();$result =$a_where->where()->get();
 User::where('field', 'like', '%test%');	# 模糊搜索
+User::where('field', 'regexp', 'abc');	# 正则搜索
+User::where()->limit(2)				# limit限制
 User::whereIn('name', ['hao', 'fly']);	# in查询
 User::whereNull('name');			# is null
 User::whereNotNull('name');		# is not null
