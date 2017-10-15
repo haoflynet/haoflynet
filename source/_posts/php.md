@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-10-05 22:45:21
+updated: 2017-10-13 22:45:21
 categories: php
 ---
 # PHP
@@ -320,6 +320,8 @@ class_exists()		# 检查类是否已经定义
   
 PHP_INT_MAX	# 最大整数
 PHP_INT_MIN	# 最小整数
+min($value1, $value2...)	# 选出最小值，最大值max同理
+min([$value1, $value2,...])	# 选出最小值，最大值max同理
   
 hash_hmac(算法名, 明文, 盐)	# hash加密函数，可以选定加密算法，例如hash_hmac('sha1', 'mingwen', 'salt')
 ```
@@ -353,8 +355,11 @@ hash_hmac(算法名, 明文, 盐)	# hash加密函数，可以选定加密算法�
 composer config --list	# 列出当前所有的配置
 composer show 	# 获取所有安装的包的列表
 composer require package_name --dev	# 安装包，并将其写入composer.json的require-dev中去
-  composer config -g repo.packagist composer https://packagist.phpcomposer.com	# 更换为国内的源
-  
+composer config -g repo.packagist composer https://packagist.phpcomposer.com	# 更换为国内的源
+
+# 忽略ssl证书验证
+composer config --global disable-tls true
+composer config --global secure-http false
 "package/ppkg": "2.7.*@beta"	# 安装beta版
 ```
 
