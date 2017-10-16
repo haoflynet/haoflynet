@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-10-08 15:39:30
+updated: 2017-10-09 18:39:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -122,7 +122,7 @@ super().func()	# 调用父类的方法
 super(ChildClass, self).func()	# 2里面调用父类的方法
 
 # 通过字符串调用方法
-getattr(foo, 'bar')()
+getattr(foo, 'bar')()	# 第一个参数可以是一个module
 hasattr(foo, 'bar')	# 判断对象是否有某个属性
 
 # lambda表达式，相当于一个简单的函数，例如:
@@ -293,14 +293,20 @@ hashlib.md5(open('filename.exe', 'rb').read()).hexdigest()
 ```
 #### 异常处理
 
-	try:
-		raise RuntimeError('错误原因')
-	except Exception as e:
-		print(e)或者print(str(e))或者print(unicode(e))
-		# 上面是打印基本的错误信息，如果要打印错误信息／文件名／错误行数，那么可以这样子:
-		exc_type, exc_obj, exc_tb = sys.exc_info()
-		fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-		print(exc_type, fname, exc_tb.tb_lineno)
+```python
+try:
+	raise RuntimeError('错误原因')
+except Exception as e:
+	print(e)或者print(str(e))或者print(unicode(e))
+	# 上面是打印基本的错误信息，如果要打印错误信息／文件名／错误行数，那么可以这样子:
+	exc_type, exc_obj, exc_tb = sys.exc_info()
+	fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+	print(exc_type, fname, exc_tb.tb_lineno)
+else:	# 如果没有发生异常会执行这里
+  pass
+finally:	# 只要离开try代码块都会执行这里的代码，即使except里面有return语句，也会先执行这里
+  pass
+```
 #### 系统相关
 
 ```python
@@ -328,7 +334,9 @@ socket.gethostbyname('haofly.net')
 #### 包
 
 ```python
-在目录下面加上__init__.py就变成了一个包，import包内部的模块使用'.'来分割，__init__.py里面可以定义一些全局变量，__all__指定了此包被import *的时候，哪些模块会被import进来
+# 在模块级别暴露接口
+在目录下面加上__init__.py就变成了一个包，import包内部的模块使用'.'来分割，__init__.py里面可以定义一些全局变量，__all__指定了此包被import *的时候，哪些模块会被import进来。最好在创建一个包的时候都加上这个，避免有些模块被外部引用。如果没有定义__init__，那么import *的时候会将非下划线开头的成员都导入到当前命名空间中。
+
 # 带点号，表示当前目录下的模块，如
 from . import client
 # 可以在一个模块的根目录下得__init__.py定义一些基本的东西，比如加载一些模块呀，设置一些全局变量(__author__这样的东西)啥的
