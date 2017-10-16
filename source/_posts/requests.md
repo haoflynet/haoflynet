@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2017-09-20 18:48:00
+updated: 2017-10-12 18:48:00
 categories: python
 ---
 # python requests模块
@@ -141,6 +141,7 @@ with open('filename.mp4', 'wb') as fd:
   requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
   # ways 2
+  import urllib3
   from urllib3.exceptions import InsecureRequestWarning
   urllib3.disable_warnings(InsecureRequestWarning)
   ```
