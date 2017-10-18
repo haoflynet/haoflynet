@@ -1,7 +1,7 @@
 ---
 title: "curl 教程"
 date: 2016-04-07 08:01:39
-updated: 2017-06-23 15:17:00
+updated: 2017-10-17 19:17:00
 categories: tools
 ---
 # curl
@@ -12,6 +12,7 @@ categories: tools
 	-d：传递json数据
 	-F: 发送form表单数据的一个参数
 	-I：仅显示文档信息(HTTP状态码什么的)
+	-k：禁用ssl验证
 	-s：静默模式，不输出任何东西
 	-X：请求方式，GET、POST、DELETE等
 	-H: 设置请求头，比如-H "Content-Type: application/json"
