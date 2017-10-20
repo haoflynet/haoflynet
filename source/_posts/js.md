@@ -121,8 +121,10 @@ $('p').bind('click', function(){})	// 用bind进行事件的绑定，即使是�
 ```
 ### 页面属性
 ```javascript
+window.cookie					// 当前cookie
 window.location.href 			// 获取当前的url
 window.lcoation.href = 'url'	// 跳转到某个url
+document.referrer				// 获取当前页面的referer
 location.reload()				// 刷新当前页面
 
 // 获取url参数的方法，来自Stack Overflow
