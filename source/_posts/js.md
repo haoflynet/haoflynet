@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-09-30 19:08:00
+updated: 2017-10-20 08:08:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -42,6 +42,7 @@ $.inArray('a', $arr): 判断数组是否包含某个元素
 JSON.parse(text)	# 将字符串转换为JSON
 str.replace(reg, function(s, value){})	# 替换字符串，reg可以是正则表达式
 str.indexOf(substring)	# 查找子字符串出现的位置，-1表示没找到
+string.slice(start, end);	// 字符串分片
 str.split('#')	# 字符串分割，返回分割后的列表
 parseInt(数字)  # 将数字取整
 ```
@@ -124,7 +125,7 @@ $('p').bind('click', function(){})	// 用bind进行事件的绑定，即使是�
 window.cookie					// 当前cookie
 window.location.href 			// 获取当前的url
 window.lcoation.href = 'url'	// 跳转到某个url
-document.referrer				// 获取当前页面的referer
+document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
 location.reload()				// 刷新当前页面
 
 // 获取url参数的方法，来自Stack Overflow
@@ -152,6 +153,7 @@ $(document).ready(function);	// 当DOM已经加载，并且页面已经完全呈
 ```javascript
 t = setInterval("show()",3000)	// 每隔3秒执行该函数
 clearInterval(t)				// 清楚计时器
+debugger;						// 代码加入这一行，浏览器会自动断点进行调试，这对于自动编译的开发环境非常实用
 ```
 
 ## Ajax
@@ -188,7 +190,7 @@ $.post('some.php', {name: 'haofly'})
 - **Ajax请求无论是GET还是POST都突然变成了OPTIONS请求**  
   可能是因为把本地代码提交到服务器时，发生了跨域请求错误，url里面写的是本地的端口地址，这时候只需要修改本地的端口地址修改为相对于服务器的本地地址即可
 
-- **停止js的冒泡**  
+- **停止js的冒泡** 
   `window.event? window.event.cancelBubble = true : evt.stopPropagation();`
 
 - **select标签disabled掉过后表单提交不上去那个字段**: 我也不知道什么原因，但是确实是这样的，可以用[stackoverflow](http://stackoverflow.com/questions/1191113/how-to-ensure-a-select-form-field-is-submitted-when-it-is-disabled)里的方法:

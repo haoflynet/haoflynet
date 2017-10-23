@@ -1,6 +1,7 @@
 ---
-ontitle: "ionic 教程"
-updated: 2017-10-17 22:22:39
+title: "ionic 教程"
+date: 2017-10-17 22:22:39
+updated: 2017-10-20 23:22:39
 categories: frontend
 ---
 基于AngularJS进行的封装，性能中等。
@@ -98,6 +99,35 @@ console.log(Config.options1);
 
 ## API
 
+`Controller`可以直接在`page`的构造函数中自动注入，例如
+
+```javascript
+import { ModalController } from "ionic-angular";
+
+constructor(public modalCtrl: ModalController) {}
+
+createModal() {
+    let searchPageModal = self.modalCtrl.create(myPage, {origin: self.origin});
+	searchPageModal.present();
+}
+```
+
+### [ModalController](https://ionicframework.com/docs/api/components/modal/ModalController/)
+
+模态框，弹出层。
+
+```javascript
+const profileModal = this.modalCtrl.create(Profile, { userId: 8675309 });
+profileModal.present();	// 展示出来，一般从下方往上滑动
+
+@Component(...)
+class Profile {
+	constructor(params: NavParams) {	// page之间传递参数
+    	console.log('UserId', params.get('usreId'));	// 获取参数
+	}             
+}
+```
+
 ### NavController
 
 主要负责导航的controller。包含有如下一些属性
@@ -119,15 +149,40 @@ ionViewDidEnter: 当整个页面都载入完成过后并且激活后触发
 
 ### ViewController
 
-视图控制器。
+视图控制器。可以控制当前页面的显示。
+
+```javascript
+this.viewCtrl.dismiss();	// 关闭当前page
+```
 
 ## [UI组件](https://ionicframework.com/docs//components/#alert-prompt)
+
+### [Button](https://ionicframework.com/docs/components/#buttons)
+
+按钮组件。
 
 ### Content
 
 #### ion-content
 
 最基本的内容组件。
+
+[SearchBar]()
+
+搜索框。
+
+```javascript
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let item of items">
+    {{ item }}
+  </ion-item>
+</ion-list>
+```
+
+[SearchBar](https://ionicframework.com/docs/components/#searchbar)
+
+搜索框。
 
 ### [Tab/Tabs](https://ionicframework.com/docs/components/#select)
 
