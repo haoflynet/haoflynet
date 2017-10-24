@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-10-13 22:34:00
+updated: 2017-10-24 22:34:00
 categories: database
 ---
 ## 安装方法
@@ -69,6 +69,7 @@ ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;
 SELECT * FROM table_A
 SELECT * FROM ... BETWEEN value1 AND value2
 SELECT * FROM ... NOT BETWEEN value1 AND value2
+SELECT DISTINCT(field_1) FORM ...	# 去重
 # 分组查询
 SELECT count(column_a) as count FROM table_A GROUP_BY coulumn_b
 
