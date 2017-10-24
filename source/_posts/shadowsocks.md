@@ -1,14 +1,14 @@
 ---
 title: "ShadowSocks 教程"
 date: 2015-10-06 11:02:30
-updated: 2017-10-23 14:05:00
+updated: 2017-10-24 23:45:00
 categories: tools
 ---
 ## 服务器
-1. 安装服务(pypi已经没怎么维护了，这里直接从github拉取源码)
+1. 安装服务(pypi)已经没怎么维护了，这里直接从github拉取源码)
 
     ```shell
-    git clone https://github.com/shadowsocks/shadowsocks.git@master
+    git clone -b master https://github.com/shadowsocks/shadowsocks.git
     cd shadowsocks
     python3.6 setup.py install
     ```
@@ -17,18 +17,20 @@ categories: tools
 
 2. 设置开机启动
 
-    mkdir /etc/shadowsocks
-    	vim /etc/shadowsocks/config.json
-    	# 在config.json中复制入以下配置：
-    	{
-    	    "server":"0.0.0.0",
-    	    "server_port":8388,
-    	    "local_address": "127.0.0.1",
-    	    "local_port":1080,
-    	    "password":"yourpassword",
-    	    "timeout":300,
-    	    "method":"aes-256-gcm"
-    	}
+    `mkdir /etc/shadowsocks`
+    ```shell
+    vim /etc/shadowsocks/config.json
+    # 在config.json中复制入以下配置：
+    {
+        "server":"0.0.0.0",
+        "server_port":8388,
+        "local_address": "127.0.0.1",
+        "local_port":1080,
+        "password":"yourpassword",
+        "timeout":300,
+        "method":"aes-256-gcm"
+    }
+    ```
     其中端口和密码可按需进行修改
 
 3. 启动服务
