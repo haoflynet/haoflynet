@@ -1,7 +1,7 @@
 ---
 title: "[转]RESTful API设计指南"
 date: 2015-04-11 23:24:07
-updated: 2017-04-06 15:02:00
+updated: 2017-10-19 19:02:00
 categories: 编程之路
 ---
 原文地址：[阮一峰的网络日志](http://www.ruanyifeng.com/blog/2014/05/restful_api.html "Link:
@@ -191,6 +191,5 @@ Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)�
 ## 个人总结
 - RESTful设计风格是仅仅针对API的设计，其他的，比如新建功能页面的url还是需要自己另外定义的，当然可以在后面直接加参数，比如`GET /zoos?add=1`
 - 对于文件的上传，无法使用`application/json`，而只能使用`Multipart/form-data`的方式
-
-
+- 如果我们要是用名称而不是ID来作为url的关键字，那么可能出现关键字与url重复的问题，例如`/users/:username/cars`与`/users/cars`，这个例子不是很恰当，但是已经可以看出问题了，前者表示某个用户所拥有的车，后者表示属于所有人的车，但是如果有个人的名字就叫`cars`呢，就会出现设计上的错误。为了规避这种情况，最好的办法就是提取出几个关键字，应该尽量少，例如github就不能注册名为`teams`的账号，注册时就会提示这是一个保留字。这只是大多数情况，少数情况，资源并不完全属于我们，我们无法确定资源是否会占用保留字，那么这时候就只能添加特殊字符了，例如`$`
 

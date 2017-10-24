@@ -1,17 +1,20 @@
 ---
 title: "ShadowSocks 教程"
 date: 2015-10-06 11:02:30
-updated: 2017-08-19 14:05:00
+updated: 2017-10-23 14:05:00
 categories: tools
 ---
-# ShadowSocks
-
 ## 服务器
-1. 安装服务
+1. 安装服务(pypi已经没怎么维护了，这里直接从github拉取源码)
 
-    apt-get install python-pip
-    	pip install shadowsocks
-    安装完成后使用`ssserver -p 443 -k password -m aes-256-cfb`进行测试，从客户端发起连接，发现能科学上网了
+    ```shell
+    git clone https://github.com/shadowsocks/shadowsocks.git@master
+    cd shadowsocks
+    python3.6 setup.py install
+    ```
+
+    安装完成后使用`ssserver -p 443 -k password -m aes-256-gcm`(完整daemon命令`ssserver -p 443 -k password -m aes-256-gcm --log-file /var/log/ssserver -d start`)进行测试(不再推荐其他协议)，从客户端发起连接，发现能科学上网了。
+
 2. 设置开机启动
 
     mkdir /etc/shadowsocks
@@ -24,9 +27,10 @@ categories: tools
     	    "local_port":1080,
     	    "password":"yourpassword",
     	    "timeout":300,
-    	    "method":"aes-256-cfb"
+    	    "method":"aes-256-gcm"
     	}
     其中端口和密码可按需进行修改
+
 3. 启动服务
 
     ssserver -c /etc/shadowsocks/config.json
