@@ -1,7 +1,7 @@
 ---
 title: "ShadowSocks 教程"
 date: 2015-10-06 11:02:30
-updated: 2017-10-24 23:45:00
+updated: 2017-10-25 10:45:00
 categories: tools
 ---
 ## 服务器
@@ -33,9 +33,30 @@ categories: tools
     ```
     其中端口和密码可按需进行修改
 
-3. 启动服务
+3. 启动服务``ssserver -c /etc/shadowsocks/config.json`
 
-    ssserver -c /etc/shadowsocks/config.json
+### 新机器一键安装脚本
+
+```shell
+yum update
+yum groupinstall -y 'development tools'
+yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel xz-libs
+yum install -y git wget
+
+wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
+xz -d Python-3.6.0.tar.xz
+tar -xvf Python-3.6.0.tar
+cd Python-3.6.0
+./configure && make && sudo make altinstall
+cd
+
+git clone https://github.com/shadowsocks/shadowsocks.git
+cd shadowsocks
+git checkout -b master origin/master
+python3.6 setup.py install
+
+ssserver -p 443 -k password -m aes-256-gcm --log-file /var/log/ssserver -d start
+```
 
 ## 客户端
 1. 安装必要的软件
@@ -75,4 +96,3 @@ forward-socks5 / 127.0.0.1:1086 .
 # 然后重启，sudo /etc/init.d/privoxy restart即可
 export HTTP_RPOXY=127.0.0.1:8118	# 默认代理端口是8118
 ```
-
