@@ -1,7 +1,7 @@
 ---
 title: "ionic 教程"
 date: 2017-10-17 22:22:39
-updated: 2017-10-20 23:22:39
+updated: 2017-10-25 09:34:39
 categories: frontend
 ---
 基于AngularJS进行的封装，性能中等。
@@ -193,4 +193,16 @@ this.viewCtrl.dismiss();	// 关闭当前page
 ## TroubleShooting
 
 - **ion-tabs 不显示，显示空白或者黑色，或者ion-tabs empty blank**:默认的`ion-tab`的 `[root]`属性必须填写，而且不能设置为`null`
+
+- **SearchBar无法自动设置setFocus()，setFocus() not working临时解决方案**: 
+
+  ```javascript
+  setTimeout(()=>{
+    self.searchBar.setFocus();
+  },100);
+  ```
+
+  ​
+
+- ​
 
