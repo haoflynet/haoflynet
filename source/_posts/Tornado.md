@@ -14,21 +14,29 @@ categories: python
 
 ## 基本框架
 
-[项目初始化结构](https://github.com/haoflynet/project-structure/tree/master/Tornado)
+[Tornado项目基本结构](https://github.com/haoflynet/project-structure/tree/master/Tornado)
 
-## Response & Request
+### Request
 
+```python
+self.request.body					# 获取请求内容，字节类型
+self.request.arguments				# 获取全部请求参数
+self.request.query_arguments		# 获取全部GET请求参数
+self.request.body_arguments			# 获取全部POST请求参数
+name = self.get_argument('name')	# 获取POST参数
+self.request.remote_ip				# 获取客户端真实IP
+data = tornado.escape.json_decode(self.request.body)	# 获取请求的json数据
+```
 
-	self.request.body					# 请求内容，字节类型
-	self.request.arguments				# 获取全部请求参数
-	self.request.query_arguments		# 获取全部GET请求参数
-	self.request.body_arguments		# 获取全部POST请求参数
-	name = self.get_argument('name')	# 获取POST参数
-	self.request.remote_ip				# 获取客户端真实IP
+### Response
+
+```python
+self.write(result)	# 如果参数是一个字典，那么会直接返回json数据。如果是字符串也是可以的。但是这里不能允许为数组，因为存在一个潜在的垮与安全漏洞。详情见http://www.tornadoweb.org/en/stable/web.html#tornado.web.RequestHandler.write
+```
 
 ## 特殊的帮助函数
 #### 处理json请求
-`data = tornado.escape.json_decode(self.request.body`， tornado提供的转义HTML、JSONURL和其他数据的工具，需要注意的是如果是ajax请求，这样子传递可以很好地处理数组的问题:
+`data = tornado.escape.json_decode(self.request.body)`， tornado提供的转义HTML、JSONURL和其他数据的工具，需要注意的是如果是ajax请求，这样子传递可以很好地处理数组的问题:
 
 	$.ajax({
 	    url: 'http://127.0.0.1:8888/submit',
