@@ -5,6 +5,9 @@ updated: 2017-06-30 12:03:00
 categories: python
 ---
 # Django教程
+
+[Django常用项目结构](https://github.com/haoflynet/project-structure/blob/master/Django/README.md)
+
 Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Python的Web框架。在Django和Tornado之间我选择了前者，没有特别的原因，网上人云亦云的，肯定不会有一方离另一方差很远，我就直接去看了看Github上两个项目的活跃度，所以选择了前者。
 
 应该说Django坚持自己造轮子，确实为开发者节约了不少的时间，我很看重它的扩展功能，packages数量十分丰富。Django采用的是最流行也是我最熟悉的MVC设计模式，虽然在之前的一个PHP(Laravel)项目中也是采用的MVC模式，但一直都没怎么吃透，始终在各层分离的时候不是很清晰，所以也可趁学习Django对MVC的概念进行强化。
