@@ -1,7 +1,7 @@
 ---
 title: "ionic 教程"
 date: 2017-10-17 22:22:39
-updated: 2017-10-25 09:34:39
+updated: 2017-10-26 12:34:39
 categories: frontend
 ---
 基于AngularJS进行的封装，性能中等。
@@ -189,6 +189,26 @@ this.viewCtrl.dismiss();	// 关闭当前page
 标签页，一般是位于页面底部，Tabs内部的元素就是Tab。需要注意的是，只有在控制器里面定义了ion-tab的root页面，页面才会显示，否则不会显示tabs。**默认的tab的`[root]`属性至少填写一个，不然会空白或者全黑**
 
 如果每一页都有底部的tab，最好让app的`rootPage`直接设置为`BasicPage`。
+
+## AngularJS组件
+
+### HttpClient网络请求
+
+要发起网络请求，首先去要添加对应的module，在`app.module.ts`里添加
+
+```javascript
+import { HttpClientModule } from "@angular/common/http";
+@NgModule({
+  declarations: [
+    MyApp,
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,	// 这里添加该Module
+    IonicModule.forRoot(MyApp)
+  ],
+})
+```
 
 ## TroubleShooting
 
