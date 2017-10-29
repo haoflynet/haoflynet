@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-10-24 22:34:00
+updated: 2017-10-27 09:36:00
 categories: database
 ---
 ## 安装方法
@@ -128,6 +128,8 @@ DELETE `deadline` FROM `deadline` LEFT JOIN `job` 	# 有LEFT JOIN情况时删除
 INSERT INTO 表名(属性列表) VALUES(值列表)
 # 忽略重复的记录
 INSERT IGNORE INTO ... 
+# 包含子查询的插入INSERT INTO SELECT
+SELECT INTO db_name(field1, field2) VALUES SELECT field1, field2 FROM db_name2
 ```
 
 ### 系统相关
