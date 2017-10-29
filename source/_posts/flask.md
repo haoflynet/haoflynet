@@ -7,7 +7,7 @@ categories: python
 
 ## 基本框架
 
-[项目初始化结构](https://github.com/haoflynet/project-structure/blob/master/Flask/README.md)
+[项目常用项目结构](https://github.com/haoflynet/project-structure/blob/master/Flask/README.md)
 
 ```python
 from flask import Flask, request
