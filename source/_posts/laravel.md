@@ -5,6 +5,8 @@ updated: 2017-10-13 16:04:00
 categories: php
 ---
 # Laravel指南
+[Laravel项目基本结构](https://github.com/haoflynet/project-structure/blob/master/Laravel/README.md)
+
 ### 配置
 
 Laravel的主配置文件将经常用到的文件集中到了根目录下的`.env`目录下，这样更高效更安全。其内容如下：
