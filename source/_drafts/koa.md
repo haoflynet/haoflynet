@@ -1,10 +1,11 @@
 ---
 title: "Koa"
 date: 2017-05-11 22:52:39
-updated: 2017-06-01 13:34:00
+updated: 2017-10-29 22:25:00
 categories: 平凡之路
 ---
 
+[Koa2项目基本结构](https://github.com/haoflynet/project-structure/blob/master/Koa2/README.md)
 
 ##### 实例
 
