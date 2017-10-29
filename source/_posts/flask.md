@@ -1,7 +1,7 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
-updated: 2017-10-09 23:07:00
+updated: 2017-10-27 21:37:00
 categories: python
 ---
 
@@ -15,6 +15,11 @@ def hello():
     if request.method == 'POST':
         return "POST"
     return "Hello World!"
+
+# 带参数的路由
+@app.route('/<username>')
+def func(username)
+@app.route('/post/<int:post_id>')
 	
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port='5000')
@@ -104,29 +109,50 @@ app1下的models.py
 ## 请求和响应
 ### request
 
-	# 获取表单提交数据, 仅用于表单
-	request.form.get('begin', '')
-	
-	# 获取POST数据
-	request.json
-	
-	# 获取GET参数
-	request.args.get('q', '')
-	
-	# 处理get请求
-	data = request.get_json(silent=False)
-	
-	# 获取用户真实IP
-	if request.headers.getlist('X-Forwarded-For'):
-		ip = request.headers.getlist('X-Forwarded-For')[0]
-	else:
-		ip = request.remote_addr
+```python
+# 获取表单提交数据, 仅用于表单
+request.form.get('begin', '')
+
+# 获取POST数据
+request.json
+
+# 获取GET参数
+request.args.get('q', '')
+
+# 处理get请求
+data = request.get_json(silent=False)
+
+# 获取用户真实IP
+if request.headers.getlist('X-Forwarded-For'):
+	ip = request.headers.getlist('X-Forwarded-For')[0]
+else:
+	ip = request.remote_addr
+```
 ### resposne
 
 ```python
 # 返回JSON数据
 from flask import jsonify
 return jsonify(username=g.user.username, email='asd')
+
+# 允许CORS，可以使用flask-cors库，也可以全局设置如下这个
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response
+## 如果仅针对单独的接口，可以添加装饰器，当然，该接口必须允许OPTIONS请求，才能直接返回请求
+def allow_cross_domain(fun):
+    @wraps(fun)
+    def wrapper_fun(*args, **kwargs):
+        rst = make_response(fun(*args, **kwargs))
+        rst.headers['Access-Control-Allow-Origin'] = '*'
+        rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE,PATCH'
+        allow_headers = "Referer,Accept,Origin,User-Agent"
+        rst.headers['Access-Control-Allow-Headers'] = allow_headers
+        return rst
+    return wrapper_fun
 ```
 
 ## 数据库
