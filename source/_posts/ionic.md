@@ -31,56 +31,7 @@ ionic cordova run ios	# 即可自动打开模拟器
 
 ![ionic ios](http://ojccjqhmb.bkt.clouddn.com/ionic_0.png)
 
-###项目基本结构
-
-```shell
-.
-├── README.md
-├── config		# 个性化配置文件
-│   ├── index.ts
-├── config.xml
-├── hooks
-│   └── README.md
-├── ionic.config.json
-├── node_modules
-├── package-lock.json
-├── package.json
-├── resources
-│   ├── README.md
-│   ├── android
-│   ├── icon.png
-│   ├── ios
-│   └── splash.png
-├── src					# 项目主要源文件
-│   ├── app
-│   │ 	├── app.component.ts# 定义rootPage，第一个被载入的page，默认是HelloIonicPage,pages表示所有的页面
-│   │ 	├── app.html		# app的主模板
-│   │ 	├── app.module.ts	# 当前app入口
-│   │ 	├── app.scss
-│   │ 	└── main.ts
-│   ├── assets
-│   ├── index.html		# 主入口文件
-│   ├── manifest.json
-│   ├── pages			# 一个一个的page，这就是最基本的页面
-│   │   ├── hello-ionic
-│   │   │   ├── hello-ionic.html	# 模板文件
-│   │   │   ├── hello-ionic.scss
-│   │   │   └── hello-ionic.ts	# 定义该页面的主类HelloIonicPage
-│   │   ├── item-details
-│   │   │   ├── item-details.html
-│   │   │   ├── item-details.scss
-│   │   │   └── item-details.ts
-│   │   └── list
-│   │   │   ├── list.html
-│   │   │   ├── list.scss
-│   │   │   └── list.ts		# 初始化navCtrl，定义navigation栈，push页面进去
-│   ├── service-worker.js
-│   └── theme
-├── tsconfig.json
-├── tslint.json
-└── www
-    └── manifest.json
-```
+[Ionic常用项目结构](https://github.com/haoflynet/project-structure/blob/master/Ionic/README.md)
 
 ### 基本配置
 
