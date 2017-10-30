@@ -1,4 +1,4 @@
-# Site Information Settings
+ #Information Settings
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `hexo-site/source/` directory.
@@ -195,10 +195,14 @@ links_title: 小伙伴们
 #links_layout: block
 #links_layout: inline
 links:
-  #Title: http://example.com/
   Phodal: https://www.phodal.com
+  QINGGUOING: http://qingguoing.com/
   zkzhao: http://zkzhao.github.io/
-  倾国倾城的博客: http://blog.qingguoing.com/
+  程旭的程序: https://kaleo.blog/
+  ResolveWang's Blog: https://rookiefly.cn/
+  阿翔: https://xiexiangnow.github.io/
+  一只很酷的蘑菇: http://coolmogu.com/
+  勤杂工运维博客: https://tanjiangfu.github.io/
 
 # ---------------------------------------------------------------
 # Post Settings
