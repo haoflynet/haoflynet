@@ -31,7 +31,7 @@ data = tornado.escape.json_decode(self.request.body)	# 获取请求的json数据
 ### Response
 
 ```python
-self.write(result)	# 如果参数是一个字典，那么会直接返回json数据。如果是字符串也是可以的。但是这里不能允许为数组，因为存在一个潜在的垮与安全漏洞。详情见http://www.tornadoweb.org/en/stable/web.html#tornado.web.RequestHandler.write
+self.write(result)	# 如果参数是一个字典，那么会直接返回json数据。如果是字符串也是可以的。但是这里不能允许为数组，因为存在一个潜在的垮与安全漏洞。详情见http://www.tornadoweb.org/en/stable/web.html#tornado.web.RequestHandler.write，简单的原因就是因为数组作为javascript脚本是合法的，而json数据作为script是不合法的，如果用数组，可能会泄露敏感信息
 ```
 
 ## 特殊的帮助函数
