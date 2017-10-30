@@ -14,7 +14,7 @@ categories: python
 
 ## 基本框架
 
-[Tornado项目基本结构](https://github.com/haoflynet/project-structure/tree/master/Tornado)，需要注意的是Tornado要想实现`Rest`，只能用第三方库或者自己写，由于第三方库并不都满足我的需求，所以我自己写的一个比较实用的结构，当然，如果用tornado用的多，可以自己写个三方库出来。
+[Tornado项目基本结构](https://github.com/haoflynet/project-structure/tree/master/Tornado)，需要注意的是Tornado要想实现`Rest`，只能用第三方库或者自己写，所以我研究出这样一种结构，可以直接实现Rest，非常实用。
 
 ### Request
 
