@@ -901,6 +901,15 @@ reject(function($item){return true;});			// 从集合中移除元素，当返回
 unique(function ($item) {return $item;} );		// 仅仅返回唯一的值，相当于去重
 ```
 
+#### Crypt
+
+`Laravel`通过`Mcrypt PHP`扩展提供AES加密功能。一定要设置`config/app.php`中的`key`
+
+```php
+$encrypted = Crypt::encrypt('password');
+$decrypted = Crypt::decrypt($encrypted);
+```
+
 ### 帮助函数
 
 ```php
