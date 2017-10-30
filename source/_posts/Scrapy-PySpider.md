@@ -1,7 +1,7 @@
 ---
 title: "Scrapy PySpider python爬虫"
 date: 2016-08-07 11:02:20
-updated: 2016-11-29 18:00:00
+updated: 2017-10-30 18:00:00
 categories: python
 ---
 # Scrapy & PySpider
@@ -116,6 +116,7 @@ item = response.meta['item']
 
 # 处理最开始的请求
 def start_requests(self):
+    """产生种子url"""
     for url in start_urls:
         yield Request(url, self.parse)
 ```
@@ -127,10 +128,10 @@ def start_requests(self):
 ##TroubleShooting
 - **安装出错**：
 
-  	No package 'libffi' found
-  	c/_cffi_backend.c:13:17: fatal error: ffi.h: No such file or directory
-  	#include <ffi.h>
-  需要安装这个`sudo apt-get install libffi-dev`
+   No package 'libffi' found
+   	c/_cffi_backend.c:13:17: fatal error: ffi.h: No such file or directory
+   	#include <ffi.h>
+     需要安装这个`sudo apt-get install libffi-dev`
 
 - **ImportError: No module named twisted.internet**：
   执行`pip3 install twisted`
