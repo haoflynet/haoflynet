@@ -16,6 +16,23 @@ categories: python
 
 [Tornado项目基本结构](https://github.com/haoflynet/project-structure/tree/master/Tornado)，需要注意的是Tornado要想实现`Rest`，只能用第三方库或者自己写，所以我研究出这样一种结构，可以直接实现Rest，非常实用。
 
+### handler
+
+```python
+class HelloHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):	# set_default_headers会在请求开始的时候设置HTTP头，这里的例子是用于支持CORS的
+        self.set_header('Access-Control-Allow-Origin', '*')
+        self.set_header('Access-Control-Allow-Headers', 'content-type')
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+       
+    def get(self):
+        self.write('hello world!')
+        
+    def optinons(self):	# 跨域访问支持
+        self.set_status(204)
+        self.finish()
+```
+
 ### Request
 
 ```python
