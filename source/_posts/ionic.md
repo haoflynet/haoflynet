@@ -84,7 +84,7 @@ class Profile {
 主要负责导航的controller。包含有如下一些属性
 
 ```shell
-# 生命周期函数
+# 生命周期函数(肯定是在page的constructor之后才会触发这些的)
 ionViewWillEnter: 进入整个页面将要激活的时候触发
 ionViewDidEnter: 当整个页面都载入完成过后并且激活后触发
 ```
