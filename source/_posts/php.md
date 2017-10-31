@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-10-24 22:45:21
+updated: 2017-10-31 22:45:21
 categories: php
 ---
 # PHP
@@ -381,6 +381,13 @@ composer config --global secure-http false
 - psr-4: 一般用于项目代码的自动加载
 
 - files: `helper`相关的
+
+### Extension扩展管理
+
+```php
+var_dump(extension_loaded('curl'));		// 查看是否安装某个模块
+var_dump(get_loaded_extensions());		// 查看安装了哪些模块
+```
 
 ## TroubleShooting
 
