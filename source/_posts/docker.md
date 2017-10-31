@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2017-08-22 18:22:00
+updated: 2017-10-31 18:22:00
 categories: tools
 ---
 # Docker 使用指南
@@ -160,8 +160,6 @@ apt add --no-cache python	# 安装软件
 apt del python			# 删除软件
 ```
 
-
-
 ### MySQL/Mariadb容器
 	docker run --name some-mariadb -v /Users/haofly/workspace/share:/share --net host -e MYSQL_ROOT_PASSWORD=mysql -d mariadb:tag	# 开启一个mysql容器，可通过exec bash进入容器内
 ### PHP容器
@@ -233,5 +231,16 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
   删除完有冲突的网桥过后，新建`docker-compose`即可。
 
 - Mac下`~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux`目录占用内存过大**: 目测是一个一直没有被修复的bug，是由于镜像反复拉，容器反复删除重建，但是存储从来不释放造成的，我现在的解决方法是把想要的镜像拉下来到处到存储中去，以后要使用直接拉取，这样避免了每次pull不下来的时候重新pull导致存储不释放的问题
+
+- **阿里源**: 一般都是jessie版本，但是有些镜像的维护者可能会修改为一个比较小众的版本，可能导致某些包没有，这时候修改版本即可。
+
+    ```shell
+    # 基本上都是jessie
+    deb http://mirrors.aliyun.com/debian jessie main
+    deb http://mirrors.aliyun.com/debian jessie-updates main
+    deb http://mirrors.aliyun.com/debian-security jessie/updates main
+    ```
+
+- ​
 
 
