@@ -780,6 +780,27 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 
 #### Python设计模式
 
+## SQLite数据库
+
+Python语言内置了`SQLite`轻量级数据库。
+
+```python
+import sqlite3
+conn = sqlite3.connect('test.db')
+cursor = conn.cursor()
+cursor.execute('正常的sql语句')
+cursor.execute('select * from user where id=?', ('1', ))	# 查询语句
+cursor.fetchall()	# 获取查询结果
+cursor.rowcount	# 获取插入的行数
+cursor.close()	# 关闭cursor
+conn.commit()	# 提交事务
+conn.close()	# 关闭连接
+```
+
+
+
+
+
 
 
 - **Python设计模式**：https://github.com/faif/python-patterns
