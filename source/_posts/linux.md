@@ -772,4 +772,7 @@ date +"%T"	# 仅显示时间，比如10:44:00
   echo abc | sudo tee target
   ```
 
-  ​
+- **`add-apt-repository`的时候居然Python的错误:`Python error: UnicodeDecodeError: 'ascii' codec can't decode byte 0xc5`**，需要在add前设置语言编码
+  `LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php`
+
+- **`add-apt-repository: command not found`**，需要安装基本的工具`apt-get install software-properties-common`
