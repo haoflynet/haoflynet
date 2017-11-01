@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-10-31 22:45:21
+updated: 2017-11-02 00:45:21
 categories: php
 ---
 # PHP
@@ -260,7 +260,7 @@ curl_setop($ch, CURL_POSTFIELDS, $data);		// POST的数据
 curl_setop($ch, CURLOPT_RETURNTRANSFER, true);	// 获取返回结果，如果不加这个，那么$result=true
 $result = curl_exec($ch);						// 执行curl请求
 curl_getinfo($ch, CURLINFO_HTTP_CODE)			// 获取http_code
-
+  
 curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['Accept: application/json']);	// 添加HTTP头
 curl_close($ch);								// 关闭连接
 
@@ -271,6 +271,10 @@ if (function_exists('curl_file_create')) { // php 5.6+
   $cFile = '@' . realpath($scriptPath);
 }
 $data = ['file' => $cFile];
+
+# 获取curl所有参数所代表的常量值
+$arr = get_defined_constants(true);
+var_dump($arr['curl']);
 ```
 
 ### WEB程序
