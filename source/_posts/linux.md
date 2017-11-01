@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-10-19 23:03:30
+updated: 2017-10-31 23:03:30
 categories: system
 ---
 # Linux指南
@@ -248,6 +248,7 @@ dpkg -i *.deb # 安装deb包，但是它不会自动解决依赖，安装完成�
 dpkg -l			# 查看已经安装的包
 
 # Debian
+apt-cache search 包名		# 搜索源里面是否有指定的包
 apt-cache show 包名 	   # 显示apt库里面的软件的版本号
 apt-get clean 			# 自动清理安装程序时缓存的deb包
 apt-get autoclean  		# 清理已卸载软件的无用的依赖包
@@ -309,6 +310,10 @@ cat /proc/cpuinfo    # 查看CPU信息
 cat /etc/issue     // Debian系列查看系统版本
 cat /etc/redhat-release // redhat系列查看系统版本
 lspci				# 显示当前主机的所有PCI总线信息
+
+# 环境变量
+env	# 查看环境变量
+export A=b	# 设置环境变量
 
 # 更新系统
 sudo apt-get install update-manager-core
