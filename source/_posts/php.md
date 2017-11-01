@@ -429,4 +429,6 @@ var_dump(get_loaded_extensions());		// 查看安装了哪些模块
 
 - `isset`和`empty`判断变量是否存在的问题。都不能用于静态数组变量的判断，最好用`array_key_exists`
 
+- **PHP调用Dubbo服务**: 按照这个教程一步一步来http://www.huangxiaobai.com/archives/1437。
+
   ​
