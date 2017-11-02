@@ -1,7 +1,7 @@
 ---
 title: "Tornado 教程"
 date: 2015-08-05 12:02:30
-updated: 2017-10-30 20:24:00
+updated: 2017-11-02 20:24:00
 categories: python
 ---
 # Tornado
@@ -14,7 +14,7 @@ categories: python
 
 ## 基本框架
 
-[Tornado项目基本结构](https://github.com/haoflynet/project-structure/tree/master/Tornado)，需要注意的是Tornado要想实现`Rest`，只能用第三方库或者自己写，所以我研究出这样一种结构，可以直接实现Rest，非常实用。
+[Tornado项目基本结构](https://github.com/haoflynet/project-structure/tree/master/Tornado)，需要注意的是Tornado要想实现`Rest`，只能用第三方库或者自己写，所以我研究出这样一种结构，可以直接实现Rest，非常实用。其中`Tornado`使用`sqlalchemy`连接数据库时推荐使用`tornado-sqlalchemy`库，它让`sqlalchemy`拥有了异步的特性，可以参见基本结构里的结构。
 
 ### handler
 
