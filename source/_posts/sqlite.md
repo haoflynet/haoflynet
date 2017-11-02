@@ -1,62 +1,25 @@
 ---
 title: "SQLite教程"
 date: 2016-04-05 11:02:30
-updated: 2017-10-31 22:29:00
+updated: 2017-11-02 22:29:00
 categories: database
 ---
 SQLite是一个遵守ACID的关系数据库管理系统，本身是一个嵌入式的程序，并不是客户端/服务端模式的架构，可以直接继承到应用程序中，Pyhton就内置了SQLite的。它的数据是直接存储在一个文件里面的。
 
 ## 安装
 
-OSX: `brew install sqlite`
-重点是无服务器
-需要注意的是sqlite3的主键默认是这样的
+OSX: `brew install sqlite`。
 
-    conn.execute('''CREATE TABLE IF NOT EXISTS IP
-        (
-            _id INTEGER PRIMARY KEY,
-            ip INT NOT NULL UNIQUE,
-            port INT NOT NULL,
-            type VARCHAR(5) NOT NULL,
-            level VARCHAR(10),
-            speed INT,
-            address VARCHAR(50),
-            last_time INT NOT NULL,
-            status INT DEFAULT 0
-        );''')
+客户端: [sqlitebrowser](https://github.com/sqlitebrowser/sqlitebrowser)
 
+需要注意的是sqlite3的主键默认是这样的。
 
-        # -*- coding: utf-8 -*-
-        #!/usr/local/bin/python3
-    
-        import sqlite3
-    
-        conn = sqlite3.connect('Proxy.db')
-    
-        # 建表
-        conn.execute('''CREATE TABLE IF NOT EXISTS IP
-            (
-                _id INTEGER PRIMARY KEY,
-                ip INT NOT NULL UNIQUE,
-                port INT NOT NULL,
-                type VARCHAR(5) NOT NULL,
-                level VARCHAR(10),
-                speed INT,
-                address VARCHAR(50),
-                last_time INT NOT NULL,
-                status INT DEFAULT 0
-            );''')
-    
-        # 插入
-        conn.execute('''
-            INSERT INTO IP (ip, port, type, level, speed, address, last_time, status)
-            VALUES
-            (123457891, 80, 'HTTP', '透明', 3, '重庆市', 1234567890, 0);
-        ''')
-        conn.commit()
-    
-        # 查询
-        cursor = conn.execute('SELECT * FROM IP');
-        for row in cursor:
-            print(row)
-        conn.close()
+## TroubleShooting
+
+- **报错`sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in thread xxxx `**，原因是SQLite是不能多个线程同时访问的，要么直接不适用多线程，更好的做法是在连接是添加`check_same_thread`参数。
+
+  ```shell
+  connect = sqlite3.connect('test.db', check_same_thread=False) # 允许在其他线程中使用这个连接
+  ```
+
+- ​
