@@ -356,10 +356,11 @@ hash_hmac(算法名, 明文, 盐)	# hash加密函数，可以选定加密算法�
 ## composer包管理
 `require`是指在生产环境中必须的包，而`require-dev`则是开发的时候要用而生产环境无需用的包，常用命令:
 
-```php
+```shell
 composer config --list	# 列出当前所有的配置
 composer show 	# 获取所有安装的包的列表
 composer require package_name --dev	# 安装包，并将其写入composer.json的require-dev中去
+composer remove package_name	# 移除包
 composer config -g repo.packagist composer https://packagist.phpcomposer.com	# 更换为国内的源
 
 # 忽略ssl证书验证
