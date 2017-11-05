@@ -47,6 +47,8 @@ data = tornado.escape.json_decode(self.request.body)	# 获取请求的json数据
 
 ### Response
 
+`self.finish()`代表http请求会断开，但是并不代表请求处理逻辑的终结。和回应无关的请求逻辑完全可以放在`finish`之后进行。`write`之后可以`finish`，但是`finish`之后不能再`write`。`write`可以执行多次，如果是字符串，那么结果会累加，如果是`json`那么结果会取第一个`json`。
+
 ```python
 self.write(result)	# 如果参数是一个字典，那么会直接返回json数据。如果是字符串也是可以的。但是这里不能允许为数组，因为存在一个潜在的垮与安全漏洞。详情见http://www.tornadoweb.org/en/stable/web.html#tornado.web.RequestHandler.write，简单的原因就是因为数组作为javascript脚本是合法的，而json数据作为script是不合法的，如果用数组，可能会泄露敏感信息
 ```
