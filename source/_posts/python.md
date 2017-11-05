@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-10-27 18:03:30
+updated: 2017-11-03 18:03:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -107,6 +107,13 @@ prices_sorted = sorted(zip(prices.values(), prices.keys()))
 # 字典合并（ChainMap只是将两个字典在逻辑上变为一个，在它上面的修改只会影响第一个字典a)
 from collections import ChainMap
 c = ChainMap(a, b)
+
+# 要想一个对象继承与一个字典，并且能用json.dumps()转换为json对象，那么可以这样做
+class ErrorMsg(dict):
+    """自定义错误类"""
+    def __init__(self, e: Exception, code: int):
+        dict.__init__(self, msg=str(e), code=code)
+json.dumps(ErrorMsg(e, 200))	# {"msg":"xxx", "code":200}
 ```
 #### 类/函数
 
@@ -304,7 +311,7 @@ except Exception as e:
 	print(exc_type, fname, exc_tb.tb_lineno)
 else:	# 如果没有发生异常会执行这里
   pass
-finally:	# 只要离开try代码块都会执行这里的代码，即使except里面有return语句，也会先执行这里
+finally:	# 只要离开try代码块都会执行这里的代码，即使执行了except也会执行这里，即使except里面有return语句，也会先执行这里
   pass
 ```
 #### 系统相关
