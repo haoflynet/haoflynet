@@ -94,15 +94,15 @@ primary_key=True	# 是否是主键
 ### 关联关系定义
 
 ```python
-# 外键关系的定义
+# One To Many, 外键关系的定义
 class Post(Base):
-    __tablename__ = 'post'
+    __tablename__ = 'posts'
     user_id = Column(Integer, ForeignKey('users.id'))
     
-    user = relationship('User', back_populates='addresses', cascade='all, delete, delete-orphan')	# back_populates属性为反向关系所对应的属性进行命名，cascade属性是一个触发器，表示当删除user的时候，与其关联的posts会自动同时删除，但无论怎样，我更建议自己手动去删除
+    user = relationship('User', back_populates='posts', cascade='all, delete, delete-orphan')	# back_populates属性为反向关系所对应的属性进行命名，cascade属性是一个触发器，表示当删除user的时候，与其关联的posts会自动同时删除，但无论怎样，我更建议自己手动去删除
 class User(Base):
-    __tablename__ = 'User'
-    posts = relationship('Post', order_by=Post.id, back_populates='user')
+    __tablename__ = 'users'
+    posts = relationship('Post', back_populates='user')
     
 user = User(...)
 user.posts = [		# 创建相关联的对象，不需要指定user_id了
