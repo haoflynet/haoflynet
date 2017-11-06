@@ -20,17 +20,23 @@ categories: python
 
 ```python
 class HelloHandler(tornado.web.RequestHandler):
-    def set_default_headers(self):	# set_default_headers会在请求开始的时候设置HTTP头，这里的例子是用于支持CORS的
-        self.set_header('Access-Control-Allow-Origin', '*')
-        self.set_header('Access-Control-Allow-Headers', 'content-type')
-        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-       
     def get(self):
         self.write('hello world!')
         
     def optinons(self):	# 跨域访问支持
         self.set_status(204)
         self.finish()
+        
+    def set_default_headers(self):	# set_default_headers会在请求开始的时候设置HTTP头，这里的例子是用于支持CORS的
+        self.set_header('Access-Control-Allow-Origin', '*')
+        self.set_header('Access-Control-Allow-Headers', 'content-type')
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        
+    def initialize(self):			# handler开始前执行
+        self.db_session = db.DB_Session()	
+    
+    def on_finish(self):			# handler结束后执行，如果内部跑错误也会执行
+        self.db_session.close()
 ```
 
 ### Request
