@@ -1,7 +1,7 @@
 ---
 title: "redis 教程"
 date: 2016-04-11 11:02:40
-updated: 2017-07-28 14:40:00
+updated: 2017-11-06 16:40:00
 categories: database
 ---
 # Redis
@@ -9,32 +9,38 @@ categories: database
 ## 配置文件
 在redis shell外部，可以通过命令行的方式获取或者设置一些配置，例如:
 
-	redis-cli config set notify-keyspace-events KEA  # 可以直接设置notify-keyspace-events的信息
+```shell
+redis-cli config set notify-keyspace-events KEA  # 可以直接设置notify-keyspace-events的信息
+```
 
 常用配置:
-	hz = 10  # 表示每秒检查过期键的次数
-	save 900 1       # 数据写入硬盘的频率，表示如果900秒内有1个key发生变化就写入一次，300秒内有10个key发生变化写入一次，60秒内10000个key发生变化写入一次
-	save 300 10
-	save 60 10000
-	bind 127.0.0.1   # 绑定IP，表示只有该IP能够连接到该redis，默认所有IP均能连
-	requirepass 密码 # 访问需要密码
+```shell
+hz = 10  # 表示每秒检查过期键的次数
+save 900 1       # 数据写入硬盘的频率，表示如果900秒内有1个key发生变化就写入一次，300秒内有10个key发生变化写入一次，60秒内10000个key发生变化写入一次
+save 300 10
+save 60 10000
+bind 127.0.0.1   # 绑定IP，表示只有该IP能够连接到该redis，默认所有IP均能连
+requirepass 密码 # 访问需要密码
+```
 
 ## 查看信息
 `info`命令可以查看redis的所有信息，常用的字段如下:
 
-	# Memory	内存信息
-	used_memory_human: 就是当前Redis所使用的内存
-	used_memory_peak_human：Redis的内存消耗峰值
-	
-	# Keyspace
-	db0:keys=100,expires=1,avg_ttl=7298 # 数据库0，设置了生存时间的key有1个，平均过期时间是7298ms
-	
-	# stats 记录一般的统计信息
-	total_connections_received：服务器已经接受的连接请求数量
-	total_commands_processed：服务器已经执行的命令数量
-	instantaneous_ops_per_sec：服务器每秒钟执行的命令数量
-	rejected_connections：因为最大客户端数量限制而被拒绝的连接请求数量
-	expired_keys：因为过期而呗自动删除的数据库建数量
+```shell
+# Memory	内存信息
+used_memory_human: 就是当前Redis所使用的内存
+used_memory_peak_human：Redis的内存消耗峰值
+
+# Keyspace
+db0:keys=100,expires=1,avg_ttl=7298 # 数据库0，设置了生存时间的key有1个，平均过期时间是7298ms
+
+# stats 记录一般的统计信息
+total_connections_received：服务器已经接受的连接请求数量
+total_commands_processed：服务器已经执行的命令数量
+instantaneous_ops_per_sec：服务器每秒钟执行的命令数量
+rejected_connections：因为最大客户端数量限制而被拒绝的连接请求数量
+expired_keys：因为过期而呗自动删除的数据库建数量
+```
 
 ## 常用操作
 ### 系统
@@ -70,23 +76,23 @@ ttl key		# 查看剩余生存时间
 
 ```shell
 lpush keyname value value2	# 将一个或多个值插入到表头
-     lpush keyname value [value ...]    // 将一个或多个值插入表头
-  lpushx keyname value [value ...]   // 当且仅当key存在且是一个列表时插入表头
-  rpush keyname value               // 插入表尾
-  rpushx keyname value              // 当且仅当key存在且是一个列表时插入表尾
-  lrange keyname start count        // 从表头的第start位开始取出count个元素
-  lindex keyname index              // 返回列表中下标为index的元素
-  llen keyname                      // 返回列表长度
-  lpop keyname                      // 移除并返回key的头元素
-  rpop keyname                      // 移除并返回key的尾元素
-  lset key index value              // 将key中下标为index的元素的值设置为value
+lpush keyname value [value ...]    # 将一个或多个值插入表头
+lpushx keyname value [value ...]   # 当且仅当key存在且是一个列表时插入表头
+rpush keyname value               # 插入表尾
+rpushx keyname value              # 当且仅当key存在且是一个列表时插入表尾
+lrange keyname start count        # 从表头的第start位开始取出count个元素
+lindex keyname index              # 返回列表中下标为index的元素
+llen keyname                      # 返回列表长度
+lpop keyname                      # 移除并返回key的头元素
+rpop keyname                  # 移除并返回key的尾元素
+lset key index value       # key中下标为index的元素的值设置为value
 ```
 
 ### 集合
 
 ```shell
 SADD key member [member...]
-SMEMBERS key # 返回集合key中的所有成员
+SMEMBERS key 	# 返回集合key中的所有成员
 ```
 
 
