@@ -303,6 +303,8 @@ hashlib.md5(open('filename.exe', 'rb').read()).hexdigest()
 ```python
 try:
 	raise RuntimeError('错误原因')
+except (SystemErrork, SyncError) as e:		# 同时catch多个错误
+    raise RuntimeError('')
 except Exception as e:
 	print(e)或者print(str(e))或者print(unicode(e))
 	# 上面是打印基本的错误信息，如果要打印错误信息／文件名／错误行数，那么可以这样子:
