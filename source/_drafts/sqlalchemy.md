@@ -150,7 +150,8 @@ query.order_by('user_name').all()		# 排序
 query(func.count('*')).all()
 
 # 查询列
-query = session.query(User.name)
+session.query(User.name)	# 去除指定列
+session.query(User.id, User.name)
 
 # 拼接
 query2 = query.filter(User.id > 10)	# 拼接相当于AND
