@@ -590,6 +590,18 @@ plus3(4)	# 输出7
 # total_ordering
 ```
 
+#### inspect
+
+用于直接访问一个类或对象内部的各个属性
+
+```python
+inspect.ismodule(object)	# 是否为模块
+inspect.isclass(object)		# 是否为类
+inspect.getdoc(object)		# 获取documentation信息
+inspect.getfile(object)		# 获取对象的文件名
+inspect.getsource(object)	# 以string形式返回object的源代码
+```
+
 #### logging日志模块
 
 日志格式
