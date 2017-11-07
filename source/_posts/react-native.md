@@ -17,7 +17,7 @@ Native App开发的优点
 
 测试安装: 
 
-```she
+```shell
 react-native init testProject	# 新建项目目录
 react-native init testProject --version 0.1.2	# 创建指定版本的项目
 cd testProject

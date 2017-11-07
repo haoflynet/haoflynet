@@ -7,7 +7,9 @@ categories: 平凡之路
 
 最近在尝试用树莓派通过继电器来控制家庭电路的实验，所以学习了一下树莓派的GPIO控制，发现真的超级简单。
 
-关于树莓派GPIO针脚的图解可以参考这张图片(图片来自https://raw.githubusercontent.com/wiki/Yradex/RaspberryPi3_OS/GPIO.png)。每个针脚的详细解释可以参见(https://pinout.xyz/pinout)![](http://ojccjqhmb.bkt.clouddn.com/raspberry-gpio.png)
+关于树莓派GPIO针脚的图解可以参考这张图片(图片来自https://raw.githubusercontent.com/wiki/Yradex/RaspberryPi3_OS/GPIO.png)。每个针脚的详细解释可以参见(https://pinout.xyz/pinout)
+
+![](http://ojccjqhmb.bkt.clouddn.com/raspberry-gpio.png)
 
 ### 使用Python控制继电器
 
