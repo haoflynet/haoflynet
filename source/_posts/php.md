@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-11-02 00:45:21
+updated: 2017-11-07 15:45:21
 categories: php
 ---
 # PHP
@@ -371,7 +371,9 @@ composer config --global secure-http false
 
 ### autoload
 
-在`composer.json`中有四种自动加载类型
+`autoload`，可以预加载类，自动索引所有的类，能够加快依赖的索引速度。但是autoload并不是实时更新的，如果发现`vendor/composer/autoload_classmap.php`中的类与你预想的有冲突，那么就需要更新一下了：`composer dump-autoload`。
+
+在`composer.json`中有四种自动加载类型:
 
 - classmap: `development`相关的
 
