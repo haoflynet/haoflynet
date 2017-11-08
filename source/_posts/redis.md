@@ -1,11 +1,9 @@
 ---
-title: "redis 教程"
+title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2017-11-06 16:40:00
+updated: 2017-11-07 10:28:00
 categories: database
 ---
-# Redis
-
 ## 配置文件
 在redis shell外部，可以通过命令行的方式获取或者设置一些配置，例如:
 
@@ -95,8 +93,17 @@ SADD key member [member...]
 SMEMBERS key 	# 返回集合key中的所有成员
 ```
 
+### Hash(哈希)
+
+```shell
+HKEYS key	# 取出哈希表key中所有的域
+HMGET key field [field...]	# 取出某个key指定域的值
+HMSET key field value [field value ...]	# 同时将多个field-value(域-值)对设置到哈希表key中，会覆盖哈希表中已存在的域
+HVALS key	# 取出哈希表key中所有域的值
+```
 
 ## 过期策略
+
 根据官方文档，redis对于过期的键有两种策略(过期的键并不会立马执行删除操作)，分为主动与被动:
 
 1. 客户端试图去获取某个key的时候就会直接进行过期删除操作
@@ -154,16 +161,6 @@ SMEMBERS key 	# 返回集合key中的所有成员
 
 和`redis sentinel`不同的是，前者主要是高可用，每一个机器都保存完整的数据，而cluster则住重在分片，当内存占用大于每台机器实际内存时候更实用。
 
-## 客户端
-
-#### PHP: Predis
-
-Laravel默认带的
-
-#### NodeJs: Ioredis
-
-缺点是，针对`sentinel`不支持读写的分离操作，`master`挂了以后，无论是读操作还是写操作都会报错
-
 ## TroubleShooting
 
 * **小数据量本地迁移数据**
@@ -174,84 +171,5 @@ Laravel默认带的
 
   启动时`redis-cli --raw`
 
+* **windows长时间运行出现错误:`Redis-Server:Windows is reporting that there is insufficient disk spaceavailable for this file (Windows error 0x70)`**。原因是分配的堆栈太小了，默认的应该只有1M，这时候需要修改器配置文件`redis.windows.conf`，修改`maxheap`的值为2000000000，即2G
 
-
-
-
-
-
-​    
-​    
-​    
-    6. 排序操作：排序、分页等
-
-          sort key [BY pattern] [LIMIT offset count] [GET pattern [GET pattern ...]] [ASC|DESC] [ALPHA] [STORE destination]
-      sort keyname alpha           // 将keyname里面的值按字符排序
-      sort keyname alpha limit 0 3 // 讲keyname的值按字符排序并取得前面3个元素返回
-      # 如果是在laravel里使用
-      Redis::sort('keyname', array('ALPHA' => TRUE));
-      Redis::SORT('keyname', array('LIMIT' => array(0, 3));
-      j
-    
-    7. 字符串操作
-    
-          set key value    // 设置key值为字符串value，会直接覆盖旧值
-    
-    8. 列表的操作
-
-
-​    
-    9. hash的操作
-    10. 集合的操作
-    ---
-    title: "Windows安装Redis教程"
-    date: 2014-12-23 16:53:31
-    categories: Redis
-    ---
-    [Redis](http://redis.io/)：是一个完全免费开源的遵守BSD协议的内存数据库。它和memcache类似，都说是键值对存储，但是它支持更
-    多的数据结构，比如字符串、哈希、列表、集合和有序集合等。这里不做详细介绍，只介绍在windows上的安装过程。
-    
-    环境：Windows 7 64（需要注意的是windows只有64位版本）
-    
-    # 1.下载
-    
-    Redis并不直接支持windows，起windows版本是由微软开源团队维护的，可直接到github主页：<https://github.com/MSOp
-    enTech/redis>，但不要直接下载zip，里面没有windows的zip包的，应该将整个项目完整clone下来。  
-    ![](http://7xnc86.com1.z0.glb.clouddn.com/windows-install-redis_0.jpg)  
-    
-    # 2.解压
-    
-    其他的都是项目文件，但真正可以在windows下使用的是`/bin/redis/redis-2.8.17.zip`里面，解压后会发现这样有这样几个文件，当然
-    ，也可以把这个目录添加到系统的环境变量，以便随时在bash中使用  
-    ![](http://7xnc86.com1.z0.glb.clouddn.com/windows-install-redis_2.jpg)  
-    其中，redis-server.exe就是主程序，redis-cli.exe是命令行工具，redis.windows.conf是配置文件
-    
-    # 3.测试
-    
-    执行`redis-server.exe redis.windows.conf`开启Redis服务：  
-    
-    ![](http://7xnc86.com1.z0.glb.clouddn.com/redis.jpg)  
-    然后，windows里面貌似没有把它作为daemon的配置选项，不过，应该没人会在自己的windows里把它作为daemon，只是偶尔开发的时候会使用，所以
-    ，另外开一个bash吧，执行以下命令进行测试：
-
-
-
-        $ redis-cli.exe
-        127.0.0.1:6379> set wang hao
-        OK
-        127.0.0.1:6379> keys *
-        1) "wang"
-        127.0.0.1:6379
-    
-    这就表示成功了，其中，Redis的相关命令中文参考文档可以查看[Redis命令参考简体中文版](http://redis.readthedocs.org/e
-    n/2.4/)
-    
-    4.基本配置
-    
-    在windows下Redis运行久了，可能会出现如下错误：
-    
-    _Redis-Server:Windows is reporting that there is insufficient disk space
-    available for this file (Windows error 0x70)._
-    
-    原因是分配的堆的大小太小了，默认的是多少忘了，只有1M还是多少，这时候需要修改其配置文件`redis.windows.conf`，修改maxheap的值为2
-    000000000，即2G
