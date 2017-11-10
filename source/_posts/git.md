@@ -1,7 +1,7 @@
 ---
 title: "Git 教程"
 date: 2016-08-07 07:12:39
-updated: 2017-10-13 14:36:00
+updated: 2017-11-09 11:29:00
 categories: tools
 ---
 # Git指南
@@ -77,6 +77,11 @@ git diff master
 
 git reset HEAD filename		# 把已经commit了的文件取消暂存
 git checkout -- filename	# 放弃指定文件的更改
+
+git stash					# 暂存，常用于要切换分支，但是当前分支上面的更改并不想现在提交，需要先把当前分支的状态暂存起来。暂存起来后就可以自由切换到其他分支了。
+git stash list				# 查看所有的"储藏"
+git stash apply				# 应用最近一次的“储藏”
+git stacsh apply stash@{2}	# 应用指定的"储藏"
 ```
 
 #### 分支操作
