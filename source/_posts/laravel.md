@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-11-03 16:04:00
+updated: 2017-11-10 18:14:00
 categories: php
 ---
 # Laravel指南
@@ -352,7 +352,7 @@ public function up()
 ```php
 class User extends Model{
   public $timestamps = false;			// 设置该表不需要使用时间戳，updated_at和created_at字段
-  protected $primaryKey = 'typeid'		// 不以id为主键的时候需要单独设置
+  protected $primaryKey = 'typeid'		// 不以id为主键的时候需要单独设置，需要注意的是laravel以及其他很多orm都不支持复合主键，可能会出现"Segment Fault"
   protected $primaryKey = null;			// 没有主键的情况
   protected $incrementing	= false;	// 不使用自增主键
   protected $connection = 'second';		// 设置为非默认的那个数据库连接
@@ -1149,6 +1149,8 @@ public function testIndex{
 - **队列出现Cannot initialize a MULTI\/EXEC transaction over aggregate connections**: 升级到最新版laravel吧，然后将redis的扩展切换到phpredis，`laravel5.3`之前自带的`predis`不支持redis的sentinel，并且有些redis操作强依赖于predis的事务操作，各种纠结，最后都不能成功。
 
 - **Class 'Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory' not found**，偶尔安装了某些个第三方库会出现这种幺蛾子，可以用这种方式解决`composer require symfony/psr-http-message-bridge`
+
+- **更新表时出现`AH00052: child pid 71 exit signal Segmentation fault (11)`**: 原因可能是没有设置主键而直接在该表上面更新数据，导致ORM不知道到底该更新谁。并且Laravel不支持复合主键(https://github.com/laravel/framework/issues/5517，作者不支持这种做法)。这种情况，要么给该表添加唯一主键，要么只能用where直接更新了。
 
 ## 相关文章
 
