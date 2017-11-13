@@ -48,9 +48,16 @@ parseInt(数字)  # 将数字取整
 ```
 
 ## DOM操作
+
+
+
 ### 元素查找
+
 ```javascript
-// 元素选择
+// 原生元素选择
+document.getElementById('xxx');
+
+// jQuery元素选择
 $('p')  		// 选取标签<p>的所有元素
 $('p#intro')  	// id为intro的所有p元素
 $('p.intro')  	// class为intro的所有p元素
@@ -80,6 +87,13 @@ $('div').height(20)	// 设置元素高度
 ### 编辑元素
 
 ```javascript
+// js原生
+option = document.createElement('option');	// 创建元素
+option.setAttribute('value', 'value1');		// 设置元素属性
+text = document.createTextNode('ppp');		// 创建内容
+option.appendChild(text);					// 添加子元素
+selection.innerHtml = '<option>a</option';	// 修改内部html内容
+
 // 添加元素
 html('')	// 修改内部的html内容
 append()	// 在被选元素的结尾插入内容
