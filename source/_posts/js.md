@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-10-20 08:08:00
+updated: 2017-10-23 12:48:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -55,7 +55,20 @@ parseInt(数字)  # 将数字取整
 
 ```javascript
 // 原生元素选择
+document.querySelector(".myclass");	// 也可以用jQuery的选择起
+document.querySelectorAll('div.abc, div.def');
 document.getElementById('xxx');
+document.getElementByClassName('myclass');
+document.getElementByTagName('p');
+ele.parentElement;	// 获取父元素
+ele.parentNode;		// 获取父节点
+ele.children		// 获取子节点
+ele.getElementsByTagName('td');	// 查询子元素
+ele.getElementsByClassName('myclass');	// 查询子元素
+ele.firstElementChild;
+ele.lastElementChild
+ele.nextElementSibling;	// 获取下一个兄弟节点
+ele.previousElementSibling;
 
 // jQuery元素选择
 $('p')  		// 选取标签<p>的所有元素
@@ -79,6 +92,14 @@ document.getElementById('test:abc')	// 有特殊字符的元素的查找，jquer
 ### 获取元素内容
 
 ```javascript
+// js原生方法
+ele.attributes;	// 一个(name, value)的数组
+ele.getAttribute('class');
+ele.setAttribute('class', 'highlight');
+ele.hasAttribute('class');
+ele.removeAttribute('class');
+
+// jQuery方法
 $('#check').prop('checked')	// 获取checkbox是否被check了，不用给你用attr
 $('div').height()	// 获取元素高度
 $('div').height(20)	// 设置元素高度
@@ -91,8 +112,11 @@ $('div').height(20)	// 设置元素高度
 option = document.createElement('option');	// 创建元素
 option.setAttribute('value', 'value1');		// 设置元素属性
 text = document.createTextNode('ppp');		// 创建内容
-option.appendChild(text);					// 添加子元素
+ele.appendChild(text);					// 添加子元素
+ele.removeChild(text);
+ele.replaceChild(el1, el2);				// 替换子元素
 selection.innerHtml = '<option>a</option';	// 修改内部html内容
+parentElement.insertBefore(newElement, referenceElement);	// 插入子元素
 
 // 添加元素
 html('')	// 修改内部的html内容
