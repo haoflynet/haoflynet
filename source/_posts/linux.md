@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-10-31 23:03:30
+updated: 2017-11-13 09:23:30
 categories: system
 ---
 # Linux指南
@@ -299,6 +299,8 @@ cat /etc/passwd
 
 # 将用户添加到组
 usermod -a -G groupName userName
+
+# ACL权限分配: 可以给指定的用户指定目录分配指定的权限
 ```
 
 #### 系统相关
