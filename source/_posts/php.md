@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-11-07 15:45:21
+updated: 2017-11-13 15:45:21
 categories: php
 ---
 # PHP
@@ -31,7 +31,7 @@ in_array('a', $a)				# 查看数组是否存在某个元素
 json_encode($arr)	# 数组转换城字符串
 list($a, $b) = [1, 2]	# 分别赋值
 rsort(): 以降序对数组排序
-sort()：排序，可以给数组排序
+sort();		# 排序，可以给数组排序，会修改原来数组的值
 uasort($array, $cmp_function)	# 定义对比函数进行排序
 unset(arr[1]): 删除数组元素
 
