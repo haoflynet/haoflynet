@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-10-23 12:48:00
+updated: 2017-11-13 16:40:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -39,17 +39,15 @@ $.inArray('a', $arr): 判断数组是否包含某个元素
 ```
 ### 字符串
 ```javascript
-JSON.parse(text)	# 将字符串转换为JSON
-str.replace(reg, function(s, value){})	# 替换字符串，reg可以是正则表达式
-str.indexOf(substring)	# 查找子字符串出现的位置，-1表示没找到
+JSON.parse(text)	// 将字符串转换为JSON
+str.replace(reg, function(s, value){})	// 替换字符串，reg可以是正则表达式
+str.indexOf(substring)	// 查找子字符串出现的位置，-1表示没找到
 string.slice(start, end);	// 字符串分片
-str.split('#')	# 字符串分割，返回分割后的列表
-parseInt(数字)  # 将数字取整
+str.split('#')	// 字符串分割，返回分割后的列表
+parseInt(数字)  // 将数字取整
 ```
 
 ## DOM操作
-
-
 
 ### 元素查找
 
@@ -98,6 +96,7 @@ ele.getAttribute('class');
 ele.setAttribute('class', 'highlight');
 ele.hasAttribute('class');
 ele.removeAttribute('class');
+ele.value;		// 获取元素内容
 
 // jQuery方法
 $('#check').prop('checked')	// 获取checkbox是否被check了，不用给你用attr
@@ -138,7 +137,13 @@ $('p').show()	// 显示元素
 
 ### 元素事件
 ```javascript
-// 事件列表
+// js原生事件
+ele.onchange = function () {};
+ele.onchange = funciton () {};
+ele.addEventListener('click', func () {});
+ele.removeEventListener('change', func () {});
+
+// jQuery事件列表
 change()	// 当元素发生改变时触发，常用于input、select
 blur()		// 元素失去焦点时触发
 click    	// 鼠标点击
