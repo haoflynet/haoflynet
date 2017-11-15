@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-11-03 18:03:30
+updated: 2017-11-13 18:44:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -149,9 +149,26 @@ def get():
     
 #定义类方法
 def get(cls):
-  
-# 元类: Python里面所有的类也都是一个对象，type是Python用来创建所有类的元类，元类是用来创建“类”这个对象的东西。通过在类中定义__metaclass__属性，可以指定该类使用哪个元类来创建，如果没有改属性，并且父类里面都没有，那么默认就用type这个元类来创建。很好的元类使用的例子就是Django ORM，这就是元类的作用，把内部很复杂的东西变成一个简单的API
 ```
+#####　元类
+
+Python里面所有的类也都是一个对象，type是Python用来创建所有类的元类，元类是用来创建“类”这个对象的东西。通过在类中定义`metaclass`(python2中是在函数内部定义`__metaclass__`属性)，可以指定该类使用哪个元类来创建，如果没有改属性，并且父类里面都没有，那么默认就用type这个元类来创建。很好的元类使用的例子就是Django ORM，这就是元类的作用，把内部很复杂的东西变成一个简单的API。
+
+```python
+# metaclass是类的模板，所以必须从`type`类型派生：
+class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        print(cls)		# <class '__main__.ListMetaclass'>
+        print(name)		# MyList
+        print(bases)	# (<class 'list'>,)
+        print(attrs)	# {'__module__': '__main__', '__qualname__': 'MyList'}
+        attrs['add'] = lambda self, value: self.append(value) # 给类添加一个add方法
+        return type.__new__(cls, name, bases, attrs)
+    
+class MyList(list, metaclass=ListMetaclass):	# 指定该类在创建的时候用ListMetaclass.__new__来创建
+    pass
+```
+
 #### 类型检查相关
 
 从3.5开始，Python提供了类型检查功能，当然类型检查仅仅用于检查，并不会对程序的执行有任何的影响，但是配合IDE有代码提示过后，一切都变得方便了起来
