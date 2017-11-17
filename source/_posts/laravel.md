@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-11-10 18:14:00
+updated: 2017-11-16 18:14:00
 categories: php
 ---
 # Laravel指南
@@ -66,7 +66,8 @@ laravel可以直接通过命令创建一个控制器:
 # 通过Validator进行校验，第一个参数是一个key-value的数组
 $validation = Validator::make($request->all(), [
   'ip' => 'required|ip'			# 校验key=ip的值是否真的是ip
-  'arr.*.field'	=> 'required|'	# 验证数组内部的字段，5.1不支持
+  'arr.arr.field' => 'required'	# 验证多级数组内部字段，其实都是字典
+  'arr.*.field'	=> 'required'	# 验证数组内部的字段，数组下面是一个数组的情况，5.1不支持
 ])
 
 # 常用框架自带的认证类型
