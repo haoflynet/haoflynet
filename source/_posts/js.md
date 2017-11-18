@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-11-13 16:40:00
+updated: 2017-11-17 16:40:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -133,6 +133,10 @@ $('p').css('color', 'red')			// 修改CSS属性
 $('button').prop('disabled', true)	// 设置按钮不可点击disabled
 $('p').hide()	// 隐藏元素
 $('p').show()	// 显示元素
+
+// video标签控制
+myVideo.play()	// 开始播放
+myVideo.pause()	// 暂停播放
 ```
 
 ### 元素事件
@@ -376,4 +380,6 @@ $.post('some.php', {name: 'haofly'})
 * `<select>`元素的选择`<option>`事件是`change`，而获得所选择元素使用的是`val()`，默认被选择：`<option selected="true" value="xxx">xxx</option>`，获取文本内容用`text()`
 
 * **避免表单回车自动提交**：有时候想在表单提交前进行一些操作，但又不想在回车时自动提交表单(当只有input的时候，会强制提交)，这时候只需要在button的回车事件中添加`return false`即可
+
+* **无法获取iframe里面的内容**: 一个iframe表示一个窗口，并且还对应不同的域名，默认情况，放任一个网页，脚本都默认在最上层的窗口上面，在谷歌浏览器的`审查元素`视图下的`Console`的左上角可以选择定位到哪个`iframe`，如果是爬虫或者油猴脚本，要注意对应iframe的url。
 
