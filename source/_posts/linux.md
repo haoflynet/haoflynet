@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-11-13 09:23:30
+updated: 2017-11-17 17:23:30
 categories: system
 ---
 # Linux指南
@@ -199,6 +199,8 @@ sdiff 文件1 文件2  # 以对比的方式找文件的不同
 
 # 批量转换文件编码
 find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK转换为UTF8
+
+# 删除文件，强烈建议安装trash-cli命令，因为rm的文件不会在回收站，到时候找都找不回来
 ```
 
 #### ssh
