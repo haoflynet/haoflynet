@@ -1,7 +1,7 @@
 ---
 title: "PHP 教程"
 date: 2013-08-07 02:02:30
-updated: 2017-11-13 15:45:21
+updated: 2017-11-15 16:16:21
 categories: php
 ---
 # PHP
@@ -89,7 +89,7 @@ str_replace(' ', '', lcfirst(ucwords(str_replace(['-', '_'], ' ', $str))));	# �
 ```php
 ceil()函数：向上取整
 rand(min, max)：产生随机数，不需要给初始值了现在
-intval($val): 字符串转整数
+intval($val): 字符串转整数，如果不是数字型字符串，那么转换会失败，失败后返回0，没错是0，mmp
 int ip2long(string $ip_address)：IP转换成整数值
 string long2ip(string $proper_address)：整数值转换成IP
 number_format(float $number)	// 以千位分隔符方式格式化一个数字，返回字符串
