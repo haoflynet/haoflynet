@@ -1,7 +1,7 @@
 ---
 title: "Scrapy PySpider python爬虫"
 date: 2016-08-07 11:02:20
-updated: 2017-10-30 18:00:00
+updated: 2017-11-15 18:00:00
 categories: python
 ---
 # Scrapy & PySpider
@@ -22,17 +22,19 @@ categories: python
 
 新建项目，`scrapy startproject test`目录结构如下(mac里面没有把scrapy命令放到bin里面去，直接搜索命令所在地吧)：
 
-    .  
-    ├── scrapy.cfg  
-    └── ProjectName  
-        ├── __init__.py  
-        ├── items.py    # 定义items  
-        ├── pipelines.py  # 定义items的处理器  
-        ├── settings.py    # 全局社会自  
-        └── spiders      # 爬虫文件  
-            ├── __init__.py  
-            ├── 一个爬虫  
-            └── 又一个爬虫  
+```shell
+.  
+├── scrapy.cfg  
+└── ProjectName  
+    ├── __init__.py  
+    ├── items.py    # 定义items  
+    ├── pipelines.py  # 定义items的处理器  
+    ├── settings.py    # 全局社会自  
+    └── spiders      # 爬虫文件  
+        ├── __init__.py  
+        ├── 一个爬虫  
+        └── 又一个爬虫  
+```
 ### 常用命令
 ```shell
 scrapy startproject test    # 创建项目
@@ -44,38 +46,42 @@ scrapy check			# scrapy自身的单元测试，很多人都不建议用，很难
 ```
 
 ### 通用设置
-    BOT_NAME   # 定义项目名称
-    ITEM_PIPELINES = {
-        'project.pipelines.PostPipeline': 300,   # 处理获取到的Items的各种方法，会按照后面数值从小到大的顺序依次处理
-    }
-    EXTENSIONS = {
-        'scrapy.extensions.throttle.AutoThrottle': 0,   # 定义扩展程序，AutoThrottle表示自动限制频率的扩展，还要在下面继续配置其参数
-    }
-    SPIDER_MIDDLEWARES = {		# 中间件
-       'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware': 50,	# 处理非200状态码的中间件
-       # 'youtube.middlewares.MyCustomSpiderMiddleware': 543,
-    }
-    
-    # 配置AutoThrottle插件
-    AUTOTHROTTLE_ENABLED=True   # 是否开启自动限制频率，不开简直太恐怖了  
-    AUTOTHROTTLE_START_DELAY=1  # 以秒为单位，默认为5  
-    AUTOTHROTTLE_MAX_DELAY=10   # 默认为60  
-    AUTOTHROTTLE_DEBUG=False
-    
-    CONCURRENT_REQUESTS=16   # 并发线程的数量
-    CONCURRENT_ITEMS=100     # 同时处理的Items的最大值
-    
-    **COOKIES_ENABLED=False  # 是否开起cookie
-    LOG_LEVEL='DEBUG'    # LOG级别，在下面介绍了log的几种级别
-    REDIRECT_ENABLED=False # 进制重定向**
+```python
+BOT_NAME   # 定义项目名称
+ITEM_PIPELINES = {
+    'project.pipelines.PostPipeline': 300,   # 处理获取到的Items的各种方法，会按照后面数值从小到大的顺序依次处理
+}
+EXTENSIONS = {
+    'scrapy.extensions.throttle.AutoThrottle': 0,   # 定义扩展程序，AutoThrottle表示自动限制频率的扩展，还要在下面继续配置其参数
+}
+SPIDER_MIDDLEWARES = {		# 中间件
+   'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware': 50,	# 处理非200状态码的中间件
+   # 'youtube.middlewares.MyCustomSpiderMiddleware': 543,
+}
+
+# 配置AutoThrottle插件
+AUTOTHROTTLE_ENABLED=True   # 是否开启自动限制频率，不开简直太恐怖了  
+AUTOTHROTTLE_START_DELAY=1  # 以秒为单位，默认为5  
+AUTOTHROTTLE_MAX_DELAY=10   # 默认为60  
+AUTOTHROTTLE_DEBUG=False
+
+CONCURRENT_REQUESTS=16   # 并发线程的数量
+CONCURRENT_ITEMS=100     # 同时处理的Items的最大值
+
+**COOKIES_ENABLED=False  # 是否开起cookie
+LOG_LEVEL='DEBUG'    # LOG级别，在下面介绍了log的几种级别
+REDIRECT_ENABLED=False # 进制重定向**
+```
 ### 请求与响应
 
-	response.body				# 获取响应的body
-	response.body_as_unicode()	# 获取响应编码后的内容
-	response.requests			# 获取相应的请求
-	response.status				# 获取HTTP状态码
-	response.url				# 获取请求的URL
-	response.headers			# 获取请求头
+```python
+response.body				# 获取响应的body
+response.body_as_unicode()	# 获取响应编码后的内容
+response.requests			# 获取相应的请求
+response.status				# 获取HTTP状态码
+response.url				# 获取请求的URL
+response.headers			# 获取请求头
+```
 
 ### 处理Item
 
@@ -129,8 +135,10 @@ def start_requests(self):
 - **安装出错**：
 
    No package 'libffi' found
-   	c/_cffi_backend.c:13:17: fatal error: ffi.h: No such file or directory
-   	#include <ffi.h>
+   ```shell
+   c/_cffi_backend.c:13:17: fatal error: ffi.h: No such file or directory
+   #include <ffi.h>
+   ```
      需要安装这个`sudo apt-get install libffi-dev`
 
 - **ImportError: No module named twisted.internet**：
@@ -179,10 +187,12 @@ def start_requests(self):
 
     raise DropItem("Duplicate item found.")
 
-    # 指定需要捕获的html状态
-    handle_httpstatus_list = [404, 502]
-    
-    # no module 
+```python
+# 指定需要捕获的html状态
+handle_httpstatus_list = [404, 502]
+
+# no module 
+```
 
 /tmp/xmlXPathInitipwvpamp.c:1:26: 错误：libxml/xpath.h：没有那个文件或目录
 
