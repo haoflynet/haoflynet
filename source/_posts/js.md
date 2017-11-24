@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-11-17 16:40:00
+updated: 2017-11-23 16:40:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -228,6 +228,10 @@ $.post('some.php', {name: 'haofly'})
         // error handling
     });
 ```
+
+## 推荐阅读
+
+- [You-Dont-Need-jQuery](https://github.com/nefe/You-Dont-Need-jQuery/blob/master/README.zh-CN.md)
 
 ## TroubleShooting
 
