@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-11-23 09:59:00
+updated: 2017-11-24 09:59:00
 categories: database
 ---
 ## 安装方法
@@ -256,23 +256,24 @@ REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜
 - **WorkBench保持连接不断开**: `Edit->Preferences->SQL Editor，设置DBMS connection read time out(in seconds)`
 
 
-*   关于整型数据长度问题，需要注意的是MySQL里面的整型后面跟的长度并不是指该字段的实际长度，而是客户端显示的长度，实际存储的长度可以更长。这是几个整型数据对应的长度表(来自[MySQL官网](http://dev.mysql.com/doc/refman/5.7/en/integer-types.html)):
+*   关于整型数据长度问题，需要注意的是MySQL里面的整型后面跟的长度并不是指该字段的实际长度，而是客户端显示的长度，实际存储的长度可以更长。这是几个整型数据对应的长度表(来自[MySQL官网](http://dev.mysql.com/doc/refman/5.7/en/integer-types.html))，所以`INT`无论后面定义的是多少，都是4个字节32位的长度
 
-    | Type      | Storage | Minimum Value         | Maximum Value        |
-    | --------- | ------- | --------------------- | -------------------- |
-    |           | (Bytes) | (Signed/Unsigned)     | (Signed/Unsigned)    |
-    | TINYINT   | 1       | -128                  | 127                  |
-    |           |         | 0                     | 255                  |
-    | SMALLINT  | 2       | - 32768               | 32767                |
-    |           |         | 0                     | 65535                |
-    | MEDIUMINT | 3       | - 8388608             | 8388607              |
-    |           |         | 0                     | 16777215             |
-    | INT       | 4       | - 2147483648          | 2147483647           |
-    |           |         | 0                     | 4294967295           |
-    | BIGINT    | 8       | - 9223372036854775808 | 9223372036854775807  |
-    |           |         | 0                     | 18446744073709551615 |
 
-    所以`INT`整型无论后面定义的多少，都是4个字节32位的长度.
+
+| Type      | Storage | Minimum Value         | Maximum Value        |
+| --------- | ------- | --------------------- | -------------------- |
+|           | (Bytes) | (Signed/Unsigned)     | (Signed/Unsigned)    |
+| TINYINT   | 1       | -128                  | 127                  |
+|           |         | 0                     | 255                  |
+| SMALLINT  | 2       | - 32768               | 32767                |
+|           |         | 0                     | 65535                |
+| MEDIUMINT | 3       | - 8388608             | 8388607              |
+|           |         | 0                     | 16777215             |
+| INT       | 4       | - 2147483648          | 2147483647           |
+|           |         | 0                     | 4294967295           |
+| BIGINT    | 8       | - 9223372036854775808 | 9223372036854775807  |
+|           |         | 0                     | 18446744073709551615 |
+
 
 *   **MySQL分页时出现数据丢失或者数据重复的情况**: 如果分页的时候用上了`order_by`并且目标字段并不是索引字段，那么就有可能出现这种情况，一条数据可能既出现在上一页，又出现在下一页。原因是在`mysql5.6`以后，`priority queue`使用的是堆排序，这个排序算法并不稳定，两个相同的值可能在两次排序后的结果不一样。解决方法是`order_by`后多加一个字段，例如`id`，或者在排序字段设置索引。
 
