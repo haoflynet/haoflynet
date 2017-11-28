@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-11-16 18:14:00
+updated: 2017-11-28 18:14:00
 categories: php
 ---
 # Laravel指南
@@ -746,6 +746,34 @@ $user->can('create', Post::class)	# 自动定位到某个model
 @endcan
 @can('create', \App\Post::class)				# Post的创建，针对PostPolicy
 @can('create', [\App\Comment::class, $post])	# Comment的创建，针对CommentPolicy，并且应该这样子定义:public function create(User $user, $commentClassName, Project $project)
+```
+
+### Session/Cookie
+
+```php
+# 设置cookie
+public function index()
+{
+  // 自动将cookie添加到响应
+  Cookie::queue('test', 'value', 10);	
+  return view('index');	
+  
+  // 或者在响应时带上cookie
+  return view('index')->withCookie(
+  	cookie('test', 'value', 10);	// 或者Cookie::make('test', 'value', 10)
+  );
+}
+
+# 获取cookie
+public function index(Request $request)
+{
+  $cookie = $request->cookie('test');
+  $cookies = $request->cookie();
+}
+
+# 清除cookie
+$cookie = Cookie::forget('test');
+return view('index')->withCookie($cookie); # 其实是将该cookie的过期时间进行了更新，成为了过去时
 ```
 
 ### 任务队列Job
