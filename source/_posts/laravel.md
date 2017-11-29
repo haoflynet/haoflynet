@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-11-28 18:14:00
+updated: 2017-11-29 10:21:00
 categories: php
 ---
 # Laravel指南
@@ -762,6 +762,7 @@ public function index()
   return view('index')->withCookie(
   	cookie('test', 'value', 10);	// 或者Cookie::make('test', 'value', 10)
   );
+  // withCookies([cookie(...), cookie(...)])	或者直接添加多个cookie
 }
 
 # 获取cookie
