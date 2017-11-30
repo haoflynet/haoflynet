@@ -1,9 +1,14 @@
 ---
 title: "Swagger与其他API文档编写工具对比"
 date: 2017-02-26 23:26:00
-updated: 2017-03-08 15:30:00
+updated: 2017-11-29 15:39:00
 categories: tools
 ---
+
+> 随着见闻的逐渐加深，接触或者了解过一些其他的优秀的文档编写工具，由于未深入研究过，所以，仅仅在这里进行简单的列举:
+>
+> - [APIDOC](http://apidocjs.com/#run): 支持大量编程语言的根据注释自动生成文档
+> - [ApiGen](https://github.com/ApiGen/ApiGen): PHP7的类文档自动生成工具
 
 ## swagger特点
 
