@@ -765,6 +765,15 @@ public function index()
   // withCookies([cookie(...), cookie(...)])	或者直接添加多个cookie
 }
 
+# 设置未加密的cookie，需要用到EncryptCookies中间件，在app/Http/Middleware/EncryptCookies.php中添加如下内容
+use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
+class EncryptCookies extends BaseEncrypter
+{
+    protected $except = [
+        'userid',
+    ];
+}
+
 # 获取cookie
 public function index(Request $request)
 {
