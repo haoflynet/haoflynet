@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-11-13 18:44:30
+updated: 2017-11-30 13:34:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -359,7 +359,7 @@ socket.gethostbyname('haofly.net')
 
 #### 包
 
-```python
+```shell
 # 在模块级别暴露接口
 在目录下面加上__init__.py就变成了一个包，import包内部的模块使用'.'来分割，__init__.py里面可以定义一些全局变量，__all__指定了此包被import *的时候，哪些模块会被import进来。最好在创建一个包的时候都加上这个，避免有些模块被外部引用。如果没有定义__init__，那么import *的时候会将非下划线开头的成员都导入到当前命名空间中。
 使用这种方式，在外部引入模块内部的模块会更加方便，而且比较不容易出错。特别是在交叉引用的时候，有时候会无法引用，但是如果直接在内部模块之间引入父模块就不会有这种错误，避免在文件开头交叉引用的时候无法找到模块。
@@ -376,12 +376,17 @@ pip install git+git@github.com:lynzt/python_people_names.git
     
 # 将python包打包成debian包，可以用https://github.com/spotify/dh-virtualenv
 
-# 使用豆瓣的PIP源，例如
-sudo pip3 install scrapy -i https://pypi.douban.com/simple
-    
 # 从指定目录引入包
 import sys
 sys.path.append('..')
+
+# 动态导入模块
+__import__(module_name)	# 相当于import
+__import__(name = module_name, fromlist=[a, b])	# 相当于from module_name import a, b
+## 如果想要动态实现from xxx import *的功能，目前貌似只能这样子做，手动添加到本地的命名空间:
+module = __import__('module_name', ['*'])
+for k in dir(module):
+	locals()[k] = getattr(module, k)
 ```
 #### 名字空间
 
@@ -804,9 +809,13 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 
 ## PIP版本管理
 
-`pip`可以使用`==、>=、<=、>、<`几个符号来指定需要安装的依赖版本，并且可以同时使用多个，例如`Django>1.0,<2.0`则安装的是她们之间的最接近的指定版本的版本，如果想要直接用最新的，那么不用符号，直接写名字就好了。
+`pip`可以使用`==、>=、<=、>、<`几个符号来指定需要安装的依赖版本，并且可以同时使用多个，例如`Django>1.0,<2.0`则安装的是她们之间的最接近的指定版本的版本，如果想要直接用最新的，那么不用符号，直接写名字就好了。常用命令:
 
-`pip install Django —upgrade # 更新指定package`
+```shell
+pip install Django —upgrade 	# 更新指定package
+pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U	# 升级所有的包
+sudo pip3 install scrapy -i https://pypi.douban.com/simple  # 使用豆瓣的PIP源，例如
+```
 
 ## 语言本身
 
@@ -837,6 +846,64 @@ conn.close()	# 关闭连接
 ```
 
 
+## TroubleShooting
+- **CentOS安装pip**  
+
+   yum install epel-release
+   ```shell
+   rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+   yum install -y python-pip
+   ```
+
+- **AttributeError: 'EntryPoint' object has no attribute 'resolve'**
+  原因是`cryptography`版本过高或过低，需要制定版本，一般是`pip install cryptography==1.2.1`
+
+- **PEP8三目运算符的换行** 
+  可以加括号，例如:
+
+  ```python
+  re = (
+  	'a'
+  	if 'a' == 'b'
+  	else 'c'
+  )
+  ```
+
+
+- **ValueError: Attempted relative import in non-package**  
+
+  相对路径问题，所谓的相对路径其实是相对于当前module的路径，而不是当前目录的路径，如果当前目录不是module，那么当前module的name就是`__main__`，所以会出错
+
+- **Python中一切都是对象，a=1，b=1，两个是同一个对象，所以Python是无法通过变量名获取同名字符串的**
+
+- **在调试某些代码的时候发现print没有输出**: 这是有可能将print重定向了，这是用sys.stdout.write('')可以实现打印输出到控制台
+
+- **`zsh: no matches found: requests[socks]`**: 原因是zsh这个工具会把方括号解析为正则匹配，这时候只需要加上引号即可，例如`pip install 'requests[socks]'`
+
+## 推荐阅读
+
+[Hidden features of Python](http://stackoverflow.com/questions/101268/hidden-features-of-python)
+
+[PyMOTW-3](https://pymotw.com/3/): 由 [Doug Hellmann](http://doughellmann.com/ )所写的Python标准库的示例用法。
+
+[深刻理解Python中的元类(metaclass)](http://blog.jobbole.com/21351/)
+
+[Python项目的配置管理](https://www.keakon.net/2016/10/22/Python%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -864,10 +931,6 @@ conn.close()	# 关闭连接
 - **迭代器**：[参考](https://github.com/lzjun567/note/blob/master/note/python/iterator_generator.md)对象的类有next和iter方法返回自身
 - **生成器**：[参考](https://github.com/lzjun567/note/blob/master/note/python/iterator_generator.md)生成器都是迭代器，使用yield来生成的结果
 - **下划线**: 单下划线开头的变量可以理解为不重要的需要抛弃的变量，比如循环中的计数，而如果是一根下划线作为函数，通常用于翻译功能
-- **包管理器pip**:
-
-   # 升级所有的包
-   	pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U
 
 
 
@@ -901,16 +964,6 @@ conn.close()	# 关闭连接
 				    sys.version     # python版本
 				    os.environ['name']  # 获取系统环境变量
 				    os.environ['name'] = value  # 设置系统环境变量  
-
-
-
-
-​	
-				  * 动态导入模块  
-
-
-				        __import__(module_name)   # 相当于import
-				    __import__(name = module_name, formlist=[a,b]) # 相当于from module_name import a, b
 
 
 				  * 类、函数、对象 
@@ -949,45 +1002,3 @@ conn.close()	# 关闭连接
 				    del name  # 删除一个变量
 	
 				    # 弱引用：在不增加引用计数的情况下使用对象的引用，以防止对象错误回收
-
-## TroubleShooting
-- **CentOS安装pip**  
-
-   yum install epel-release
-   	rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-   	yum install -y python-pip
-
-- **AttributeError: 'EntryPoint' object has no attribute 'resolve'**
-  原因是`cryptography`版本过高或过低，需要制定版本，一般是`pip install cryptography==1.2.1`
-
-- **PEP8三目运算符的换行**  
-  可以加括号，例如:
-
-  	re = (
-  		'a'
-  		if 'a' == 'b'
-  		else 'c'
-  	)
-
-
-- **ValueError: Attempted relative import in non-package**  
-
-  相对路径问题，所谓的相对路径其实是相对于当前module的路径，而不是当前目录的路径，如果当前目录不是module，那么当前module的name就是`__main__`，所以会出错
-
-- **Python中一切都是对象，a=1，b=1，两个是同一个对象，所以Python是无法通过变量名获取同名字符串的**
-
-- **在调试某些代码的时候发现print没有输出**: 这是有可能将print重定向了，这是用sys.stdout.write('')可以实现打印输出到控制台
-
-- **`zsh: no matches found: requests[socks]`**: 原因是zsh这个工具会把方括号解析为正则匹配，这时候只需要加上引号即可，例如`pip install 'requests[socks]'`
-
-  ​
-
-## 推荐阅读
-
-[Hidden features of Python](http://stackoverflow.com/questions/101268/hidden-features-of-python)
-
-[PyMOTW-3](https://pymotw.com/3/): 由 [Doug Hellmann](http://doughellmann.com/ )所写的Python标准库的示例用法。
-
-[深刻理解Python中的元类(metaclass)](http://blog.jobbole.com/21351/)
-
-[Python项目的配置管理](https://www.keakon.net/2016/10/22/Python%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86)
