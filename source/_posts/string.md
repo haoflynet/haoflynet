@@ -1,11 +1,9 @@
 ---
 title: "Python字符串"
 date: 2016-08-07 11:06:30
-updated: 2017-04-09 19:48:00
+updated: 2017-12-01 19:48:00
 categories: python
 ---
-# Python字符串
-
 ## 编码问题
 
 - **2中打印str显示前面加了个u且中文类似\u8be5\u9879**：这是十六进制的Unicode编码，使用`string.encode('utf-8')`进行转换
@@ -61,7 +59,16 @@ string.isdigit()	# 是否为数字
 # 格式化字符串
 'abcdef %s' % (123)	# 特别适合长字符串不用加号来拼接字符串的情况
 "my name is {name}".format(name=name)	# 这种方式好处是可以直接定义名字
+"my name is {} at {}".format(name, address)	# 这种方式可以在少数变量的情况下偷一下懒
+"{1} {0} {1}".format("hello", "world")	# 可以指定位置
 f'my name is {变量名}'	# Python3.6里面新增的特性，可用这种方式直接格式化字符串
+my_dict = {'name': '...', 'addr': '...'}
+'my name is {name} at {}'.format(**my_dict)	# 直接解析字典的参数
+my_list = {'name', 'addr'}
+'my name is {0[0]} at {0[1]}'.format(my_list)	# 直接解析列表的参数
+
+# 格式化数字
+'{:.2f}'.format(3.1415926)	# 3.14, 保留两位小数
 
 # 指定列宽格式化字符串
 import textwrap
