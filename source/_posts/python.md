@@ -880,6 +880,8 @@ conn.close()	# 关闭连接
 
 - **`zsh: no matches found: requests[socks]`**: 原因是zsh这个工具会把方括号解析为正则匹配，这时候只需要加上引号即可，例如`pip install 'requests[socks]'`
 
+- `segmentation fault`，在使用`keyboard`和`pynput`的时候曾经遭遇过不可预料的原因，原因是这两个库都没有考虑中文输入法的问题，对于中文输入法，MacOS的Carbon库有另外兼容的做法(详见Pynput的issue)。最简单的解决方法就是切换到`American`
+
 ## 推荐阅读
 
 [Hidden features of Python](http://stackoverflow.com/questions/101268/hidden-features-of-python)
