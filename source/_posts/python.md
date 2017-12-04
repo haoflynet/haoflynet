@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-11-30 13:34:30
+updated: 2017-12-04 18:34:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -103,7 +103,7 @@ result = sorted(rows, key=itemgetter('onekey'))	# 更复杂的用法可以参见
 prices = {'A': 1, 'B': 2, 'C': 3}
 min_price = min(zip(prices.values(), prices.keys()))  # 获取value最小的
 prices_sorted = sorted(zip(prices.values(), prices.keys()))
-
+for a, b in zip(x, y) # 多个列表同时迭代，让长度取决于最短的那一个,这样就不会超出长度
 # 字典合并（ChainMap只是将两个字典在逻辑上变为一个，在它上面的修改只会影响第一个字典a)
 from collections import ChainMap
 c = ChainMap(a, b)
@@ -349,6 +349,16 @@ child.communicate(filepath)
 
 # 接收输入
 a = input('Input: ')
+                         
+sys.getsizeof(name)  # 获取变量占用内存的大小
+
+id(x)   # 返回对象标识，即内存地址
+                         
+platform.system()  # 当前操作系统
+platform.release()  # 当前系统版本
+sys.version     # python版本
+os.environ['name']  # 获取系统环境变量
+os.environ['name'] = value  # 设置系统环境变量  
 ```
 #### 网络相关
 
@@ -395,7 +405,8 @@ for k in dir(module):
 ```python
 # locals: 函数内部的名字空间，一般包括函数的局部变量以及形参
 # enclosing function: 潜逃函数中外部函数的名字空间
-# globals: 当前的模块空间，类似于全局变量
+# globals: 当前的模块空间，类似于全局变量。，如果要改变全局变量的值，那么需要用global来声明，如果仅仅是使用该值那么可以不用global声明
+
 # __builtins__: 内置模块空间
 ```
 
@@ -421,6 +432,10 @@ print(my_stderr.getvalue())
 
 my_stdout.close()
 my_stderr.close()
+
+# 输出重定向到文件
+fp = open(...)
+sys.stdout = fp
 ```
 
 ## 魔术/自省方法
@@ -581,6 +596,16 @@ args = parser.parse_args()
 args.d	# 获取名为d的参数
 ```
 
+#### collections
+
+[参考](http://my.oschina.net/leejun2005/blog/222236)，提供额外的数据类型
+
+- **namedtuple()**：生成可以使用名字来访问元素内容的tuple子类
+- **deque**：双端队列
+- **Counter**：计数器，可用于统计字符串中字符数量。找出序列中出现次数最多的元素
+- **OrderedDict**：有序字典
+- **defaultdict**：带有默认值的字典，这样访问不存在的dict就不会出错了
+
 #### cProfile/Profile: 函数运行时间度量
 
 ```python
@@ -612,6 +637,10 @@ plus3(4)	# 输出7
 # total_ordering
 ```
 
+#### heqpq
+
+查找最大或最小的几个元素。
+
 #### inspect
 
 用于直接访问一个类或对象内部的各个属性
@@ -623,6 +652,31 @@ inspect.getdoc(object)		# 获取documentation信息
 inspect.getfile(object)		# 获取对象的文件名
 inspect.getsource(object)	# 以string形式返回object的源代码
 ```
+
+#### itertools
+
+[参考](http://www.wklken.me/posts/2013/08/20/python-extra-itertools.html#itertoolscountstart0-step1)
+
+- **count(start=0, step=1)**：创建连续整数
+- **cycle(iterable)**：创建一个迭代器，可以反复循环的，此时用在for里面如果不加终止条件会无限循环
+- **repeat(object, times)**：创建一个迭代器，根据指定数量，生成重复的对象
+- **chain(\*iterables)**：将多个迭代器作为参数, 但只返回单个迭代器, 它产生所有参数迭代器的内容, 就好像他们是来自于一个单一的序列.
+- **compress(data, selectors)**：提供一个选择列表，对原始数据进行筛选
+- **dropwhile(predicate, iterable)**：创建一个迭代器，只要函数predicate(item)为True，就丢弃iterable中的项，如果predicate返回False，就会生成iterable中的项和所有后续项
+- **groupby(iterable, key)**：返回一个产生按照key进行分组后的值集合的迭代器.
+- **ifilter(predicate, iterable)**：与dropwhile相反
+- **ifilterfalce(predicate, iterable)**：与上面这个相反
+- **islice(iterable, stop)**：返回的迭代器是返回了输入迭代器根据索引来选取的项。可用于跳过一个循环前面几项的for循环。比如跳过前面3个项目: `for x in islice(items, 3, None)`
+- **imap(function, \*iterables)**：返回一个迭代器, 它是调用了一个其值在输入迭代器上的函数, 返回结果. 它类似于内置函数 map() , 只是前者在任意输入迭代器结束后就停止(而不是插入None值来补全所有的输入).
+- **starmap(function, iterable)**：创建一个迭代器，生成值func(*item),其中item来自iterable，只有当iterable生成的项适用于这种调用函数的方式时，此函数才有效。
+- **tee(iterable[, n=2])**：从iterable创建n个独立的迭代器，创建的迭代器以n元组的形式返回，n的默认值为2
+- **takewhile(predicate, iterable)**：与takewhile相反
+- **izip(\*iterables)**：返回一个合并了多个迭代器为一个元组的迭代器. 它类似于内置函数zip(), 只是它返回的是一个迭代器而不是一个列表
+- **izip_longest(\*iterables[, fillvalue])**：与izip()相同，但是迭代过程会持续到所有输入迭代变量iter1,iter2等都耗尽为止，如果没有使用fillvalue关键字参数指定不同的值，则使用None来填充已经使用的迭代变量的值。
+- **product(\*iterables[, repeat])**：笛卡尔积，排列组合
+- **permutations(iterable[, r])**：排列
+- **combinations(ierable, r)**：创建一个迭代器，返回iterable中所有长度为r的子序列，返回的子序列中的项按输入iterable中的顺序排序 (不带重复)
+- **combinations_with_replacement(iterable, r)**：创建一个迭代器，返回iterable中所有长度为r的子序列，返回的子序列中的项按输入iterable中的顺序排序 (带重复)
 
 #### logging日志模块
 
@@ -757,36 +811,7 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 
 
 
-- **collections**：[参考](http://my.oschina.net/leejun2005/blog/222236)，提供额外的数据类型
-  - **namedtuple()**：生成可以使用名字来访问元素内容的tuple子类
-  - **deque**：双端队列
-  - **Counter**：计数器，可用于统计字符串中字符数量
-  - **OrderedDict**：有序字典
-  - **defaultdict**：带有默认值的字典，这样访问不存在的dict就不会出错了
-
-- **heapq**：Python里面的最小堆
-
-- **itertools**：[参考](http://www.wklken.me/posts/2013/08/20/python-extra-itertools.html#itertoolscountstart0-step1)
-  - **count(start=0, step=1)**：创建连续整数
-  - **cycle(iterable)**：创建一个迭代器，可以反复循环的，此时用在for里面如果不加终止条件会无限循环
-  - **repeat(object, times)**：创建一个迭代器，根据指定数量，生成重复的对象
-  - **chain(\*iterables)**：将多个迭代器作为参数, 但只返回单个迭代器, 它产生所有参数迭代器的内容, 就好像他们是来自于一个单一的序列.
-  - **compress(data, selectors)**：提供一个选择列表，对原始数据进行筛选
-  - **dropwhile(predicate, iterable)**：创建一个迭代器，只要函数predicate(item)为True，就丢弃iterable中的项，如果predicate返回False，就会生成iterable中的项和所有后续项
-  - **groupby(iterable, key)**：返回一个产生按照key进行分组后的值集合的迭代器.
-  - **ifilter(predicate, iterable)**：与dropwhile相反
-  - **ifilterfalce(predicate, iterable)**：与上面这个相反
-  - **islice(iterable, stop)**：返回的迭代器是返回了输入迭代器根据索引来选取的项
-  - **imap(function, \*iterables)**：返回一个迭代器, 它是调用了一个其值在输入迭代器上的函数, 返回结果. 它类似于内置函数 map() , 只是前者在任意输入迭代器结束后就停止(而不是插入None值来补全所有的输入).
-  - **starmap(function, iterable)**：创建一个迭代器，生成值func(*item),其中item来自iterable，只有当iterable生成的项适用于这种调用函数的方式时，此函数才有效。
-  - **tee(iterable[, n=2])**：从iterable创建n个独立的迭代器，创建的迭代器以n元组的形式返回，n的默认值为2
-  - **takewhile(predicate, iterable)**：与takewhile相反
-  - **izip(\*iterables)**：返回一个合并了多个迭代器为一个元组的迭代器. 它类似于内置函数zip(), 只是它返回的是一个迭代器而不是一个列表
-  - **izip_longest(\*iterables[, fillvalue])**：与izip()相同，但是迭代过程会持续到所有输入迭代变量iter1,iter2等都耗尽为止，如果没有使用fillvalue关键字参数指定不同的值，则使用None来填充已经使用的迭代变量的值。
-  - **product(\*iterables[, repeat])**：笛卡尔积
-  - **permutations(iterable[, r])**：排列
-  - **combinations(ierable, r)**：创建一个迭代器，返回iterable中所有长度为r的子序列，返回的子序列中的项按输入iterable中的顺序排序 (不带重复)
-  - **combinations_with_replacement(iterable, r)**：创建一个迭代器，返回iterable中所有长度为r的子序列，返回的子序列中的项按输入iterable中的顺序排序 (带重复)
+- - ​
 
 - **SocketServer**：[参考](http://blog.marchtea.com/archives/60)两种服务模型：ThreadingMinxln(有新请求时，创建一个新的进程)、ForkingMinln(有新请求时，创建一个新的线程)
   - **TCPServer**
@@ -882,6 +907,8 @@ conn.close()	# 关闭连接
 
 - `segmentation fault`，在使用`keyboard`和`pynput`的时候曾经遭遇过不可预料的原因，原因是这两个库都没有考虑中文输入法的问题，对于中文输入法，MacOS的Carbon库有另外兼容的做法(详见Pynput的issue)。最简单的解决方法就是切换到`American`
 
+- **Python序列化出现`maximum recursion depth`错误**。可以设置`sys.setrecursionlimit(1000)`来解决。
+
 ## 推荐阅读
 
 [Hidden features of Python](http://stackoverflow.com/questions/101268/hidden-features-of-python)
@@ -891,116 +918,3 @@ conn.close()	# 关闭连接
 [深刻理解Python中的元类(metaclass)](http://blog.jobbole.com/21351/)
 
 [Python项目的配置管理](https://www.keakon.net/2016/10/22/Python%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- **Python设计模式**：https://github.com/faif/python-patterns
-- **静态方法(@staticmethod)**：跟类有管，和实例无关.静态方法没有默认的第一个参数.
-- **类方法(@classmethod)**：跟类有管，和实例无关.默认的第一个参数是类本身，而不像其它函数那样是对象本身
-- **元类**：[参考](http://blog.jobbole.com/21351/) [参考2](http://www.jianshu.com/p/d643d6f0ec82) [参考3](http://www.cnblogs.com/russellluo/p/3409602.html)元类的主要用途是创建API，比如Django的Model里面，record.field，这会返回该字段的值，而不是model定义里面的Field对象.最简单的例子：
-
-   # 给类添加作者信息
-   	class AuthorTag(type):
-   	    def __new__(cls, name, bases, dict):
-   	        dict['__author__'] = 'RussellLuo'
-   	        return super(AuthorTag, cls).__new__(cls, name, bases, dict)
-   	
-   	class MyBlog:
-   	    __metaclass__ = AuthorTag
-   	
-   	class MyGitHub:
-   	    __metaclass__ = AuthorTag
-- **自省**：[参考](https://www.ibm.com/developerworks/cn/linux/l-pymeta/)自省对象能够描述自己：实例属于哪个类？类有哪些祖先？对象可以用哪些方法和属性？自省让处理对象的函数或方法根据传递给函数或方法的对象类型来做决定
-- 多态**：Python中的多态，就相当于重载的方法
-- **Mixin**：在运行期间动态改变类的基类或类的方法，哦，就是在运行时给改变基类，这样随之所有的子类都改变了
-- **迭代器**：[参考](https://github.com/lzjun567/note/blob/master/note/python/iterator_generator.md)对象的类有next和iter方法返回自身
-- **生成器**：[参考](https://github.com/lzjun567/note/blob/master/note/python/iterator_generator.md)生成器都是迭代器，使用yield来生成的结果
-- **下划线**: 单下划线开头的变量可以理解为不重要的需要抛弃的变量，比如循环中的计数，而如果是一根下划线作为函数，通常用于翻译功能
-
-
-
-
-
-
-
-				    # 跳过可迭代对象的前面几个值，例如for循环里面跳过前面几个
-				    from itertools import islice
-				    for x in islice(items, 3, None)   # 这里跳过了前面3个
-	
-				    # 迭代时获取序号
-				    for index, val in enumerate(my_list)
-	
-				    # 多个列表同时迭代，让长度取决于最短的那一个
-				    for a, b in zip(x, y) # 这样就不会超出长度
-	
-				  * 输入与输出  
-
-
-				    # 将输出重定向到文件
-				    fp = open('log', 'w')
-				    sys.stdout = fp
-	
-				  * 系统环境相关  
-
-
-				        import sys, platform
-				    platform.system()  # 当前操作系统
-				    platform.release()  # 当前系统版本
-				    sys.version     # python版本
-				    os.environ['name']  # 获取系统环境变量
-				    os.environ['name'] = value  # 设置系统环境变量  
-
-
-				  * 类、函数、对象 
-				        x.__class__  # 获取对象的类名
-				    id(x)   # 返回对象标识，即内存地址
-				    setattr(my_model, 'name', 'value')  # 给对象动态添加属性
-	
-				    # 函数参数注释:
-				    def fun(参数: '这是注释', 参数: '这是注释') -> 返回释义
-	
-				  * 序列化：有时候还是挺方便的，比如后面的操作依赖前面的数据，但是前面的数据不能多次快速抓取，就需要将变量直接写到本地  
-
-
-				        import pickle
-				    # 如果序列化出现maximum recursion depth错误，那么可以设置sys.setrecursionlimit(1000)来解决
-	
-				  * 排列组合  
-
-
-				        import itertoolrs
-				    for i in itertools.product('ABCD', repeat
-	
-				  * 其他模块：  
-
-
-				        collections.Counter：找出序列中出现次数最多的元素
-				    heqpq：查找最大或最小的几个元素
-				    itertoolrs：排列组合
-
-
-				  * 变量
-				        sys.getsizeof(name)  # 获取变量占用内存的大小
-	
-				    # 如果要改变全局变量的值，那么需要用global来声明，如果仅仅是使用该值那么可以不用global声明
-	
-				    del name  # 删除一个变量
-	
-				    # 弱引用：在不增加引用计数的情况下使用对象的引用，以防止对象错误回收
