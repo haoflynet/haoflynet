@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-04 18:34:30
+updated: 2017-12-05 15:48:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -358,7 +358,8 @@ platform.system()  # 当前操作系统
 platform.release()  # 当前系统版本
 sys.version     # python版本
 os.environ['name']  # 获取系统环境变量
-os.environ['name'] = value  # 设置系统环境变量  
+os.environ['name'] = value  # 设置系统环境变量
+os.geteuid() === 0		# 判断当前用户是否拥有root权限，貌似这是比较简单的方式了
 ```
 #### 网络相关
 
