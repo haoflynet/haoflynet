@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-05 15:48:30
+updated: 2017-12-06 15:40:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -607,6 +607,25 @@ args.d	# 获取名为d的参数
 - **OrderedDict**：有序字典
 - **defaultdict**：带有默认值的字典，这样访问不存在的dict就不会出错了
 
+#### contextlib
+
+加强with语句，with本身是配合`__enter__`和`__exit__`来进行上下文管理的，但是有了`contextlib`，我们可以更方便写适合于with的代码，例如:
+
+```python
+@contextlib.contextmanager
+def make_context(obj):
+    print('__enber__')
+    try:
+        yield()
+    except xxxError as e:
+        print(e)
+    finally:
+        print('__exit__')
+        
+with make_context(myclass()) as func:
+    func....
+```
+
 #### cProfile/Profile: 函数运行时间度量
 
 ```python
@@ -615,6 +634,10 @@ from time_profile import *
  
 cProfile.run("timeit_profile()")
 ```
+
+#### ctypes
+
+提供C语言兼容的数据类型，可以方便调用DLL中的函数，例如win/mac平台的系统库。
 
 #### functools
 
