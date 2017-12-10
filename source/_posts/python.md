@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-06 15:40:30
+updated: 2017-12-07 17:40:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -146,9 +146,16 @@ UserResponse = namedtuple('UserResponse', [
 # 定义静态方法
 @staticmethod
 def get():
-    
-#定义类方法
+    pass
+# 定义类方法
 def get(cls):
+    pass
+
+# 将字典直接作为多个参数传递给函数
+dict = {'a': 1, 'b': 2, 'c': 3}
+func(**t)	# 将字典的value按照key的作为参数名传入函数，注意这里不是依次
+func(*t)	# 将字典的key作为参数依次传入函数
+    
 ```
 #####　元类
 
