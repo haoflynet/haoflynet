@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-07 17:40:30
+updated: 2017-12-12 13:40:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -870,6 +870,7 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 ```shell
 pip install Django —upgrade 	# 更新指定package
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U	# 升级所有的包
+pip install --pre sqlalchemy	# 安装prelease版本
 sudo pip3 install scrapy -i https://pypi.douban.com/simple  # 使用豆瓣的PIP源，例如
 ```
 
