@@ -1,7 +1,7 @@
 ---
 title: "Scrapy PySpider python爬虫"
 date: 2016-08-07 11:02:20
-updated: 2017-11-15 18:00:00
+updated: 2017-12-12 18:00:00
 categories: python
 ---
 # Scrapy & PySpider
@@ -30,7 +30,7 @@ categories: python
     ├── items.py    # 定义items  
     ├── pipelines.py  # 定义items的处理器  
     ├── settings.py    # 全局社会自  
-    └── spiders      # 爬虫文件  
+    └── spiders      # 爬虫文件
         ├── __init__.py  
         ├── 一个爬虫  
         └── 又一个爬虫  
@@ -67,11 +67,29 @@ AUTOTHROTTLE_DEBUG=False
 
 CONCURRENT_REQUESTS=16   # 并发线程的数量
 CONCURRENT_ITEMS=100     # 同时处理的Items的最大值
+REACTOR_THREADPOOL_MAXSIZE=20	# 线程池，用于DNS查询
 
-**COOKIES_ENABLED=False  # 是否开起cookie
-LOG_LEVEL='DEBUG'    # LOG级别，在下面介绍了log的几种级别
-REDIRECT_ENABLED=False # 进制重定向**
+COOKIES_ENABLED=False  # 是否开起cookie
+LOG_LEVEL='DEBUG'    	# LOG级别，在下面介绍了log的几种级别，默认级别是INFO
+
+REDIRECT_ENABLED=False # 禁止重定向
+RETRY_ENABLED=False	# 关闭重试
 ```
+### 爬虫主体
+
+```python
+import scrapy
+from scrapy import Request
+
+class TestSpider(scrapy.Spider):
+    name = 'test'
+    allowed_domains = ['test.com']
+    start_urls = ['https://www.test.com/']
+
+    def start_requests(self):
+        yield url
+```
+
 ### 请求与响应
 
 ```python
@@ -83,9 +101,49 @@ response.url				# 获取请求的URL
 response.headers			# 获取请求头
 ```
 
-### 处理Item
+### Items
 
-需要注意的是，在pipeline里面处理item的时候必须`return item`否则，其他的item会接受不到，而且会打印一个莫名其妙的`None`，终端也不会显示抓取到的item，也就不能讲item输出到文件了
+`Item`只是对爬取结果对象的一个简单封装，提供了简洁的语法。需要注意的是，在pipeline里面处理item的时候必须`return item`否则，其他的item会接受不到，而且会打印一个莫名其妙的`None`，终端也不会显示抓取到的item，也就不将讲item输出到文件了
+
+```python
+# items.py中对item进行定义
+import scrapy
+class ResultItem(scrapy.Item):
+    name = scrapy.Field()
+    url = scrapy.Field()
+
+# 在爬虫里面可以这样使用
+def parse(self, response):
+    item = scrapy.Items()
+    item['id'] = response.xpath('//td[@id="item_id"]/text()').re(r'ID: (\d+)')
+    item['name'] = response.xpath('//td[@id="item_name"]/text()').extract()
+    item['description'] = response.xpath('//td[@id="item_description"]/text()').extract()
+    yield item
+    
+# item的常用方法
+post['name']
+post.get('name')
+post.get('name', 'no value')
+post.keys()
+post.items()
+dict(post)	# 转换为字典
+Post(dist)	# 从字典创建
+```
+
+### Pipeline
+
+处理item的管道，用来处理爬虫抽取到的数据，可以在这里面进行数据的验证和持久化等操作。要使用`pipeline`，必须在设置里面将`ITEM_PIPELINES`的注释取消掉
+
+```python
+class TestPipeline(object):
+    def open_spider(self, spider):	# 爬虫开始时候执行
+        print('open')
+        self.session = DB_Session()
+
+    def close_spider(self, spider):	# 爬虫结束时候执行
+        print('close')
+        self.session.close()
+```
 
 ### 日志用法
 
@@ -120,7 +178,7 @@ response.css('div.no-txt-box p.tit) # 获取符合条件的元素的列表	respo
 yield Request(url, callback=..., meta={'item': item})
 item = response.meta['item']
 
-# 处理最开始的请求
+# 处理最开始的请求，生成初始url列表
 def start_requests(self):
     """产生种子url"""
     for url in start_urls:
@@ -132,10 +190,10 @@ def start_requests(self):
 
 
 ##TroubleShooting
-- **安装出错**：
+- **安装出错`libffi`**
 
-   No package 'libffi' found
    ```shell
+   No package 'libffi' found
    c/_cffi_backend.c:13:17: fatal error: ffi.h: No such file or directory
    #include <ffi.h>
    ```
@@ -152,15 +210,13 @@ def start_requests(self):
       handle_httpstatus_list = [404]
   ```
 
-  ​
+- **安装出错`no module named w3lib.http`**
+   `pip install w3lib`
 
 - ​
 
 
 
-
-**日志  
-**
 
 
     # 打印日志方法
@@ -172,10 +228,6 @@ def start_requests(self):
 
     # 要使用暂停与继续功能，必须编写通用爬虫才能，也就是说Spider继承自CrawlSpider而不是BaseSpider，BaseSpider仅仅会抓取start_urls里面的
 
-**TroubleShooting**
-
-
-- no module named w3lib.http：pip install w3lib
 - **处理不同的item**
 
 
