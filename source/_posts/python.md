@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-12 13:40:30
+updated: 2017-12-13 13:40:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -366,7 +366,7 @@ platform.release()  # 当前系统版本
 sys.version     # python版本
 os.environ['name']  # 获取系统环境变量
 os.environ['name'] = value  # 设置系统环境变量
-os.geteuid() === 0		# 判断当前用户是否拥有root权限，貌似这是比较简单的方式了
+os.geteuid() == 0		# 判断当前用户是否拥有root权限(sudo权限)，貌似这是比较简单的方式了
 ```
 #### 网络相关
 
@@ -597,11 +597,38 @@ class test:
 import argparse
 
 parser = argparse.ArgumentParser(description='命令介绍')
-parser.add_argument('-d', help='添加一个参数')
-parser.add_argument('-f', help='再添加一个参数')
-args = parser.parse_args()
+parser.add_argument('-d', help='添加一个参数 (default: 一半在括号里面设置用户看的默认值)')
+parser.add_argument('-v', '--version', help='设置简写')
 
+# add_argument参数列表
+## help: 帮助文档
+## type: 固定类型，例如type=int
+## action: action可以指定参数应该如何保存，默认是store，可以是store_true/store_const/append/append_const/help。例如action='store_true'
+## choices: 可选参数，提供一个列表
+## required=True: 必选
+## default=xx: 设置默认值
+args = parser.parse_args()	# 默认自带了-h, --help参数
 args.d	# 获取名为d的参数
+
+# 如果要多级的命令解析，有几个方法:
+## 1. 使用第三方库，例如declarative_parser
+## 2. 像scrapy那样，直接用print
+## 3. 使用原生的group，例如
+import argparse
+def task_a(alpha):
+    print('task a', alpha)
+def task_b(beta, gamma):
+    print('task b', beta, gamma)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(dest='subparser')
+    parser_a = subparsers.add_parser('task_a')
+    parser_a.add_argument('-a', '--alpha', dest='alpha', help='Alpha description')
+    parser_b = subparsers.add_parser('task_b')
+    parser_b.add_argument('-b', '--beta', dest='beta', help='Beta description')
+    # 可以根据subparser的值判断使用哪一个函数
+    kwargs = vars(parser.parse_args())
+    globals()[kwargs.pop('subparser')](**kwargs)
 ```
 
 #### collections
@@ -940,6 +967,8 @@ conn.close()	# 关闭连接
 - `segmentation fault`，在使用`keyboard`和`pynput`的时候曾经遭遇过不可预料的原因，原因是这两个库都没有考虑中文输入法的问题，对于中文输入法，MacOS的Carbon库有另外兼容的做法(详见Pynput的issue)。最简单的解决方法就是切换到`American`
 
 - **Python序列化出现`maximum recursion depth`错误**。可以设置`sys.setrecursionlimit(1000)`来解决。
+
+- **`__main__ is not a package`**: 去掉import前面的点
 
 ## 推荐阅读
 
