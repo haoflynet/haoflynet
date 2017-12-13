@@ -1,6 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
+updated: 2017-12-11 23:14:00
 categories: python
 ---
 
@@ -49,6 +50,7 @@ some_session is some_other_session # True，在一个线程里面创建的sessio
 ### 表定义
 
 ```python
+Base = 
 class User(Base):
     __tablename__ = 'users'		# 定义列名
     __mapper_args__ = {'column_prerfix': '_'}	# 自动给所有的列添加一个前缀
@@ -89,6 +91,7 @@ fullname = column_property(firstname + ' ' + lastname)	# 表示这一列的值�
 
 # 列属性
 primary_key=True	# 是否是主键
+comment=''			# 注释，1.2版本才有的新特性
 ```
 
 ### 关联关系定义
@@ -169,7 +172,6 @@ from sqlalchemy.sql import exists
 stmt = exists().where(Post.user_id==User.id)
 for name, in session.query(User.name).filter(stmt):	# 查询存在Post的user
     print(name)
-
 ```
 
 ### 插入
@@ -177,6 +179,7 @@ for name, in session.query(User.name).filter(stmt):	# 查询存在Post的user
 ```python
 # 批量插入ORM版
 session.bulk_save_objects([User(name="wang") for i in xrange(1000)])
+
 # 批量插入非ORM版
 session.execute(
     User.__table__.insert(),
