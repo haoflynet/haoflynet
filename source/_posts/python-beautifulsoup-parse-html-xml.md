@@ -1,7 +1,7 @@
 ---
 title: "Python使用beautifulsoup解析HTML、XML"
 date: 2015-05-22 23:21:57
-updated: 2016-10-18 09:46:00
+updated: 2017-12-12 09:52:00
 categories: 编程之路
 ---
 Python官方文档都说自己解析XML的方式存在漏洞了，那我也只能用他推荐的了。
@@ -11,7 +11,7 @@ Python官方文档都说自己解析XML的方式存在漏洞了，那我也只�
 另外，如果是简单的网页解析任务，可以直接将获取到的网页进行正则表达式匹配也可以达到效果，只是可能会出现各种编码各种错误问题
 
 ## Installation
-```
+```shell
 # 直接apt安装
 $ sudo apt-get install Python3-bs4  # 这将安装下面两个包
 
@@ -28,7 +28,7 @@ TAG：表示xml/html里面的一个元素(节点)，包括标签以及其里面�
 
 最简单的使用例子：
 
-```
+```python
 import urllib.request
 from bs4 import BeautifulSoup
 
@@ -55,7 +55,7 @@ soup.select('.title') # 查找类为title的标签
 soup.select('#name')  # 查找id为name的标签
 ```
 ## 获取内容
-```
+```python
 soup.prettify()	# 直接获取所有内容
 
 tag.name        # 如果是Tag，那么返回它本身，例如，如果是a标签，那就返回a；如果是soup对象，那么返回[document]，返回值都是str类型
@@ -94,7 +94,7 @@ ring = unicode(tag.string)
 
 如果要获取xml/html中的注释使用Comment对象，如
 
-```
+```python
     markup = "<b><!--Hey, buddy. Want to buy a used parser?--></b>"
     soup = BeautifulSoup(markup)
     comment = soup.b.string
@@ -117,7 +117,7 @@ ring = unicode(tag.string)
 
 tag的.contents属性可以将tag的子节点以列表的方式输出(包括子节点的所有内容)
 
-```
+```python
     head_tag = soup.head
     head_tag # <head><title>The Dormouse's story</title></head>  
 
@@ -155,7 +155,7 @@ BeautifulSoup对象本身一定会包含子节点，也就是说<html>标签也�
 
 如果tag包含多个字符串就用.strings来循环，如：
 
-```
+```python
     for string in soup.strings:
         print(repr(string))
         # u"The Dormouse's story"
