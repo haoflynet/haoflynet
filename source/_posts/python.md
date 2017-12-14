@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-13 13:40:30
+updated: 2017-12-14 13:40:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -57,6 +57,7 @@ else:
 for x in reversed(list) # 列表的反向迭代
 for index, value in enumerate(list)	# 遍历的时候带上序号
 list(set(list))  # 列表去重，不过会乱序
+li.insert(position, item)	# 在列表指定位置插入一个元素
 li.append([1,2])	# 添加一个元素
 li.extend([1,2])	# 添加多个元素
 li_1 + li_2			# 列表相加，例如[1] + [2] = [1, 2]
@@ -312,6 +313,10 @@ fp.readlines()  # 读取所有的行，返回一个列表，需要注意的是�
 codecs.open(path, 'r', 'utf-8').read().splitlines() # 获取所有的数据，并使用splitlines()分隔行，这样在每行的后面就不会出现换行符了
 print('string', file=fp)  # 直接写入文件
 
+# 写入文件
+fp.write()
+fp.writelines()		# 并不会自动换行
+          
 # 清空文件内容
 fp.seek(0, 0) # 这一句可以保证之前是否读取，都能清空
 fp.truncate() # 清空语句
