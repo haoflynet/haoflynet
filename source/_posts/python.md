@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-14 13:40:30
+updated: 2017-12-16 09:44:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -936,14 +936,6 @@ conn.close()	# 关闭连接
 
 
 ## TroubleShooting
-- **CentOS安装pip**  
-
-   yum install epel-release
-   ```shell
-   rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-   yum install -y python-pip
-   ```
-
 - **AttributeError: 'EntryPoint' object has no attribute 'resolve'**
   原因是`cryptography`版本过高或过低，需要制定版本，一般是`pip install cryptography==1.2.1`
 
@@ -974,6 +966,8 @@ conn.close()	# 关闭连接
 - **Python序列化出现`maximum recursion depth`错误**。可以设置`sys.setrecursionlimit(1000)`来解决。
 
 - **`__main__ is not a package`**: 去掉import前面的点
+
+- **`ImportError: cannot import name 'xxx'`**。请先检查是否存在交叉引用。
 
 ## 推荐阅读
 
