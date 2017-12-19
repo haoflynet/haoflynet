@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-16 09:44:30
+updated: 2017-12-19 09:44:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -740,6 +740,20 @@ inspect.getsource(object)	# 以string形式返回object的源代码
 - **permutations(iterable[, r])**：排列
 - **combinations(ierable, r)**：创建一个迭代器，返回iterable中所有长度为r的子序列，返回的子序列中的项按输入iterable中的顺序排序 (不带重复)
 - **combinations_with_replacement(iterable, r)**：创建一个迭代器，返回iterable中所有长度为r的子序列，返回的子序列中的项按输入iterable中的顺序排序 (带重复)
+
+#### iterator迭代器
+
+```python
+next(iterator)		# 返回下一个迭代对象
+yield a 			# 返回一个迭代对象
+yield from iterator	# 相当于for x in iterator \ yield x
+
+# 给生成器传值，例如
+def generator():
+    jump = yield a
+next(iterator)		# 给生成器赋非None值时，只能在开始迭代以后
+iterator.send(2)	# 传值给生成器，jump=2
+```
 
 #### logging日志模块
 
