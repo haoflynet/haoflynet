@@ -1,30 +1,39 @@
 ---
-title: "Python协程与线程"
-date: 2016-08-04 11:02:30
-updated: 2016-11-30 14:44:00
+title: "Python 进程、线程与协程"
+date: 2015-12-30 11:02:30
+updated: 2017-12-19 14:44:00
 categories: python
 ---
-## 迭代器/生成器
+## 基本概念
 
-```python
-next(iterator)		# 返回下一个迭代对象
-yield a 			# 返回一个迭代对象
-yield from iterator	# 相当于for x in iterator \ yield x
+- 进程: 资源分配的最小单位。
+- 线程: CPU调度的最小单位。
+- Python里面的多线程只能利用CPU的一个核(全局解释锁的历史原因)
+- 多线程一般来说比多进程快，毕竟共享内存，但是多线程也更危险，以为一个线程崩溃可能导致整个程序崩溃。
 
-# 给生成器传值，例如
-def generator():
-    jump = yield a
-next(iterator)		# 给生成器赋非None值时，只能在开始迭代以后
-iterator.send(2)	# 传值给生成器，jump=2
-```
-
-## 线程
+## 多线程
 
 **线程安全与线程不安全**: 多个线程同时访问一个方法，得到的结果一样就是线程安全的，不一样则是线程不安全的。gevent库是基于事件驱动模型，它的线程是否安全完全看多线程程序是怎么写的，如果仅仅只有gevent一个线程那么不存在线程安全问题。
 
-threading库
-
 ```python
+# 创建子线程
+class Thread(threading.Thread):
+    def __init__(self, 变量):
+        threading.Thread.__init__(self)
+        self.变量 = 变量
+    def run(self):
+        逻辑
+thread = Thread(参数) # 定义一个线程
+thread.start()      # 开启一个线程，此时子线程已经开始执行了，主线程不会被阻塞
+thread.join()		# 这样可以让主线程阻塞，一直等到子线程退出位置才会继续往下执行
+
+# 常用方法
+threading.activeCount()	# 获取当前线程数量，可以用这个来控制线程最大的数量
+threading.currentThread() # 获取当前线程对象
+threading.currentThread().getName() # 获取当前线程的名称
+exit()         # 终止当前线程，网上好多人问怎么没有API，后来发现exit就行了...并不会影响到其它线程和主线程
+
+# 线程锁，如果要修改全局变量，可以给全局变量加锁。
 lock = threading.Lock()
 lock.acquire()
 xxxxx
@@ -33,9 +42,14 @@ lock.release()
 lock = threading.Lock()
 with lock:
 	xxxxxxx
+    
+# 局部变量。虽然局部变量简单的使用直接用就行，但是如果要在run里面进行各个函数之间的传递那就麻烦了，所以提供了ThreadLocal来将线程内部的局部变量变为一个字典，其它函数直接调用即可
+LOCAL = threading.local() # 在全局定义，每个线程引用该值结果都仅仅会得到自己的私有变量
+# 在Thread类里面的run函数赋值，不能在__init__里面定义，因为那时候线程还没启起来
+LOCAL.变量名 = 值 # 就这样
 ```
 
-## 进程
+## 多进程
 
 multiprocessing库
 
@@ -215,7 +229,44 @@ gevent.joinall([		# 把gevent.spawn()放到joinall过后才会真正开始执行
 print('abc')	# 这行代码会等待所有协程执行完了过后才会执行
 ```
 
+## 多进程/线程下的常见问题
 
+### 主线程监听子线程状态
+
+我的解决方法是利用共享队列将子线程的信息等传入`queue`，类似创建一个flag变量，然后在主线程进行监听，例如，代码来自https://stackoverflow.com/questions/2829329/catch-a-threads-exception-in-the-caller-thread-in-python/2830127#2830127
+
+```python
+class ExcThread(threading.Thread):
+    def __init__(self, bucket):
+        threading.Thread.__init__(self)
+        self.bucket = bucket
+    def run(self):
+        try:
+            raise Exception('An error occured here.')
+        except Exception:
+            self.bucket.put(sys.exc_info())
+def main():
+    bucket = Queue.Queue()
+    thread_obj = ExcThread(bucket)
+    thread_obj.start()
+    while True:
+        try:
+            exc = bucket.get(block=False)
+        except Queue.Empty:
+            pass
+        else:
+            exc_type, exc_obj, exc_trace = exc
+            # deal with the exception
+            print exc_type, exc_obj
+            print exc_trace
+        thread_obj.join(0.1)
+        if thread_obj.isAlive():
+            continue
+        else:
+            break
+if __name__ == '__main__':
+    main()
+```
 
 
 
