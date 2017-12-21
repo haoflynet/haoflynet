@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-11-23 10:23:30
+updated: 2017-12-21 10:23:30
 categories: system
 ---
 # Linux指南
@@ -38,7 +38,7 @@ sudo yum install epel-release	# 安装epel源
 /etc/profile -> ~/.bash_profile -> ~/.bash_login -> ~/.profile
 
 # 常见环境变量
-PATH: 指定shell在这些目录里面寻找命令
+PATH: 指定shell在这些目录里面寻找命令，添加环境变量: PATH="$PATH:$HOME/bin"
 HOME: 当前用户住目录
 MAIL: 当前用户存放邮件的目录
 SHELL: 当前用户使用的shell种类
