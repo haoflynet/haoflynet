@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-19 09:44:30
+updated: 2017-12-21 09:44:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -399,7 +399,7 @@ pip install git+git@github.com:lynzt/python_people_names.git
     
 # 将python包打包成debian包，可以用https://github.com/spotify/dh-virtualenv
 
-# 从指定目录引入包
+# 从指定目录引入包，正如PyCharm里面经常不会出现import的问题，是因为它会首先将当前的项目路径添加到环境变量里面去，在终端执行的时候也要
 import sys
 sys.path.append('..')
 
