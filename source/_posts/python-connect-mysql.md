@@ -1,14 +1,14 @@
 ---
 title: "Python3 使用MySQL Connector操作数据库"
 date: 2015-11-04 17:48:41
-updated: 2017-06-28 14:45:22
+updated: 2017-12-22 14:45:22
 categories: 编程之路
 ---
 ## 安装方法
 
 支持`python3`的`mysql driver`有`mysqlclient`和`pymysql`，不推荐只支持2的`MySQLdb`
 
-```
+```shell
 # ubuntu
 sudo apt-get install python3-dev libmysqlclient-dev
 pip install mysqlclient
