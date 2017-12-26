@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-12-21 10:23:30
+updated: 2017-12-25 10:33:30
 categories: system
 ---
 # Linux指南
@@ -289,7 +289,7 @@ sudo passwd username
 # 批量修改用户密码
 chpasswd < user.txt	# 其中user.txt是用户名和密码的对应文件，格式为username:password
 
-# 给用户添加sudo权限
+# 给用户添加sudo权限，以下这种方法不可采取，因为改错了以后就不能使用sudo命令了，只能通过单用户模式去修改正确，最好的方式是使用`pkexec visudo`命令进行修改。
 vim /etc/sudoers 修改如下内容
 # User privilege specification  
 root    ALL=(ALL:ALL) ALL      # 在这一行下面写  
