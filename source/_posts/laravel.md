@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-11-29 10:21:00
+updated: 2017-12-26 18:31:00
 categories: php
 ---
 # Laravel指南
@@ -1194,3 +1194,5 @@ public function testIndex{
 ## 相关文章
 
 [用Laravel拥抱异常](https://laravel-china.org/topics/2460)
+
+[将SQL语句直接转换成Laravel的语法](http://www.midnightcowboycoder.com/)
