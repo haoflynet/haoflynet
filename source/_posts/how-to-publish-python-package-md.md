@@ -6,6 +6,8 @@ tags: python
 
 最近，发布了一个Python包`pygui-macro`到PyPI上面，发布的步骤还是比较简单，但是网上的教程都有点儿复杂且过时了。这里简单记录一下:
 
+<!--more-->
+
 #### 注册一个PyPI帐号
 
 虽然现在PyPI有意从`https://pypi.python.org`切换到`https://pypi.org/`，但是目前位置两者帐号是通用的，在两个网站上面，都可以进行注册与管理，当然，`pypi.org`在UI上就显得比较现代化了。
