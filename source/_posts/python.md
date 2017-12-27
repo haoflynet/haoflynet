@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-21 09:44:30
+updated: 2017-12-26 10:44:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -663,6 +663,22 @@ def make_context(obj):
         
 with make_context(myclass()) as func:
     func....
+```
+
+#### copy 深拷贝与浅拷贝
+
+简单地说，python中对象的赋值都是进行对象引用(内存地址、指针)传递，浅拷贝复制了对象，变成了两个对象，但是对于对象中的元素，依然使用的原始的引用，深拷贝则是一个完全新的对象
+
+```python
+copy.copy()		# 浅拷贝，字典的copy方法是浅拷贝
+copy.deepcopy()	# 深拷贝
+
+# 例如
+a = {'a': {'b': 1}}
+b = a			# 简单的建立一个对象的引用，"a is b" is True
+b = copy.copy()	# 浅拷贝，"a is b" is False, "a['a'] is b['a']" is True，此时b['a']['b']=2会同时改变a['a']['b']的值
+b = copy.deepcopy()	# 深拷贝，"a is b" is False, "a['a'] is b['a']" is True，此时b['a']['b']=2，并不会改变a['a']['b']的值
+## 浅拷贝
 ```
 
 #### cProfile/Profile: 函数运行时间度量
