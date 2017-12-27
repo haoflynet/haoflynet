@@ -391,6 +391,12 @@ crontab -e # 直接打开定时任务文件进行编辑
 # crontab日志，默认是关闭的，如果要打开可以在配置文件里面进行打开,vim /etc/rsyslog.d/50-defaullt.conf，当然要看日志首先也得有日志服务apt-get install rsyslog
 cron.*	/var/log/cron.log	# 将cron前面的注释去掉
 service rsyslog restart		# 重启rsyslog
+
+# crontab跑GUI任务
+30 23 * * * DISPLAY=:0 /usr/bin/pygui-macro run	# 每晚十一点半跑一个定时任务
+
+# 不用管理员用户而是直接当前用户用sudo执行(管理员用户可以直接sudo crontab -l查看任务)
+20 * * * * echo "password" | sudo -S rm /etc/xxx	# 缺点是只能将密码写在这里了
 ```
 
 #### CURL
