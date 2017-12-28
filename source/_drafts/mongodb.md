@@ -106,3 +106,13 @@ db.collection.remove(
 )
 ```
 
+## 备份与恢复
+
+```shell
+# 备份
+mongodump -h 127.0.0.1:27017 --db DB_NAME --collection COLLECTION	# 备份某个集合
+
+# 恢复
+mongorestore -h 127.0.0.1:27017 --db DB_NAME <path>	# dump文件夹的路径
+```
+
