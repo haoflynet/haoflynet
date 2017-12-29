@@ -791,3 +791,19 @@ date +"%T"	# 仅显示时间，比如10:44:00
   `LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php`
 
 - **`add-apt-repository: command not found`**，需要安装基本的工具`apt-get install software-properties-common`
+
+- **`sudo`命令出现`sudoers`错误，错误详情如下**。这种情况，只能进单用户模式去修改了。
+
+  ```shell
+  　　sudo： >>> /etc/sudoers：syntax error 在行 21 附近<<<
+  　　sudo： /etc/sudoers 中第 21 行附近有解析错误
+  　　sudo： 没有找到有效的 sudoers 资源，退出
+  　　sudo： 无法初始化策略插件
+  ```
+
+- **Linux进入单用户模式**: 常用于权限错误或者root密码的修改。进入方法:
+
+  1. 重启系统，一直按着上下键，以等到切换启动内核的界面
+  2. 选择高级选项里面的`recovery mode`，但是现在不要点击回车，选中后按`e`进行编辑
+  3. 将`ro recovery nomodeset`改为`rw single init=/bin/bash`
+  4. 按下`F10`进入单用户模式。当前用户就是`root`，把不正常的配置或者密码都修改掉以后，重启系统
