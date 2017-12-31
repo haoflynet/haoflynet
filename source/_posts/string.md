@@ -1,7 +1,7 @@
 ---
-title: "Python字符串"
+title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2017-12-01 19:48:00
+updated: 2017-12-21 19:48:00
 categories: python
 ---
 ## 编码问题
@@ -203,6 +203,12 @@ import calendar
 today = datetime.date.today()
 _, last_day_num = calendar.monthrange(today.year, today.month)
 last_day = datetime.date(today.year, today.month, last_day_num)
+            
+# 计算间隔时间
+begin = datetime.datetime(2015, 3, 14, 23, 59, 59)
+today = datetime.datetime.today()
+interval = today - begin
+interval.days # 相差多少天，对应的.seconds表示相差多少秒，小时等同理
 ```
 
 ## TroubleShooting
