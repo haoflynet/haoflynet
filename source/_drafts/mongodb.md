@@ -59,11 +59,14 @@ db.col.find(			# or 查询
 )
 db.col.find({"age": {$gt: 24}})	# 大于，响应的还有$gte大于等于，$lt小于，$lte小于等于
 db.col.find({"age": {$type: 2}})	# type操作符，找出type为字符串的数据，这个的话得去看对应关系了
-
 db.col.find({}, {"age": 1})	# projection中的inclusion模式，包含哪些键
 db.col.find({}, {"age": 0})	# projection中的exclusion模式，不包含哪些键
+
 # 聚合查询
 db.col.aggregate(AGGREGATE_OPERATION)
+
+# 统计
+db.col.count({})	# 统计数量
 ```
 
 ### 插入数据
@@ -77,13 +80,16 @@ db.col.insert(document)	# 会返回一个WriteResult对象
 ```shell
 db.collection.update(
 	<query>,		# where条件，json格式
-	<update>,		# set更新，json格式
+	<update>,		# 更新对象以及更新操作符，json格式
 	{
       upsert: <boolean>,	# 可选(false)，如果为true，那么如果不存在该条数据则会插入新数据
       multi: <boolean>,		# 可选(false)，默认只更新找到的第一条记录，true表示更新全部
       writeConcern: <document>	# 可选，设置抛出异常的级别
 	}
 )
+
+# 例如
+db.col.update({'name': '123'}, {$set: {'title': 'Hello'}})	# 更新name=123的数据，将title更改为hello
 
 # 通过传入的文档来替换已有的文档
 db.collection.save(
