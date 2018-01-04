@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-11-24 09:59:00
+updated: 2017-12-25 10:59:00
 categories: database
 ---
 ## 安装方法
@@ -24,6 +24,8 @@ sudo ln -s /usr/bin/mariadb_config /usr/bin/mysql_config
 # 第一次登录使用
 sudo mysql -u root
 ```
+
+<!--more-->
 
 ## 常用命令
 
@@ -209,6 +211,10 @@ right(str, length) # 字符串截取
 substring(str, pos, len) # 字符串截取
 concat(str1, str2)  # 字符串相加
 
+# 数字相关
+FLOOR()	# 取整
+ROUND()	# 四舍五入
+
 # 时间相关
 YEAR(datetime)    # 获取年份
 QUARTER(datetime)    # 获取季度数
@@ -276,5 +282,6 @@ REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜
 
 
 *   **MySQL分页时出现数据丢失或者数据重复的情况**: 如果分页的时候用上了`order_by`并且目标字段并不是索引字段，那么就有可能出现这种情况，一条数据可能既出现在上一页，又出现在下一页。原因是在`mysql5.6`以后，`priority queue`使用的是堆排序，这个排序算法并不稳定，两个相同的值可能在两次排序后的结果不一样。解决方法是`order_by`后多加一个字段，例如`id`，或者在排序字段设置索引。
-
 *   **在查询整型字段的时候空字符串表现得和0一样**: 这是MySQL的特性，对于整型字段，空字符串会自动转换成零。
+*   **timestamp字段插入的时候出现`warnning: data truncated for column`**，这是因为`mysql`的`timestamp`类型不是`unix`的时间戳，对于非法的字符串插入`timestamp`的时候结果都是`0000-00-00 00:00:00`。如果要插入，可以用`2017-12-25 12:00:00`这种格式，或者使用函数`FROM_UNIXTIME(1514177748)`进行转换。
+
