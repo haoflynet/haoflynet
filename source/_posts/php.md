@@ -94,6 +94,7 @@ int ip2long(string $ip_address)：IP转换成整数值
 string long2ip(string $proper_address)：整数值转换成IP
 number_format(float $number)	// 以千位分隔符方式格式化一个数字，返回字符串
 sprintf('%04d', 2)	// 数字前补零
+10 % 3 = 1;	// 求余操作
 ```
 
 ### 时间
