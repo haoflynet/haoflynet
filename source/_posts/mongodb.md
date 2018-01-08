@@ -1,6 +1,6 @@
 ---
 title: "MongoDB 使用手册"
-date: 2017-12-27 21:32:00
+date: 2018-01-04 21:32:00
 categories: database
 ---
 
@@ -14,6 +14,12 @@ MongoDB是由C++语言编写的一个基于分布式文件存储的开源数据�
 - field: 与MySQL的列`column`类似
 - index: 索引
 - primary key: 主键，默认主键是`_id`
+
+## 应用场景
+
+- 爬虫的数据存储，由于多个爬虫爬取数据时字段不统一，用mysql很容易浪费字段
+
+<!--more-->
 
 ## 系统相关指令
 
