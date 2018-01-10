@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2017-12-25 10:33:30
+updated: 2018-01-05 14:33:30
 categories: system
 ---
 # Linux指南
@@ -436,6 +436,15 @@ sudo passwd ftpuser
 ftp domain/ip	# 连接目标ftp服务器
 put a.txt		# 上传当前目录的一个文件
 mput ./*		# 同时上传多个文件
+```
+
+#### nmap
+
+端口扫描工具
+
+```shell
+nmap -Pn 8.8.8.8			# 扫描一个禁ping的机器
+nmap -Pn 8.8.8.8 -p 2333	# 指定扫描某个端口
 ```
 
 #### Tmux
