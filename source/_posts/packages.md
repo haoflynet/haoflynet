@@ -1,7 +1,7 @@
 ---
 title: "Python包推荐,PHP包推荐,JS包推荐,Java包推荐"
 date: 2016-08-07 11:03:30
-updated: 2017-09-25 17:15:00
+updated: 2018-01-08 17:20:00
 categories: system
 ---
 ### Github Tools
@@ -208,6 +208,10 @@ Python科学计算库
 跨平台，但商业使用需要商业许可证
 
 ### PHP
+
+##### [clockwork](https://github.com/itsgoingd/clockwork)
+
+可以直接在浏览器里面查看性能的性能调试工具(有个坑是如果你用的是其他会修改route规则的插件，那么必须保证能访问/__clockwork才能使用)
 
 ##### [config](https://github.com/hassankhan/config)
 
