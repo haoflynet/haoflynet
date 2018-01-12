@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2018-01-05 14:33:30
+updated: 2018-01-11 14:33:30
 categories: system
 ---
 # Linux指南
@@ -356,9 +356,19 @@ systemctl list-units --type=service	# 显示所有已启动的服务
 # 查看进程的网速
 nethogs
 
-service iptables status     # 查询防火墙状态
-vim /etc/sysconfig/iptables # 新增端口
-service iptables restart    # 重启防火墙
+# CentOS6
+/etc/init.d/iptables status     # 查询防火墙状态
+/etc/init.d/iptables save		# 下面这些语句都是暂时的，并不会写入配置文件，使用save则会写入
+
+## -A: 添加一条规则
+## -p: 指定协议
+## -dport: 目标端口
+## -sport: 源端口
+## -j: ACCEPT接收，DROP拒绝。DROP动作会简单的直接丢弃数据，并不反馈任何回应，客户端会超时。REJECT则会礼貌地返回一个拒绝数据包，客户端会马上断开
+## -s: 指定IP
+iptables -D INPUT 5	# 参考上面的status，指定删除某个规则下面某个序号的规则
+iptables -A OUTPUT -p tcp --dport 6379 -j DROP	# 禁止访问外部的6379端口
+iptables -A INPUT -p tcp --dport 6379 -j DROP	# 进制外部访问内部的6379端口
 
 # CentOS7 
 firewall-cmd --add-port=3306/tcp --permanent	# 添加端口，需要注意的是，很多时候需要重启firewall才能生效
