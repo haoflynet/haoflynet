@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2017-12-25 10:59:00
+updated: 2018-01-05 12:59:00
 categories: database
 ---
 ## 安装方法
@@ -241,6 +241,8 @@ CASE
 	WHEN 'field' = 2 THEN 3
 	ELSE 'field' = 3 THEN 4
 END;
+## 或者
+CASE field WHEN '1' THEN '2' WHEN '3' ELSE '4' END
 
 IF(sex=1, '男', '女')				# if条件语句
 IF(sex=1 OR field='b', 1, NULL)		# 复杂的
