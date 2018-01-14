@@ -1,7 +1,7 @@
 ---
-title: "PHP 教程"
+title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2017-11-15 16:16:21
+updated: 2018-01-05 16:16:21
 categories: php
 ---
 # PHP
@@ -395,6 +395,17 @@ composer config --global secure-http false
 ```php
 var_dump(extension_loaded('curl'));		// 查看是否安装某个模块
 var_dump(get_loaded_extensions());		// 查看安装了哪些模块
+```
+
+## 非常好用的第三方库
+
+### Carbon
+
+时间处理
+
+```php
+$now = Carbon::now();	// 获取当前时间
+$now->addYears(n);		// 当前时间加n年，直接用addYear表示加一年
 ```
 
 ## TroubleShooting
