@@ -28,7 +28,7 @@ categories: tools
 
 ### Partition
 
-Kafka中每个Topic都会有一个或多个Partition，每个Partition对应一个文件夹，文件夹下存储这个Partition的所有消息和索引。Kafka内部会根据算法得出一个值，根据这个值放入对应的partition目录中。所以读取时间复杂度为O(1)。分区的每一个消息都有一个连续的序列号叫做offset，用来在分区中唯一标识这个消息。
+Kafka中每个Topic都会有一个或多个Partition，他是Kafaka数据存储的基本单元，每个Partition对应一个文件夹，文件夹下存储这个Partition的所有消息和索引。Kafka内部会根据算法得出一个值，根据这个值放入对应的partition目录中。所以读取时间复杂度为O(1)。分区的每一个消息都有一个连续的序列号叫做offset，用来在分区中唯一标识这个消息。一个topic可以保存在多个partition。
 
 ### Segment
 
