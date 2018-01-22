@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2017-12-26 18:31:00
+updated: 2018-01-19 18:31:00
 categories: php
 ---
 # Laravel指南
@@ -677,6 +677,16 @@ $obj->first()	# 取出第一个对象
 $obj->last()	# 取出最后一个对象
 $obj->isEmpty()	# 是否为空
 ```
+
+#### Model对象的事件
+
+可以在任何的`ServiceProvinder`的`boot`方法中针对`model`级别进行类似事件的回调，例如
+
+```php
+Post::updated(function ($post) {})	# 表示Post对象在updated以后需要做什么，例如forget一个缓存等
+```
+
+可供监听的事件有`updating/created/updating/updated/deleting/deleted/saving/saved/restoring/restored`。其中`updated`仅仅是字段的值真的变化了才会去更新。
 
 ### 认证相关
 
