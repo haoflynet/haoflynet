@@ -836,6 +836,69 @@ public function failed()
 6. `queues:NAME`，是一个列表，过期时间为-1，没有消费者的情况是会一直存在于队列中。而如果是延迟执行的任务，则是单独放在一个有序集合中，其key为`queues:NAME:delayed`，其`score`值就是其执行的时间点
 
 
+### 缓存Cache
+
+`Laravel`虽然默认也是用的`redis`，但是和`redis`直接存取相比，方便多了。`Cache`能够直接将一个对象序列化后直接以`key-value`的形式存放到`redis`中。缓存的配置文件在`config/cache.php`，可以指定`redis`的连接。
+
+用到缓存，我的建议是，从`model`层入手，仅仅基于`model`的增删该查进行缓存，而不是直接缓存最上层控制器的结果，如果缓存控制器结果，那么下面相关的所有`model`在变化的时候都得进行改变，这样就会相当复杂。当然具体业务具体分析，如果你仅仅是返回一个静态的页面呢。
+
+```php
+Cache::remember('redis-key', 10, function () {
+  return User::find(1);
+});
+
+Cache::get('key', 'default');
+Cache::
+```
+
+如果想在`Model`进行什么更改以后让缓存消失或者更新缓存，那么可以用`Model`的事件去监听。
+
+#### 如何缓存关联关系
+
+由于关系的定义函数并没有直接查询数据库而是一个pdo对象，所以不能直接对关系进行缓存，折衷方法是可以添加一个方法，例如
+
+```php
+class User extends Model {}
+  public function post() {
+	return $this->hasMany(...);
+  }
+  public function getPost() {
+    Cache::remember(..., 10, funciton () {
+      return $this->post;
+    }))
+  }
+}
+```
+
+#### 数据库为null的时候的缓存问题以及数据库事务的处理方法。
+
+在5.4以前，`remember`和`get`在获取的时候，无论是没有该`key`还是`value`为`null`，得到的结果都是一样的，这样`remember`在每次都会先从`redis`读一次，没找到再在回调函数里面读数据库，然后把null值返回，最后再把null值写入缓存。虽然缓存多次读写没毛病，但是这里数据库也执行了很多次无效查询。我的解决办法用`Redis`去查询key是否真的存在。
+
+如果当前在数据库的事务里面，并且事务进行了回滚，那么依赖于`Redis`的`Cache`并不会自动回滚，可能导致数据不一致。我的解决办法是当有事务发生的时候，不进行缓存的读操作，并且在查询的时候直接将该key进行删除，无论事务里面对该model进行了什么操作，保证数据一致性。
+
+两个问题的解决办法是这样的:
+
+```php
+static public function remember($key, $minute, Closure $callback)
+{
+  if (DB::transactionLevel() === 0) {
+    return self::existsInCache($key) ?
+      Cache::get($key) :
+    Cache::remember($key, $minute, $callback);
+  } else {
+    Cache::forget($key);
+    return $callback();
+  }
+}
+
+static public function existsInCache($key)
+{
+  return Redis::connection(self::REDIS_CACHE)->exists(
+    sprintf('%s:' . $key, config('cache.prefix'))
+  );
+}
+```
+
 ### 事件
 
 就是实现了简单的观察者模式，允许订阅和监听应用中的事件。用法基本上和队列一致，并且如果用上队列，那么代码执行上也和队列一致了。
