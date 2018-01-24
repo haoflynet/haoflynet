@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2018-01-23 18:22:00
+updated: 2018-01-24 18:22:00
 categories: tools
 ---
 # Docker 使用指南
@@ -106,7 +106,7 @@ webb:				# 第二个容器
     build: ./web
     extra_hosts:
       - "haofly.net:172.0.0.1"	# 添加hosts
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"	# 如果要在开机之后执行命令可以这样子做
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"	# 如果要在开机之后执行命令可以这样子做，这是每次开机都会执行这个操作，并且是覆盖了原有的开机启动命令
     expose:
         - 80
 
@@ -235,7 +235,7 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
 - **阿里源**: 一般都是jessie版本，但是有些镜像的维护者可能会修改为一个比较小众的版本，可能导致某些包没有，这时候修改版本即可。
 
     ```shell
-    # 基本上都是jessie，/etc/apk/sources.list
+    # 基本上都是jessie，/etc/apt/sources.list
     deb http://mirrors.aliyun.com/debian jessie main
     deb http://mirrors.aliyun.com/debian jessie-updates main
     deb http://mirrors.aliyun.com/debian-security jessie/updates main
