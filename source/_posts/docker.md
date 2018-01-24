@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2017-10-31 18:22:00
+updated: 2018-01-23 18:22:00
 categories: tools
 ---
 # Docker 使用指南
@@ -235,10 +235,15 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
 - **阿里源**: 一般都是jessie版本，但是有些镜像的维护者可能会修改为一个比较小众的版本，可能导致某些包没有，这时候修改版本即可。
 
     ```shell
-    # 基本上都是jessie
+    # 基本上都是jessie，/etc/apk/sources.list
     deb http://mirrors.aliyun.com/debian jessie main
     deb http://mirrors.aliyun.com/debian jessie-updates main
     deb http://mirrors.aliyun.com/debian-security jessie/updates main
+
+    # alpine版本，/etc/apk/repositories
+    http://mirrors.aliyun.com/alpine/v3.4/main
+    http://mirrors.aliyun.com/alpine/v3.4/community
+    @testing http://mirrors.aliyun.com/alpine/edge/testing
     ```
 
 - ​
