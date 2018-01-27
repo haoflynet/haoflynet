@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-01-05 12:59:00
+updated: 2018-01-19 18:59:00
 categories: database
 ---
 ## 安装方法
@@ -49,17 +49,17 @@ DROP database_name	# 删除数据库
 
 #### 数据表操作
 
-```shell
-ALTER TABLE 表明 DROP FOREIGN KEY '外键名';		# 删除外键
+```mysql
 ## 清空数据表
 DELETE FROM 表名; # 这种方式比较慢，但是可以恢复
 TRUNCATE TABLE 表名 # 这种方式很快，但不会产生二进制日志，无法回复数据
-## 给表添加字段
-ALTER TABLE 表名 ADD 字段名 属性
-## 给表删除字段
-ALTER TABLE 表名 DROP COLUMN 字段名  
-# 修改列属性
-ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	
+
+ALTER TABLE 表名 DROP FOREIGN KEY '外键名';	# 删除外键
+ALTER TABLE 表名 ADD 字段名 属性;	# 给表添加字段
+ALTER TABLE 表名 DROP COLUMN 字段名;	# 给表删除字段
+ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
+
+CREATE INDEX name_idx ON `表名`(`列名`);	# 给表添加索引
 ```
 
 #### 数据记录操作
@@ -251,6 +251,34 @@ IF(sex=1 OR field='b', 1, NULL)		# 复杂的
 REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜索，例如UPDATE `table` SET `value` = REPLACE(`value`, 'abc', 'def')
 ```
 
+## 数据库优化
+
+### 常见性能问题及优化
+
+- **COUNT(*)优化**: Innodb数据库中表的总行数并没有直接存储，而是每次都执行全表扫描，如果表太大简单的`COUNT(*)`则会非常耗时。这时候不妨选择某个字段添加一个辅助索引，依然会扫描全表，但是`COUNT(*)`的性能能提高很多。因为在使用主键或者唯一索引的时候，InnoDB会先把所有的行读到数据缓冲区，发生了多次IO，而使用了辅助索引以后，由于辅助索引保存的仅仅是index的值，虽然还是读了那么多行到缓冲区，但是数据量则大大减少，仅有一个字段，磁盘IO减少，所以性能提高了。
+
+### 索引类型
+
+#### 聚簇索引(clustered index)
+
+保存了每一样的所有数据，聚簇索引的选择方法如下:
+
+```shell
+1.如果表中定义了PRIMARY KEY，那么InnoDB就会使用它作为聚簇索引；
+2.否则，如果没有定义PRIMARY KEY，InnoDB会选择第一个有NOT NULL约束的唯一索引作为PRIMARY KEY，然后InnoDB会使用它作为聚簇索引
+3.如果表中没有定义PRIMARY KEY或者合适的唯一索引。InnoDB内部会在含有行ID值的合成列生成隐藏的聚簇索引。这些行使用InnoDB赋予这些表的ID进行排序。行ID是6个字节的字段，且作为新行单一地自增。因此，根据行ID排序的行数据在物理上是根据插入的顺序进行排序
+```
+
+#### 辅助索引(secondary index)
+
+聚簇索引以外的就是辅助索引，辅助索引的每一行记录都包含每一行的主键列，辅助索引指向主键，想较于聚簇索引，由于只有一个字段，所以空间占用非常少。
+
+### 排序算法
+
+#### filesort文件排序
+
+文件排序是通过相应的排序算法，把所有的数据拿出来之后在内存中进行排序。使用firlesort排序主要是因为where语句与order by语句使用了不同的索引；order by中的列的索引不同；对索引同时使用ASC和DESC；left join使用右表字段排序等。
+
 ## TroubleShooting
 
 - **启动错误，提示server PID file could not be found**
@@ -283,7 +311,7 @@ REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜
 |           |         | 0                     | 18446744073709551615 |
 
 
-*   **MySQL分页时出现数据丢失或者数据重复的情况**: 如果分页的时候用上了`order_by`并且目标字段并不是索引字段，那么就有可能出现这种情况，一条数据可能既出现在上一页，又出现在下一页。原因是在`mysql5.6`以后，`priority queue`使用的是堆排序，这个排序算法并不稳定，两个相同的值可能在两次排序后的结果不一样。解决方法是`order_by`后多加一个字段，例如`id`，或者在排序字段设置索引。
+*   **MySQL分页时出现数据丢失或者数据重复的情况**: 如果分页的时候用上了`order_by`并且目标字段并不是索引字段，那么就有可能出现这种情况，一条数据可能既出现在上一页，又出现在下一页。原因是在`mysql5.6`以后，`priority queue`使用的是堆排序，这个排序算法并不稳定，两个相同的值可能在两次排序后的结果不一样。解决方法有两种，一种是给`order_by`后面的字段加索引，另外一种是增加一个是索引的字段，但是不要把主键放到这里面，否则两个索引都不会使用，导致性能非常低，别问我为什么，我被坑过。[参考文章](http://www.foreverlakers.com/2018/01/mysql-order-by-limit-%E5%AF%BC%E8%87%B4%E7%9A%84%E5%88%86%E9%A1%B5%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/)
 *   **在查询整型字段的时候空字符串表现得和0一样**: 这是MySQL的特性，对于整型字段，空字符串会自动转换成零。
 *   **timestamp字段插入的时候出现`warnning: data truncated for column`**，这是因为`mysql`的`timestamp`类型不是`unix`的时间戳，对于非法的字符串插入`timestamp`的时候结果都是`0000-00-00 00:00:00`。如果要插入，可以用`2017-12-25 12:00:00`这种格式，或者使用函数`FROM_UNIXTIME(1514177748)`进行转换。
 
