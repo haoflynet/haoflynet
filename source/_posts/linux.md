@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2018-01-11 14:33:30
+updated: 2018-01-２４ 14:33:30
 categories: system
 ---
 # Linux指南
@@ -95,7 +95,7 @@ find / -mmin -60    # 查找60分钟内修改的文章
 find / -type d -mtime -1 # 查找1天内修改过的文件夹(好吧，我用了rm -rf / 命令才知道的)
 find ./ -ctime -10 # 查找最近10天修改过的文件，atime表示最后一次访问时间，ctime表示最后一次状态修改时间，mtime表示最后一次内容修改时间
 sed '5s/^.*$/xxxxx/' filename	# 替换某个文件的第五行，并输出结果，不写入
-sed -i 's/^abc$/xxxxx/g' filename > filename 	# 替换某个文件的abc字符串，并写入指定文件
+sed -i 's/^abc$/xxxxx/g' filename 	# 替换某个文件的abc字符串，并写入指定文件
 cat /proc/cpuinfo | grep "model name" | wc -l	# 获取服务器核心数
 free -h | sed -n '2p' | awk '{print $2}'		# 获取服务器内存大小
 df -h | sed -n '2p' | awk '{print $2}'			# 获取服务器磁盘大小
@@ -124,6 +124,7 @@ s 替代
 
 # 常用命令
 sed '/^$/d' file > outputfile	# 去除文件中的空白行
+sed '5s/^.*$/xxxxx/'  file		#　替换一整行
 ```
 ##### xargs
 
