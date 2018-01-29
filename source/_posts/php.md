@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-01-05 16:16:21
+updated: 2018-01-15 16:16:21
 categories: php
 ---
 # PHP
@@ -180,6 +180,7 @@ fgets($fp)		# 读取一行
 feof($fp)		# 判断指针是否指向文件尾了
 fwrite($fp, 'haofly')	# 写入字符串到文件
 fclose($fp);	# 关闭文件
+file_exists($filename);	# 检查文件或目录是否存在
 ```
 
 ### 函数/类/对象
@@ -344,7 +345,7 @@ hash_hmac(算法名, 明文, 盐)	# hash加密函数，可以选定加密算法�
    	# 或者用另外的函数
    	var_export: 输出或返回一个变量的字符串表示
 - **file_get_contents**：获取文件或http内容，如果要从http获得json数据可以直接使用它
-- **isset()**：查看某个变量是否已经被定义，未赋值或赋NULL都会返回false
+- **isset()**：查看某个变量或者多个变量是否已经被定义，未赋值或赋NULL都会返回false。没错，可以直接检查多个变量，当所有变量都为true时返回true
 - **@header('Content-type: text/html;charset=UTF-8');**PHP文件中添加中文支持，在脚本开始的地方添加给行即可
 - **多行输出**：其中最后一个EOF必须写在一行的开头，且里面如果要用变量这样用{ $php_var }
    echo <<<EOF
