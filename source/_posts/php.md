@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-01-15 16:16:21
+updated: 2018-01-29 16:16:21
 categories: php
 ---
 # PHP
@@ -306,6 +306,7 @@ var_dump($arr['curl']);
 
 ```shell
 php --ini		# 查看php的配置文件
+php --ri xhprof	# --ri可以显示php当前加载的扩展的信息
 ```
 
 ### 帮助函数
