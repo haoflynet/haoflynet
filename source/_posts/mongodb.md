@@ -1,6 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
+updated: 2018-02-01 09:58:00
 categories: database
 ---
 
@@ -56,6 +57,7 @@ db.col.find().pretty()	# 返回格式化后的json数据
 db.col.find().limit(10)	# limit操作
 db.col.find().skip(10)	# 跳过前面10条数据
 db.col.find().sort({"age": 1})	# 按照某个字段进行排序，1表示升序，-1表示降序
+db.col.find({name:/abc/})	# 正则查找
 db.col.find(			# or 查询
 	{
       $or: [
