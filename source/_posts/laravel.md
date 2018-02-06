@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-01-19 18:31:00
+updated: 2018-02-05 18:31:00
 categories: php
 ---
 # Laravel指南
@@ -1140,8 +1140,8 @@ public function report(Exception $e)
 - Command添加参数
 
   ```php
-  protected $signature = 'test:test {field?}'	# 添加参数，问号表示非必填
-  $this->argument('field')					# 获取参数
+  protected $signature = 'test:test {field?}';	# 添加参数，问号表示非必填
+  $this->argument('field');					# 获取参数，只能在handle里面，不能在__constructor里面
   ```
 
 ### 测试
