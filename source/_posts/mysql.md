@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-01-19 18:59:00
+updated: 2018-02-07 18:59:00
 categories: database
 ---
 ## 安装方法
@@ -156,10 +156,12 @@ flush privileges;                更新权限
 select host, user from user;     查看更改
 
 # 查找系统常用变量
-show global variables like 'log_error'; # 日志文件路径
+show global variables like 'log_error'; # 查看是否开启以及日志文件路径
+SET GLOBAL general_log = 'ON';
 
 # 记录下所有的sql命令
-bin-log = /tmp/mysql.log	# 直接在配置文件里面
+SHOW VARIABLES LIKE "general_log%"; SET GLOBAL general_log = 'ON';	# 临时解决方法，数据库重启后失效
+bin-log = /tmp/mysql.log	# 能一直都开着
 
 # 数据库编码
 show variables like 'character%';	# 查看关于编码的几个变量
