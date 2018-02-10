@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2017-12-26 10:44:30
+updated: 2018-01-05 14:44:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -115,6 +115,10 @@ class ErrorMsg(dict):
     def __init__(self, e: Exception, code: int):
         dict.__init__(self, msg=str(e), code=code)
 json.dumps(ErrorMsg(e, 200))	# {"msg":"xxx", "code":200}
+
+# 字典列表的筛选，直接用filter
+filter(lambda person: person['name'] == 'haofly', people_list)	# 不过有个缺点，就是不能传值进lambda，不然就直接用以下这种方法吧
+[person for person in people_list if person['name'] = name]
 ```
 #### 类/函数
 
@@ -998,6 +1002,13 @@ conn.close()	# 关闭连接
 - **`__main__ is not a package`**: 去掉import前面的点
 
 - **`ImportError: cannot import name 'xxx'`**。请先检查是否存在交叉引用。
+
+- **安装涉及到openssl lib的库的时候出现错误`openssl/opensslv.h`或者`openssl/err.h` not found等错误**，首先要确定确实有安装该库。Mac下安装用`brew install openssl`，然后如果还是不行就用这种方式进行安装`pip install cryptography --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include"`
+
+- `no module named _sqlite3`，原因是系统多个`python`版本导致
+  首先安装sqlite库，`yum install sqlite-devel`，然后重新安装`python`
+
+- ​
 
 ## 推荐阅读
 
