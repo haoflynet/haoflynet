@@ -1,5 +1,5 @@
 ---
- title: "AngularJS"
+title: "AngularJS"
 date: 2016-12-07 09:00:39
 updated: 2017-10-26 12:53:00
 categories: frontend

@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2018-01-24 18:22:00
+updated: 2018-02-12 18:22:00
 categories: tools
 ---
 # Docker 使用指南
@@ -30,6 +30,8 @@ docker tag id name:tag	# 给镜像更改名称
 
 ## 创建容器
 
+<!--more-->
+
 #### 启动参数
 
 ```tex
@@ -54,8 +56,6 @@ docker tag id name:tag	# 给镜像更改名称
 	exit # 退出容器
 	docker logs 容器名称  # 获取容器的输出信息，但是通过docker exec进入容器的时候，其标准输出并未被主进程相关联，所以docker exec所执行进程的标准输出不会进入容器的日志文件。即docker容器的日志只负责应用本身的标准输出，不包括docker exec衍生进程的标准输出(http://docs.daocloud.io/allen-docker/docker-exec)
 	docker run -t -i -d -p 80:80 -v /home/haofly/docker/test/mysite:/mysite django-apache:latest # 我当前机器上的一条执行自己创建的镜像的命令
-
-​	
 
 ## 容器操作
 
@@ -106,7 +106,10 @@ webb:				# 第二个容器
     build: ./web
     extra_hosts:
       - "haofly.net:172.0.0.1"	# 添加hosts
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"	# 如果要在开机之后执行命令可以这样子做，这是每次开机都会执行这个操作，并且是覆盖了原有的开机启动命令
+    command: bash -c "python manage.py migrate && python manage.py runserver"	# 如果要在开机之后执行命令可以这样子做，这是每次开机都会执行这个操作，并且是覆盖了原有的开机启动命令。需要注意的是，有些容器在启动时候会开启一个守护进程，如果该进程没有启动那么容器最后会退出，如果有这样的命令也许要在这里写上
+    command: >
+        bash -c "python manage.py migrate
+        && python manage.py runserver"		# 也可以这样分行写
     expose:
         - 80
 
