@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2017-10-12 18:48:00
+updated: 2018-01-22 18:48:00
 categories: python
 ---
 # python requests模块
@@ -115,6 +115,10 @@ print([x for x,y in A.__dict__.items() if type(y) == FunctionType])
 #### 下载文件
 
 ```python
+# 小文件，直接吸入
+open('filename', 'wb').write(r.content)
+
+# 大文件，分片写入
 r = requests.get('https://haofly.net/test.mp4', stream=True)
 with open('filename.mp4', 'wb') as fd:
     for chunk in r.iter_content(1024):
