@@ -1,7 +1,7 @@
 ---
-title: "Git 教程"
+title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2017-11-09 11:29:00
+updated: 2018-02-18 23:31:00
 categories: tools
 ---
 # Git指南
@@ -33,6 +33,8 @@ Linux平台：`sudo apt-get install git`
     # 生成密钥
     ssh-keygen -t rsa -C "haoflynet@gmail.com"
     # 然后一路默认就可以，注意看其中的密钥存放位置，其中公钥文件Windows默认为/c/Users/用户名/.ssh/id_rsa.pub# Linux默认为 ~/.ssh/rsa_pub
+
+<!-- more -->
 
 ### Git相关文件
 
