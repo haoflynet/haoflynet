@@ -1,6 +1,7 @@
 ---
-title: "LAMP"
+title: "LAMP 手册"
 date: 2016-07-28 22:52:39
+updated: 2018-02-18 23:29:00
 categories: server
 ---
 # LAMP
@@ -9,11 +10,13 @@ Linux+Apache+MySQL+PHP，这是最流行也是我最熟悉的服务器架构了�
 inux下的管理软件(比如现在所使用的禅道管理软件)在安装的时候经常都会有独立的打包程序，但我觉得那样会破坏apache等服务的独立性，所以独立安装，感觉舒
 服一点。下面介绍一下安装过程：
 
-
 ## CentOS 6.x + Apache + Mariadb + PHP
-[编译方式安装](https://yhigu.wordpress.com/2016/03/02/install-latest-version-of-apach-and-php-on-centos-6-7-from-source-code/)  
-[CentOS安装LNMP](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6)  
-[包管理方式安装:](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-6)  
+
+<!--more-->
+
+[编译方式安装](https://yhigu.wordpress.com/2016/03/02/install-latest-version-of-apach-and-php-on-centos-6-7-from-source-code/) 
+[CentOS安装LNMP](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6) 
+[包管理方式安装:](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-6) 
 **apache**：
 
 	sudo yum install httpd -y
