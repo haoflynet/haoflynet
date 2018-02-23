@@ -1,7 +1,7 @@
 ---
 title: "vim 教程"
 date: 2013-06-06 14:02:30
-updated: 2018-01-23 20:16:00
+updated: 2018-02-12 20:16:00
 categories: tools
 ---
 # VIM
@@ -48,7 +48,8 @@ d 删除选择的地方
 ## 动态配置
 
 ```shell
-:set nonu	# 行号的显示与取消显示
+:set nu		# 显示行号
+:set nonu	# 取消显示行号
 :set paste	# 设置为粘贴模式，这样在粘贴的时候tab和空格才能正确。。。
 ```
 
@@ -57,6 +58,7 @@ d 删除选择的地方
     # 可添加如下这些选项
     set autoindent      ; 自动缩进
     set number          ; 显示行号
+    set nonumber		; 取消显示行号
     set smartindent     ; 智能对齐
     set tabstop=4       ; tab键设置为4个空格宽度
     set background=dark ; 如果感觉太暗可以使用这个(比如deepin默认的那个主题)
