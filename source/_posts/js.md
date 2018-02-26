@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2017-11-23 16:40:00
+updated: 2018-02-23 16:09:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -170,6 +170,8 @@ $('p').bind('click', function(){})	// 用bind进行事件的绑定，即使是�
 ### 页面属性
 ```javascript
 window.cookie					// 当前cookie
+window.cookie = 'abc=123';		// 添加cookie，注意这是添加，不是设置
+window.cookie = 'abc=123; expires=' + date.toGMTString() + ';'	// 设置过期时间
 window.location.href 			// 获取当前的url
 window.lcoation.href = 'url'	// 跳转到某个url
 document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
