@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2018-02-12 18:22:00
+updated: 2018-02-23 18:22:00
 categories: tools
 ---
 # Docker 使用指南
@@ -77,6 +77,7 @@ Dockerfile的语法说明:
 FROM: 指定基于哪个镜像创建,这样会先pull该镜像.例如`FROM ubuntu:14.04.1`
 MAINTAINER: 指定创建作者的信息.例如`MAINTAINER haofly <haoflynet@gmail.com>`
 ADD: 将指定的主机目录中的文件代替要构建的镜像中的文件,这条命令通常用于镜像源的更换,例如`ADD sources.list_aliyun /etc/apt/sources.list`,这样,镜像中的/etc/apt/sources.list文件就被sources.list_aliyun文件替代了
+COPY: 和ADD功能一样，不过ADD指令还支持通过URL从远程服务器读取资源并复制到镜像中。不过远程资源其实更推荐用RUN wget
 RUN: 执行一条shell命令
 EXPOSE: 暴露什么端口给主机,需要注意的是,即使指定了,也得在docker run的时候通过-p参数执行端口的映射
 WORKDIR: 切换工作目录,这样下面的CMD等就可以在新的目录执行
