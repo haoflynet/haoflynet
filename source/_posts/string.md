@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2017-12-21 19:48:00
+updated: 2018-01-05 19:48:00
 categories: python
 ---
 ## 编码问题
@@ -93,6 +93,13 @@ s.lower()    # 全部转为小写
 ### 查找与替换
 
 ```python
+# startswith
+str.startswith(str, beg=0, end=len(string))
+str.endswith(str)
+
+# 统计子字符串出现次数
+str.count('sub_str')
+
 # 字符串替换
 import re
 text = 'Today is 11/27/2016'
