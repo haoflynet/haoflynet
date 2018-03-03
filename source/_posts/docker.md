@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2018-02-23 18:22:00
+updated: 2018-03-02 18:22:00
 categories: tools
 ---
 # Docker 使用指南
@@ -228,7 +228,7 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
   ```shell
   docker network ls		# 列出所有的网桥
   docker network prune	# 删除没有使用的网桥
-  docker network info name	# 查看某个网桥的详细信息
+  docker network inspect name	# 查看某个网桥的详细信息
   docker network rm name		# 删除某个网桥
   ```
 
