@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2018-01 14:33:30
+updated: 2018-02-12 14:33:30
 categories: system
 ---
 # Linux指南
@@ -72,7 +72,7 @@ sudo apt-get install nethogs -y
 sudo nethogs
 
 # 监控内存占用
-top: 常用的命令
+top: 常用的命令，按1可以查看每个CPU的负载情况
 gtop: 功能十分强大的系统监视器
 ```
 
@@ -337,6 +337,9 @@ sudo mkswap /swapfile
 sudo chown root:root /swapfile
 sudo chmod 0600 /swapfile
 sudo swapon /swapfile
+
+/sbin/swapoff /swapfile	# 停止交换分区
+rm -rf /swapfile		# 删除交换分区
 
 sudo service lightdm start	# Linux Mint关闭GUI
 ```
