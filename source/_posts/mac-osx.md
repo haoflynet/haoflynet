@@ -1,18 +1,27 @@
 ---
-title: "MAC OSX 教程"
+title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2017-06-03 15:08:00
+updated: 2018-02-12 11:08:00
 categories: system
 ---
-# MAC指南
+## Shell配置使用
 
-## Homebrew
+### mac shell使用rz、sz直接上传或者下载服务器文件
+
+打开`iterm2`，`Perferences->Profiles->Advanced->Triggers->Edit`，添加如下`trigger`
+
+```shell
+\*\*B0100			Run Silent Coprocess	/usr/local/bin/iterm2-send-zmodem.sh
+\*\*B00000000000000	Run Silent Coprocess	/usr/local/bin/iterm2-recv-zmodem.sh
+```
+
+## Homebrew配置使用
 
 ```shell
 export ALL_PROXY=socks5://127.0.0.1:1080	# homebrew走ss代理
 ```
 
-## 常用命令
+## 系统管理命令
 
 ```shell
 dscacheutil -q group	# 查看所有用户和组
@@ -40,8 +49,6 @@ mackup backup	# 备份命令
 mackup restore	# 数据恢复
 mackup uninstall# 将配置文件拷回原来的系统目录
 ```
-
-
 
 ## TroubleShooting
 
