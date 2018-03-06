@@ -20,6 +20,8 @@ $ pip3 install beautifulsoup4   # 这样直接安装或者下载源码进行安�
 $ pip3 install lxml             # 如果是解析xml必须安装一个解析器，文档里说的那个解析器只有这个好安装点，需要提前安装好依赖，apt-get install libxml2-dev, libxslt1-dev, python-dev，还可以使用html.parser这个解析器，这个解析器不会自动添加body元素,CentOS用yum -y install python-devel gcc libxml2 libxml2-devel libxslt libxslt-devel
 ```
 
+<!--more-->
+
 ## 基本概念
 
 TAG：表示xml/html里面的一个元素(节点)，包括标签以及其里面的内容

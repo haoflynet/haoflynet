@@ -89,7 +89,7 @@ from splinter import Browser
 from selenium.webdriver.chrome.options import Options
 
 chrome_options = Options()
-browser = Browser('chrome', executable_path='/Users/haofly/share/chromedriver, user_agent='User-Agent设置', option=chrome_options)
+browser = Browser('chrome', executable_path='/Users/haofly/share/chromedriver', user_agent='User-Agent设置', options=chrome_options)
 browser.driver.set_window_size(1500, 900)	# 设置浏览器的size
 browser.visit('https://wiki.haofly.net')
 print(browser.title)
