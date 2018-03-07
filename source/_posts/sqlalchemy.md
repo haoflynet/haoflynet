@@ -15,6 +15,8 @@ pip install sqlalchemy
 
 ## SQLAlchemy连接数据库
 
+<!--more-->
+
 ```python
 # 初始化数据库连接
 engine = create_engine('postgresql://scott:tiger@localhost/mydatabase')
