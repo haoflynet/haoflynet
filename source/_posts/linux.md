@@ -1,7 +1,7 @@
 ---
 title: "Linux 教程"
 date: 2013-09-08 11:02:30
-updated: 2018-02-12 14:33:30
+updated: 2018-03-06 14:33:30
 categories: system
 ---
 # Linux指南
@@ -465,7 +465,7 @@ nmap -Pn 8.8.8.8 -p 2333	# 指定扫描某个端口
 
 相比于Mac下的iTerm2，其优势主要在于能够保存和恢复session。
 
-```tex
+```shell
 # tmux的快捷键都是在先按下control+b键以后再按的
 
 ## 窗口操作
@@ -477,6 +477,12 @@ w 窗口列表选择，mac下使用ctrl+p和ctrl+n进行上下选择
 0 切换至0号窗口
 f 根据窗口min搜索选择窗口
 
+## 窗格操作
+% 左右平分两个窗格
+" 上下平分两个窗格
+x 关闭当前窗格
+o 切换窗格
+
 ## 会话操作
 tmux a 恢复至上一次的会话
 tmux nes -s test 新建名称为test的会话
@@ -484,11 +490,6 @@ tmux ls  列出所有的tmux会话
 tmux a -t test 恢复名称为test的会话
 tmux kill-session -t test 删除名为test的会话
 tmux kill-server 删除所有会话
-
-## 窗格操作
-% 左右评分两个窗格
-" 上下评分两个窗格
-x 关闭当前窗格
 ```
 
 #### supervisor
