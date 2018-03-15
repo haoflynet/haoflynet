@@ -79,6 +79,7 @@ git diff master
 
 git reset HEAD filename		# 把已经commit了的文件取消暂存
 git checkout -- filename	# 放弃指定文件的更改
+git commit --amend			# 撤销上一次提交，并将暂存区文件重新提交
 
 git stash					# 暂存，常用于要切换分支，但是当前分支上面的更改并不想现在提交，需要先把当前分支的状态暂存起来。暂存起来后就可以自由切换到其他分支了。
 git stash list				# 查看所有的"储藏"
