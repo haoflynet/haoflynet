@@ -397,9 +397,50 @@ os.geteuid() == 0		# 判断当前用户是否拥有root权限(sudo权限)，貌�
 ```
 #### 网络相关
 
+##### socket网络编程客户端
+
 ```python
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)	# 创建一个socket。AF_INET表示IPv4协议，如果要用IPv6，则用AF_INET6，SOCK_STREAM指定使用面向流的TCP协议。SOCK_DGRAM应该就是UDP协议了
+s.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1) #在客户端开启心跳维护，这样可以进行长连接
+s.connect(('haofly.net', 80))		# 建立连接
+s.send(b'GET / HTTP/1.1\r\nHost: haofly.net\r\nConnection: close\r\n\r\n')	# 向目标服务器发送数据
+# 接收数据
+buffer = []
+while True:
+    d = s.recv(1024)	# 每次最多接收1k字节
+    if d:
+        buffer.append(d)
+    else:
+        break
+data = b''.join(buffer)
+s.close()	# 关闭连接
+# 解析数据
+header, html = data.split(b'\r\n\r\n', 1)
+
 # 通过主机名获取IP地址，由于该函数调用的是系统函数，所以可能出现无法及时更新host的情况，这种问题，socket并没有提供好的方法来刷新缓存，最好的解析DNS的方法是使用DNSPython库
 socket.gethostbyname('haofly.net')
+```
+
+##### socket网络编程服务器端
+
+```python
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(('127.0.0.1', 9999))	# 监听端口
+s.listen(5)	# 开始监听端口，传入的参数指定等待连接的最大数量
+while True:
+    sock, addr = s.accept()	# 接受一个新连接，accept会等待并返回一个客户端的连接
+    t = threading.Thread(target=tcplink, args=(sock, addr))	# 创建一个新的线程来处理TCP连接
+    t.start()
+    
+def tcplink(sock, addr):
+    sock.send(b'Welcome!')
+    while True:
+        data = sock.recv(1024)
+        time.sleep(1)
+        if not data or data.decode('utf-8') == 'exit':
+            break
+        sock.send(('Hello, %s!' % data.decode('utf-8')).encode('utf-8'))
+    sock.close()
 ```
 
 #### 包
