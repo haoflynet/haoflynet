@@ -1,7 +1,7 @@
 ---
 title: "curl手册"
 date: 2016-04-07 08:01:39
-updated: 2018-02-01 10:41:00
+updated: 2018-03-16 14:41:00
 categories: tools
 ---
 # curl
@@ -32,3 +32,7 @@ curl -X POST -F 'username=davidwalsh' -F 'password=something' http://domain.tld/
 # 下载文件
 curl -o test.txt haofly.net/test
 ```
+
+##### TroubleShooting
+
+- **curl: (3) [globbing] nested braces not supported at pos 131**: 特殊字符需要转义，例如`{}`
