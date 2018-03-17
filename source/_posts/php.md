@@ -13,7 +13,7 @@ array_chunk($array, $size): 将数组按size大小分为多个数组
 array_diff($a, $b): 比较数组的不同，可以用来判断两个数组是否相等，需要注意的是这里返回的是在array1中但是不在array2中的值，而不是两个的交集
 array_key_exists("key",$a)  # 查看key是否存在于某个字典
 array_intersect($array1, $array2[,$array $...])	# 返回一个数组，该数组包含了所有在array1同时也出现在其他参数数组中的值
-array_merge()			# 合并数组，相同的key直接覆盖
+array_merge()			# 合并数组，相同的key直接覆盖(前面的被后面的覆盖)
 array_merge_recursive()	# 合并数组，相同的key不覆盖
 array_push($source, "red", "gree")	# 给数组添加元素
 array_search(): 搜索一个key的索引，如果是二维的数组，那么就是通过value搜索key
