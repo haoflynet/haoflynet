@@ -13,6 +13,8 @@ categories: 平凡之路
 
 ### 使用Python控制继电器
 
+<!--more-->
+
 首先需要安装GPIO控制库: `pip install RPi.GPIO`
 
 ```python
