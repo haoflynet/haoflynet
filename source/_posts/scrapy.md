@@ -1,24 +1,22 @@
 ---
-title: "Scrapy PySpider python爬虫"
+title: "Scrapy python爬虫"
 date: 2016-08-07 11:02:20
-updated: 2017-12-12 18:00:00
+updated: 2018-01-22 21:44:01
 categories: python
 ---
-# Scrapy & PySpider
-目前Python爬虫最著名的有两大分支，一个是Scrapy，一个是PySpider，虽然Scrapy用的人更多，更成熟，但是PySpider新特性也十分多.  
-
-两者主要的不同主要在以下几点：  
-
-- Scrapy文档较多，PySpider相对较少，且其官方文档都没说清楚
-- Scrapy已经抓取的链接存储在内存中，PySpider持久存储在数据库中
-- Scrapy使用Pipeline，PySpider使用消息队列  
-- Scrapy只是一个包，PySpider可以看成一个框架或一个service，PySpider占用的内存肯定高(没运行脚本的时候都有100多MB)
-- Scrapy要抓取Js生成的页面，得辅助其它package，比如Splash，PySpider貌似也要依靠PhantomJS
-- Scrapy没有UI，PySpider有WebUI  
-- Scrapy不适用于简单的项目，因为总是会写得复杂，PySpider不适用于复杂的项目，因为写不简单
-- 简洁性上我觉得两者都十分简洁
-
 ## Scrapy
+
+`Scrapy`可以说是Python爬虫界最著名的一个框架了，在我看来也是最全的一个框架，当然优缺点也是很明显的:
+
+- 文档太多，有很多几分钟就能上手的例子
+- Scrapy默认将已经抓取过的和队列中的请求都存储在内存中，不过可以使用`JOBDIR`将进度持久化
+- Scrapy本身不支持分布式，要支持分布式，需要依靠`scrapy-redis`，但是该库很久没人维护了，不过逻辑比较简单，可以自己造轮子
+- Scrapy要抓取Js生成的页面，需要使用其他的工具来辅助，比如Splash，Selenium等
+- Scrapy可以通过设置`CONCURRENT_REQUESTS`设置并发的线程数量，默认是16，另外一个控制是`CONCURRENT_REQUESTS_PER_DOMAIN`默认是8。两个变量都是有作用的，并发有多大，程序就会开多少个子线程。当然，具体怎么执行还是得看CPU，例如，在4核8线程上面，同时仅有8个线程在运行(对于Python来说，其实仅有一个线程)，超过的线程，基本上属于等待唤醒的状态，等那8个线程执行完毕或者遇到IO阻塞的时候才会被唤醒。这一点，对于网络延迟很大的任务非常有用，不用再所有线程去等待了。
+
+在学习scrapy的过程中，如果有看源码的兴趣，建议顺便看看`scrapy-redis`，虽然该项目很少维护，但是却非常有利于搞懂`scrapy`框架。
+
+### 基本框架
 
 新建项目，`scrapy startproject test`目录结构如下(mac里面没有把scrapy命令放到bin里面去，直接搜索命令所在地吧)：
 
@@ -39,10 +37,13 @@ categories: python
 ```shell
 scrapy startproject test    # 创建项目
 scrapy genspider haofly haofly.net # 新建爬虫
-scrapy crawl haofly --output=output.json --loglevel=critical		# 开始某个爬虫，最好加上输出文件，这样会把抓取到的item保留在文件里，防止数据丢失
 scrapy list				# 列出当前project所有的spider
 scrapy bench			# 基准测试，测试当前硬件的情况下最大的抓取速度
 scrapy check			# scrapy自身的单元测试，很多人都不建议用，很难用，而且没没什么作用
+
+scrapy crawl haofly	--loglevel=critical	# 开始一个爬虫，设置日志级别
+scrapy crawl haofly --output=output.json # 开始某个爬虫，output参数会把抓取到的item保留到文件中去
+scrapy crawl zhaopin -s JOBDIR=crawls/zhaopni-1	# -s参数可以将进度保存下来，这样可以保留爬取进度，下次只需要再执行该命令就能从中断的地方继续
 ```
 
 ### 通用设置
@@ -59,23 +60,28 @@ SPIDER_MIDDLEWARES = {		# 中间件
    # 'youtube.middlewares.MyCustomSpiderMiddleware': 543,
 }
 
-# 配置AutoThrottle插件
+# 配置AutoThrottle插件，会根据爬取的网站的负载自动限制爬取速度，不开的话默认的下载延迟就是0。通过自动调节，可以自动调节并发数和下载延迟。
 AUTOTHROTTLE_ENABLED=True   # 是否开启自动限制频率，不开简直太恐怖了  
 AUTOTHROTTLE_START_DELAY=1  # 以秒为单位，默认为5  
 AUTOTHROTTLE_MAX_DELAY=10   # 默认为60  
 AUTOTHROTTLE_DEBUG=False
 
-CONCURRENT_REQUESTS=16   # 并发线程的数量
+CONCURRENT_REQUESTS=16   # 全局并发线程的数量
+CONCURRENT_REQUESTS_PER_DOMAIN=8	# 针对某一个域名的最大并发量
 CONCURRENT_ITEMS=100     # 同时处理的Items的最大值
-REACTOR_THREADPOOL_MAXSIZE=20	# 线程池，用于DNS查询
+REACTOR_THREADPOOL_MAXSIZE=20	# 线程池，主要是为了减少创建销毁线程的开销
 
 COOKIES_ENABLED=False  # 是否开起cookie
 LOG_LEVEL='DEBUG'    	# LOG级别，在下面介绍了log的几种级别，默认级别是INFO
 
 REDIRECT_ENABLED=False # 禁止重定向
 RETRY_ENABLED=False	# 关闭重试
+
+DUPEFILTER_DEBUG = True		# 打开dupefilter的debug
 ```
 ### 爬虫主体
+
+当一个请求被`yield`以后，会立马添加到队列中去；当线程空闲的时候则会从队列中取出；然后经过middleware中间件对request进行处理，最后发起真正的请求。
 
 ```python
 import scrapy
@@ -85,14 +91,26 @@ class TestSpider(scrapy.Spider):
     name = 'test'
     allowed_domains = ['test.com']
     start_urls = ['https://www.test.com/']
+    handle_httpstatus_list = [301]	# 捕获非200的响应，301表示允许重定向。HTTPERROR_ALLOW_ALL = True表示捕获所有
 
     def start_requests(self):
         yield url
+    
+    def parse(self, respone):
+        yield item
+        
+    def parse_another(self, response):
+        # 需要注意的是，所有的回调函数，要么返回item list，要么返回request list，如果什么都不返回，例如，直接写了个self.another_func(...)，如果后面没有yield方法，那么该函数并不会执行
+        self.parse_page(response)		# 即使你在parse_page里面返回了yield，该函数也不会执行，最好这样
+        for item in self.parse_page(response):
+            yield item
 ```
 
 ### 请求与响应
 
 ```python
+request.meta['proxy'] = 'http://xxx.xxx.xxx.xxx:2333'	# 给meta设置proxy字段则会添加代理
+
 response.body				# 获取响应的body
 response.body_as_unicode()	# 获取响应编码后的内容
 response.requests			# 获取相应的请求
@@ -126,8 +144,8 @@ post.get('name')
 post.get('name', 'no value')
 post.keys()
 post.items()
-dict(post)	# 转换为字典
-Post(dist)	# 从字典创建
+dict(post)	# 将Item转换为字典
+Post(dist)	# 从字典创建Item
 ```
 
 ### Pipeline
@@ -143,6 +161,64 @@ class TestPipeline(object):
     def close_spider(self, spider):	# 爬虫结束时候执行
         print('close')
         self.session.close()
+```
+
+### Middleware中间件
+
+可以直接在`middlewares.py`中进行定义
+
+#### DownloadMiddleware下载中间件
+
+所有的请求在`yield Request`的时候被加入队列，当调度器空闲的时候则取出来，然后以此被下载中间件进行处理(即`process_request`)，最后发起真正的请求。需要注意的是，`process_request`是每个中间件顺序执行的，但是`process_response`则是每个中间件倒序执行的。
+
+```python
+class MyMiddleware(object):
+    process_request(self, request, spider):
+        """
+        重试的时候并不会进入这里面
+        :return None: 返回None或者无返回，则会继续处理该请求，继续执行被接下来的中间件处理
+        : 		Response: 返回Response，则会继续处理该请求，但是不会被其他中间件处理，相当于不请求了直接给一个响应
+        		Request: 返回Request，则不会继续处理该请求，相当于新建了一个请求，重新来
+        :raise IgnoreRequest: 将会调用process_exception
+        """
+        pass
+    
+    process_response(self, request, response, spider):
+        """
+        所有的有http状态码的响应都会到这里来
+        :return Response: 将会继续往下执行
+        		Request: 该链条会终端，重新来一个请求
+        :raise IgnoreRequest: 
+        """
+        pass
+    
+    process_exception(self, exception, spider):
+        """
+        所有的没有http状态码的异常
+        :return None: 将会继续处理
+        		Response: 返回一个正常的Response
+        		Request: 重新来一个请求
+        """
+        pass
+
+```
+
+### Signal信号
+
+`scrapy`内部类似于事件触发的机制，通知某件事情发生了。
+
+```python
+engine_started()	# 当Scrapy引擎启动爬取时发送该信号
+engine_stopped()	# 当Scrapy引擎停止时发送该信号
+item_scraped()		# 当item被爬取，并通过所有Pipeline后(没有被丢弃(dropped)，发送该信号
+item_dropped()
+spider_closed()
+spider_opened()
+spider_idle(spider)	# spider处于空闲时候的信号
+spider_error			
+request_scheduled(request, spider)	# 当引擎调度一个Request对象用于下载时，该信号被发送
+response_received(resopnse, request, spider)
+response_downloaded(response, request, spider)
 ```
 
 ### 日志用法
@@ -166,7 +242,33 @@ logger = logging.getLogger()
 logger.warning("This is a warning")
 ```
 
+###暂停与继续
 
+`scrapy`提供了简单的方法以便于程序意外终止或者主动停止，仅需要在运行爬虫的时候添加参数，用于指定队列状态存储目录，`scrapy`会将序列化后的队列状态存储在该目录中
+
+```shell
+scrapy crawl somespider -s JOBDIR=crawls/somespider-1
+
+# 如果想让某个url允许出现重复，那么可以给Request这个参数dont_filter。如果返回200，但是还是想重新请求，想让该url不会被filter掉，那么可以直接生成一个相同的request将dont_filter设置为True就行了
+yield Request(url=url, dont_filter=True)
+```
+
+### Telnet
+
+`scrapy`运行的时候会打开一个6023端口，用于实时查看爬虫当前的进度。直接`telnet 127.0.0.1 6023`即即可进入
+
+```shell
+# est()命令
+time()-engine.start_time: 总的执行时间
+len(engine.downloader.active): 正在下载的请求数量
+len(engine.slot.inprogress): 当前处理进程数量
+len(engine.slot.scheduler.mqs): 当前还在排队的请求数量，被yield以后就被放到这里面
+len(engine.scraper.slot.queue): 
+len(engine.scraper.slot.active): 当前等待处理的响应的书俩昂
+engine.scraper.slot.active_size: 所有的响应总的大小
+engine.scraper.slot.itemproc_size: 有多少个item等待被处理
+engine.scraper.slot.needs_backout()
+```
 
 ### 其他语法
 
@@ -185,10 +287,6 @@ def start_requests(self):
         yield Request(url, self.parse)
 ```
 
-## PySpider
-
-
-
 ##TroubleShooting
 - **安装出错`libffi`**
 
@@ -199,8 +297,8 @@ def start_requests(self):
    ```
      需要安装这个`sudo apt-get install libffi-dev`
 
-- **ImportError: No module named twisted.internet**：
-  执行`pip3 install twisted`
+- **ImportError: No module named twisted.internet或者No module named twisted**：
+  执行`pip3 install twisted`，如果出现错误`No matching distribution found for Twisted`那么就是系统存在多个`python`版本导致找不到解压`twisted`包的库，这时候需要先安装`sudo apt-get install bzip2 libbz2-dev`，然后重新安装`python3`即可
 
 - **无法捕获除200以外的错误**
   首先，像上面的配置文件中添加`HttpErrorMiddleware`中间件，然后在spider里面定义需要捕获哪些错误
@@ -248,13 +346,9 @@ handle_httpstatus_list = [404, 502]
 
 /tmp/xmlXPathInitipwvpamp.c:1:26: 错误：libxml/xpath.h：没有那个文件或目录
 
-## PySpider
-
-元素选择
-
 ## User-Agent列表
 
-上次爬一个代理网站发现返回521错误，排查了好久居然发现是User-Agent错误，可我明明之前也是选择了不同的User-Agent的呀，难道服务器会记录一个IP对应一个User-Agent.这里罗列一下常用的User-Agent：
+上次爬一个代理网站发现返回521错误，排查了好久居然发现是User-Agent错误，可我明明之前也是选择了不同的User-Agent的呀，难道服务器会记录一个IP对应一个User-Agent.这里罗列一下常用的User-Agent。更全的列表可以参考[user-agent-list](https://raw.githubusercontent.com/basilboli/user-agent-list/master/user-agent-list.txt)
 
 	'Mozilla/5.0 (Android; Tablet; rv:14.0) Gecko/14.0 Firefox/14.0',
 	'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0',
