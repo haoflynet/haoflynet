@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-02-23 16:09:00
+updated: 2018-03-16 18:02:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -17,6 +17,8 @@ var $a;	// es6以前定义变量，if (true) {var a = 1;} console.log(a); 输出
 let $b;	// es6用于定义跨级作用域本地变量，if (true) {let b = 1;} console.log(b);输出为undefined
 const $c;	// 定义常量
 ```
+
+<!--more-->
 
 ### 对象
 
@@ -34,11 +36,26 @@ arr.toString(): 数组转字符串，中间会自动加上逗号
 arr.join(''): 数组转字符串，分隔符可自定义
 arr.push(obj): 给数组添加元素
 arr.slice(start, end): 数组分片
-$.each($array, function(k, v){});	# 遍历数组
+
+for (var index in arr) {}	// 遍历数组 
+
+// for jQuery
+$.each($array, function(k, v){});	// 遍历数组
 $.inArray('a', $arr): 判断数组是否包含某个元素
 ```
 ### 字符串
 ```javascript
+// 搜索
+str.match(/<title>(.*?)<\/title>/)	// 正则提取
+str.match(/<title>(.*?)<\/title>/g)	// 全局搜索，不加g默认只取找到的第一个嘛
+str.match(/<title>(<abc>.*?)<\/title>/)	// 正则提取，带命名组的正则提取
+
+// 去除空格
+str.replace(/\s+/g, "")    		// 去除所有的空格
+str.replace(/^\s+|\s+$/g, "")	// 去除两端的空格
+str.replace( /^\s*/, '')		// 去除左边的空格
+str.replace(/(\s*$)/g, "")		// 去除右边的空格
+
 JSON.parse(text)	// 将字符串转换为JSON
 str.replace(reg, function(s, value){})	// 替换字符串，reg可以是正则表达式
 str.indexOf(substring)	// 查找子字符串出现的位置，-1表示没找到
