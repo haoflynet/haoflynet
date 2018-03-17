@@ -1171,6 +1171,17 @@ public function report(Exception $e)
   $this->argument('field');					# 获取参数，只能在handle里面，不能在__constructor里面
   ```
 
+### 框架扩展/管理者/工厂
+
+Laravel有几个"Manager"类，用于管理一些基本的驱动组件，例如数据库管理类、缓存管理类、会话管理类、用户验证管理、队列管理。这种类负责根据配置来创建一个驱动。
+
+```php
+# 所有的Manager都有个extend方法，可以将新的或者说自己写的驱动注入到manager中去。例如
+$this->app->resolving('db', function ($db) {
+  return new Connection($config);
+});
+```
+
 ### 测试
 
 PHP的phpunit提供了很好的测试方式，Laravel对其进行了封装，使得易用性更高更方便。
