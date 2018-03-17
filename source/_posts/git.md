@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2018-02-18 23:31:00
+updated: 2018-03-12 22:31:00
 categories: tools
 ---
 # Git指南
@@ -242,5 +242,13 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
    ```shell
      git --git-dir=~/foo/.git --work-tree=~/foo push
    ```
+
+- **误删分支及恢复方法**: 项目很久以后才发现以前某个被删除的分支还没合并到主分支，看不到修改了哪些地方了。
+
+   1. 先用`git log -g`找到之前在该分支上面的`commit`记录(所以必须要有经常`commit`的习惯，可以不`push`但是要`commit`)
+   2. 从该commit处新建分支`git branch 新分支名 commit的hash值`
+   3. 切换到新分支`git checkout 新分支名` 
+
+- **两个人用同一个账号登录同一台服务器居然有一个人有git权限，另一个却没有**: 这是因为虽然是同一个用户登录的服务器，但是所带的key确实不一样的，可以使用`ssh-add -l`查看你登录的`ssh key`，看是否有权限。
 
    ​
