@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2018-01-05 14:44:30
+updated: 2018-03-12 21:44:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -34,12 +34,15 @@ python3.3 get-pip.py
 
 ## 基本语法
 
+<!--more-->
+
 #### 列表
 
 ```python
 all([])	# 判断列表里面是否所有的值都为1
 any([])	# 判断列表里面是否有值都为1
 
+li[10:]		# 如果切片超过了列表的索引范围，并不会报错，仅仅是返回空列表而已
 li[::-1]	# 逆序列表
 li[::2]		# 列表里面的奇数位，最后那个2表示不长，前面::表示整个数组
 li[1::2]	# 列表里面的偶数位
@@ -61,6 +64,11 @@ li.insert(position, item)	# 在列表指定位置插入一个元素
 li.append([1,2])	# 添加一个元素
 li.extend([1,2])	# 添加多个元素
 li_1 + li_2			# 列表相加，例如[1] + [2] = [1, 2]
+
+A.T @ A			# @矩阵乘法
+
+[x*x for x in range(10)]	# 列表推导，得到的是一个数组
+(x*x for x in range(10))	# 列表推导，得到的是一个迭代器
 ```
 #### 字典
 
@@ -119,6 +127,9 @@ json.dumps(ErrorMsg(e, 200))	# {"msg":"xxx", "code":200}
 # 字典列表的筛选，直接用filter
 filter(lambda person: person['name'] == 'haofly', people_list)	# 不过有个缺点，就是不能传值进lambda，不然就直接用以下这种方法吧
 [person for person in people_list if person['name'] = name]
+
+# 字典推倒式
+d = {key: value for (key, value) in iterable}
 ```
 #### 类/函数
 
@@ -152,7 +163,7 @@ UserResponse = namedtuple('UserResponse', [
 @staticmethod
 def get():
     pass
-# 定义类方法
+# 定义类方法，cls表示类本身
 def get(cls):
     pass
 
@@ -188,6 +199,10 @@ class MyList(list, metaclass=ListMetaclass):	# 指定该类在创建的时候用
 ```python
 # 类型检查
 def func(a: int) -> int	# 这表示该函数的参数a要求是整型，返回值是整型号
+
+# 在运行时强制检查类型
+@enforce.runtime_validation
+def foo(text: str) -> None:...
 
 name: str = 'haofly'	# 直接给变量指定类型
 people: People			# 可以用自定义的类
@@ -330,6 +345,9 @@ fp.truncate() # 清空语句
 # 计算文件的md5值
 import hashlib
 hashlib.md5(open('filename.exe', 'rb').read()).hexdigest()
+          
+# 递归便利文件路径，例如
+glob.globa('/path/**/*.avi', recursive=True)	# 可以找到path目录下的所有avi文件
 ```
 #### 异常处理
 
@@ -391,6 +409,10 @@ socket.gethostbyname('haofly.net')
 在目录下面加上__init__.py就变成了一个包，import包内部的模块使用'.'来分割，__init__.py里面可以定义一些全局变量，__all__指定了此包被import *的时候，哪些模块会被import进来。最好在创建一个包的时候都加上这个，避免有些模块被外部引用。如果没有定义__init__，那么import *的时候会将非下划线开头的成员都导入到当前命名空间中。
 使用这种方式，在外部引入模块内部的模块会更加方便，而且比较不容易出错。特别是在交叉引用的时候，有时候会无法引用，但是如果直接在内部模块之间引入父模块就不会有这种错误，避免在文件开头交叉引用的时候无法找到模块。
 
+# 单下划线和双下划线
+__foo__: 一种约定，表示内部的名字，用来和其他用户自定义的变量名区分
+_foo: 私有变量或者临时变量，不能用from import进行导入
+
 # 带点号，表示当前目录下的模块，如
 from . import client
 # 可以在一个模块的根目录下得__init__.py定义一些基本的东西，比如加载一些模块呀，设置一些全局变量(__author__这样的东西)啥的
@@ -430,6 +452,8 @@ for k in dir(module):
 #### 输入输出
 
 ```python
+print('string', file=sys.stderr)	# 直接输出到文件
+
 # 输出重定向的方法
 import sys
 from io import StringIO
@@ -460,7 +484,7 @@ sys.stdout = fp
 ### 生命周期
 
 ```python
-__new__		# 用来创建类并返回这个类的实例，在构造函数之前执行，可以决定是否用__init__方法来实例化类，是一个静态方法，创建实例的时候一定会调用
+__new__		# 用来创建类并返回这个类的实例，在构造函数之前执行，可以决定是否用__init__方法来实例化类，是一个静态方法，创建实例的时候一定会调用。可以用它来作为创建单例的一种途径
 __init__	# 用传入的参数来初始化一个实例，在创建实例的时候不一定会调用，比如反序列化的时候就不会执行
 __del__		# 类的析构函数，对象在内存中被清理时执行，即使对象在执行中报错也依然会执行
 ```
