@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-02-12 18:31:00
+updated: 2018-03-12 14:31:00
 categories: php
 ---
 # Laravel指南
@@ -587,7 +587,7 @@ User::whereDay('created_at', '17');
 User::whereYear('created_at', '2017');
 User::whereRaw('name="wang" and LENGT(name) > 1');				# 当有复杂点的where语句或者想直接写在mysql里面的那样的where语句，可以直接这样写
 User::whereColumn('first_field', 'second_field');	# 判断两个字段是否相等
-User::where(...)->orWhere()		# or where
+User::where(...)->orWhere()		# or where，需要注意的是这里是和前面所有的where相or，并且后面的不会去判断deleted_at is null了
 User::where()->firstOrFail()	# 查找第一个，找不到就抛异常
 User::where('user_id', 1)->get()# 返回一个Collection对象
 User::where(...)->first()		# 只取出第一个model对象
@@ -1246,6 +1246,13 @@ public function testIndex{
 - 直接对控制器测试是一种简单直接有效的测试方法，而无需再单独给service或者model层进行测试
 
 
+### 性能优化
+
+```shell
+php artisan clear-compiled && php artisan cache:clear && php artisan config:clear && php artisan route:clear
+
+php artisan optimize --force && php artisan config:cache && php artisan api:cache
+```
 
 ## TroubleShooting
 
