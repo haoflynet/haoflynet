@@ -1,10 +1,10 @@
 ---
-title: "Linux 教程"
+title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-03-06 14:33:30
+updated: 2018-03-17 15:13:30
 categories: system
 ---
-# Linux指南
+# Linux手册
 
 ## 系统安装
 
@@ -25,6 +25,8 @@ sudo yum install epel-release	# 安装epel源
 ```
 
 ## 命令行Tips
+
+<!--more-->
 
 #### shell
 
@@ -209,6 +211,11 @@ find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK�
 ```shell
 # 配置免密码登录
 ssh-keygen -t dsa # 生成自己的ssh，然后将~/.ssh/id_dsa.pub的内容添加到主机的~/.ssh/authorized_keys里面面去
+
+# ssh-add命令
+ssh-add -l	# 列出当前登录用户的ssh key
+ssh-add -k -i ~/.ssh/my.pub	# 将指定ssh key添加到当前用户的key列表中去，之后的ssh命令都会自动带上该key
+ssh-add -A	# 将当前所有的key都带上
 
 # ssh直接执行命令
 ssh IP "ls"
