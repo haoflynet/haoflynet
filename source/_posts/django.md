@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2017-06-30 12:03:00
+updated: 2018-03-19 14:03:00
 categories: python
 ---
 # Django教程
@@ -13,6 +13,8 @@ Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Py
 应该说Django坚持自己造轮子，确实为开发者节约了不少的时间，我很看重它的扩展功能，packages数量十分丰富。Django采用的是最流行也是我最熟悉的MVC设计模式，虽然在之前的一个PHP(Laravel)项目中也是采用的MVC模式，但一直都没怎么吃透，始终在各层分离的时候不是很清晰，所以也可趁学习Django对MVC的概念进行强化。
 
 Django另一个我特别喜欢的特性就是Application，它与Project的概念不同，一个APP就相当于一个功能模块，一个Project可以包含多个APP，一个APP可以同时被多个Project引用，App增加了代码的复用机会，提高了扩展性和松耦合性，Django中很多的packages都是以APP的形式存在的。
+
+<!--more-->
 
 另外，我学习主要参考的是开源书籍 [Django搭建简易博客教程]( http://andrew-liu.gitbooks.io/django-blog/ )
 
@@ -116,8 +118,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static') # 这个选项默认是没有的�
 
 在其他文件访问全局配置项，可以这样访问：
 
-	from django.conf import settings
-	settings.DEBUG
+```python
+from django.conf import settings
+settings.DEBUG
+```
 
 ### 应用配置
 
@@ -203,20 +207,22 @@ Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系
 ### 数据表定义
 定义model的文件是`project/app/models.py`里面，例如，要定义一张用户表：
 
-	fromo django.db import models
-	class User(models.Model):
-		username = models.CharField(max_length = 20)	# 用户名字段
-		create_time = models.DateTimeField(auto_now_add = True)	# 注册日期字段，如果同时有两个字段对应着同一个外键，那么久得重命名字段名了，比如：
-		receiver = models.ForeignKey(Users, null=True, related_name='receiver')
-		poster = models.ForeignKey(Users, null=True, related_name='poster')
-		
-		def __str__(self):
-			'''这个函数可以用于str(obj)函数来输出该对象的信息，默认是表名'''
-			return self.username
-	    
-	    class Meta:
-	        db_table = '自定义表名'
-	        unique_together = ('column_1', 'column_2')	# 联合唯一键
+```python
+fromo django.db import models
+class User(models.Model):
+	username = models.CharField(max_length = 20)	# 用户名字段
+	create_time = models.DateTimeField(auto_now_add = True)	# 注册日期字段，如果同时有两个字段对应着同一个外键，那么久得重命名字段名了，比如：
+	receiver = models.ForeignKey(Users, null=True, related_name='receiver')
+	poster = models.ForeignKey(Users, null=True, related_name='poster')
+	
+	def __str__(self):
+		'''这个函数可以用于str(obj)函数来输出该对象的信息，默认是表名'''
+		return self.username
+    
+    class Meta:
+        db_table = '自定义表名'
+        unique_together = ('column_1', 'column_2')	# 联合唯一键
+```
 当建立好models过后，执行如下命令就可以在数据库中新建或更新数据表了：
 
 	python manage.py makemigrations
@@ -344,16 +350,20 @@ Blog.objects.get( Q(name__startswith='wang'), Q(name__startswith='hao')) # 逗�
 
 #### 更新记录
 
-	post = Blog.objects.filter(id=1).update(userName="new") #1.7之前更新单条记录如果要用字典的话就只能这样了
-	Blog.objects.all().update(userName="new")  # 还可以批量更新
-	obj, created = Posts.objects.update_or_create(pk = 3, title='wang', defaults = updated_values)   # 1.7之后可以用这种方法来更新或者创建一个，如果没找到对象，那么就新建，新建或者更新的字典是defaults的值，返回值中，obj表示该对象，created是一个布尔值
-	get_or_create(title='wang', defaults=\{\})：获取或者新建
+```python
+post = Blog.objects.filter(id=1).update(userName="new") #1.7之前更新单条记录如果要用字典的话就只能这样了
+Blog.objects.all().update(userName="new")  # 还可以批量更新
+obj, created = Posts.objects.update_or_create(pk = 3, title='wang', defaults = updated_values)   # 1.7之后可以用这种方法来更新或者创建一个，如果没找到对象，那么就新建，新建或者更新的字典是defaults的值，返回值中，obj表示该对象，created是一个布尔值
+get_or_create(title='wang', defaults=\{\})：获取或者新建
+```
 
 #### 删除记录
 
-	Blog.objects.get(userName="xiao").delete()
-	Blog.objects.all().delete()
-	Blog.author.through.objects.filter(author = author.id).delete()  # 删除多对多关系，仅仅是删除关系，而不是删除对象
+```python
+Blog.objects.get(userName="xiao").delete()
+Blog.objects.all().delete()
+Blog.author.through.objects.filter(author = author.id).delete()  # 删除多对多关系，仅仅是删除关系，而不是删除对象
+```
 
 ### 数据约束
 #### ForeignKey
@@ -375,30 +385,34 @@ server_system = server.system.name # 这样就可以获取到那个name了
 #### OneToMany(hasMany)
 一对多关系，同样使用ForeighKey实现，例如
 
-	# 在models.py中定义
-	class Posts(models.Model):
-		title = models.CharField('标题', max_length = 50)
-	
-	class Comments(models.Model):
-		post = models.ForeignKey(Posts, related_name = 'comments_set')
-	
-	# 在views.py中这么用
-	post = Posts.objects.get(pk = 1)    # 获取一篇文章
-	comments = post.comments_set.all()  # 获取该文章的所有评论，是一个列表
+```python
+# 在models.py中定义
+class Posts(models.Model):
+	title = models.CharField('标题', max_length = 50)
+
+class Comments(models.Model):
+	post = models.ForeignKey(Posts, related_name = 'comments_set')
+
+# 在views.py中这么用
+post = Posts.objects.get(pk = 1)    # 获取一篇文章
+comments = post.comments_set.all()  # 获取该文章的所有评论，是一个列表
+```
 #### ManyToManyField
 多对多关系，有一种特殊情况，如果需要对这种关系添加额外的字段，可以使用through，添加额外的表来表示，例如，用户一张表，被使用的物品一张表，用户与物品是多对多的关系，但是有时候我们需要记录下用户使用该物品的一些其他属性，比如使用了多少次什么的，这时候就需要给这个多对多关系添加额外的字段来表示，那就需要添加额外的表了，示例如下：
 
-	class User(models.Model):
-		username = models.CharField(max_length = 20)
-		goods = models.ManyToManyField('物品', 'Goods', through='user_goods')
-	
-	class Goods(models.Model):
-		goodsname = models.CharField(max_length = 20)
-	
-	class user_goods(models.Model):
-		user = models.ForeignKey(User)
-		goods = models.ForeignKey(Goods)
-		clicks = models.IntegerField('点击量', default=0)
+```python
+class User(models.Model):
+	username = models.CharField(max_length = 20)
+	goods = models.ManyToManyField('物品', 'Goods', through='user_goods')
+
+class Goods(models.Model):
+	goodsname = models.CharField(max_length = 20)
+
+class user_goods(models.Model):
+	user = models.ForeignKey(User)
+	goods = models.ForeignKey(Goods)
+	clicks = models.IntegerField('点击量', default=0)
+```
 
 #### OneToOneField
 必须是一对一，而不是多对一或一对多
@@ -407,19 +421,21 @@ server_system = server.system.name # 这样就可以获取到那个name了
 Django使用内建的paginator模块进行分页的操作，十分方便。使用方法见例子：
 
 
-	from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # 导入模块
-	def listing(request):
-		contact_list = Contacts.objects.all()   # 获取所有model对象
-		paginator = Paginator(contact_list, 25) # 第二个参数是每页显示的数量
-		page = request.GET.get('page')          # 获取URL参数中的page number
-		try:
-			contacts = paginator.page(page)
-		except PageNotAnInteger:                # 若不是整数则跳到第一页
-			contacts = paginator.page(1)
-		except EmptyPage:                       # 若超过了则最后一页
-			contacts = paginator.page(paginator.num_pages)
-	
-		return render_to_response('list.html', {"contacts": contacts})
+```python
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # 导入模块
+def listing(request):
+	contact_list = Contacts.objects.all()   # 获取所有model对象
+	paginator = Paginator(contact_list, 25) # 第二个参数是每页显示的数量
+	page = request.GET.get('page')          # 获取URL参数中的page number
+	try:
+		contacts = paginator.page(page)
+	except PageNotAnInteger:                # 若不是整数则跳到第一页
+		contacts = paginator.page(1)
+	except EmptyPage:                       # 若超过了则最后一页
+		contacts = paginator.page(paginator.num_pages)
+
+	return render_to_response('list.html', {"contacts": contacts})
+```
 
 虽然contacts是一个Page对象，但是在模板中仍然可以使用for循环对其进行遍历，它其实是一个对象所组成的list。下面是分页按钮html模板例子：
 
@@ -469,10 +485,12 @@ Django使用内建的paginator模块进行分页的操作，十分方便。使�
 ### 模板定义
 为了方便管理，最好在app的目录下新建templates文件夹用于存放模板文件，然后在project的配置文件settings.py中指明模板文件夹的位置:
 
-	TEMPLATES['DIRS']这个变量中添加即可，比如
-	'DIRS': [
-		os.path.join(BASE_DIR, 'dashboard/templates').replace('\\', '/'),
-	]
+```python
+TEMPLATES['DIRS']这个变量中添加即可，比如
+'DIRS': [
+	os.path.join(BASE_DIR, 'dashboard/templates').replace('\\', '/'),
+]
+```
 
 这样，在该app的view中就可以这样使用templates下的test.html模板文件了。例如：
 
@@ -642,12 +660,14 @@ ifnotequal同上
 	{{ total }} employee{{ total|pluralize }}
 	{% endwith %}
 
-
+## 用户认证系统
 ## 用户认证系统
 Django项目默认添加了用户认证系统的，可以通过
 
-	python manage.py makemigrations
-	python manage.py migrate
+```shell
+python manage.py makemigrations
+python manage.py migrate
+```
 
 将认证系统的数据表添加到数据库中去.
 
@@ -664,7 +684,7 @@ Django项目默认添加了用户认证系统的，可以通过
 	Password (again):
 	Superuser created successfully.
 
-
+### 验证用户登录
 ### 验证用户登录
 需要注意的是，为了不与login冲突，views最好不要写成login
 
