@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-03-17 15:13:30
+updated: 2018-03-21 15:13:30
 categories: system
 ---
 # Linux手册
@@ -76,6 +76,9 @@ sudo nethogs
 # 监控内存占用
 top: 常用的命令，按1可以查看每个CPU的负载情况
 gtop: 功能十分强大的系统监视器
+
+# 更新和查看系统服务的运行级信息(可以设置开机启动服务)，/etc/init.d/目录下的服务。level总共有6级，分别表示关机、单用户模式、无网络连接的多用户命令行模式、有网络连接的多用户命令行模式、不可用、带图形界面的多用户模式、重新启动
+chkconfig --list	# 列出所有的系统服务
 ```
 
 #### 查找、统计、替换
@@ -184,6 +187,8 @@ cat filename | more  # 表示分页查看文件内容
 # 输出内容到文件
 cat ./test.conf >> /etc/supervisord.conf
 sudo bash -c 'cat ./test.conf >> /etc/supervisord.conf'  # 上一句如果出现权限问题可以尝试使用这条命令
+file 文件名	# 查看文件基本类型
+stat 文件名	# 查看文件的属性，例如最近访问时间、最近更改时间、最近改动时间等
 
 # 建立链接，最好都用绝对路径
 软连接：ln -s 源 目的地
@@ -611,7 +616,7 @@ date +"%T"	# 仅显示时间，比如10:44:00
 	find ./ -name "*.log" -mtime -1 | which read line; do tail -n 5 "$line" > ~/bak/"$line"; done # 查找，然后按行进行执行
 	while read line do 语句 done  # 一行一行地进行处理，真正的处理
 
-
+​	
 ​	
 	# xargs：将上一个管道的输出直接作为这个管道的输入
 	    ps | grep python | awk -F ' ' '\{print $1\}' | xargs kill
