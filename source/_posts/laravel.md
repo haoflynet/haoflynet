@@ -715,6 +715,14 @@ Post::updated(function ($post) {})	# 表示Post对象在updated以后需要做�
 
 可供监听的事件有`updating/created/updating/updated/deleting/deleted/saving/saved/restoring/restored`。其中`updated`仅仅是字段的值真的变化了才会去更新。
 
+#### DatabaseServiceProvider
+
+Laravel自带一个特殊的`DatabaseServiceProvider`，用于管理数据库的连接，在`config/app.php`里面进行声明。
+
+```php
+Model::setConnectionResolver($this->app['db']);	// 这句话用于给模型设置connection resolver，传入一个DatabaseManager，用于管理数据库连接
+```
+
 ### 认证相关
 
 #### 授权Policy
@@ -842,6 +850,8 @@ dispatch($jog);
 
 # 指定延迟时间
 $job = (new App\Jobs\..)->delay(60);
+
+Redis::zcard(sprintf('queues:%s:delayed', JobClass::NAME));	// 获取延迟队列任务数量
 
 # 任务出错执行
 public function failed()
