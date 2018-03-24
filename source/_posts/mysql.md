@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-02-07 18:59:00
+updated: 2018-03-16 18:59:00
 categories: database
 ---
 ## 安装方法
@@ -60,6 +60,7 @@ ALTER TABLE 表名 DROP COLUMN 字段名;	# 给表删除字段
 ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
 
 CREATE INDEX name_idx ON `表名`(`列名`);	# 给表添加索引
+ALTER TABLE `表名` ADD UNIQUE `键名`(`列名1`, `列名2`);
 ```
 
 #### 数据记录操作
@@ -96,6 +97,15 @@ SELECT * FROM table_name GROUP BY 'field';	# 分组显示，有多少不同的fi
 SELECT name, SUM(money) FROM users GROUP BY name HAVING SUM(money)>23333 # 这一句就能查找出所拥有的资产综合大于23333的用户
 SELECT * FROM virtuals WHERE ip in (SELECT ip FROM virtuals GROUP BY ip HAVING COUNT(ip)>1);	# 可以统计所有有重复的数据
 ```
+**LIKE查询的特殊转义**
+
+```shell
+/: //
+': /'
+": /"
+\: \\\\	# 没错，右斜杠需要这样做
+```
+
 ##### 连表查询
 
 ```shell
@@ -134,7 +144,7 @@ INSERT INTO 表名(属性列表) VALUES(值列表)
 # 忽略重复的记录
 INSERT IGNORE INTO ... 
 # 包含子查询的插入INSERT INTO SELECT
-SELECT INTO db_name(field1, field2) VALUES SELECT field1, field2 FROM db_name2
+SELECT INTO db_name(field1, field2) SELECT field1, field2 FROM db_name2
 ```
 
 ### 系统相关
@@ -258,6 +268,9 @@ REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜
 ### 常见性能问题及优化
 
 - **COUNT(*)优化**: Innodb数据库中表的总行数并没有直接存储，而是每次都执行全表扫描，如果表太大简单的`COUNT(*)`则会非常耗时。这时候不妨选择某个字段添加一个辅助索引，依然会扫描全表，但是`COUNT(*)`的性能能提高很多。因为在使用主键或者唯一索引的时候，InnoDB会先把所有的行读到数据缓冲区，发生了多次IO，而使用了辅助索引以后，由于辅助索引保存的仅仅是index的值，虽然还是读了那么多行到缓冲区，但是数据量则大大减少，仅有一个字段，磁盘IO减少，所以性能提高了。
+- **char和varchar**: Char是定长类型，对于经常变更的数据，一般采用CHAR来进行存储，因为CHAR类型在变化的时候不容易产生碎片。VARCHAR是变长类型，它比CHAR更节省空间。
+- **使用ENUM枚举类型来代替字符串类型**
+- ​
 
 ### 索引类型
 
