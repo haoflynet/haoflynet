@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-03-12 14:31:00
+updated: 2018-03-26 10:31:00
 categories: php
 ---
 # Laravel指南
@@ -567,6 +567,7 @@ $user->getTable();			# 获取数据表名称，不带前缀的
 User::all();						# 取出所有记录
 User::all(array('id', 'name'));  # 取出某几个字段
 User::find(1);					# 根据主键取出一条数据
+optional(User::find(1))->id;		# 如果user未找到，那么这条语句不会报错，同样返回null，5.5
 User::findOrFail(1);				# 根据主键取出一条数据或者抛出异常
 User::where([
   ['id', 1],
@@ -982,7 +983,19 @@ public function __construct(Mailer $mailer)	# 在控制器、事件监听器、�
 
 ### Service Provider
 
-Laravel提供了很方便的注入服务的方法，那就是`service provider`，当写完一个`service provider`以后，在`config/app.php`的provider里面添加该类名称即可实现注入。这样就可以给laravel编写第三方扩展包了。
+Laravel提供了很方便的注入服务的方法，那就是`service provider`，当写完一个`service provider`以后，在`config/app.php`的provider里面添加该类名称即可实现注入。最重要的两个方法:`绑定(Binding)`和`解析(Resolving)`。
+
+```php
+# 对象的解析
+$this->app->make('Foo');
+$foo = $this->app['Foo'];
+
+# resolving方法用于监听对象被容器解析事件
+$this->app->resolving(function ($object, $container) {});	// 解析所有的对象都会别调用
+$this->app->resolving('db', function () {});		// 当解析db类型的对象时会被调用
+```
+
+这样就可以给laravel编写第三方扩展包了，例如
 
 ```php
 <?php
