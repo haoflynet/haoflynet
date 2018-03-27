@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2017-10-10 23:01:30
+updated: 2018-03-20 14:49:30
 categories: frontend
 ---
 # node.js教程
@@ -39,12 +39,14 @@ npm install 包名 --save	# 安装包，并且更新到package.json中去
 npm install 报名 --save-dev	# 安装包，并且更新到package.json的开发依赖中区
 npm list --depth=0	# 列出已安装模块
 npm list -g --depth=0 # 列出全局安装的包
-npm list --depth=0 2> /dev/null	# 忽略标准错误输出(npm ERR!这种错误将被忽略)
+npm list --depth=0 2> /dev/null	# 忽略标准错误输出(npm ERR!这种错误将被忽略
 npm update 			# 升级当前目录下的所有模块
 npm update 包名		# 更新指定包
 npm install npm -g	# 升级npm
 npm install -g n && n stable # 升级node.js到最新稳定版
 升级node.js
+
+npm config delete name	# 删除某个配置
 
 # 代理设置
 npm config set proxy=http://127.0.0.1:1080

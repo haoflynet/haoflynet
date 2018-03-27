@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-03-16 18:59:00
+updated: 2018-03-26 18:59:00
 categories: database
 ---
 ## 安装方法
@@ -112,7 +112,7 @@ SELECT * FROM virtuals WHERE ip in (SELECT ip FROM virtuals GROUP BY ip HAVING C
 # LEFT JOIN ... ON ...
 ## 会取出左表的全部记录，即使右表没有对应匹配的记录。用这种方式SELECT出来的数据，如果右表数据为空，那么会给NULL
 
-# INNER JOIN ... ON ...
+# 内连接INNER JOIN ... ON ...(等于与直接用JOIN)
 ## 语法和LEFT JOIN其实是一样的，只不过右表没有匹配的记录的情况下，最终的结果就不会出现左表的那一条数据
 ```
 
