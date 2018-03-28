@@ -1,9 +1,17 @@
 ---
-title: "使用PDB调试Python程序"
+title: "Python代码调试: pdb && breakpoing"
 date: 2015-07-11 17:18:07
-updated: 2017-08-31 07:37:00
+updated: 2018-03-27 07:37:00
 categories: 编程之路
 ---
+### Breakpoint
+
+从3.7开始，Python新增一个内置的调试方法`breakpoint()`，详情见`PEP553`，解决了原有`pdb`的一些不可能完成的问题。支持开关调试，还可以利用`web-pdb`实现远程调试
+
+<!--more-->
+
+### PDB
+
 pdb是Python自带的类gdb、cdb的调试工具。
 
 在Sublime Text的SublimeREPL插件提供了pdb调试应用程序的功能，但是由于手上项目package太过复杂，所以这次我就直接在Django代码要调试的地方插入pdb代码，这样相当于直接在那个地方下了一个断点。可以在任何地方插入如下代码进行中断，即使是Django也能通过这种方式进行调试：
