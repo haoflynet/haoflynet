@@ -1,7 +1,7 @@
 ---
 title: "Python使用Splinter(Selenium)进行浏览器模拟测试"
 date: 2016-08-10 19:56:39
-updated: 2017-12-12 18:43:00
+updated: 2018-03-13 18:43:00
 categories: python
 ---
 每次看到selenium都觉得很牛，但是苦于文档(包括英文)太少，我到今天才真正完整地安装使用了一把。我不喜欢来一个项目就在自己电脑上搭一个运行环境，而是喜欢在docker或者虚拟机里进行操作，问题是docker或者虚拟机里并没有任何的可视化的浏览器，而Selenium又依赖于这些浏览器驱动，我是最讨厌安装驱动的，因为驱动这个东西电脑不同差距特别大，总是会出现各种问题。而在服务器上如何安装selenium或者splinter，这个过程在网上基本是找不到的，所以这里记录下自己的安装方法。
@@ -99,8 +99,10 @@ print(browser.title)
 
 通过`chrome_options.add_argument('')`可以设置非常多的浏览器的参数
 
-```she
+```python
 disable-infobars	// 禁用网页上部的提示栏，比如2.28的webdriver开始会提示你Chrome正受到自动测试软件的控制，这个特性应该是chrome为了安全给加的
+
+option.add_argument('--user-data-dir=/path')	# 指定个人资料路径，指向自己的浏览器，这样，chromedriver的配置就能和自己的一样了
 ```
 
 ### 获取所有网络请求
