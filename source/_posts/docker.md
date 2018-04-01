@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2018-03-02 18:22:00
+updated: 2018-03-29 18:22:00
 categories: tools
 ---
 # Docker 使用指南
@@ -59,11 +59,14 @@ docker tag id name:tag	# 给镜像更改名称
 
 ## 容器操作
 
-	docker start：和docker run后面参数一样，只是它是重启容器，而docker run是创建容器
-	docker stop 容器名/ID：停止某个容器
-	docker attach 容器名/ID：直接进入容器，查看容器当前的标准输出
-	docker exec -it 容器名 bash  # ssh进一个容器
-	docker inspect 容器名：查看一个容器的详细信息
+```shell
+docker start	#和docker run后面参数一样，只是它是重启容器，而docker run是创建容器
+docker stop 容器名/ID	#停止某个容器
+docker attach 容器名/ID	# 直接进入容器，查看容器当前的标准输出
+docker exec -it 容器名 bash  # ssh进一个容器
+docker exec -it 容器名 sh -c "command"	# 让容器执行某条命令
+docker inspect 容器名	# 查看一个容器的详细信息
+```
 
 ## Dockerfile
 

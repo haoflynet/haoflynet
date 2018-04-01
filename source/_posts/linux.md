@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-03-21 15:13:30
+updated: 2018-03-30 15:13:30
 categories: system
 ---
 # Linux手册
@@ -109,7 +109,9 @@ sort filename | uniq -c	# 去除文件中重复的行
 
 以行为单位将输入进行处理，貌似这里的处理只能进行print
 
-	-F 参数将行做分割，例如：ps | awk -F ' ' '\{print $1\}'  # 将ps的第二列输出
+```shell
+-F 参数将行做分割，例如：ps | awk -F ':' {'print $1'}  # 按:分割字符串，将ps的第二列输出
+```
 
 ##### sed
 
