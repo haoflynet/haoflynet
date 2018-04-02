@@ -17,6 +17,8 @@ pip install mysqlclient
 sudo yum install pytho3-devel mysql-devel
 pip install mysqlclient
 ```
+<!--more-->
+
 ## 数据库的连接
 
 这里有所有的[连接参数列表](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html)
@@ -47,13 +49,15 @@ cursor = db.cursor()
 
 ## Difference：两个库的区别
 
-    # MySQL Connector/Python
-    Oracle官方的实现，底层完全用C来实现
-    默认未开启cursorbuffer，如果需要则显式开启：cnx.cursor(buffered=True)或者mysql.connector.connect(buffered=True)，开启了buffer，可同时使用多个游标
-    
-    # MySQLdb
-    不完全用C
-    默认开启了cursor的，会缓存结果，但是针对特别大的查询，可能会导致程序崩溃
+```shell
+# MySQL Connector/Python
+Oracle官方的实现，底层完全用C来实现
+默认未开启cursorbuffer，如果需要则显式开启：cnx.cursor(buffered=True)或者mysql.connector.connect(buffered=True)，开启了buffer，可同时使用多个游标
+
+# MySQLdb
+不完全用C
+默认开启了cursor的，会缓存结果，但是针对特别大的查询，可能会导致程序崩溃
+```
 
 ## CURD操作
 
@@ -114,7 +118,7 @@ rows = cursor.fetchmany(size=1)
   LOCK.acquire()  
   mysql.cursor.execute(sql)  
   result = mysql.cursor.fetchall()  
-  LOCK.release()  
+  LOCK.release()
   print(len(result))
   ```
 
