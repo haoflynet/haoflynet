@@ -1,7 +1,7 @@
 ---
 title: "Swagger与其他API文档编写工具对比"
 date: 2017-02-26 23:26:00
-updated: 2017-11-29 15:39:00
+updated: 2018-04-02 09:39:00
 categories: tools
 ---
 
@@ -9,6 +9,7 @@ categories: tools
 >
 > - [APIDOC](http://apidocjs.com/#run): 支持大量编程语言的根据注释自动生成文档
 > - [ApiGen](https://github.com/ApiGen/ApiGen): PHP7的类文档自动生成工具
+> - [YApi](): 为了解过
 
 ## swagger特点
 
@@ -31,6 +32,8 @@ swagger缺点:
 - 貌似无法更改主题
 - 中英文的文档都比较少，其主要原因应该是官网的文档本身就不完善，只有针对不同模块儿的介绍，却没有针对具体用户的文档
 - yaml文件只能和API项目本身放在一起，这一点暂时还不知道有什么解决方案
+
+<!--more-->
 
 ### 其他的API文档编写工具
 

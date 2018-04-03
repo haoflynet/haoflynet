@@ -1,7 +1,7 @@
 ---
 title: "Python 进程、线程与协程"
 date: 2015-12-30 11:02:30
-updated: 2017-12-19 14:44:00
+updated: 2018-03-19 14:44:00
 categories: python
 ---
 ## 基本概念
@@ -206,6 +206,8 @@ if __name__ == '__main__':
 通过`f.exception()`可以获取到任务抛出了什么样的异常
 
 ### gevent
+
+协程
 
 ```python
 # 最简单的使用
