@@ -1,12 +1,14 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2018-03-14 22:28:00
+updated: 2018-04-02 22:28:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
 
 ## 配置文件
+
+**如果是线上，可以用rename机制禁用一些命令例如keys、flushall、flushdb**
 
 在redis shell外部，可以通过命令行的方式获取或者设置一些配置，例如:
 
@@ -25,6 +27,19 @@ requirepass 密码 # 访问需要密码
 ```
 
 <!--  more -->
+
+#### 内存满了的策略
+
+当`redis`使用的内存超过`maxmemory`参数的时候，`maxmemory-policy`这个策略就开始生效了。默认是`noeviction`(不删除键，只返回错误)，可以设置其他的策略如下(LRU算法及最近最少使用算法):
+
+```shell
+volatile-lru: 使用LRU算法删除一个键（只对设置了生存时间的键）
+volallkeys-lru	使用LRU算法删除一个键
+volatile-random	随机删除一个键（只对设置了生存时间的键）
+allkeys-random	随机删除一个键
+volatile-ttl	删除生存时间最近的一个键
+noeviction	不删除键，只返回错误
+```
 
 ## 查看信息
 
