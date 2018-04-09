@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-01-29 16:16:21
+updated: 2018-04-08 16:16:21
 categories: php
 ---
 # PHP
@@ -167,6 +167,7 @@ U	从 Unix 纪元（January 1 1970 00:00:00 GMT）开始至今的秒数	参见 t
 
 ```php
 Carbon::parse('2017-08-25 18:18:18');	# 不用指定格式即可将时间字符串自动转换为Carbon对象
+Carbon::now()->subDays(24);			# 计算24天前的时间
 ```
 
 ### 文件操作
