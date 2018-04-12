@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-03-26 10:31:00
+updated: 2018-04-09 10:31:00
 categories: php
 ---
 # Laravel指南
@@ -416,7 +416,6 @@ class User extends Model{
 	$table->text('')	# text()
 	
 	$table->dateTime('created_at')  # DATETIME类型
-
 
 	# 字段属性
 	->nullable()	# 允许null
@@ -886,7 +885,7 @@ Cache::remember('redis-key', 10, function () {
 });
 
 Cache::get('key', 'default');
-Cache::
+Cache::put('key', 'value', $minutes);
 ```
 
 如果想在`Model`进行什么更改以后让缓存消失或者更新缓存，那么可以用`Model`的事件去监听。
