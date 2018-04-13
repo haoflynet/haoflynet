@@ -47,7 +47,7 @@ $.inArray('a', $arr): 判断数组是否包含某个元素
 ```javascript
 // 搜索
 str.match(/<title>(.*?)<\/title>/)	// 正则提取
-str.match(/<title>(.*?)<\/title>/g)	// 全局搜索，不加g默认只取找到的第一个嘛
+str.match(/<title>(.*?)<\/title>/g)	// 全局搜索，不加g默认只取找到的第一个嘛，但是global不支持分组，会把前后的都给返回到结果中去。这种情况，要么匹配后，循环对结果进行前后去除；要么用exec对先行获取每一个结果的match[1]
 str.match(/<title>(<abc>.*?)<\/title>/)	// 正则提取，带命名组的正则提取
 
 // 去除空格
