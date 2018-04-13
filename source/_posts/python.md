@@ -660,8 +660,8 @@ __call__	# 在定义类的时候，实现该函数，这样该类的实例就变
 class A():
     def __call__(self, key):
         print(key)
-        a = A()
-        a('key')	# 打印'key'
+a = A()
+a('key')	# 打印'key'
         
 with		# 关键字的几个魔术方法，用with可以实现在函数前后执行某些语句
 ## __enter__(self): 会返回一个值，并赋值给as关键词之后的变量
@@ -1021,7 +1021,7 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 `pip`可以使用`==、>=、<=、>、<`几个符号来指定需要安装的依赖版本，并且可以同时使用多个，例如`Django>1.0,<2.0`则安装的是她们之间的最接近的指定版本的版本，如果想要直接用最新的，那么不用符号，直接写名字就好了。常用命令:
 
 ```shell
-pip install Django —upgrade 	# 更新指定package
+pip install Django --upgrade 	# 更新指定package
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U	# 升级所有的包
 pip install --pre sqlalchemy	# 安装prelease版本
 sudo pip3 install scrapy -i https://pypi.douban.com/simple  # 使用豆瓣的PIP源，例如
@@ -1095,7 +1095,7 @@ conn.close()	# 关闭连接
 - `no module named _sqlite3`，原因是系统多个`python`版本导致
   首先安装sqlite库，`yum install sqlite-devel`，然后重新安装`python`
 
-- ​
+- **Python执行js**: `js2py`和`execjs`都只能执行简单的js脚本，要复杂的，还是直接调用系统解析器吧，例如`node -e`
 
 ## 推荐阅读
 
