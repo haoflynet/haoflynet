@@ -178,7 +178,22 @@ def get(cls):
 dict = {'a': 1, 'b': 2, 'c': 3}
 func(**t)	# 将字典的value按照key的作为参数名传入函数，注意这里不是依次
 func(*t)	# 将字典的key作为参数依次传入函数
+
+# attr，python3.7新增特性
+@attr.s
+class Product(object):
+    id = attr.ib()
+    name = attr.ib()
+    comment = attr.ib(repr=False, cmp=False, hash=False)	# repr=False的时候该字段不会在打印类的时候打印出来
+    price = attr.ib(validator=[attr.validators.instance_of(int), check_func])	# 直接在定义的时候指定验证函数
+    min_price = attr.ib(converter=int)	# 直接将类型进行转化
+    x = attr.ib(metadata={'a': 'b'})	# 直接给属性设置元数据
     
+    # 通过装饰起的方式直接对类的属性进行验证
+    @id.validator
+    def check(self, attribute, value):
+        raise ValueError(...)
+new Project(1, 'name')	# 好处是不用在__init__里面一个一个定义所有的属性了
 ```
 #####　元类
 
