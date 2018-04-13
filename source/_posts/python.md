@@ -1,7 +1,7 @@
 ---
 title: "Python教程"
 date: 2016-12-20 12:05:30
-updated: 2018-03-12 21:44:30
+updated: 2018-03-29 17:44:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -17,10 +17,11 @@ apt-get install -y build-essential libssl-dev
 
 # Linux下不区分64和32位
 wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz	
-xz -d Python-3.6.0.tar.xz
-tar -xvf Python-3.6.0.tar
-cd Python-3.6.0
-./configure && make && sudo make altinstall
+xz -d Python-3.6.0.tar.xz && tar -xvf Python-3.6.0.tar && cd Python-3.6.0
+# for Linux
+./configure && make && sudo make altinstall	
+# for Mac
+./configure --enable-framework --with-openssl=/usr/local/opt/openssl	# 不加openssl可能会出现the SSL module is not available的错误
 cd
 
 # 如果默认没有安装pip，那么可以这样安装
@@ -70,6 +71,12 @@ A.T @ A			# @矩阵乘法
 [x*x for x in range(10)]	# 列表推导，得到的是一个数组
 (x*x for x in range(10))	# 列表推导，得到的是一个迭代器
 ```
+#### 字符串
+
+```python
+# hash值计算，使用hashlib库，其中有sha256/md5等。base64是一个单独的库
+```
+
 #### 字典
 
 ```python
