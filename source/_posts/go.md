@@ -1,6 +1,7 @@
 ---
 title: "Go 手册"
-date: 2018-04-08 19:02:30
+date: 2018-04-13 19:02:30
+updated: 2018-04-14 00:52:00
 categories: go
 ---
 
@@ -203,6 +204,7 @@ resp, err := client.Do(req)
 
 ```go
 import time
-start := time.Now()
+start := time.Now()	// 获取当前时间，格式虽然不大懂，但是时间运算是相当强的
+start - time.Now()	// 计算时间差，自带单位换算，而且非常精准
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-03-30 15:13:30
+updated: 2018-04-12 15:13:30
 categories: system
 ---
 # Linux手册
@@ -87,6 +87,7 @@ chkconfig --list	# 列出所有的系统服务
 ls -lR | grep "^-" | wc -l # 递归统计文件夹下所有文件的个数
 wc -l: 统计行数
 grep -c "词语"   # 统计出现的次数
+grep -n ""		# 把匹配到的行号也打印出来
 grep -v "Java"	# 查找没有该词的行
 grep 字符串 文件名  # 在文件中查找某个字符串
 grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
