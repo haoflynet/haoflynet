@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2018-03-29 18:22:00
+updated: 2018-04-18 18:25:00
 categories: tools
 ---
 # Docker 使用指南
@@ -253,6 +253,6 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
     @testing http://mirrors.aliyun.com/alpine/edge/testing
     ```
 
-- ​
+- **windows找不到`/var/run/docker.sock`**: 在最新的windows版本的docker里面，直接找是找不到这个文件的，需要添加环境变量`COMPOSE_CONVERT_WINDOWS_PATHS = 1`
 
 
