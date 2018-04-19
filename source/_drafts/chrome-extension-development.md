@@ -1,6 +1,7 @@
 ---
 title: "Chrome扩展开发手册"
 date: 2018-04-10 18:32:00
+updated: 2018-04-16 17:56:00
 categories: chrome
 ---
 
@@ -65,6 +66,12 @@ categories: chrome
   });
   ```
 
+- ​
+
+## TroubleShooting
+
+- **发送http请求网站出现`Access-Control-Allow-Origin not checking in chrome extension`错误**
+  原因是并没有向浏览器申请对该域名的访问权限，可以在`manifest.json`中的`permissions`添加该url，可以用正则，例如，如果要匹配所有的网址，啊呢吗`"*://*/*"`
 - ​
 
 参考文章:
