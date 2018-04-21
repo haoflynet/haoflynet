@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-04-09 10:31:00
+updated: 2018-04-18 10:31:00
 categories: php
 ---
 # Laravel指南
@@ -416,7 +416,7 @@ class User extends Model{
 	$table->text('')	# text()
 	
 	$table->dateTime('created_at')  # DATETIME类型
-
+	
 	# 字段属性
 	->nullable()	# 允许null
 	->unsigned()	# 无符号，如果是integer就是int(10)
@@ -870,7 +870,7 @@ public function failed()
 3. 不要将太大的对象放到队列里面去，否则会超占内存，有的对象本身就有几兆大小
 4. 一个很大的坑是在5.4及以前，由于`queue:work`没有timeout参数，所以当它超过了队列配置中的`expire`时间后，会自动重试，但是不会销毁以前的进程，默认是60s，所以如果有耗时任务超过60s，那么队列很有可能在刚好1分钟的时候自动新建一条一模一样的任务，这就导致数据重复的情况。
 5. 如果是使用redis作为队列，那么队列任务默认是是Job的NAME命名，例如
-6. `queues:NAME`，是一个列表，过期时间为-1，没有消费者的情况是会一直存在于队列中。而如果是延迟执行的任务，则是单独放在一个有序集合中，其key为`queues:NAME:delayed`，其`score`值就是其执行的时间点
+6. `queues:NAME`，是一个列表，过期时间为-1，没有消费者的情况是会一直存在于队列中。而如果是延迟执行的任务，则是单独放在一个有序集合中，其key为`queues:NAME:delayed`，其`score`值就是其执行的时间点。另外，`queues:NAME`存储的是未处理的任务，`queue:default:reserved`存储的是正在处理的任务，这是个有序集合，用`ZRANGE queues:NAME:reserved 0 -1 WITHSCORES`查看其元素。
 
 
 ### 缓存Cache
