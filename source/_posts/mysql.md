@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-03-26 18:59:00
+updated: 2018-04-20 18:59:00
 categories: database
 ---
 ## 安装方法
@@ -55,7 +55,7 @@ DELETE FROM 表名; # 这种方式比较慢，但是可以恢复
 TRUNCATE TABLE 表名 # 这种方式很快，但不会产生二进制日志，无法回复数据
 
 ALTER TABLE 表名 DROP FOREIGN KEY '外键名';	# 删除外键
-ALTER TABLE 表名 ADD 字段名 属性;	# 给表添加字段
+ALTER TABLE 表名 ADD 字段名 属性 AFTER 字段名;	# 给表添加字段
 ALTER TABLE 表名 DROP COLUMN 字段名;	# 给表删除字段
 ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
 
