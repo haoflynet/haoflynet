@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-04-12 15:13:30
+updated: 2018-04-23 10:13:30
 categories: system
 ---
 # Linux手册
@@ -348,10 +348,8 @@ strace + 命令: 这条命令十分强大，可以定位你程序到底是哪个
 
 # 增加虚拟内存
 sudo dd if=/dev/zero of=/swapfile bs=1024 count=500000  # 500MB，这两行是连在一起的，我日
-sudo mkswap /swapfile
-sudo chown root:root /swapfile
-sudo chmod 0600 /swapfile
-sudo swapon /swapfile
+sudo mkswap /swapfile && sudo chown root:root /swapfile && sudo chmod 0600 /swapfile && sudo swapon /swapfile
+echo "/swapfile          swap            swap    defaults        0 0" >> /etc/fatab	# 开机时挂载
 
 /sbin/swapoff /swapfile	# 停止交换分区
 rm -rf /swapfile		# 删除交换分区
