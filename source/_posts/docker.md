@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2015-12-10 07:51:39
-updated: 2018-04-18 18:25:00
+updated: 2018-04-20 18:25:00
 categories: tools
 ---
 # Docker 使用指南
@@ -254,5 +254,7 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
     ```
 
 - **windows找不到`/var/run/docker.sock`**: 在最新的windows版本的docker里面，直接找是找不到这个文件的，需要添加环境变量`COMPOSE_CONVERT_WINDOWS_PATHS = 1`
+
+- **Apache相关的容器可能意外退出后重新启动不起来**，原因是意外退出，pid文件还在，需要在启动的时候添加一条命令: `rm -f /var/run/apache2/apache2.pid`
 
 
