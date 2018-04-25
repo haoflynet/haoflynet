@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-03-16 18:02:00
+updated: 2018-04-25 18:02:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -186,9 +186,9 @@ $('p').bind('click', function(){})	// 用bind进行事件的绑定，即使是�
 ```
 ### 页面属性
 ```javascript
-window.cookie					// 当前cookie
-window.cookie = 'abc=123';		// 添加cookie，注意这是添加，不是设置
-window.cookie = 'abc=123; expires=' + date.toGMTString() + ';'	// 设置过期时间
+document.cookie					// 当前cookie
+document.cookie = 'abc=123';		// 添加cookie，注意这是添加，不是设置
+document.cookie = 'abc=123; expires=' + date.toGMTString() + ';'	// 设置过期时间
 window.location.href 			// 获取当前的url
 window.lcoation.href = 'url'	// 跳转到某个url
 document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
@@ -217,8 +217,12 @@ $(document).ready(function);	// 当DOM已经加载，并且页面已经完全呈
 ### 特殊函数
 
 ```javascript
-t = setInterval("show()",3000)	// 每隔3秒执行该函数
-clearInterval(t)				// 清楚计时器
+// 定时器
+var t = window.setTimeout(func(), delay);	// 延迟delay秒后执行函数func
+var t = window.setInterval(func(), delay);	// 每隔delay秒就执行函数func
+var t = setImmediate(func);					// 在浏览器完全结束当前运行的操作之后立即执行指定的函数
+clearInterval(t)				// 清除计时器
+
 debugger;						// 代码加入这一行，浏览器会自动断点进行调试，这对于自动编译的开发环境非常实用
 ```
 
