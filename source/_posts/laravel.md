@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-04-18 10:31:00
+updated: 2018-04-24 10:31:00
 categories: php
 ---
 # Laravel指南
@@ -566,6 +566,7 @@ $user->getTable();			# 获取数据表名称，不带前缀的
 User::all();						# 取出所有记录
 User::all(array('id', 'name'));  # 取出某几个字段
 User::find(1);					# 根据主键取出一条数据
+User::find([1,2,3]);			# 能一次查询多个
 optional(User::find(1))->id;		# 如果user未找到，那么这条语句不会报错，同样返回null，5.5
 User::findOrFail(1);				# 根据主键取出一条数据或者抛出异常
 User::where([
@@ -574,8 +575,9 @@ User::where([
 );			# where语句能够传递一个数组
 User::where();					# 如果不加->get()或者其他的是不会真正查询数据库的，所以可以用这种方式来拼接，例如$a_where=User::where();$result =$a_where->where()->get();
 User::where('field', 'like', '%test%');	# 模糊搜索
+User::where('field', 'like', '%{$keyword}%');	# 直接传入变量
 User::where('field', 'regexp', 'abc');	# 正则搜索
-User::where()->limit(2)				# limit限制
+User::where()->limit(2);				# limit限制
 User::whereIn('name', ['hao', 'fly']);	# in查询
 User::whereNull('name');			# is null
 User::whereNotNull('name');		# is not null
@@ -587,7 +589,8 @@ User::whereDay('created_at', '17');
 User::whereYear('created_at', '2017');
 User::whereRaw('name="wang" and LENGT(name) > 1');				# 当有复杂点的where语句或者想直接写在mysql里面的那样的where语句，可以直接这样写
 User::whereColumn('first_field', 'second_field');	# 判断两个字段是否相等
-User::where(...)->orWhere()		# or where，需要注意的是这里是和前面所有的where相or，并且后面的不会去判断deleted_at is null了
+User::where(...)->orWhere();		# or where，需要注意的是这里是和前面所有的where相or，并且后面的不会去判断deleted_at is null了
+User::where('...')->orWhere(['a'=>1, 'b'=>2]);	# 同时添加多个
 User::where()->firstOrFail()	# 查找第一个，找不到就抛异常
 User::where('user_id', 1)->get()# 返回一个Collection对象
 User::where(...)->first()		# 只取出第一个model对象
@@ -642,6 +645,8 @@ $user->fill(['name' => 'wang'])->save()	# fill必须save过后才会更新到数
 $user->update(['name' => 'wang'])	# update会立即更新数据库
 $user->increment('age', 5)	# 如果是数字类型，可以直接相加，不带5就表示之内加1
 $user->decrement('age', 5)	# 或者减
+$user->save(['timestamps'=>false]);	# save的参数可以阻止一些默认行为，比如这里阻止更新时间戳，就可以手动更改了
+    
 # 删除
 $user->delete()	# 删除，如果设置了软删除则是软删除
 $user->forceDelete()	# 无论是否设置软删除都物理删除
@@ -651,6 +656,9 @@ DB::beginTransaction();
 DB::connection('another')->begintransaction();
 DB::rollback();		# 5.1之前用的都是rollBack
 DB::commit();
+    
+# 复制
+$newUser = $user->replicate();$newUser->save();
 ```
 
 #### 查询缓存
