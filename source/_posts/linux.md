@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-04-23 10:13:30
+updated: 2018-04-27 10:13:30
 categories: system
 ---
 # Linux手册
@@ -291,6 +291,9 @@ sudo du -h -d 1 /path	# 获取指定目录下一级的各个目录的大小
 yum install ntfs-3g
 mkdir /mnt/test				# 创建一个挂在目录
 ntfs-3g /dev/sda5 /mnt/test	# 将windows的分区挂载到/mnt/test目录下面去
+
+# ncdu: 统计并查看磁盘空间使用量，可以按时间以及大小排序
+yum install ncdu
 ```
 
 #### 用户管理
