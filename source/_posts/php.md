@@ -1,27 +1,36 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-04-08 16:16:21
+updated: 2018-04-20 16:16:21
 categories: php
 ---
 # PHP
 
 ## 基本语法
+
+- 判断两个变量是否相等，如果`==`和`===`都能用的情况，那么尽量用`===`，因为它仅检查闭合范围。
+
 ### 数组
 ```php
-array_chunk($array, $size): 将数组按size大小分为多个数组
-array_diff($a, $b): 比较数组的不同，可以用来判断两个数组是否相等，需要注意的是这里返回的是在array1中但是不在array2中的值，而不是两个的交集
-array_key_exists("key",$a)  # 查看key是否存在于某个字典
-array_intersect($array1, $array2[,$array $...])	# 返回一个数组，该数组包含了所有在array1同时也出现在其他参数数组中的值
-array_merge()			# 合并数组，相同的key直接覆盖(前面的被后面的覆盖)
-array_merge_recursive()	# 合并数组，相同的key不覆盖
-array_push($source, "red", "gree")	# 给数组添加元素
-array_search(): 搜索一个key的索引，如果是二维的数组，那么就是通过value搜索key
-array_search(strtolower($search), array_map('strtolower', $array)): array_search忽略大小写
-array_slice($arr, 0, 1) # 数组分片
-array_sum($arr): 计算数组中所有值的和
-array_values($arr): 获取数组所有的value值
-  
+array_chunk($array, $size);	// 将数组按size大小分为多个数组
+array_column($array, $column_key);	// 返回字典型数组里面指定key的那一列
+array_diff($a, $b); // 比较数组的不同，可以用来判断两个数组是否相等，需要注意的是这里返回的是在array1中但是不在array2中的值，而不是两个的交集
+array_key_exists("key",$a);  # 查看key是否存在于某个字典
+array_intersect($array1, $array2[,$array $...]);	# 返回一个数组，该数组包含了所有在array1同时也出现在其他参数数组中的值
+array_map($callback, $array);	// 为数组中每一个元素应用回调函数
+array_merge();			# 合并数组，相同的key直接覆盖(前面的被后面的覆盖)
+array_merge_recursive();	# 合并数组，相同的key不覆盖
+array_push($source, "red", "gree");	# 给数组添加元素
+array_rand();	// 从数组中随机取出一个或多个元素
+array_reverse();// 逆序数组
+array_search(); // 搜索一个key的索引，如果是二维的数组，那么就是通过value搜索key
+array_search(strtolower($search), array_map('strtolower', $array)); // array_search忽略大小写
+array_slice($arr, 0, 1); # 数组分片
+array_sum($arr); //计算数组中所有值的和
+array_unique();	// 数组去重
+array_values($arr); //获取数组所有的value值
+array_walk(); // 利用回调函数对数组中每一个元素做回调处理
+
 count()函数：输出数组的长度
 empty()函数：判断数组是否为空
 end()		// 返回当前数组的最后一个值，需要注意的是这个函数不仅仅是返回最后一个值，还会把数组当前的指针指向最后一个数据
@@ -33,14 +42,14 @@ list($a, $b) = [1, 2]	# 分别赋值
 rsort(): 以降序对数组排序
 sort();		# 排序，可以给数组排序，会修改原来数组的值
 uasort($array, $cmp_function)	# 定义对比函数进行排序
-unset(arr[1]): 删除数组元素
+unset(arr[1]); // 删除数组元素
 
 # 数组遍历
-foreach($array as $value): 数组遍历
-foreach($array as $key => $value): 数组(字典)遍历
+foreach($array as $value); //数组遍历
+foreach($array as $key => $value); // 数组(字典)遍历
   
 # 数组用于函数
-func(*list): 将数组作为函数的输入
+func(*list); // 将数组作为函数的输入
   
 # 在数组里面添加数组元素，在不确定key的情况下
 $arr = [];
@@ -50,10 +59,10 @@ $arr['a'][] = 'b';
 
 ### 字符串
 
-PHP里面单引号和双引号确实有些地方的用法是不同的，比如匹配换行符的时候
+PHP里面单引号和双引号确实有些地方的用法是不同的，比如匹配换行符的时候。我们应该尽量使用单引号，因为如果是双引号，那么程序会去检测其中的变量。
 
 ```php
-json_decode(string, $assoc=false)	# 将字符串转换为json对象,$assoc=true时返回array而不是object
+json_decode(string, $assoc=false);	# 将字符串转换为json对象,$assoc=true时返回array而不是object
 lcfirst($str)			# 将字符串首字母转换为小写
 mb_strlen($str, 'utf-8') # 求中文字符串长度
 mb_substr($str, $start, $length, 'utf-8'): 字符串分割，可以分割中文哟，如果要获得所有右边的，那么$length不用填或者填上NULL，如果版本不行那就是用功能弱一点的substr
@@ -168,6 +177,8 @@ U	从 Unix 纪元（January 1 1970 00:00:00 GMT）开始至今的秒数	参见 t
 ```php
 Carbon::parse('2017-08-25 18:18:18');	# 不用指定格式即可将时间字符串自动转换为Carbon对象
 Carbon::now()->subDays(24);			# 计算24天前的时间
+$now = Carbon::now();	// 获取当前时间
+$now->addYears(n);		// 当前时间加n年，直接用addYear表示加一年
 ```
 
 ### 文件操作
@@ -401,15 +412,6 @@ var_dump(get_loaded_extensions());		// 查看安装了哪些模块
 ```
 
 ## 非常好用的第三方库
-
-### Carbon
-
-时间处理
-
-```php
-$now = Carbon::now();	// 获取当前时间
-$now->addYears(n);		// 当前时间加n年，直接用addYear表示加一年
-```
 
 ## TroubleShooting
 

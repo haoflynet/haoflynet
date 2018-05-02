@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2018-02-12 11:08:00
+updated: 2018-04-27 11:08:00
 categories: system
 ---
 ## Shell配置使用
@@ -15,10 +15,16 @@ categories: system
 \*\*B00000000000000	Run Silent Coprocess	/usr/local/bin/iterm2-recv-zmodem.sh
 ```
 
-## Homebrew配置使用
+### Homebrew配置使用
 
 ```shell
 export ALL_PROXY=socks5://127.0.0.1:1080	# homebrew走ss代理
+```
+
+### 修改终端欢迎字符
+
+```shell
+vim /private/etc/motd	# 直接输入即可
 ```
 
 ## 系统管理命令
@@ -54,6 +60,12 @@ mackup uninstall# 将配置文件拷回原来的系统目录
 
 - **磁盘空间爆了，重启后spotlight一直显示正在索引**: 原因可能是误删了索引的文件(索引文件确实有哦几个G)，修复需要执行以下几个命令：
 
+   ```shell
    sudo mdutil -i off /
-   	sudo mdutil -E /
-   	sudo mdutil -i on /
+   sudo mdutil -E /
+   sudo mdutil -i on /
+   ```
+
+   ​
+
+   ​
