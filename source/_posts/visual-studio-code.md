@@ -1,9 +1,38 @@
 ---
-title: "Visual Studio Code使用手册"
+title: "Visual Studio Code使用手册及扩展推荐"
 date: 2018-04-09 21:32:00
+updated: 2018-05-02 22:28:00
 categories: 工具
 ---
 `sublimetext`因为年久失修基本被人遗忘了，`Atom`火了一阵子，由于性能问题也没人再提了，如今最火的最强大的而且还免费的编辑器绝对是`Visual Studio Code`。经历过几次试用与放弃，最终我又回到了`Visual Studio Code`。总的感受来说，因为是编辑器，所以用起来会感觉很轻便；又因为插件丰富，所以各种语言都有比较好的支持。当然，这里也只能说是`比较好`，在专业性上，肯定是比不过`idea`家的东西的，所以现在对于我来说，我会在`Visual Studio Code`上开发`GO`和`Javascript`，在`Idea`上面开发`Python`、`Java`和`Php`。
+
+## 常用快捷键
+
+for mac os
+
+```shell
+Cmd + P: 输入文件名，快速打开文件
+Cmd + P: 输入:n，直接跳转到指定的行
+
+Cmd + N: 新建文件
+Cmd + Shift + N: 打开一个新的窗口(工程)
+
+Cmd + \: 水平增加栏
+Cmd + 1/2/3: 在左中右几个编辑器间切换
+
+Cmd + Enter: 在下面插入一行
+
+Cmd + F: 查找
+Cmd + Shift + F: 全局查找
+Cmd + Shift + H: 查找并替换
+
+
+Ctrl + Tab: 在最近打开的文件中切换
+
+Option + Shift + F: 格式化代码
+Option + Delete: 删除一行
+```
+
 ## 扩展推荐
 
 <!--more-->
