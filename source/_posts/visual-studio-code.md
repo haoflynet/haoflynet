@@ -39,6 +39,19 @@ Option + Delete: 删除一行
 
 ### 通用扩展
 
+- **Auto Close Tag**: 自动关闭标签
+- **Copy Relative Path**: 我就不明白了，复制相对路径这个硬需求居然没有自带
+- **embrace**: 快速在选中代码的两边添加引号等符号
+- **Gitlens**: 直接查看光标指定位置的代码在git流中的修改时间、作者信息等信息
+- **Project Manager**: 快速切换Project，终于不用再重新开窗口了
+- **TODO Highlight**: 高亮TODO
+
+### JavaScript系列开发
+
+#### React Native
+
+- **React Native Tools**: 功能最全
+
 ### Python开发
 
 - **Python** 官方插件。
