@@ -1,7 +1,7 @@
 ---
 title: "Swift开发MacOS应用"
 date: 2016-12-10 12:05:30
-updated: 2016-12-30 14:44:00
+updated: 2018-04-24 14:44:00
 categories: swift
 ---
 
@@ -9,15 +9,21 @@ categories: swift
 
 ### 主要目录文件
 
-`AppDelegate.swift`: 所有应用开始都有一个AppDelegate，是整个应用程序的一个代理，在应用启动的时候，最先被调用的就是这个AppDelegate中的applicationDidFinishLaunching方法，可以在这里做全局初始化，但一般为了保持代码的整洁，具体逻辑并不放在这里
-
-`ViewController.swift`: 这是主Controller，Controller对应着view，view的拥有者则是Controller。所以新建Controller的时候默认继承NSViewController，创建Controller的时候可以同时创建相应的.xib文件。而关联Controller和View的方式有两种，一种是通过代码，一种是通过IB。在IB里面修改，只需要添加Object Library，然后将它的controller指定到目标即可。
+`AppDelegate.swift`: 所有应用开始都有一个AppDelegate，是整个应用程序的一个代理。在应用启动的时候，最先被调用的就是这个AppDelegate中的`applicationDidFinishLaunching`方法，可以在这里做全局初始化，但一般为了保持代码的整洁，具体逻辑并不放在这里。
 
 `Assets.xcasserts`:
 
 `Main.storyboard`: 项目主要的UI文件
 
 `Info.plist`: 项目的基础配置
+
+`*.h`: 头文件。包含类，类型，函数和常量的声明
+
+`*.m`: 源代码文件。可以有`Objective-C`和`C`和`Swift`代码
+
+`*.mm`: 源代码文件。可以有`Objective-C/C/C++/Swift`
+
+`*.cpp`: C++代码
 
 ## IB(Interface Builder)
 
