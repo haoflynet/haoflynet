@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-04-20 16:16:21
+updated: 2018-05-03 16:20:21
 categories: php
 ---
 # PHP
@@ -291,6 +291,8 @@ $arr = get_defined_constants(true);
 var_dump($arr['curl']);
 ```
 
+项目中，强烈推荐使用第三方库`Guzzle`，来实现http请求。该库不仅支持curl，而且支持socket等多种底层实现，在没有curl的情况下也可以发送请求，并且实现了发送文件、同步异步等多种方式。
+
 ### WEB程序
 
 	$_SERVER['REQUEST_METHOD']	# 返回数据提交的方式，GET、POST等
@@ -388,7 +390,7 @@ composer config --global secure-http false
 
 `autoload`，可以预加载类，自动索引所有的类，能够加快依赖的索引速度。但是autoload并不是实时更新的，如果发现`vendor/composer/autoload_classmap.php`中的类与你预想的有冲突，那么就需要更新一下了：`composer dump-autoload`。
 
-在`composer.json`中有四种自动加载类型:
+在`composer.json`中有四种自动加载类型。PSR的各个规范可以参考[PizzaLiu/PHP-FIG](https://github.com/PizzaLiu/PHP-FIG):
 
 - classmap: `development`相关的
 
@@ -400,7 +402,7 @@ composer config --global secure-http false
 
 - psr-0: 已经被弃用
 
-- psr-4: 一般用于项目代码的自动加载
+- psr-4: 一般用于项目代码的自动加载。需要注意的是除去命名空间前缀的其他子命名空间必须和文件目录相对应。子目录里面的命名空间，就把子目录一同写到命名空间中去。
 
 - files: `helper`相关的
 
