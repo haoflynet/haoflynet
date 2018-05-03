@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-04-24 10:31:00
+updated: 2018-05-02 10:31:00
 categories: php
 ---
 # Laravel指南
@@ -1199,6 +1199,15 @@ public function report(Exception $e)
   ```php
   protected $signature = 'test:test {field?}';	# 添加参数，问号表示非必填
   $this->argument('field');					# 获取参数，只能在handle里面，不能在__constructor里面
+  ```
+
+- 定时任务
+
+  ```shell
+  # 如果将命令添加到定时任务中去，首先要在www用户下新建crontab
+  crontab -u www -e	# 添加如下一行
+  * * * * * php /data/www/html/furion/artisan schedule:run >> /dev/null 2>&1	# 需要注意的是laravel会将程序的错误输出重定向到/dev/null，即直接抛弃。这里的schedule:run只是所有任务的一个总的进程。它负责调度kernel.php里面定义的所有定时任务。而其他定时任务的错误输出同样会重定向到/dev/null，如果想要自定义输出可以这样做:
+  $schedule->command('test')->everyMinute()->appendOutputTo($fileCronLog);
   ```
 
 ### 框架扩展/管理者/工厂
