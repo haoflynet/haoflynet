@@ -1,6 +1,6 @@
 ---
-title: "Python教程"
-date: 2016-12-20 12:05:30
+title: "Python手册"
+date: 2013-08-20 12:05:30
 updated: 2018-03-29 17:44:30
 categories: python
 ---
