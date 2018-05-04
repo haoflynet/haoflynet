@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-05-03 16:20:21
+updated: 2018-05-04 15:16:21
 categories: php
 ---
 # PHP
@@ -387,6 +387,29 @@ composer config -g repo.packagist composer https://packagist.phpcomposer.com	# �
 composer config --global disable-tls true
 composer config --global secure-http false
 "package/ppkg": "2.7.*@beta"	# 安装beta版
+```
+
+### composer事件脚本
+
+composer在执行的时候会在时间点上都会抛出相应的事件，可以添加脚本在事件触发后自动执行。例如:`pre-install-cmd/post-update-cmd(update命令执行后触发)`，而脚本的定义，可以直接放在`composer.json`中，例如一个典型的`Laravel`项目的脚本
+
+```json
+"scripts": {
+    "post-root-package-install": [
+        "php -r \"copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+        "php artisan key:generate"
+    ],
+    "post-install-cmd": [
+        "Illuminate\\Foundation\\ComposerScripts::postInstall",
+        "php artisan optimize"
+    ],
+    "post-update-cmd": [
+        "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+        "php artisan optimize"
+    ]
+}
 ```
 
 ### autoload
