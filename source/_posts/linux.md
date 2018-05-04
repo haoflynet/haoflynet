@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-04-27 10:13:30
+updated: 2018-05-04 15:13:30
 categories: system
 ---
 # Linux手册
@@ -506,6 +506,16 @@ tmux ls  列出所有的tmux会话
 tmux a -t test 恢复名称为test的会话
 tmux kill-session -t test 删除名为test的会话
 tmux kill-server 删除所有会话
+```
+
+#### samba
+
+```shell
+smbclient //host/path	# 进入共享文件夹中
+> get filename	# 下载文件，无法递归下载
+> ls		# 列出文件
+
+smbget -R smb://host/path	# 如果要递归下载文件夹，可以这样子使用
 ```
 
 #### supervisor
