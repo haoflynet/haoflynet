@@ -10,6 +10,8 @@ categories: Go
 
 直接使用`go get github.com/gin-gonic/gin`即可。
 
+<!-- more -->
+
 官方README中提供了非常多的例子。例如最简单的实例代码:
 
 ```go
@@ -89,7 +91,6 @@ c.JSON(200, gin.H{
 
 // 重定向
 c.Redirect(http.StatusMovedPermanently, "https://google.com")
-
 ```
 
 ## 中间件
