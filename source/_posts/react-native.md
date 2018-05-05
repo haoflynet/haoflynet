@@ -140,14 +140,13 @@ export default StackNavigator({
 ## TroubleShooting
 
 - **":CFBundleIdentifier" Does Not Exist**: 可能是因为你的代码依赖的是老的`react native`或者`node`版本或者`xcode`版本，可以执行以下命令升级依赖:`react nativeupgrade `
-
 - **undefined is not an object evaluating React.PropTypes.string**: 仍然是版本的问题，新版的已经将`React.PropTypes`移到单独的库了([prop-types](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html))。需要注意的是`React.PropTypes.func`更改成了`PropTypes.function`了，其他的名字没有改，只是位置变了。
-
 - **No bundle url present**: 启动的时候报错，有以下几种解决方案:
 
   - 全部关了以后，看看8081端口是否被占用，然后重新`react-native run-ios`
-
 - **isMounted(...) is deprecated warning**: [目前来看](https://github.com/react-navigation/react-navigation/issues/3956)，并没有什么解决方案。
+- **闪退**: 有如下几种情况
+  - 没有给API添加对应的权限，具体权限列表可以参见: [Swift开发MacOS应用](https://haofly.net/swift-macos)
 
 ##### 扩展阅读
 

@@ -183,6 +183,7 @@ import (
 ### 网络请求
 
 ```go
+import "net/http"
 // GET请求
 resp, err := http.Get("https://haofly.net")
 if err != nil {}
