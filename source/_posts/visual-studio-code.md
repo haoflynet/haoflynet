@@ -1,7 +1,7 @@
 ---
 title: "Visual Studio Code使用手册及扩展推荐"
 date: 2018-04-09 21:32:00
-updated: 2018-05-02 22:28:00
+updated: 2018-05-06 11:39:00
 categories: 工具
 ---
 `sublimetext`因为年久失修基本被人遗忘了，`Atom`火了一阵子，由于性能问题也没人再提了，如今最火的最强大的而且还免费的编辑器绝对是`Visual Studio Code`。经历过几次试用与放弃，最终我又回到了`Visual Studio Code`。总的感受来说，因为是编辑器，所以用起来会感觉很轻便；又因为插件丰富，所以各种语言都有比较好的支持。当然，这里也只能说是`比较好`，在专业性上，肯定是比不过`idea`家的东西的，所以现在对于我来说，我会在`Visual Studio Code`上开发`GO`和`Javascript`，在`Idea`上面开发`Python`、`Java`和`Php`。
@@ -54,6 +54,9 @@ Option + Delete: 删除一行
 
 ### Python开发
 
+如果项目env使用的是`pipenv`，那么需要直接在项目设置(即`.vscode/settings.json`)中指定python解释器的位置，例如`"python.pythonPath": "/home/myuser/.local/share/virtualenvs/projectname/bin/python"  `
+
+- **autoDocstring**: 自动生成python风格的`docstring`
 - **Python** 官方插件。
 
 ### Go开发
