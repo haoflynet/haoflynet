@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2018-03-12 22:31:00
+updated: 2018-05-06 19:59:00
 categories: tools
 ---
 # Git指南
@@ -181,24 +181,27 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 
 ## TroubleShooting
 
-- **git checkout -b dev origin/dev出现错误fatal: cannot update paths and switch to branch 'origin/dev'**  
+- **git checkout -b dev origin/dev出现错误fatal: cannot update paths and switch to branch 'origin/dev'** 
   原因是未在远程创建dev分支，或者未在本地更新分支信息
 
-- **git remote add origin git@github.com:haoflynet/test，出现错误fatal: remote origin already exists**  
+- **git remote add origin git@github.com:haoflynet/test，出现错误fatal: remote origin already exists** 
   原因是克隆别人的库下来修改后push到自己的库可能会出现这种错误，要先执行git remote rm origin  
 
 - **.gitignore无效，该忽略的依然没有被忽略**
 
+   ```shell
    git rm -r --cached .
-   	git add .
-   	git commit -m "fixed untracked files
-   这样会删除github上面已经提交了的但是现在忽略了的文件，如果要在github上面保留一份，那么执行git add -f filename
+   git add .
+   git commit -m "fixed untracked files
+   ```
 
-- **There was a problem with the editor 'vi'**  
+   这样会删除github上面已经提交了的但是现在忽略了的文件，如果要在github上面保留一份，那么执行`git add -f filename`
+
+- **There was a problem with the editor 'vi'** 
   vi编辑器的问题吧，直接换成vim
   `git config --global core.editor $(which vim)`
 
-- **更改文件名后，远程居然没有过更新**  
+- **更改文件名后，远程居然没有过更新** 
   git默认对文件名的大小写不敏感，需要在仓库执行`git config core.ignorecase false`让它对大小写敏感
 
 - **`413 request entity too large`**
