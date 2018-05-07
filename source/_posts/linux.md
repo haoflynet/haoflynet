@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-05-04 15:13:30
+updated: 2018-05-06 21:13:30
 categories: system
 ---
 # Linux手册
@@ -263,7 +263,7 @@ sshd:IP
 ```shell
 # RedHat
 dpkg -i *.deb # 安装deb包，但是它不会自动解决依赖，安装完成后还要使用apt-get -f install这条命令来安装没有安装好的依赖
-dpkg -l			# 查看已经安装的包
+dpkg -l			# 查看已经安装的包及其版本
 
 # Debian
 apt-cache search 包名		# 搜索源里面是否有指定的包
