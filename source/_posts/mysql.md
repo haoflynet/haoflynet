@@ -15,6 +15,7 @@ systemctl enable mariadb.service	# 开机启动
 Ubuntu: 
 
 ```shell
+# 安装最新版本，需要先导入对应的镜像库https://downloads.mariadb.org/mariadb/repositories
 sudo apt-get install mariadb-server mariadb-client libmariadbd-dev
 
 # 如果是开发，还需要安装

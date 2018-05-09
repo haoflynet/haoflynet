@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-05-06 21:13:30
+updated: 2018-05-07 14:21:30
 categories: system
 ---
 # Linux手册
@@ -546,11 +546,11 @@ supervisord	# 启动所有监控
 **其他命令**
 
 ```shell
-cd -: 返回上一次的目录，真他妈实用
-history：查看历史命令，如果需要查看命令执行时间，需要先export HISTTIMEFORMAT='\%F \%T '
-tzselect：更改时区
+cd -	# 返回上一次的目录，真他妈实用
+history	# 查看历史命令，如果需要查看命令执行时间，需要先export HISTTIMEFORMAT='\%F \%T '。如果要直接执行某个序号的命令，直接!n就好了
+tzselect	# 更改时区
 dpkg-reconfigure tzdata	# 上面那个不行的时候可以用这个
-ntpdate: 如果连时间戳都不对，那么用这个工具来同步时间
+ntpdate	# 如果连时间戳都不对，那么用这个工具来同步时间
 
 # 命令命名，例如如果想通过python命令调用python3而不是默认的python2，那么可以这样子：
 alias python=python3
