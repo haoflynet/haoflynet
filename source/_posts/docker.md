@@ -1,7 +1,7 @@
 ---
-title: "Docker"
+title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2018-04-20 18:25:00
+updated: 2018-05-09 10:25:00
 categories: tools
 ---
 # Docker 使用指南
@@ -9,7 +9,10 @@ categories: tools
 
 ##系统相关
 
-	boot2docker默认用户名是docker，密码是tcuser
+`boot2docker`默认用户名是`docker`，密码是`tcuser`。
+
+现在`docker for mac`不再依赖`virtualbox`等虚拟化软件，但是其采用了虚拟化技术，仍然是有虚拟机的，可以通过这条命令进入虚拟机查看``screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty` `
+
 ## 镜像和容器
 
 ```shell
@@ -131,13 +134,22 @@ haproxy:			# 第三方容器
         - "80"
 ```
 
-docker-compose常用命令
+### docker-compose常用命令
 
 ```shell
 docker-compose stop		# 暂停所有容器
 docker-compose up -d	# start所有的容器
 docker-compose rm -f 	# 删除所有容器
 docker-compose ps 		# 列出所有的容器
+```
+
+### 网络设置
+
+```yam
+networks:	# 与version同级
+  default:
+    external:
+      name: mynet # 在外部自己创建的network
 ```
 
 ## 迁移
@@ -153,6 +165,17 @@ docker commit -m "说明信息" -a "用户信息" # 更改容器后直接将容�
 docker login hub.haofly.net	# 先登录
 docker tab image_id hub.haofly.net/haofly/test:tag	# 更改名称
 docker push hub.haofly.net/haofly/test:tag	# 推送
+```
+
+## 容器网络
+
+更改默认网桥`bridge`的网段请参考本文`TroubleShooting`
+
+```shell
+docker network ls		# 列出所有的网桥
+docker network prune	# 删除没有使用的网桥
+docker network inspect name	# 查看某个网桥的详细信息
+docker network rm name		# 删除某个网桥
 ```
 
 ## 常用容器/镜像
@@ -219,25 +242,17 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
 
 - **树莓派安装docker后出现错误`libapparmor.so.1: cannot open shared object file: No such file or directory`**，需要执行`apt-get install lxc`
 
-- **更换docker网段**: 目前存在的问题是docker容器的网段为`172.17.0.1/24`，但是公司的内网也是这个网段，导致冲突过后，我在我的容器里面ping不通别人的机器，所以就尝试着在mac上更换docker的默认网段
+- **更换docker网段**: 目前存在的问题是docker容器的网段为`172.17.0.1/24`，但是公司的内网也是这个网段，导致冲突过后，我在我的容器里面ping不通别人的机器，所以就尝试着在mac上更换docker的默认网段。以前的版本是需要直接去修改`~/Library/Containers/com.docker.docker/Data/database/com.docker.driver.amd64-linux/etc/docker/daemon.json`，但是新版本已经不能直接在那里修改了，修改网段更加方便了。直接在`Preferences->Daemon->Advanced`里面的json文件进行修改(注意不是直接Preferences->Advanced)。
 
-  ```shell
-  cd /Users/haofly/Library/Containers/com.docker.docker/Data/database/com.docker.driver.amd64-linux	# 没错，这里默认是一个git仓库
-  vim etc/docker/daemon.json		# 在json文件里面添加一个字段"bip":"172.18.0.1/24"
-  git add etc/docker/daemon.json && git commit -m "configure bip"	# 提交过后，docker会自动重启，重启过后，所有的容器以及新开的容器就都会是新的网段了，终于能ping通了
-  ```
-  **2017年3月份最近更新的docker里面发现已经没有上面那个文件夹了，所以这里我用了另外一种方式**，而这时候我才知道为什么我的docker又出现了网络不通的问题，原因是`docker-compse`启动的容器组会新建一个单独的网桥，而这个网桥的网段每一个都不一样，建多了几个过后就发现，又和内网冲突了。。。
-
-  ```shell
-  docker network ls		# 列出所有的网桥
-  docker network prune	# 删除没有使用的网桥
-  docker network inspect name	# 查看某个网桥的详细信息
-  docker network rm name		# 删除某个网桥
+  ```json
+  {
+    "debug" : true,
+    "experimental" : true,
+    "bip" : "192.168.1.5/24"	// 默认网段是172.17.0.0/16，这里修改为一个不和内网冲突的网段即可
+  }
   ```
 
-  删除完有冲突的网桥过后，新建`docker-compose`即可。
-
-- Mac下`~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux`目录占用内存过大**: 目测是一个一直没有被修复的bug，是由于镜像反复拉，容器反复删除重建，但是存储从来不释放造成的，我现在的解决方法是把想要的镜像拉下来到处到存储中去，以后要使用直接拉取，这样避免了每次pull不下来的时候重新pull导致存储不释放的问题
+- **Mac下`~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux`目录占用内存过大**: 目测是一个一直没有被修复的bug，是由于镜像反复拉，容器反复删除重建，但是存储从来不释放造成的，我现在的解决方法是把想要的镜像拉下来到处到存储中去，以后要使用直接拉取，这样避免了每次pull不下来的时候重新pull导致存储不释放的问题
 
 - **阿里源**: 一般都是jessie版本，但是有些镜像的维护者可能会修改为一个比较小众的版本，可能导致某些包没有，这时候修改版本即可。
 
@@ -246,7 +261,7 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
     deb http://mirrors.aliyun.com/debian jessie main
     deb http://mirrors.aliyun.com/debian jessie-updates main
     deb http://mirrors.aliyun.com/debian-security jessie/updates main
-
+    
     # alpine版本，/etc/apk/repositories
     http://mirrors.aliyun.com/alpine/v3.4/main
     http://mirrors.aliyun.com/alpine/v3.4/community
