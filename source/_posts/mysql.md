@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-04-20 18:59:00
+updated: 2018-05-09 23:39:00
 categories: database
 ---
 ## 安装方法
@@ -62,6 +62,11 @@ ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
 
 CREATE INDEX name_idx ON `表名`(`列名`);	# 给表添加索引
 ALTER TABLE `表名` ADD UNIQUE `键名`(`列名1`, `列名2`);
+
+# mariadb创建Json字段，VARCHAR或者BLOB都可以使用，不对格式做要求，如果要做要求也可以强制做，例如
+CREATE TABLE products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  attr VARCHAR(1024),
+  CHECK (JSON_VALID(attr)));
 ```
 
 #### 数据记录操作
@@ -262,6 +267,11 @@ IF(sex=1 OR field='b', 1, NULL)		# 复杂的
 
 # 字符串处理
 REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜索，例如UPDATE `table` SET `value` = REPLACE(`value`, 'abc', 'def')
+
+# JSON相关函数
+JSON_ARRAY([])	# 将数组转换为json格式
+JSON_KEYS(field_name)	# 获取json数据的所有key
+JSON_EXTRACT(result,'$.id')	# 获取json数据key=id的值
 ```
 
 ## 数据库优化
@@ -330,4 +340,5 @@ REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜
 *   **MySQL分页时出现数据丢失或者数据重复的情况**: 如果分页的时候用上了`order_by`并且目标字段并不是索引字段，那么就有可能出现这种情况，一条数据可能既出现在上一页，又出现在下一页。原因是在`mysql5.6`以后，`priority queue`使用的是堆排序，这个排序算法并不稳定，两个相同的值可能在两次排序后的结果不一样。解决方法有两种，一种是给`order_by`后面的字段加索引，另外一种是增加一个是索引的字段，但是不要把主键放到这里面，否则两个索引都不会使用，导致性能非常低，别问我为什么，我被坑过。[参考文章](http://www.foreverlakers.com/2018/01/mysql-order-by-limit-%E5%AF%BC%E8%87%B4%E7%9A%84%E5%88%86%E9%A1%B5%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/)
 *   **在查询整型字段的时候空字符串表现得和0一样**: 这是MySQL的特性，对于整型字段，空字符串会自动转换成零。
 *   **timestamp字段插入的时候出现`warnning: data truncated for column`**，这是因为`mysql`的`timestamp`类型不是`unix`的时间戳，对于非法的字符串插入`timestamp`的时候结果都是`0000-00-00 00:00:00`。如果要插入，可以用`2017-12-25 12:00:00`这种格式，或者使用函数`FROM_UNIXTIME(1514177748)`进行转换。
+*   **Invalid use of NULL value**: 原因可能是在将列修改为不允许NULL的时候并且已经存在记录该值为null，则不允许修改，这个时候需要先修改已有记录的值。
 
