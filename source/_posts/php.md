@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-05-04 15:16:21
+updated: 2018-05-10 16:15:21
 categories: php
 ---
 # PHP
@@ -9,6 +9,8 @@ categories: php
 ## 基本语法
 
 - 判断两个变量是否相等，如果`==`和`===`都能用的情况，那么尽量用`===`，因为它仅检查闭合范围。
+
+<!--more-->
 
 ### 数组
 ```php
@@ -34,7 +36,6 @@ array_walk(); // 利用回调函数对数组中每一个元素做回调处理
 count()函数：输出数组的长度
 empty()函数：判断数组是否为空
 end()		// 返回当前数组的最后一个值，需要注意的是这个函数不仅仅是返回最后一个值，还会把数组当前的指针指向最后一个数据
-explode(',', $str)	# 将字符串分割为数组	
 implode(',', $arr)	# 将数组拼接成字符串
 in_array('a', $a)				# 查看数组是否存在某个元素
 json_encode($arr)	# 数组转换城字符串
@@ -55,6 +56,11 @@ func(*list); // 将数组作为函数的输入
 $arr = [];
 $arr['a'][] = 'a';
 $arr['a'][] = 'b';
+
+# 通过数组元素值删除元素
+if (($key = array_search($del_val, $messages)) !== false) {
+    unset($messages[$key]);
+}
 ```
 
 ### 字符串
@@ -75,10 +81,8 @@ str_replace(搜索值，替换值，目标)	# 字符串替换
 str_replace("\n", "", $content);	# 去除换行符
 substr_count($haystack, $needle, [$offset, $length]);	# 计算子字符串needle在字符串haystack中出现的次数
 trim($string);	# 去除字符串前后的空白字符，如果要去除所有的字符只能使用preg_replace('/\s+/', '', $string)，这是stackoverflow上面给出的答案
-
-
-$a . $b . 'abc':字符串连接直接用点号
-explode(',', $str, [$limit])	# 字符串分割，第三个参数大于0表示限制分组数量，limit规定所返回的数组元素的个数，小于0时，返回包含除了最后的-limit个元素以外的所有元素的数组；0表示返回包含一个元素的数组
+$a . $b . 'abc' 	# 字符串连接直接用点号
+explode(',', $str, [,$limit])	# 字符串分割，第三个参数大于0表示限制分组数量，limit规定所返回的数组元素的个数，小于0时，返回包含除了最后的-limit个元素以外的所有元素的数组；0表示返回包含一个元素的数组
 array_map('strrev', explode('-', strrev($a), 2))	# 字符串分割，逆向
 iconv('utf-8', 'GBK', $data): 将字符编码从utf-8转换为GBK
 join("&", $arr)	# 拼接字符串
@@ -434,7 +438,7 @@ composer在执行的时候会在时间点上都会抛出相应的事件，可以
 
 ### Extension扩展管理
 
-php的扩展大多可以通过`pecl install packagename`直接进行安装，可以使用`yum install php-pear`命令安装`pecl`工具
+php的扩展大多可以通过`pecl install packagename`直接进行安装(有些库还是需要先安装源文件，再用pecl进行链接)，可以使用`yum install php-pear`命令安装`pecl`工具
 
 ```php
 var_dump(extension_loaded('curl'));		// 查看是否安装某个模块
