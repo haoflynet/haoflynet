@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-03-29 17:44:30
+updated: 2018-05-10 09:32:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -271,6 +271,18 @@ range(0, 6, 2)	// 生成(0, 2, 4)
 xrange用法与range一样，只是返回的不是一个生成好的列表，而是一个生成器，所以性能更好
 ```
 #### 其他类型
+
+#### Enum枚举类型
+
+```python
+# 直接定义
+Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr'))
+# 精确控制值
+class Weekday(Enum):
+    Sun = 0 # Sun的value被设定为0
+    Mon = 1
+Weekday['Sun'].value	# 得到value值为0
+```
 
 ##### NamedTuple类似结构体
 
@@ -785,6 +797,12 @@ cProfile.run("timeit_profile()")
 
 提供C语言兼容的数据类型，可以方便调用DLL中的函数，例如win/mac平台的系统库。
 
+```python
+from ctypes import *
+dll = cdll.LoadLibrary('./libtest.so')
+print(dll.__dict)
+```
+
 #### functools
 
 ```python
@@ -1097,6 +1115,8 @@ conn.close()	# 关闭连接
 
 - **Python执行js**: `js2py`和`execjs`都只能执行简单的js脚本，要复杂的，还是直接调用系统解析器吧，例如`node -e`
 
+- **unknown file type, first eight bytes**: 这是在加载动态链接库.so的时候发生，原因是该.so文件是在linux平台下编译的，而我实在macos上调用，所以发生该错误。解决方法是在macos重新编译生成.so文件，或者直接在linux下调用。
+
 ## 推荐阅读
 
 [Hidden features of Python](http://stackoverflow.com/questions/101268/hidden-features-of-python)
@@ -1106,3 +1126,5 @@ conn.close()	# 关闭连接
 [深刻理解Python中的元类(metaclass)](http://blog.jobbole.com/21351/)
 
 [Python项目的配置管理](https://www.keakon.net/2016/10/22/Python%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86)
+
+[Python十大web框架](https://hackernoon.com/top-10-python-web-frameworks-to-learn-in-2018-b2ebab969d1a): 全栈框架(Django/Pyramid/TurboGears/Web2py)、微框架(Flask/Bottle/CherryPy/)、异步框架(Sanic/Tornado)
