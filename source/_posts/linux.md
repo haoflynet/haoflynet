@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-05-07 14:21:30
+updated: 2018-05-09 14:21:30
 categories: system
 ---
 # Linux手册
@@ -212,6 +212,9 @@ sdiff 文件1 文件2  # 以对比的方式找文件的不同
 find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK转换为UTF8
 
 # 删除文件，强烈建议安装trash-cli命令，因为rm的文件不会在回收站，到时候找都找不回来
+
+ls -l # 列出文件详细信息
+ls -ld # 列出文件夹详细信息
 ```
 
 #### ssh
@@ -373,6 +376,9 @@ systemctl list-units --type=service	# 显示所有已启动的服务
 #### 网络/防火墙
 
 ```shell
+# 安装ping命令
+apt-get install iputils-ping
+
 # 查看进程的网速
 nethogs
 
