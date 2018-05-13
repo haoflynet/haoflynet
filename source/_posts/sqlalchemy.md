@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2017-12-11 23:14:00
+updated: 2018-05-10 23:34:00
 categories: python
 ---
 
@@ -18,9 +18,9 @@ pip install sqlalchemy
 <!--more-->
 
 ```python
-# 初始化数据库连接
+# 初始化数据库连接，echo默认为False，当为True的时候，会把sqlalchemy的所有日志包括连接数据库后做的所有操作都会打印出来，对于调试来说是非常方便的
 engine = create_engine('postgresql://scott:tiger@localhost/mydatabase')
-engine = create_engine('mysql://scott:tiger@localhost/foo')
+engine = create_engine('mysql://scott:tiger@localhost/foo?charset=utf8', echo=True)
 engine = create_engine('oracle://scott:tiger@127.0.0.1:1521/sidname')
 engine = create_engine('sqlite:///foo.db')
 
@@ -67,7 +67,7 @@ class User(Base):
 ## 数字
 BigInteger	# 长整型
 Boolean		# 布尔值
-Enum		# 枚举值，例如class MyEnum(enum.Enum): one=1 two =2. 定义时候Enum(MyEnum)
+Enum		# 枚举值，例如Column(Enum('A', 'B"))，对象取值的时候，取出来的字段是Enum对象，需要.value才能得到真正的值
 Float
 SmallInteger
 Integer(unsigned=False)		# 整型
@@ -78,7 +78,7 @@ JSON
 LargeBinary(length=None)	# 二进制
 PickleType	# pickle类型
 SchemaType
-String(50)	# 字符串类型，括号里表示长度
+String(50)	# 字符串varchar类型，括号里表示长度
 Text(length=None)
 Unicode
 UnicodeText
@@ -140,7 +140,7 @@ def fullname(self):
 ```python
 # 查询表
 query = session.query(User)
-query		# 打印sql语句
+query		# 得到sql语句
 query.count()
 query.statement	# 同上
 query.all()		# 获取所有数据
@@ -149,7 +149,7 @@ query.limit(2).all()
 query.offset(2).all()
 query.first()
 query.get(2)	# 根据主键获取
-query.filter(User.id==2, age>10).first().name
+query.filter(User.id==2, age>10, deleted_at == None).first().name
 query.filter('id = 2').first()	# 复杂的filter
 query.order_by('user_name').all()		# 排序
 query(func.count('*')).all()
@@ -179,6 +179,8 @@ for name, in session.query(User.name).filter(stmt):	# 查询存在Post的user
 ### 插入
 
 ```python
+session.add(User(name='haofly'))	# 直接插入一条数据
+
 # 批量插入ORM版
 session.bulk_save_objects([User(name="wang") for i in xrange(1000)])
 
@@ -195,6 +197,9 @@ session.commit()
 ```python
 query.filter(...).update({User.age: 10})
 session.flush()	# 写数据库，不提交
+
+user.name = 'new'
+session.commit()
 ```
 
 ### 删除
@@ -213,4 +218,8 @@ session.commit()	# 提交
 ## TroubleShooting
 
 - **Tornado中使用SQLAlchemy连接SQLite进行commit操作的时候程序中断: Segment Fault**: 原因是`SQLite`的自增主键`id`重复了😂
+
+- **UnicodeEncodeError：'latin-1' codec can't encode characters in position 0-1: ordinal not in range(256)**: 连接数据库没有指定utf8的charset，参考本文连接数据库设置。
+
+   
 

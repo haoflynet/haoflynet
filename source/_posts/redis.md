@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2018-04-02 22:28:00
+updated: 2018-05-1 22:28:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -97,13 +97,14 @@ ttl key		# 查看剩余生存时间
 ### 列表
 
 ```shell
+lindex keyname index              # 返回列表中下标为index的元素
 lpush keyname value value2	# 将一个或多个值插入到表头
 lpush keyname value [value ...]    # 将一个或多个值插入表头
 lpushx keyname value [value ...]   # 当且仅当key存在且是一个列表时插入表头
 rpush keyname value               # 插入表尾
 rpushx keyname value              # 当且仅当key存在且是一个列表时插入表尾
+lrem key count value			# 从列表删除元素，其中count>0时表示从头往尾移除count个值为value的元素，count为0时表示移除所有，count<-1时则是从尾往头移除
 lrange keyname start count        # 从表头的第start位开始取出count个元素
-lindex keyname index              # 返回列表中下标为index的元素
 llen keyname                      # 返回列表长度
 lpop keyname                      # 移除并返回key的头元素
 rpop keyname                  # 移除并返回key的尾元素
