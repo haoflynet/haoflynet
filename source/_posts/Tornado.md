@@ -1,7 +1,7 @@
 ---
-title: "Tornado 教程"
+title: "Tornado 手册"
 date: 2015-08-05 12:02:30
-updated: 2017-11-02 20:24:00
+updated: 2018-05-13 01:24:00
 categories: python
 ---
 # Tornado
@@ -15,6 +15,12 @@ categories: python
 ## 基本框架
 
 [Tornado项目基本结构](https://github.com/haoflynet/project-structure/tree/master/Tornado)，需要注意的是Tornado要想实现`Rest`，只能用第三方库或者自己写，所以我研究出这样一种结构，可以直接实现Rest，非常实用。其中`Tornado`使用`sqlalchemy`连接数据库时推荐使用`tornado-sqlalchemy`库，它让`sqlalchemy`拥有了异步的特性，可以参见基本结构里的结构。
+
+### 路由
+
+```python
+(r"/voices/(?P<user_id>\d*)", UserHandler)	# 带命名参数的路由
+```
 
 ### handler
 
@@ -46,7 +52,7 @@ self.request.body					# 获取请求内容，字节类型
 self.request.arguments				# 获取全部请求参数
 self.request.query_arguments		# 获取全部GET请求参数
 self.request.body_arguments			# 获取全部POST请求参数
-name = self.get_argument('name')	# 获取POST参数
+name = self.get_argument('name')	# 获取GET或者POST参数
 self.request.remote_ip				# 获取客户端真实IP
 data = tornado.escape.json_decode(self.request.body)	# 获取请求的json数据
 ```
