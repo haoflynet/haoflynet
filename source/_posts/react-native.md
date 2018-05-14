@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-05-04 16:48:00
+updated: 2018-05-13 17:48:00
 categories: js
 ---
 
@@ -102,6 +102,9 @@ export class HomeScreen extends Component {
       pitch: '',
     };
   }
+  componentDidMount() {}	// 组件加载完成后执行，在render之后
+  render() {}		// 
+}
 ```
 
 ### Navigation导航组件
@@ -131,6 +134,16 @@ export default StackNavigator({
     screen: HomeScreen,
   },
 });
+```
+
+## 网络请求
+
+`React Native`使用的网络请求是[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)，但是，统治js的http请求库明显是`axios`，所以我还是喜欢用`axios`，另外，网络请求天生就应该是异步的，这两个库都是不支持同步的。
+
+```javascript
+// 安装npm install --save axios
+import axios from 'axios';
+axios.get('...').then((response)=>(console.log(response.data))); // 得到响应结果，不用像fetch那样responseJson了
 ```
 
 ## 原生库
