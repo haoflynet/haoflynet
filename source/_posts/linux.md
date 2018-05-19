@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-05-09 14:21:30
+updated: 2018-05-18 09:21:30
 categories: system
 ---
 # Linux手册
@@ -50,6 +50,14 @@ LANG/LANGUAGE: 语言
 
 # 输入输出
 2>&1 	# 输出重定向，1代表标准输出，2代表标准错误输出，这个表示将标准错误输出也输入到标准输出中
+
+# 并发执行shell命令，不是串行，是并行。并且所有命令的输出都能看得到
+#!/bin/sh
+/usr/bin/my-process-1 --args1 &
+/usr/bin/my-process-2 --args2 &
+/usr/bin/my-process-3 --args3 &
+wait
+echo all processes complete
 ```
 
 #### 进程及端口
