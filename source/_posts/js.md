@@ -226,7 +226,20 @@ clearInterval(t)				// 清除计时器
 debugger;						// 代码加入这一行，浏览器会自动断点进行调试，这对于自动编译的开发环境非常实用
 ```
 
+## Module 语法
+
+js里面一个模块就是一个独立的文件，文件内部的变量，外部是无法获取到的，需要用`export`使内部的变量暴露给外部，例如:
+
+```js
+export var name = 'hao';
+export {var1, var2, var3};	// 一次多个
+export function myfunc(x, y) {};	// 导出函数
+export {var1 as var2};	// 重新命名
+export default function () {};	// 这样在import的时候可以自定义name，例如import customName from '...';
+```
+
 ## Ajax
+
 最普遍的用法:
 
 ```javascript
