@@ -410,6 +410,16 @@ firewall-cmd --reload			# 重启CentOS
 firewall-cmd --list-ports		# 列出开放的端口
 ```
 
+#### 软件源管理
+
+Debian的软件源分为stable/testing/unstable/experimental。默认大家平时使用的都是stable，unstable的开发代号是sid。如果我们需要更新的软件，那么将sid源加入到软件源中:
+
+```tex
+deb http://ftp.debian.org/debian sid main
+```
+
+然后就可以这样子安装软件`sudo apt-get -t sid install ...`
+
 ## 其它工具
 
 #### Crontab定时任务
@@ -871,3 +881,13 @@ date +"%T"	# 仅显示时间，比如10:44:00
   2. 选择高级选项里面的`recovery mode`，但是现在不要点击回车，选中后按`e`进行编辑
   3. 将`ro recovery nomodeset`改为`rw single init=/bin/bash`
   4. 按下`F10`进入单用户模式。当前用户就是`root`，把不正常的配置或者密码都修改掉以后，重启系统
+
+- **更新时候提示`由于没有公钥，无法验证下列签名 **: 原因是加入了不被信任的源，这时候，要么把该源删除掉，要么从认证服务器导入该公钥。例如
+
+  ```shell
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABCDEFG # ABCDEFG就是刚才错误提到的key
+  ```
+
+  
+
+- `
