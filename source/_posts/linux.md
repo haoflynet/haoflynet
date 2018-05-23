@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-05-18 09:21:30
+updated: 2018-05-21 17:21:30
 categories: system
 ---
 # Linux手册
@@ -408,6 +408,9 @@ iptables -A INPUT -p tcp --dport 6379 -j DROP	# 进制外部访问内部的6379�
 firewall-cmd --add-port=3306/tcp --permanent	# 添加端口，需要注意的是，很多时候需要重启firewall才能生效
 firewall-cmd --reload			# 重启CentOS
 firewall-cmd --list-ports		# 列出开放的端口
+
+# 设置DNS, vim /etc/resolv.conf
+nameserver 114.114.114.114
 ```
 
 #### 软件源管理
