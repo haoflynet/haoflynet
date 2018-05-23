@@ -1,7 +1,7 @@
 ---
 title: "Apache手册"
 date: 2013-09-17 08:52:39
-updated: 2018-02-21 00:06:00
+updated: 2018-05-22 18:16:00
 categories: server
 ---
 ## Apache安装与配置
@@ -23,14 +23,15 @@ httpd -v # 查看apache版本
 
    ```tex
    #ServerRoot "/Âetc/apache2"   在这一行下面添加主域名
-   ServerName haofly.net
+   ServerName haofly.net		# 主机域名解析接口
+   ServerAlias a.haofly.net b.haofly.net	# 多域名设置，别名，可以让几个域名同时解析到统一入口
    .....................
    <Directory />
        Options FollowSymLinks
        AllowOverride None
        # Require all denied    # 将这一行去掉
    </Directory>
-
+   
    # 并在下面添加这样的一个Directory，这一句可以解决无法通过路由访问除根目录以外的
    <Directory /var/www/laravel/public>
        Options FollowSymLinks
