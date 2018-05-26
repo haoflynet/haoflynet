@@ -150,6 +150,63 @@ export default StackNavigator({
 });
 ```
 
+### Touchable*系列
+
+包括了触摸的相关事件(触摸、点击、长按、反馈等):
+
+**onPressIn**: 触摸开始
+
+**onPressOut**: 触摸离开
+
+**onPress**: 单击事件
+
+**onLongPress**: 长按事件
+
+#### TouchableHighlight
+
+触摸点击高亮效果。点击的时候，不透明度会降低，同时会看到变暗或者变量。只支持一个子节点，如果要多个子视图组件，可以用View进行包装。
+
+```javascript
+<TouchableHighlight onPress={this._onPressButton.bind(this)} underlayColor="white">
+    <View style={styles.button}>
+        <Text style={styles.buttonText}>TouchableHighlight</Text>
+	</View>
+</TouchableHighlight>
+```
+
+#### TouchableNativeFeedback
+
+仅限android。
+
+#### TouchableOpacity
+
+透明度变化。
+
+#### TouchableWithoutFeedback
+
+不带反馈效果的。
+
+## JSX语法
+
+```javascript
+// 使用循环
+<View>
+    {this.state.voices.map((voice, index) => {
+        return (
+        <Text key={`voice-${voice.id}`}>
+			{voice.text}
+		</Text>
+		)
+	})}      
+</View>
+```
+
+## 相关ES6语法
+
+```javascript
+// ES6里面必须显示绑定this，例如
+```
+
 ## 网络请求
 
 `React Native`使用的网络请求是[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)，但是，统治js的http请求库明显是`axios`，所以我还是喜欢用`axios`，另外，网络请求天生就应该是异步的，这两个库都是不支持同步的。
@@ -182,3 +239,6 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 
 
 - [仿美团示例项目]( https://github.com/huanxsd/MeiTuan)
+- [低仿映客直播](https://github.com/tion126/RNLive?utm_medium=email&utm_source=gank.io)
+- [双生——情侣应用](https://github.com/oh-bear/2life)
+
