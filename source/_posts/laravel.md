@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-05-16 17:51:00
+updated: 2018-05-25 08:51:00
 categories: php
 ---
 # Laravel指南
@@ -927,9 +927,11 @@ class User extends Model {}
 static public function remember($key, $minute, Closure $callback)
 {
   if (DB::transactionLevel() === 0) {
-    return self::existsInCache($key) ?
-      Cache::get($key) :
-    Cache::remember($key, $minute, $callback);
+    // cache本身的取值方式见vendor/laravel/framework/src/Illuminate/Cache/RedisStore.php
+      $value = Redis::connection(self::REDIS_CACHE)->get($key);
+      if ($value == 'N;') return null;
+      if (is_null($value)) return Cache::remember($key, $minute, $callback);
+      return is_numeric($value) ? $value : unserialize($value);
   } else {
     Cache::forget($key);
     return $callback();
