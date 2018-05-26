@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-05-13 17:48:00
+updated: 2018-05-22 18:43:00
 categories: js
 ---
 
@@ -40,7 +40,14 @@ react-native run-android
 
 ### state
 
-状态，这个才相当于是属性，是可以随时改变的。
+状态，这个才相当于是属性，是可以随时改变的，是一种双向绑定的数据。
+
+```javascript
+// 动态设置某个状态值
+this.setState({
+    results: value,
+});
+```
 
 ## 布局
 
@@ -80,7 +87,9 @@ const styles = StyleSheet.create({
 
 ## 组件
 
-### Button按钮
+### Button基础按钮
+
+这个组件的样式是固定的，如果需要自定义，那么高级的按钮参考`Touchable`系列
 
 ```javascript
 <Button
@@ -102,8 +111,13 @@ export class HomeScreen extends Component {
       pitch: '',
     };
   }
-  componentDidMount() {}	// 组件加载完成后执行，在render之后
+  componentWillMount() {}	// render之前执行，并且永远只执行一次
   render() {}		// 
+  componentDidMount() {}	// 组件加载完成后执行，在render之后，已经有了DOM结构，不要把其他逻辑写在render，以防阻塞UI
+  componentWillReceiveProps() {} // 组件接收到一个新的prop时执行，这个方法在初始化render时不会被调用
+  shouldComponentUpdate() {}  // 返回一个布尔值
+  componentWillUpdate() {}	// 在组件接收到新的props或者state但还没有render时执行，初始化时不会执行
+  componentDidUpdate() {}	// 组件更新完成后
 }
 ```
 
