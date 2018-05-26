@@ -1,14 +1,16 @@
 ---
 title: "Python使用beautifulsoup解析HTML、XML"
 date: 2015-05-22 23:21:57
-updated: 2018-01-12 18:52:00
+updated: 2018-05-16 18:52:00
 categories: 编程之路
 ---
 Python官方文档都说自己解析XML的方式存在漏洞了，那我也只能用他推荐的了。
 
 这里我使用的BeautifulSoup，因为其中文文档十分完整清晰，而且相比于defusedxml，它不仅可以解析XML还可以解析HTML，非常方便。[文档地址](http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html)
 
-另外，如果是简单的网页解析任务，可以直接将获取到的网页进行正则表达式匹配也可以达到效果，只是可能会出现各种编码各种错误问题
+另外，如果是简单的网页解析任务，可以直接将获取到的网页进行正则表达式匹配也可以达到效果，只是可能会出现各种编码各种错误问题。
+
+**更新**: 现在`requests`开发者新建了一个项目叫做`requests-html`，目的是提供比`BeautifulSoup`更好的性能和更好用的API。
 
 ## Installation
 ```shell
