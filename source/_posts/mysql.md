@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-05-09 23:39:00
+updated: 2018-05-23 16:39:00
 categories: database
 ---
 ## 安装方法
@@ -126,7 +126,7 @@ SELECT * FROM virtuals WHERE ip in (SELECT ip FROM virtuals GROUP BY ip HAVING C
 
 ```mysql
 ## 更改某字段的值，特别需要注意的是，mysql和mariadb是没有update from的，sql server才有。更新的时候WHERE语句一定是在SET语句后面，而JOIN语句则是在SET语句前面
-UPDATE 表名 SET 字段=新值 WHERE 条件;
+UPDATE 表名 SET 字段=新值,字段2=新值2 WHERE 条件;
 UPDATE table_A, table_B SET table_A.a=table_B.a;
 
 ## 更新中也能使用CASE，例如
@@ -134,6 +134,11 @@ UPDATE `table` SET `field` = CASE
 		WHEN id = 1 THEN 2
 END
 WHERE id in (1,2,3);
+
+# 更新的时候使用LEFT JOIN等语句
+UPDATE `table`
+LEFT JOIN ... ON ...
+SET ...
 ```
 
 ##### 删除
