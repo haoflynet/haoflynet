@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2018-05-10 23:34:00
+updated: 2018-05-26 23:34:00
 categories: python
 ---
 
@@ -140,7 +140,7 @@ def fullname(self):
 ```python
 # 查询表
 query = session.query(User)
-query		# 得到sql语句
+print(query)		# 得到sql语句
 query.count()
 query.statement	# 同上
 query.all()		# 获取所有数据
@@ -174,6 +174,9 @@ from sqlalchemy.sql import exists
 stmt = exists().where(Post.user_id==User.id)
 for name, in session.query(User.name).filter(stmt):	# 查询存在Post的user
     print(name)
+    
+# LIKE查询
+query.filter(User.name.like('%王%'))
 ```
 
 ### 插入
