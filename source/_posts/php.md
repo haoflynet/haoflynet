@@ -445,6 +445,23 @@ var_dump(extension_loaded('curl'));		// 查看是否安装某个模块
 var_dump(get_loaded_extensions());		// 查看安装了哪些模块
 ```
 
+## 线程/协程/进程
+
+### 迭代器
+
+PHP的迭代器和其他语言的迭代器用法基本相同。
+
+```php
+// 迭代器的while循环
+while ($it->valid())
+{
+    $key = $it->key();
+    $value = $it->current();
+    // ...
+    $it->next();
+}
+```
+
 ## 非常好用的第三方库
 
 ## TroubleShooting
