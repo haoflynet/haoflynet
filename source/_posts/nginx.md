@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-02-01 17:04:00
+updated: 2018-05-22 16:04:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理.  
@@ -10,98 +10,102 @@ Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx�
 
 ## 配置文件详解
 
+<!--more-->
+
 nginx配置文件地址在`/etc/nginx/nginx.conf`，nginx的配置文件里，最重要的section是http区块，里面包含了全局设置、主机设置(server)、上游服务器设置(upstream)、URL设置
 
-	user www-data;           # nginx所属用户
-	worker_processes 4;      # 进程数，通常是和CPU数量相等
-	pid /var/run/nginx.pid;
+```nginx
+user www-data;           # nginx所属用户
+worker_processes 4;      # 进程数，通常是和CPU数量相等
+pid /var/run/nginx.pid;
+
+events{
+	worker_connections 768;   # 单个进程并发的最大连接数
+	# multi_accept on;
+}
+
+http{
+	##
+	# Basic Settings
+	##
+	sendfile on; # 开启高效文件传输模式，如果是高IO的应用可设置为off
+	tcp_nopush on;
+
+	server_tokens off; # 隐藏系统版本号 # server_names_has_bucket_size 64; #
+	server_name_in_redirect off;
+
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+	##  
+	# Logging Settings  全局日志文件
+	##  
+	access_log /var/log/nginx/access.log;  
+	error_log /var/log/nginx/error.log;  
+
+	##  
+	# Gzip Settings Gzip压缩功能，可减少网络传输  
+	##
+	gzip on;  
+	gzip_disable "msie6";
+	gzip_types text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;	# 设置需要压缩的类型，默认有些类型比如json并没有开启
+
+	# gzip_vary on;  
+	# gzip_proxied any;  
+	# gzip_comp_level 6;  
+	# gzip_buffers 16 8k;  
+	# gzip_http_version 1.1;  
 	
-	events{
-		worker_connections 768;   # 单个进程并发的最大连接数
-		# multi_accept on;
-	}
+	##  
+	# Virtual Host Configs  虚拟主机配置，如果想要把server写在外面，可以在这里设置存放目录
+	##  
+	include /etc/nginx/conf.d/_.conf;  
+	include /etc/nginx/sites-enabled/_;  
 	
-	http{
-		##
-		# Basic Settings
-		##
-		sendfile on; # 开启高效文件传输模式，如果是高IO的应用可设置为off
-		tcp_nopush on;
+	# 设置虚拟主机  
+	server{  
+		listen 80;  
+		server_name haofly.net a.haofly.net; 	# 如果是多域名，用逗号分割开 
+		root /var/www/haofly;		# 网站根目录
 	
-		server_tokens off; # 隐藏系统版本号 # server_names_has_bucket_size 64; #
-		server_name_in_redirect off;
-	
-		include /etc/nginx/mime.types;
-		default_type application/octet-stream;
-	
-		##  
-		# Logging Settings  全局日志文件
-		##  
-		access_log /var/log/nginx/access.log;  
-		error_log /var/log/nginx/error.log;  
-	
-		##  
-		# Gzip Settings Gzip压缩功能，可减少网络传输  
-		##
-		gzip on;  
-		gzip_disable "msie6";
-		gzip_types text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;	# 设置需要压缩的类型，默认有些类型比如json并没有开启
-	
-		# gzip_vary on;  
-		# gzip_proxied any;  
-		# gzip_comp_level 6;  
-		# gzip_buffers 16 8k;  
-		# gzip_http_version 1.1;  
+		charset utf-8; # 字符集不应该在html里面指定，而直接在服务器端指定  
 		
-		##  
-		# Virtual Host Configs  虚拟主机配置，如果想要把server写在外面，可以在这里设置存放目录
-		##  
-		include /etc/nginx/conf.d/_.conf;  
-		include /etc/nginx/sites-enabled/_;  
+		# 该server日志文件存放路径
+		access_log /var/log/nginx/80_access.log; 
+		error_log /var/log/nginx/80_error.log;
 		
-		# 设置虚拟主机  
-		server{  
-			listen 80;  
-			server_name haofly.net;  
-			root /var/www/haofly;		# 网站根目录
-		
-			charset utf-8; # 字符集不应该在html里面指定，而直接在服务器端指定  
-			
-			# 该server日志文件存放路径
-			access_log /var/log/nginx/80_access.log; 
-			error_log /var/log/nginx/80_error.log;
-			
-			# 禁用非必要的请求方法，比如只处理GET、POST请求
-			if ($request_method !~ ^(GET|HEAD|POST)$ ){
-				return 444;
-			}
-			
-			location = /{
-	          # 完全匹配 =
-	          # 大小写敏感 ~
-	          # 忽略大小写 ~*
-	          # 前半部分匹配 ^~
-	          # 正则匹配，例如~* \.(.gif|jpg|png)$
-			}
-			
-			location / {
-				root /var/www/haofly;      # 设置根目录              
-				index index.html;          # 首页设置                     
-				proxy_pass http://name;  # 上面设置的负载均衡服务器列表的名字                    
-				proxy_connect_timeout 60; # nginx到后台服务器连接超时时间                    
-				proxy_set_header Host $http_host;                    
-				proxy_set_header X-Real-IP $remote_addr;                    
-				proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;            
-			}            
-			
-			location /blog {
-	          alias /var/www/blog;	# 别名设置
-			}
-			
-			location /static {    # 静态文件由nginx自己处理                					
-				root /var/www/haofly;
-			} 
+		# 禁用非必要的请求方法，比如只处理GET、POST请求
+		if ($request_method !~ ^(GET|HEAD|POST)$ ){
+			return 444;
 		}
+		
+		location = /{
+          # 完全匹配 =
+          # 大小写敏感 ~
+          # 忽略大小写 ~*
+          # 前半部分匹配 ^~
+          # 正则匹配，例如~* \.(.gif|jpg|png)$
+		}
+		
+		location / {
+			root /var/www/haofly;      # 设置根目录              
+			index index.html;          # 首页设置                     
+			proxy_pass http://name;  # 上面设置的负载均衡服务器列表的名字                    
+			proxy_connect_timeout 60; # nginx到后台服务器连接超时时间                    
+			proxy_set_header Host $http_host;                    
+			proxy_set_header X-Real-IP $remote_addr;                    
+			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;            
+		}            
+		
+		location /blog {
+          alias /var/www/blog;	# 别名设置。如果有alias值，那么不管location的路径是怎样的，真实的资源路径都是别名所指定的路径
+		}
+		
+		location /static {    # 静态文件由nginx自己处理                					
+			root /var/www/haofly;
+		} 
+	}
+```
 
 
 ### 负载均衡配置
