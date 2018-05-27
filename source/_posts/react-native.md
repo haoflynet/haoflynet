@@ -83,7 +83,10 @@ const styles = StyleSheet.create({
 // justifyContent: 规定子元素沿着主轴的排列方式。可选项有flex-start、center、flex-end、space-around以及space-between
 <View style={{flex: 1, justifyContent: 'row'}}>
 // alignItems: 规定子元素沿着次轴(与主元素垂直的轴)的排列方式。可选项有flex-start、center、flex-end、stretch
-// flex的值就类似于栅栏布局中的row宽度，一个2一个1，那么画面总共可以分成三份这种
+// flex的值就类似于栅栏布局中的row宽度，一个2一个1，那么画面总共可以分成三份这种。
+// flexGrow与flex有些类似，但是flex会使子元素的空间大小限定在父元素空间范围内，而flexGrow会使子元素起码维持其本身大小，再根据父元素是否有剩余空间进行空间分配。
+
+
 ```
 
 ## 组件
@@ -190,6 +193,14 @@ export default StackNavigator({
     <View style={styles.button}>
         <Text style={styles.buttonText}>TouchableHighlight</Text>
 	</View>
+</TouchableHighlight>
+
+// 可点击的图片
+<TouchableHighlight onPress={this._onPressButton}>
+    <Image
+		style={styles.button}
+		source={require('./myButton.png')}
+	/>
 </TouchableHighlight>
 ```
 
