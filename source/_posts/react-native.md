@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-05-22 18:43:00
+updated: 2018-05-27 18:43:00
 categories: js
 ---
 
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
 // justifyContent: 规定子元素沿着主轴的排列方式。可选项有flex-start、center、flex-end、space-around以及space-between
 <View style={{flex: 1, justifyContent: 'row'}}>
 // alignItems: 规定子元素沿着次轴(与主元素垂直的轴)的排列方式。可选项有flex-start、center、flex-end、stretch
+// flex的值就类似于栅栏布局中的row宽度，一个2一个1，那么画面总共可以分成三份这种
 ```
 
 ## 组件
@@ -98,30 +99,7 @@ const styles = StyleSheet.create({
 />
 ```
 
-### Component
-
-一个页面需要一个`Component`：
-
-```javascript
-export class HomeScreen extends Component {
-  constructor(props) {		// 构造函数
-    super(props);
-    this.state = {
-      recognized: '',
-      pitch: '',
-    };
-  }
-  componentWillMount() {}	// render之前执行，并且永远只执行一次
-  render() {}		// 
-  componentDidMount() {}	// 组件加载完成后执行，在render之后，已经有了DOM结构，不要把其他逻辑写在render，以防阻塞UI
-  componentWillReceiveProps() {} // 组件接收到一个新的prop时执行，这个方法在初始化render时不会被调用
-  shouldComponentUpdate() {}  // 返回一个布尔值
-  componentWillUpdate() {}	// 在组件接收到新的props或者state但还没有render时执行，初始化时不会执行
-  componentDidUpdate() {}	// 组件更新完成后
-}
-```
-
-### Navigation导航组件
+### Navigation/Component导航组件
 
 [Navigation文档](https://reactnavigation.org/docs/hello-react-navigation.html)，Navigation已经单独成为一个模块，强烈建议不再使用老的导航器，[导航器对比](https://www.jianshu.com/p/98db12a6afec)，在这里有其更详细的文档。在`0.44`版本移除了[`Navigator`](https://facebook.github.io/react-native/docs/navigator.html)，该模块被移动到[react-native-custom-components](https://github.com/facebookarchive/react-native-custom-components)现在也仅用于兼容老版本。
 
@@ -134,6 +112,32 @@ import { View, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: '头部标题',
+    headerStyle: {
+    	backgroundColor: '#ffffff',	// 设置头部样式      
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {	// 设置头部字体样式
+      fontWeight: 'bold'      
+    },
+    headerRight: (			// 设置header bar的左右按钮
+      <Button
+        onPress={() => alert('This is a button!')}
+        title="Info"
+        color="#fff"
+      />
+    ),
+  };
+
+  componentWillMount() {}	// render之前执行，并且永远只执行一次
+  render() {}		// 渲染页面
+  componentDidMount() {}	// 组件加载完成后执行，在render之后，已经有了DOM结构，不要把其他逻辑写在render，以防阻塞UI
+  componentWillReceiveProps() {} // 组件接收到一个新的prop时执行，这个方法在初始化render时不会被调用
+  shouldComponentUpdate() {}  // 返回一个布尔值
+  componentWillUpdate() {}	// 在组件接收到新的props或者state但还没有render时执行，初始化时不会执行
+  componentDidUpdate() {}	// 组件更新完成后
+
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -148,6 +152,21 @@ export default StackNavigator({
     screen: HomeScreen,
   },
 });
+```
+
+### StatusBar状态栏
+
+### TextInput输入框
+
+```javascript
+<TextInput
+	style={{
+           height: 40, 
+           alignSelf: 'center'	// 输入框文字居中
+    }}
+    onChangeText={(text) => this.setState({text})}
+    value={this.state.text}
+/>
 ```
 
 ### Touchable*系列
