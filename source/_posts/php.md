@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-05-22 14:58:21
+updated: 2018-05-8 16:58:21
 categories: php
 ---
 # PHP
@@ -496,8 +496,6 @@ while ($it->valid())
   });
   ```
 
-
-
 - **Error while reading line from server**
 
   这是在使用predis时报的错误，原因是没有设置`read_write_timeout=－1`使redis保持永久连接，否则会在一定时间后断开连接
@@ -506,4 +504,8 @@ while ($it->valid())
 
 - **PHP调用Dubbo服务**: 按照这个教程一步一步来http://www.huangxiaobai.com/archives/1437。
 
-  ​
+- **PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 130968 bytes) in …**: PHP作为daemon程序运行时候经常性出现内存溢出问题，并且这种错误程序是不会退出的，只会卡在那里，supervisor也不会发现程序的异常。首先检查为什么内存溢出，如果是有大量的curl请求，那么有可能是请求未释放或者curl本身的问题(curl 7.19.7在网上有说是有ssl内存溢出漏洞的)。如果实在想不到，那么可以这样做，使用`memory_get_peak_usage(true)`函数判断当前的内存使用量，当快达到阈值(php.ini中有设置，一般为256MB，top出来显示的内存比这个高一点)的时候，主动退出程序或者退出循环，销毁变量，重新开启循环。
+
+- 
+
+  
