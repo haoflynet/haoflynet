@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-05-21 17:21:30
+updated: 2018-05-29 17:21:30
 categories: system
 ---
 # Linux手册
@@ -368,7 +368,7 @@ echo "/swapfile          swap            swap    defaults        0 0" >> /etc/fa
 /sbin/swapoff /swapfile	# 停止交换分区
 rm -rf /swapfile		# 删除交换分区
 
-sudo service lightdm start	# Linux Mint关闭GUI
+sudo service lightdm start	# Linux Mint关闭GUI，重启gui
 ```
 
 #### systemctl/service
@@ -454,6 +454,9 @@ service rsyslog restart		# 重启rsyslog
 
 # 不用管理员用户而是直接当前用户用sudo执行(管理员用户可以直接sudo crontab -l查看任务)
 20 * * * * echo "password" | sudo -S rm /etc/xxx	# 缺点是只能将密码写在这里了
+
+# 查看所有用户的定时任务信息
+/var/spool/cron/
 ```
 
 #### CURL
@@ -545,31 +548,8 @@ smbclient //host/path	# 进入共享文件夹中
 smbget -R smb://host/path	# 如果要递归下载文件夹，可以这样子使用
 ```
 
-#### supervisor
+#### [supervisor](https://haofly.net/supervisor)
 
-进程监控工具，`apt-get install supervisor`进行安装，默认的监控配置都放在`/etc/supervisor/conf.d`里面，配置文件语法如下:
-
-```shell
-[group:fenzu]
-programs:一个进程名,另一个进程名	# 这样可以分组控制一批program
-
-[program:去一个进程名称]
-process_name=%(program_name)s_%(process_num)02d # 当前进程的名称
-directory=/home/...     # 工作目录，启动程序前会切换到这个地方
-command=python manage.py runserver ....   # 启动命令
-autostart=true				# 在supervisord启动的时候自动启动
-autorestart=true			# 程序异常退出后自动重启
-startretries=3 			# 启动失败自动重试次数，默认是3
-user=root					# 用哪个用户启动
-numprocs=8					# 进程数
-redirect_stderr=true		# 把stderr重定向到stdout，默认为false
-stdout_logfile=/var/log/...	# 日志文件位置，若该目录不存在则无法正常启动，需要手动创建目录
-```
-常用操作
-
-```shell
-supervisord	# 启动所有监控			
-```
 **其他命令**
 
 ```shell
