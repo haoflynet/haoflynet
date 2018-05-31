@@ -1,7 +1,7 @@
 ---
 title: "curl手册"
 date: 2016-04-07 08:01:39
-updated: 2018-03-16 14:41:00
+updated: 2018-05-30 16:41:00
 categories: tools
 ---
 # curl
@@ -31,6 +31,12 @@ curl -X POST -F 'username=davidwalsh' -F 'password=something' http://domain.tld/
 
 # 下载文件
 curl -o test.txt haofly.net/test
+```
+
+## Header头信息参数
+
+```shell
+Host: 客户端指定自己想要访问的WEB服务器的域名/IP地址
 ```
 
 ##### TroubleShooting
