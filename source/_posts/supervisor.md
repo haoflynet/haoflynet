@@ -1,7 +1,7 @@
 ---
 title: "使用Supervisor管理进程"
 date: 2015-08-11 10:07:33
-updated: 2018-01-05 18:03:00
+updated: 2018-05-29 18:03:00
 categories: 编程之路
 ---
 supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理Nginx、Apache等，都比较方便，这里是其使用方法：
@@ -33,15 +33,18 @@ sudo supervisorctl                        # 进入命令行界面管理进程
 ```shell
 # 在supervisord.conf里面添加如下内容
 [program:frontend]                                           # 进程名
+process_name=%(program_name)s_%(process_num)02d # 指定当前进程的名称
 command=/usr/bin/python manage.py runserver 0.0.0.0:8000     # 启动该进程的命令
 directory=/media/sf_company/frontend/frontend                # 在执行上面命令前切换到指定目录
 startsecs=0
+startretries=3		# 启动失败自动重试次数，并不是程序退出autorestart的次数
 stopwaitsecs=0
 autostart=false
-autorestart=false
+autorestart=false	# 当未false的时候不会自动重启，当未true的时候只要挂了就会重启，当未unexpected的时候，如果退出码是unexpected才会重启
 user=root
 stdout_logfile=/root/log/8000_access.log                     # 访问日志
 stderr_logfile=/root/log/8000_error.log                      # 错误日志
+redirect_stderr=true	# 将错误重定向到stdout，默认未false
 
 # 分组的配置，可以统一管理几个程序，需要注意的是，group下面只有programs和priority两个属性可以设置，像autostart等参数在这里面设置是无效的
 [group:my_group]

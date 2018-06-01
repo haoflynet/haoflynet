@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-05-29 17:21:30
+updated: 2018-05-31 15:21:30
 categories: system
 ---
 # Linux手册
@@ -320,7 +320,7 @@ sudo passwd username
 chpasswd < user.txt	# 其中user.txt是用户名和密码的对应文件，格式为username:password
 
 # 给用户添加sudo权限，以下这种方法不可采取，因为改错了以后就不能使用sudo命令了，只能通过单用户模式去修改正确，最好的方式是使用`pkexec visudo`命令进行修改。
-vim /etc/sudoers 修改如下内容
+vim /etc/sudoers 修改如下内容(同时，可以像nginx那样将配置分开/etc/sudoers.d/针对某个用户)
 # User privilege specification  
 root    ALL=(ALL:ALL) ALL      # 在这一行下面写  
 username1 ALL=(ALL:ALL) ALL    # 该用户可以执行所有sudo操作
@@ -425,9 +425,9 @@ deb http://ftp.debian.org/debian sid main
 
 ## 其它工具
 
-#### Crontab定时任务
+#### Crontab/at定时任务
 
-要使用`cron`服务，首先要安装启动`cron`: `sudo apt-get install cron -y && cron`
+要使用`cron`服务，首先要安装启动`cron`: `sudo apt-get install cron -y && crond`。at命令可用于只执行一次的任务
 
 ```shell
 crontab -e # 直接打开定时任务文件进行编辑
