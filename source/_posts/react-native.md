@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-05-27 18:43:00
+updated: 2018-05-31 23:06:00
 categories: js
 ---
 
@@ -85,8 +85,30 @@ const styles = StyleSheet.create({
 // alignItems: 规定子元素沿着次轴(与主元素垂直的轴)的排列方式。可选项有flex-start、center、flex-end、stretch
 // flex的值就类似于栅栏布局中的row宽度，一个2一个1，那么画面总共可以分成三份这种。
 // flexGrow与flex有些类似，但是flex会使子元素的空间大小限定在父元素空间范围内，而flexGrow会使子元素起码维持其本身大小，再根据父元素是否有剩余空间进行空间分配。
+```
 
+#### 居中问题
 
+```javascript
+// 图标悬浮与图片的正中间，两者均居中对齐
+<View style={{
+		justifyContent: 'center',
+        alignItems: 'center',
+}}>
+    <Icon name="microphone" size={70} style={{
+        position: 'absolute',
+        zIndex: 1,
+        justifyContent: 'center',
+		alignItems: 'center'
+    }}/>      
+	<Image source={require('../img/test.png')} style={{
+       width: 250, 
+       height: 250,
+       alignItems: 'center',
+       justifyContent:'center',
+      }}
+    />
+</View>
 ```
 
 ## 组件
