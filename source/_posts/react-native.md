@@ -115,7 +115,7 @@ import { View, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     title: '头部标题',
     headerStyle: {
     	backgroundColor: '#ffffff',	// 设置头部样式      
@@ -131,7 +131,9 @@ class HomeScreen extends React.Component {
         color="#fff"
       />
     ),
-  };
+    headerRight: (<Button onPress={() => navigation.navigate('Setting')} title={'设置'} />),
+
+  });
 
   componentWillMount() {}	// render之前执行，并且永远只执行一次
   render() {}		// 渲染页面
@@ -150,6 +152,7 @@ class HomeScreen extends React.Component {
   }
 }
 
+// 可以在App.js中声明所有的页面，默认放在第一个的为首页
 export default StackNavigator({
   Home: {
     screen: HomeScreen,
@@ -218,7 +221,7 @@ export default StackNavigator({
 
 ## JSX语法
 
-```javascript
+```tex
 // 使用循环
 <View>
     {this.state.voices.map((voice, index) => {
@@ -229,6 +232,14 @@ export default StackNavigator({
 		)
 	})}      
 </View>
+
+// 定义模板(自定义标签)
+const InfoText = ({ text }) => (		// 其中text是模板的参数
+  <View style={styles.container}>
+    <Text style={styles.infoText}>{text}</Text>
+  </View>
+)
+<InfoText text="haofly"/>	// 使用模板
 ```
 
 ## 相关ES6语法
