@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-04-25 18:02:00
+updated: 2018-06-02 17:20:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -63,6 +63,10 @@ string.slice(start, end);	// 字符串分片
 str.split('#')	// 字符串分割，返回分割后的列表
 parseInt(数字)  // 将数字取整
 ```
+
+#### 时间处理
+
+`XDate`
 
 ## DOM操作
 
