@@ -1,11 +1,11 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-05-23 16:39:00
+updated: 2018-06-03 21:12:00
 categories: database
 ---
 ## 安装方法
-**CentOS**：[使用yum安装MariaDB](https://mariadb.com/kb/zh-cn/installing-mariadb-with-yum/)，CentOS安装client直接yum install mysql而不是client，而安装mysql则直接用`yum install -y mysql mysql-server mysql-dev mysql-devel`，CentOS7上已经用mariadb代替了mysql，这样子使用：
+**CentOS**：[使用包的方式安装最新MariaDB](https://mariadb.com/kb/en/library/binary-packages/)，CentOS安装client直接yum install mysql而不是client，而安装mysql则直接用`yum install -y mysql mysql-server mysql-dev mysql-devel`，CentOS7上已经用mariadb代替了mysql，这样子使用：
 
 ```shell
 yum install mariadb-server mariadb mariadb-devel -y
