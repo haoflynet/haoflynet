@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-06-02 17:20:00
+updated: 2018-06-04 17:20:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -38,6 +38,7 @@ arr.push(obj): 给数组添加元素
 arr.slice(start, end): 数组分片
 
 for (var index in arr) {}	// 遍历数组 
+arr.map((value) => {console.log(value); return newValue;}) //遍历数组，返回值为一个新的数组，原数组不会改变
 
 // for jQuery
 $.each($array, function(k, v){});	// 遍历数组
