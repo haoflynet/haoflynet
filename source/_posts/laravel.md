@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-05-25 08:51:00
+updated: 2018-06-06 15:21:00
 categories: php
 ---
 # Laravel指南
@@ -552,6 +552,8 @@ Laravel使用数据填充类来填充数据，在`app/database/seeds/DatabaseSee
 
 #### ORM操作
 
+Laravel 查询构建器使用 PDO 参数绑定来避免 SQL 注入攻击，不再需要过滤以绑定方式传递的字符串。但是需要注意的是**当使用`whereRaw/selectRaw`等能嵌入原生语句的时候必须对输入的字符进行过滤**
+
 ```php
 # 数据库信息获取
 ## 获取查询SQL
@@ -587,7 +589,7 @@ User::whereDate('created_at', '2017-05-17');
 User::whereMonth('created_at', '5');
 User::whereDay('created_at', '17');
 User::whereYear('created_at', '2017');
-User::whereRaw('name="wang" and LENGT(name) > 1');				# 当有复杂点的where语句或者想直接写在mysql里面的那样的where语句，可以直接这样写
+User::whereRaw('name="wang" and LENGT(name) > 1'); # 当有复杂点的where语句或者想直接写在mysql里面的那样的where语句，可以直接这样写
 User::whereColumn('first_field', 'second_field');	# 判断两个字段是否相等
 User::where(...)->orWhere();		# or where，需要注意的是这里是和前面所有的where相or，并且后面的不会去判断deleted_at is null了
 User::where('...')->orWhere(['a'=>1, 'b'=>2]);	# 同时添加多个
