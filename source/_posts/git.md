@@ -20,19 +20,21 @@ Linux平台：`sudo apt-get install git`
 
 打开终端，在windows平台就用上一步安装上的git bash
 
-    # 全局配置，这里的用户名和邮箱填写你自己的帐号，可以是github上的帐号信息
-    git config --global user.name "haoflyent"
-    git config --global user.email "haoflynet@gmail.com"
-    
-    # 如果要同一台机器多个git账户，那么可以取消全局设置
-    git config --global --unset user.name
-    git config --global --unset user.email
-    git config user.email "x@xx.com"    # 在仓库里面单独设置
-    git config user.name "xx"
-    
-    # 生成密钥
-    ssh-keygen -t rsa -C "haoflynet@gmail.com"
-    # 然后一路默认就可以，注意看其中的密钥存放位置，其中公钥文件Windows默认为/c/Users/用户名/.ssh/id_rsa.pub# Linux默认为 ~/.ssh/rsa_pub
+```shell
+# 全局配置，这里的用户名和邮箱填写你自己的帐号，可以是github上的帐号信息
+git config --global user.name "haoflyent"
+git config --global user.email "haoflynet@gmail.com"
+
+# 如果要同一台机器多个git账户，那么可以取消全局设置
+git config --global --unset user.name
+git config --global --unset user.email
+git config user.email "x@xx.com"    # 在仓库里面单独设置
+git config user.name "xx"
+
+# 生成密钥
+ssh-keygen -t rsa -C "haoflynet@gmail.com"
+# 然后一路默认就可以，注意看其中的密钥存放位置，其中公钥文件Windows默认为/c/Users/用户名/.ssh/id_rsa.pub# Linux默认为 ~/.ssh/rsa_pub
+```
 
 <!-- more -->
 
