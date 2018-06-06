@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2018-05-1 22:28:00
+updated: 2018-06-04 14:28:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -72,6 +72,8 @@ client kill 127.0.0.1:44444 # 断开某个连接
 
 # info查询系统所有信息，命令详解
 db0:keys=2333,expires=12,avg_ttl=0	# key的统计信息在最后一行
+
+# redis-cli --bigkeys	查看redis中非常大的key
 ```
 
 ### 通用

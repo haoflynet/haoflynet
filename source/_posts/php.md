@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-05-8 16:58:21
+updated: 2018-06-06 16:15:21
 categories: php
 ---
 # PHP
@@ -386,6 +386,7 @@ composer show 	# 获取所有安装的包的列表
 composer require package_name --dev	# 安装包，并将其写入composer.json的require-dev中去
 composer remove package_name	# 移除包
 composer config -g repo.packagist composer https://packagist.phpcomposer.com	# 更换为国内的源
+composer config repositories.mypkg composer https://ppkg.haofly.net	# 增加源，并写入composer文件中的repositories字段
 
 # 忽略ssl证书验证
 composer config --global disable-tls true
