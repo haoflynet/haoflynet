@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-06-06 15:21:00
+updated: 2018-06-07 14:21:00
 categories: php
 ---
 # Laravel指南
@@ -243,6 +243,7 @@ return response()->download($pathToFile)->deleteFileAfterSend(true); # 设置为
 Larval的分页主要靠Eloquent来实现，如果要获取所有的，那么直接把参数写成`PHP_INT_MAX`就行了嘛
 
 ```php
+Paginator::currentPagesolver(function () use ($currentPage) {return $currentPage}); # 动态改变paginator获取page的方式，全局搜索可以发现它就是从request参数获取的page
 $users = User::where('age', 20)->paginate(20);	// 表示每页为20条，不用去获取页面是第几页，laravel会自动在url后面添加page参数，并且paginate能自动获取，最后的结果，用json格式显示就是
 {
   'total': 50,
@@ -601,6 +602,7 @@ User::->where('updated_at', '>=', date('Y-m-d H:i').':00')->where('updated_at', 
 User::find(1)->sum('money')		# 求和SUM
 User::where(...)->get()->pluck('name')	# 只取某个字段的值，而不是每条记录取那一个字段，这是平铺的,这里的pluck针对的是一个Collection，注意，这里只能针对Collection，千万不要直接针对一个Model，这样只会取出那张表的第一条数据的那一列，需要注意的是这里是先get除了所有的记录，然后在Collection上面进行的pluck操作，如果想少去一点数据可以先用select()再用pluck
 User::select('name')->where()	# 也是只取出某个字段，但是这里不是平铺的
+User::where()->get(['id', 'name'])# 更简单的方法
 User::where(...)->pluck('name')	# 这是取出单独的一个行的一个列，不再需要first
 User::withTrashed()->where()	# 包括软删除了的一起查询
 User::onlyTrashed()->where()	# 仅查找软删除了的
