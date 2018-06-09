@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2018-05-26 23:34:00
+updated: 2018-06-04 10:34:00
 categories: python
 ---
 
@@ -146,7 +146,7 @@ query.statement	# 同上
 query.all()		# 获取所有数据
 session.query(User.id).distinct().all()
 query.limit(2).all()
-query.offset(2).all()
+query.offset(2).all()	# 要注意如果page相乘的时候page-1
 query.first()
 query.get(2)	# 根据主键获取
 query.filter(User.id==2, age>10, deleted_at == None).first().name
