@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-06-08 15:35:00
+updated: 2018-06-09 21:04:00
 categories: js
 ---
 
@@ -59,6 +59,8 @@ this.setState({
 
 // 弹性的高度和宽度用flex。flex为1的时候表示撑满所有的剩余空间，如果多个并列子组件一起使用，则他们会平分空间，并且值越大所占比例就越大。例如
 <View style={{flex: 2, backgroundColor: 'skyblue'}} />
+
+<View style={[styles.css1, styles.css2]} /> // 包含多个样式
 
 // 这样还能直接看出来层级关系。例如<Text style={styles.red}>test</Text>
 const styles = StyleSheet.create({
@@ -163,6 +165,7 @@ import { View, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
+  static navigationOptions = ({navigation}) => {return ()}; // 可以使用return的方法，这样可以在上面写一些逻辑
   static navigationOptions = ({navigation}) => ({
     title: '头部标题',
     headerStyle: {
@@ -212,13 +215,19 @@ export default StackNavigator({
 
 ### TextInput输入框
 
+TextInput默认宽度与父节点相同。如果想要其在没有文字的时候也能占据宽度，可以设置`flex:1`并且父`View`也得设置`flex:1`
+
 ```javascript
 <TextInput
 	style={{
            height: 40, 
-           alignSelf: 'center'	// 输入框文字居中
+           alignSelf: 'center',	// 输入框文字居中
+           alignItem: 'center',
+           textAlign: 'center',	// 这个才是输入框里面的文字居中
     }}
     onChangeText={(text) => this.setState({text})}
+    clearTextOnFocus={true}
+    placeholder='请输入'	// 默认是灰色的
     value={this.state.text}
 />
 ```
