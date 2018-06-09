@@ -111,6 +111,32 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+#### 定位问题
+
+```javascript
+// 获取屏幕尺寸
+import Dimensions from 'Dimensions';
+Dimensions.get('window');
+
+// 获取元素的位置: https://stackoverflow.com/questions/30096038/react-native-getting-the-position-of-an-element
+class MyComponent extends React.Component {
+    render() {
+        return <View ref={view => { this.myComponent = view; }} />
+    }
+    componentDidMount() {
+        // Print component dimensions to console
+        this.myComponent.measure( (fx, fy, width, height, px, py) => {
+            console.log('Component width is: ' + width)
+            console.log('Component height is: ' + height)
+            console.log('X offset to frame: ' + fx)
+            console.log('Y offset to frame: ' + fy)
+            console.log('X offset to page: ' + px)
+            console.log('Y offset to page: ' + py)
+        })        
+    }
+}
+```
+
 ## 组件
 
 ### Button基础按钮
