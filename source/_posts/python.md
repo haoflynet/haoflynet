@@ -137,6 +137,11 @@ filter(lambda person: person['name'] == 'haofly', people_list)	# 不过有个缺
 
 # 字典推倒式
 d = {key: value for (key, value) in iterable}
+
+# 字典相加/字典合并
+dict(dict1.items() + dict2.items())
+dict(dict1, **dict2)
+dict1.update(dict2)	# 这种方式不会返回新的字典，只会更新原有dict1字典
 ```
 #### 类/函数
 
@@ -329,6 +334,7 @@ shutil.rmtree('mydir')   # 删除非空目录
 shutil.copy(originame, tmpname)  # 复制单个文件
 shutil.copytree(root_of_tree, desetination_dir, True) # 复制目录树
 os.listdir('dirname')  # 显示一个目录下的所有文件和文件夹的名称
+os.path.isabs(filename)  # 是否是绝对路径
 os.path.isdir(filename)  # 是否是目录
 os.path.isfile(filename) # 是否是文件
 os.path.islink  # 是否是链接
@@ -340,8 +346,8 @@ os.chdir(newdir)  # 切换目录
 os.path.exists(name)  # 判断目录是否存在
 os.rename(original_name, new_name) # 修改文件名称
 
-# 文件打开与关闭
-fp = open('a.txt', 'w')
+# 文件打开与关闭,'r+b'表示打开二进制的读写。第三个参数为buffering用于设置buffer，0代表关闭buffer只能用于二进制，1代表line buffer只能用于文本，>1表示初始化的buffer的大小
+fp = open('a.txt', 'w', 1)
 fp.close()
 或者
 with open('a.txt', 'w') as fp:   # 这种方式不需要close
