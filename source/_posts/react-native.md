@@ -276,7 +276,7 @@ TextInput默认宽度与父节点相同。如果想要其在没有文字的时�
 
 不带反馈效果的。
 
-## JSX语法
+## 渲染JSX语法
 
 ```tex
 // 使用循环
@@ -315,7 +315,21 @@ import axios from 'axios';
 axios.get('...').then((response)=>(console.log(response.data))); // 得到响应结果，不用像fetch那样responseJson了
 ```
 
-## 原生库
+## 开发原生相关问题
+
+#### 在真实设备上调试以及打包到真实设备
+
+在真实设备上调试，只需要在`Xcode`中`Run`到你自己连接的设备即可，这时候安装在手机上面的，是和电脑上面模拟器出来的一模一样，也能进行调试，但是断开usb后应用不能使用。如果要将应用直接整体打包到设备上面，看看真实使用的效果，可以按照这个教程进行设置`https://facebook.github.io/react-native/docs/running-on-device.html`，主要就是修改`AppDelegate.m`中的`jsCodeLocation`的值，将其改变成如下状态即可。
+
+```swift
+jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+```
+
+#### APP图标设置
+
+参考`Xcode`中的图标设置，也只能在`xcode`中设置，即直接将图标拖如`Images.xcassets`
+
+#### 原生库
 
 开发者会将很多原生库打包成一些静态库，或者由js直接封装好了的静态库。一般比较好的静态库都能够使用命令自动链接:`react-native link 某已安装的具体库名`，如果手动链接可以参考文档[linking-libraries-ios](https://facebook.github.io/react-native/docs/linking-libraries-ios.html)
 
