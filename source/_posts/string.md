@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2018-01-05 19:48:00
+updated: 2018-06-08 14:48:00
 categories: python
 ---
 ## 编码问题
@@ -143,6 +143,7 @@ line = 'asdf fjdk; afed, fjek, asdf, foo'
 import re
 re.split(r'[;,\\s]\\s_', line) # ['asdf', 'fjdk', 'afed', 'fjek', 'asdf', 'foo']
 re.split(r'(;|,|\\s)\\s_', line) # 这样连分隔符都能分割出来
+re.split('(==|>=|<=|>|<)', 'requests>1.2.3')	# 多个字符的解析
 ```
 
 ## 时间处理
