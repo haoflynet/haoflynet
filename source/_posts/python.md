@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-05-10 09:32:30
+updated: 2018-06-08 18:48:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -11,9 +11,9 @@ categories: python
 ```shell
 # for CentOS
 yum groupinstall -y 'development tools'
-yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel xz-libs
+yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel xz-libs  libffi-devel
 # for Ubuntu
-apt-get install -y build-essential libssl-dev
+apt-get install -y build-essential libssl-dev libffi-dev
 
 # Linux下不区分64和32位
 wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz	
