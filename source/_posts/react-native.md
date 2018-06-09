@@ -75,15 +75,15 @@ const styles = StyleSheet.create({
 
 #### Flexbox布局
 
-规定某个组件的子元素的布局。
+规定某个组件的子元素的布局。`flex`的值就类似于栅栏布局中的row宽度，一个2一个1，那么画面总共可以分成三份这种，如果直接`flex:1`，那么就表示直接占据整个。
 
 ```javascript
-// flexDirection: 规定布局方向，默认是column垂直方向布局，row表示水平方向布局。
+// flexDirection: 规定布局方向，默认是column垂直方向布局，row表示水平方向布局
 <View style={{flex: 1, flexDirection: 'row'}}>
 // justifyContent: 规定子元素沿着主轴的排列方式。可选项有flex-start、center、flex-end、space-around以及space-between
 <View style={{flex: 1, justifyContent: 'row'}}>
 // alignItems: 规定子元素沿着次轴(与主元素垂直的轴)的排列方式。可选项有flex-start、center、flex-end、stretch
-// flex的值就类似于栅栏布局中的row宽度，一个2一个1，那么画面总共可以分成三份这种。
+//
 // flexGrow与flex有些类似，但是flex会使子元素的空间大小限定在父元素空间范围内，而flexGrow会使子元素起码维持其本身大小，再根据父元素是否有剩余空间进行空间分配。
 ```
 
