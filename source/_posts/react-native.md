@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-05-31 23:06:00
+updated: 2018-06-08 15:35:00
 categories: js
 ---
 
@@ -24,23 +24,23 @@ categories: js
 
 命令行工具: `npm install -g react-native-cli`
 
-测试安装: 
-
 ```shell
 react-native init testProject	# 新建项目目录，并初始化项目
 react-native init testProject --version 0.1.2	# 创建指定版本的项目
 cd testProject
 react-native run-ios	# 第一次启动会很慢。等模拟器运行起来后可以直接Cmd+R刷新应用，Cmd+D打开调试菜单
 react-native run-android
+
+npm install --save react-native@X.Y	# 直接指定版本号的更新升级，手动升级更爽。我不喜欢用react-native-git-upgrade来升级
 ```
 
-### prop
+### prop&&state
 
-属性，相当于传递给`JSX`的变量。
+两者可以说是大同小异，在大多数情况下，两者没什么很大的差别。两者的改变的时候，渲染的地方都会重新渲染。
 
-### state
+**prop**: 一个组件的设置参数，可以理解为初始化参数或者对象的静态变量，并且可以在父组件中设置，在子组件中不可改变，但是可以一直往下传递至子子孙孙。
 
-状态，这个才相当于是属性，是可以随时改变的，是一种双向绑定的数据。
+**state**: 更像是对象的一些变量，并且确实是经常改变的，只是父子之间不能传递。
 
 ```javascript
 // 动态设置某个状态值
