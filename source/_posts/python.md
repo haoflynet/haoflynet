@@ -431,9 +431,12 @@ id(x)   # 返回对象标识，即内存地址
 platform.system()  # 当前操作系统
 platform.release()  # 当前系统版本
 sys.version     # python版本
+os.dup2(fp1, fp2)	# 将文件描述符fp1复制到fp2
 os.environ['name']  # 获取系统环境变量
 os.environ['name'] = value  # 设置系统环境变量
 os.geteuid() == 0		# 判断当前用户是否拥有root权限(sudo权限)，貌似这是比较简单的方式了
+os.setsid()		# 将当前进程设置为头领进程，相当于让系统觉得它没有子进程，它本身就是一个父进程
+os.umask(0)		# 修改文件模式，让当前进程拥有所有读写执行的权限
 ```
 #### 网络相关
 
@@ -517,6 +520,14 @@ __import__(name = module_name, fromlist=[a, b])	# 相当于from module_name impo
 module = __import__('module_name', ['*'])
 for k in dir(module):
 	locals()[k] = getattr(module, k)
+	
+# 编码注释风格
+#!/usr/bin/python
+# -*- coding: <encoding name> -*-
+
+# 直接用代码形式安装包
+import pip
+pip.main(['install', 'requests'])
 ```
 #### 名字空间
 
@@ -707,22 +718,32 @@ class test:
 
 #### argparse(命令行程序)
 
+`optparse`从2.7开始不推荐使用了
+
 ```python
 import argparse
 
-parser = argparse.ArgumentParser(description='命令介绍')
+parser = argparse.ArgumentParser(description='命令介绍', usage='[options] (start|stop|status|restart|condrestart|version)', epilog='help信息之后的信息')
+parser.add_argument('action', choices=('start', 'stop', 'status', 'restart'))
 parser.add_argument('-d', help='添加一个参数 (default: 一半在括号里面设置用户看的默认值)')
 parser.add_argument('-v', '--version', help='设置简写')
+parser.add_argument('-v', '--version', action='version', version='1.0')	# 版本信息
+parser.add_argument('-c', metavar='FILENAME')	# 参数的参数值，例如这里会输出-c FILENAME
+parser.add_argument('--debug', action='store_true', help='print debug messages to stderr')
+if len(sys.argv) == 1:	# 如果没有桉树默认打印help信息
+    parser.print_help()
+    sys.exit()
 
 # add_argument参数列表
 ## help: 帮助文档
 ## type: 固定类型，例如type=int
-## action: action可以指定参数应该如何保存，默认是store，可以是store_true/store_const/append/append_const/help。例如action='store_true'
+## action: action可以指定参数应该如何保存，默认是store，存放在const中，可以是store_true/store_const/append/append_const/help。例如action='store_true'
 ## choices: 可选参数，提供一个列表
 ## required=True: 必选
 ## default=xx: 设置默认值
 args = parser.parse_args()	# 默认自带了-h, --help参数
 args.d	# 获取名为d的参数
+vars(args)	# 将所有参数转换为字典格式
 
 # 如果要多级的命令解析，有几个方法:
 ## 1. 使用第三方库，例如declarative_parser
@@ -743,6 +764,16 @@ if __name__ == '__main__':
     # 可以根据subparser的值判断使用哪一个函数
     kwargs = vars(parser.parse_args())
     globals()[kwargs.pop('subparser')](**kwargs)
+```
+
+#### ast抽象语法树
+
+ast作用在python代码的语法被解析后，被编译成字节码之前，所以我用它来检测代码中是否有未安装的包，解析在docstring中定义的meta等，因为代码还未执行，所以并不会报错。
+
+```python
+with open(file, 'r') as fp:
+    syntax_tree = ast.parse(fp.read())
+print(ast.get_docstring(syntax_truee))
 ```
 
 #### collections
@@ -834,6 +865,10 @@ plus3(4)	# 输出7
 #### heqpq
 
 查找最大或最小的几个元素。
+
+#### importlib
+
+- **resources**: 在静态文件所在的文件夹添加一个`__init__.py`文件，那么这个文件夹就变成一个`module`，就可以使用`importlib.resourcesd来直接导入静态文件，而不用像以前那样拼接参数了。
 
 #### inspect
 
@@ -1009,6 +1044,10 @@ sorted(student_tuples, key=lambda student: student[2])   # 用元组内部的元
 sorted([5,3], reverse=False)	# 倒序
 ```
 
+#### sys
+
+- **meta_path**: 这个功能就强大了，可以实现在import的时候触发相关操作，相当于import操作的一个hook。
+
 #### timeit: 时间度量
 
 ```python
@@ -1019,7 +1058,7 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 
 
 
-- - ​
+
 
 - **SocketServer**：[参考](http://blog.marchtea.com/archives/60)两种服务模型：ThreadingMinxln(有新请求时，创建一个新的进程)、ForkingMinln(有新请求时，创建一个新的线程)
   - **TCPServer**
@@ -1033,7 +1072,7 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
   class Parent(object):
       def __init__(self):
           self.children = [Child(self)]
-
+  
   class Child(object):
       def __init__(self, parent):
           self.parent = weakref.proxy(parent)
