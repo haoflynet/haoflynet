@@ -414,7 +414,7 @@ finally:	# 只要离开try代码块都会执行这里的代码，即使执行了
 ```python
 # subprocess
 # 执行系统命令
-# python3开始，call/check_call/check_output全部用run(..., check=True)代替# stdout=subprocess.PIPE表示将输出重定向到管道，这样主程序就没有实时输出，如果不指定，默认子程序会实时输出的
+# python3开始，call/check_call/check_output全部用run(..., check=True)代替# stdout=subprocess.PIPE表示将输出重定向到管道，这样主程序就没有实时输出，如果不指定，默认子程序会实时输出的。不过这种情况，我们必须正确处理管道的输出，否则如果任由子程序一直输出，可能会造成死锁。
 # shell=True/False表示命令是否通过shell来执行。
 # Popen与这些run的区别是Popen不会阻塞，而且可以于子线程进行交流(获取其运行状态)
 import subprocess

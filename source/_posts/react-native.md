@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-06-09 21:04:00
+updated: 2018-06-13 14:54:00
 categories: js
 ---
 
@@ -182,7 +182,8 @@ class HomeScreen extends React.Component {
         color="#fff"
       />
     ),
-    headerRight: (<Button onPress={() => navigation.navigate('Setting')} title={'设置'} />),
+    // header头中直接进行页面跳转
+    headerRight: (<Button onPress={() => navigation.navigate('Setting')} title={'设置'}  />),
 
   });
 
@@ -209,6 +210,21 @@ export default StackNavigator({
     screen: HomeScreen,
   },
 });
+
+// 组件之间跳转方式
+this.props.navigation.push('Home');	// 跳转至新的场景，并且将场景入栈
+this.props.navigation.navigate('Home', {param1: '...'})	// 将新路由推送到堆栈导航器，如果它不在堆栈中，那么跳转到该页面
+this.props.navigation.goBack()
+```
+
+### ScrollView滚动
+
+可以在该组件下面添加任意组件，能轻松实现几个组件的共同滑动
+
+```javascript
+<ScrollView
+	scrollEnabled={false}		// 禁用滚动
+></ScrollView>
 ```
 
 ### StatusBar状态栏
