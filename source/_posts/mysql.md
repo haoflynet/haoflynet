@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-06-03 21:12:00
+updated: 2018-06-12 15:12:00
 categories: database
 ---
 ## 安装方法
@@ -59,6 +59,7 @@ ALTER TABLE 表名 DROP FOREIGN KEY '外键名';	# 删除外键
 ALTER TABLE 表名 ADD 字段名 属性 AFTER 字段名;	# 给表添加字段
 ALTER TABLE 表名 DROP COLUMN 字段名;	# 给表删除字段
 ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
+ALTER TABLE 表名 MODIFY COLUMN 列名 属性; # 除了不能修改列名以外，其他都和CHNAGE一样
 
 CREATE INDEX name_idx ON `表名`(`列名`);	# 给表添加索引
 ALTER TABLE `表名` ADD UNIQUE `键名`(`列名1`, `列名2`);

@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-06-08 18:48:30
+updated: 2018-06-11 18:48:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -17,7 +17,9 @@ apt-get install -y build-essential libssl-dev libffi-dev
 
 # Linux下不区分64和32位
 wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz	
-xz -d Python-3.6.0.tar.xz && tar -xvf Python-3.6.0.tar && cd Python-3.6.0
+xz -d Python-3.6.0.tar.xz
+tar -xvf Python-3.6.0.tar
+cd Python-3.6.0
 # for Linux
 ./configure && make && sudo make altinstall	
 # for Mac
@@ -412,14 +414,25 @@ finally:	# 只要离开try代码块都会执行这里的代码，即使执行了
 ```python
 # subprocess
 # 执行系统命令
+# python3开始，call/check_call/check_output全部用run(..., check=True)代替# stdout=subprocess.PIPE表示将输出重定向到管道，这样主程序就没有实时输出，如果不指定，默认子程序会实时输出的
+# shell=True/False表示命令是否通过shell来执行。
+# Popen与这些run的区别是Popen不会阻塞，而且可以于子线程进行交流(获取其运行状态)
 import subprocess
 command = '...'
-subprocess.check_output(command, shell=True)# 不能实时看到shell的输出
-subprocess.check_call(command, shell=True)	# 可以直接看到输出结果
+result = subprocess.check_output(command, shell=True)# 不能实时看到shell的输出，输出会以返回值返回，程序出错抛出异常。等价于run(..., check=True, stdout=PIPE).stdout
+result = subprocess.check_call(command, shell=True)	# 可以直接看到输出结果，程序出错会抛出异常，程序成功返回0。等价于run(..., check=True)
+result = subprocess.call(command, shell=True)	# 跟check_call返回结果一样。等价于run(...).returncode
 # 注意1: subprocess是不能实现ssh输入密码登录的。OpenSSH并不是使用STDOUT/STDIN与进程进行通信的，而是直接与终端进行通信。所以要实现用程序去与ssh进行交互，最好的方法是使用pexpect模块(pty模块)，它们会建立一个伪终端。另外，如果直接安装了linux的ssh扩展程序sshpass，则可以直接在命令行输入密码了。
 # 注意2: subprocess的communicate是管道通信，而不是直接在命令行后面添加参数，所以直接用communicate传输参数对于有些非管道命令(例如ls)是不可行的，例如:
 child = subprocess.Popen(['xargs', 'ls'], stdin=subprocess.PIPE,	# 这里必须加xargs universal_newlines=True)
-child.communicate(filepath)
+child.poll()	# 检查子进程是否结束，并且返回returncode属性
+child.wait()	# 等待子进程结束，并且返回returncode属性
+child.send_signal(signal)	# 向子进程发送信号
+child.terminate()	# 停止子进程
+child.kill()		# 杀死子进程
+child.pid			# 获取子进程的ID
+child.returncode	# 获取子进程的返回值，如果还没有结束，则会返回None
+stdoutdata, stderrdata = child.communicate(input=None)	# 与子进程进行交互，向stdin，或从stdout/stderr中读取数据，不过要读取或者输入那么在创建Popen对象的时候就得设置响应的PIPE。input指定发送到子进程的参数。该命令会一直等到进程退出
 
 # 接收输入
 a = input('Input: ')

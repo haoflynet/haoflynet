@@ -1,11 +1,9 @@
 ---
 title: "curl手册"
 date: 2016-04-07 08:01:39
-updated: 2018-05-30 16:41:00
+updated: 2018-06-12 16:41:00
 categories: tools
 ---
-# curl
-
 ## 常用参数
 
 ```shell
@@ -19,6 +17,8 @@ categories: tools
 -X：请求方式，GET、POST、DELETE等
 -H: 设置请求头，比如-H "Content-Type: application/json"
 ```
+
+<!--more-->
 
 ## 常用操作
 
