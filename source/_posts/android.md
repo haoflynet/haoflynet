@@ -1,13 +1,8 @@
 ---
-title: "Android开发"
+title: "Android开发手册"
 date: 2015-03-18 09:12:39
+updated: 2018-06-13 13:37:00
 categories: system
----
-#Android开发
----
-title: "Android 奇淫技巧"
-date: 2015-08-27 14:10:14
-categories: android
 ---
 本文搜集了一些自己经常用到的Android方面的奇淫技巧：
 
@@ -154,11 +149,11 @@ public class SampleActivity extends Activity {
      */
     private static class MyHandler extends Handler {
       private final WeakReference<SampleActivity> mActivity;
-
+    
       public MyHandler(SampleActivity activity) {
         mActivity = new WeakReference<SampleActivity>(activity);
       }
-
+    
       @Override
       public void handleMessage(Message msg) {
         SampleActivity activity = mActivity.get();
@@ -172,9 +167,9 @@ public class SampleActivity extends Activity {
         }
       }
     }
-
+    
     private final MyHandler mHandler = new MyHandler(this);
-
+    
     /**
    * Instances of anonymous classes do not hold an implicit
    * reference to their outer class when they are "static".
@@ -221,7 +216,7 @@ import android.util.Log;
 /**
 *  Created by haofly on 15/8/23.
     */
-   public class LocalService extends Service{
+      public class LocalService extends Service{
     private IBinder binder = new LocalService.LocalBinder();
 
     @Override
@@ -257,3 +252,9 @@ import android.util.Log;
     }
 
 }
+
+
+
+##### 扩展阅读
+
+[仿B站](https://github.com/TeamNB/FakeBiliBili)

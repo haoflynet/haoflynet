@@ -1,7 +1,7 @@
 ---
 title: "Tornado 手册"
 date: 2015-08-05 12:02:30
-updated: 2018-05-13 01:24:00
+updated: 2018-06-12 10:24:00
 categories: python
 ---
 # Tornado
@@ -11,6 +11,8 @@ categories: python
 以前只听说过Tornado比Django拥有更高的并发和异步特性，只听过Django坚持自己造轮子，其他语言的Web框架也只用过PHP的Laravel，当安装完Tornado后完全不知道该怎么玩儿，怎么着玩意儿自己不会生成一个项目，项目的框架还要自己写。后来才体会到，这样的好处，简洁、直观、轻便，它只提供最基础的东西，其他一切问题都由你自己来解决，同时，短短几千行的源代码，在遇到问题的时候，我们完全可以直接看源代码来查找问题出在哪儿，这就是简洁带来的好处。另外异步的作用也只有在实际需要的时候才能体会出来。由于我从来没写过异步的代码，所以，只是按照之前写代码那样，而没有根据异步的特性来实现，异步的代码是要在会阻塞的地方使用回调函数来实现，所以，我的程序并不能得高分。不过后来才知道Tornado通过gen将同步代码转换为异步的实现。  
 
 要想自己定义代码结构，可以参考[qiwsir/TornadoWheel](https://github.com/qiwsir/TornadoWheel)
+
+<!--more-->
 
 ## 基本框架
 
@@ -84,7 +86,22 @@ self.write(result)	# 如果参数是一个字典，那么会直接返回json数�
 	});
 #### 返回json数据
 直接`self.write(字典)`就行了
-​	
+
+## 部署
+
+`Tornado`本身提供了自己的`WebServer`，可以直接写一个`main()`函数去包装启动程序:
+
+```python
+def main():
+    app = make_app()
+    app.listen(8888)
+    IOLoop.current().start()
+
+if __name__ == '__main__':
+    main()
+```
+
+然而`WSGI`才是Python官方认可的规范，但是呢，虽然`Tornado`提供了兼容`WSGI`的方式，但是如果采用这种方式，`Tornado`本身的优点(单线程异步)就发挥不出来了。`Tornado`官方的[Running and deploying](http://www.tornadoweb.org/en/stable/guide/running.html)也认为直接用自己的`WebServer`是更好的方法。
 
 ## TroubleShooting
 
