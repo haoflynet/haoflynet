@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2018-06-04 10:34:00
+updated: 2018-06-14 10:34:00
 categories: python
 ---
 
@@ -94,6 +94,7 @@ fullname = column_property(firstname + ' ' + lastname)	# 表示这一列的值�
 # 列属性
 primary_key=True	# 是否是主键
 comment=''			# 注释，1.2版本才有的新特性
+table_name.column_name.name	# .name获取真实的列名
 ```
 
 ### 关联关系定义
@@ -152,6 +153,7 @@ query.get(2)	# 根据主键获取
 query.filter(User.id==2, age>10, deleted_at == None).first().name
 query.filter('id = 2').first()	# 复杂的filter
 query.order_by('user_name').all()		# 排序
+query.order_by(desc('name')).all()		# 倒序排序，from sqlalchemy import desc
 query(func.count('*')).all()
 
 # 查询列

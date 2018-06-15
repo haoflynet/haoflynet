@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-06-13 14:54:00
+updated: 2018-06-14 09:54:00
 categories: js
 ---
 
@@ -80,12 +80,20 @@ const styles = StyleSheet.create({
 规定某个组件的子元素的布局。`flex`的值就类似于栅栏布局中的row宽度，一个2一个1，那么画面总共可以分成三份这种，如果直接`flex:1`，那么就表示直接占据整个。
 
 ```javascript
-// flexDirection: 规定布局方向，默认是column垂直方向布局，row表示水平方向布局
-<View style={{flex: 1, flexDirection: 'row'}}>
-// justifyContent: 规定子元素沿着主轴的排列方式。可选项有flex-start、center、flex-end、space-around以及space-between
-<View style={{flex: 1, justifyContent: 'row'}}>
-// alignItems: 规定子元素沿着次轴(与主元素垂直的轴)的排列方式。可选项有flex-start、center、flex-end、stretch
-//
+// 父视图属性
+<View style={{
+	flex: 1, 
+    flexDirection: 'row', 	// 规定布局方向，默认是column垂直方向布局，row表示水平方向布局
+    flexWrap:'wrap', // 默认为nowrap，表示子元素是否允许多行排列
+    justifyContent: 'flex-start', // 规定子元素沿着主轴的排列方式。可选项有flex-start、center、flex-end、space-around以及space-between
+    alignItems: 'stretch', //规定子元素沿着次轴(与主元素垂直的轴)的排列方式。可选项有flex-start、center、flex-end、stretch
+}}>
+
+// 子视图属性
+<View style={{
+	alignSelf: 'auto', // 定义了flex容器内被选中项目的对齐方式，可选auto, flex-start, flex-end, center, stretch	             
+}}>
+
 // flexGrow与flex有些类似，但是flex会使子元素的空间大小限定在父元素空间范围内，而flexGrow会使子元素起码维持其本身大小，再根据父元素是否有剩余空间进行空间分配。
 ```
 
@@ -152,11 +160,17 @@ class MyComponent extends React.Component {
 />
 ```
 
+### Image
+
+图片组件，如果我们在同一个目录里面同时包含`a.png/a@2x.png,a@3x.png`那么`react native`就能通过屏幕的分辨率自动选择不同尺寸的图片，并且在代码里面仅需要`require(./img/check.png)`就行了。
+
 ### Navigation/Component导航组件
 
-[Navigation文档](https://reactnavigation.org/docs/hello-react-navigation.html)，Navigation已经单独成为一个模块，强烈建议不再使用老的导航器，[导航器对比](https://www.jianshu.com/p/98db12a6afec)，在这里有其更详细的文档。在`0.44`版本移除了[`Navigator`](https://facebook.github.io/react-native/docs/navigator.html)，该模块被移动到[react-native-custom-components](https://github.com/facebookarchive/react-native-custom-components)现在也仅用于兼容老版本。
+[Navigation文档](https://reactnavigation.org/docs/hello-react-navigation.html)，Navigation已经单独成为一个模块，强烈建议不再使用老的导航器，[导航器对比](https://www.jianshu.com/p/98db12a6afec)，在这里有其更详细的文档。在`0.44`版本移除了[`Navigator`](https://facebook.github.io/react-native/docs/navigator.html)，该模块被移动到[react-native-custom-components](https://github.com/facebookarchive/react-native-custom-components)现在也仅用于兼容老版本。使用前得先安装`npm install --save react-navigation`。有如下三种类型的导航器
 
-默认就使用`React Navigation`，如果仅仅是`Ios`那么推荐用`NavigatorIOS`。使用前得先安装`npm install --save react-navigation`。
+#### StackNavigator
+
+类似于普通的Navigator，体现在屏幕上方的导航栏
 
 ```javascript
 // StackNavigator用于创建多页面应用。其中每一个都是一个Component
@@ -216,6 +230,14 @@ this.props.navigation.push('Home');	// 跳转至新的场景，并且将场景�
 this.props.navigation.navigate('Home', {param1: '...'})	// 将新路由推送到堆栈导航器，如果它不在堆栈中，那么跳转到该页面
 this.props.navigation.goBack()
 ```
+
+#### TabNavigator
+
+类似于ios的`TabBarController`，屏幕下方的标签栏
+
+#### DrawerNavigator
+
+侧边弹出的抽屉效果
 
 ### ScrollView滚动
 
