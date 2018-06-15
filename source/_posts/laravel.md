@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-06-07 14:21:00
+updated: 2018-06-15 11:21:00
 categories: php
 ---
 # Laravel指南
@@ -380,7 +380,7 @@ public function up()
 
 ```php
 class User extends Model{
-  public $timestamps = false;			// 设置该表不需要使用时间戳，updated_at和created_at字段
+  public $timestamps = false;			// 设置该表不需要使用时间戳，updated_at和created_at字段。deleted_at是用use SoftDeletes去控制的
   protected $primaryKey = 'typeid'		// 不以id为主键的时候需要单独设置，需要注意的是laravel以及其他很多orm都不支持复合主键，可能会出现"Segment Fault"
   protected $primaryKey = null;			// 没有主键的情况
   protected $incrementing	= false;	// 不使用自增主键
@@ -553,7 +553,7 @@ Laravel使用数据填充类来填充数据，在`app/database/seeds/DatabaseSee
 
 #### ORM操作
 
-Laravel 查询构建器使用 PDO 参数绑定来避免 SQL 注入攻击，不再需要过滤以绑定方式传递的字符串。但是需要注意的是**当使用`whereRaw/selectRaw`等能嵌入原生语句的时候必须对输入的字符进行过滤**
+Laravel 查询构建器使用 PDO 参数绑定来避免 SQL 注入攻击，不再需要过滤以绑定方式传递的字符串。但是需要注意的是**当使用`whereRaw/selectRaw`等能嵌入原生语句的时候，要么用bind的方式(即将用户输入作为第二个参数传入)要么就对输入的字符进行严格的过滤**
 
 ```php
 # 数据库信息获取

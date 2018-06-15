@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-06-04 17:20:00
+updated: 2018-06-14 17:20:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -34,7 +34,10 @@ arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某�
 JSON.stringify(Array)		// 将数组转换为JSON格式的字符串
 arr.toString(): 数组转字符串，中间会自动加上逗号
 arr.join(''): 数组转字符串，分隔符可自定义
-arr.push(obj): 给数组添加元素
+arr.push(obj)		// 在数组尾部添加元素
+arr.pop(obj)		// 去除数组尾部元素
+arr.unshift(obj)	// 在数组头添加元素
+arr.shift(obj)		// 去除数组头部元素
 arr.slice(start, end): 数组分片
 
 for (var index in arr) {}	// 遍历数组 
@@ -270,6 +273,10 @@ $.post('some.php', {name: 'haofly'})
     });
 ```
 
+## 调试技巧
+
+注: **浏览器console.log**打印出来的对象，如果没有点击展开，那么点开的时候会是最后一次该对象的值。
+
 ## 推荐阅读
 
 - [You-Dont-Need-jQuery](https://github.com/nefe/You-Dont-Need-jQuery/blob/master/README.zh-CN.md)
@@ -301,8 +308,6 @@ $.post('some.php', {name: 'haofly'})
   <input type="radio" name="foo" value="Y" checked>
   <input type="radio" name="foo" value="N" disabled>
   ```
-
-
 
 * **在Laravel中如果出现TokenMismatchException**，有可能是Laravel的CSRF机制造成的，解决办法参见<http://www.golaravel.com/laravel/docs/5.0/routing/>，即 首先在meta中添加
 

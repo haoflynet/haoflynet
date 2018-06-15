@@ -14,7 +14,7 @@ sudo apt-get install python3-dev libmysqlclient-dev
 pip install mysqlclient
 
 # CentOS
-sudo yum install pytho3-devel mysql-devel	# python36-devel指定python版本
+sudo yum install pytho36-devel mysql-devel	# python36-devel指定python版本
 sudo yum install mariadb-devel MariaDB-shared	# 如果不安装会出现cannot find -lmariadb错误
 pip install mysqlclient
 ```

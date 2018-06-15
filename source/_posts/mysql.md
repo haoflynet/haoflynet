@@ -1,14 +1,14 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-06-12 15:12:00
+updated: 2018-06-15 15:12:00
 categories: database
 ---
 ## 安装方法
 **CentOS**：[使用包的方式安装最新MariaDB](https://mariadb.com/kb/en/library/binary-packages/)，CentOS安装client直接yum install mysql而不是client，而安装mysql则直接用`yum install -y mysql mysql-server mysql-dev mysql-devel`，CentOS7上已经用mariadb代替了mysql，这样子使用：
 
 ```shell
-yum install mariadb-server mariadb mariadb-devel -y
+yum install mariadb-server mariadb-client mariadb-devel -y
 systemctl start mariadb.service # 启动服务
 systemctl enable mariadb.service	# 开机启动
 ```
@@ -344,7 +344,7 @@ JSON_EXTRACT(result,'$.id')	# 获取json数据key=id的值
 
 
 *   **MySQL分页时出现数据丢失或者数据重复的情况**: 如果分页的时候用上了`order_by`并且目标字段并不是索引字段，那么就有可能出现这种情况，一条数据可能既出现在上一页，又出现在下一页。原因是在`mysql5.6`以后，`priority queue`使用的是堆排序，这个排序算法并不稳定，两个相同的值可能在两次排序后的结果不一样。解决方法有两种，一种是给`order_by`后面的字段加索引，另外一种是增加一个是索引的字段，但是不要把主键放到这里面，否则两个索引都不会使用，导致性能非常低，别问我为什么，我被坑过。[参考文章](http://www.foreverlakers.com/2018/01/mysql-order-by-limit-%E5%AF%BC%E8%87%B4%E7%9A%84%E5%88%86%E9%A1%B5%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/)
-*   **在查询整型字段的时候空字符串表现得和0一样**: 这是MySQL的特性，对于整型字段，空字符串会自动转换成零。
+*   **在查询整型字段的时候空字符串表现得和0一样**: 这是MySQL的特性，对于整型字段，空字符串会自动转换成零。另外，对于`timestamp`字段''和`0000-00-00 00:00:00`表现得一样
 *   **timestamp字段插入的时候出现`warnning: data truncated for column`**，这是因为`mysql`的`timestamp`类型不是`unix`的时间戳，对于非法的字符串插入`timestamp`的时候结果都是`0000-00-00 00:00:00`。如果要插入，可以用`2017-12-25 12:00:00`这种格式，或者使用函数`FROM_UNIXTIME(1514177748)`进行转换。
 *   **Invalid use of NULL value**: 原因可能是在将列修改为不允许NULL的时候并且已经存在记录该值为null，则不允许修改，这个时候需要先修改已有记录的值。
 
