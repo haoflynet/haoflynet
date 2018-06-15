@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-08-11 10:04:00
+updated: 2018-06-15 10:04:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理.  
@@ -95,7 +95,7 @@ http{
           # 完全匹配 =
           # 大小写敏感 ~
           # 忽略大小写 ~*
-          # 前半部分匹配 ^~
+          # ^~ 前半部分匹配，例如location ^~ /hello 等同于location /hello
           # 正则匹配，例如~* \.(.gif|jpg|png)$
 		}
 		
@@ -122,57 +122,87 @@ http{
 
 ### 负载均衡配置
 
-    在http里：
-    upstream backend {
-        server 127.0.0.1:81;
-        server 127.0.0.1:82;
-    }
-    在server里：
-    location / {
-        proxy_pass http://backend;
-    }
+```nginx
+# 在http里定义upstream
+upstream backend {
+    server 127.0.0.1:81;
+    server 127.0.0.1:82;
+}
+# 在server里：
+location / {
+    proxy_pass http://backend;
+}
+```
 
 ### 端口转发配置
 
-    在server里：
-    server{
+```nginx
+在server里：
+server{
+    listen 80;
+    server_name haofly.net;
+    location / {
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8000;
+    }
+    access_log /var/log/nginx/haofly.net_access.log;
+}
+```
+### 单独的虚拟目录配置
+
+最好将单独的域名放到单独的配置文件中`/etc/nginx/conf.d/test.conf`
+
+```nginx
+server{
         listen 80;
-        server_name haofly.net;
-        location / {
-            proxy_redirect off;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_pass http://127.0.0.1:8000;
+        listen 443 default_server ssl;	# 这样两句可以同时监听80和443端口
+        server_name fun.haofly.net;
+
+        charset utf-8;
+        access_log /var/log/nginx/fun.log;
+        error_log /var/log/nginx/fun_error.log;
+
+        location ^~ /multiple-addresses-in-one-map/ {
+                alias /usr/share/nginx/multiple-addresses-in-one-map/;
         }
-        access_log /var/log/nginx/haofly.net_access.log;
-   }
+}
+```
 
-## 单独的虚拟目录配置
+### Rewrite规则
 
-	server{
-	        listen 80;
-	        server_name fun.haofly.net;
-	
-	        charset utf-8;
-	        access_log /var/log/nginx/fun.log;
-	        error_log /var/log/nginx/fun_error.log;
-	
-	        location ^~ /multiple-addresses-in-one-map/ {
-	                alias /usr/share/nginx/multiple-addresses-in-one-map/;
-	        }
-	}
+是一种以正则方式重写url的语法。
 
+有如下几种重写类型:
 
+- **last**: 表示完成rewrite，浏览器地址栏URL不变。一般用在server和if中。不会终止匹配，新的url会重新从server匹配一遍。
+- **break**: 本条规则匹配完成后终止匹配，不再匹配后面的规则，浏览器地址栏URL不变。一般用在location中，会终止匹配，只会往下走，不会整个server重新匹配。
+- **redirect**: 返回302临时重定向，浏览器地址栏URL变成转换后的地址
+- **permanent**: 返回301永久重定向，浏览器地址栏URL变成转换后的地址
+
+```nginx
+# 如果用户访问/test/abc，直接重定向到/abc并且使用test这个upstream
+location /test {
+	rewrite ^/test(.*)$ $1 break;
+    proxy_pass http://test;
+    proxy_redirect off;
+    proxy_set_header Host $host;
+}
+```
 ## 查看负载均衡状态
+
 nginx提供了默认的模块可以查看负载均衡的统计信息等，只需要在某个server里面添加：
 
-	location /nginx {    
-		stub_status on;  
-		access_log   on;  
-		auth_basic   "NginxStatus";  
-		auth_basic_user_file   /etc/nginx/htpasswd;  
-	}
+```nginx
+location /nginx {    
+	stub_status on;  
+	access_log   on;  
+	auth_basic   "NginxStatus";  
+	auth_basic_user_file   /etc/nginx/htpasswd;  
+}
+```
 
 其中htpasswd是保存用户名和密码的文件，可以自定义位置，每一行一个用户`username:password`这样子保存的，使用crypt3(BASE64)加密，可以用一个PHP文件来生成
 
