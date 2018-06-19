@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-06-14 17:20:00
+updated: 2018-06-16 17:20:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -275,7 +275,8 @@ $.post('some.php', {name: 'haofly'})
 
 ## 调试技巧
 
-注: **浏览器console.log**打印出来的对象，如果没有点击展开，那么点开的时候会是最后一次该对象的值。
+- **代码中打断点直接`debugger;`语句，这样浏览器会自动在该处断点，对于会有js压缩的代码调试非常有用**
+- **浏览器console.log**打印出来的对象，如果没有点击展开，那么点开的时候会是最后一次该对象的值。
 
 ## 推荐阅读
 
