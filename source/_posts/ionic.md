@@ -29,7 +29,7 @@ npm install -g ios-deploy	# 安装ios部署工具
 ionic cordova run ios	# 即可自动打开模拟器
 ```
 
-![ionic ios](http://ojccjqhmb.bkt.clouddn.com/ionic_0.png)
+![ionic ios](https://haofly.net/uploads/ionic_0.png)
 
 [Ionic常用项目结构](https://github.com/haoflynet/project-structure/blob/master/Ionic/README.md)
 

@@ -119,4 +119,4 @@ twine upload dist/*		# 其实就是上传的dist目录下的zip包
 
 #### 以上
 
-![](http://ojccjqhmb.bkt.clouddn.com/pypi.png)
+![](https://haofly.net/uploads/pypi.png)

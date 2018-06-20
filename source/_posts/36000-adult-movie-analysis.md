@@ -21,7 +21,7 @@ categories: 程序人生
 
 观看量排名前十的影片:
 
-![观看量排名前十的影片](http://ojccjqhmb.bkt.clouddn.com/36000-adult-movie-analysis_0.png)
+![观看量排名前十的影片](https://haofly.net/uploads/36000-adult-movie-analysis_0.png)
 
 观看量排名后十的影片: 
 

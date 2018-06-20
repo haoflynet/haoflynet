@@ -6,7 +6,7 @@ categories: android
 
 ADB(Android Debug Bridge)，即android的一个调试工具，主要用于开发安卓应用时调试与管理手机用，当然，非android程序员的我，主要用来自动化android设备，这一点，类似于web中的selenium。我用它实现了一个**自动发任意短信的功能**，网上的短信发送服务，格式都要求得太严格了，还不如自己用闲置手机发方便。
 
-![](http://ojccjqhmb.bkt.clouddn.com/adb.jpeg)
+![](https://haofly.net/uploads/adb.jpeg)
 
 当然，其主要的功能还是这些:
 
