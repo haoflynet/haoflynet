@@ -15,7 +15,7 @@ categories: tools
 ### Charles的基本设置
 
 1. 点击设置按钮然后进入`Proxy Setting`，设置Http代理
-   ![Http代理设置](http://ojccjqhmb.bkt.clouddn.com/charles_1.png)
+   ![Http代理设置](https://haofly.net/uploads/charles_1.png)
 2. 系统代理设置
    ![](http://ojccjqhmb.bkt.clouddn.com/charles_2.png)
 3. 安装Charles的证书: Help -> SSL Proxying -> Install Charles Root Certificate，安装证书，并完全信任该证书

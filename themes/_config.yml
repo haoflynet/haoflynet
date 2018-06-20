@@ -226,20 +226,18 @@ sidebar:
   #display: hide
   #display: remove
 
+  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
+  offset: 12
 
-# Blogrolls
-links_title: 小伙伴们
-#links_layout: block
-#links_layout: inline
-links:
-  Phodal: https://www.phodal.com
-  QINGGUOING: http://qingguoing.com/
-  zkzhao: http://zkzhao.github.io/
-  程旭的程序: https://kaleo.blog/
-  ResolveWang's Blog: https://rookiefly.cn/
-  阿翔: https://xiexiangnow.github.io/
-  一只很酷的蘑菇: http://coolmogu.com/
-  勤杂工运维博客: https://tanjiangfu.github.io/
+  # Back to top in sidebar (only for Pisces | Gemini).
+  b2t: false
+
+  # Scroll percent label in b2t button.
+  scrollpercent: false
+
+  # Enable sidebar on narrow view (only for Muse | Mist).
+  onmobile: false
+
 
 # ---------------------------------------------------------------
 # Post Settings
@@ -248,10 +246,13 @@ links:
 # Automatically scroll page to section which is under <!-- more --> mark.
 scroll_to_more: true
 
+# Automatically saving scroll position on each post/page in cookies.
+save_scroll: true
+
 # Automatically excerpt description in homepage as preamble text.
 excerpt_description: true
 
-# Automatically Excerpt. Not recommand.
+# Automatically Excerpt. Not recommend.
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
   enable: false
@@ -259,17 +260,21 @@ auto_excerpt:
 
 # Post meta display settings
 post_meta:
+  item_text: true
   created_at: true
   updated_at: false
+  # Only show 'updated' if different from 'created'.
+  updated_diff: false
   categories: true
 
 # Post wordcount display settings
-# Dependencies: https://github.com/willin/hexo-wordcount
-post_wordcount:
-  item_text: true
-  wordcount: false
-  min2read: false
-
+# Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+symbols_count_time:
+  separated_meta: true
+  item_text_post: true
+  item_text_total: false
+  awl: 5
+  wpm: 200
 
 # Wechat Subscriber
 wechat_subscriber:

@@ -6,7 +6,7 @@ categories: 平凡之路
 
 很早就想看的书，两本书的封面相互呼应，这一点我觉得非常有创意。
 
-![](http://ojccjqhmb.bkt.clouddn.com/a-brief-history-of-human-and-tomorrow.jpeg)
+![](https://haofly.net/uploads/a-brief-history-of-human-and-tomorrow.jpeg)
 
 <!--more-->
 

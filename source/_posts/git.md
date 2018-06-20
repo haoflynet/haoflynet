@@ -145,7 +145,7 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 
 4. 在自己的项目创建Pull Request，指向到原开源项目中去。
 
-   ![](http://ojccjqhmb.bkt.clouddn.com/git_1.jpg)
+   ![](https://haofly.net/uploads/git_1.jpg)
 
 ![](http://ojccjqhmb.bkt.clouddn.com/git_2.jpg)
 

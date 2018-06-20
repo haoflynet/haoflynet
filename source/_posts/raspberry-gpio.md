@@ -9,7 +9,7 @@ categories: 平凡之路
 
 关于树莓派GPIO针脚的图解可以参考这张图片(图片来自https://raw.githubusercontent.com/wiki/Yradex/RaspberryPi3_OS/GPIO.png)。每个针脚的详细解释可以参见(https://pinout.xyz/pinout)
 
-![](http://ojccjqhmb.bkt.clouddn.com/raspberry-gpio.png)
+![](https://haofly.net/uploads/raspberry-gpio.png)
 
 ### 使用Python控制继电器
 
@@ -34,5 +34,5 @@ GPIO.setup(pin, GPIO.LOW)	# 输出低电平
 1. 关于继电器的输入输出以及信号控制端，可以参考[极客机械扫盲](http://haofly.net/%E6%9E%81%E5%AE%A2%E6%9C%BA%E6%A2%B0%E6%89%AB%E7%9B%B2/index.html)。
 2. 将树莓派的5V输出端以及Ground端分别连接继电器的VCC和GND端。
 3. 将树莓派的某一个GPIO针脚连接继电器的某一个信号输入端。
-4. 通过Python控制即可，Just like this。![](http://ojccjqhmb.bkt.clouddn.com/raspberry-gpio_0.JPG)
+4. 通过Python控制即可，Just like this。![](https://haofly.net/uploads/raspberry-gpio_0.JPG)
 

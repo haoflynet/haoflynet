@@ -57,7 +57,7 @@ categories: tools
 
 ### 调试的时候保留浏览器请求
 
-![调试的时候保留浏览器请求](http://ojccjqhmb.bkt.clouddn.com/chrome_0.jpg)
+![调试的时候保留浏览器请求](https://haofly.net/uploads/chrome_0.jpg)
 
 ### 直接复制请求的cURL
 
