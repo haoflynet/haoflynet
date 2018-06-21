@@ -327,14 +327,12 @@ mathjax:
 # Baidu Analytics ID
 baidu_analytics: d06802e96e214bdb413a40b263d4cc15
 
-# Duoshuo ShortName
-#duoshuo_shortname: haoflynet
-
 # Disqus
 disqus:
   enable: true
   shortname: haoflynet
   count: true
+  lazyload: true
 
 # Hypercomments
 #hypercomments_id:

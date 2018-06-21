@@ -1,10 +1,10 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-06-15 10:04:00
+updated: 2018-06-19 16:24:00
 categories: server
 ---
-Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理.  
+Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
 
 ## 安装nginx
 
@@ -113,7 +113,7 @@ http{
           alias /var/www/blog;	# 别名设置。如果有alias值，那么不管location的路径是怎样的，真实的资源路径都是别名所指定的路径
 		}
 		
-		location /static {    # 静态文件由nginx自己处理                					
+		location /static {    # 静态文件由nginx自己处理。如果整个域名全静态代理，可以直接写在location外的root
 			root /var/www/haofly;
 		} 
 	}
@@ -191,6 +191,17 @@ location /test {
     proxy_set_header Host $host;
 }
 ```
+### 配置nginx IP黑名单
+
+新建配置文件`/etc/nginx/blockips.conf`，内容格式如下
+
+```shell
+deny 1.1.1.1;	# 屏蔽单个IP
+deny 2.2.2.0/24;# 屏蔽IP段
+```
+
+然后在nginx主配置文件`/etc/nginx/nginx.conf`的`http`中导入该文件`include blockips.conf;`
+
 ## 查看负载均衡状态
 
 nginx提供了默认的模块可以查看负载均衡的统计信息等，只需要在某个server里面添加：
