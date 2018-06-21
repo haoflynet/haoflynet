@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2018-06-08 14:48:00
+updated: 2018-06-20 15:48:00
 categories: python
 ---
 ## 编码问题
@@ -216,6 +216,7 @@ last_day = datetime.date(today.year, today.month, last_day_num)
 begin = datetime.datetime(2015, 3, 14, 23, 59, 59)
 today = datetime.datetime.today()
 interval = today - begin
+interval.seconds()	# 时间差多少秒
 interval.days # 相差多少天，对应的.seconds表示相差多少秒，小时等同理
 ```
 
