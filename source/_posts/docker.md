@@ -1,13 +1,14 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2018-05-09 10:25:00
+updated: 2018-05-21 15:25:00
 categories: tools
 ---
-# Docker 使用指南
 需要注意的是在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
 
 ##系统相关
+
+[安装方法](https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce-1)
 
 `boot2docker`默认用户名是`docker`，密码是`tcuser`。
 

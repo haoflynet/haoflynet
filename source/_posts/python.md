@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-06-11 18:48:30
+updated: 2018-06-21 18:48:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -798,6 +798,23 @@ print(ast.get_docstring(syntax_truee))
 - **Counter**：计数器，可用于统计字符串中字符数量。找出序列中出现次数最多的元素
 - **OrderedDict**：有序字典
 - **defaultdict**：带有默认值的字典，这样访问不存在的dict就不会出错了
+
+#### ConfigParser配置读取
+
+```python
+import ConfigParser
+cf = ConfigParser.ConfigParser()
+cf.read('test.conf')	# 需要注意的是，使用同一个cf，多次read相同或者不同的文件，结果会累加覆盖
+cf.sections()	# 得到所有的section名列表
+cf.options('db')	# 得到section为db下面的配置名称列表
+cf.items('db')		# 得到section为db下面的配置的列表(每个配置都是一个二维元组)
+cf.get('db', 'host')	# 得到某个session下某个配置的值
+cf.getboolean('db', 'host')
+cf.getfloat('db', 'host')
+cf.getint('db', 'host')
+cf.has_option('section', 'option')
+cf.has_section('section')
+```
 
 #### contextlib
 

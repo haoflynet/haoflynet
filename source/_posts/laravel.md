@@ -1,7 +1,7 @@
 ---
 title: "Laravel"
 date: 2014-12-12 11:02:39
-updated: 2018-06-19 10:31:00
+updated: 2018-06-21 09:31:00
 categories: php
 ---
 # Laravel指南
@@ -1034,6 +1034,15 @@ class TestServiceProvider extends ServiceProvider
       Config::set('database.redis', []);	// 设置可以在这里面修改config下的其他一些配置
     }
 }
+```
+
+### Facades外观
+
+使用外观模式提供静态的接口去访问注册到IoC容器中的类，并且配以别名，这样的好处是，使用起来简单一些，不用写很长的类名。
+
+```php
+// 外观定义
+
 ```
 
 ### 重要对象
