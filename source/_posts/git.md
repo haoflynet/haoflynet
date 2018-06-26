@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2018-05-06 19:59:00
+updated: 2018-06-22 15:59:00
 categories: tools
 ---
 # Git指南
@@ -76,8 +76,9 @@ git push -f origin master	# remote端也更新
 
 ```shell
 git blame filename   # 查看某文件的改动历史
-git diff + 分知名   # 比较当前分支和目标分支的不同
+git diff + 分支名/commit_id   # 比较当前分支和目标分支的不同
 git diff master
+git diff 分支名 -- filename	# 比较不同分支的指定文件的不同
 
 git reset HEAD filename		# 把已经commit了的文件取消暂存
 git checkout -- filename	# 放弃指定文件的更改
@@ -168,14 +169,18 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 2. 在该分支下进行开发
 3. 修改完成后推送到远程dev分支
 
-        git add .
-        git commit -m "some modification"
-        git push origin dev
+   ```shell
+    git add .
+    git commit -m "some modification"
+    git push origin dev
+   ```
 4. 修改并合并到master分支
 
-        git checkout master # 首先切换到本地的master分支
-        git merge --no-ff   # 将本地的dev分支与本地的master分支合并
-        git pull            # 获取远程索引
+   ```shell
+    git checkout master # 首先切换到本地的master分支
+    git merge --no-ff   # 将本地的dev分支与本地的master分支合并
+    git pull            # 获取远程索引
+   ```
 
     这一步可能这一步可能会冲突，原因当然是其他人在你之前对远程的master分支进行了修改并提交上去
     如果没有错，就直接推送

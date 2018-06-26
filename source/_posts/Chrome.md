@@ -62,16 +62,16 @@ categories: tools
 ### 直接复制请求的cURL
 
 cURL能做到一切你想要的，有了cURL就可以方便地写爬虫代码了
-      ![从Chrome复制cURL](http://ojccjqhmb.bkt.clouddn.com/chrome-1.jpg)
+      ![从Chrome复制cURL](https://haofly.net/uploads/chrome-1.jpg)
 
 ### 直接在搜索框使用多个搜索引擎
 
 众所周知，Chrome顶部最方便的搜索框只能有一个默认的搜索引擎，就是谷歌自带的，但是如果你要查找什么无聊的东西需要用到百度，这里有个比直接到百度网站更方便的方法:  Chrome设置->搜索->管理搜索引擎，这里可以设置默认的搜索引擎也可以增加其他的搜索引擎，例如我这里的设置，g表示用google搜索，b表示用百度搜索:
-      ![Chrome设置搜索引擎](http://ojccjqhmb.bkt.clouddn.com/chrome_3.jpg)
+      ![Chrome设置搜索引擎](https://haofly.net/uploads/chrome_3.jpg)
 
 
 这样如果我想在顶部搜索框直接使用百度搜索就可以这样:
-![谷歌浏览器里面使用百度搜索](http://ojccjqhmb.bkt.clouddn.com/chrome_2.jpg)
+![谷歌浏览器里面使用百度搜索](https://haofly.net/uploads/chrome_2.jpg)
 
 ### 禁止加载某些文件
 
@@ -84,6 +84,10 @@ cURL能做到一切你想要的，有了cURL就可以方便地写爬虫代码了
 ```shell
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --auto-open-devtools-for-tabs
 ```
+
+### 验证网站的传输协议(HTTP2.0等)
+
+![](https://haofly.net/uploads/chrome_4.png)
 
 ## 高端操作
 
