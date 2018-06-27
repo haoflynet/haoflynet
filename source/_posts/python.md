@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-06-21 18:48:30
+updated: 2018-06-22 18:48:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -341,6 +341,7 @@ os.path.isdir(filename)  # 是否是目录
 os.path.isfile(filename) # 是否是文件
 os.path.islink  # 是否是链接
 os.path.getsize(filename) # 获取文件大小
+os.path.getmtime(filename)	# 获取文件最近一次内容更改的时间
 os.path.basename(fname)  # 从完整路径获取其路径
 os.path.dirname(fname) # 从完整路径获取其名称
 os.getcwd()   # 获取当前目录
@@ -802,8 +803,7 @@ print(ast.get_docstring(syntax_truee))
 #### ConfigParser配置读取
 
 ```python
-import ConfigParser
-cf = ConfigParser.ConfigParser()
+cf = configparser.ConfigParser()
 cf.read('test.conf')	# 需要注意的是，使用同一个cf，多次read相同或者不同的文件，结果会累加覆盖
 cf.sections()	# 得到所有的section名列表
 cf.options('db')	# 得到section为db下面的配置名称列表
@@ -814,6 +814,8 @@ cf.getfloat('db', 'host')
 cf.getint('db', 'host')
 cf.has_option('section', 'option')
 cf.has_section('section')
+
+fp.write(cf)		# 将配置写入文件
 ```
 
 #### contextlib

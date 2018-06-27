@@ -156,7 +156,7 @@ social:
   # Twitter: https://twitter.com/haofly || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
   #VK Group: https://vk.com/yourname || vk
-  StackOverflow: https://stackoverflow.com/haofly || stack-overflow
+  StackOverflow: https://stackoverflow.com/users/3206580/haofly || stack-overflow
   #YouTube: https://youtube.com/yourname || youtube
   #Instagram: https://instagram.com/yourname || instagram
   #Skype: skype:yourname?call|chat || skype
@@ -185,7 +185,7 @@ links:
   Phodal: https://www.phodal.com
   ResolveWang's Blog: https://rookiefly.cn/
   QINGGUOING: https://qingguoing.com/
-  一只很酷的蘑菇: http://coolmogu.com
+  一只很酷的蘑菇: https://blog.chenkeyi.com
   勤杂工运维博客: https://tanjiangfu.github.io/
   Kaleo's Blog: https://kaleo.blog/
   Xiang's Blog: http://www.xiang007.com/
@@ -431,9 +431,12 @@ busuanzi_count:
 # Tencent analytics ID
 # tencent_analytics:
 
+# Tencent MTA ID
+# tencent_mta:
+
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: false
+baidu_push: true
 
 # Google Calendar
 # Share your recent schedule to others via calendar page
@@ -453,6 +456,8 @@ calendar:
   maxResults: 250
 
 # Algolia Search
+# See: https://github.com/theme-next/hexo-theme-next/blob/master/docs/ALGOLIA-SEARCH.md
+# Dependencies: https://github.com/theme-next/theme-next-algolia-instant-search
 algolia_search:
   enable: false
   hits:
@@ -531,18 +536,9 @@ js: js
 images: images
 
 # Theme version
-version: 5.1.0
+version: 6.0.4
 
 permalink: :title/
-
-# zhifubao
-reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
-wechatpay: http://oeb6iosux.bkt.clouddn.com/image/wechat.png
-alipay: http://oeb6iosux.bkt.clouddn.com/image/alipay.png
-
-search:
-  path: search.xml
-  field: post
 
 plugins:
   - hexo-generator-feed
