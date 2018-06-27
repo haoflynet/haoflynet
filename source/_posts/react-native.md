@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-06-14 09:54:00
+updated: 2018-06-25 14:54:00
 categories: js
 ---
 
@@ -378,6 +378,7 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 - **No bundle url present**: 启动的时候报错，有以下几种解决方案:
 
   - 全部关了以后，看看8081端口是否被占用，然后重新`react-native run-ios`
+  - 上面方法多次尝试不行以后直接删除`node_modules`目录，重新安装依赖
 - **isMounted(...) is deprecated warning**: [目前来看](https://github.com/react-navigation/react-navigation/issues/3956)，并没有什么解决方案。
 - **闪退**: 有如下几种情况
   - 没有给API添加对应的权限，具体权限列表可以参见: [Swift开发MacOS应用](https://haofly.net/swift-macos)

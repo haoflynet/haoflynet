@@ -1,14 +1,14 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-06-19 16:24:00
+updated: 2018-06-26 23:24:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
 
 ## 安装nginx
 
-安装方法见: [Centos使用nginx安装方法](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-6-with-yum)
+安装方法见: [nginx安装方法](https://nginx.org/en/linux_packages.html)
 
 如果要安装最新稳定版nginx，可以添加这个源:
 
