@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-06-22 18:48:30
+updated: 2018-06-27 08:48:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -54,7 +54,7 @@ li.index(min(li))	# 列表最小值，返回位置，最大用max
 li.index(obj)		# 获取指定值在数组里面的下标
 li.remove(obj)	# 删除指定元素
 
-# while/for循环都能用else，我擦嘞
+# while/for循环都能用else，我擦嘞。else是指执行完了才会去执行，如果中途是break跳出循环的，则else不会被执行
 while false:
 	sdaghoahg
 else:
@@ -327,6 +327,8 @@ data.b = 2	# 这样data就是namespace(a=1, b=2)
 os.mkdir # 新建目录、文件
 os.makedires('a/b')  # 创建多级目录
 os.path.join(path, filename)	# 合并成全路径，用这个函数不用管路径用/还是\，也不用管最后有没有/
+os.path.abspath(__file__)	# 获取当前文件的绝对路径
+os.path.basedir('/a/b')	# 获取当前目录或文件的父路径，例如/a/b返回/a，但是/a/b/返回/a/b
 os.remove(filename)  # 删除单个文件
 os.rmdir(dirname)   # 删除空目录
 
@@ -788,6 +790,15 @@ ast作用在python代码的语法被解析后，被编译成字节码之前，�
 with open(file, 'r') as fp:
     syntax_tree = ast.parse(fp.read())
 print(ast.get_docstring(syntax_truee))
+```
+
+#### atexit
+
+可以定义整个程序结束之前需要执行的代码，相当于程序的析构函数，可以使用register函数注册程序退出时的回调函数。当然，如果程序`crash`掉或者通过`os._exit()`退出，该函数不会被执行。可以同时注册多个函数，到时候会按照逆序来执行。
+
+```python
+import atexit
+atexit.register(my_func)
 ```
 
 #### collections

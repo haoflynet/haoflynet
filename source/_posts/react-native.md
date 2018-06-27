@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-06-25 14:54:00
+updated: 2018-06-27 14:54:00
 categories: js
 ---
 
@@ -313,6 +313,27 @@ TextInput默认宽度与父节点相同。如果想要其在没有文字的时�
 #### TouchableWithoutFeedback
 
 不带反馈效果的。
+
+## Animated动画
+
+第三方库里面那些酷炫的效果均是通过动画来实现的
+
+```javascript
+Animated.sequence([            // 首先执行decay动画，结束后同时执行spring和twirl动画
+  Animated.decay(position, {   // 滑行一段距离后停止
+    velocity: {x: gestureState.vx, y: gestureState.vy}, // 根据用户的手势设置速度
+    deceleration: 0.997,
+  }),
+  Animated.parallel([          // 在decay之后并行执行：
+    Animated.spring(position, {
+      toValue: {x: 0, y: 0}    // 返回到起始点开始
+    }),
+    Animated.timing(twirl, {   // 同时开始旋转
+      toValue: 360,
+    }),
+  ]),
+]).start();                    // 执行这一整套动画序列
+```
 
 ## 渲染JSX语法
 
