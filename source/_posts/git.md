@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2018-06-22 15:59:00
+updated: 2018-06-27 13:59:00
 categories: tools
 ---
 # Git指南
@@ -70,6 +70,9 @@ git reset --hard HEAD^  # 回退到上一个版本
 git reset --hard HEAD^^ # 回退到上上个版本
 git reset --hard 233333 # 指定提交ID的回退
 git push -f origin master	# remote端也更新
+
+git verify-pack -v .git/objects/pack/<SHA-1-code>.idx | sort -k 3 -n | tail -n 20 # 找出git提交历史中有大文件的提交
+git rev-list --object --all | grep commit_id	# 找到某次上面列出的某次提交中提交的文件
 ```
 
 #### 代码更改
@@ -261,4 +264,4 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 
 - **两个人用同一个账号登录同一台服务器居然有一个人有git权限，另一个却没有**: 这是因为虽然是同一个用户登录的服务器，但是所带的key确实不一样的，可以使用`ssh-add -l`查看你登录的`ssh key`，看是否有权限。
 
-   ​
+   
