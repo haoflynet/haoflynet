@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-06-16 17:20:00
+updated: 2018-06-29 16:50:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -46,6 +46,7 @@ arr.map((value) => {console.log(value); return newValue;}) //遍历数组，返�
 // for jQuery
 $.each($array, function(k, v){});	// 遍历数组
 $.inArray('a', $arr): 判断数组是否包含某个元素
+delete a['a']	// 删除字典元素
 ```
 ### 字符串
 ```javascript
@@ -56,9 +57,9 @@ str.match(/<title>(<abc>.*?)<\/title>/)	// 正则提取，带命名组的正则�
 
 // 去除空格
 str.replace(/\s+/g, "")    		// 去除所有的空格
-str.replace(/^\s+|\s+$/g, "")	// 去除两端的空格
-str.replace( /^\s*/, '')		// 去除左边的空格
-str.replace(/(\s*$)/g, "")		// 去除右边的空格
+str.trim() / str.replace(/^\s+|\s+$/g, "")	// 去除两端的空格
+str.trimLeft() / str.replace( /^\s*/, '')		// 去除左边的空格
+str.trimRight() / str.replace(/(\s*$)/g, "")		// 去除右边的空格
 
 JSON.parse(text)	// 将字符串转换为JSON
 str.replace(reg, function(s, value){})	// 替换字符串，reg可以是正则表达式
@@ -335,91 +336,81 @@ $.post('some.php', {name: 'haofly'})
 
 * **Laravel 5 要使用Input获取输入的信息**，必须先`use Input`，看来Laravel 5 对命名空间的管理更加严格了
 
-* Ajax请求总是执行error部分代码，原因可能是返回数据的格式不对，一定要返回dataType所规定的数据格式
+* **Ajax请求总是执行error部分代码**，原因可能是返回数据的格式不对，一定要返回dataType所规定的数据格式
     上传文件，需要特殊的几个参数和变量
 
-  ```javascript
+    ```javascript
     $('input#uploadh').bind('change', function(){
-      	var f = this.files;
-    	var formdata = new FormData();
-    	formdata.append('image', f[0]);
+        var f = this.files;
+        var formdata = new FormData();
+        formdata.append('image', f[0]);
         $.ajax({
-        	url: "{{ url('uploadimg') }}",
-        	type: "POST",
-        	data: formdata,
-        	dataType: "json",
-        	processData: false,
-        	contentType: false,
-        	success: function(data){
-        		alert('成功');
-        	}
-    	});
+            url: "{{ url('uploadimg') }}",
+            type: "POST",
+            data: formdata,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function(data){
+                alert('成功');
+            }
+        });
     });
-  ```
+    ```
 
-    如果是通过一个button而不是input提交的话，那么可以这样使用.需要注意的是，只能一个文件一个文件地append，后台才能通过request.FILES看到
+* 如果是通过一个button而不是input提交的话，那么可以这样使用.需要注意的是，只能一个文件一个文件地append，后台才能通过request.FILES看到
 
-  ```javascript
+    ```javascript
     $('button#uploadFile').on('click',function(){ 
-      var f = $('input#uploadFile')[0].files;
-      var formadata = new FormData();
-      formdata.append('image', f[0]);
+        var f = $('input#uploadFile')[0].files;
+        var formadata = new FormData();
+        formdata.append('image', f[0]);
     });
-  ```
-
-    如果要在Ajax中读取其它Json文件，可以使用$.getJson方法，但是由于这个方法使用的是同步ajax的方式，而且即使是在其回调函数中也无法将返回值赋值到外部变量去，所以可以直接用ajax请求来取代它：
-
-  ```javascript
-    var data = [];
-    $.ajax({
-        url: 'port.json',
-    	async: false,
-    	dataType: 'json',
-    	success: function (json) {
-      	data = json.一个结点名称;
-          alert(data);
-    	}
-    });
-  ```
-
+    ```
 
 * **获取当前元素的父元素**，使用target，但有时候也可以不用target...我也是醉了 获取同级的元素：prev()和next()
 
-         $('button#post').bind('click', function(ele){
-         $.ajax({
-             url: port,
-             type: "POST",
-             dataType: "json",
-             error: function(error){
-                 alert('出错啦');
-             },
-             success: function(data){
-                 alert($(ele.target).parent().parent().attr('id'));
-             }
-         });
+
+* ```javascript
+     $('button#post').bind('click', function(ele){
+     $.ajax({
+         url: port,
+         type: "POST",
+         dataType: "json",
+         error: function(error){
+             alert('出错啦');
+         },
+         success: function(data){
+             alert($(ele.target).parent().parent().attr('id'));
+         }
      });
+     ```
 
 
-*   在ajax的url里面，默认是相对于当前地址的url，例如
+* 在ajax的url里面，默认是相对于当前地址的url，例如
 
-        当前地址是http://localhost/a，那么url: 'publish'表示http://localhost/publish
-        当前地址是http://localhost/a/b，那么url: 'publish'表示http://localhost/hehe/publish
-        只有写为url: '/publish'才表示相对于根域名，即http://localhost/publish
+  ```tex
+  当前地址是http://localhost/a，那么url: 'publish'表示http://localhost/publish
+  当前地址是http://localhost/a/b，那么url: 'publish'表示http://localhost/hehe/publish
+  只有写为url: '/publish'才表示相对于根域名，即http://localhost/publish
+  ```
 
 * **给生成的元素动态绑定事件**：SegmentFault说直接用.on方法可以实现1.7之前.live的动态绑定功能，但是我就是不行，这里使用.on的另外一种方法，绑定到document上去就行了，原理就是将事件委托给父元素，然后由父元素绑定给子元素：
 
-         $(document).on('click', 'button', function(){
-         	alert('dg');
-         });
+     ```javascript
+     $(document).on('click', 'button', function(){
+     	alert('dg');
+     });
+     ```
 
 * 绑定回车事件：
 
-         $(document).on('keypress', 'input', function(event){
-         if(event.keyCode == '13'){
-             alert('success');
-         });
-
-
+     ```javascript
+     $(document).on('keypress', 'input', function(event){
+     if(event.keyCode == '13'){
+         alert('success');
+     });
+     ```
 
 * 提交表单时，如果想增加额外的参数，可以添加动态添加一个隐藏标签： 
 

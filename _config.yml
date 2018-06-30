@@ -7,9 +7,10 @@ title: 豪翔天下
 subtitle: Change My World by Program
 description: 豪翔天下的个人博客
 author: haofly
-language: zh-Hans
+language: zh-CN
 timezone: Asia/Chongqing
 email: haoflynet@gmail.com
+keywords: "豪翔天下,Python开发工程师,全栈开发工程师"
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -77,3 +78,14 @@ deploy:
   type: git
   repo: git@github.com:haoflynet/haoflynet.github.io.git
   branch: master
+
+symbols_count_time:
+  symbols: true
+  #time: true
+  total_symbols: true
+  #total_time: true
+
+archive_generator:
+  per_page: 100
+  yearly: true
+    
