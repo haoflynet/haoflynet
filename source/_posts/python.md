@@ -328,11 +328,13 @@ os.mkdir # 新建目录、文件
 os.makedires('a/b')  # 创建多级目录
 os.path.join(path, filename)	# 合并成全路径，用这个函数不用管路径用/还是\，也不用管最后有没有/
 os.path.abspath(__file__)	# 获取当前文件的绝对路径
+os.path.expanduser('~')	# 得到当前用户的家目录
+pathlib.Path.home()		# 同上
 os.path.basedir('/a/b')	# 获取当前目录或文件的父路径，例如/a/b返回/a，但是/a/b/返回/a/b
 os.remove(filename)  # 删除单个文件
 os.rmdir(dirname)   # 删除空目录
 
-# 用其他库
+# shutil库
 import shutil
 shutil.rmtree('mydir')   # 删除非空目录
 shutil.copy(originame, tmpname)  # 复制单个文件

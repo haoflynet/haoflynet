@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-06-29 16:50:00
+updated: 2018-07-03 10:20:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -40,8 +40,13 @@ arr.unshift(obj)	// 在数组头添加元素
 arr.shift(obj)		// 去除数组头部元素
 arr.slice(start, end): 数组分片
 
-for (var index in arr) {}	// 遍历数组 
-arr.map((value) => {console.log(value); return newValue;}) //遍历数组，返回值为一个新的数组，原数组不会改变
+// 遍历数组方法
+for (var index in arr) {}
+a.forEach(function(value, key, arr) {}); 
+arr.map((value) => {console.log(value); return newValue;}) // 返回值为一个新的数组，原数组不会改变
+arr.filter(function(value, key, arr) {return true}); // 返回新数组，如果元素返回true则保留，返回false则抛弃
+arr.some(function(value, key, arr){});	// 筛选数组，如果返回true则停止循环。返回布尔值，表示是否有满足条件的
+arr.every(function(value, key, arr){});	// 筛选数组，是否每个元素都返回true
 
 // for jQuery
 $.each($array, function(k, v){});	// 遍历数组

@@ -1,41 +1,33 @@
 ---
 title: "[转]RESTful API设计指南"
 date: 2015-04-11 23:24:07
-updated: 2017-10-19 19:02:00
+updated: 2018-07-03 19:02:00
 categories: 编程之路
 ---
-原文地址：[阮一峰的网络日志](http://www.ruanyifeng.com/blog/2014/05/restful_api.html "Link:
-http://www.ruanyifeng.com/blog/2014/05/restful_api.html" )
+原文地址：[阮一峰的网络日志](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
 
 网络应用程序，分为前端和后端两个部分。当前的发展趋势，就是前端设备层出不穷（手机、平板、桌面电脑、其他专用设备......）。
 
-因此，必须有一种统一的机制，方便不同的前端设备与后端进行通信。这导致API构架的流行，甚至出现"[API First](http://x.vindicosu
-ite.com/click/fbfpc=1;v=5;m=3;l=401071;c=776283;b=3368032;dct=http\%3A//www.goo
-gle.com.hk/search\%3Fq\%3DAPI+first)"的设计思想。[RESTful API](http://en.wikipedia.org
-/wiki/Representational_state_transfer)是目前比较成熟的一套互联网应用程序的API设计理论。我以前写过一篇[《理解RES
-Tful架构》](http://www.ruanyifeng.com/blog/2011/09/restful.html)，探讨如何理解这个概念。
+因此，必须有一种统一的机制，方便不同的前端设备与后端进行通信。这导致API构架的流行，甚至出现"[API First](http://x.vindicosuite.com/click/fbfpc=1;v=5;m=3;l=401071;c=776283;b=3368032;dct=http\%3A//www.google.com.hk/search\%3Fq\%3DAPI+first)"的设计思想。[RESTful API](http://en.wikipedia.org/wiki/Representational_state_transfer)是目前比较成熟的一套互联网应用程序的API设计理论。我以前写过一篇[《理解RESTful架构》](http://www.ruanyifeng.com/blog/2011/09/restful.html)，探讨如何理解这个概念。
 
-今天，我将介绍RESTful
-API的设计细节，探讨如何设计一套合理、好用的API。我的主要参考了两篇文章（[1](http://codeplanet.io/principles-
-good-restful-api-design/)，[2](https://bourgeois.me/rest/)）。
+今天，我将介绍RESTfulAPI的设计细节，探讨如何设计一套合理、好用的API。我的主要参考了两篇文章（[1](http://codeplanet.io/principles-good-restful-api-design/)，[2](https://bourgeois.me/rest/)）。
 
 # 一、协议
 
 API与用户的通信协议，总是使用[HTTPs协议](http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html)
-。
 
 # 二、域名
 
 应该尽量将API部署在专用域名之下。
 
 ```
-    https://api.example.com
+https://api.example.com
 ```
 
 如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。
 
 ```
-    https://example.org/api/
+https://example.org/api/
 ```
 
 #  三、版本（Versioning）
@@ -43,11 +35,10 @@ API与用户的通信协议，总是使用[HTTPs协议](http://www.ruanyifeng.co
 应该将API的版本号放入URL。
 
 ```
-    https://api.example.com/v1/
+https://api.example.com/v1/
 ```
 
-另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。[Github](https://developer.github.com/v3/m
-edia/#request-specific-version)采用这种做法。
+另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。[Github](https://developer.github.com/v3/media/#request-specific-version)采用这种做法。
 
 # 四、路径（Endpoint）
 
@@ -124,9 +115,9 @@ edia/#request-specific-version)采用这种做法。
 如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。
 
 ```
-    {
-    	error: "Invalid API key"
-    }
+{
+	error: "Invalid API key"
+}
 ```
 
 # 九、返回结果
@@ -162,20 +153,20 @@ RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其�
 Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)。Github的API就是这种设计，访问[api.github.com](https://api.github.com/)会得到一个所有可用API的网址列表。
 
 ```
-    {
-    "current_user_url": "https://api.github.com/user",
-    "authorizations_url": "https://api.github.com/authorizations",
-    // ...
-    }
+{
+"current_user_url": "https://api.github.com/user",
+"authorizations_url": "https://api.github.com/authorizations",
+// ...
+}
 ```
 
 从上面可以看到，如果想获取当前用户的信息，应该去访问[api.github.com/user](https://api.github.com/user)，然后就得到了下面结果。
 
 ```
-    {
-    "message": "Requires authentication",
-    "documentation_url": "https://developer.github.com/v3"
-    }
+{
+"message": "Requires authentication",
+"documentation_url": "https://developer.github.com/v3"
+}
 ```
 
 上面代码表示，服务器给出了提示信息，以及文档的网址。
@@ -188,9 +179,19 @@ Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)�
 
 （完）
 
+## 扩展阅读
+
+[RESETful API 设计规范](https://segmentfault.com/a/1190000015384373)
+
 ## 个人总结
+
 - RESTful设计风格是仅仅针对API的设计，其他的，比如新建功能页面的url还是需要自己另外定义的，当然可以在后面直接加参数，比如`GET /zoos?add=1`
+
 - 对于文件的上传，无法使用`application/json`，而只能使用`Multipart/form-data`的方式
-- 如果我们要是用名称而不是ID来作为url的关键字，那么可能出现关键字与url重复的问题，例如`/users/:username/cars`与`/users/cars`，这个例子不是很恰当，但是已经可以看出问题了，前者表示某个用户所拥有的车，后者表示属于所有人的车，但是如果有个人的名字就叫`cars`呢，就会出现设计上的错误。为了规避这种情况，最好的办法就是提取出几个关键字，应该尽量少，例如github就不能注册名为`teams`的账号，注册时就会提示这是一个保留字。这只是大多数情况，少数情况，资源并不完全属于我们，我们无法确定资源是否会占用保留字，那么这时候就只能添加特殊字符了，例如`$`
-- 有些人喜欢所有的接口的http状态码全部返回`200`，然后从返回的Json数据里面判断请求是否正常，理由却是统一管理返回数据格式，前端更好判断。我的理解是，这样完全不符合restful的设计规范。首先，永远无法保证请求永远返回200，所以，前端反而会多写一些判断；另外，如果按照请求错误的不同返回不同的http状态码，也是一种规范，因为http状态码对应的错误原因本身就是统一的。
+
+- 如果我们要是用名称而不是ID来作为url的关键字，那么可能出现关键字与url重复的问题，例如`/users/:username/cars`与`/users/cars`，这个例子不是很恰当，但是已经可以看出问题了，前者表示某个用户所拥有的车，后者表示属于所有人的车，但是如果有个人的名字就叫`cars`呢，就会出现设计上的错误。为了规避这种情况，最好的办法就是提取出几个关键字，应该尽量少，例如github就不能注册名为`teams`的账号，注册时就会提示这是一个保留字。这只是大多数情况，少数情况，资源并不完全属于我们，我们无法确定资源是否会占用保留字，那么这时候就只能添加特殊字符了，例如`$`，另外一个做法是使用下划线，例如`/users/_regist`
+
+- 有些人喜欢所有的接口的http状态码全部返回`200`，然后从返回的Json数据里面判断请求是否正常，理由却是统一管理返回数据格式，前端更好判断。我的理解是，这样完全不符合restful的设计规范。首先，永远无法保证请求永远返回200，所以，前端反而会多写一些判断；另外，如果按照请求错误的不同返回不同的http状态码，也是一种规范，因为http状态码对应的错误原因本身就是统一的；还有一点，对于日志监控来说，比如ELK这种自动分析日志的工具，当然是返回http状态码更好一点。
+
+  这里还有另外一种将错误信息具体化的方法，就是在`HTTP_CODE`外，添加一个错误码头进行返回，例如`HTTP_CODE=403`时`X-status=4031`可以表示用户密码错误等具体错误信息。
 

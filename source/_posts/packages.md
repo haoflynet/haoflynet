@@ -274,6 +274,10 @@ Bootstrap隐藏滑动侧边栏jQuery插件，虽然不大好看，依赖还有�
 
 浏览器唯一性解决方案
 
+##### [fullpage.js]()
+
+全屏插件
+
 ##### [lightslider](http://sachinchoolur.github.io/lightslider/examples.html)
 
 图片平滑滚动插件
@@ -296,7 +300,7 @@ Bootstrap隐藏滑动侧边栏jQuery插件，虽然不大好看，依赖还有�
 
 ##### [three.js](http://threejs.org/ "Link: http://threejs.org/" )
 
-有太多酷炫的效果了
+有太多酷炫的效果了(webgl)
 
 ##### [unslider](https://github.com/idiot/unslider)
 

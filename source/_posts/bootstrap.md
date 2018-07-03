@@ -1,7 +1,7 @@
 ---
 title: "BootStrap wiki"
 date: 2015-02-20 08:30:39
-updated: 2017-08-22 21:39:00
+updated: 2018-07-02 21:39:00
 categories: frontend
 ---
 ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其中包含了许多简洁大方的css样式和实用的js插件，当然，它是移动设备优先的响应式开发方式。
@@ -10,20 +10,24 @@ ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 
 - **下拉选择列表(需要bootstrap.js)**：
 
-      <div class="form-group">
-        <label for="sel1">Select list:</label>
-        <select class="form-control" id="sel1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-        </select>
-      </div>
+  ```html
+  <div class="form-group">
+    <label for="sel1">Select list:</label>
+    <select class="form-control" id="sel1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+    </select>
+  </div>
+  ```
 - input的属性(居然没有哪个地方写了的，我也是醉了，难道只有我没有找到，还是只有我什么基础都没有还来用bootstrap):
 
-      <input placeholder="Enter email">   placeholder属性表示在输入框内预先显示的文字
-      <input type="email">  type会影响到该输入框的展现形式，它的值可以是checkbox、email、file、password、text(文本输入框)
-      <input class="form-control"> input只有加了这个类才会呈现得好看一点，并且默认宽度会变成100\%
+  ```html
+  <input placeholder="Enter email">   placeholder属性表示在输入框内预先显示的文字
+  <input type="email">  type会影响到该输入框的展现形式，它的值可以是checkbox、email、file、password、text(文本输入框)
+  <input class="form-control"> input只有加了这个类才会呈现得好看一点，并且默认宽度会变成100\%
+  ```
 - 表单里面点击按钮禁止跳转，不要讲button的type设置为subbmit或者不设置，必须将其设置为`type="button"`才不会强制刷新当前页面
 
 ## 常用网址
