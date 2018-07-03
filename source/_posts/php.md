@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-06-26 22:55:21
+updated: 2018-07-03 22:55:21
 categories: php
 ---
 # PHP
@@ -19,7 +19,7 @@ array_column($array, $column_key);	// 返回字典型数组里面指定key的那
 array_diff($a, $b); // 比较数组的不同，可以用来判断两个数组是否相等，需要注意的是这里返回的是在array1中但是不在array2中的值，而不是两个的交集
 array_key_exists("key",$a);  # 查看key是否存在于某个字典
 array_intersect($array1, $array2[,$array $...]);	# 返回一个数组，该数组包含了所有在array1同时也出现在其他参数数组中的值
-array_map($callback, $array);	// 为数组中每一个元素应用回调函数
+array_map($callback, $array);	// 为数组中每一个元素应用回调函数，如果是类的静态方法，可以这样调用：array_map('myclass::myMethod' , $value);或者array_map( array('myclass','myMethod') , $value);
 array_merge();			# 合并数组，相同的key直接覆盖(前面的被后面的覆盖)
 array_merge_recursive();	# 合并数组，相同的key不覆盖
 array_push($source, "red", "gree");	# 给数组添加元素
