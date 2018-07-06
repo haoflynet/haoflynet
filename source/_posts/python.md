@@ -16,10 +16,10 @@ yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel xz-libs  libffi-d
 apt-get install -y build-essential libssl-dev libffi-dev
 
 # Linux下不区分64和32位
-wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz	
-xz -d Python-3.6.0.tar.xz
-tar -xvf Python-3.6.0.tar
-cd Python-3.6.0
+wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz	
+xz -d Python-3.7.0.tar.xz
+tar -xvf Python-3.7.0.tar
+cd Python-3.7.0
 # for Linux
 ./configure && make && sudo make altinstall	
 # for Mac

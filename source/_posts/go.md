@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-04-16 00:52:00
+updated: 2018-07-04 16:52:00
 categories: go
 ---
 
@@ -31,16 +31,7 @@ var c, d int = 1, 2
 e := 3	// 不用var直接声明并赋值
 const f = 4 // 声明常量
 
-// 数组
-var g [10]int	// 声明g为一个包含10个int的数组
-h := [3]int{1,2,3}	// 这个定义语法也是...唉
-i := []int{1,2,3}
-h[low : high]	// 居然能切片，需要注意的是，切片之后并不是新建变量，而只是原数组的部分引用，修改切片后的值会影响原数组
-len(h)	// 切片的元素数量
-cap(h)	// 切片的容量。从切片的第一个元素到底层数组的末尾元素的元素数量
-j := make([]int, 5)	// make 函数会分配一个元素为零值的数组并返回一个引用了它的切片
-k := make([]int, 0, 5) // len(k)=0, cap(k)=5
-k = append(k, 1)	// 向切片增加元素
+reflect.TypeOf(b)	// 获取变量类型
 
 // 指针
 var p *int	// 定义p是一个指向int类型值的指针，默认值为nil
@@ -73,6 +64,46 @@ type Abser interface {
 }
 ```
 
+#### 数字
+
+```go
+string:=strconv.Itoa(int)	// 整型转换为字符串
+string:=strconv.FormatInt(int64,10)	// int64转换为字符串
+```
+
+#### 数组
+
+```go
+var g [10]int	// 声明g为一个包含10个int的数组
+h := [3]int{1,2,3}	// 这个定义语法也是...唉
+i := []int{1,2,3}
+h[low : high]	// 居然能切片，需要注意的是，切片之后并不是新建变量，而只是原数组的部分引用，修改切片后的值会影响原数组
+len(h)	// 切片的元素数量
+cap(h)	// 切片的容量。从切片的第一个元素到底层数组的末尾元素的元素数量
+j := make([]int, 5)	// make 函数会分配一个元素为零值的数组并返回一个引用了它的切片
+k := make([]int, 0, 5) // len(k)=0, cap(k)=5
+k = append(k, 1)	// 向切片增加元素
+```
+
+#### 字符串
+
+```go
+fmt.Sprintf("%s %d", "abc", 1)	// 字符串格式化
+
+int,err:=strconv.Atoi(string)	// 字符串转换为int类型
+int64, err := strconv.ParseInt(string, 10, 64)	// 字符串转换为指定类型指定进制的整型
+
+// 字符串查找
+strings.Contains("seafood", "foo")	// 字符串是否包含某个子字符串
+strings.Count("abc", "a")	// 子字符串在字符串中出现的次数
+strings.HasPrefix("Gopher", "Go")	// 字符串开头
+strings.HasSuffix("Amigo", "go")	// 字符串结尾
+
+// 正则表达式
+reg := regexp.MustCompile(`"page":(\d)`)	// 定义规则
+match := reg.FindStringSubmatch(text)	// 获取满足条件的子字符串，match[1]表示括号中的，这里只匹配第一次，FindAllStringSubmatch表示查找所有
+```
+
 ### 控制语句
 
 ```go
@@ -103,7 +134,7 @@ switch {
 ### 函数
 
 ```go
-// defer语句会将语句推迟到外层函数返回之后执行，相当于finally，例如
+// defer语句会将语句推迟到外层函数返回之后执行，相当于finally，类似析构函数，例如
 defer resp.Body.Close()
 
 // return后面不跟参数可以直接返回定义了的变量名
@@ -111,6 +142,11 @@ func split(sum int) (x, y int) {
 	x = sum * 4 / 9
 	y = sum - x
 	return
+}
+
+// 定义返回带异常的函数，相当于将内部的err抛出来
+func my(a int) (string, error) {
+    return "123", nil	
 }
 ```
 
@@ -125,18 +161,10 @@ if err != nil {}
 
 ### go协程-go程
 
-Go的协程居然就叫go。`select`语句让go可以等待多个通信操作
+Go的协程居然就叫go。`select`语句让go可以等待多个通信操作。
 
 ```go
 go f(x,y,z)	// 这样会启动一个新的协程去处理f函数
-
-// 信道: 带有类型的管道，你可以通过它用信道操作符 <- 来发送或者接收值。看起来非常有用。信道的发送和接收操作在另一端准备好之前都会阻塞。如果在go之后，相当于等待协程完成
-ch := make(chan int)	// 定义一个信道，其中的值类型为int
-ch := make(chan int, 100)	// 带缓冲区的信道，仅当信道的缓冲区填满后，向其发送数据时才会阻塞。当缓冲区为空时，接受方会阻塞
-close(ch)	// 主动关闭信道
-for i: = range ch	// 这样可以不断从信道取数据，信道关闭后自动退出
-ch <- v	// 将v发送到信道ch
-v := <-ch // 从ch接收值
 
 // select使一个Go程可以等待多个通信操作。select 会阻塞到某个分支可以继续执行为止，这时就会执行该分支。当多个分支都准备好时会随机选择一个执行。
 func fibonacci(c, quit chan int) {
@@ -162,6 +190,20 @@ go func() {
 fibonacci(c, quit)
 
 // 锁sync.Mutex
+```
+
+#### 信道
+
+信道是带有类型的管道，你可以通过它用信道操作符 <- 来发送或者接收值。看起来非常有用。信道的发送和接收操作在另一端准备好之前都会阻塞，相当于发送信道方在其他协程从信道读取数据之前会被阻塞，而接收信道方在其他协程发送之前会被阻塞。可用于在其他协程结束之前，阻塞Go主协程。
+
+```go
+ch := make(chan int)	// 定义一个信道，其中的值类型为int
+ch := make(chan int, 100)	// 带缓冲区的信道，仅当信道的缓冲区填满后，向其发送数据时才会阻塞。当缓冲区为空时，接受方会阻塞
+close(ch)	// 主动关闭信道
+ch <- v	// 将v发送到信道ch
+v := <-ch // 从ch接收值
+
+for i: = range ch {}	// 这样可以不断从信道取数据，信道关闭后自动退出，但是信道如果没有主动关闭，会一直等待，其中i就是信道发送过来的值
 ```
 
 ### 包管理
