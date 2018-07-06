@@ -1,7 +1,7 @@
 ---
-title: "Python包推荐,PHP包推荐,JS包推荐,Java包推荐"
+title: "Python包推荐,PHP包推荐,JS包推荐,Java包推荐,Go包推荐"
 date: 2016-08-07 11:03:30
-updated: 2018-04-16 17:20:00
+updated: 2018-07-04 17:20:00
 categories: system
 ---
 ### Github Tools
@@ -228,6 +228,12 @@ Python科学计算库
 ##### [PhpSms](https://github.com/toplan/phpsms)
 
 可能是目前最聪明、优雅的php短信发送哭了。从此不再为各种原因造成的个别发送失败而烦忧。。。。
+
+### Go
+
+##### [logrus](https://github.com/sirupsen/logrus)
+
+比自带的`log`好用得多的日志库
 
 ### Java
 

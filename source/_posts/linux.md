@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-06-27 09:44:30
+updated: 2018-07-05 09:44:30
 categories: system
 ---
 # Linux手册
@@ -411,9 +411,16 @@ iptables -A INPUT -p tcp --dport 6379 -j DROP	# 进制外部访问内部的6379�
 firewall-cmd --add-port=3306/tcp --permanent	# 添加端口，需要注意的是，很多时候需要重启firewall才能生效
 firewall-cmd --reload			# 重启CentOS
 firewall-cmd --list-ports		# 列出开放的端口
+```
 
+##### Dns设置及常用DNS
+
+```shell
 # 设置DNS, vim /etc/resolv.conf
-nameserver 114.114.114.114
+nameserver 114.114.114.114	# 114.114.115.115
+nameserver 223.5.5.5	# 阿里的DNS，223.6.6.6
+nameserver 1.2.4.8	# SDNS,210.2.4.8
+nameserver 202.38.64.1	# 中科大dns，202.38.64.1
 ```
 
 #### 软件源管理
@@ -874,6 +881,43 @@ date +"%T"	# 仅显示时间，比如10:44:00
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABCDEFG # ABCDEFG就是刚才错误提到的key
   ```
 
-  
+- **Connecting to ftp.debian.org (2001:67c:2564:a119::148:12) Connecting to hwraid.le-vert.net (2001:bc8:357c::1)**，该错误是因为apt在访问该源地址的时候自动使用了`IPv6`，而你的机器却不支持`IPv6`，所以需要强制开启一下
 
-- `
+  ```shell
+  apt-get -o Acquire::ForceIPv4=true update	# 临时使用IPv4
+  # sudo vim /etc/apt/apt.conf.d/99force-ipv4，加入如下内容以后都使用IPv4
+  Acquire::ForceIPv4 "true";
+  ```
+
+-  **升级时出现大量`下列软件包的版本将保持不变`**: 执行`sudo apt-get dist-upgrade`，该命令会强制更新
+
+- **`E: Invalid message from method gpgv: NO_PUBKEY 04EE7237B7D453EC`**，可以采用以下方式进行恢复
+
+  ```shell
+  sudo add-apt-repository ppa:webupd8team/y-ppa-manager
+  sudo apt-get update
+  sudo apt-get install y-ppa-manager
+  sudo y-ppa-manager
+  # 然后点击Advanced->Try to import all missing GPG keys
+  ```
+
+- `sudo apt-get update出现`如下错误:
+
+  ```
+  正准备解包 .../xxxxxxxxxxx.deb  ...
+  正在将 xxxxxxxxxxx:i386 (linux mint) 解包到 (linux mint) 上 ...
+  dpkg: 处理归档 /var/cache/apt/archives/xxxxxxxxx.deb (--unpack)时出错：
+  尝试覆盖共享的 'xxxxx', 它与软件包 xxxxx 中的其他实例不同
+  由于已经达到 MaxReports 限制，没有写入 apport 报告。
+  ```
+
+  可以这样修复
+
+  ```shell
+  sudo mv /var/lib/dpkg/info /var/lib/dpkg/info_back
+  sudo mkdir /var/lib/dpkg/info
+  sudo apt-get update
+  sudo apt-get install -f 
+  ```
+
+  

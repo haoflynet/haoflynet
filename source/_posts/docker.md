@@ -102,6 +102,8 @@ Docker Compose主要用于快速在集群中部署分布式应用，主要有两
 - 服务(Service): 一个应用的容器，实际上可以包括若干个运行相同镜像的容器实例
 - 项目(Project): 由一组关联的应用容器组成的一个完整业务单元
 
+linux需要单独安装该工具`sudo pip install docker-compose`
+
 一个例子:
 
 ```shell
