@@ -72,6 +72,9 @@ str.indexOf(substring)	// 查找子字符串出现的位置，-1表示没找到
 string.slice(start, end);	// 字符串分片
 str.split('#')	// 字符串分割，返回分割后的列表
 parseInt(数字)  // 将数字取整
+
+btoa(str);	// 字符串转换为base64
+atob(str);	// base64转换为字符串
 ```
 
 #### 时间处理
