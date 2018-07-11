@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2017-09-08 21:50:00
+updated: 2018-07-11 14:50:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -42,6 +42,12 @@ a:active: a标签被点击的时候
 - border-radius: 设置边框圆角大小
 - border-style: 设置4个边框的样式。可能的值有none(无边框)、hidden(对于表，用于解决边框冲突，和none一样)、dotted(点状边框)、dashed(虚线)、solid(实线)、double(双线)、groove(3D凹槽边框)、ridge(3D垄状边框)、inset(3D inset边框)、outset(3D outset边框)、inherit(从父元素继承)
 - border-width: 边框宽度
+
+##### margin
+
+```css
+margin: 10px 5px 15px 20px;	/*上 右 下 左*/
+```
 
 ##### text
 

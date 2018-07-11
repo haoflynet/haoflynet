@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-07-05 09:44:30
+updated: 2018-07-09 09:44:30
 categories: system
 ---
 # Linux手册
@@ -329,8 +329,9 @@ root    ALL=(ALL:ALL) ALL      # 在这一行下面写
 username1 ALL=(ALL:ALL) ALL    # 该用户可以执行所有sudo操作
 username2 ALL=NOPASSWD:/usr/bin/git # 该用户可以执行'sudo git'的操作
 
-# 查看所有用户
-cat /etc/passwd  
+
+cat /etc/passwd  	# 查看所有用户
+cat /etc/group		# 查看所有用户组
 
 # 将用户添加到组
 usermod -a -G groupName userName
