@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-06-27 11:12:00
+updated: 2018-06-10 11:12:00
 categories: database
 ---
 ## 安装方法
@@ -326,8 +326,6 @@ JSON_EXTRACT(result,'$.id')	# 获取json数据key=id的值
 
 *   关于整型数据长度问题，需要注意的是MySQL里面的整型后面跟的长度并不是指该字段的实际长度，而是客户端显示的长度，实际存储的长度可以更长。这是几个整型数据对应的长度表(来自[MySQL官网](http://dev.mysql.com/doc/refman/5.7/en/integer-types.html))，所以`INT`无论后面定义的是多少，都是4个字节32位的长度
 
-
-
 | Type      | Storage | Minimum Value         | Maximum Value        |
 | --------- | ------- | --------------------- | -------------------- |
 |           | (Bytes) | (Signed/Unsigned)     | (Signed/Unsigned)    |
@@ -347,4 +345,5 @@ JSON_EXTRACT(result,'$.id')	# 获取json数据key=id的值
 *   **在查询整型字段的时候空字符串表现得和0一样**: 这是MySQL的特性，对于整型字段，空字符串会自动转换成零。另外，对于`timestamp`字段''和`0000-00-00 00:00:00`表现得一样
 *   **timestamp字段插入的时候出现`warnning: data truncated for column`**，这是因为`mysql`的`timestamp`类型不是`unix`的时间戳，对于非法的字符串插入`timestamp`的时候结果都是`0000-00-00 00:00:00`。如果要插入，可以用`2017-12-25 12:00:00`这种格式，或者使用函数`FROM_UNIXTIME(1514177748)`进行转换。
 *   **Invalid use of NULL value**: 原因可能是在将列修改为不允许NULL的时候并且已经存在记录该值为null，则不允许修改，这个时候需要先修改已有记录的值。
+*   **PhpMyAdmin查询正确，但是导出结果时导出的文件里面只有一条错误的sql语句**: 尝试把要导出的字段及表名不用别名
 

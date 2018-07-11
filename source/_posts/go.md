@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-07-04 16:52:00
+updated: 2018-07-11 17:52:00
 categories: go
 ---
 
@@ -18,6 +18,10 @@ categories: go
 ## 安装Go
 
 需要注意的是，在使用go之前，必须设置GOPATH这个环境变量，并且该环境变量不允许和`GOROOT`一样，该目录是用来存放第三方包的源码的地方。
+
+## 编译与构建
+
+如果是一个单独的文件运行程序，那么该文件的package必须是`package main`，否则会出现`go run: cannot run non-main package`错误
 
 ## 基本语法
 
@@ -88,6 +92,7 @@ k = append(k, 1)	// 向切片增加元素
 #### 字符串
 
 ```go
+if str == "" {}	// 判断字符串是否为空
 fmt.Sprintf("%s %d", "abc", 1)	// 字符串格式化
 
 int,err:=strconv.Atoi(string)	// 字符串转换为int类型
@@ -102,6 +107,17 @@ strings.HasSuffix("Amigo", "go")	// 字符串结尾
 // 正则表达式
 reg := regexp.MustCompile(`"page":(\d)`)	// 定义规则
 match := reg.FindStringSubmatch(text)	// 获取满足条件的子字符串，match[1]表示括号中的，这里只匹配第一次，FindAllStringSubmatch表示查找所有
+```
+
+#### 结构体
+
+```go
+// 定义结构体
+type Option struct {
+	proxy string
+}
+var opt Option;	// 变量声明
+opt.proxy = ""	// 给字段复制
 ```
 
 ### 控制语句
@@ -255,3 +271,13 @@ start := time.Now()	// 获取当前时间，格式虽然不大懂，但是时间
 start - time.Now()	// 计算时间差，自带单位换算，而且非常精准
 ```
 
+## TroubleShooting
+
+- **should have comment or be unexported**，这只是VSCode的语法Warning，它希望暴露的结构体等有一个明确的注释，这时候只需要在需要注释的结构体上面加上这样的注释即可:
+
+  ```go
+  // test is ...
+  type test struct {}
+  ```
+
+  

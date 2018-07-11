@@ -1,7 +1,7 @@
 ---
 title: "ShadowSocks 教程"
 date: 2015-10-06 11:02:30
-updated: 2017-10-25 10:45:00
+updated: 2018-07-09 14:45:00
 categories: tools
 ---
 ## 服务器
@@ -61,10 +61,12 @@ ssserver -p 443 -k password -m aes-256-gcm --log-file /var/log/ssserver -d start
 ## 客户端
 1. 安装必要的软件
 
-        yum install -y epel-release
-        yum install -y python
-        yum install python-pip privoxy
-        pip install shadowsocks
+   ```shell
+    yum install -y epel-release
+    yum install -y python
+    yum install python-pip privoxy	# privoxy用于将ss转换为http代理，代理端口默认为8118
+    pip install shadowsocks
+   ```
 2. 修改相应的配置
 
    ```shell
