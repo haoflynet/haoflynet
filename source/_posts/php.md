@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-07-03 22:55:21
+updated: 2018-07-13 08:55:21
 categories: php
 ---
 # PHP
@@ -43,7 +43,8 @@ list($a, $b) = [1, 2]	# 分别赋值
 rsort(): 以降序对数组排序
 sort();		# 排序，可以给数组排序，会修改原来数组的值
 uasort($array, $cmp_function)	# 定义对比函数进行排序
-unset(arr[1]); // 删除数组元素
+unset(arr[1]); // 删除数组元素，需要注意的是，一维数组，在unset以后，索引不会变，比如unset($a[1])，过后，该数组里面就没有1这个索引，而不是把2这个索引提到前面来，使用的时候需要特别注意
+array_splice($a, $index, 1);	# 用这种方式删除数组的元素，索引会改变
 
 # 数组遍历
 foreach($array as $value); //数组遍历

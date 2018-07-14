@@ -828,6 +828,9 @@ cf.getint('db', 'host')
 cf.has_option('section', 'option')
 cf.has_section('section')
 
+cf.read_dict({'section1': {}})	# 从字典中读取配置
+cf.add_section('section')	# 添加section
+cf.set('section', 'option', 'value=None')	# 给指定section添加一个配置项，section必须存在
 fp.write(cf)		# 将配置写入文件
 ```
 
