@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2018-02-01 09:58:00
+updated: 2018-07-15 10:02:00
 categories: database
 ---
 
@@ -21,6 +21,25 @@ MongoDB是由C++语言编写的一个基于分布式文件存储的开源数据�
 - 爬虫的数据存储，由于多个爬虫爬取数据时字段不统一，用mysql很容易浪费字段
 
 <!--more-->
+
+## 安装配置
+
+[官方安装文档](https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/)
+
+```shell
+sudo service mongod start	# 安装完成后启动
+sudo systemctl enable mongod	# 加入开机启动
+
+# 设置强制密码访问，首先使用mongo命令进入命令行，然后use admin选择admin这个数据库，在这里新建一个用户，最后配置文件中开启authorization
+db.createUser({user: 'root', pwd: 'password', roles: ['root'], mechanisms : ["SCRAM-SHA-1"]})
+
+# vim /etc/mongod.conf	修改相关配置项，这其实是一个yaml文件，需要严格遵守文件格式
+net:
+  port: 27017
+  bindIp: 0.0.0.0	# 允许远程访问
+security:
+  authorization: enabled # 设置强制密码验证
+```
 
 ## 系统相关指令
 
