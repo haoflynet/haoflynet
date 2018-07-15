@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-07-12 17:52:00
+updated: 2018-07-14 16:52:00
 categories: go
 ---
 
@@ -153,6 +153,7 @@ func (option *Option) get() {...}
 ```go
 // if语句
 if x < 0 {}
+if x <0 && y > 0 {}
 if v := match.Pow(x, n); v < lim {}	// 一边if一边声明变量，该变量只有在该作用域有效
 
 // for 循环

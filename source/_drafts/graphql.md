@@ -6,3 +6,8 @@ categories: 平凡之路
 ---
 
 仿hackernewshttps://github.com/clintonwoo/hackernews-react-graphql
+
+
+
+https://laravel-china.org/articles/8115/using-graphql-one-in-laravel-get-data 这个教程很好了
+
