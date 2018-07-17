@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-06-10 11:12:00
+updated: 2018-07-16 14:12:00
 categories: database
 ---
 ## 安装方法
@@ -98,7 +98,7 @@ SELECT * FROM table_name like '%abc_';	# 模糊查询，其中%贪婪匹配任�
 SELECT * FROM table_name REGEXP '(.*?)wtf';
 
 # 分组GROUP BY
-SELECT * FROM table_name GROUP BY 'field';	# 分组显示，有多少不同的field就会有多少条记录，而其他的字段则是随机选择一条记录显示，当然，如果对其他字段进行SUM等操作，那么就可以获取分类的SUM，十分有用
+SELECT * FROM table_name GROUP BY `field1`, `field2`;	# 分组显示，有多少不同的field就会有多少条记录，而其他的字段则是随机选择一条记录显示，当然，如果对其他字段进行SUM等操作，那么就可以获取分类的SUM，十分有用
 
 # Having子句，与WHERE不同，它可以和一些统计函数一起使用
 SELECT name, SUM(money) FROM users GROUP BY name HAVING SUM(money)>23333 # 这一句就能查找出所拥有的资产综合大于23333的用户

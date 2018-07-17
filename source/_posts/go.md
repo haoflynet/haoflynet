@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-07-14 16:52:00
+updated: 2018-07-16 19:19:00
 categories: go
 ---
 
@@ -68,13 +68,15 @@ type Abser interface {
 }
 ```
 
-#### 数字/布尔值
+#### 数字/整型/布尔值
 
 - 布尔值的默认值为false
+- 由于`int`类型的范围，与平台有关，所以在长度不确定的时候，最好使用`int64`
 
 ```go
 string:=strconv.Itoa(int)	// 整型转换为字符串
 string:=strconv.FormatInt(int64,10)	// int64转换为字符串
+myInt := int64(normalInt)	// int转换为int64
 ```
 
 #### 数组slice
@@ -89,16 +91,22 @@ cap(h)	// 切片的容量。从切片的第一个元素到底层数组的末尾�
 j := make([]int, 5)	// make 函数会分配一个元素为零值的数组并返回一个引用了它的切片
 k := make([]int, 0, 5) // len(k)=0, cap(k)=5
 k = append(k, 1)	// 向切片增加元素
+
+// 动态数组/不定长数组
+var arr []string
+newArr = append(arr, "one")
 ```
 
-#### 字符串
+#### 字符串/json
 
 ```go
+str = `定义超长的字符串`
 if str == "" {}	// 判断字符串是否为空
 fmt.Sprintf("%s %d", "abc", 1)	// 字符串格式化
 
 int,err:=strconv.Atoi(string)	// 字符串转换为int类型
 int64, err := strconv.ParseInt(string, 10, 64)	// 字符串转换为指定类型指定进制的整型
+arr := []byte(str)	// 将字符串直接转换为字节数组
 
 // 字符串查找
 strings.Contains("seafood", "foo")	// 字符串是否包含某个子字符串
@@ -111,17 +119,24 @@ reg := regexp.MustCompile(`"page":(\d)`)	// 定义规则
 match := reg.FindStringSubmatch(text)	// 获取满足条件的子字符串，match[1]表示括号中的，这里只匹配第一次，FindAllStringSubmatch表示查找所有
 ```
 
-#### 结构体/类
+#### 结构体/类/接口
 
 - go语言本身没有类的概念，但是可以用结构体来实现一个类。
-
 - 判断结构体是否为空，可以直接判断里面的某个字段是否为空，或者，新建一个空结构体，例如`(Option{})  == option`
+- 结构体中属性开头字母如果大写，表示可以在其他包中访问，否则只能在本包中访问。这个地方需要特别注意的是，像使用`json.Marshal`类似的操作，也是访问不到小写开头属性的，因为`json`算是另外一个包了
+- 接口`interface`类似于基类或者接口类，定义一些公有的方法然后继承者去实现
+- 空接口类型`interface{}`可以存储任意数据类型的实例，如果用于函数参数表示该函数接收任意的数据类型
 
 ```go
+// 结构体转json格式字符串
+b, err := json
+if err != nil {}
+str := string(b)
+
 // 定义结构体
 type Option struct {
 	proxy string
-    IP	string	// 结构提的开头字母如果是大写，则在其他包中可以被访问，否则只能在本包中访问，类似公有变量
+    IP	string
 }
 
 // 继承/组合结构体
@@ -329,6 +344,12 @@ import time
 start := time.Now()	// 获取当前时间，格式虽然不大懂，但是时间运算是相当强的
 start - time.Now()	// 计算时间差，自带单位换算，而且非常精准
 ```
+
+## 扩展库推荐
+
+- **gjson**: 非常好用的redis数据读取库(仅仅是读)
+- **logrus**: 日志库
+- **redigo**: redis驱动
 
 ## TroubleShooting
 
