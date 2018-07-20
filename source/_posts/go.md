@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-07-16 19:19:00
+updated: 2018-07-18 14:19:00
 categories: go
 ---
 
@@ -27,7 +27,8 @@ categories: go
 
 ### 变量
 
-基本的变量类型有`bool/string/int/int8/int16/int32/int64/uint/uint8/uint16/uint32/uint64/unitptr/float32/float64/complex64/complex128`(其中`uint8`=`byte`，`int32`=`rune`)
+- 基本的变量类型有`bool/string/int/int8/int16/int32/int64/uint/uint8/uint16/uint32/uint64/unitptr/float32/float64/complex64/complex128`(其中`uint8`=`byte`，`int32`=`rune`)
+- 如果是在块中定义的变量(例如if for等)，作用于仅仅在块中
 
 ```go
 var a, b bool	// var声明变量，必须在后面指定类型。而且会给一个默认值
@@ -114,9 +115,17 @@ strings.Count("abc", "a")	// 子字符串在字符串中出现的次数
 strings.HasPrefix("Gopher", "Go")	// 字符串开头
 strings.HasSuffix("Amigo", "go")	// 字符串结尾
 
+// 字符串分割
+strings.Split("foo,bar,baz", ",")	// ["foo" "bar" "baz"]
+strings.SplitAfter("foo,bar,baz", ",") // ["foo," "bar," "baz"]
+strings.SplitN("foo,bar,baz", ",", 2)	// ["foo", "bar,baz"]
+
 // 正则表达式
 reg := regexp.MustCompile(`"page":(\d)`)	// 定义规则
 match := reg.FindStringSubmatch(text)	// 获取满足条件的子字符串，match[1]表示括号中的，这里只匹配第一次，FindAllStringSubmatch表示查找所有
+
+// 时间处理
+time.Now().Unix()	// 获取时间戳, int64类型
 ```
 
 #### 结构体/类/接口
@@ -335,6 +344,14 @@ if err != nil {}
 req.Header.Set("Content-Type", "")
 req.Header.Set("Cookie", "name=test")
 resp, err := client.Do(req)
+
+// http编码转换(gbk转utf8)，使用标准库golang.org/x/net/html/charset
+contentType := resp.Header.Get("Content-Type")
+utf8reader, err := charset.NewReader(resp.Body, contentType)
+if err != nil {}
+text, err := ioutil.ReadAll(utf8reader)
+if err != nil {}
+return string(text), nil
 ```
 
 ### 时间处理

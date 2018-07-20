@@ -1,7 +1,7 @@
 ---
-title: "Laravel"
+title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-06-21 09:31:00
+updated: 2018-07-19 15:31:00
 categories: php
 ---
 # Laravel指南
@@ -845,7 +845,8 @@ return view('index')->withCookie($cookie); # 其实是将该cookie的过期时�
 
 ### 任务队列Job
 
-通过`php artisan make:job CronJob`新建队列任务，会在`app/Jobs`下新建一个任务.
+- 通过`php artisan make:job CronJob`新建队列任务，会在`app/Jobs`下新建一个任务
+- 失败的job默认会保存在数据库中的`failed_jobs`中
 
 ```php
 # 队列里能够直接在构造函数进行注入，例如
@@ -870,6 +871,12 @@ public function failed()
 {
 	echo '失败了';
 }
+
+# 其他队列命令
+php artisan queue:retry all	# 重试所有错误jobs
+php artisan queue:retry 5	# 重试指定错误job
+php artisan queue:forget 5	# 将某个job从错误表中移除
+php artisan queue:flush		# 移除所有错误jobs    
 ```
 #### 队列消费
 
@@ -1377,3 +1384,5 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 [将SQL语句直接转换成Laravel的语法](http://www.midnightcowboycoder.com/)
 
 [Laravel请求生命周期](https://laravel-china.org/articles/10642/laravel-request-life-cycle)
+
+[如何少写PHP"烂"代码](https://juejin.im/post/5b4ecffef265da0fa1221f45): 更好的MVC分层实践
