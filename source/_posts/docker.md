@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2018-05-21 15:25:00
+updated: 2018-07-19 19:35:00
 categories: tools
 ---
 需要注意的是在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -44,6 +44,7 @@ docker tag id name:tag	# 给镜像更改名称
 --name haofly			# 给容器命名
 --net=host				# 网络模式，host表示容器不会获得独立的Network Namspace，而是和宿主机公用一个Network Namespace。容器将不会虚拟网卡，配置自己的IP，而是使用宿主机器的IP和端口；none表示没有网络；bridge是docker默认的网络设置；container:NAME_or_ID表示container模式，指定新创建的容器和已经存在的一个容器共享一个Network Namespace，和指定的容器共享IP、端口范围等。
 --restart=no			# 容器的重启模式，no表示不自动重启，on-failure表示当容器推出码为非零的时候自动重启，always表示总是自动重启，docker重启后也会自动重启，unless-stopped表示只有在docker重启时不重启，其他时候都自动重启。
+--rm					# 如果有重名的容器，则删除原有容器再新建，前提是原有容器必须是停止的状态。并且加入了这个参数以后如果docker重启或者容器exit，该容器都会被删除
 -v /etc/test/:/etc/internal/test	# 将宿主机的/etc/test目录挂载到容器内部的/etc/internal/test目录
 ```
 
@@ -83,7 +84,7 @@ Dockerfile的语法说明:
 #: Dockerfile中用#来进行注释
 FROM: 指定基于哪个镜像创建,这样会先pull该镜像.例如`FROM ubuntu:14.04.1`
 MAINTAINER: 指定创建作者的信息.例如`MAINTAINER haofly <haoflynet@gmail.com>`
-ADD: 将指定的主机目录中的文件代替要构建的镜像中的文件,这条命令通常用于镜像源的更换,例如`ADD sources.list_aliyun /etc/apt/sources.list`,这样,镜像中的/etc/apt/sources.list文件就被sources.list_aliyun文件替代了
+ADD: 将指定的主机目录中的文件代替要构建的镜像中的文件,这条命令通常用于镜像源的更换,例如`ADD sources.list_aliyun /etc/apt/sources.list`,这样,镜像中的/etc/apt/sources.list文件就被sources.list_aliyun文件替代了。最好用COPY，因为ADD可能会做一些其他的功能，例如add一个tar.gz包时会自动解压
 COPY: 和ADD功能一样，不过ADD指令还支持通过URL从远程服务器读取资源并复制到镜像中。不过远程资源其实更推荐用RUN wget
 RUN: 执行一条shell命令
 EXPOSE: 暴露什么端口给主机,需要注意的是,即使指定了,也得在docker run的时候通过-p参数执行端口的映射
@@ -266,8 +267,8 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
     deb http://mirrors.aliyun.com/debian-security jessie/updates main
     
     # alpine版本，/etc/apk/repositories
-    http://mirrors.aliyun.com/alpine/v3.4/main
-    http://mirrors.aliyun.com/alpine/v3.4/community
+    http://mirrors.aliyun.com/alpine/v3.7/main
+    http://mirrors.aliyun.com/alpine/v3.7/community
     @testing http://mirrors.aliyun.com/alpine/edge/testing
     ```
 
