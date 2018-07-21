@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-06-27 08:48:30
+updated: 2018-07-20 15:48:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -85,6 +85,8 @@ A.T @ A			# @矩阵乘法
 # 字典遍历
 for key in dict:
 	print(key, dict[key])
+for key in dict.keys():	# 这种方式能在遍历的时候删除字典元素，如果用上面的方式进行删除会报错RuntimeError: dictionary changed size during iteration
+    del dict[key]
 for key, vlaue in dict.items():
 	print(key, value)
 	
@@ -544,8 +546,10 @@ for k in dir(module):
 # -*- coding: <encoding name> -*-
 
 # 直接用代码形式安装包
-import pip
-pip.main(['install', 'requests'])
+from pip import operations, main	# PY2
+from pip._internal import operations, main # PY3
+operations.freeze.freeze()	# 返回所有安装的包
+main(['install', 'requests'])	# 安装包
 ```
 #### 名字空间
 
