@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-07-21 14:19:00
+updated: 2018-07-23 13:49:00
 categories: go
 ---
 
@@ -35,6 +35,7 @@ var a, b bool	// var声明变量，必须在后面指定类型。而且会给一
 var c, d int = 1, 2
 e := 3	// 不用var直接声明并赋值
 const f = 4 // 声明常量
+_, err := function()	// 表示第一个返回值后面不会被使用，这样可以防止出现"declared and not used"提示
 
 reflect.TypeOf(b)	// 获取变量类型
 
@@ -78,6 +79,10 @@ type Abser interface {
 string:=strconv.Itoa(int)	// 整型转换为字符串
 string:=strconv.FormatInt(int64,10)	// int64转换为字符串
 myInt := int64(normalInt)	// int转换为int64
+
+// 产生随机数
+rand.Seed(time.Now().Unix())	// 初始化随机种子
+rand.Intn(len(proxies))
 ```
 
 #### 数组slice
