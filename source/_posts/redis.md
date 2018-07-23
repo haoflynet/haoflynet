@@ -122,8 +122,13 @@ SMEMBERS key 	# 返回集合key中的所有成员
 
 ### 有序集合
 
-```sql
+- 需要注意`start/stop`和`min/max`的区别，一个是排序后的顺序，一个是score值
+
+```shell
 ZCARD key	# 返回有序集合的成员数量
+ZCOUNT key min max	# 返回有序集key中，score值在min和max之间的成员数量
+ZRANGE key start stop [WITHSCORES]	# 返回有序集key中，指定区间内的成员，其中成员的位置按score值递增(从小到大)来排序
+ZRANGEBYSCORE key min max # 返回有序集key中，所有score值在min和max之间的成员
 ```
 
 ### Hash(哈希)
