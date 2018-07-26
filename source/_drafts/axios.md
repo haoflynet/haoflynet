@@ -6,7 +6,7 @@ categories: 编程之路
 
 
 
-```
+```javascript
 // Optionally the request above could also be done as
 axios.get('/user', {
     params: {
