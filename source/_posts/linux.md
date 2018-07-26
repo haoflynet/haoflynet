@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-07-09 09:44:30
+updated: 2018-07-26 11:44:30
 categories: system
 ---
 # Linux手册
@@ -100,6 +100,7 @@ wc -l: 统计行数
 grep -c "词语"   # 统计出现的次数
 grep -n ""		# 把匹配到的行号也打印出来
 grep -v "Java"	# 查找没有该词的行
+grep -v ^$		# 排除空白行
 grep 字符串 文件名  # 在文件中查找某个字符串
 grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
 grep [0-9] 文件名  # 在文件中查找包含数字的行
@@ -123,6 +124,7 @@ sort filename | uniq -c	# 去除文件中重复的行
 
 ```shell
 -F 参数将行做分割，例如：ps | awk -F ':' {'print $1'}  # 按:分割字符串，将ps的第二列输出
+cat file | awk {system($0)}	# 执行文件中的每一行命令
 ```
 
 ##### sed
