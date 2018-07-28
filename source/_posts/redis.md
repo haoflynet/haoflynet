@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2018-07-09 14:28:00
+updated: 2018-07-26 17:28:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -123,12 +123,14 @@ SMEMBERS key 	# 返回集合key中的所有成员
 ### 有序集合
 
 - 需要注意`start/stop`和`min/max`的区别，一个是排序后的顺序，一个是score值
+- 最大分数值可以用`"+inf"`代替，最小分数值可以用`"-inf"`代替
 
 ```shell
 ZCARD key	# 返回有序集合的成员数量
 ZCOUNT key min max	# 返回有序集key中，score值在min和max之间的成员数量
 ZRANGE key start stop [WITHSCORES]	# 返回有序集key中，指定区间内的成员，其中成员的位置按score值递增(从小到大)来排序
 ZRANGEBYSCORE key min max # 返回有序集key中，所有score值在min和max之间的成员
+ZREVRANGEBYSCORE key max min	# 与上面相反，这是分数由高到低排列的
 ```
 
 ### Hash(哈希)

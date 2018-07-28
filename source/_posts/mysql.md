@@ -30,16 +30,14 @@ sudo mysql -u root
 
 ## 常用命令
 
-### 增删改查
-
-#### SQL文件操作
+### SQL文件操作
 
 ```shell
 # 执行sql文件
 mysql -uroot -pmysql --default-character-set=gbk  jpkc_db < jpkc_db.sql # 这里可以执行编码格式
 ```
 
-#### 数据库操作
+### 数据库操作
 
 ```shell
 ## 创建数据库，如果是gbk编码，分别用gbk、gbk_chinese_ci;
@@ -48,7 +46,7 @@ TRUNCATE tablename	# 清空数据表
 DROP database_name	# 删除数据库
 ```
 
-#### 数据表操作
+### 数据表操作
 
 ```mysql
 ## 清空数据表
@@ -70,7 +68,13 @@ CREATE TABLE products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   CHECK (JSON_VALID(attr)));
 ```
 
-#### 数据记录操作
+### 常见表字段
+
+##### timestamp
+
+- `TIMESTAMP(3)/TIMESTAMP(6)`表示精确到毫秒微妙级别
+
+### 数据记录操作
 
 ##### 查询
 

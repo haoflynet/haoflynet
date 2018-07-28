@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-07-23 13:49:00
+updated: 2018-07-28 11:49:00
 categories: go
 ---
 
@@ -95,6 +95,7 @@ h[low : high]	// 居然能切片，需要注意的是，切片之后并不是新
 len(h)	// 切片的元素数量
 cap(h)	// 切片的容量。从切片的第一个元素到底层数组的末尾元素的元素数量
 j := make([]int, 5)	// make 函数会分配一个元素为零值的数组并返回一个引用了它的切片
+l := make([]int, len(...))
 k := make([]int, 0, 5) // len(k)=0, cap(k)=5
 k = append(k, 1)	// 向切片增加元素
 
@@ -128,30 +129,50 @@ strings.SplitN("foo,bar,baz", ",", 2)	// ["foo", "bar,baz"]
 // 正则表达式
 reg := regexp.MustCompile(`"page":(\d)`)	// 定义规则
 match := reg.FindStringSubmatch(text)	// 获取满足条件的子字符串，match[1]表示括号中的，这里只匹配第一次，FindAllStringSubmatch表示查找所有
-
-// 时间处理
-time.Now().Unix()	// 获取时间戳, int64类型
 ```
 
 #### 结构体/类/接口
 
 - go语言本身没有类的概念，但是可以用结构体来实现一个类。
+
 - 判断结构体是否为空，可以直接判断里面的某个字段是否为空，或者，新建一个空结构体，例如`(Option{})  == option`
+
 - 结构体中属性开头字母如果大写，表示可以在其他包中访问，否则只能在本包中访问。这个地方需要特别注意的是，像使用`json.Marshal`类似的操作，也是访问不到小写开头属性的，因为`json`算是另外一个包了
+
 - 接口`interface`类似于基类或者接口类，定义一些公有的方法然后继承者去实现
+
 - 空接口类型`interface{}`可以存储任意数据类型的实例，如果用于函数参数表示该函数接收任意的数据类型
 
+- 由于有些函数确定了入参类型，但是接口又代表的是所有类型，所以如果要把一个接口传入一个明确类型的函数中，就需要特别指明其类型。例如`function(var.(string)`。不过这不能作用于接口数组，否则会出现`invalid type assertion non-interface type []... on left`这样的错误，如果要传入一个数组，需要我们构建一下[参考](https://stackoverflow.com/questions/27689058/convert-string-to-interface):
+
+  ```go
+  var face []interface{}
+  for i, book := range books{
+      face[i] = book
+  }
+  function(face)	// function([] interface{})
+  ```
+
+- 
+
 ```go
+// 创建匿名结构体
+var book struct{Name string}
+json.Marshal(struct{Name string, year int}{"name", 2018})	// 这种方式可以在创建的时候初始化值
+
 // 结构体转json格式字符串
 b, err := json
 if err != nil {}
 str := string(b)
 
-// 定义结构体
-type Option struct {
-	proxy string
-    IP	string
+// json格式字符串转结构体使用tag来定义序列化时的字符串名称，例如
+type Book struct{
+    Name string `json:"name" bson:"NAME"`
 }
+var book Book
+jsonStr := `{"Name": "haofly"}`
+json.Unmarshal([]byte(jsonStr), &book)
+fmt.Println(book)
 
 // 继承/组合结构体
 type Option2 struct {
@@ -372,8 +393,11 @@ start - time.Now()	// 计算时间差，自带单位换算，而且非常精准
 
 ## 扩展库推荐
 
+基本上可以理解为`gopkg.in`才是Go官方推荐的库网站，地址与github中的地址其实是相对应的，不过这个好处是可以在后面加一个版本号做到版本控制
+
 - **gjson**: 非常好用的redis数据读取库(仅仅是读)
-- **logrus**: 日志库
+- **logrus**: 日志库，默认日志级别为`Info`，`Debug`级别需要主动设置
+- **[mgo](https://godoc.org/gopkg.in/mgo.v2#Bulk.Insert)**: mongo驱动
 - **redigo**: redis驱动
 
 ## TroubleShooting
@@ -385,4 +409,7 @@ start - time.Now()	// 计算时间差，自带单位换算，而且非常精准
   type test struct {}
   ```
 
-  
+
+##### 扩展阅读
+
+[官方FAQ](https://golang.org/doc/faq): 我见过写得最详细的编程语言官方FAQ
