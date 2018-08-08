@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2018-08-02 14:32:00
-updated: 2018-08-03 10:18:00
+updated: 2018-08-06 10:18:00
 categories: Database
 ---
 
@@ -32,6 +32,7 @@ categories: Database
 ### 数据表操作
 
 - [PostgreSQL中的数据类型](http://patchouli-know.com/2016/12/15/data-types-in-postgresql/)
+- 如果是自增类型，从10开始推荐使用`IDENTITY`。之前是用`serial/serial8`类型
 
 ```mysql
 # 使用表名查询表字段的定义
@@ -55,6 +56,10 @@ SELECT a.attnum,
 # 添加注释，在创建的时候不能添加，只能用不同的语句加注释
 COMMENT ON TABLE users IS "This is user table" # 给表添加注释
 COMMENT ON COLUMN users.userid IS 'This is user ID';	# 给表字段添加注释
+
+ALTER TABLE test DROP COLUMN name;	# 删除字段
+ALTER TABLE test ADD COLUMN name VARCHAR(255);	# 添加字段
+
 ```
 
 ### 数据操作
@@ -79,7 +84,9 @@ other sql;
 COMMIT;
 ```
 
+## TroubleShooting
 
+- **ProgrammingError: Statement is too large. Statement Size: 40000000 bytes. Maximum Allowed: 16777216 bytes**: 这是因为`PostgreSQL`默认设置最大的sql语句为16M，所以尽量一条语句的大小尽量控制在这之下
 
 ##### 扩展阅读
 

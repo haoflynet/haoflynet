@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2018-07-19 19:35:00
+updated: 2018-08-02 14:35:00
 categories: tools
 ---
 需要注意的是在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -78,6 +78,8 @@ docker inspect 容器名	# 查看一个容器的详细信息
 Dockerfile是一个制作镜像的脚本工具，通过它可以比直接拷贝docker容器更方便地迁移，只需要拷贝一个Dockerfile然后在本地构建一个即可。
 
 	docker build -t local:mine .
+- 在Dockerfile中应该尽可能晚的添加应用程序源代码，才能充分利用layer的缓存
+
 Dockerfile的语法说明:
 
 ```SHELL
