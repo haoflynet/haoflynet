@@ -5,9 +5,9 @@ updated: 2018-08-03 14:15:00
 categories: aws
 ---
 
-Aws Redshift是一个由Amzon提供的数据仓库管理系统(RDBMS)，基于PostgreSQL 8.0.2，随着时间的推移，两者之间的差距也越来越大，但就像MySQL与Mariadb一样，两者在语法层面大同小异，Redshift也可以用PostgreSQL的客户端(推荐TablePlus)进行连接和管理。
+Aws Redshift是一个由Amzon提供的数据仓库管理系统(RDBMS)，基于PostgreSQL 8.0.2，随着时间的推移，两者之间的差距也越来越大，但就像MySQL与Mariadb一样，两者在语法层面大同小异，Redshift也可以用PostgreSQL的客户端(推荐TablePlus)进行连接和管理。当然，普通数据库和数据仓库需要解决的问题是不一样的，前者是为业务提供保证，后者则是以大数据的分析决策提供便利，两者不能混用。而且Redshift可以说是相当的贵，个人观点是大公司节约成本绝对不能用，小公司数据量不太大的情况下可以用一用。
 
-本文尽量只列出两者不一样的地方，一样的地方可以参考我写的[Postgresql 使用手册](https://haofly.net/postgresql)
+本文尽量只列出两者不一样的地方，一样的地方可以参考我写的[Postgresql 使用手册](https://haofly.net/postgresql)。另外[官方文档](https://www.amazonaws.cn/documentation/redshift/)是相当完美的，建议第一次接触，按照官方文档一步一步来，就基本上能熟悉所有的操作了。
 
 <!--more-->
 
@@ -27,6 +27,7 @@ Aws Redshift是一个由Amzon提供的数据仓库管理系统(RDBMS)，基于Po
 ### 数据操作
 
 - http://docs.amazonaws.cn/redshift/latest/dg/c_intro_to_admin.html 数据库使用文档，增删改查.有取消查询的功能等
+- SQL语句有最大size的限制，最大不超过16777216字节
 
 #### 查询记录
 
