@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-07-19 15:31:00
+updated: 2018-08-03 15:31:00
 categories: php
 ---
 # Laravel指南
@@ -1331,27 +1331,20 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 
 - **处理上传文件**：
 
+   ```php
    $file = Input::file('upload_file");// 获取上传文件对象
-   	$file->isValid()                   // 检验文件是否有效
-   	$file->getClientOriginalName();    // 获取文件原名
-   	$file->getFileName();              // 获取上传后缓存的文件的名字
-   	$file->getRealPath();              // 获取缓存文件的绝对路径
-   	$file->getClientOriginalExtension();// 获取上传文件的后缀
-   	$file->getMimeType();              // 获取上传文件的MIME类型
-   	$file->getSize();                  // 获取上传文件的大小
-
-- **获取输入信息**
-   $id = Input::get('id');
-   	$id = Input::get('id', 2);  // 还可以指定默认值
-
-- **获取请求信息**：
-   Request::url();      // 获取请求url
-   	$request = new Request;
-   	$request->get('id'); // 同样实现获取数据的功能
+   $file->isValid()                   // 检验文件是否有效
+   $file->getClientOriginalName();    // 获取文件原名
+   $file->getFileName();              // 获取上传后缓存的文件的名字
+   $file->getRealPath();              // 获取缓存文件的绝对路径
+   $file->getClientOriginalExtension();// 获取上传文件的后缀
+   $file->getMimeType();              // 获取上传文件的MIME类型
+   $file->getSize();                  // 获取上传文件的大小
+   ```
 
 - **手动清理配置缓存 **
 
-   php artisan config:cache
+   `php artisan config:cache`
 
 - **插入数据的时候出现`MassAssignmentException in Laravel`错误**  
 
@@ -1369,7 +1362,7 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 
 - **保存model的时候出现错误：`Missing argument 2 for Illuminate\Database\Eloquent\Model::setAttribute()`**，一般是`Model`的几个属性没有设正确，检查这几个值`incrementing/timestamps/primarykey/fillable`
 
-- **队列出现Cannot initialize a MULTI\/EXEC transaction over aggregate connections**: 升级到最新版laravel吧，然后将redis的扩展切换到phpredis，`laravel5.3`之前自带的`predis`不支持redis的sentinel，并且有些redis操作强依赖于predis的事务操作，各种纠结，最后都不能成功。
+- **队列出现Cannot initialize a MULTI\/EXEC transaction over aggregate connections**: 升级到最新版laravel吧，然后将redis的扩展切换到phpredis，`laravel5.3`之前自带的`predis`不支持redis的sentinel，并且有些redis操作强依赖于predis的事务操作，各种纠结，最后都不能成功。或者自己[写类似的中间件](https://github.com/cooperaj/laravel-redis-sentinel)
 
 - **Class 'Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory' not found**，偶尔安装了某些个第三方库会出现这种幺蛾子，可以用这种方式解决`composer require symfony/psr-http-message-bridge`
 
