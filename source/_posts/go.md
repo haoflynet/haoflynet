@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-07-28 11:49:00
+updated: 2018-07-30 16:49:00
 categories: go
 ---
 
@@ -18,6 +18,10 @@ categories: go
 ## 安装Go
 
 需要注意的是，在使用go之前，必须设置GOPATH这个环境变量，并且该环境变量不允许和`GOROOT`一样，该目录是用来存放第三方包的源码的地方。
+
+```shell
+
+```
 
 ## 编译与构建
 
@@ -57,12 +61,6 @@ func (v Vertex) Abs() float64{
     return math.Sqrt(v.X*v.Y)
 }
 v.Abs()	// 就可以这样调用了
-
-// 变量映射，额，跟字典超级像呀
-var m map[string]Vertex
-m = make(map[string]Vertex)
-m["test"] = Vertex{10, 20}
-delete(m, key)	// 删除元素
 
 // 接口，就是由一组方法签名定义的集合
 type Abser interface {
@@ -146,11 +144,12 @@ match := reg.FindStringSubmatch(text)	// 获取满足条件的子字符串，mat
 - 由于有些函数确定了入参类型，但是接口又代表的是所有类型，所以如果要把一个接口传入一个明确类型的函数中，就需要特别指明其类型。例如`function(var.(string)`。不过这不能作用于接口数组，否则会出现`invalid type assertion non-interface type []... on left`这样的错误，如果要传入一个数组，需要我们构建一下[参考](https://stackoverflow.com/questions/27689058/convert-string-to-interface):
 
   ```go
-  var face []interface{}
-  for i, book := range books{
-      face[i] = book
+  s := make([]interface{}, len(t))
+  for i, v := range t {
+      s[i] = v
   }
-  function(face)	// function([] interface{})
+  
+  function(s)	// function([] interface{})
   ```
 
 - 
@@ -196,6 +195,20 @@ opt := new(Option)
 
 // 在定义完结构提后，可以这样声明类的方法
 func (option *Option) get() {...}
+```
+
+#### 映射map/字典
+
+```go
+// 变量映射，额，跟字典超级像呀
+var m map[string]Vertex
+m = make(map[string]Vertex)
+m["test"] = Vertex{10, 20}
+delete(m, key)	// 删除元素
+
+for key, value := range m {
+    log.Info(key, value)
+}
 ```
 
 ### 控制语句
@@ -258,7 +271,7 @@ func test(v ...interface{}) {
 
 ```go
 re, err := Abs()
-if err != nil {}
+if err != nil {errString := err.Error()}	// 得到错误的message
 
 if re, err := Abs(); err != nil {}	// 直接在一行进行错误处理
 
@@ -367,7 +380,17 @@ http.Post('url', "application/x-www-form-urlencoded", strings.NewReader("name=te
 http.PostForm('url', url.Values{"key": {"value"}})
 
 // 复杂的http请求用client，例如设置header头以及cookie
-client := &http.Client{}
+client := &http.Client{
+    Transport: &http.Transport{
+        http.ProxyURL(proxyURL)	// 设置代理
+    },
+    Timeout:   time.Second * 300,	// 设置超时时间
+	CheckRedirect: func(req *http.Request, via []*http.Request) error {
+		return errors.New("something bad happened") // 设置重定向处理逻辑
+	},
+}
+
+// 设置header头，需要注意的是client和这里的request是不同的两个概念，不能在client层面设置header头
 req, err := http.NewRequest("POST", "url")
 if err != nil {}
 req.Header.Set("Content-Type", "")
@@ -398,7 +421,7 @@ start - time.Now()	// 计算时间差，自带单位换算，而且非常精准
 - **gjson**: 非常好用的redis数据读取库(仅仅是读)
 - **logrus**: 日志库，默认日志级别为`Info`，`Debug`级别需要主动设置
 - **[mgo](https://godoc.org/gopkg.in/mgo.v2#Bulk.Insert)**: mongo驱动
-- **redigo**: redis驱动
+- **[redigo](http://godoc.org/github.com/gomodule/redigo/redis)**: redis驱动
 
 ## TroubleShooting
 
