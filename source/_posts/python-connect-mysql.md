@@ -1,7 +1,7 @@
 ---
 title: "Python3 使用MySQL Connector操作数据库"
 date: 2015-11-04 17:48:41
-updated: 2018-06-11 22:45:22
+updated: 2018-08-08 18:45:22
 categories: 编程之路
 ---
 ## 安装方法
@@ -126,6 +126,10 @@ rows = cursor.fetchmany(size=1)
 * **Can't connect to local mySQL server ough socket '/tmp/mysql.sock**
 
   可能原因是由于MySQL是编译安装的，没有放在默认的目录，导致python找不到默认的sock文件，可以用一个软连接将实际文件链接到这个默认的目录下面
+
+* **EnvironmentError: mysql_config not found**，原因在mac环境下没有安装mysql包，需要`brew isntall mysql`
+
+   
 
 
 ##### 参考文章
