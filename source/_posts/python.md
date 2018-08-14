@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-07-20 15:48:30
+updated: 2018-08-13 16:38:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -156,6 +156,8 @@ dict1.update(dict2)	# 这种方式不会返回新的字典，只会更新原有d
 x.__class__.__name__  # 获取实例的类名
 
 # 继承相关
+super().__init__()	# 继承时需要调用父类的初始化方法
+super(self.__class__, self).__init__()	# python2里面的父类初始化
 ChildClass.mro()	# 按顺序打印类当前类的继承顺序，多继承也会有顺序
 super().func()	# 调用父类的方法
 super(ChildClass, self).func()	# 2里面调用父类的方法
@@ -267,11 +269,14 @@ random.uniform(begin, end)  # 生成0到10的随机浮点数
 # 四舍五入
 round(1.23, 1)   # 第二个参数表示保留几位小数
 format(x, '0.2f')  # 保留两位小数
+abs(-123)	# 获取绝对值
 
 # 除法
 14/3 = 4.666666666666667	# 精确除法
 14//3 = 4			# 取整
 14%3 = 2  # 求余
+math.ceil(10/3) = 4	# 向上取整
+math.floor(10/3)= 3	# 向下取整
 
 # 生成一组数
 range(2)	// 生成[0, 1]
@@ -998,7 +1003,6 @@ iterator.send(2)	# 传值给生成器，jump=2
 实例:
 
 ```python
-# 最复杂的使用
 import logging
 
 logger = logging.getLogger('AppName')	# 初始化日志处理器实例，可以用AppName来区分不同的模块
@@ -1012,7 +1016,6 @@ logger.addHandler(file_handler)			# 为logger添加的日志处理器
 logger.removeHandler(file_handler)		# 移除日志处理器
 
 logger.setLevel(logging.INFO)		# 设置日志输出最低级别
-
 logger.debug('this is debug info')
 logger.info('this is information')
 logger.warn('this is warning message')
@@ -1022,8 +1025,9 @@ logger.critical('this is critical message')
 
 logger.error('%s service is down', 'own')	# 格式化输出日志
 
-# 比较简单的使用
-logging.basicConfig(filename='test.log', level=logging.DEBUG)	# 这样接口
+logging.basicConfig(filename='test.log', level=logging.DEBUG)	# 比较直接简单那的用法
+
+logger.info('test', extra={'key': value})	# 传递给formatter的参数(如果formatter里面有自定义参数)
 ```
 
 #### http.server(SimpleHTTPServer)
