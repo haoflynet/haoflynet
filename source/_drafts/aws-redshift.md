@@ -1,7 +1,7 @@
 ---
 title: "Amazon Aws Redshift手册"
 date: 2018-08-02 21:32:00
-updated: 2018-08-03 14:15:00
+updated: 2018-08-13 15:15:00
 categories: aws
 ---
 
@@ -24,6 +24,10 @@ Aws Redshift是一个由Amzon提供的数据仓库管理系统(RDBMS)，基于Po
 - `redshift`不允许使用`ALTER`修改字段类型
 - `distkey`属性的列是不能被`DROP`的
 
+```mysql
+ALTER table table1 rename to table2;	# 更改表名
+```
+
 ### 数据操作
 
 - http://docs.amazonaws.cn/redshift/latest/dg/c_intro_to_admin.html 数据库使用文档，增删改查.有取消查询的功能等
@@ -31,11 +35,26 @@ Aws Redshift是一个由Amzon提供的数据仓库管理系统(RDBMS)，基于Po
 
 #### 查询记录
 
+```mysql
+# 去重取出某个key里面最新的一条，这是我能找到的效率最高的一条了
+SELECT * FROM table1 WHERE id NOT IN (SELECT id FROM (SELECT id, ROW_NUMBER() OVER(PARTITION BY field1 ORDER BY field2 DESC) AS rnum FROM table1) t WHERE t.rnum>1);
+```
+
 #### 新增记录
 
 #### 更新记录
 
+- `redshift`能够一次插入几十万条数据，但是一次`UPDATE`操作却能轻松让CPU负载上到100%(本身实现也是先删除再插入，并且数据库内部存储也会变乱，如果`UPDATE`或者`DELETE`太多，反而需要经常执行`vacuum table1 to 100 percent;`强制回收空间)。对于数据仓库来说，尽量保留数据的真实信息，它也有足够的能力处理大量的历史数据，所以，这里就只能放弃`UPDATE`操作，手动写去重逻辑。[vacuum命令文档](https://docs.aws.amazon.com/zh_cn/redshift/latest/dg/r_VACUUM_command.html)
+
 #### 删除记录
+
+
+
+
+
+##### 扩展阅读
+
+- [amazon-redshift-utils](https://github.com/awslabs/amazon-redshift-utils): redshift相关的各种方便的管理脚本等
 
 
 
