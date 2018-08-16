@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-07-13 08:55:21
+updated: 2018-08-03 10:55:21
 categories: php
 ---
 # PHP
@@ -40,11 +40,14 @@ implode(',', $arr)	# 将数组拼接成字符串
 in_array('a', $a, false)				# 查看数组是否存在某个元素。第三个参数表示严格模式，默认为false，最好为true，否则像这种in_array('aa', [0])居然是true
 json_encode($arr)	# 数组转换城字符串
 list($a, $b) = [1, 2]	# 分别赋值
-rsort(): 以降序对数组排序
+rsort(); # 以降序对数组排序
 sort();		# 排序，可以给数组排序，会修改原来数组的值
 uasort($array, $cmp_function)	# 定义对比函数进行排序
 unset(arr[1]); // 删除数组元素，需要注意的是，一维数组，在unset以后，索引不会变，比如unset($a[1])，过后，该数组里面就没有1这个索引，而不是把2这个索引提到前面来，使用的时候需要特别注意
 array_splice($a, $index, 1);	# 用这种方式删除数组的元素，索引会改变
+
+# 排序，需要注意的是，php的排序都不会改变索引，只是改变了迭代的顺序，如果是一维数组，序号只是没有在自己的位置上，本质上index是没有变的，需要特别注意，在json_encode或者在转换为其他对象时可能不会出现预期的结果
+sort($arr, function($item1, $item2){return $item1 > $item2});
 
 # 数组遍历
 foreach($array as $value); //数组遍历

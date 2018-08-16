@@ -4,6 +4,6 @@ emote Procedure Call 是一种**进程间通信**方式。 它允许程序调用
 
 
 
-
+grpc是基于http2的
 
 https://juejin.im/post/5aa545b551882555770c16e1
