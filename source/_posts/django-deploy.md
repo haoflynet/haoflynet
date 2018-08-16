@@ -83,7 +83,7 @@ categories: python
   # maximum number of worker processes
   processes       = 10
   # the socket (use the full path to be safef
-  socket          = /data/swy-api/haidaohai/swy-api.sock
+  socket          = /path/to/swy-api.sock	// 随便放哪里，也可以放在项目目录下
   
   # ... with appropriate permissions - may be needed
   chmod-socket    = 666		# 修改权限，以防出现connect() to unix:///path/to/your/mysite/mysite.sock failed (13: Permission
@@ -92,8 +92,28 @@ categories: python
   vacuum          = true
   
   py-autoreload = 1		# python代码变更后自动重启
+  buffer-size = 65535		# 针对莫名其妙出现502错误的一个可能的解决方法
   ```
 
-
-
 综上，其实是和`php-fpm`部署的方式类似，使用wsgi协议启动应用，然后nginx直接获取其socket就行了。
+
+### 使用supervisor管理uwsgi
+
+如果仅仅用上面的方式来启动应用，应用有修改后，`py-autoreload`会自动重启应用，但是如果想要批量管理进程，例如批量开启或重启或关闭就有点麻烦了，并且程序挂了也没有自动重启机制，所以这里要用到`supervisor`。按照[使用Supervisor管理进程](https://haofly.net/supervisor)安装`supervisor`并生成配置文件后，在配置文件中添加以下的`program`即可
+
+```shell
+[program:uwsgi]
+command=/usr/local/bin/uwsgi --ini /path/to/uwsgi.ini
+user=root
+startsecs=0
+stopwaitsecs=0
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/supervisor/uwsgi.stdout.log
+stderr_logfile=/var/log/supervisor/uwsgi.stderr.log
+redirect_stderr=true
+```
+
+## TroubleShooting
+
+- **莫名其妙出现502错误，但是程序没有挂也确实没有错误日志**: 可以尝试设置uwsgi的`buffer-size=65535`缓存值，默认是4096，如果不行就在nginx上面设
