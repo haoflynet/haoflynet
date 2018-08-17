@@ -1,10 +1,13 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-06-26 23:24:00
+updated: 2018-08-06 17:24:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
+
+- 正向代理：类似fq，服务器代替我们去访问其他的服务
+- 反向代理：外部访问内部服务，例如外部用户访问公司内部的各个服务，通过一个nginx进行代理
 
 ## 安装nginx
 

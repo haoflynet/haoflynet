@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-07-16 14:12:00
+updated: 2018-08-13 15:12:00
 categories: database
 ---
 ## 安装方法
@@ -49,6 +49,7 @@ DROP database_name	# 删除数据库
 ### 数据表操作
 
 ```mysql
+DROP TABLE name; # 删表
 ## 清空数据表
 DELETE FROM 表名; # 这种方式比较慢，但是可以恢复
 TRUNCATE TABLE 表名 # 这种方式很快，但不会产生二进制日志，无法回复数据
@@ -107,6 +108,9 @@ SELECT * FROM table_name GROUP BY `field1`, `field2`;	# 分组显示，有多少
 # Having子句，与WHERE不同，它可以和一些统计函数一起使用
 SELECT name, SUM(money) FROM users GROUP BY name HAVING SUM(money)>23333 # 这一句就能查找出所拥有的资产综合大于23333的用户
 SELECT * FROM virtuals WHERE ip in (SELECT ip FROM virtuals GROUP BY ip HAVING COUNT(ip)>1);	# 可以统计所有有重复的数据
+
+# 找出每个分组的最新的一条记录(目前我能找到的最有效的方法，虽然效率依然很低)
+SELECT table1.* FROM table1 LEFT JOIN table2 ON (table1.name = table2.name AND table1.id < table2.id) WHERE m2.id IS NULL;
 ```
 **LIKE查询的特殊转义**
 
@@ -206,8 +210,7 @@ show variables like '%datadir%';
 # 查看所有的警告
 show warnings
 
-# 查看MySQL版本
-select @@version
+select @@version	# 查看MySQL版本
 
 # 查看表的结构
 show columns from 表名;
@@ -350,4 +353,4 @@ JSON_EXTRACT(result,'$.id')	# 获取json数据key=id的值
 *   **timestamp字段插入的时候出现`warnning: data truncated for column`**，这是因为`mysql`的`timestamp`类型不是`unix`的时间戳，对于非法的字符串插入`timestamp`的时候结果都是`0000-00-00 00:00:00`。如果要插入，可以用`2017-12-25 12:00:00`这种格式，或者使用函数`FROM_UNIXTIME(1514177748)`进行转换。
 *   **Invalid use of NULL value**: 原因可能是在将列修改为不允许NULL的时候并且已经存在记录该值为null，则不允许修改，这个时候需要先修改已有记录的值。
 *   **PhpMyAdmin查询正确，但是导出结果时导出的文件里面只有一条错误的sql语句**: 尝试把要导出的字段及表名不用别名
-
+*   **2038问题**: 由于历史原因，`TIMESTAMP`最多只能存储到`2038-01-19 05:14:07`，超过则会报错或者被置为NULL，目前暂时还没有解决办法，但是我相信到时候那帮牛人肯定会直接在数据库程序层面解决的，而不是我们去更改程序。当然，如果用`DATETIME`倒是可以多存储到子子孙孙那里，但是却没有时区概念。现在距离那个时间点还有20年，我的建议是，如果字段是作为创建时间、更新时间、删除时间这种，精度要求比较高并且时区不允许错乱(事实上，所有项目时区都是要有要求的，不能保证每个人使用或者每个服务器的时区是一样的)，就可以用`TIMESTAMP`，像记录某个历史事件、或者万年历、生日这种才需要用`DATETIME`

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-07-03 10:20:00
+updated: 2018-08-15 09:20:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -16,6 +16,7 @@ TODO: 逐步用原生方法替换jQuery，参考[You-Dont-Need-jQuery](https://g
 var $a;	// es6以前定义变量，if (true) {var a = 1;} console.log(a); 输出为1
 let $b;	// es6用于定义跨级作用域本地变量，if (true) {let b = 1;} console.log(b);输出为undefined
 const $c;	// 定义常量
+window.test = 123;	// 声明全局变量
 ```
 
 <!--more-->
@@ -136,6 +137,8 @@ ele.value;		// 获取元素内容
 $('#check').prop('checked')	// 获取checkbox是否被check了，不用给你用attr
 $('div').height()	// 获取元素高度
 $('div').height(20)	// 设置元素高度
+$('select').val()	// select标签的值
+$('select option:selected').text();	// select被选中项的文本
 ```
 
 ### 编辑元素
@@ -432,4 +435,6 @@ $.post('some.php', {name: 'haofly'})
 * **避免表单回车自动提交**：有时候想在表单提交前进行一些操作，但又不想在回车时自动提交表单(当只有input的时候，会强制提交)，这时候只需要在button的回车事件中添加`return false`即可
 
 * **无法获取iframe里面的内容**: 一个iframe表示一个窗口，并且还对应不同的域名，默认情况，放任一个网页，脚本都默认在最上层的窗口上面，在谷歌浏览器的`审查元素`视图下的`Console`的左上角可以选择定位到哪个`iframe`，如果是爬虫或者油猴脚本，要注意对应iframe的url。
+
+* **onclick的时候将标签本身作为参数**: `onclick="dothing(this);"`
 
