@@ -8,17 +8,19 @@ categories: python
 
 #### 最简单的装饰器:
 
-	from functools import wraps
-	def b(func):
-		@wraps(func)
-		def decorate(func):
-			print('b')
-			return func(canshu)	# 如果要传递参数可以在这里进行传递
-		return decorate
-		
-	@b
-	def a(canshu):
-		print('a')
+```python
+from functools import wraps
+def b(func):
+	@wraps(func)
+	def decorate(func):
+		print('b')
+		return func(canshu)	# 如果要传递参数可以在这里进行传递
+	return decorate
+	
+@b
+def a(canshu):
+	print('a')
+```
 执行`a()`的时候会分别输出`b`和`a`，需要注意的是，这里不加wraps也是可以的，但是如果不加wraps，那么函数就真的相当于一个新的函数了，通过内省方法获取函数的元信息等都会变成新的，而如果wraps则会消除这样的影响。在flask中如果对views函数进行了装饰，不加wraps会出现这样的错误:
 
 	AssertionError: View function mapping is overwriting an existing endpoint function: decorate
