@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-07-26 11:44:30
+updated: 2018-08-17 10:44:30
 categories: system
 ---
 # Linux手册
@@ -20,7 +20,10 @@ CentOS版本说明
 
 ```shell
 # CentOS
-sudo yum install epel-release	# 安装epel源
+sudo yum install epel-release
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm	# EC2的Centos7上执行这个才能使用安装EPEL
+
+yum groupinstall "Development Tools"	# 安装gcc等基本开发工具
 ## vim /etc/sysconfig/network-scripts/ifcfg-eth0把ONBOOT=no改成yes即可让网卡开机自动启动
 ```
 
@@ -77,8 +80,9 @@ lsof -i -n -P | egrep -c ':8000.+ESTABLISHED' # 查看8000端口的连接数字
 
 # 结束进程
 kill -s 9 进程ID
+kill -TERM 进程ID		# 杀死进程及其所有的子进程
 
-# 监控每个进程的网络带宽
+# 监控每个进程的网络带宽，类似的还有iftop，但是都只能监听TCP，iptraf工具能监听UDP流量
 sudo apt-get install nethogs -y
 sudo nethogs
 
@@ -236,6 +240,8 @@ ls -ld # 列出文件夹详细信息
 # 配置免密码登录
 ssh-keygen -t dsa # 生成自己的ssh，然后将~/.ssh/id_dsa.pub的内容添加到主机的~/.ssh/authorized_keys里面面去
 
+ssh -i key.pem root@127.0.0.1	# 通过pem认证登录服务器
+
 # ssh-add命令
 ssh-add -l	# 列出当前登录用户的ssh key
 ssh-add -k -i ~/.ssh/my.pub	# 将指定ssh key添加到当前用户的key列表中去，之后的ssh命令都会自动带上该key
@@ -347,8 +353,9 @@ usermod -a -G groupName userName
 lsb_release -a      # 查看系统信息
 echo $HOSTTYPE     	# 查看系统位数
 cat /proc/cpuinfo    # 查看CPU信息
-cat /etc/issue     // Debian系列查看系统版本
-cat /etc/redhat-release // redhat系列查看系统版本
+cat /etc/issue     # Debian系列查看系统版本
+cat /etc/redhat-release # redhat系列查看系统版本
+cat /proc/version	# 更详细的系统版本
 lspci				# 显示当前主机的所有PCI总线信息
 
 # 环境变量
@@ -529,6 +536,7 @@ nmap -Pn 8.8.8.8 -p 2333	# 指定扫描某个端口
 
 ## 窗口操作
 c 新建窗口
+d 退出当前窗口
 p 切换至上一个窗口
 n 切换至下一个窗口
 w 窗口列表选择，mac下使用ctrl+p和ctrl+n进行上下选择
