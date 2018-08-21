@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-08-15 09:20:00
+updated: 2018-08-20 23:20:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -272,6 +272,13 @@ $.ajax({
 	},
 	success: function(re){
 	}
+    complete: function(re) { 	 // 无论怎样都会执行
+        if (re.statusText == "success") { 
+            console.log("Sent successfully");
+        } else { 
+            console.log("Not Sent");
+        }
+    }
 });
 ```
 
