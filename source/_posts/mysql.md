@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-08-13 15:12:00
+updated: 2018-08-21 23:12:00
 categories: database
 ---
 ## 安装方法
@@ -214,6 +214,9 @@ select @@version	# 查看MySQL版本
 
 # 查看表的结构
 show columns from 表名;
+
+# 查看当前连接数和客户端详情
+show processlist;
 ```
 ### 数据库维护
 

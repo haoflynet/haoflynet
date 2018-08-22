@@ -1,7 +1,7 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
-updated: 2017-10-27 21:37:00
+updated: 2018-08-21 23:57:00
 categories: python
 ---
 
@@ -58,6 +58,7 @@ else:
 # 返回JSON数据
 from flask import jsonify
 return jsonify(username=g.user.username, email='asd')
+return jsonify({'username': g.user.username})
 
 # 允许CORS，可以使用flask-cors库，也可以全局设置如下这个
 @app.after_request

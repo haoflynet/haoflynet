@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-08-13 16:38:30
+updated: 2018-08-21 23:38:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -1217,6 +1217,8 @@ conn.close()	# 关闭连接
 - **Python执行js**: `js2py`和`execjs`都只能执行简单的js脚本，要复杂的，还是直接调用系统解析器吧，例如`node -e`
 
 - **unknown file type, first eight bytes**: 这是在加载动态链接库.so的时候发生，原因是该.so文件是在linux平台下编译的，而我实在macos上调用，所以发生该错误。解决方法是在macos重新编译生成.so文件，或者直接在linux下调用。
+
+- **pip出现`ImportError: No module named pkg_resources`错误**:安装工具 `pip install setuptools`
 
 ## 推荐阅读
 
