@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-08-17 10:44:30
+updated: 2018-08-23 11:04:30
 categories: system
 ---
 # Linux手册
@@ -241,8 +241,10 @@ ls -ld # 列出文件夹详细信息
 ssh-keygen -t dsa # 生成自己的ssh，然后将~/.ssh/id_dsa.pub的内容添加到主机的~/.ssh/authorized_keys里面面去
 
 ssh -i key.pem root@127.0.0.1	# 通过pem认证登录服务器
+ssh-keygen -lf ~/.ssh/id_rsa.pub	# mac下计算ssh key的指纹
+ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub	# linux上计算ssh key的指纹
 
-# ssh-add命令
+# ssh-add命令，转发ssh key，常用与跳板机
 ssh-add -l	# 列出当前登录用户的ssh key
 ssh-add -k -i ~/.ssh/my.pub	# 将指定ssh key添加到当前用户的key列表中去，之后的ssh命令都会自动带上该key
 ssh-add -A	# 将当前所有的key都带上
@@ -389,6 +391,7 @@ sudo service lightdm start	# Linux Mint关闭GUI，重启gui
 ```shell
 sudo systemctl start docker	# 开启服务
 sudo systemctl enable docker.service	# 开机启动服务
+sudo systemctl stop teamviewerd	# 停止服务
 sudo systemctl disable docker.service	# 禁用开机启动
 service httpd status	# 检查服务状态
 systemctl list-units --type=service	# 显示所有已启动的服务
@@ -435,13 +438,19 @@ nameserver 202.38.64.1	# 中科大dns，202.38.64.1
 
 #### 软件源管理
 
-Debian的软件源分为stable/testing/unstable/experimental。默认大家平时使用的都是stable，unstable的开发代号是sid。如果我们需要更新的软件，那么将sid源加入到软件源中:
+Debian的软件源分为`stable/testing/unstable/experimental`。默认大家平时使用的都是stable，unstable的开发代号是sid。如果我们需要更新的软件，那么将sid源加入到软件源中:
 
 ```tex
 deb http://ftp.debian.org/debian sid main
 ```
 
 然后就可以这样子安装软件`sudo apt-get -t sid install ...`
+
+##### 推荐的软件源
+
+```shell
+# CentOS 软件源位置/etc/yum.repos.d
+```
 
 ## 其它工具
 

@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-08-21 23:12:00
+updated: 2018-08-22 10:12:00
 categories: database
 ---
 ## 安装方法
@@ -75,7 +75,9 @@ CREATE TABLE products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
 - `TIMESTAMP(3)/TIMESTAMP(6)`表示精确到毫秒微妙级别
 
-### 数据记录操作
+### 数据增删改查
+
+- `LEFT JOIN`是`LEFT OUTER JOIN`的简写，`RIGHT JOIN`是`RIGHT OUTER JOIN`的简写，`JOIN`是`INNER JOIN`的简写
 
 ##### 查询
 
@@ -123,12 +125,14 @@ SELECT table1.* FROM table1 LEFT JOIN table2 ON (table1.name = table2.name AND t
 
 ##### 连表查询
 
-```shell
+```mysql
 # LEFT JOIN ... ON ...
 ## 会取出左表的全部记录，即使右表没有对应匹配的记录。用这种方式SELECT出来的数据，如果右表数据为空，那么会给NULL
 
 # 内连接INNER JOIN ... ON ...(等于与直接用JOIN)
 ## 语法和LEFT JOIN其实是一样的，只不过右表没有匹配的记录的情况下，最终的结果就不会出现左表的那一条数据
+SELECT * FROM table_A LEFT JOIN table_B ON talbe_B.a_id = table_A.id;
+SELECT * FROM table_A, table_B WHERE tableB.a_id =table_A.id;	# 设置可以不用join
 ```
 
 ##### 修改/更新

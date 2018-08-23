@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-08-15 10:06:00
+updated: 2018-08-23 10:06:00
 categories: python
 ---
 # Django教程
@@ -148,7 +148,7 @@ HttpRequest.scheme   # 表示请求的模式，是http还是https
 HttpRequest.cookies  # 包含了所有的cookie信息
 HttpRequest.session  # session信息
 HttpRequest.FILES    # 包含了上传的文件
-HttpRequest.meta     # 包含了http请求的各种headers
+HttpRequest.META     # 包含了http请求的各种headers，HTTP_REFERER，其中headers的字段都是大写并且会有个前缀，例如headers中有key，那么request.META.HTTP_KEY，用这种方式获取
 HttpRequest.user     # 当前的登录的用户，配合着auth使用
 
 get_host()           # 获取真实地址
@@ -1002,7 +1002,9 @@ class Post(models.Model):
 
 ## Django国际化
 
-`I18N`表示国际化，`L10N`表示本地化。Django使用的是`gettext`工具进行国际化的翻译。为了实现国际化我们需要这样做：
+- `I18N`表示国际化，`L10N`表示本地化。Django使用的是`gettext`工具进行国际化的翻译。
+
+为了实现国际化我们需要这样做：
 
 1. 将需要翻译的字符串在源码中进行标注
 
@@ -1029,7 +1031,10 @@ class Post(models.Model):
 3. 生成指定语言的文件目录，这条命会扫描Django项目源文件，将其中标记为需要翻译的字符串抽取出来，统一放在`locale/zh_hans/LC_MESSAGES/django.po`这个文本文件里面
 
    ```shell
-   python manage.py makemessages -l zh_hans
+   # 支持的语言列表：http://www.i18nguy.com/unicode/language-identifiers.html
+   python manage.py makemessages -l zh_Hans	# 简体中文，需要注意的是mac上面大小写不敏感，但是linux上面会存在问题，语言文件这里必须大写，并且项目中其他地方用zh-hans
+   python manage.py makemessages -l ja		# 日文
+   python manage.py makemessages -l ko		# 韩文
    ```
 
 4. 文本文件中会列出我们所有标记了的字符串，你可以在每个字符串下面填上对应的值，例如
@@ -1060,42 +1065,55 @@ class Post(models.Model):
    {{ LANGUAGE_CODE }}
    ```
 
-## django-crontab插件
+#### 切换语言
 
-Django下的定时任务插件，依赖于Linux的cron服务。
+Django根据以下顺序去决定应该使用哪种语言
 
-### 安装
+- i18n_patterns: 即直接根据url中的语言来判断
 
-`pip install django-crontab`进行安装，然后在django的配置文件中添加一个APP
+  ```python
+  # 在url中这样定义，这样，在访问domain/的时候就可以以domain/zh-hans/的方式访问特定语言了
+  path('<slug:slug>/'))
+  ```
 
-```python
-INSTALLED_APPS = (
-	'django_crontab',
-    ...
-)
-```
+- request.session[translation.LANGUAGE_SESSION_KEY]，这种方式如果要切换，只需要设置以下即可
 
-### 使用
+  ```python
+  request.session[translation.LANGUAGE_SESSION_KEY] = language
+  ```
 
-编写完定时任务逻辑以后，需要在配置文件中添加上，例如
+- request.COOKIES[translation.LANGUAGE_COOKIE_NAME]
 
-```python
-CRONJOBS = [
-    ('*/5 * * * *', 'myapp.cron.my_scheduled_job')
-    ('*/5 * * * *', 'myapp.cron.other_scheduled_job', ['arg1', 'arg2'], {'verbose': 0}),
-    ('0 4 * * *', 'django.core.management.call_command', ['clearsessions']),
-]
-```
+- request.META['HTTP_ACCEPT_LANGUAGE']，即http的header头中的`Accept-Language`
 
-最后，将其添加到系统`cron`服务中去
+#### 翻译JS中的内容
 
-```shell
-python manage.py crontab add	# 将当前配置文件中的定时任务添加到cron中去，当add以后，会在crontab -e里面出现类似这样的一条记录
-# */5 * * * * /usr/local/bin/python /usr/src/app/manage.py crontab run e0418752956c4dd997212171486888ff # django-cronjobs for admin
-# 前面是命令部分，后面是根据定义的函数计算出来的hash值，最后面则是自带的注释
-python manage.py crontab show	# 列出当前已经添加到cron中的定时任务
-python manage.py crontab remove	# 移除所有的定时任务
-```
+要支持这种js，必须得我们自己去修改js，所以在引入第三方库时最好不要引入写死语言的，这种方式更多用于我们自己的js。详细步骤如下：
+
+1. 按照上面的方法在js中进行标记
+
+   ```javascript
+   gettext('Next');	// js中直接使用gettext来将字符串标记起来
+   ```
+
+2. 在根url中添加一个url
+
+   ```python
+   from django.views.i18n import JavaScriptCatalog
+   
+   path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog')
+   path('jsi18n/web/', JavaScriptCatalog.as_view(packages=['web']), name='javascript-catalog')	# 这种方式仅针对某个具体的app进行js文件的饭翻译
+   ```
+
+3. 每次在引入需要国际化的js之前，先引入这个js文件，这种文件中定义了gettext等几个翻译的工具。
+
+   ```html
+   <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+   ```
+
+## django-cron插件
+
+Django下的定时任务插件，我以前用的是`django-crontab`，但是现在觉得`django-cron`更好用，好处是每次执行结果在数据库中都能存储，并且cron中要么是`laravel`定时任务那样的一条，如果要分开则是带了名字的，不再是一行看不懂的字符。
 
 ## TroubleShooting
 
