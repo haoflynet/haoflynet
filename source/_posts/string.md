@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2018-06-20 15:48:00
+updated: 2018-08-01 23:48:00
 categories: python
 ---
 ## 编码问题
@@ -108,7 +108,7 @@ pat.sub(r'\3-\1-\2', text)
 'Today is 2016-11-27'
 
 # 带命名组的替换
-re.sub(r'<a.*?>(.*?)</a>','\g<1>', text) # 替换a标签，但保留a标签里面的内容，需要注意的是.*表示最长匹配，而.*?表示最短匹配
+re.sub(r'<a.*?>(.*?)</a>','\g<1>', text) # 替换a标签，但保留a标签里面的内容，需要注意的是.*表示最长匹配，而.*?表示最短匹配。添加参数flag=re.IGNORECASE表示不区分大小写
 
 # 对替换做特殊处理
 print(re.sub('(?P<value>\d+)', lambda matched: str(int(matched.group('value')) * 2), s))
@@ -116,7 +116,8 @@ print(re.sub('(?P<value>\d+)', lambda matched: str(int(matched.group('value')) *
 # 使用正则方式查找  
 import re  
 url = 'http://haofly.net/note.html'  
-match = re.search('(.*)/(.*?).html', a)  
+match = re.search('(.*)/(.*?).html', a)
+match = re.search('(.*)/(.*?).html', a, re.IGNORECASE)	# 不区分大小写的正则匹配
 print(match.group(1), match.group(2))
 
 # 基本查找，返回第一个出现该字符串的位置  
