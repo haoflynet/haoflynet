@@ -9,6 +9,7 @@ categories: python
 
 - 需要特别注意的是，`SQLAlchemy`只是适用于一些通用的微型框架，而全栈框架`Django`的orm在结合特定框架用起来可能更加便利，所以在使用`SQLAlchemy`的时候，如果不知道怎么完成复杂的定义，那就干脆自己写sql吧，自己去join什么的
 - 有另外一个选择`peewee`，提供类似Django那样又好的查询API，比`SQLAlchemy`易用，虽然可能没那么强大，性能可能也没那么好(并没有人去对比过性能)，但是`peewee`还不支持`Oracle`等数据库，虽然我不用，但是为了防止以后多学习一门，就决定是`SQLAlchemy`了
+- `SQLAlchemy`本身并不支持异步，在`tornado/sanic`中只有手动去执行异步
 
 ## SQLAlchemy安装
 
