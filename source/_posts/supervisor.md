@@ -1,7 +1,7 @@
 ---
 title: "使用Supervisor管理进程"
 date: 2015-08-11 10:07:33
-updated: 2018-05-29 18:03:00
+updated: 2018-08-13 16:03:00
 categories: 编程之路
 ---
 supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理Nginx、Apache等，都比较方便，这里是其使用方法：
@@ -21,6 +21,8 @@ yum install supervisor
 
 ## 使用
 
+- **初次安装supervisor由于系统不同安装版本不同，可能没有自动生成配置文件，一定要手动去生成一次，因为你并不知道配置文件里面哪些是必须的...**
+
 ```shell
 sudo easy_install supervisor
 echo_supervisord_conf > supervisord.conf  # 生成一个配置文件
@@ -29,6 +31,8 @@ sudo supervisorctl                        # 进入命令行界面管理进程
 ```
 
 ## 配置
+
+- **需要注意的是用supervisor管理的进程千万不要开启daemon模式，否则supervisor会认为程序没有启动成功，导致无限开进程...**
 
 ```shell
 # 在supervisord.conf里面添加如下内容
@@ -59,9 +63,9 @@ priority=999
 ## supervisorctl常用命令：
 
 ```shell
-start name    # 开始一个进程
-stop name    # 终止一个进程
-status   # 查看当前管理状态
+supervisorctl start name    # 开始一个进程
+supervisorctl stop name    # 终止一个进程
+supervisorctl status   # 查看当前管理状态
 ```
 
 ### TroubleShooting
