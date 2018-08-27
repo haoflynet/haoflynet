@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-08-22 10:12:00
+updated: 2018-08-23 15:42:00
 categories: database
 ---
 ## 安装方法
@@ -70,6 +70,8 @@ CREATE TABLE products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 ```
 
 ### 常见表字段
+
+- MySQL每行最大能存储65535字节的内容(不过`BLOB`和`TEXT`是分开存储的，他们不受此限制)，所以对于utf8最多存储21844个字符，对于utf8mb4最多存储16383个字符，这也是`VARCHAR`的最大值
 
 ##### timestamp
 

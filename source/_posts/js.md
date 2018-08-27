@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-08-20 23:20:00
+updated: 2018-08-25 20:35:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -52,7 +52,7 @@ arr.every(function(value, key, arr){});	// 筛选数组，是否每个元素都�
 // for jQuery
 $.each($array, function(k, v){});	// 遍历数组
 $.inArray('a', $arr): 判断数组是否包含某个元素
-delete a['a']	// 删除字典元素
+delete a['a']	// 删除字典元素，如果用它来删除数组中的元素，删除完以后，数组总的长度不变，元素会被换成undefined，和php一样的坑
 ```
 ### 字符串
 ```javascript
@@ -66,6 +66,7 @@ str.replace(/\s+/g, "")    		// 去除所有的空格
 str.trim() / str.replace(/^\s+|\s+$/g, "")	// 去除两端的空格
 str.trimLeft() / str.replace( /^\s*/, '')		// 去除左边的空格
 str.trimRight() / str.replace(/(\s*$)/g, "")		// 去除右边的空格
+str.replace(/[\r\n]/g, ' ')	// 去掉换行
 
 JSON.parse(text)	// 将字符串转换为JSON
 str.replace(reg, function(s, value){})	// 替换字符串，reg可以是正则表达式
@@ -76,6 +77,9 @@ parseInt(数字)  // 将数字取整
 
 btoa(str);	// 字符串转换为base64
 atob(str);	// base64转换为字符串
+
+a = encodeURIComponent(uri);	// url编码
+b = decodeURIComponent(uri);	// url解码
 ```
 
 #### 时间处理
@@ -170,10 +174,16 @@ $('p').css('color', 'red')			// 修改CSS属性
 $('button').prop('disabled', true)	// 设置按钮不可点击disabled
 $('p').hide()	// 隐藏元素
 $('p').show()	// 显示元素
+$('img').attr('src', 'xxx')	// 改变元素的属性
 
 // video标签控制
 myVideo.play()	// 开始播放
 myVideo.pause()	// 暂停播放
+
+// 创建元素
+var a_tag = document.createElement('a');	// 首先创建一个空元素
+parent_tag.after(a_tag);	// 然后将元素放到指定的位置
+a_tag.outerHTML = '<a class="..." name="">ok</a>'; // 最后将元素html替换成我们想要的
 ```
 
 ### 元素事件
@@ -421,7 +431,7 @@ $.post('some.php', {name: 'haofly'})
      });
      ```
 
-* 绑定回车事件：
+* **绑定回车事件**：
 
      ```javascript
      $(document).on('keypress', 'input', function(event){
@@ -444,4 +454,15 @@ $.post('some.php', {name: 'haofly'})
 * **无法获取iframe里面的内容**: 一个iframe表示一个窗口，并且还对应不同的域名，默认情况，放任一个网页，脚本都默认在最上层的窗口上面，在谷歌浏览器的`审查元素`视图下的`Console`的左上角可以选择定位到哪个`iframe`，如果是爬虫或者油猴脚本，要注意对应iframe的url。
 
 * **onclick的时候将标签本身作为参数**: `onclick="dothing(this);"`
+
+* **js实现点击自动复制到剪贴板**: 
+
+     ```javascript
+     var text_tag = document.getElementById("text");
+     text_tag.select();
+     document.execCommand("Copy");
+      5 Url2.select(); // 选择对象
+     ```
+
+* **打开新标签页**: `window.open(pageURL,name,parameters)  `
 
