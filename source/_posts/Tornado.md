@@ -1,7 +1,7 @@
 ---
 title: "Tornado 手册"
 date: 2015-08-05 12:02:30
-updated: 2018-06-12 10:24:00
+updated: 2018-08-27 10:24:00
 categories: python
 ---
 # Tornado
@@ -28,8 +28,14 @@ categories: python
 
 ```python
 class HelloHandler(tornado.web.RequestHandler):
+    executor = ThreadPoolExecutor(4)	# 实用线程池去执行
+    
     def get(self):
         self.write('hello world!')
+         
+    @run_on_executor	# 以线程池的方式执行，手动异步
+    def post(self):
+        xxx
         
     def optinons(self):	# 跨域访问支持
         self.set_status(204)
