@@ -1,7 +1,7 @@
 ---
 title: "使用nginx+uWSGI部署Django应用"
 date: 2018-08-04 21:32:00
-updated: 2018-08-06 15:19:00
+updated: 2018-08-25 23:19:00
 categories: python
 ---
 
@@ -61,7 +61,7 @@ categories: python
 
 - 将`socket`的启动参数写入到文件，这里我是直接把配置文件放到项目目录下的，方便以后启动:
 
-  ```tex
+  ```shell
   # sudo /usr/local/bin/uwsgi --ini /data/mysite/mysite/uwsgi.ini --daemonize /var/log/uwsgi.log  启动命令
   
   # uwsgi.ini file
@@ -91,7 +91,7 @@ categories: python
   # clear environment on exit
   vacuum          = true
   
-  py-autoreload = 1		# python代码变更后自动重启
+  py-autoreload = 1		# python代码变更后自动重启，线上更新代码后不要依赖于这个重启，最好supervisor重启所有进程，否则可能有些进程没生效
   buffer-size = 65535		# 针对莫名其妙出现502错误的一个可能的解决方法
   ```
 
