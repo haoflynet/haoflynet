@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-08-23 10:06:00
+updated: 2018-08-25 15:06:00
 categories: python
 ---
 # Django教程
@@ -71,7 +71,7 @@ Django另一个我特别喜欢的特性就是Application，它与Project的概�
 
 ### 全局配置
 
-需要注意的是，Django官方并没有默认的分离配置文件的方案。我认为最佳的方式是，建立多个配置文件(仅仅把重要的需要个性化更改的配置分离开，基础的配置仍然是一个，其他使用继承的方式)，然后在启动的时候指定不同的配置文件即可。`python manage.py runserver --settings=prod_setting`
+需要注意的是，Django官方并没有默认的分离配置文件的方案。我认为最佳的方式是，建立多个配置文件(仅仅把重要的需要个性化更改的配置分离开，基础的配置仍然是一个，其他使用继承覆盖的方式，基础的`settings.py`里面就直接设置为本地的即可)，然后在启动的时候指定不同的配置文件即可。`python manage.py runserver --settings=prod_setting`
 
 配置文件内容
 
@@ -315,7 +315,7 @@ def dictfetchall(cursor):
 
 #### 查询记录
 
-- `model`对象转换为json: `model_to_dict(blog)`
+- `model`对象转换为json: `model_to_dict(blog)`，或者`result = django.core.serializers.serialize('json', some_queryset)`，但是对于特殊的字段，例如文件字段依然不能正常转换，最好还是自己写个`transform`去转换
 - `Blog.objects.all()[3:30]`只取出部分数据，相当于limit，并不会查处全部
 
 ```python
@@ -637,6 +637,8 @@ Django内置了一些比较常用又实用的标签：
 ```django
 # 变量
 {{ names.0 }}	# 通过下标获取列表变量的值
+{% request.GET.key %}	# 直接读取request
+{% request.get_full_path %}# 模板里面获取当前url路径
 
 # 注释
 {# 单行注释 #}
@@ -1003,6 +1005,7 @@ class Post(models.Model):
 ## Django国际化
 
 - `I18N`表示国际化，`L10N`表示本地化。Django使用的是`gettext`工具进行国际化的翻译。
+- 如果编译过后依然不生效，那么把`*.po`里面的`fuzzy`删掉，再不行就重启`uwsgi`进程
 
 为了实现国际化我们需要这样做：
 
@@ -1110,6 +1113,12 @@ Django根据以下顺序去决定应该使用哪种语言
    ```html
    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
    ```
+
+## 帮助方法
+
+- `django.utils.crypto.get_random_string(length=32, allowed_chars='abcd')`: 生成随机字符串
+
+- 
 
 ## django-cron插件
 

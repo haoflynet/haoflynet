@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2018-08-21 13:59:00
+updated: 2018-08-27 14:59:00
 categories: tools
 ---
 # Git指南
@@ -61,6 +61,7 @@ ssh-keygen -t rsa -C "haoflynet@gmail.com"
 
 ```shell
 git remote -v 	# 列出远程仓库地址
+git remote set-url origin git@xxx.git	# 修改git远程仓库地址
 
 git log  # 查看提交的历史,--oneline按行显示，--graph查看分支的合并情况，--all显示所有分支的历史
 git reflog	# 查看HEAD的历史情况
