@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2018-01-22 18:48:00
+updated: 2018-08-31 11:48:00
 categories: python
 ---
 # python requests模块
@@ -104,11 +104,16 @@ r = S.post(url, files={
 
 ## 获取响应
 
-	r.cookies	# 这是cookie对象
+```python
+response.text	# 获取编码后的响应文本信息
+response.content	# 直接获取响应的二进制信息
+response.cookies	# 获取响应cookie对象
+response.status_code  # HTTP status，http状态码
+response.raise_for_status()	# 当响应出错，即为4xx或者5xx的时候直接抛出requests.RequestException错误
+```
 #### 重定向
 
-```
-response.status_code  #HTTP status，http状态码
+```python
 # 如果直接请求，如果发生重定向，那么response.status_code = 200, response.history = 301
 print([x for x,y in A.__dict__.items() if type(y) == FunctionType])
 ```

@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2018-08-27 14:59:00
+updated: 2018-08-31 14:59:00
 categories: tools
 ---
 # Git指南
@@ -60,13 +60,15 @@ ssh-keygen -t rsa -C "haoflynet@gmail.com"
 #### 日志/历史/版本
 
 ```shell
+GIT_CURL_VERBOSE=1 GIT_TRACE=1 git ...	# 相当于debug，能看到git命令执行期间的状态
+
 git remote -v 	# 列出远程仓库地址
 git remote set-url origin git@xxx.git	# 修改git远程仓库地址
 
 git log  # 查看提交的历史,--oneline按行显示，--graph查看分支的合并情况，--all显示所有分支的历史
 git reflog	# 查看HEAD的历史情况
 
-# 版本回退/回滚,--hard表示将该次提交之前所有的更改都丢弃，git reset是把HEAD向历史移动，而git revert是HEAD继续向前，新的commit就和revert的内容刚好相反，所以推荐使用revert，reset的target是要会退到的版本，而revert得target是要取消的版本
+# 版本回退/回滚,--hard表示将该次提交之前所有的更改都丢弃，git reset是把HEAD向历史移动，之后的所有提交都会删除掉，而git revert是HEAD继续向前，新的commit就和revert的内容刚好相反，所以推荐使用revert，reset的target是要会退到的版本，而revert得target是要取消的版本
 git reset --hard HEAD^  # 回退到上一个版本
 git reset --hard HEAD^^ # 回退到上上个版本
 git reset --hard 233333 # 指定提交ID的回退

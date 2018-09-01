@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2018-08-01 23:48:00
+updated: 2018-08-31 10:48:00
 categories: python
 ---
 ## 编码问题
@@ -39,6 +39,20 @@ categories: python
 
   ```python
   unicode(string, 'utf-8')
+  ```
+
+- **base64编码和解码**
+
+  ```python
+  import base64
+  a = base64.b64encode(s)
+  b = base64.b64decode(a)
+  ```
+
+- **gb2312字符串转换为utf-8**
+
+  ```python
+  data.encode('latin1').decode('gb2312')
   ```
 
 - **查看字符编码**
