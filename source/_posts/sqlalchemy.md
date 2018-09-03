@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2018-08-23 15:44:00
+updated: 2018-08-29 17:00:00
 categories: python
 ---
 
@@ -192,6 +192,8 @@ def fullname(self):
 ```
 
 ## CRUD
+
+- 像`join`自身类似的需求，可以使用别名`user_model1 = aliased(UserModel)`
 
 ### 查询
 

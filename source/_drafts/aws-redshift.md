@@ -1,7 +1,7 @@
 ---
 title: "Amazon Aws Redshift手册"
 date: 2018-08-02 21:32:00
-updated: 2018-08-13 15:15:00
+updated: 2018-08-23 15:45:00
 categories: aws
 ---
 
@@ -20,6 +20,7 @@ Aws Redshift是一个由Amzon提供的数据仓库管理系统(RDBMS)，基于Po
 ### 数据表操作
 
 - [支持的数据类型](http://docs.amazonaws.cn/redshift/latest/dg/c_Supported_data_types.html)
+- 数据库默认是不区分大小写的，表名以及列名都不会区分大小写，所以最好全部用小写
 - 自增字段不能使用`serial`，而应该使用`IDENTITY`来创建，即`field_name INT IDENTITY(1, 1)`，表示从1开始，每次自增1
 - `redshift`不允许使用`ALTER`修改字段类型
 - `distkey`属性的列是不能被`DROP`的
