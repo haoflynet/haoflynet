@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-08-25 21:38:30
+updated: 2018-08-30 17:38:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -98,6 +98,7 @@ li = {
 }
 
 if 'a' in dict		# 判断key是否存在
+if dict.get('a', {}).get('b', {}).get('c')	# 一下判断多个层级，这样不用每层都是一个if条件了
 dict.get('a', 'b')	# 如果不存在那么给一个默认值
 dict.keys()			# 获取所有的key，这里返回的是一个dict_keys，一个迭代器
 list(dict)			# 如果仅仅想获得key的数组，可以这样子

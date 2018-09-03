@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-08-06 17:24:00
+updated: 2018-08-29 22:34:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -205,6 +205,34 @@ deny 2.2.2.0/24;# 屏蔽IP段
 
 然后在nginx主配置文件`/etc/nginx/nginx.conf`的`http`中导入该文件`include blockips.conf;`
 
+### HTTPS证书配置
+
+```shell
+server {
+	# http自动跳转到https
+    if ($host = haofly.net) {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name api.haofly.net;
+    
+    # 其中，.pem文件表示证书文件，.key是私钥文件，而目录则是自定义个一个nginx有读权限的目录
+    ssl_certificate /etc/cert/api.haofly.net.pem;
+    ssl_certificate_key /etc/cert/api.haofly.net.key;
+   
+    charset utf-8;
+    access_log /var/log/nginx/api.haofly.net.log;
+    error_log /var/log/nginx/api.haofly.net.error.log;
+
+	location / {
+		uwsgi_pass my_upstream;
+	}
+}
+```
+
 ## 查看负载均衡状态
 
 nginx提供了默认的模块可以查看负载均衡的统计信息等，只需要在某个server里面添加：
@@ -246,14 +274,16 @@ location /nginx {
   # vim /etc/php-fpm.conf
   [www]
   catch_workers_output = yes	# 更改为yes
-
+  
   # vim /etc/php.ini
   log_errors = On
   error_log = /var/log/error_log
   error_reporting=E_ALL
   ```
 
-- ​
+- **HTTP Header中后端服务无法获取有下划线的header**: 没错，无论是`Nginx`还是`Apache`，都是不允许的(在HTTP标准中倒是允许的)，因为`Nginx`的配置文件中的变量都是下划线的，容易引起混淆，当然也可以用`underscores_in_headers on`参数进行开启，不过不建议。
+
+- **client intended to send too large body**: 客户端发送的数据量太大，可以通过更改`http`模块中的`client_max_body_size 1m;`参数，默认为`1m`，看实际需要调整
 
 
 

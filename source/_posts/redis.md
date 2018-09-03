@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2018-07-26 17:28:00
+updated: 2018-08-28 10:28:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -216,4 +216,6 @@ HVALS key	# 取出哈希表key中所有域的值
 * **windows长时间运行出现错误:`Redis-Server:Windows is reporting that there is insufficient disk spaceavailable for this file (Windows error 0x70)`**。原因是分配的堆栈太小了，默认的应该只有1M，这时候需要修改器配置文件`redis.windows.conf`，修改`maxheap`的值为2000000000，即2G
 
 * **Redis自动退出，log无报错**: 目前遇到的情况是可能连接数过高。操作系统让它挂掉了
+
+* **MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.**持久化的时候磁盘不可写了，一般是因为磁盘满了
 
