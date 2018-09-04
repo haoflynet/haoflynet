@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-08-23 11:04:30
+updated: 2018-08-30 10:04:30
 categories: system
 ---
 # Linux手册
@@ -527,6 +527,28 @@ put a.txt		# 上传当前目录的一个文件
 mput ./*		# 同时上传多个文件
 ```
 
+#### logrotate日志轮转
+
+可以设置自动轮转日志，日志超过指定大小，自动压缩，有些系统默认开启，有些则没有，可以通过包管理直接安装。其主配置文件在`/etc/logrotate.conf`，针对不同应用的日志存放在不同的单独的配置文件中`/etc/logrotate.d/`目录下，例如，下面就是一个标准的`nginx`应用的日志轮转配置
+
+- 另外可以通过`logrotate /etc/logrotate.conf `手动运行轮转
+
+```shell
+/var/log/nginx/*log {	# 针对指定目录下所有的*log文件
+    su root root			# 如果轮转用户没权限，则可以指定用户
+    create 0644 nginx nginx	# 以指定的权限创建全新的日志文件
+    daily					# 轮转频率，可以有monthly/daily/weekly/yearly
+    rotate 10				# 最多保留多少个备份
+    missingok				# 忽略轮转过程中出现的错误
+    notifempty				# 如果日志为空则不进行轮转
+    compress				# 对备份进行gzip压缩
+    sharedscripts
+    postrotate				# 指定备份完成后执行什么命令，一般就是重启应用，这样应用才会将日志打印到新的文件中去
+        /bin/kill -USR1 `cat /run/nginx.pid 2>/dev/null` 2>/dev/null || true
+    endscript
+}
+```
+
 #### nmap
 
 端口扫描工具
@@ -548,6 +570,7 @@ c 新建窗口
 d 退出当前窗口
 p 切换至上一个窗口
 n 切换至下一个窗口
+s 列出当前所有的会话，并且可以通过上下键直接选择，这个就十分方便了
 w 窗口列表选择，mac下使用ctrl+p和ctrl+n进行上下选择
 & 关闭当前窗口
 0 切换至0号窗口
@@ -667,7 +690,8 @@ date +"%T"	# 仅显示时间，比如10:44:00
 	find ./ -name "*.log" -mtime -1 | which read line; do tail -n 5 "$line" > ~/bak/"$line"; done # 查找，然后按行进行执行
 	while read line do 语句 done  # 一行一行地进行处理，真正的处理
 
-​	
+
+	
 ​	
 	# xargs：将上一个管道的输出直接作为这个管道的输入
 	    ps | grep python | awk -F ' ' '\{print $1\}' | xargs kill
@@ -939,5 +963,3 @@ date +"%T"	# 仅显示时间，比如10:44:00
   sudo apt-get update
   sudo apt-get install -f 
   ```
-
-  

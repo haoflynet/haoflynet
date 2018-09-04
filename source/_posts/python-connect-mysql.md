@@ -64,21 +64,23 @@ Oracle官方的实现，底层完全用C来实现
 
 ### 插入
 
-    # 插入一条数据
-    insert_stmt = (
-      "INSERT INTO employees (emp_no, first_name, last_name, hire_date) "
-      "VALUES (%s, %s, %s, %s)"
-    )
-    data = (2, 'Jane', 'Doe', datetime.date(2012, 3, 23))
-    cursor.execute(insert_stmt, data)
-    
-    # 同时插入多条数据
-    data = [
-        ('a', 'b', 'c', 'd'),
-        ('e', 'f', 'g', 'h')
-    ]
-    stmt = 'INSERT INTO table_name (field_name1, field_name2)' 				'VALUES(%s, %s)'
-    cursor.executemany(stmt, data)
+```python
+# 插入一条数据
+insert_stmt = (
+  "INSERT INTO employees (emp_no, first_name, last_name, hire_date) "
+  "VALUES (%s, %s, %s, %s)"
+)
+data = (2, 'Jane', 'Doe', datetime.date(2012, 3, 23))
+cursor.execute(insert_stmt, data)
+
+# 同时插入多条数据
+data = [
+    ('a', 'b', 'c', 'd'),
+    ('e', 'f', 'g', 'h')
+]
+stmt = 'INSERT INTO table_name (field_name1, field_name2) VALUES(%s, %s)'
+cursor.executemany(stmt, data)
+```
 ### 读取
 
 ```python
