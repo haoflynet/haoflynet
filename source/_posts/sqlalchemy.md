@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2018-08-29 17:00:00
+updated: 2018-09-04 14:00:00
 categories: python
 ---
 
@@ -44,14 +44,14 @@ session.commit()	# 提交
 session.close()		# 关闭session
 ```
 
-需要注意的是，如果没有修改autocommit的默认值(False)，那么一个session会一直保持，直到该session被回滚、关闭、提交才结束。每次发起请求，都创建一个新的session(注意不是创建新的连接，创建session并不会有多大的开销)，一个session就是一个transaction的支持。我们可以让session是一个全局的对象，这样和数据库通信的session在任何时候只有一个，但是全局的session不是线程安全的，如果多线程的情况下，可能会造成commit错乱，`tornado`这种单线程程序由于其异步的特性也不可以那样做(Tornado可以在每个`Handler`的初始化进行session的创建与提交销毁)。当然，如果是在单线程的情况下，我们完全可以保持session的单例，减少一丢丢的开销。
+需要注意的是，如果没有修改autocommit的默认值(False)，那么一个session会一直保持，直到该session被回滚、关闭、提交才结束。每次发起请求，都创建一个新的session(注意不是创建新的连接，创建session并不会有多大的开销)，一个session就是一个transaction的支持。我们可以让session是一个全局的对象，这样和数据库通信的session在任何时候只有一个，但是全局的session不是线程安全的，如果多线程的情况下，可能会造成commit错乱，`tornado`这种单线程程序由于其异步的特性也不可以那样做(Tornado可以在每个`Handler`的初始化进行session的创建与提交销毁)。当然，如果是在单线程的情况下，我们完全可以保持session的单例，减少一丢丢的开销。下面这种方式对于多线程还是单现成都是非常推荐的做法：
 
 ```python
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 
 session_factory = sessionmaker(bind=some_engine)
-Session = scoped_session(session_factory)	# 为了保证每个线程获得的session对象是唯一的
+Session = scoped_session(session_factory)	# 为了保证线程获得的session对象是唯一的
 some_session = Session()
 some_other_session = Session()
 some_session is some_other_session # True，在一个线程里面创建的session对象都是一样的了。
@@ -292,5 +292,7 @@ session.commit()	# 提交
 
 - **UnicodeEncodeError：'latin-1' codec can't encode characters in position 0-1: ordinal not in range(256)**: 连接数据库没有指定utf8的charset，参考本文连接数据库设置。
 
-   
+##### 扩展阅读
+
+[SQLAlchemy 的 scoped_session 是啥玩意](https://farer.org/2017/10/28/sqlalchemy_scoped_session/)
 

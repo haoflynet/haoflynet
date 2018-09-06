@@ -363,3 +363,4 @@ JSON_EXTRACT(result,'$.id')	# 获取json数据key=id的值
 *   **Invalid use of NULL value**: 原因可能是在将列修改为不允许NULL的时候并且已经存在记录该值为null，则不允许修改，这个时候需要先修改已有记录的值。
 *   **PhpMyAdmin查询正确，但是导出结果时导出的文件里面只有一条错误的sql语句**: 尝试把要导出的字段及表名不用别名
 *   **2038问题**: 由于历史原因，`TIMESTAMP`最多只能存储到`2038-01-19 05:14:07`，超过则会报错或者被置为NULL，目前暂时还没有解决办法，但是我相信到时候那帮牛人肯定会直接在数据库程序层面解决的，而不是我们去更改程序。当然，如果用`DATETIME`倒是可以多存储到子子孙孙那里，但是却没有时区概念。现在距离那个时间点还有20年，我的建议是，如果字段是作为创建时间、更新时间、删除时间这种，精度要求比较高并且时区不允许错乱(事实上，所有项目时区都是要有要求的，不能保证每个人使用或者每个服务器的时区是一样的)，就可以用`TIMESTAMP`，像记录某个历史事件、或者万年历、生日这种才需要用`DATETIME`
+*   **[Table is specified twice, both as a target for 'UPDATE' and as a separate source for data in mysql](https://stackoverflow.com/questions/44970574/table-is-specified-twice-both-as-a-target-for-update-and-as-a-separate-source)**: 在`10.1.24-MariaDB`有问题，但是`10.3.7-MariaDB`上没有问题，应该跟版本有关，解决办法就是在子查询里面使用`select * 表名 as 新表名`。

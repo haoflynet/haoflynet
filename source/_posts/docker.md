@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2018-08-29 18:35:00
+updated: 2018-09-04 15:35:00
 categories: tools
 ---
 需要注意的是在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -73,6 +73,7 @@ docker attach 容器名/ID	# 直接进入容器，查看容器当前的标准输
 docker exec -it 容器名 bash  # ssh进一个容器
 docker exec -it 容器名 sh -c "command"	# 让容器执行某条命令
 docker inspect 容器名	# 查看一个容器的详细信息
+docker stats # 查看所有容器的运行时信息，包括cpu占用，内存占用，进程ID等
 ```
 
 ## Dockerfile
