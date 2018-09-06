@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-08-25 15:06:00
+updated: 2018-09-06 15:06:00
 categories: python
 ---
 # Django教程
@@ -94,7 +94,8 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'mysql',
         'HOST': '127.0.0.1',
-        'PORT': 3307
+        'PORT': 3307,
+        'CONN_MAX_AGE': 0,	# 数据库连接最长生存时间，超过该时间后连接自动断开，可以设置为None,表示持久化连接，不主动断开.默认是0，一个请求用完就断开
     }
 }
 
@@ -1220,8 +1221,6 @@ Django下的定时任务插件，我以前用的是`django-crontab`，但是现�
   ```django
   {% if a=='2' %}	# 是错误的，不仅%需要有空格，==两边都得有空格
   ```
-
-  
 
 - 
 

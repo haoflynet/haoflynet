@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-08-30 10:04:30
+updated: 2018-09-05 15:04:30
 categories: system
 ---
 # Linux手册
@@ -101,14 +101,6 @@ chkconfig --list	# 列出所有的系统服务
 ```shell
 ls -lR | grep "^-" | wc -l # 递归统计文件夹下所有文件的个数
 wc -l: 统计行数
-grep -c "词语"   # 统计出现的次数
-grep -n ""		# 把匹配到的行号也打印出来
-grep -v "Java"	# 查找没有该词的行
-grep -v ^$		# 排除空白行
-grep 字符串 文件名  # 在文件中查找某个字符串
-grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
-grep [0-9] 文件名  # 在文件中查找包含数字的行
-grep 字符串 -r 目录 # 在特定目录及其子目录中的文件查找str，-d参数能进行删除操作，保留一个副本
 fdupes -r /home		# 快速查找重复文件
 fdupes -f /home | xargs rm -f	# fdupes居然没有直接删除的功能，-d参数必须询问，这样子就能直接进行删除了，-f参数表示忽略第一个文件，这样出来的就都是重复的了
 find / -name filename	# 精确查找某个文件
@@ -129,6 +121,21 @@ sort filename | uniq -c	# 去除文件中重复的行
 ```shell
 -F 参数将行做分割，例如：ps | awk -F ':' {'print $1'}  # 按:分割字符串，将ps的第二列输出
 cat file | awk {system($0)}	# 执行文件中的每一行命令
+```
+
+##### grep
+
+```shell
+grep -c "词语"   # 统计出现的次数
+grep -n ""		# 把匹配到的行号也打印出来
+grep -v "Java"	# 查找没有该词的行
+grep -v ^$		# 排除空白行
+grep 字符串 文件名  # 在文件中查找某个字符串
+grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
+grep [0-9] 文件名  # 在文件中查找包含数字的行
+grep 字符串 -r 目录 # 在特定目录及其子目录中的文件查找str，-d参数能进行删除操作，保留一个副本
+grep xxx -b10		# 查找指定字符串并且把它前面的10行一起显示出来
+grep xxx --color=auto	# 高亮显示查找到的字符串
 ```
 
 ##### sed

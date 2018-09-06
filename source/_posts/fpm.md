@@ -1,6 +1,7 @@
 ---
 title: "fpm 打包工具"
 date: 2016-08-07 05:52:39
+updated: 2018-09-04 15:47:00
 categories: tools
 ---
 
@@ -8,16 +9,19 @@ categories: tools
 
 ## 安装过程
 
-    yum install -y rpmbuild ruby-devel gcc
-    gem install fpm
-    fpm -h
+```shell
+yum install -y rpmbuild ruby-devel gcc
+gem install fpm
+fpm -h
+```
 ## 常用参数
-- -s: 源的类型，值可以为dir,rpm,gem,pyton
-- -t: 目标类型，值可以为rpm,deb,solaris,puppet
-- -n: 包名
-- -v: 版本号
-- -C: 指定在打包前需要进入的目录，相当于把那个目录打包
+- -a: 架构名称，值可以为`  x86_64`
 - -d '名称': 指定程序依赖，多个依赖的话就写多个-d
+- -C: 指定在打包前需要进入的目录，相当于把那个目录打包
+- -n: 包名
+- -s: 源的类型，值可以为dir,rpm,gem,python,virtualenv
+- -t: 目标类型，值可以为rpm,deb,solaris,puppet
+- -v: 版本号，例如`1.0.0`
 - --before-install 名称.sh: 安装前执行的脚本
 - --after-install 名称.sh: 安装后执行的脚本
 - --before-remove 名称.sh: 卸载前执行的操作
@@ -25,11 +29,18 @@ categories: tools
 - --prefix=目录: 指定软件之后要安装的路径
 - --description '这里写描述'
 - --url: 软件的网站
+- --license '2-clause BSD-like license': 
+- --vendor: 提供者
+- -m, --maintainer: 维护者
+- --rpm-sumarry '': 简介
+- --description '': 详情
 
 ## 其他命令
 
-    rpm localinstall 包名 # 在新的机器上安装该软件
-    rpm -qpl 包名  # 查看包的信息
+```shell
+rpm localinstall 包名 # 在新的机器上安装该软件
+rpm -qpl 包名  # 查看包的信息
+```
 
 [打包nginx例子](http://www.z-dig.com/fpm-custom-nginx-rpm-package.html)
 
