@@ -1,7 +1,7 @@
 ---
 title: "curl手册"
 date: 2016-04-07 08:01:39
-updated: 2018-06-12 16:41:00
+updated: 2018-09-06 14:41:00
 categories: tools
 ---
 ## 常用参数
@@ -31,6 +31,9 @@ curl -X POST -F 'username=davidwalsh' -F 'password=something' http://domain.tld/
 
 # 下载文件
 curl -o test.txt haofly.net/test
+
+# 打印详细的连接时间、传输时间、下载速度等
+curl -w %{http_connect}:%{time_namelookup}:%{time_redirect}:%{time_pretransfer}:%{time_connect}:%{time_starttransfer}:%{time_total}:%{speed_download} haofly.net
 ```
 
 ## Header头信息参数
