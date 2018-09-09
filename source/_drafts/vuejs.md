@@ -26,14 +26,8 @@ axios({
 
 仿造猫眼电影客户端实例: https://github.com/zhixuanziben/gouyan-movie-vue   
 
-仿饿了么实例: https://github.com/bailicangdu/vue2-elm
-
 Objc中国的全平台客户端: https://github.com/halfrost/vue-objccn
 
-仿QQ音乐：https://github.com/yuxiuting/Vue-qqMusic
-
 仿闲鱼：https://github.com/Sukura7/vue-ali-xianyu
-
-仿知乎日报: https://github.com/yatessss/zhihudaily-vue
 
 仿hackernews: https://github.com/vuejs/vue-hackernews-2.0
