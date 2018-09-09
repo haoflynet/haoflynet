@@ -292,7 +292,16 @@ sshd:IP
 #### 包管理
 
 ```shell
-# RedHat
+# RPM管理工具
+rpm -qa					# 列出当前系统所有安装的包
+rpm -ql 包名			   # 查询已经安装的包的文件路径或者查询是否安装某个包
+rpm -ivh *.rpm			# 安装指定rpm包
+rpm -ivh --test *.rpm	# 检查指定rpm包的依赖关系是否完全满足，并不真正安装
+rpm -qpf *.rpm			# 查询指定rpm包都有哪些依赖
+rpm -qpi *.rpm			# 查询指定rpm包的元信息
+rpm -e 包名			   # 卸载软件包
+
+# dpkg管理工具
 dpkg -i *.deb # 安装deb包，但是它不会自动解决依赖，安装完成后还要使用apt-get -f install这条命令来安装没有安装好的依赖
 dpkg -l			# 查看已经安装的包及其版本
 
@@ -302,7 +311,6 @@ apt-cache show 包名 	   # 显示apt库里面的软件的版本号
 apt-get clean 			# 自动清理安装程序时缓存的deb包
 apt-get autoclean  		# 清理已卸载软件的无用的依赖包
 apt list --installed	# 查看已经安装的包
-rpm -ql 包名			   # 查询已经安装的包的文件路径
 ```
 
 #### 磁盘管理

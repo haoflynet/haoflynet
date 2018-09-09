@@ -1103,6 +1103,7 @@ sorted([5,3], reverse=False)	# 倒序
 
 #### sys
 
+- **executable**: 获取解释器的路径
 - **meta_path**: 这个功能就强大了，可以实现在import的时候触发相关操作，相当于import操作的一个hook。
 
 #### timeit: 时间度量
@@ -1113,11 +1114,8 @@ timeit.Timer('x=range(1000)').timeit()	# 可以直接得到代码的执行时间
 timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
 ```
 
-
-
-
-
 - **SocketServer**：[参考](http://blog.marchtea.com/archives/60)两种服务模型：ThreadingMinxln(有新请求时，创建一个新的进程)、ForkingMinln(有新请求时，创建一个新的线程)
+
   - **TCPServer**
   - **UDPServer**
   - **UnixStreamServer**

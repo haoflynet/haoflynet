@@ -1,7 +1,7 @@
 ---
 title: "GraphQL 简介"
 date: 2018-08-13 22:52:39
-updated: 2018-09-03 15:03:00
+updated: 2018-09-09 16:53:00
 categories: python
 ---
 
@@ -14,6 +14,7 @@ Github的API在V3版本使用的是`Restful`风格的API，在V4版本则完全�
 - 服务端统一定义资源数据结构，返回数据结构于请求数据结构一样
 - 客户端想要什么就请求什么，不要的字段就不获取，不多不少，`Restful API`可做不到这一点
 - 客户端如果想要关联的数据，只需要一次请求，而`Restful API`则需要N次
+- `GraphQL`是为了用API的人爽，`REST`是为了写API的人爽
 
 <!--more-->
 
