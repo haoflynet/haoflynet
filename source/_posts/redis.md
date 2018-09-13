@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2018-08-28 10:28:00
+updated: 2018-09-11 14:28:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -82,6 +82,7 @@ db0:keys=2333,expires=12,avg_ttl=0	# key的统计信息在最后一行
 flushall	# 删除所有数据库的key
 flushdb		# 删除当前数据库所有的key
 del key		# 删除某个key
+redis-cli KEYS *name* | xargs redis-cli DEL	# 使用通配符进行批量删除操作
 
 select 2	# 切换数据库
 

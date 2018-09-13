@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-09-05 15:04:30
+updated: 2018-09-10 10:04:30
 categories: system
 ---
 # Linux手册
@@ -978,3 +978,4 @@ date +"%T"	# 仅显示时间，比如10:44:00
   sudo apt-get update
   sudo apt-get install -f 
   ```
+- `root`用户可以直接执行，`sudo`却提示命令没找到`command not found`，这是因为使用`sudo`执行的时候，环境变量会默认设置为`/etc/sudoers`文件中`secure_path`所指定的值

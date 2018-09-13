@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-09-05 23:55:21
+updated: 2018-09-12 12:55:21
 categories: php
 ---
 # PHP
@@ -96,7 +96,7 @@ parse_str('name=wang&age=18'): 从查询字符串中解析到变量，可以得�
 parse_url($url): 解析url成数组，与http_build_query()功能相反
 preg_replace('/user_id=\d+&name=/', 'user_id=' . 1048 . '&name=', $code): 正则替换
 preg_replace_callback('//', function($matches){return strtolower($matchs[0])}: 执行一个正则表达式搜索并且使用一个回调函数进行替换
-preg_match('/Chongqing(?<right>.*)/', $string, $matches): 正则匹配，pattern参数前后必须加斜杠
+preg_match('/Chongqing(?<right>.*)/', $string, $matches): 正则匹配，pattern参数前后必须加斜杠，匹配成功返回1，匹配结果在$matches中，匹配失败，返回0
 sprintf("sahgoiahg%s", $a): 格式化输出
 strtolower($str)/strtoupper($str): 大小写字符串
 ucfirst($str): 将字符串首字母大写
@@ -236,7 +236,7 @@ echo $reflector->getFileName();
 # 标准嘞StdClass
 $obj->value # 直接获取其内部的变量
   
-# trait: 一种代码复用机制，从基类继承的成员会被trait插入的成员所覆盖，优先顺序是来自当前类的成员覆盖了trait的方法，而trait则覆盖了被继承的方法。这是为了弥补PHP单继承的局限
+# trait: 一种代码复用机制，从基类继承的成员会被trait插入的成员所覆盖，优先顺序是来自当前类的成员覆盖了trait的方法，而trait则覆盖了被继承的方法。这是为了弥补PHP单继承的局限。trait虽然不能继承trait，但是可以组合使用，跟继承类似，两个trait里面的方法都会有，并且可以用insteadof方法选择重名的方法该使用哪一个，如果有重名不选择的话则会出现致命错误
 # 例如可以写一个单例:
 trait SingleInstance
 {
@@ -321,11 +321,15 @@ var_dump($arr['curl']);
 	mysql_errno():	# 打印SQL出错信息
 
 ### 异常处理
-	try{
-		throw new Exception('soahg');
-	}catch(Exception $e){
-		echo $e->getMessage();
-	}
+```php
+var_dump(debug_backtrace());	# 随时打印当前的调用栈
+
+try{
+	throw new Exception('soahg');
+}catch(Exception $e){
+	echo $e->getMessage();
+}
+```
 
 ### PHP命令行
 

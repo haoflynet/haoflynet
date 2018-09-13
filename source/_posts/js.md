@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-08-29 18:35:00
+updated: 2018-09-10 15:42:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -56,6 +56,9 @@ delete a['a']	// 删除字典元素，如果用它来删除数组中的元素，
 ```
 ### 字符串
 ```javascript
+// 正则
+var re = new RegExp("a|b", "i");	// 通过字符串来生成正则表达式，相当于/a|b/i
+
 // 搜索
 str.match(/<title>(.*?)<\/title>/)	// 正则提取
 str.match(/<title>(.*?)<\/title>/g)	// 全局搜索，不加g默认只取找到的第一个嘛，但是global不支持分组，会把前后的都给返回到结果中去。这种情况，要么匹配后，循环对结果进行前后去除；要么用exec对先行获取每一个结果的match[1]

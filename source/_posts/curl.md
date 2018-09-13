@@ -1,7 +1,7 @@
 ---
 title: "curl手册"
 date: 2016-04-07 08:01:39
-updated: 2018-09-06 14:41:00
+updated: 2018-09-12 12:41:00
 categories: tools
 ---
 ## 常用参数
@@ -14,6 +14,7 @@ categories: tools
 -k：禁用ssl验证
 -o/-O: 下载文件(前者指定下载文件名，后者不用指定)
 -s：静默模式，不输出任何东西
+-x: 设置代理，代理一定要加端口
 -X：请求方式，GET、POST、DELETE等
 -H: 设置请求头，比如-H "Content-Type: application/json"
 ```
