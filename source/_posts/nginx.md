@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-08-29 22:34:00
+updated: 2018-09-12 11:34:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -284,6 +284,14 @@ location /nginx {
 - **HTTP Header中后端服务无法获取有下划线的header**: 没错，无论是`Nginx`还是`Apache`，都是不允许的(在HTTP标准中倒是允许的)，因为`Nginx`的配置文件中的变量都是下划线的，容易引起混淆，当然也可以用`underscores_in_headers on`参数进行开启，不过不建议。
 
 - **client intended to send too large body**: 客户端发送的数据量太大，可以通过更改`http`模块中的`client_max_body_size 1m;`参数，默认为`1m`，看实际需要调整
+
+- **upstream sent too big header while reading response header from upstream: **原因是`upstream`那边响应头过大，可以在`server/location`配置里面适当加大响应缓存大小:
+
+  ```nginx
+  fastcgi_buffers 16 16k; 
+  fastcgi_buffer_size 32k;
+  ```
+
 
 
 
