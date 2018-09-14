@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2018-09-05 23:10:00
+updated: 2018-09-13 15:10:00
 categories: frontend
 ---
 # Html
@@ -49,7 +49,7 @@ categories: frontend
   # 复选框
   <input type="checkbox">
   # 单选按钮
-  <input type="radio">
+  <input type="radio" disabled>	// 单选按钮不能用readonly来禁用
   # 按钮
   <input type="submit">
   # 列表

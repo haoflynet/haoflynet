@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2018-08-25 20:50:00
+updated: 2018-09-13 12:50:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -56,6 +56,8 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### table
 
 - overflow:scroll：如果表格超宽，让页面自动出现滚动条
+- word-wrap:break-word，超过宽度自动换行
+- word-break: break-all，超过宽度，无论是不是一个单词都换行
 
 ##### text
 
