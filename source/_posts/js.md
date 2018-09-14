@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-09-10 15:42:00
+updated: 2018-09-13 15:42:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -197,6 +197,10 @@ ele.onchange = function () {};
 ele.onchange = funciton () {};
 ele.addEventListener('click', func () {});
 ele.removeEventListener('change', func () {});
+
+// 页面事件
+window.onload = function () {};	// 页面加载完成后触发
+document.onkeyup = function(e) {};	// 用户按键事件
 
 // jQuery事件列表
 change()	// 当元素发生改变时触发，常用于input、select
@@ -469,4 +473,12 @@ $.post('some.php', {name: 'haofly'})
      ```
 
 * **打开新标签页**: `window.open(pageURL,name,parameters)  `
+
+* **$('form').serialize()表单序列化时无法正确获取`checkbox`的值**: 可以在`checkbox`前添加一个隐藏的`input`，两者使用同样的`name`，这样在表单提交的时候会提交两个值，但是后端都是选择的后面那个值
+
+     ```html
+     <input type="hidden" name="option" value="false"/>
+     <input type="checkbox" name="option" value="true"/>
+     ```
+
 
