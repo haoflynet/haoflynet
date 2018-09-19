@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-09-10 10:04:30
+updated: 2018-09-14 10:04:30
 categories: system
 ---
 # Linux手册
@@ -250,6 +250,7 @@ ssh-keygen -t dsa # 生成自己的ssh，然后将~/.ssh/id_dsa.pub的内容添�
 ssh -i key.pem root@127.0.0.1	# 通过pem认证登录服务器
 ssh-keygen -lf ~/.ssh/id_rsa.pub	# mac下计算ssh key的指纹
 ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub	# linux上计算ssh key的指纹
+ssh-keygen -p -f ~/.ssh/id_rsa.pub		# 修改key密码
 
 # ssh-add命令，转发ssh key，常用与跳板机
 ssh-add -l	# 列出当前登录用户的ssh key
