@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-09-06 15:06:00
+updated: 2018-09-14 09:06:00
 categories: python
 ---
 # Django教程
@@ -772,6 +772,7 @@ Django自带了强大的名为`admin`的后台管理功能，app名称为`django
 
 - 为了使用它，我们需要先使用`migrate`功能去创建相应的数据库表，直接执行`python manage.py makemigrations && python manage.py migrate`即可。运行程序后，直接访问`http://127.0.0.1:8000/admin/`就能访问admin了。
 - 我们需要先创建一个超级管理员`python manage.py createsuperuser`，按照提示输入用户名密码即可用来登录了。
+- 如果要让字段非必填，需要在定义model字段的时候就加上`blank=True`参数
 
 ### 使用admin管理数据表
 

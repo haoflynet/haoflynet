@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-09-13 15:42:00
+updated: 2018-09-17 17:42:00
 categories: database
 ---
 ## 安装方法
@@ -64,14 +64,14 @@ CREATE INDEX name_idx ON `表名`(`列名`);	# 给表添加索引
 ALTER TABLE `表名` ADD UNIQUE `键名`(`列名1`, `列名2`);
 
 # mariadb创建Json字段，VARCHAR或者BLOB都可以使用，不对格式做要求，如果要做要求也可以强制做，例如
-CREATE TABLE products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   attr VARCHAR(1024),
   CHECK (JSON_VALID(attr)));
 ```
 
 ### 常见表字段
 
-- MySQL每行最大能存储65535字节的内容(不过`BLOB`和`TEXT`是分开存储的，他们不受此限制)，所以对于utf8最多存储21844个字符，对于utf8mb4最多存储16383个字符，这也是`VARCHAR`的最大值
+- MySQL每行最大能存储65535字节的内容，所以对于utf8最多存储21844个字符，对于utf8mb4最多存储16383个字符，这也是`VARCHAR/Text`的最大值，`MediumText`长度为16777215。
 
 ##### timestamp
 
@@ -89,6 +89,8 @@ SELECT * FROM table_A
 SELECT * FROM ... BETWEEN value1 AND value2
 SELECT * FROM ... NOT BETWEEN value1 AND value2
 SELECT DISTINCT(field_1) FORM ...	# 去重
+SELECT * FROM table_A WHERE DATEDIFF(DATE_ADD(CURDATE(), INTERVAL 30 DAY), `expiration_date`) BETWEEN 0 AND 30	# 使用DATE相关函数查询最近30天到期的记录
+
 # 分组查询
 SELECT count(column_a) as count FROM table_A GROUP_BY coulumn_b
 
@@ -256,6 +258,10 @@ FLOOR()	# 取整
 ROUND()	# 四舍五入
 
 # 时间相关
+CURDATE()			# 获取当前日期
+CURRENT_DATE()		# 同上
+CURRENT_TIMESTAMP()	# 获取当前时间戳
+DATEDIFF('2018-08-08', '2019-08-08')	# 获取日期差，结果是天数，可以为负数
 YEAR(datetime)    # 获取年份
 QUARTER(datetime)    # 获取季度数
 MONTH(datetime)    # 获取月份
@@ -362,7 +368,7 @@ JSON_EXTRACT(result,'$.id')	# 获取json数据key=id的值
 
 
 *   **MySQL分页时出现数据丢失或者数据重复的情况**: 如果分页的时候用上了`order_by`并且目标字段并不是索引字段，那么就有可能出现这种情况，一条数据可能既出现在上一页，又出现在下一页。原因是在`mysql5.6`以后，`priority queue`使用的是堆排序，这个排序算法并不稳定，两个相同的值可能在两次排序后的结果不一样。解决方法有两种，一种是给`order_by`后面的字段加索引，另外一种是增加一个是索引的字段，但是不要把主键放到这里面，否则两个索引都不会使用，导致性能非常低，别问我为什么，我被坑过。[参考文章](http://www.foreverlakers.com/2018/01/mysql-order-by-limit-%E5%AF%BC%E8%87%B4%E7%9A%84%E5%88%86%E9%A1%B5%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98/)
-*   **在查询整型字段的时候空字符串表现得和0一样**: 这是MySQL的特性，对于整型字段，空字符串会自动转换成零。另外，对于`timestamp`字段'和`0000-00-00 00:00:00`表现得一样，插入`NULL`到不能为`NULL`的`timestamp`字段时，既不会报错又不会插入空值，而是会变成当前的时间。
+*   **在查询整型字段的时候空字符串表现得和0一样**: 这是MySQL的特性，对于整型字段，空字符串会自动转换成零。另外，对于`timestamp`字段`''`和`0000-00-00 00:00:00`表现得一样，插入`NULL`到不能为`NULL`的`timestamp`字段时，既不会报错又不会插入空值，而是会变成当前的时间。**插入''和使用''去读取可能会有warning，甚至mysql和mariadb表现不同，可能导致查询不到数据，所以建议都用0000-00-00 00:00:00**
 *   **timestamp字段插入的时候出现`warnning: data truncated for column`**，这是因为`mysql`的`timestamp`类型不是`unix`的时间戳，对于非法的字符串插入`timestamp`的时候结果都是`0000-00-00 00:00:00`。如果要插入，可以用`2017-12-25 12:00:00`这种格式，或者使用函数`FROM_UNIXTIME(1514177748)`进行转换。
 *   **Invalid use of NULL value**: 原因可能是在将列修改为不允许NULL的时候并且已经存在记录该值为null，则不允许修改，这个时候需要先修改已有记录的值。
 *   **PhpMyAdmin查询正确，但是导出结果时导出的文件里面只有一条错误的sql语句**: 尝试把要导出的字段及表名不用别名

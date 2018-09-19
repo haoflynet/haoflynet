@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-06-27 14:54:00
+updated: 2018-09-17 23:32:00
 categories: js
 ---
 
@@ -31,7 +31,7 @@ cd testProject
 react-native run-ios	# 第一次启动会很慢。等模拟器运行起来后可以直接Cmd+R刷新应用，Cmd+D打开调试菜单
 react-native run-android
 
-npm install --save react-native@X.Y	# 直接指定版本号的更新升级，手动升级更爽。我不喜欢用react-native-git-upgrade来升级
+npm install --save react-native@X.Y	# 直接指定版本号的更新升级，手动升级更爽。我不喜欢用react-native-git-upgrade来升级，需要注意的是，升级以后一定要顺便升级一下命令行工具react-native-cli，否则会可能会出现不预期的错误
 ```
 
 ### prop&&state
@@ -403,6 +403,7 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 - **isMounted(...) is deprecated warning**: [目前来看](https://github.com/react-navigation/react-navigation/issues/3956)，并没有什么解决方案。
 - **闪退**: 有如下几种情况
   - 没有给API添加对应的权限，具体权限列表可以参见: [Swift开发MacOS应用](https://haofly.net/swift-macos)
+- **_this._registerevents is not a function**: 升级的时候没有顺便升级`react-native-cli`
 
 ##### 扩展阅读
 
