@@ -1,7 +1,7 @@
 ---
 title: "Amazon Aws Redshift手册"
 date: 2018-08-02 21:32:00
-updated: 2018-09-17 15:45:00
+updated: 2018-09-19 14:45:00
 categories: aws
 ---
 
@@ -26,6 +26,26 @@ Aws Redshift是一个由Amzon提供的数据仓库管理系统(RDBMS)，基于Po
 - `distkey`属性的列是不能被`DROP`的
 
 ```mysql
+# 查询表结构
+SELECT a.attname AS "字段名",
+	   t.typname AS "类型",
+	   a.attlen AS "长度",
+	   a.atttypmod AS "长度2",
+	   a.attsortkeyord AS "索引sortkey",
+	   b.description AS "注释",
+	   a.*,
+       t.*,
+       c.*
+  FROM pg_class c,
+       pg_attribute a
+       LEFT OUTER JOIN pg_description b ON a.attrelid=b.objoid AND a.attnum = b.objsubid,
+       pg_type t
+ WHERE c.relname = 'racing_horse_match'
+       and a.attnum > 0
+       and a.attrelid = c.oid
+       and a.atttypid = t.oid
+ ORDER BY a.attnum;
+ 
 ALTER table tableA rename to table2;	# 更改表名
 ALTER table tableA DROP COLUMN fieldA;	# 删除列
 ```

@@ -1,7 +1,7 @@
 ---
 title: "使用Supervisor管理进程"
 date: 2015-08-11 10:07:33
-updated: 2018-08-13 16:03:00
+updated: 2018-09-19 16:43:00
 categories: 编程之路
 ---
 supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理Nginx、Apache等，都比较方便，这里是其使用方法：
@@ -88,6 +88,10 @@ supervisorctl status   # 查看当前管理状态
 
 - **执行`sudo supervisorctl reload`**时出现错误`error: <class 'socket.error'>, [Errno 2] No such file or directory: file: /usr/lib64/python2.7/socket.py line: 224`原因是supervisor没有启动而重启造成的，我也不知道为什么报的错误会是这个错误。这时候只需要启动supervisor即可
 
+- **修改完配置文件supervisor.conf后重启不生效**: 执行这两条命令，重新读取配置文件
 
+  ```shell
+  supervisorctl reread
+  supervisorctl update
+  ```
 
-参考文章：<http://segmentfault.com/a/1190000002991175>(原文中还有使用OneAPM安装Python探针的应用，可以实时监控web应用数据，暂时还未实践)

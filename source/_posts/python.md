@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-08-30 17:38:30
+updated: 2018-09-19 15:18:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -552,8 +552,8 @@ for k in dir(module):
 # -*- coding: <encoding name> -*-
 
 # 直接用代码形式安装包
-from pip import operations, main	# PY2
-from pip._internal import operations, main # PY3
+from pip import operations, main	# pip version < 10
+from pip._internal import operations, main # pip version >= 10
 operations.freeze.freeze()	# 返回所有安装的包
 main(['install', 'requests'])	# 安装包
 ```

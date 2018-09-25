@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2018-08-31 14:59:00
+updated: 2018-09-21 11:59:00
 categories: tools
 ---
 # Git指南
@@ -93,6 +93,7 @@ git commit --amend			# 撤销上一次提交，并将暂存区文件重新提交
 git stash					# 暂存，常用于要切换分支，但是当前分支上面的更改并不想现在提交，需要先把当前分支的状态暂存起来。暂存起来后就可以自由切换到其他分支了。
 git stash list				# 查看所有的"储藏"
 git stash apply				# 应用最近一次的“储藏”
+git show stash@{1}			# 查看stash
 git stacsh apply stash@{2}	# 应用指定的"储藏"
 ```
 
