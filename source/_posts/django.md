@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-09-14 09:06:00
+updated: 2018-09-20 10:36:00
 categories: python
 ---
 # Django教程
@@ -177,7 +177,14 @@ urlpatterns = [
     path('db/', include('myapp.urls')),	# 指定某个路由前缀所对应的urls文件，非常适合app。实现了路由分组的功能
     re_path(r'^table/(?P<table_name>[a-zA-Z0-9-_]*)$', views.table),
 ,	# 正则匹配，url传递参数，接收时只需要def test1(request, name)即可
-    path('abc', myapp.views.test2, name='add'), # 给路由命名，方便我们统一修改url样式
+    path('abc', myapp.views.test2),
+    path('aaa', include('myapp.urls'), namespace='myapp')	# 命名路由
+]
+
+# myapp.urls.py
+app_name='myapp'	# 命名路由
+urlpatterns = [
+    path('aa', name='a')	# 这样可以{% url 'myapp:aa'  %}
 ]
 ```
 

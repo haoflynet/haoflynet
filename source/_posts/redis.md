@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2018-09-11 14:28:00
+updated: 2018-09-25 13:28:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -78,6 +78,8 @@ db0:keys=2333,expires=12,avg_ttl=0	# key的统计信息在最后一行
 
 ### 通用
 
+- **严禁在生产环境使用`keys *`进行搜索，因为这表命令会引发Redis锁，导致其他查询不可用，如果真有类似业务，可以使用scan命令**
+
 ```shell
 flushall	# 删除所有数据库的key
 flushdb		# 删除当前数据库所有的key
@@ -90,6 +92,8 @@ key name	# 查找某个key
 keys pattern	# 查找所有符合给定模式pattern 的key
 keys * 		# 列出所有的key
 exists key	# 查找该key是否存在
+
+scan 0	# 使用游标的方式取出一定数量的redis key，与keys不同的是，keys是一次性全部扫描
 
 expire key seconds	# 为某个key指定生存时间，单位为秒，时间到了后就不存在了，默认时间为永久
 ttl key		# 查看剩余生存时间
