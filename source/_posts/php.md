@@ -11,6 +11,7 @@ categories: php
 ## 基本语法
 
 - 判断两个变量是否相等，如果`==`和`===`都能用的情况，那么尽量用`===`，因为它仅检查闭合范围。
+- 三元运算符可以这样用`$a = $a ? : 1`，表示如果为真则直接使用`$a`的值，7里面可以写成`$a = $a ?? 1`
 
 <!--more-->
 
@@ -366,21 +367,21 @@ hash_hmac(算法名, 明文, 盐)	# hash加密函数，可以选定加密算法�
 - **var_dump(变量名)**：打印变量，这个函数还会打印变量的类型可以把一个变量的各个部分全部信息输出，包括每个部分的数据类型和长度等信息，但是默认情况下，输出有限制，如果层数深了或者数据长了可能会表示成省略号，可以在`C:\wamp\bin\apache\\apache2.4.9\bin\php.ini`里面修改xdebug节点，添加如下内容
 
    xdebug.var_display_max_children=128
-   	xdebug.var_display_max_data=512
-   	xdebug.var_display_max_depth=5
+   ​	xdebug.var_display_max_data=512
+   ​	xdebug.var_display_max_depth=5
    另外，将var_dump的输出转换为一个字符串以便web前端显示，可以这样用：
-   	ob_start();
-   	var_dump($data);
-   	$result = ob_get_clean();
-   	# 或者用另外的函数
-   	var_export: 输出或返回一个变量的字符串表示
+   ​	ob_start();
+   ​	var_dump($data);
+   ​	$result = ob_get_clean();
+   ​	# 或者用另外的函数
+   ​	var_export: 输出或返回一个变量的字符串表示
 - **file_get_contents**：获取文件或http内容，如果要从http获得json数据可以直接使用它
 - **isset()**：查看某个变量或者多个变量是否已经被定义，未赋值或赋NULL都会返回false。没错，可以直接检查多个变量，当所有变量都为true时返回true
 - **@header('Content-type: text/html;charset=UTF-8');**PHP文件中添加中文支持，在脚本开始的地方添加给行即可
 - **多行输出**：其中最后一个EOF必须写在一行的开头，且里面如果要用变量这样用{ $php_var }
    echo <<<EOF
-   	内容
-   	EOF;
+   ​	内容
+   ​	EOF;
 - **print_r**:打印关于变量的易于理解的信息。如果给出的是 string、integer 或 float，将打印变量值本身。如果给出的是 array，将会按照一定格式显示键和元素。这点在调试的时候很有用
 - **类的方法尽量写成static，速度比public快**
 
