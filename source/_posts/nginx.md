@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-09-12 11:34:00
+updated: 2018-09-26 09:34:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -292,14 +292,16 @@ location /nginx {
   fastcgi_buffer_size 32k;
   ```
 
+- **Nginx报错504 gateway timeout**: 首先当然是看业务是否需要那么长的时间，如果实在需要，可以在nginx配置中修改如下参数:
 
-
-
-
-
-
-
-
-
-
-
+  ```shell
+  # server配置
+  fastcgi_connect_timeout 300;
+  fastcgi_send_timeout 300;
+  fastcgi_read_timeout 300;
+  
+  # location配置
+  proxy_connect_timeout 300s;
+  proxy_send_timeout 300s;
+  proxy_read_timeout 300s;
+  ```
