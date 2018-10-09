@@ -96,7 +96,47 @@ http://docs.amazonaws.cn/redshift/latest/dg/c_high_level_system_architecture.htm
 
 - http://docs.amazonaws.cn/redshift/latest/dg/c_columnar_storage_disk_mem_mgmnt.html  列式存储优点
 
-- http://docs.amazonaws.cn/redshift/latest/dg/c_workload_mngmt_classification.html   工作负载管理WLM。查询优先级。默认情况下，Amazon Redshift 配置一个具有*并发级别* 5 的队列（这将允许同时运行最多 5 个查询）和一个具有并发级别 1 的预定义的超级用户队列。您可以定义最多 8 个队列。每个队列可配置最高 50 的并发级别。所有用户定义的队列（不包括超级用户队列）的最高并发级别总数为 50。可以通过命令或者管理控制台修改WLM配置。超级用户队列无法进行配置且一次只能处理一个查询，保留此队列以仅作故障排除只用。用户队列可一次处理多达5个查询，可以在需要时通过更改队列的并发级别了来配置此能力。
+- http://docs.amazonaws.cn/redshift/latest/dg/c_workload_mngmt_classification.html   工作负载管理WLM。
+
+  WLM将查询路由到匹配到的查询队列。可以修改 WLM 配置，为耗时查询和短时查询分别创建队列，以提升系统性能和用户体验。可以配置多大八个查询队列，并设置可在每个队列中同时运行的查询数。8个队列，每个队列都有50个并发。在运行时，您可以根据用户组或查询组或者指定运行的标签将查询路由到这些队列。不仅可以设置队列的并发量，还能设置每个队列的内存量，还可单独设置超时。
+
+  每个查询队列包含很多查询槽，队列的内存在队列的查询槽间分配。可以指定如何在槽间分配内存。
+
+
+
+  wlm配置项目：
+
+  并发级别：和查询槽一个概念。
+
+  用户组
+
+  查询组
+
+  要使用的WLM内存百分比
+
+  WLM超时
+
+  WLM查询队列跳跃
+
+  查询监控规则
+
+
+
+  默认有以下两个队列：
+
+  超级用户队列：不能修改配置，常用于超级管理，不应该用来执行常规查询。该队列不会显示在控制台中。要在超级用户队列中运行查询，用户必须以超级用户身份登录并使用预定义的 `superuser` 查询组运行查询。
+
+  默认用户队列：默认设置为5个查询，不能指定用户组或查询组，当本次查询不被路由到其他队列的时候，就会走默认的队列。
+
+
+
+
+
+
+
+
+
+  查询优先级。默认情况下，Amazon Redshift 配置一个具有*并发级别* 5 的队列（这将允许同时运行最多 5 个查询）和一个具有并发级别 1 的预定义的超级用户队列。您可以定义最多 8 个队列。每个队列可配置最高 50 的并发级别。所有用户定义的队列（不包括超级用户队列）的最高并发级别总数为 50。可以通过命令或者管理控制台修改WLM配置。超级用户队列无法进行配置且一次只能处理一个查询，保留此队列以仅作故障排除只用。用户队列可一次处理多达5个查询，可以在需要时通过更改队列的并发级别了来配置此能力。
 
   若您有多个用户正在对数据库运行查询，您可能会发现另一种配置将更高效。例如，如果一些用户运行资源密集型操作（如 VACUUM），则这些操作可能会对资源不太密集型查询（如报告）产生负面影响。您可考虑添加其他队列并针对不同的工作负载配置它们。
 
@@ -178,3 +218,11 @@ http://docs.amazonaws.cn/redshift/latest/dg/cm_chap_system-tables.html
 https://stackoverflow.com/questions/32070876/adding-comment-to-field-when-i-create-table
 
 https://blog.csdn.net/xiaoxuechi/article/details/79297009
+
+
+
+
+
+用户管理
+
+select * from pg_user;

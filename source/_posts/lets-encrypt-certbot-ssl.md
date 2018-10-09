@@ -34,7 +34,7 @@ categories: server
    1: a.haofly.net
    2: b.haofly.net
    -------------------------------------------------------------------------------
-   # 第二部询问你在遇到http的时候是否需要重定向到https
+   # 第二步询问你在遇到http的时候是否需要重定向到https
    Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
    ```
 
@@ -45,5 +45,3 @@ categories: server
    ```shell
    0 0,12 * * * python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew 
    ```
-
-   

@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-09-20 10:36:00
+updated: 2018-10-09 09:36:00
 categories: python
 ---
 # Django教程
@@ -735,6 +735,12 @@ urlizetrunc：
 wordcount：统计字符串中单词的数量
 wordwrap：指定特定的长度来分隔字符串
 yesno：
+```
+
+常用过滤器组合:
+
+```django
+{{ user.name.split|join:"_" }}	// 将空格转换为下划线
 ```
 
 ### 其他标签
