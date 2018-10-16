@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2018-09-25 13:28:00
+updated: 2018-10-11 13:28:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -188,6 +188,10 @@ HVALS key	# 取出哈希表key中所有域的值
 
 这样第一个终端就会输出过期的键值
 ```
+## Redis组件
+
+Redis从4.0开始支持组件的开发，能为redis提供更多实用的定制功能，热门组件可以参考[Redis Modules](https://redis.io/modules)
+
 ## Redis数据库设计
 
 - 统计聚合情况

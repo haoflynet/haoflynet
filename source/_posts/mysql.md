@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-09-17 17:42:00
+updated: 2018-10-11 15:42:00
 categories: database
 ---
 ## 安装方法
@@ -252,6 +252,7 @@ left(str, length) # 字符串截取
 right(str, length) # 字符串截取
 substring(str, pos, len) # 字符串截取
 concat(str1, str2)  # 字符串相加
+substring_index('www.baidu.com','.', 1);	# 字符串分割，最后的数字表示取分割后的第几段，-1表示倒数
 
 # 数字相关
 FLOOR()	# 取整
