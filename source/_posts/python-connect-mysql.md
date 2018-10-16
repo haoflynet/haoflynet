@@ -1,7 +1,7 @@
 ---
 title: "Python3 使用MySQL Connector操作数据库"
 date: 2015-11-04 17:48:41
-updated: 2018-08-08 18:45:22
+updated: 2018-10-13 18:45:22
 categories: 编程之路
 ---
 ## 安装方法
@@ -130,6 +130,8 @@ rows = cursor.fetchmany(size=1)
   可能原因是由于MySQL是编译安装的，没有放在默认的目录，导致python找不到默认的sock文件，可以用一个软连接将实际文件链接到这个默认的目录下面
 
 * **EnvironmentError: mysql_config not found**，原因在mac环境下没有安装mysql包，需要`brew isntall mysql`
+
+* **安装mysqlclient的时候ld: library not found for -lssl**: python安装包时出现类似ssl的错误，参照[Python手册](https://haofly.net/python/index.html)，使用这种方式安装`pip install mysqlclient --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include"`
 
    
 

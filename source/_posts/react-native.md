@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-09-17 23:32:00
+updated: 2018-10-09 14:52:00
 categories: js
 ---
 
@@ -404,6 +404,7 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 - **闪退**: 有如下几种情况
   - 没有给API添加对应的权限，具体权限列表可以参见: [Swift开发MacOS应用](https://haofly.net/swift-macos)
 - **_this._registerevents is not a function**: 升级的时候没有顺便升级`react-native-cli`
+- **cross-env: command not found**: `npm install cross-env`
 
 ##### 扩展阅读
 
