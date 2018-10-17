@@ -10,9 +10,47 @@ categories: javascript
 
 ### [框架文档](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/MINA.html)
 
+#### 配置
+
+全局配置`app.json`
+
+页面单独配置`页面名.json`
+
+```json
+{
+  "navigationBarBackgroundColor": "#ffffff",	// 导航栏背景颜色
+  "navigationBarTextStyle": "black",	// 导航栏标题颜色
+  "navigationBarTitleText": "导航栏标题文字内容",
+  "backgroundColor": "#eeeeee",	// 窗口的背景色
+  "backgroundTextStyle": "light"	// 下拉 loading 的样式
+}
+```
+
+动态改变页面配置:
+
+```javascript
+// 动态修改页面标题
+wx.setNavigationBarTitle({
+    title: '标题1',
+}
+```
+
+#### 框架结构
+
+- 可以将一些全局变量放在`app.js`中，这样全局都是能获取到的
+
 #### 页面跳转
 
 - wx.navigateTo('/pages/index/index?id=123'): 如果要传递参数，可以在query参数中添加，然后在目标页面的`onLoad(options)` 中获取`options.id`即可。需要注意，这个方法不能跳转给`Tab`，相当于是把一个新页面压入栈中，返回的时候就返回到刚才的页面。
+
+- wx.navigateBack()不能直接携带参数，但是可以直接在其他页面获取之前栈中页面的page对象，然后直接进行setData：
+
+  ```javascript
+  let pages = getCurrentPages()
+  let lastPage = pages[pages.length - 2];
+  lastPage.setData({})
+  wx.navigateBack({})
+  ```
 
 #### 事件
 
@@ -43,9 +81,34 @@ categories: javascript
 
 #### map
 
+- 最好整个小程序只维护一个`map`组件，不然可能会崩溃，性能很重要
+
 
 
 ### [API文档](https://mp.weixin.qq.com/debug/wxadoc/dev/api/)
+
+#### 网络
+
+```javascript
+wx.request({
+  url: 'test.php',
+  data: {'x': '', y: ''}
+  header: { 'content-type': 'application/json'},
+  success (res) { console.log(res.data)}
+})
+```
+
+#### 位置
+
+```javascript
+wx.getLocation(OBJECT)	// 获取当前的地理位置、速度
+wx.chooseLocation(OBJECT)	// 打开地图选择位置
+wx.openLocation(OBJECT)	// 使用微信内置的地图查看某个位置
+```
+
+### [其他工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html)
+
+
 
 
 
@@ -61,6 +124,19 @@ categories: javascript
 
 - **新功能无法使用，例如map中的enable-zoom等**，首先看文档里面有没有直接写明开发者工具上可否使用，然后可以在在真机上面调试试试。
 
+- **cover-view里面不能放自定义text标签导致不能自定义样式**: 社区给出的意见是[https://developers.weixin.qq.com/community/develop/doc/000a402c99849820f2470d50551000]，给`cover-view`设置样式
+
+- **获取输入框的value值**: 通常我们不会用系统的表单，那么可以通过这种方式像普通的html页面那样获取dom元素的值:
+
+  ```javascript
+  <input type="text" value="{{name}}" bindinput="tapInput">
+      
+  // 然后在js中直接监听输入事件即可
+  tapInput: function(e) {
+      console.log(e.detail.value)
+  }
+  ```
+
 - **warning： Now you can provide attr "wx:key" for a "wx:for" to improve performance.**这是因为在使用循环`block`的时候没有给循环的item设置一个唯一的id，可以这样做:
 
   ```javascript
@@ -69,16 +145,13 @@ categories: javascript
 
 ##### 扩展阅读
 
-
+- [健壮高效的小程序登录方案](https://mp.weixin.qq.com/s?__biz=MzU0OTExNzYwNg==&mid=2247484421&idx=1&sn=a40c6ca294de39fe502a8d511994da34&chksm=fbb58fccccc206dae8b559365706a8b60f6ce654b46b0414b1a04c7481502d3838c030450dc3&token=1355569705&lang=zh_CN&rd2werd=1#wechat_redirect)
 
 https://github.com/CH563/TodoList-wechat
 
-
-
 https://github.com/yangzaiwangzi/KM-MiniProgram
-
-
 
 https://github.com/kesixin/MP_MambaBlog_Online
 
 https://github.com/ningge123/wonderfully
+
