@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2018-08-02 14:32:00
-updated: 2018-08-06 10:18:00
+updated: 2018-10-09 15:18:00
 categories: Database
 ---
 
@@ -87,6 +87,14 @@ COMMIT;
 ## TroubleShooting
 
 - **ProgrammingError: Statement is too large. Statement Size: 40000000 bytes. Maximum Allowed: 16777216 bytes**: 这是因为`PostgreSQL`默认设置最大的sql语句为16M，所以尽量一条语句的大小尽量控制在这之下
+
+- **Permission denied for relation**: 那是因为该用户没有表的访问权限，可以这样做:
+
+  ```mysql
+  GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to test;	// 分配所有公共表权限
+   GRANT ALL PRIVILEGES ON TABLE table-name TO test;	// 分配指定表的权限
+  ```
+
 
 ##### 扩展阅读
 

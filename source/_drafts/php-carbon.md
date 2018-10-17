@@ -29,4 +29,5 @@ Carbon::now()->modify('-2 days');
 # 获取指定格式输出
 Carbon::now()->toDateTimeString();
 Carbon::now()->subDays(5)->diffForHumans();	// 5天前
+Carbon::now()->dayOfWeek	// 获取今天是星期几，直接返回一个数字
 ```
