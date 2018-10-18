@@ -1,7 +1,7 @@
 ---
 title: "curl手册"
 date: 2016-04-07 08:01:39
-updated: 2018-09-12 12:41:00
+updated: 2018-10-09 15:41:00
 categories: tools
 ---
 ## 常用参数
@@ -35,6 +35,7 @@ curl -o test.txt haofly.net/test
 
 # 打印详细的连接时间、传输时间、下载速度等
 curl -w %{http_connect}:%{time_namelookup}:%{time_redirect}:%{time_pretransfer}:%{time_connect}:%{time_starttransfer}:%{time_total}:%{speed_download} haofly.net
+curl -o /dev/null -w "Connect: %{time_connect} TTFB: %{time_starttransfer} Total time: %{time_total} \n" https://haofly.net	# 只关心连接时间、处理时间和总耗时
 ```
 
 ## Header头信息参数

@@ -1,7 +1,7 @@
 ---
-title: "使用nginx+uWSGI部署Django应用"
+title: "使用nginx+uWSGI部署Django/Python应用"
 date: 2018-08-04 21:32:00
-updated: 2018-08-25 23:19:00
+updated: 2018-10-16 22:19:00
 categories: python
 ---
 
@@ -34,7 +34,7 @@ categories: python
   	location / {
   		uwsgi_pass django;
   
-          # 下面的配置可以保存成文件然后include
+          # 下面的配置可以保存成文件然后include，有些nginx版本自带了/etc/nginx/uwsgi_params的，直接在这里include uwsgi_params即可
   		uwsgi_param  QUERY_STRING       $query_string;
   		uwsgi_param  REQUEST_METHOD     $request_method;
   		uwsgi_param  CONTENT_TYPE       $content_type;
@@ -80,8 +80,10 @@ categories: python
   # process-related settings
   # master
   master          = true
-  # maximum number of worker processes
-  processes       = 10
+  # maximum number of worker processes进程数量一般与CPU数量相等
+  processes       = 8
+  threads 		= 32	# 默认一个进程是一个线程，可以直接提高线程的数量
+  
   # the socket (use the full path to be safef
   socket          = /path/to/swy-api.sock	// 随便放哪里，也可以放在项目目录下
   
@@ -117,3 +119,7 @@ redirect_stderr=true
 ## TroubleShooting
 
 - **莫名其妙出现502错误，但是程序没有挂也确实没有错误日志**: 可以尝试设置uwsgi的`buffer-size=65535`缓存值，默认是4096，如果不行就在nginx上面设
+
+##### 扩展阅读
+
+- [uwsgitop](https://github.com/xrmx/uwsgitop)：可以像top命令那样打印`uwsgi`各个进程的实时状态

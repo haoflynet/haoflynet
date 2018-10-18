@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-08-03 15:31:00
+updated: 2018-10-17 11:31:00
 categories: php
 ---
 # Laravel指南
@@ -556,6 +556,8 @@ Laravel使用数据填充类来填充数据，在`app/database/seeds/DatabaseSee
 Laravel 查询构建器使用 PDO 参数绑定来避免 SQL 注入攻击，不再需要过滤以绑定方式传递的字符串。但是需要注意的是**当使用`whereRaw/selectRaw`等能嵌入原生语句的时候，要么用bind的方式(即将用户输入作为第二个参数传入)要么就对输入的字符进行严格的过滤**
 
 ```php
+DB::statement('drop table xxx');	# 直接执行原生sql语句
+DB::select('select xxx');	# 如果要获取结果的原生语句可以这样
 # 数据库信息获取
 ## 获取查询SQL
 DB::connection('default')->enableQueryLog(); # 如果不指定连接可以直接DB::enableQueryLog()
@@ -1011,6 +1013,8 @@ public function __construct(Mailer $mailer)	# 在控制器、事件监听器、�
 Laravel提供了很方便的注入服务的方法，那就是`service provider`，当写完一个`service provider`以后，在`config/app.php`的provider里面添加该类名称即可实现注入。最重要的两个方法:`绑定(Binding)`和`解析(Resolving)`。
 
 ```php
+ App()->getLoadedProviders();	// 查看当前已经加载了哪些providers，程序刚启动的时候，懒加载的service provider是不会loaded的。通过个方法或者非懒加载的直接App()->isBooted就可以看到provider有没有加载了
+
 # 对象的解析
 $this->app->make('Foo');
 $foo = $this->app['Foo'];
@@ -1029,6 +1033,8 @@ use Illuminate\Support\ServiceProvider;
 
 class TestServiceProvider extends ServiceProvider
 {
+    protected $defer = true;	// 如果需要延迟加载(用的时候才加载)，那么需要定义这个属性并且需要定义下面的provides方法
+    
     public function boot()
     {
         // 这里面可以将自己的配置文件push到laravel的config目录中区
@@ -1040,6 +1046,12 @@ class TestServiceProvider extends ServiceProvider
     public function register()
     {
       Config::set('database.redis', []);	// 设置可以在这里面修改config下的其他一些配置
+    }
+    
+    // 一般懒加载的时候才需要
+    public function provides()
+    {
+        return [Connection::class];
     }
 }
 ```
