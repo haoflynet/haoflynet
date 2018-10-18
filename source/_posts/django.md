@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-10-09 09:36:00
+updated: 2018-10-16 10:36:00
 categories: python
 ---
 # Django教程
@@ -190,6 +190,8 @@ urlpatterns = [
 
 ## 数据库
 Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系映射)的方式，每个model类代表一张数据库的表，每一个属性代表其一个字段(这种特性的实现依赖于python的元类)。 
+
+- 多数据库配置，参考[django多数据库配置](https://blog.csdn.net/songfreeman/article/details/70229839)，主要是在Meta里面添加`app_label`进行标识，然后我的建议是app_label直接和数据库名相同，这样就不用单独写配置关系`DATABASE_APPS_MAPPING`了
 
 ### 数据表定义
 
@@ -453,10 +455,11 @@ class user_goods(models.Model):
 ### 分页
 
 - 自带的分页功能有严重的性能问题，是一次性取出所有数据再从中取出某一页的方式，十分不推荐
-- 可以自己写分页功能，分两条sql，一条`COUNT`，另外一条则是`LIMIT/OFFSET`，惰性执行可以直接协程`Contacts.objects.all()[0:20]`，这同样没有取出所有
+- 可以自己写分页功能，分两条sql，一条`COUNT`，另外一条则是`LIMIT/OFFSET`，惰性执行可以直接写成`Contacts.objects.all()[0:20]`，这同样没有取出所有
 
 
 ```python
+# 自带的分页功能，一次取出所有
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # 导入模块
 def listing(request):
 	contact_list = Contacts.objects.all()   # 获取所有model对象

@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-09-26 09:44:30
+updated: 2018-10-11 15:44:30
 categories: system
 ---
 # Linux手册
@@ -95,9 +95,6 @@ sudo nethogs
 top: 常用的命令，按1可以查看每个CPU的负载情况
 gtop: 功能十分强大的系统监视器
 
-# 更新和查看系统服务的运行级信息(可以设置开机启动服务)，/etc/init.d/目录下的服务。level总共有6级，分别表示关机、单用户模式、无网络连接的多用户命令行模式、有网络连接的多用户命令行模式、不可用、带图形界面的多用户模式、重新启动
-chkconfig --list	# 列出所有的系统服务
-
 # /var/run/*.pid文件，pidfile文件一般用于daemon程序，主要作用是保证在系统中只存在该daemon的一个进程，同时也便于系统统一管理这些daemon程序。
 ```
 
@@ -105,6 +102,7 @@ chkconfig --list	# 列出所有的系统服务
 
 ```shell
 ls -lR | grep "^-" | wc -l # 递归统计文件夹下所有文件的个数
+ls -lt	# ls的时候按时间排序
 wc -l: 统计行数
 fdupes -r /home		# 快速查找重复文件
 fdupes -f /home | xargs rm -f	# fdupes居然没有直接删除的功能，-d参数必须询问，这样子就能直接进行删除了，-f参数表示忽略第一个文件，这样出来的就都是重复的了
@@ -243,6 +241,7 @@ find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK�
 
 # 删除文件，强烈建议安装trash-cli命令，因为rm的文件不会在回收站，到时候找都找不回来
 
+ls *.txt	# 直接使用通配符
 ls -l # 列出文件详细信息
 ls -ld # 列出文件夹详细信息
 ```
@@ -479,6 +478,10 @@ deb http://ftp.debian.org/debian sid main
 
 #### chokconfig系统服务
 
+更新和查看系统服务的运行级信息(可以设置开机启动服务)，各个服务的配置文件在`/etc/init.d/`。
+
+level总共有6级，分别表示关机、单用户模式、无网络连接的多用户命令行模式、有网络连接的多用户命令行模式、不可用、带图形界面的多用户模式、重新启动。
+
 ```shell
 chkconfig --list	# 查看全部服务状态
 chkconfig --add 服务名	# 将某项服务设置为自动启动，该名字必须是/etc/init.d/文件夹下面的文件名
@@ -492,7 +495,7 @@ chkconfig --del 服务名	# 禁止某项服务自动启动
 #
 # my-agent
 #
-# chkconfig: - 99 01		# 这一行必须有，第一个数字表示运行级别，第二个表示启动时的执行顺序，第三个表示系统退出时候的执行顺序
+# chkconfig: 3 99 01		# 这一行必须有，第一个数字表示运行级别，第二个表示启动时的执行顺序，第三个表示系统退出时候的执行顺序，例如3，345等
 # description: Starts and stops the my-agent daemon.	# 这一行必须有
 #
 /usr/share/my-agent/bin/my-agent $@	# 下面即是需要执行的命令
