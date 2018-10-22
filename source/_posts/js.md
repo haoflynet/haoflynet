@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-09-13 15:42:00
+updated: 2018-10-19 15:42:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -259,7 +259,7 @@ $(document).ready(function);	// 当DOM已经加载，并且页面已经完全呈
 var t = window.setTimeout(func(), delay);	// 延迟delay秒后执行函数func
 var t = window.setInterval(func(), delay);	// 每隔delay秒就执行函数func
 var t = setImmediate(func);					// 在浏览器完全结束当前运行的操作之后立即执行指定的函数
-clearInterval(t)				// 清除计时器
+clearInterval(t)				// 清除计时器，setInterval返回的是一个定时器的id，如果不清楚定时器名称，可以直接来个for循环清理所有的Interval：for(var i = 0; i<= 2000; i++) {clearInterval(i);}
 
 debugger;						// 代码加入这一行，浏览器会自动断点进行调试，这对于自动编译的开发环境非常实用
 ```
@@ -324,7 +324,7 @@ $.post('some.php', {name: 'haofly'})
 - **根据select的选项不同跳转到不同的页面**:
   `<select onchange="location.href=this.options[this.selectedIndex].value;">`
 
-- **Ajax请求无论是GET还是POST都突然变成了OPTIONS请求**  
+- **Ajax请求无论是GET还是POST都突然变成了OPTIONS请求**
   可能是因为把本地代码提交到服务器时，发生了跨域请求错误，url里面写的是本地的端口地址，这时候只需要修改本地的端口地址修改为相对于服务器的本地地址即可
 
 - **停止js的冒泡** 
@@ -481,4 +481,12 @@ $.post('some.php', {name: 'haofly'})
      <input type="checkbox" name="option" value="true"/>
      ```
 
+- **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
+  ```javascript
+  var obj = { alert: alert};
+  obj.alert('hello');		// 这样就会报错
+  
+  var obj = { alert: alert.bind(window) }
+  obj.alert('hello');		// 这样就能正常调用了
+  ```
