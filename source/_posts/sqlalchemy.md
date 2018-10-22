@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2018-09-04 14:00:00
+updated: 2018-10-19 17:40:00
 categories: python
 ---
 
@@ -34,7 +34,7 @@ engine = create_engine('mysql://scott:tiger@localhost/foo?charset=utf8', echo=Tr
 engine = create_engine('oracle://scott:tiger@127.0.0.1:1521/sidname')
 engine = create_engine('sqlite:///foo.db')
 
-DBSession = sessionmaker(bind=engine)	# 创建DBSession类型，可视为当前数据库的连接
+DBSession = sessionmaker(bind=engine, autocommit=True)	# 创建DBSession类型，可视为当前数据库的连接
 session = DBSession()	# 创建一个session对象
 
 # session基本操作
@@ -289,8 +289,8 @@ session.commit()	# 提交
 ## TroubleShooting
 
 - **Tornado中使用SQLAlchemy连接SQLite进行commit操作的时候程序中断: Segment Fault**: 原因是`SQLite`的自增主键`id`重复了😂
-
 - **UnicodeEncodeError：'latin-1' codec can't encode characters in position 0-1: ordinal not in range(256)**: 连接数据库没有指定utf8的charset，参考本文连接数据库设置。
+- **Can't recoonect until invalid transaction is rolled back**: 要么在每次执行sql语句之后主动close，要么在连接的时候设置`autocommit=True` 
 
 ##### 扩展阅读
 

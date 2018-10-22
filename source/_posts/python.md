@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-09-19 15:18:30
+updated: 2018-10-17 13:48:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -388,6 +388,7 @@ codecs.open(path, 'r', 'utf-8').read().splitlines() # 获取所有的数据，�
 print('string', file=fp)  # 直接写入文件
 
 # 写入文件
+## 使用fileinput实现只修改文件中某一行的功能
 fp.write()
 fp.writelines()		# 并不会自动换行
           
@@ -451,6 +452,7 @@ stdoutdata, stderrdata = child.communicate(input=None)	# 与子进程进行交�
 a = input('Input: ')
                          
 sys.getsizeof(name)  # 获取变量占用内存的大小
+sys.argv	# 获取命令行参数                         
 
 id(x)   # 返回对象标识，即内存地址
                          

@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-09-12 12:55:21
+updated: 2018-10-17 11:09:21
 categories: php
 ---
 # PHP
@@ -322,6 +322,9 @@ var_dump($arr['curl']);
 	mysql_errno():	# 打印SQL出错信息
 
 ### 异常处理
+
+- 有时候，我们会发现`catch`不到`Exception`或者`Error`，可能的原因是使用了`set_error_handler`等函数进行了错误的单独捕获，还可以使用`register_shutdown_function`注册程序退出时候的回调函数
+
 ```php
 var_dump(debug_backtrace());	# 随时打印当前的调用栈
 
