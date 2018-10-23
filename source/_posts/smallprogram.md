@@ -1,14 +1,14 @@
 ---
 title: "微信小程序开发手册"
-date: 2017-03-15 21:35:00
+date: 2018-10-17 13:15:00
 categories: javascript
 ---
 
-## 微信小程序开发教程
+官方文档非常详细，这里就不复制了，只记录一些自己用到的。
 
-官方文档非常详细，这里就不复制了。
+<!--more-->
 
-### [框架文档](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/MINA.html)
+### [框架文档](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/MINA.htm)
 
 #### 配置
 
@@ -23,15 +23,6 @@ categories: javascript
   "navigationBarTitleText": "导航栏标题文字内容",
   "backgroundColor": "#eeeeee",	// 窗口的背景色
   "backgroundTextStyle": "light"	// 下拉 loading 的样式
-}
-```
-
-动态改变页面配置:
-
-```javascript
-// 动态修改页面标题
-wx.setNavigationBarTitle({
-    title: '标题1',
 }
 ```
 
@@ -83,9 +74,19 @@ wx.setNavigationBarTitle({
 
 - 最好整个小程序只维护一个`map`组件，不然可能会崩溃，性能很重要
 
-
-
 ### [API文档](https://mp.weixin.qq.com/debug/wxadoc/dev/api/)
+
+#### 元数据
+
+```javascript
+// 动态修改页面标题
+wx.setNavigationBarTitle({
+    title: '标题1',
+}
+                         
+// 获取屏幕信息
+wx.getSystemInfoSync().windowWidth	// 屏幕宽度                         
+```
 
 #### 网络
 
@@ -107,16 +108,6 @@ wx.openLocation(OBJECT)	// 使用微信内置的地图查看某个位置
 ```
 
 ### [其他工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html)
-
-
-
-
-
-
-
-
-
-
 
 ## TroubleShooting
 
@@ -146,12 +137,4 @@ wx.openLocation(OBJECT)	// 使用微信内置的地图查看某个位置
 ##### 扩展阅读
 
 - [健壮高效的小程序登录方案](https://mp.weixin.qq.com/s?__biz=MzU0OTExNzYwNg==&mid=2247484421&idx=1&sn=a40c6ca294de39fe502a8d511994da34&chksm=fbb58fccccc206dae8b559365706a8b60f6ce654b46b0414b1a04c7481502d3838c030450dc3&token=1355569705&lang=zh_CN&rd2werd=1#wechat_redirect)
-
-https://github.com/CH563/TodoList-wechat
-
-https://github.com/yangzaiwangzi/KM-MiniProgram
-
-https://github.com/kesixin/MP_MambaBlog_Online
-
-https://github.com/ningge123/wonderfully
 
