@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-10-17 11:09:21
+updated: 2018-10-23 11:19:21
 categories: php
 ---
 # PHP
@@ -519,6 +519,7 @@ while ($it->valid())
 
 - **PHP调用Dubbo服务**: 按照这个教程一步一步来http://www.huangxiaobai.com/archives/1437。
 
-- **PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 130968 bytes) in …**: PHP作为daemon程序运行时候经常性出现内存溢出问题，并且这种错误程序是不会退出的，只会卡在那里，supervisor也不会发现程序的异常。首先检查为什么内存溢出，如果是有大量的curl请求，那么有可能是请求未释放或者curl本身的问题(curl 7.19.7在网上有说是有ssl内存溢出漏洞的)。如果实在想不到，那么可以这样做，使用`memory_get_peak_usage(true)`函数判断当前的内存使用量，当快达到阈值(php.ini中有设置，一般为256MB，top出来显示的内存比这个高一点)的时候，主动退出程序或者退出循环，销毁变量，重新开启循环。可以通过`valgrind`来辅助调试内存泄漏问题
+- **PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 130968 bytes) in …**: PHP作为daemon程序运行时候经常性出现内存溢出问题，并且这种错误程序是不会退出的，只会卡在那里，supervisor也不会发现程序的异常。首先检查为什么内存溢出，如果是有大量的curl请求，那么有可能是请求未释放或者curl本身的问题(curl 7.19.7在网上有说是有ssl内存溢出漏洞的)。如果实在想不到，那么可以这样做，使用`memory_get_peak_usage(true)`函数判断当前的内存使用量，当快达到阈值(php.ini中有设置，一般为256MB，top出来显示的内存比这个高一点)的时候，主动退出程序或者退出循环，销毁变量，重新开启循环。可以通过`valgrind`来辅助调试内存泄漏问题。
+  另外在执行`composer`的时候也会出现类似的错误，可以这样子执行`php -d memory_limit=1024 composer update`
 
 - **从数据库取出的整型数据变成了字符串**: php5.3之前，php连接mysql的驱动是`libmysqlclient`，5.3开始`mysqlnd`内置于PHP中了，新的驱动就不会出现这种情况了

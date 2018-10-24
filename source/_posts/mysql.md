@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-10-11 15:42:00
+updated: 2018-10-22 16:42:00
 categories: database
 ---
 ## 安装方法
@@ -175,6 +175,43 @@ INSERT IGNORE INTO ...
 SELECT INTO db_name(field1, field2) SELECT field1, field2 FROM db_name2
 ```
 
+### 锁
+
+- 常用于：并发读写数据防止读写到错误的数据(例如，两个请求在两个事务中同时对同一个字段执行`+10`的操作，那么可能出现总共`+20`，也可能出现只`+10`的情况)
+- `UPDATE`和`DELETE`语句本身就会对行加锁，但是`SELECT`默认不会，需要显式加锁
+
+#### 悲观锁
+
+默认认为需要修改的数据是会发生
+
+- 共享锁：其他事务可读，但不可写
+
+  ```mysql
+  SELECT ... LOCK IN SHARE MODE       # 共享锁，其它事务可读，不可更新
+  ```
+
+- 排他锁：其他事务不可读写
+
+  ```mysql
+  SELECT ... FOR UPDATE       # 排它锁，其它事务不可读写
+  ```
+
+#### 乐观锁
+
+- 具体实现逻辑其实是自己实现的
+- 如果重试，对性能有一定的影响
+
+默认认为需要修改的数据是不会发生冲突的，在更新之间是不会有任何锁的。
+
+有些实现方法是单独加入了一个版本号码字段，但是如果是字段特殊，并且业务不大复杂，可以直接使用某个需要更新的字段作为版本，例如
+
+```mysql
+SELECT * FROM `user` WHERE `id`=1;	# 先普通查询出用户数据
+UPDATE `user` SET `money` = `money` + 50 WHERE `id`=1 AND `money`=50;	# 在更新数据时候加上版本字段，这里可以直接使用需要更新的字段money
+```
+
+然后在更新操作执行完成后获取影响的行数，如果影响行数为0，表示更新操作不起作用，版本已经发生变化，这时候就需要用户自己去抛错或者编写重试逻辑(重试的时候会重新获取字段值即版本号)。
+
 ### 系统相关
 
 ```shell
@@ -253,6 +290,7 @@ right(str, length) # 字符串截取
 substring(str, pos, len) # 字符串截取
 concat(str1, str2)  # 字符串相加
 substring_index('www.baidu.com','.', 1);	# 字符串分割，最后的数字表示取分割后的第几段，-1表示倒数
+LENGTH(字段名)	# 获取某个字段的长度，可以这样实现按字段长度进行排序 select * from `test` order by LENGTH(`name`) 
 
 # 数字相关
 FLOOR()	# 取整
