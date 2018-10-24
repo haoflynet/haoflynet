@@ -1,6 +1,7 @@
 ---
 title: "谈谈软件架构模式"
 date: 2017-07-06 06:55:44
+updated: 2018-10-23 10:50:00
 categories: 编程之路
 ---
 以前年少无知的我总觉得软件架构是非常虚的东西，随着工作经验的逐渐增加，慢慢地意识到，一个没有经过合理设计的软件，完全是在给自己埋坑。当我们开始觉得软件迭代困难，埋怨bug越来越多的时候，多想想为什么，有可能就是我们没有采用合理的软件架构模式。在阅读完[《软件架构模式》](https://bboyfeiyu.gitbooks.io/software-architecture-patterns/content/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F.html)以后，特整理书摘在此。
@@ -12,6 +13,7 @@ categories: 编程之路
 ##### 概念
 
 1. 基本上算是我们最常见的架构了，例如MVC等。
+2. 建议在Model之上增加DAO或者MANAGER层，统一数据库读写
 
 ##### 缺点
 
@@ -74,3 +76,9 @@ categories: 编程之路
 ##### 缺点
 
 1. 测试性低而且开发困难
+
+##### 扩展阅读
+
+
+
+[如何少写PHP"烂"代码](https://juejin.im/post/5b4ecffef265da0fa1221f45): 更好的MVC分层实践

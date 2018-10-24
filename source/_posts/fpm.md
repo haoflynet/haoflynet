@@ -1,7 +1,7 @@
 ---
 title: "fpm 打包工具"
 date: 2016-08-07 05:52:39
-updated: 2018-09-25 16:47:00
+updated: 2018-10-18 16:47:00
 categories: tools
 ---
 
@@ -57,6 +57,10 @@ fpm -h
 │   │       └── my-agent
 │   └── my-agent	# 程序本身配置文件
 │       └── default.conf
+├── usr        # lib文件默认会被加入/usr/lib中，所以，这里直接以目录树形式存储
+│   └── lib
+│       └── my-agent
+│           └── agent.state
 ├── scripts
 │   ├── my-agent-after-install.sh
 │   └── my-agent-before-remove.sh
