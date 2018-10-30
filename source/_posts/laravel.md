@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-10-17 11:31:00
+updated: 2018-10-29 11:57:00
 categories: php
 ---
 # Laravel指南
@@ -1223,6 +1223,10 @@ public function report(Exception $e)
 
 - `php artisna config:cache`: 把所有的配置文件组合成一个单一的文件，让框架能够更快地去加载。
 
+- `queue:work`从5.3开始默认就是`daemon`，不需要加`—daemon`参数了
+
+- `queue:work`和`queue:listen`的区别是，前者不用每次消费都重启整个框架，但是代码变更后前者必须手动重启命令
+
 - 使用命令的方式执行脚本，这时候如果要打印一些日志信息，可以直接用预定义的方法，还能显示特定的颜色:
 
   ```shell
@@ -1238,7 +1242,15 @@ public function report(Exception $e)
   ```php
   protected $signature = 'test:test {field?} {--debug}';	# 添加参数，问号表示非必填。以--开头的参数叫option，option是布尔值，默认是false，当命令执行时带上该参数则值会为true
   $this->argument('field');					# 获取参数，只能在handle里面，不能在__constructor里面
-  $this-option('debug');		# 获取option的参数
+  $this->option('debug');		# 获取option的参数
+  ```
+
+- 命令行直接调用
+
+  ```php
+  $exitCode = Artisan::call('email:send', [
+      'user' => 1, '--queue' => 'default'
+  ]);
   ```
 
 - 定时任务
@@ -1382,6 +1394,8 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 - **更新表时出现`AH00052: child pid 71 exit signal Segmentation fault (11)`**: 原因可能是没有设置主键而直接在该表上面更新数据，导致ORM不知道到底该更新谁。并且Laravel不支持复合主键(https://github.com/laravel/framework/issues/5517，作者不支持这种做法)。这种情况，要么给该表添加唯一主键，要么只能用where直接更新了。
 
 - **Error while reading line from server**: `Predis`需要设置`read_write_timeout=0`或者-1，特别是daemon任务，最好设置不超时
+
+- **`PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /Users/freek/dev/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php`** 出现于5.2版本中，原因是`.env`文件中的配置的值，中间存在空格，如果中间有空格，需要将值用双引号包起来
 
 **相关文章**
 

@@ -1,13 +1,13 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-07-30 16:49:00
+updated: 2018-10-26 17:49:00
 categories: go
 ---
 
 终于有应用场景需要用到Go了，这次算是正式开始学了。其实在我眼里，Go的应用场景主要有以下几点
 
-- 超高并发/超高性能
+- 超高并发/超高性能，能轻松创建上百万线程而不会让服务器宕机
 - 多核CPU充分利用
 - 系统底层应用开发
 
@@ -436,3 +436,5 @@ start - time.Now()	// 计算时间差，自带单位换算，而且非常精准
 ##### 扩展阅读
 
 [官方FAQ](https://golang.org/doc/faq): 我见过写得最详细的编程语言官方FAQ
+
+[Why you can have millions of Goroutines but only thousands of Java Threads](https://rcoh.me/posts/why-you-can-have-a-million-go-routines-but-only-1000-java-threads/)
