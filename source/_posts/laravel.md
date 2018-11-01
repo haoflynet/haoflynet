@@ -1,13 +1,15 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-10-29 11:57:00
+updated: 2018-11-01 10:27:00
 categories: php
 ---
 # Laravel指南
 [Laravel项目基本结构](https://github.com/haoflynet/project-structure/blob/master/Laravel/README.md)
 
 ### 配置
+
+- `.env`文件中，如果有空格，那么值需要用双引号包围，并且里面如果用`\n`，那么必须转义`\\n`
 
 Laravel的主配置文件将经常用到的文件集中到了根目录下的`.env`目录下，这样更高效更安全。其内容如下：
 
@@ -1396,6 +1398,8 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 - **Error while reading line from server**: `Predis`需要设置`read_write_timeout=0`或者-1，特别是daemon任务，最好设置不超时
 
 - **`PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /Users/freek/dev/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php`** 出现于5.2版本中，原因是`.env`文件中的配置的值，中间存在空格，如果中间有空格，需要将值用双引号包起来
+
+- **Class env does not exist**: 通常出现在框架还未加载完成就报错，但是在处理错误的时候却使用了`env`这个功能，导致没有打印真实的错误。处理方式，一是不要使用`app()->environment('...')`，而是检查`.env`文件中是否有错误，例如包含空格的值，必须用双引号包围
 
 **相关文章**
 
