@@ -1,6 +1,7 @@
 ---
 title: "微信小程序开发手册"
 date: 2018-10-17 13:15:00
+updated: 2018-11-05 14:10:00
 categories: javascript
 ---
 
@@ -44,6 +45,10 @@ categories: javascript
   ```
 
 #### 事件
+
+- 常用事件有tap(点击)、longtap(长按)
+
+- 阻止事件冒泡：将`bindtap`修改为`catchtap`即可
 
 - 事件传参数，例如bindtap事件，不能直接像js那样打个括号把参数传递进去，而应该这样子传递
 

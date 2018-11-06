@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-11-01 10:27:00
+updated: 2018-11-05 14:07:00
 categories: php
 ---
 # Laravel指南
@@ -61,6 +61,8 @@ laravel可以直接通过命令创建一个控制器:
 `php artisan make:controller HomeController`，然后就会有这么一个控制器文件了:`app/Http/Controllers/HomeController.php`
 
 #### 数据校验Validation
+
+- 默认启用了`TrimStrings`和`ConvertEmptyStringsToNull`两个中间件的，一个自动去除前后空白，一个将空字符串转换为null
 
 ```
 # 通过Validator进行校验，第一个参数是一个key-value的数组
@@ -288,6 +290,7 @@ Laravel提供了migration和seeding为数据库的迁移和填充提供了方便
   'password'  => 'password',
   'charset'   => 'utf8',
   'collation' => 'utf8_unicode_ci',
+  'strict' => false,	// MySQL数据库严格模式，开启后，如果没有默认值会报错，不开启会自动填充一个默认值
   'read' => [
     [
       'host' => '127.0.0.2',
@@ -851,6 +854,7 @@ return view('index')->withCookie($cookie); # 其实是将该cookie的过期时�
 ### 任务队列Job
 
 - 通过`php artisan make:job CronJob`新建队列任务，会在`app/Jobs`下新建一个任务
+- 队列超时自动重试的配置在`config->queue.php->retry_after`中，最好设置成300，否则设置小了即使会成功也可能会超时生成一个失败的任务
 - 失败的job默认会保存在数据库中的`failed_jobs`中
 
 ```php
@@ -1400,6 +1404,8 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 - **`PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /Users/freek/dev/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php`** 出现于5.2版本中，原因是`.env`文件中的配置的值，中间存在空格，如果中间有空格，需要将值用双引号包起来
 
 - **Class env does not exist**: 通常出现在框架还未加载完成就报错，但是在处理错误的时候却使用了`env`这个功能，导致没有打印真实的错误。处理方式，一是不要使用`app()->environment('...')`，而是检查`.env`文件中是否有错误，例如包含空格的值，必须用双引号包围
+
+- **The given data failed to pass validation.** 认证出错却不知道具体错在哪里并且状态码是500，如果有用`Dingo API`，那么注意`Request`不要继承`use Illuminate\Foundation\Http\FormRequest`而应该是`use Dingo\Api\Http\FormRequest`
 
 **相关文章**
 
