@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-10-17 13:48:30
+updated: 2018-11-01 17:48:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -81,6 +81,8 @@ A.T @ A			# @矩阵乘法
 
 #### 字典
 
+- 字典也能用生成式，例如`{a.id: a.value for a in list}`
+
 ```python
 # 字典遍历
 for key in dict:
@@ -151,6 +153,7 @@ dict1.update(dict2)	# 这种方式不会返回新的字典，只会更新原有d
 #### 类/函数
 
 - 定义在`__init__`外的属性相当于静态变量，所有对象公用，`__init__`内部的才是对象私有的
+- 在3以前，类有经典类和新式类(显示继承自object)的区分，区别就是前者是深度优先去搜索方法，后者是广度优先去搜索方法，3以后都是新式类了
 
 ```python
 # 几个特殊的方法
@@ -1228,7 +1231,7 @@ conn.close()	# 关闭连接
   sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
   ```
 
-- 
+- **TypeError: must be type, not classobj**: 在2里面，继承的时候，父类没有继承自object
 
 ## 推荐阅读
 
