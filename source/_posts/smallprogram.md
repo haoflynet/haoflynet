@@ -100,7 +100,8 @@ wx.request({
   url: 'test.php',
   data: {'x': '', y: ''}
   header: { 'content-type': 'application/json'},
-  success (res) { console.log(res.data)}
+  success: function(res) { console.log(res.data)},
+  complete: function() {console.log('无论成功与否都会执行')},
 })
 ```
 

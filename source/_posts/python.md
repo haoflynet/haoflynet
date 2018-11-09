@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-11-01 17:48:30
+updated: 2018-11-08 17:58:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -193,6 +193,7 @@ def get(cls):
 dict = {'a': 1, 'b': 2, 'c': 3}
 func(**t)	# 将字典的value按照key的作为参数名传入函数，注意这里不是依次
 func(*t)	# 将字典的key作为参数依次传入函数
+func(*l)	# 将数组以此传入函数
 
 # attr，python3.7新增特性
 @attr.s

@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-10-11 15:44:30
+updated: 2018-11-07 14:44:30
 categories: system
 ---
 # Linux手册
@@ -112,6 +112,7 @@ find / -mmin -60    # 查找60分钟内修改的文章
 find / -type d -mtime -1 # 查找1天内修改过的文件夹(好吧，我用了rm -rf / 命令才知道的)
 find ./ -ctime -10 # 查找最近10天修改过的文件，atime表示最后一次访问时间，ctime表示最后一次状态修改时间，mtime表示最后一次内容修改时间
 cat /proc/cpuinfo | grep "model name" | wc -l	# 获取服务器核心数
+cat -E filename	# 显示每行末尾的结束字符$，可以用来排查有些配置文件被多输入了字符
 free -h | sed -n '2p' | awk '{print $2}'		# 获取服务器内存大小
 df -h | sed -n '2p' | awk '{print $2}'			# 获取服务器磁盘大小
 sort filename | uniq -c	# 去除文件中重复的行
@@ -361,7 +362,6 @@ root    ALL=(ALL:ALL) ALL      # 在这一行下面写
 username1 ALL=(ALL:ALL) ALL    # 该用户可以执行所有sudo操作
 username2 ALL=NOPASSWD:/usr/bin/git # 该用户可以执行'sudo git'的操作
 
-
 cat /etc/passwd  	# 查看所有用户
 cat /etc/group		# 查看所有用户组
 
@@ -369,6 +369,8 @@ cat /etc/group		# 查看所有用户组
 usermod -a -G groupName userName
 
 # ACL权限分配: 可以给指定的用户指定目录分配指定的权限
+
+su - www -c "php artisan"	# 以指定用户执行命令
 ```
 
 #### 系统相关
