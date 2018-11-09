@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-11-05 14:07:00
+updated: 2018-11-08 13:57:00
 categories: php
 ---
 # Laravel指南
@@ -10,6 +10,7 @@ categories: php
 ### 配置
 
 - `.env`文件中，如果有空格，那么值需要用双引号包围，并且里面如果用`\n`，那么必须转义`\\n`
+- laravel可以根据不同的系统环境自动选择不同的配置文件，例如，如果`APP_ENV=testing`，那么会自动选择读取`.env.testing`中的配置，如果有`.env`则会被覆盖，特别是单元测试和`artisan`命令中
 
 Laravel的主配置文件将经常用到的文件集中到了根目录下的`.env`目录下，这样更高效更安全。其内容如下：
 
@@ -388,7 +389,7 @@ class User extends Model{
   public $timestamps = false;			// 设置该表不需要使用时间戳，updated_at和created_at字段。deleted_at是用use SoftDeletes去控制的
   protected $primaryKey = 'typeid'		// 不以id为主键的时候需要单独设置，需要注意的是laravel以及其他很多orm都不支持复合主键，可能会出现"Segment Fault"
   protected $primaryKey = null;			// 没有主键的情况
-  protected $incrementing	= false;	// 不使用自增主键
+  public $incrementing	= false;	// 不使用自增主键，特别注意有非自增的id列，如果没写这个获取到的id会不一样
   protected $connection = 'second';		// 设置为非默认的那个数据库连接
   protected $fillable = ['id', 'name']; // 设置可直接通过->访问或者直接提交保存的字段
   protected $table = 'my_flights';		// 自定义表明，默认的表明会以model的复数形式，需要注意的是，英语单词复数的变化有所不同，如果取错了表明活着以中文拼音作为表明，有时候就需要明确表的名称了
@@ -1149,7 +1150,8 @@ str_random(25);			# 产生给定长度的随机字符串
 
 ### 错误和日志
 
-`logger`用于直接输出`DEBUG`级别的日志，更好的是使用`use Illuminate\Support\Facades\Log;`，如果`storage/laravel.log`下面找不到日志，那么可能是重定向到`apache`或者`nginx`下面去了
+- 日志模式: `single`表示输出到`storage/log/laravel.log`中，`daily`表示按天输出到`storage/log/`目录下，`syslog`会输出到系统日志中`/var/log/message`，`errorlog`跟PHP的`error_log`函数一样输出到php的错误日志中
+- `logger`用于直接输出`DEBUG`级别的日志，更好的是使用`use Illuminate\Support\Facades\Log;`，如果`storage/laravel.log`下面找不到日志，那么可能是重定向到`apache`或者`nginx`下面去了
 
 ```php
 # 日志的用法
@@ -1403,9 +1405,11 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 
 - **`PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /Users/freek/dev/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php`** 出现于5.2版本中，原因是`.env`文件中的配置的值，中间存在空格，如果中间有空格，需要将值用双引号包起来
 
-- **Class env does not exist**: 通常出现在框架还未加载完成就报错，但是在处理错误的时候却使用了`env`这个功能，导致没有打印真实的错误。处理方式，一是不要使用`app()->environment('...')`，而是检查`.env`文件中是否有错误，例如包含空格的值，必须用双引号包围
+- **Class env does not exist / Class request does not exist**: 通常出现在框架还未加载完成就报错，但是在处理错误的时候却使用了`env()/request()`这个功能，导致没有打印真实的错误。处理方式，一是不要使用`app()->environment('...')`，而是检查`.env`文件中是否有错误，例如包含空格的值，必须用双引号包围。我在自定义`ExceptionHandler`中遇到过几次
 
 - **The given data failed to pass validation.** 认证出错却不知道具体错在哪里并且状态码是500，如果有用`Dingo API`，那么注意`Request`不要继承`use Illuminate\Foundation\Http\FormRequest`而应该是`use Dingo\Api\Http\FormRequest`
+
+- **Call to undefined method setHidden**: 注意command的主逻辑不是`fire`而应该是`handle`
 
 **相关文章**
 

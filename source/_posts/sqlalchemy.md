@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2018-10-19 17:40:00
+updated: 2018-11-08 17:40:00
 categories: python
 ---
 
@@ -212,7 +212,7 @@ query.limit(2).offset(2).all() # limit offset要注意如果page相乘的时候p
 # 筛选
 query.filter(
     User.id==2, 
-   	User.age>10, 
+   	User.age>10, # 大于、小于、等于直接写
     User.deleted_at == None, # IS NULL用None代替
     User.name.in_(['hao', 'fly'])	# IN操作
 ).first().name
