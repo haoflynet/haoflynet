@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-10-19 15:42:00
+updated: 2018-11-09 15:42:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -77,6 +77,7 @@ str.indexOf(substring)	// 查找子字符串出现的位置，-1表示没找到
 string.slice(start, end);	// 字符串分片
 str.split('#')	// 字符串分割，返回分割后的列表
 str.split(/\s+/) // 也可以用正则分割
+str.split('...', n)	// n表示返回数组的最大长度，分割还是会分割成所有，只是返回前n个
 parseInt(数字)  // 将数字取整
 
 btoa(str);	// 字符串转换为base64
