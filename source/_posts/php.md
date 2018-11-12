@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-10-24 17:19:21
+updated: 2018-11-07 14:19:21
 categories: php
 ---
 # PHP
@@ -324,6 +324,7 @@ var_dump($arr['curl']);
 ### 异常处理
 
 - 有时候，我们会发现`catch`不到`Exception`或者`Error`，可能的原因是使用了`set_error_handler`等函数进行了错误的单独捕获，还可以使用`register_shutdown_function`注册程序退出时候的回调函数
+- `error_log`打印日志到php的错误日志中去，配置在`php.ini`中的路径
 
 ```php
 var_dump(debug_backtrace());	# 随时打印当前的调用栈
@@ -340,6 +341,7 @@ try{
 ```shell
 php --ini		# 查看php的配置文件
 php --ri xhprof	# --ri可以显示php当前加载的扩展的信息
+php -r "var_dump('abc');"	# 直接在命令行执行php语句
 ```
 
 ### 帮助函数
@@ -356,6 +358,8 @@ is_float()	# 是否是浮点数
 is_real()	# 是否是实数
 is_numeric	# 是否是数字或者数字字符串
 
+$_ENV	# 获取环境变量
+    
 interface_exists()	# 检查接口是否已经定义
 class_exists()		# 检查类是否已经定义
   

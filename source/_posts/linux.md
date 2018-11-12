@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-11-07 14:44:30
+updated: 2018-11-07 16:14:30
 categories: system
 ---
 # Linux手册
@@ -308,6 +308,7 @@ rpm -qpf *.rpm			# 查询指定rpm包都有哪些依赖
 rpm -qpi *.rpm			# 查询指定rpm包的元信息
 rpm -e 包名			   # 卸载软件包
 rpm -qf 文件名		      # 查询指定文件属于哪个包
+yum --showduplicates list 软件名	# 查询源里面指定软件都有哪些版本并标明当前所使用的版本
 
 # dpkg管理工具
 dpkg -i *.deb # 安装deb包，但是它不会自动解决依赖，安装完成后还要使用apt-get -f install这条命令来安装没有安装好的依赖

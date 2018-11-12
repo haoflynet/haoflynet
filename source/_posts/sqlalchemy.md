@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2018-11-08 17:40:00
+updated: 2018-11-09 15:40:00
 categories: python
 ---
 
@@ -211,6 +211,7 @@ query.limit(2).offset(2).all() # limit offset要注意如果page相乘的时候p
 
 # 筛选
 query.filter(
+    getattr(User, 'icon_id') == 3,	# 通过字段名的字符串形式获取属性
     User.id==2, 
    	User.age>10, # 大于、小于、等于直接写
     User.deleted_at == None, # IS NULL用None代替
@@ -224,6 +225,7 @@ query(func.count('*')).all()
 # 查询列
 session.query(User.name)	# 去除指定列
 session.query(User.id, User.name)
+session.query.with_entities(User.id, User.name)	# 获取指定列
 
 # 拼接
 query2.filter(or_(User.id == 1))	# or操作

@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-11-08 13:57:00
+updated: 2018-11-09 16:07:00
 categories: php
 ---
 # Laravel指南
@@ -1420,3 +1420,5 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 [Laravel请求生命周期](https://laravel-china.org/articles/10642/laravel-request-life-cycle)
 
 [如何少写PHP"烂"代码](https://juejin.im/post/5b4ecffef265da0fa1221f45): 更好的MVC分层实践
+
+[打造 Laravel 优美架构 谈可维护性与弹性设计](https://juejin.im/post/5be4475c518825170559c044)
