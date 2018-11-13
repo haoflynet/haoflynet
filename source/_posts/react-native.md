@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-10-09 14:52:00
+updated: 2018-11-13 14:44:00
 categories: js
 ---
 
@@ -29,7 +29,7 @@ react-native init testProject	# 新建项目目录，并初始化项目
 react-native init testProject --version 0.1.2	# 创建指定版本的项目
 cd testProject
 react-native run-ios	# 第一次启动会很慢。等模拟器运行起来后可以直接Cmd+R刷新应用，Cmd+D打开调试菜单
-react-native run-android
+react-native run-android	# 安卓开发最好安装上android studio，这不仅会帮你安装java、jdk，而且还能直接管理安卓模拟器，把android studio配置好了以后，android的开发环境也好了
 
 npm install --save react-native@X.Y	# 直接指定版本号的更新升级，手动升级更爽。我不喜欢用react-native-git-upgrade来升级，需要注意的是，升级以后一定要顺便升级一下命令行工具react-native-cli，否则会可能会出现不预期的错误
 ```
@@ -395,16 +395,53 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 ## TroubleShooting
 
 - **":CFBundleIdentifier" Does Not Exist**: 可能是因为你的代码依赖的是老的`react native`或者`node`版本或者`xcode`版本，可以执行以下命令升级依赖:`react nativeupgrade `
+
 - **undefined is not an object evaluating React.PropTypes.string**: 仍然是版本的问题，新版的已经将`React.PropTypes`移到单独的库了([prop-types](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html))。需要注意的是`React.PropTypes.func`更改成了`PropTypes.function`了，其他的名字没有改，只是位置变了。
+
+- **undefined is not an object(evalauating 'WeChat.registerApp')**: 引入`react-native-wechat`之后[手动去link](https://github.com/yorkie/react-native-wechat/blob/master/docs/build-setup-ios.md)
+
 - **No bundle url present**: 启动的时候报错，有以下几种解决方案:
 
   - 全部关了以后，看看8081端口是否被占用，然后重新`react-native run-ios`
   - 上面方法多次尝试不行以后直接删除`node_modules`目录，重新安装依赖
+
 - **isMounted(...) is deprecated warning**: [目前来看](https://github.com/react-navigation/react-navigation/issues/3956)，并没有什么解决方案。
+
 - **闪退**: 有如下几种情况
+
   - 没有给API添加对应的权限，具体权限列表可以参见: [Swift开发MacOS应用](https://haofly.net/swift-macos)
+
 - **_this._registerevents is not a function**: 升级的时候没有顺便升级`react-native-cli`
+
 - **cross-env: command not found**: `npm install cross-env`
+
+- **unable to load script from assets index.android.bundle**: 这样做能够解决(来自于Stackoverflow):
+
+  ```shell
+  mkdir android/app/src/main/assets
+  react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+  react-native run-android
+  
+  # 可以将上面的命令放到package.json的scripts中去，这样以后直接npm run android-linux即可
+  "android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
+  ```
+
+- **`SDK location not found. Define location with sdk.dir in the local.properties file or with an ANDROID_HOME environment variable.`**原因是没有定义android sdk的位置，首先下载android sdk或者安装android studio(会自动下载sdk)，最后将地址写在`local.properties`文件或者直接设置为环境变量`ANDROID_HOME`
+
+- **com.android.builder.testing.api.DeviceException: No connected devices! **得去android studio把安卓模拟器打开
+
+- **`react-native run-android`命令提示`Android project not found. Maybe run react-native android first`，但是执行`react-native android`却说命令没找到**: 首先看当前目录有没有`android`文件夹，如果没有，那么使用`react-native eject`命令生成，如果有，那么就用`android studio`来运行一次，看看是不是有哪些基础环境没有安装
+
+- **`Print: Entry, ":CFBundleIdentifier", Does Not Exist`** [解决方法如下](https://stackoverflow.com/questions/37461703/print-entry-cfbundleidentifier-does-not-exist)
+
+  ```shell
+  # 首先关闭XCode
+  cd node_modules/react-native/third-party/glog-{X}.{X}.{X}/
+  ./configure
+  # 然后重新打开xcdoe即可
+  ```
+
+- 
 
 ##### 扩展阅读
 

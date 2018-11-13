@@ -1,7 +1,7 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2018-06-13 13:37:00
+updated: 2018-11-13 14:37:00
 categories: system
 ---
 本文搜集了一些自己经常用到的Android方面的奇淫技巧：
@@ -14,10 +14,11 @@ categories: system
     Log.w(String tag, String msg); //warn告警日志，颜色为橙色
     Log.e(String tag, String msg); //error错误日志，颜色肯定为红色
 
-*   Toast提示框：
+* Toast提示框：
 
-            import android.widget.Toast;
-        Toast.makeText(this,"显示内容", Toast.LENGTH_SHORT).show();
+           import android.widget.Toast;
+
+       Toast.makeText(this,"显示内容", Toast.LENGTH_SHORT).show();
 
     * 获取系统时间
 
@@ -46,10 +47,10 @@ categories: system
 
           开机自启动
       <activity>
-          <intent-filter>
-              <action android:name="android.intent.action.BOOT_COMPLETED"/>
-              <category android:name="android.intent.category.HOME" />
-          </intent-filter>
+      ​    <intent-filter>
+      ​        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+      ​        <category android:name="android.intent.category.HOME" />
+      ​    </intent-filter>
       </activity>
       权限
       <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
@@ -147,6 +148,7 @@ public class SampleActivity extends Activity {
 *  Instances of static inner classes do not hold an implicit
 *  reference to their outer class.
      */
+
     private static class MyHandler extends Handler {
       private final WeakReference<SampleActivity> mActivity;
     
@@ -190,7 +192,7 @@ public class SampleActivity extends Activity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+​    super.onCreate(savedInstanceState);
 
     // Post a message and delay its execution for 10 minutes.
     mHandler.postDelayed(sRunnable, 60 * 10 * 1000);
@@ -221,22 +223,22 @@ import android.util.Log;
 
     @Override
     public IBinder onBind(Intent intent){
-        return binder;
+    ​    return binder;
     }
 
     @Override
     public void onCreate(){
-        Log.v("haofly", "create");
-        int a = 1000;
-        while(a > 0){
-            Log.v("haofly", "success");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            a = a-1;
-        }
+    ​    Log.v("haofly", "create");
+    ​    int a = 1000;
+    ​    while(a > 0){
+    ​        Log.v("haofly", "success");
+    ​        try {
+    ​            Thread.sleep(1000);
+    ​        } catch (InterruptedException e) {
+    ​            e.printStackTrace();
+    ​        }
+    ​        a = a-1;
+    ​    }
     }
 
 
@@ -254,6 +256,13 @@ import android.util.Log;
 }
 
 
+
+## TroubleShooting
+
+- **构建成功，但是运行按钮仍然是灰色**: 没有项目的运行配置`Run->edit configurations`中选择配置module
+- **configurations中没有module可以配置**: 选择`File->Sync Project with Gradle Fiels`，然后重新构建，选择
+- **gradle build running一直卡住**: 网上有很多的原因，但是我的原因是代理设置错误(我并不知道什么时候设置过代理了)，在mac上，`vim ~/.gradle/gradle.properties`修改代理配置即可
+- **org.gradle.api.UncheckedIOException: Failed to capture snapshot of input**: 在`Settings->Build, Execution, Deployment->Gradle->Android Studio`勾选`Enable embedded Maven repository`
 
 ##### 扩展阅读
 
