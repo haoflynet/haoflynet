@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-11-07 16:14:30
+updated: 2018-11-14 11:14:30
 categories: system
 ---
 # Linux手册
@@ -806,24 +806,28 @@ date +"%T"	# 仅显示时间，比如10:44:00
 
 - **Linux网卡设置**  
 
-      # ifconfig
-      enp2s0    Link encap:以太网  硬件地址 fc:aa:14:4e:ed:18    
-                inet 地址:192.168.1.41  广播:192.168.1.255  掩码:255.255.255.0  
-                inet6 地址: fe80::feaa:14ff:fe4e:ed18/64 Scope:Link  
-                UP BROADCAST RUNNING MULTICAST  MTU:1500  跃点数:1  
-                接收数据包:182927 错误:0 丢弃:0 过载:0 帧数:0  
-                发送数据包:89825 错误:0 丢弃:0 过载:0 载波:0  
-                碰撞:0 发送队列长度:1000   
-                接收字节:203392327 (203.3 MB)  发送字节:7662359 (7.6 MB)  
-      
-      lo        Link encap:本地环回    
-                inet 地址:127.0.0.1  掩码:255.0.0.0  
-                inet6 地址: ::1/128 Scope:Host  
-                UP LOOPBACK RUNNING  MTU:65536  跃点数:1  
-                接收数据包:7423 错误:0 丢弃:0 过载:0 帧数:0  
-                发送数据包:7423 错误:0 丢弃:0 过载:0 载波:0  
-                碰撞:0 发送队列长度:0   
-                接收字节:628267 (628.2 KB)  发送字节:628267 (628.2 KB)  
+  - 有些系统使用`ip`命令来代替`ifconfig`
+
+  ```shell
+  # ifconfig或者ip addr show
+  enp2s0    Link encap:以太网  硬件地址 fc:aa:14:4e:ed:18    
+            inet 地址:192.168.1.41  广播:192.168.1.255  掩码:255.255.255.0  
+            inet6 地址: fe80::feaa:14ff:fe4e:ed18/64 Scope:Link  
+            UP BROADCAST RUNNING MULTICAST  MTU:1500  跃点数:1  
+            接收数据包:182927 错误:0 丢弃:0 过载:0 帧数:0  
+            发送数据包:89825 错误:0 丢弃:0 过载:0 载波:0  
+            碰撞:0 发送队列长度:1000   
+            接收字节:203392327 (203.3 MB)  发送字节:7662359 (7.6 MB)  
+  
+  lo        Link encap:本地环回    
+            inet 地址:127.0.0.1  掩码:255.0.0.0  
+            inet6 地址: ::1/128 Scope:Host  
+            UP LOOPBACK RUNNING  MTU:65536  跃点数:1  
+            接收数据包:7423 错误:0 丢弃:0 过载:0 帧数:0  
+            发送数据包:7423 错误:0 丢弃:0 过载:0 载波:0  
+            碰撞:0 发送队列长度:0   
+            接收字节:628267 (628.2 KB)  发送字节:628267 (628.2 KB)  
+  ```
 
   一般lo表示本地还回，eth0表示以太网卡，wlan0表示无线网，但是有时候非常奇葩，比如我这里这台服务器的以太网卡叫enp2s0，我树莓派上的网卡叫什么`wl0`
   静态网络设置:
@@ -850,7 +854,7 @@ date +"%T"	# 仅显示时间，比如10:44:00
   iface wlan0 inet dhcp
   wpa-ssid WIFI名称
   wpa-psk WIFI密码  
-
+  
   # 重启网卡  
   sudo ifdown wlan0 && sudo ifup wlan0
   ```

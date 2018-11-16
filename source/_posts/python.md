@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-11-13 14:58:30
+updated: 2018-11-14 11:08:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -1141,7 +1141,7 @@ timeit.Timer('sum(x)', 'x = (i for i in range(1000)').timeit() # 参数
   ```
 
 
-## PIP版本管理
+## PIP版本管理/包管理
 
 `pip`可以使用`==、>=、<=、>、<`几个符号来指定需要安装的依赖版本，并且可以同时使用多个，例如`Django>1.0,<2.0`则安装的是她们之间的最接近的指定版本的版本，如果想要直接用最新的，那么不用符号，直接写名字就好了。常用命令:
 
@@ -1150,6 +1150,29 @@ pip install Django --upgrade 	# 更新指定package
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U	# 升级所有的包
 pip install --pre sqlalchemy	# 安装prelease版本
 sudo pip3 install scrapy -i https://pypi.douban.com/simple  # 使用豆瓣的PIP源，例如
+```
+
+### pipenv
+
+最新的包管理工具，使用`pip install pipenv`直接安装。其配置文件
+
+```shell
+[[source]]		# 源地址
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]		# 运行锁依赖的包
+sqlalchemy = "*"
+mysqlclient = "*"
+sanic-graphql = "*"
+graphene = "*"
+graphene-sqlalchemy = "*"
+
+[dev-packages]	# 开发所依赖的包
+
+[requires]		# 需要的python版本，把本模块删除表示不限制python版本
+python_version = "3.7"
 ```
 
 ## 语言本身
@@ -1234,6 +1257,15 @@ conn.close()	# 关闭连接
   ```
 
 - **TypeError: must be type, not classobj**: 在2里面，继承的时候，父类没有继承自object
+
+- **`Click will abort further execution because Python 3 was
+    configured to use ASCII as encoding for the environment.`**: 错误原理见[click](https://click.palletsprojects.com/en/7.x/python3/)，设置一下系统的语言就好了:
+
+    ```shell
+    # 先通过locale -a看当前系统有哪些语言，然后填入正确的语言即可， 例如
+    export LC_ALL=en_US.utf8
+    export ALL=en_US.utf8
+    ```
 
 ## 推荐阅读
 

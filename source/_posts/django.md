@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-10-16 10:36:00
+updated: 2018-11-15 17:36:00
 categories: python
 ---
 # Django教程
@@ -438,7 +438,7 @@ comments = post.comments_set.all()  # 获取该文章的所有评论，是一个
 ```python
 class User(models.Model):
 	username = models.CharField(max_length = 20)
-	goods = models.ManyToManyField('物品', 'Goods', through='user_goods')
+	goods = models.ManyToManyField(to='Goods', through='user_goods')
 
 class Goods(models.Model):
 	goodsname = models.CharField(max_length = 20)
@@ -447,6 +447,10 @@ class user_goods(models.Model):
 	user = models.ForeignKey(User)
 	goods = models.ForeignKey(Goods)
 	clicks = models.IntegerField('点击量', default=0)
+    
+user = User(id=1)
+user.goods.all()	# 获取所有的东西
+user.goods.filter(user_goods__clicks=123).all()	# 筛选表/筛选中间表的时候，使用类名的全小写加双下划线再加字段名即可
 ```
 
 #### OneToOneField
