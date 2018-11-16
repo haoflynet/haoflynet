@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2018-09-04 15:35:00
+updated: 2018-11-14 14:35:00
 categories: tools
 ---
 需要注意的是在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -99,7 +99,7 @@ EXPOSE: 暴露什么端口给主机,需要注意的是,即使指定了,也得在
 WORKDIR: 切换工作目录,这样下面的CMD等就可以在新的目录执行
 CMD: 一般写于最后,因为它是容器启动时才执行的命令,并且无论写多少,都只执行最后那一条,一般用于容器中镜像的启动,例如`CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]`,当然,也可不加括号和引号,直接用shell的方式写一条命令.但是如果docker run 中指定了命令过后,CMD将不被执行
 ENTRYPOINT: 和CMD类似,但是如果docker run中指定了命令,它仍然会被执行
-ENV: 指定环境变量
+ENV: 指定环境变量，在dockerfile里面使用export是没用的
 ARG: 指定参数，比如ockerfile里面定义了`ARG JAVA_HOME`，那么可以在构建的时候用docker build JAVA_HOME=$JAVA_HOME对该参数进行赋值
 ONBUILD: 后面跟的是其他的普通指令，例如ONBUILDI RUN mkdir test，实际上它是创建了一个模版景象，后续根据该景象创建的子镜像不用重复写它后面的指令，就会执行该指令了
 ```
@@ -298,6 +298,6 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
     " > /etc/conf
     ```
 
-- 
+- **容器内部无网络**: 首先可以使用`--net=host`使用主机的网络来检查是否是容器内部的网络问题，如果使用该参数依然无法访问网络，那么使用`ping`直接`ping`IP地址，如果IP通但是域名不通，那就是dns的问题，去查看一下容器的dns配置，一般目录是在`/etc/resolv.conf`
 
 

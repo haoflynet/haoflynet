@@ -288,6 +288,35 @@ session.rollback()	# 回滚
 session.commit()	# 提交
 ```
 
+## Event事件
+
+### Attribute Events属性相关事件
+
+```python
+append/bulk_replace/dispose_collection/init_collection/init_scalar/modified/remove/set
+```
+
+###Mapper Events
+
+```python
+after_configuree/after_delete/after_insert/after_update/before_configured/before_delete/ 
+before_insert/before_update/instrument_class/mapper_configured
+```
+
+### Instance Events
+
+```python
+expire/first_init/init/init_failure/load/pickle/refresh/refresh_flush/unpickle
+```
+
+### Session Events
+
+```python
+after_attach/after_begin/after_bulk_delete/after_bulk_update/after_commit/after_flush/after_flush_postexec/after_rollback/after_soft_rollback/after_transaction_create/after_transaction_end/before_attach/before_commit/before_flush/deleted_to_detached/deleted_to_persistent/detached_to_persistent/loaded_as_persistent/pending_to_persistent/pending_to_transient/persistent_to_deleted/persistent_to_detached/persistent_to_transient/transient_to_pending
+```
+
+
+
 ## TroubleShooting
 
 - **Tornado中使用SQLAlchemy连接SQLite进行commit操作的时候程序中断: Segment Fault**: 原因是`SQLite`的自增主键`id`重复了😂
