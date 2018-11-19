@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-09-26 09:34:00
+updated: 2018-11-19 14:34:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -116,6 +116,7 @@ http{
           alias /var/www/blog;	# 别名设置。如果有alias值，那么不管location的路径是怎样的，真实的资源路径都是别名所指定的路径
 		}
 		
+        # 需要注意的是，nginx代理静态文件的时候，首先需要nginx运行用户对文件有读权限，并且需要文件所在福目录的可执行权限，否则可能出现访问静态资源403的问题
 		location /static {    # 静态文件由nginx自己处理。如果整个域名全静态代理，可以直接写在location外的root
 			root /var/www/haofly;
 		} 
