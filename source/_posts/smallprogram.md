@@ -1,7 +1,7 @@
 ---
 title: "微信小程序开发手册"
 date: 2018-10-17 13:15:00
-updated: 2018-11-05 14:10:00
+updated: 2018-11-19 14:10:00
 categories: javascript
 ---
 
@@ -44,6 +44,8 @@ categories: javascript
   wx.navigateBack({})
   ```
 
+- wx.reload(options): 直接刷新当前页面
+
 #### 事件
 
 - 常用事件有tap(点击)、longtap(长按)
@@ -78,6 +80,12 @@ categories: javascript
 #### map
 
 - 最好整个小程序只维护一个`map`组件，不然可能会崩溃，性能很重要
+
+#### text
+
+#### textarea
+
+多行输入框
 
 ### [API文档](https://mp.weixin.qq.com/debug/wxadoc/dev/api/)
 

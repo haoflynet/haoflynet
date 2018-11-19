@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-11-15 17:36:00
+updated: 2018-11-19 14:26:00
 categories: python
 ---
 # Django教程
@@ -196,8 +196,9 @@ Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系
 ### 数据表定义
 
 - 除了自带的`admin`和第三方的扩展app，尽量不要使用`migrate`，有时候并不支持特定数据库类型，包括其他框架，都不要用`migrate`，写不好写，维护也不好维护
-
 - Django需要每张表都得有一个`primary_key=True`，如果没有指定，那么会默认假设你的表里面有一个`id`列，并且是`primary_key`
+- `ForeignKey`等外键的定义是可以使用model名称字符串的，而不用引入，因为引入经常会因为交叉引入而报错
+- 自定义的`manager`封装的是一些动态方法，并不是静态方法，是作用于`objects`上面的
 
 定义model的文件是`project/app/models.py`里面，例如，要定义一张用户表：
 
@@ -370,6 +371,8 @@ Blog.objects.get( Q(name__startswith='wang'), Q(name__startswith='hao')) # 逗�
 ```python
 post = Blog(userName="wanghao", userId=12)
 post.save()
+# create方法可以一行搞定
+post = Blog.objects.create(userName="aaa")
 
 # 批量插入/新增
 posts = []
@@ -436,6 +439,7 @@ comments = post.comments_set.all()  # 获取该文章的所有评论，是一个
 多对多关系，有一种特殊情况，如果需要对这种关系添加额外的字段，可以使用through，添加额外的表来表示，例如，用户一张表，被使用的物品一张表，用户与物品是多对多的关系，但是有时候我们需要记录下用户使用该物品的一些其他属性，比如使用了多少次什么的，这时候就需要给这个多对多关系添加额外的字段来表示，那就需要添加额外的表了，示例如下：
 
 ```python
+# 有中间表的情况
 class User(models.Model):
 	username = models.CharField(max_length = 20)
 	goods = models.ManyToManyField(to='Goods', through='user_goods')
@@ -449,8 +453,9 @@ class user_goods(models.Model):
 	clicks = models.IntegerField('点击量', default=0)
     
 user = User(id=1)
-user.goods.all()	# 获取所有的东西
+user.goods.all()	# 获取所有的多对多东西
 user.goods.filter(user_goods__clicks=123).all()	# 筛选表/筛选中间表的时候，使用类名的全小写加双下划线再加字段名即可
+user_goods.objects.create(user=User.objects.create(), goods=Goods.objects.create(), clicks=2)	# 有中间表的情况只能每张表里面的记录单独创建，并且同样不能使用remove方法进行删除，也只能单独删除，或者用clear批量清空
 ```
 
 #### OneToOneField
