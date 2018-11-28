@@ -1,7 +1,7 @@
 ---
 title: "Apache手册"
 date: 2013-09-17 08:52:39
-updated: 2018-05-22 18:16:00
+updated: 2018-11-21 17:36:00
 categories: server
 ---
 ## Apache安装与配置
@@ -109,9 +109,6 @@ NamevirtualHost *:80		# 如果不加这一行，那么只有第一个会起作�
    ln -s /var/www/html/zentaopms/www/ /var/www/html/zentao
   ```
 
-  ​
+- **You don't have permission to access /index on this server. Server unable to read htaccess file, denying access to be safe**: 一般原因是apache没有网站目录权限，修改`/var/www/html`文件夹及子文件的权限即可
 
-
-
-
-
+- **The requested URL /index/login was not found on this server**: 一般是`.htaccess`文件没找到或者`apache`没有开启`rewrite`模式，后者可以使用`a2enmod rewrite`命令进行开启

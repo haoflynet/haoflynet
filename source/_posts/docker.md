@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2018-11-14 14:35:00
+updated: 2018-11-21 14:35:00
 categories: tools
 ---
 需要注意的是在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -205,6 +205,9 @@ apt del python			# 删除软件
 ### MySQL/Mariadb容器
 	docker run --name some-mariadb -v /Users/haofly/workspace/share:/share --net host -e MYSQL_ROOT_PASSWORD=mysql -d mariadb:tag	# 开启一个mysql容器，可通过exec bash进入容器内
 ### PHP容器
+
+- 如果网络有问题，那么可以在`https://github.com/richarvey/nginx-php-fpm`项目中的Dockerfile手动创建镜像
+
 ```shell
 docker run --name php-apache -v /Users/haofly/workspace/share/yangqing:/var/www/html -p 80:80 --link some-mysql:mysql -d b664eb500b48 # 这是php-apache，并且连接mysql容器,如果要安装mysql扩展需要在Dockerfile里面去安装
 ```
