@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-11-16 10:54:30
+updated: 2018-11-26 18:24:30
 categories: system
 ---
 # Linux手册
@@ -182,13 +182,14 @@ ls | while read line; do xargs zip $line.zip $line;done
 #### 文件操作
 
 ```shell
-# 压缩
+# 压缩，7zip需要安装工具yum install p7zip
 tar -czvf 结果.tar.gz 目标/    # 打包并使用gzip压缩
 tar -cjvf 结果.tar.bz2 目标/   # 打包并使用bzip2压缩
 zip *.zip file          # 压缩file为zip格式
 zip -r *.zip file dir   # 压缩文件或目录一起为zip格式
 zip -e 结果.zip 目标     # 压缩并加密(OSX可用)
 zip -P 密码 结果.zip 目标	# 压缩并加密，直接把密码写在命令行
+7z x 目标.7z			# 解压.7z文件
 
 # 压缩格式对比
 # 压缩比率: tar.bz2=tar.bz>tgz>tar
@@ -640,6 +641,7 @@ tmux a 恢复至上一次的会话
 tmux nes -s test 新建名称为test的会话
 tmux ls  列出所有的tmux会话
 tmux a -t test 恢复名称为test的会话
+tmux rename -t 1 test	# 修改窗口1的会话名称
 tmux kill-session -t test 删除名为test的会话
 tmux kill-server 删除所有会话
 ```
@@ -647,6 +649,19 @@ tmux kill-server 删除所有会话
 #### samba
 
 ```shell
+# 安装与配置
+sudo apt-get update && sudo apt-get install samba
+vim /etc/samba/smb.conf	# 修改配置文件，添加如下内容，其中smbashare是远程用户需要输入的路径，path是实际的目录路径
+[sambashare]
+    comment = Samba on Ubuntu
+    path = /home/username/sambashare
+    read only = no
+    browsable = yes
+sudo service smbd restart	# 重启smdb
+sudo smbpasswd -a username	# 添加一个用户，之后就可以用这个用户登录了
+
+
+
 smbclient //host/path	# 进入共享文件夹中
 > get filename	# 下载文件，无法递归下载
 > ls		# 列出文件
@@ -960,6 +975,8 @@ date +"%T"	# 仅显示时间，比如10:44:00
 
 - **`add-apt-repository: command not found`**，需要安装基本的工具`apt-get install software-properties-common`
 
+- **`aptitude: command not found`**: `sudo apt-get install aptitude`
+
 - **`sudo`命令出现`sudoers`错误，错误详情如下**。这种情况，只能进单用户模式去修改了。
 
   ```shell
@@ -990,7 +1007,7 @@ date +"%T"	# 仅显示时间，比如10:44:00
   Acquire::ForceIPv4 "true";
   ```
 
--  **升级时出现大量`下列软件包的版本将保持不变`**: 执行`sudo apt-get dist-upgrade`，该命令会强制更新
+- **升级时出现大量`下列软件包的版本将保持不变`**: 执行`sudo apt-get dist-upgrade`，该命令会强制更新
 
 - **`E: Invalid message from method gpgv: NO_PUBKEY 04EE7237B7D453EC`**，可以采用以下方式进行恢复
 
@@ -1020,4 +1037,5 @@ date +"%T"	# 仅显示时间，比如10:44:00
   sudo apt-get update
   sudo apt-get install -f 
   ```
+
 - `root`用户可以直接执行，`sudo`却提示命令没找到`command not found`，这是因为使用`sudo`执行的时候，环境变量会默认设置为`/etc/sudoers`文件中`secure_path`所指定的值

@@ -1,12 +1,12 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-11-19 14:26:00
+updated: 2018-11-26 17:26:00
 categories: python
 ---
 # Django教程
 
-[Django常用项目结构](https://github.com/haoflynet/project-structure/blob/master/Django/README.md)
+[Django常用项目结构](https://github.com/haoflynet/project-structure/blob/master/Django/README.md)以及[cookiecutter-django](https://github.com/pydanny/cookiecutter-django)
 
 Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Python的Web框架。在Django和Tornado之间我选择了前者，没有特别的原因，网上人云亦云的，肯定不会有一方离另一方差很远，我就直接去看了看Github上两个项目的活跃度，所以选择了前者。
 
@@ -1251,5 +1251,9 @@ Django下的定时任务插件，我以前用的是`django-crontab`，但是现�
 - 
 
    
+
+##### 扩展阅读
+
+- [Sasha's Pony Checkup](https://www.ponycheckup.com): 简单的Django网站安全检测
 
 
