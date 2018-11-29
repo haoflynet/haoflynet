@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2018-08-31 10:48:00
+updated: 2018-11-21 17:48:00
 categories: python
 ---
 ## 编码问题
@@ -16,8 +16,9 @@ categories: python
 
   ```python
   from urllib import parse
-  parse.quote(str)
+  parse.quote(str)	# urlencode
   parse.quote_plus(str)
+  parse.unquote(str)	# urldecode
   ```
 
 - **bytes to string**

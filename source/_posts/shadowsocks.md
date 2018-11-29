@@ -1,7 +1,7 @@
 ---
 title: "ShadowSocks 教程"
 date: 2015-10-06 11:02:30
-updated: 2018-07-09 14:45:00
+updated: 2018-11-26 18:28:00
 categories: tools
 ---
 ## 服务器
@@ -59,6 +59,7 @@ ssserver -p 443 -k password -m aes-256-gcm --log-file /var/log/ssserver -d start
 ```
 
 ## 客户端
+
 1. 安装必要的软件
 
    ```shell
@@ -89,12 +90,18 @@ ssserver -p 443 -k password -m aes-256-gcm --log-file /var/log/ssserver -d start
 
 ## Socks5代理转换为HTTP代理
 
+- 需要注意的是，export的时候应该是小写`http_proxy`，大写在某些系统里面不起作用
+
 使用的软件叫做`privoxy`
 
 ```shell
 sudo apt-get install privoxy
-# sudo vim /etc/privoxy/config，将ss代理的配置设置进去
+# sudo vim /etc/privoxy/config，将ss代理的配置设置进去，另外可以在该配置文件里面修改日志级别，可以打印更详细的日志
 forward-socks5 / 127.0.0.1:1086 .
 # 然后重启，sudo /etc/init.d/privoxy restart即可
-export HTTP_RPOXY=127.0.0.1:8118	# 默认代理端口是8118
+export http_proxy=127.0.0.1:8118	# 默认代理端口是8118
 ```
+
+## TroubleShooting
+
+- **chacha20-ietf-poly1305不支持**: 如果是https://github.com/shadowsocks/shadowsocks，那么升级到最新版本`pip3 install https://github.com/shadowsocks/shadowsocks/archive/master.zip -U`
