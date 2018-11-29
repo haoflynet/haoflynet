@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-11-14 11:08:30
+updated: 2018-11-28 15:18:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -237,6 +237,8 @@ class MyList(list, metaclass=ListMetaclass):	# 指定该类在创建的时候用
 ```python
 # 类型检查
 def func(a: int) -> int	# 这表示该函数的参数a要求是整型，返回值是整型号
+def func(a: int=None) # 参数赋予默认值
+def func(a: int=None) -> typing.Optional[int]	# 返回int或者None
 
 # 在运行时强制检查类型
 @enforce.runtime_validation
@@ -614,6 +616,13 @@ sys.stdout = fp
 __new__		# 用来创建类并返回这个类的实例，在构造函数之前执行，可以决定是否用__init__方法来实例化类，是一个静态方法，创建实例的时候一定会调用。可以用它来作为创建单例的一种途径
 __init__	# 用传入的参数来初始化一个实例，在创建实例的时候不一定会调用，比如反序列化的时候就不会执行
 __del__		# 类的析构函数，对象在内存中被清理时执行，即使对象在执行中报错也依然会执行
+
+# 使用__new__创建单例，只需要给类添加如下方法即可
+def __new__(cls, *args, **kwargs):
+    if cls._singleton is None:
+        cls._singleton = object.__new__(cls)
+
+        return cls._singleton
 ```
 
 ### 属性
@@ -908,7 +917,7 @@ print(dll.__dict)
 #### functools
 
 ```python
-# 偏函数partial: 用于固定函数中的某几个参数形成新的函数
+# 偏函数partial: 用于固定函数中的某几个参数形成新的函数，在传入匿名的回调函数的时候非常有用
 import functools
 
 def add(a, b):

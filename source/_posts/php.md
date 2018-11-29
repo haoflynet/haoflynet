@@ -1,12 +1,13 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-11-07 14:19:21
+updated: 2018-11-26 18:59:21
 categories: php
 ---
 # PHP
 
 - 貌似基本上的语言都不会像PHP这样，每次一个HTTP请求过来都去重启初始化全部资源(重启整个框架)，要解决这个问题，`swoole`是目前最可行的解决方案
+- PHP还有一种输出内容模式是直接echo或者直接重定向，在return之前就返回，有些古老的框架是这样的，需要特别注意
 
 ## 基本语法
 
@@ -307,17 +308,21 @@ var_dump($arr['curl']);
 
 ### WEB程序
 
-	$_SERVER['REQUEST_METHOD']	# 返回数据提交的方式，GET、POST等
-	$_SERVER["SERVER_PORT"] 	# 获取端口
-	$_SERVER['HTTP_HOST']		# 获取域名或主机地址
-	$_SERVER['SERVER_NAME']		# 获取域名或主机名
-	$_SERVER["REQUEST_URI"]		# 获取域名后的详细地址
-	$_SERVER['PHP_SELF']		# 获取PHP文件名
-	$_SERVER["QUERY_STRING"]	# 获取网址后的参数
-	$_SERVER['HTTP_REFERER']	# 获取来源url
-	parse_str(file_get_contents("php://input"),$post_vars); # 获取PUT数据
-	getallheaders		# 获取请求头
-	error_log('message')	# 把错误信息发送到web服务器的错误日志，或者到一个文件里，有长度限制
+```php
+$_SERVER['REQUEST_METHOD']	# 返回数据提交的方式，GET、POST等
+$_SERVER["SERVER_PORT"] 	# 获取端口
+$_SERVER['HTTP_HOST']		# 获取域名或主机地址
+$_SERVER['SERVER_NAME']		# 获取域名或主机名
+$_SERVER["REQUEST_URI"]		# 获取域名后的详细地址
+$_SERVER['PHP_SELF']		# 获取PHP文件名
+$_SERVER["QUERY_STRING"]	# 获取网址后的参数
+$_SERVER['HTTP_REFERER']	# 获取来源url
+parse_str(file_get_contents("php://input"),$post_vars); # 获取PUT数据
+getallheaders		# 获取请求头
+error_log('message')	# 把错误信息发送到web服务器的错误日志，或者到一个文件里，有长度限制
+
+ob_start()		# 打开输入输出缓冲，打开后，脚本会将输出缓冲起来直到ob_flush()
+```
 ### MySQL
 	mysql_errno():	# 打印SQL出错信息
 
@@ -531,3 +536,11 @@ while ($it->valid())
 - **Cannot find autoconf. Please check your autoconf installation and the $PHP_AUTOCONF environment variable. Then, rerun this script.** `yum install autoconf`
 
 - **fatal error: pcre.h: No such file or directory**: `yum install pcre-devel/sudo apt-get install libpcre3-dev`
+
+- **PDOException "could not find driver"**: 安装`php-mysql/php5-mysql/php7-mysql`扩展
+
+
+
+##### 扩展阅读
+
+- [DuckChat](https://github.com/duckchat/gaga): 一款独立部署的聊天系统
