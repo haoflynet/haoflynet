@@ -1,6 +1,7 @@
 ---
 title: "ADB: Android调试工具与自动化操作工具"
 date: 2018-03-12 21:32:00
+updated: 2018-12-12 17:29:00
 categories: android
 ---
 
@@ -27,6 +28,13 @@ adb uninstall 软件包	# 卸载软件包
 adb shell	# 登录设备的shell
 adb push 本地路径 远程路径	# 将电脑上的文件复制到设备
 adb pull 远程路径 本地路径	# 将设备上的文件复制到电脑
+
+# 包管理命令pm，package manager
+pm install -r $path/ES.apk	# 安装指定apk包
+
+# 命令am，activity manager
+am start -n com.estrongs.android.pop/com.estrongs.android.pop.view.FileExplorerActivity
+	# 启动指定activity
 ```
 
 ## 控制安卓设备

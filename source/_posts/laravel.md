@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-11-09 16:07:00
+updated: 2018-12-11 10:57:00
 categories: php
 ---
 # Laravel指南
@@ -625,7 +625,13 @@ User::select('name')->distinct()->get()	# 去重
   
 ## 关联查询(这里的关联查询比较sql化，如果两张表有相同的字段，那么必须在前后的查询中都加上表名才能不发生错误，所以推荐使用has方法)
 User::select('name')->join('posts', 'users.id', '=', 'posts.user_id')->where(...);	# Inner Join语法
-User::select('name')->leftJoin('posts', 'users.id', '=', 'posts.user_id')->where(...);	# Left Join语法
+User::select('name')->leftJoin('posts', 'users.id', '=', 'posts.user_id')->where(...);
+User::select('name')->leftJoin('posts', 'users.id', '=', DB::raw('posts.user_id AND users.type=xxx'))->where(...);	# LEFT JOIN ON ... AND ...语法的简便写法
+User::select('name')->leftJoin('posts', function($join) {
+	$join->on('users.id', '=', 'posts.user_id')
+        ->on('users.type', '=', 'xxx')
+})	# LEFT JOIN ON ... AND ...语法的标准写法
+    
 # has语法，不会与Post的字段相冲突
 $posts = Post::has('comments')->get();	# 获取所有有评论的posts
 $posts = Post::has('comments', '>=', 3)->get();	# 获取评论数量大于3的
