@@ -1,12 +1,14 @@
 ---
-title: "ThinkPHP教程"
+title: "ThinkPHP 手册"
 date: 2016-10-28 00:08:39
-updated: 2016-11-21 14:33:00
+updated: 2018-11-29 10:33:00
 categories: php
 ---
-## ThinkPHP
-
 垃圾框架，用了`Laravel`过后感觉其他的PHP框架都是垃圾。但是由于生活所迫，不得不研究一下ThinkPHP框架了，哎。
+
+## 配置
+
+数据库配置放在`database.php`
 
 ## 帮助函数
 

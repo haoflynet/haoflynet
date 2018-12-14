@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-11-28 15:18:30
+updated: 2018-12-03 17:18:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -304,6 +304,7 @@ class Weekday(Enum):
     Mon = 1
 Weekday['Sun'].value	# 得到value值为0
 [e.value for e in Weekday]	# 获取枚举所有的值
+Weekday(1).name	# 通过枚举value获取name
 ```
 
 ##### NamedTuple类似结构体

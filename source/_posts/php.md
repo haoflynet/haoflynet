@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-11-26 18:59:21
+updated: 2018-12-12 15:57:21
 categories: php
 ---
 # PHP
@@ -415,6 +415,8 @@ composer config repositories.mypkg composer https://ppkg.haofly.net	# 增加源�
 composer config --global disable-tls true
 composer config --global secure-http false
 "package/ppkg": "2.7.*@beta"	# 安装beta版
+
+rm -rf ~/.composer/cache	# 清除缓存
 ```
 
 ### composer事件脚本
