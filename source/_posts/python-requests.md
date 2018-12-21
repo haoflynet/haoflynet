@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2018-08-31 11:48:00
+updated: 2018-12-14 16:58:00
 categories: python
 ---
 # python requests模块
@@ -17,8 +17,9 @@ r = requests
 # POST请求
 r = requests.post(url, data=参数字典)
 
-# json请求
-r = requests.post(url, data=json.dumps(data), headers={'content-type': 'applicationjson')
+# json请求，需要注意的是，如果data不显示设置为json数据，那么服务端收到的是application/x-www-form-urlencoded格式，无论你是否设置header头
+r = requests.post(url, json=data)	# 这样可以直接将字典作为参数
+r = requests.post(url, data=json.dumps(data), headers={'content-type':  'application/json'})
 r = json()	# 获取json响应
                                                        
 r = requests.post(url, verify=False)	# 禁用https的验证                                                    

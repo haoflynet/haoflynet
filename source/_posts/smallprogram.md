@@ -1,7 +1,7 @@
 ---
 title: "微信小程序开发手册"
 date: 2018-10-17 13:15:00
-updated: 2018-12-13 23:05:00
+updated: 2018-12-14 10:25:00
 categories: javascript
 ---
 
@@ -46,6 +46,18 @@ categories: javascript
 #### 框架结构
 
 - 可以将一些全局变量放在`app.js`中，这样全局都是能获取到的
+
+#### 页面生命周期
+
+```javascript
+onShow			// 监听页面显示，如果是第一次，它发生在onLoad之前
+onLoad			// 监听页面加载
+onReady			// 监听页面初次渲染完成
+onHide			// 监听页面隐藏
+onUnload		// 监听页面卸载
+onPullRefresh	// 监听用户下拉动作
+onReachBottom	// 页面上拉触底事件的处理函数
+```
 
 #### 页面跳转
 
@@ -261,6 +273,8 @@ wx.openLocation(OBJECT)	// 使用微信内置的地图查看某个位置
 ##### 扩展阅读
 
 - [健壮高效的小程序登录方案](https://mp.weixin.qq.com/s?__biz=MzU0OTExNzYwNg==&mid=2247484421&idx=1&sn=a40c6ca294de39fe502a8d511994da34&chksm=fbb58fccccc206dae8b559365706a8b60f6ce654b46b0414b1a04c7481502d3838c030450dc3&token=1355569705&lang=zh_CN&rd2werd=1#wechat_redirect)
+- [小程序登录、微信网页授权](https://juejin.im/post/5c125b5f6fb9a049b13e1404): 介绍了微信各个种类帐号的区别
+- [微信小程序跨页面通信解决思路](https://aotu.io/notes/2017/01/19/wxapp-event/index.html)
 
 ##### 推荐UI扩展
 

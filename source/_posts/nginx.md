@@ -27,6 +27,8 @@ enabled=1
 
 <!--more-->
 
+- `fastcgi`和`http`的区别是，前者是一个二进制协议，并且是长连接，http不是长连接。
+
 nginx配置文件地址在`/etc/nginx/nginx.conf`，nginx的配置文件里，最重要的section是http区块，里面包含了全局设置、主机设置(server)、上游服务器设置(upstream)、URL设置
 
 ```nginx
