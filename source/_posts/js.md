@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-11-09 15:42:00
+updated: 2018-12-14 16:22:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -90,6 +90,10 @@ b = decodeURIComponent(uri);	// url解码
 #### 时间处理
 
 `XDate`
+
+```javascript
+Date.parse( new Date());	// 获取时间戳，单位为毫秒
+```
 
 ## DOM操作
 
