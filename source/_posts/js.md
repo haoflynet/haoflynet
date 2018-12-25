@@ -92,7 +92,7 @@ b = decodeURIComponent(uri);	// url解码
 `XDate`
 
 ```javascript
-Date.parse( new Date());	// 获取时间戳，单位为毫秒
+Date.parse(new Date());	// 获取时间戳，单位为毫秒
 ```
 
 ## DOM操作
