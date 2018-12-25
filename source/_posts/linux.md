@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2018-11-26 18:24:30
+updated: 2018-12-24 10:24:30
 categories: system
 ---
 # Linux手册
@@ -74,6 +74,7 @@ echo all processes complete
 # 查看端口占用情况
 netstat -ap | grep 端口号   # 查看某一个端口
 netstat -ntlp
+netstat -tunpl | grep 端口号	# 查看某个端口到底被哪个进程占用
 top -p 进程ID：查看进程的实时情况，包括内存大小，内存占用率、CPU占用率，运行时间
 gtop: 命令行式的活动监视器
 htop: 比top更好看的进程监视，还支持查看进程的每个子进程

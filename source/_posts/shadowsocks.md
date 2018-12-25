@@ -1,7 +1,7 @@
 ---
 title: "ShadowSocks 教程"
 date: 2015-10-06 11:02:30
-updated: 2018-11-26 18:28:00
+updated: 2018-12-24 10:23:00
 categories: tools
 ---
 ## 服务器
@@ -105,3 +105,4 @@ export http_proxy=127.0.0.1:8118	# 默认代理端口是8118
 ## TroubleShooting
 
 - **chacha20-ietf-poly1305不支持**: 如果是https://github.com/shadowsocks/shadowsocks，那么升级到最新版本`pip3 install https://github.com/shadowsocks/shadowsocks/archive/master.zip -U`
+- **shdowsocks OSError: [Errno 99] Cannot assign requested address**: 别把客户端和服务端搞反了

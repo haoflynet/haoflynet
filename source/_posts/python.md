@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-12-03 17:18:30
+updated: 2018-12-21 10:18:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -754,6 +754,32 @@ class test:
 ```
 
 ## 装饰器
+
+```python
+# 普通的函数装饰器
+def new_func(func):
+    def wrapper(*args, **kwargs):
+        print('in wrapper')
+        return func(*args, **kwargs)
+    return wrapper
+
+@new_func
+def test():
+    pass
+        
+# 类装饰器
+class NewClass:
+    def __init__(self, func):
+        self._func = func
+ 	def __call__(self):
+        print('调用')
+        self._func()
+@NewClass
+def test():
+    pass
+```
+
+
 
 #### property(描述符)
 
