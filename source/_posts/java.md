@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2018-06-20 09:55:00
+updated: 2019-01-09 17:18:00
 categories: java
 ---
 
@@ -10,6 +10,13 @@ categories: java
 参考[How To Install Java with Apt-Get on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04)
 
 ### 数据类型
+
+#### Integer/Long
+
+```java
+a.longValue();	// 整型转长整型
+(int) longValue;	// long转换为int
+```
 
 #### String/StringBuffer
 
@@ -34,6 +41,14 @@ a.matches(".*?");					// 验证字符串是否复合正则表达式
 a.replaceAll(String regex, String replacement); // 替换字符串
 a.split(String regex);			// 拆分字符串
 a.trim();						// 移除首尾空白
+Integer.parseInt(str);		// 字符串转整型
+Long.parseLong(str);		// 字符串转Long型
+
+// 判断字符串是否为空
+str == null;
+"".equals(str);
+str.length <= 0;
+str.isEmpty();
 
 // StringBuffer
 StringBuffer c = new StringBuffer('Hello World');
@@ -76,11 +91,57 @@ days = dayNames.elements();
 
 #### 类和对象
 
+```java
+// 一个类可以有多个构造方法
+public class Sample {
+    public Sample() {}	// 不带参数的构造方法
+    public Sample(String param1) {}	// 带参数的构造方法
+}
+```
+
 #### 包
 
 ```java
 import java.io.*;		// 导入java_installation/java/io下的所有类
 ```
+
+### 三方库
+
+#### Jsch SSH连接工具
+
+一个很老很久没有更新的工具，[文档example比较全](https://www.programcreek.com/java-api-examples/?class=com.jcraft.jsch.ChannelExec&method=connect)，但是只有这个工具用户量大一点，其他的用户量太少不敢用(Apache sshd则是因为文档太少，官方文档是针对它的server端)。执行`shell`命令的时候建议使用`ChannelExec`而不是`ChannelShell`(因为后者的输出流里面类似于一个终端，会包含一些没用的命令提示符).
+
+```java
+Jsch jSch = new JSch();
+jSch.addIdentity("name", prvKeyStr.getBytes, pubKeyStr.getBytes, keyPass.getBytes);	// 加载私钥公钥和私钥密码
+Session session = jSch.getSession(username, ip, port);	// 新建session
+session.setConfig("StrictHostKeyChecking", "no");	// 不进行静态host-key校验
+session.connect();	// 连接
+
+// 执行命令并获取返回结果
+ChannelExec channelExec = (ChannelExec) this.session.openChannel("exec");
+ByteArrayOutputStream out = new ByteArrayOutputStream();
+ByteArrayOutputStream error = new ByteArrayOutputStream();
+channelExec.setCommand("ls");	// 实际执行的命令
+channelExec.setOutputStream(out);
+channelExec.setErrStream(error);
+channelExec.connect();
+int sleepCount = 0;
+do {		// 等待命令返回，官方手册是用的这种方法
+    try {
+        Thread.sleep(100);
+    } catch (InterruptedException e) {
+        result.setExitCode(1);
+        result.setStderr(SERVER_EXEC_ERROR + e.getMessage());
+        return result;
+    }
+} while (!channelExec.isClosed() && sleepCount++ < 60);
+out.toString();	// 标准输出
+error.toString();	// 标准错误输出
+channelExec.getExitStatus();	// 获取返回状态码
+```
+
+
 
 
 
