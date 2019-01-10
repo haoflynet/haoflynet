@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-12-19 16:56:00
+updated: 2018-12-25 15:16:00
 categories: database
 ---
 ## 安装方法
@@ -289,6 +289,7 @@ left(str, length) # 字符串截取
 right(str, length) # 字符串截取
 substring(str, pos, len) # 字符串截取
 concat(str1, str2)  # 字符串相加
+group_concat('字段名')	# 将group by的结果的指定字段合并成一行，以逗号分割
 substring_index('www.baidu.com','.', 1);	# 字符串分割，最后的数字表示取分割后的第几段，-1表示倒数
 LENGTH(字段名)	# 获取某个字段的长度，可以这样实现按字段长度进行排序 select * from `test` order by LENGTH(`name`) 
 
