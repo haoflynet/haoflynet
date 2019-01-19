@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2018-12-21 10:18:30
+updated: 2019-01-02 13:53:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -777,6 +777,9 @@ class NewClass:
 @NewClass
 def test():
     pass
+
+# 类装饰器dataclasses
+## python3.7使用这个可以生成__init__、__repr__和比较相关的魔术方法
 ```
 
 

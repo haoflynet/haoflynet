@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2018-12-14 16:22:00
+updated: 2019-01-18 14:12:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -54,7 +54,17 @@ $.each($array, function(k, v){});	// 遍历数组
 $.inArray('a', $arr): 判断数组是否包含某个元素
 delete a['a']	// 删除字典元素，如果用它来删除数组中的元素，删除完以后，数组总的长度不变，元素会被换成undefined，和php一样的坑
 ```
+### 数字
+
+```javascript
+Math.floor(0.2);	// 向下取整
+Math.floor(0.2);	// 四舍五入
+Math.ceil(0.2);		// 向上取整
+
+num.toString(8);	// 把数字转换为指定进制的字符串
+```
 ### 字符串
+
 ```javascript
 // 正则
 var re = new RegExp("a|b", "i");	// 通过字符串来生成正则表达式，相当于/a|b/i
