@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-01-09 17:18:00
+updated: 2019-01-11 14:58:00
 categories: java
 ---
 
@@ -115,7 +115,7 @@ import java.io.*;		// 导入java_installation/java/io下的所有类
 Jsch jSch = new JSch();
 jSch.addIdentity("name", prvKeyStr.getBytes, pubKeyStr.getBytes, keyPass.getBytes);	// 加载私钥公钥和私钥密码
 Session session = jSch.getSession(username, ip, port);	// 新建session
-session.setConfig("StrictHostKeyChecking", "no");	// 不进行静态host-key校验
+session.setConfig("StrictHostKeyChecking", "no");	// 不进行静态host-key校验，否则可能出现UnknownHostKey错误
 session.connect();	// 连接
 
 // 执行命令并获取返回结果

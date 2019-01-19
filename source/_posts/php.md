@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2018-12-12 15:57:21
+updated: 2019-01-17 16:23:21
 categories: php
 ---
 # PHP
@@ -96,7 +96,8 @@ iconv('utf-8', 'GBK', $data): 将字符编码从utf-8转换为GBK
 join("&", $arr)	# 拼接字符串
 parse_str('name=wang&age=18'): 从查询字符串中解析到变量，可以得到$name和$age两个变量
 parse_url($url): 解析url成数组，与http_build_query()功能相反
-preg_replace('/user_id=\d+&name=/', 'user_id=' . 1048 . '&name=', $code): 正则替换
+preg_replace('/user_id=\d+&name=/', 'user_id=' . 1048 . '&name=', $code); // 正则替换
+preg_replace('/user_id=(\d+)', '/user_id=${1}', $code);	// 获取分组，${1}、${2}...
 preg_replace_callback('//', function($matches){return strtolower($matchs[0])}: 执行一个正则表达式搜索并且使用一个回调函数进行替换
 preg_match('/Chongqing(?<right>.*)/', $string, $matches): 正则匹配，pattern参数前后必须加斜杠，匹配成功返回1，匹配结果在$matches中，匹配失败，返回0
 sprintf("sahgoiahg%s", $a): 格式化输出
