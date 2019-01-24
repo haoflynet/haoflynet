@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-01-17 16:23:21
+updated: 2019-01-20 03:23:21
 categories: php
 ---
 # PHP
@@ -117,6 +117,7 @@ string long2ip(string $proper_address)：整数值转换成IP
 number_format(float $number)	// 以千位分隔符方式格式化一个数字，返回字符串
 sprintf('%04d', 2)	// 数字前补零
 10 % 3 = 1;	// 求余操作
+str_pad($nu, 4, "0", STR_PAD_LEFT);	// 数字前面补0
 ```
 
 ### 时间
