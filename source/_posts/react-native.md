@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2018-11-13 14:44:00
+updated: 2019-01-10 11:44:00
 categories: js
 ---
 
@@ -450,4 +450,5 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 - [仿美团示例项目]( https://github.com/huanxsd/MeiTuan)
 - [低仿映客直播](https://github.com/tion126/RNLive?utm_medium=email&utm_source=gank.io)
 - [双生——情侣应用](https://github.com/oh-bear/2life)
+- [基于 React Native 的跨三端应用架构实践](https://www.infoq.cn/article/vXkNh*HVrW7HUeiNdlsk)
 
