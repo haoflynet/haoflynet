@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-01-09 15:33:30
+updated: 2019-01-30 14:28:30
 categories: system
 ---
 # Linux手册
@@ -289,6 +289,9 @@ apt-get install lrzsz -y	# 安装rz和sz命令工具
 PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
 PasswordAuthentication no
+
+# 允许普通用户使用SSH登录，默认开启UsePam的，普通用户只能用账户密码登录不能用KEY登录
+# vim /etc/security/access.conf，找到-:ALL EXCEPT root :ALL在root后面添加你需要的用户，比如-:ALL EXCEPT root haofly:ALL,然后，重启SSHD
 
 #保存，然后重启ssh服务
 service sshd restart
@@ -719,7 +722,7 @@ if语句：
 	-gt：大于
 	
 # 判断文件是否存在
-if [ ! -f "$filename" ]; then
+if [ ! -f "$filename" ]; then	# 文件夹有-d
 touch "$filename"
 fi
 
@@ -1041,3 +1044,7 @@ date +"%T"	# 仅显示时间，比如10:44:00
   ```
 
 - `root`用户可以直接执行，`sudo`却提示命令没找到`command not found`，这是因为使用`sudo`执行的时候，环境变量会默认设置为`/etc/sudoers`文件中`secure_path`所指定的值
+
+- **SSH KEY公钥添加成功，但依然无法登录**: 一般是认证文件权限的问题，权限过高和过低都不行，`~/.ssh`文件夹的权限是700，`~/.ssh/*`的权限是600.
+
+- **`rm -rf`删除目录的时候报错: 目录非空**: 检查一下是否有进程在占用目录，或者目录下是否有一些隐藏的状态文件
