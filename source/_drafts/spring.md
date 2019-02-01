@@ -4,6 +4,36 @@ date: 2017-11-01 21:32:00
 categories: 编程之路
 ---
 
+### 框架分层结构
+
+调用顺序
+
+> Controller --> Service Interface --> Service Impl --> Dao Interface --> Dao Impl --> Mapper --> DB
+
+#### BIZ层
+
+Service(业务逻辑，可以建立子文件夹来进行分类，这样每个biz就可以更细分)、Schedule(定时任务)、Common(一些中间件认证登录等)
+
+#### COMMON层
+
+一些公共的对象，公共的抽象类、公共的异常、公共的帮助方法等
+
+#### DAO层
+
+PO(持久对象persistant object，与数据表直接对应，也叫Entity层或者Model层)：用于存放实体类，与数据库中的属性值保持一致。
+
+Mapper: 对数据库进行数据持久化操作，它的内部方法就是直接对数据库进行操作的。它类似于manager层。可以封装对数据库的复杂的操作。
+
+VO(value object，类似于将数据库的字段抽象为新的业务相关的字段)。
+
+#### INTEGRATE层
+
+外部系统的一些接口
+
+#### Web层
+
+Controller、Config(一些初始化配置，例如线程池、缓存池等配置的初始化)
+
 ### 注解
 
 @Service用于标注业务层组件

@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-01-11 14:58:00
+updated: 2019-01-24 22:58:00
 categories: java
 ---
 
@@ -11,14 +11,14 @@ categories: java
 
 ### 数据类型
 
-#### Integer/Long
+#### Integer/Long数字
 
 ```java
 a.longValue();	// 整型转长整型
-(int) longValue;	// long转换为int
+longValue.intValue;	// long转换为int
 ```
 
-#### String/StringBuffer
+#### String/StringBuffer字符串
 
 与`String`不同的是，`StringBuffer`和`StringBuilder`类的对戏那个能够被多次修改，并且不产生新的未使用的对戏那个。
 
@@ -61,13 +61,14 @@ Date date = new Date();
 System.out.println(date.toString());
 ```
 
-#### Array/Vector/Stack/Enumeration
+#### Array/Vector/Stack/Enumeration数组
 
 ```java
 // Array
 typeName[] arrayName; // 声明数组的基本方式，也可以typeName arrayName[]
 typeName arrayName[][] = new typeName[3][4];	// 定义多维数组
 double[] myList = new double[5];
+List<String> name = Arrays.asList("xxx","yyy","zzz");	// 直接初始化固定长度的数组
 for (double element: myList) {}	// 遍历数组
 
 // Vector类，动态数组
@@ -82,7 +83,7 @@ dayNames.add("Sunday");	// 添加枚举元素
 days = dayNames.elements();
 ```
 
-#### Dictionary/Hashtable
+#### Dictionary/Hashtable字典
 
 ```java
 // Dictionary字典
@@ -116,6 +117,7 @@ Jsch jSch = new JSch();
 jSch.addIdentity("name", prvKeyStr.getBytes, pubKeyStr.getBytes, keyPass.getBytes);	// 加载私钥公钥和私钥密码
 Session session = jSch.getSession(username, ip, port);	// 新建session
 session.setConfig("StrictHostKeyChecking", "no");	// 不进行静态host-key校验，否则可能出现UnknownHostKey错误
+session.setTimeout(10000);	// 设置连接超时时间毫秒
 session.connect();	// 连接
 
 // 执行命令并获取返回结果
