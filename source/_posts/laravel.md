@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2018-12-11 10:57:00
+updated: 2019-02-12 15:57:00
 categories: php
 ---
 # Laravel指南
@@ -1343,6 +1343,9 @@ public function testIndex{
   var_dump($re->content);
   var_dump($re->isSuccessful());
 }
+
+# 测试命令这样执行
+./vendor/bin/phpunit tests/xxxTest.php
 ```
 
 在实际的测试过程中，我有这样的几点体会:

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-01-18 14:12:00
+updated: 2019-02-26 21:12:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -25,6 +25,7 @@ window.test = 123;	// 声明全局变量
 
 ```javascript
 object instanceof constructor	// 判断某个对象是否属于某个类
+var copyObj = Object.assign({}, original_obj);	// 对象的深拷贝，直接用等于赋值是浅拷贝
 ```
 
 ### 数组

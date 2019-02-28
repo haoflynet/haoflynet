@@ -1,7 +1,7 @@
 ---
 title: "fpm 打包工具"
 date: 2016-08-07 05:52:39
-updated: 2018-10-18 16:47:00
+updated: 2019-02-12 14:07:00
 categories: tools
 ---
 
@@ -22,18 +22,17 @@ fpm -h
 - --debug：打印编译时的详细日志
 - -C: 指定在打包前需要进入的目录(打包时的相对路径)，相当于把那个目录打包
 - -n: 包名
-- -s: 源的类型，值可以为dir,rpm,gem,python,virtualenv,empty,tar,deb,cpan,npm,osxpkg,pear,pkgin,zip
-- -t: 目标类型，值可以为rpm,deb,solaris,puppet,dir,osxpkg,p5p,puppet,sh,solaris,tar,zip
+- **-s**: 源的类型，值可以为dir,rpm,gem,python,virtualenv,empty,tar,deb,cpan,npm,osxpkg,pear,pkgin,zip
+- **-t**: 目标类型，值可以为rpm,deb,solaris,puppet,dir,osxpkg,p5p,puppet,sh,solaris,tar,zip
 - -v: 版本号，例如`1.0.0`
-- --before-install 名称.sh: 安装前执行的脚本
-- --after-install 名称.sh: 安装后执行的脚本
-- --before-remove 名称.sh: 卸载前执行的操作
-- --after-remove 名称.sh: 卸载后执行的操作
-- --prefix=目录: 指定软件之后要安装的路径
+- --before-install, --pre-install 名称.sh: 安装前执行的脚本
+- --after-install, --post-install 名称.sh: 安装后执行的脚本
+- --before-remove, --pre-uninstall 名称.sh: 卸载前执行的操作
+- --after-remove, --post-uninstall 名称.sh: 卸载后执行的操作
+- -p, --prefix=目录: 指定软件之后要安装的路径
 - --description '这里写描述'
 - --url: 软件的网官网
 - --license '2-clause BSD-like license': 
-- --prefix: 指定安装目录
 - --vendor: 供应商名称
 - --verbose: 打印详细安装过程
 - -m, --maintainer: 维护者
