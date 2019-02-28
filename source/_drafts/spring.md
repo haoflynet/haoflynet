@@ -1,8 +1,11 @@
 ---
 title: "Java Spring手册"
-date: 2017-11-01 21:32:00
+date: 2018-11-01 21:32:00
+update: 2019-02-25 09:30:00
 categories: 编程之路
 ---
+
+[Spring Initializr](<https://start.spring.io/>)：Spring项目初始化工具。
 
 ### 框架分层结构
 
@@ -12,13 +15,15 @@ categories: 编程之路
 
 #### BIZ层
 
-Service(业务逻辑，可以建立子文件夹来进行分类，这样每个biz就可以更细分)、Schedule(定时任务)、Common(一些中间件认证登录等)
+Service(业务逻辑，可以建立子文件夹来进行分类，这样每个biz就可以更细分)、Schedule(定时任务)、Common(一些中间件认证登录等)。也有Service和BIZ平行的分层方式，这种情况，一般是Service在调用Biz，Biz执行数据库操作，类似于Manager。
 
 #### COMMON层
 
 一些公共的对象，公共的抽象类、公共的异常、公共的帮助方法等
 
 #### DAO层
+
+一般是由MyBatis等工具自动生成的。
 
 PO(持久对象persistant object，与数据表直接对应，也叫Entity层或者Model层)：用于存放实体类，与数据库中的属性值保持一致。
 
@@ -48,7 +53,7 @@ Controller、Config(一些初始化配置，例如线程池、缓存池等配置
 
 - 
 
-https://start.spring.io/
+
 
 ```java
 // 控制器

@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-01-02 13:53:30
+updated: 2019-02-26 23:23:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -1296,6 +1296,8 @@ conn.close()	# 关闭连接
   ```
 
 - **TypeError: must be type, not classobj**: 在2里面，继承的时候，父类没有继承自object
+
+- **`pipenv`初始化的目录出错**: 请检查其上级或者上上级目录里是否有`Pipenv`文件，如果有没必要的文件，删除即可
 
 - **`Click will abort further execution because Python 3 was
     configured to use ASCII as encoding for the environment.`**: 错误原理见[click](https://click.palletsprojects.com/en/7.x/python3/)，设置一下系统的语言就好了:

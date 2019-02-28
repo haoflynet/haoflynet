@@ -33,7 +33,7 @@ $this->value	# 这样会返回属性的值
 
 安装方式：
 
-```shel
+```shell
 sudo apt-get install php-pear php5-dev libcurl3-openssl-dev -y
 pecl install xdebug
 # 然后分别在/etc/php5/cli/php.ini和/etc/php5/apache2/php.ini 里面分别添加

@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2018-09-21 11:59:00
+updated: 2019-02-14 13:58:00
 categories: tools
 ---
 # Git指南
@@ -155,7 +155,7 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 
    ![](https://haofly.net/uploads/git_1.jpg)
 
-![](http://ojccjqhmb.bkt.clouddn.com/git_2.jpg)
+![](https://haofly.net/uploads/git_2.jpg)
 
 记得添加commit说明。
 
