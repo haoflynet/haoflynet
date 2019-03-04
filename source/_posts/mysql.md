@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2018-12-25 15:16:00
+updated: 2019-03-01 14:50:00
 categories: database
 ---
 ## 安装方法
@@ -179,6 +179,8 @@ SELECT INTO db_name(field1, field2) SELECT field1, field2 FROM db_name2
 
 - 常用于：并发读写数据防止读写到错误的数据(例如，两个请求在两个事务中同时对同一个字段执行`+10`的操作，那么可能出现总共`+20`，也可能出现只`+10`的情况)
 - `UPDATE`和`DELETE`语句本身就会对行加锁，但是`SELECT`默认不会，需要显式加锁
+- `S`锁(共享锁，读锁)：如果在事务里面读取默认是读锁，该事务内无法对其进行修改(要修改必须获取X锁)，同时，其他事务也只能对该数据加S锁，不能加X锁。
+- `X`锁(排他锁，写锁)：该事务内可以读写，其他事务在这其间不能对数据加任何的锁。
 
 #### 悲观锁
 
@@ -211,6 +213,14 @@ UPDATE `user` SET `money` = `money` + 50 WHERE `id`=1 AND `money`=50;	# 在更�
 ```
 
 然后在更新操作执行完成后获取影响的行数，如果影响行数为0，表示更新操作不起作用，版本已经发生变化，这时候就需要用户自己去抛错或者编写重试逻辑(重试的时候会重新获取字段值即版本号)。
+
+### 事务
+
+- MySQL的几种事务隔离性:
+  - READ UNCOMMITTED
+  - READ COMMITTED
+  - REPEATABLE READ: 默认的事务隔离级别，可重复读。
+  - SERIALIZABLE
 
 ### 系统相关
 
@@ -262,6 +272,9 @@ show columns from 表名;
 
 # 查看当前连接数和客户端详情
 show processlist;
+
+# 查看最近一次死锁发生的原因
+SHOW ENGINE INNODB STATUS;
 ```
 ### 数据库维护
 
@@ -416,3 +429,9 @@ JSON_EXTRACT(result,'$.id')	# 获取json数据key=id的值
 *   **[Table is specified twice, both as a target for 'UPDATE' and as a separate source for data in mysql](https://stackoverflow.com/questions/44970574/table-is-specified-twice-both-as-a-target-for-update-and-as-a-separate-source)**: 在`10.1.24-MariaDB`有问题，但是`10.3.7-MariaDB`上没有问题，应该跟版本有关，解决办法就是在子查询里面使用`select * 表名 as 新表名`。
 *   **column "c.name" must appear in the GROUP BY clause or be used in an aggregate**: 见于SQL与MySQL语法不兼容的情况，可以直接给字段加个`max(c.name)`
 *   **数据写入成功但是却读取不到**: 其中一种原因是使用`mysqldump`进行备份的时候，默认会给数据表加锁，此时如果写入数据，那么主库会写入成功(肯定是在从库进行dump)，但是此时从库上了锁，数据更新有延迟。解决办法是错开高并发写入的时间进行备份，另一种是使用不会锁表的备份方式
+
+
+
+##### 扩展阅读
+
+- [记一次神奇的Mysql死锁排查](https://juejin.im/post/5c774114f265da2d993d9908): 一种非常隐蔽的发生死锁的情况。
