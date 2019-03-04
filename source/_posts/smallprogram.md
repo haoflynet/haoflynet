@@ -1,7 +1,7 @@
 ---
 title: "微信小程序开发手册"
 date: 2018-10-17 13:15:00
-updated: 2018-12-14 10:25:00
+updated: 2019-03-04 09:25:00
 categories: javascript
 ---
 
@@ -275,6 +275,7 @@ wx.openLocation(OBJECT)	// 使用微信内置的地图查看某个位置
 - [健壮高效的小程序登录方案](https://mp.weixin.qq.com/s?__biz=MzU0OTExNzYwNg==&mid=2247484421&idx=1&sn=a40c6ca294de39fe502a8d511994da34&chksm=fbb58fccccc206dae8b559365706a8b60f6ce654b46b0414b1a04c7481502d3838c030450dc3&token=1355569705&lang=zh_CN&rd2werd=1#wechat_redirect)
 - [小程序登录、微信网页授权](https://juejin.im/post/5c125b5f6fb9a049b13e1404): 介绍了微信各个种类帐号的区别
 - [微信小程序跨页面通信解决思路](https://aotu.io/notes/2017/01/19/wxapp-event/index.html)
+- [Gitter for GitHub](https://github.com/huangjianke/Gitter): 小程序版的Github客户端
 
 ##### 推荐UI扩展
 
