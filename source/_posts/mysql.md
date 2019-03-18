@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-03-01 14:50:00
+updated: 2019-03-12 10:20:00
 categories: database
 ---
 ## 安装方法
@@ -352,7 +352,7 @@ REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜
 # JSON相关函数
 JSON_ARRAY([])	# 将数组转换为json格式
 JSON_KEYS(field_name)	# 获取json数据的所有key
-JSON_EXTRACT(result,'$.id')	# 获取json数据key=id的值
+JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是，结果前后是带有双引号的可用json_unquote函数取消其双引号
 ```
 
 ## 数据库优化
