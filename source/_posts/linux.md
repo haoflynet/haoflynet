@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-01-30 14:28:30
+updated: 2019-03-13 10:58:30
 categories: system
 ---
 # Linux手册
@@ -232,7 +232,8 @@ stat 文件名	# 查看文件的属性，例如最近访问时间、最近更改
 为了弥补软硬连接的不足，可以使用mount --bind命令进行挂载
 
 # 文件创建
-mkdir -p path/2 # 创建目录树
+mkdir -m 777 path	# 创建时赋予权限
+mkdir -p path/2 # 创建目录树，并且如果存在，不会报错
 mkdir -pv path/{path1,path2} # 建立子目录
 mkdir -v a+wt path	# 创建一个粘滞模式的文件，其他用户可以修改，但是只有该文件的owner才能进行删除操作，这条命令即使把0755(rwxr-xr-x)改为1777(rwxrwxrwt)
 
@@ -408,8 +409,8 @@ shutdown -r now # 重启
 strace + 命令: 这条命令十分强大，可以定位你程序到底是哪个地方出了问题
 
 # 增加虚拟内存
-sudo dd if=/dev/zero of=/swapfile bs=1024 count=500000  # 500MB，这两行是连在一起的，我日
-sudo mkswap /swapfile && sudo chown root:root /swapfile && sudo chmod 0600 /swapfile && sudo swapon /swapfile
+dd if=/dev/zero of=/swapfile bs=1024 count=500000  # 500MB，这两行是连在一起的，我日
+mkswap /swapfile && chown root:root /swapfile && chmod 0600 /swapfile && swapon /swapfile
 echo "/swapfile          swap            swap    defaults        0 0" >> /etc/fatab	# 开机时挂载
 
 /sbin/swapoff /swapfile	# 停止交换分区
@@ -640,6 +641,7 @@ f 根据窗口min搜索选择窗口
 " 上下平分两个窗格
 x 关闭当前窗格
 o 切换窗格
+[ 可以用PgUp和PgDn等滚屏
 
 ## 会话操作
 tmux a 恢复至上一次的会话

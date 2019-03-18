@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2018-11-30 13:35:00
+updated: 2019-03-13 09:35:00
 categories: tools
 ---
 需要注意的是在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -112,7 +112,13 @@ Docker Compose主要用于快速在集群中部署分布式应用，主要有两
 - 服务(Service): 一个应用的容器，实际上可以包括若干个运行相同镜像的容器实例
 - 项目(Project): 由一组关联的应用容器组成的一个完整业务单元
 
-linux需要单独安装该工具`sudo pip install docker-compose`
+linux需要单独安装该工具，[其他平台安装教程](<https://docs.docker.com/compose/install/#install-compose>)
+
+```json
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
 
 一个例子:
 
@@ -135,6 +141,7 @@ webb:				# 第二个容器
 
 haproxy:			# 第三方容器
     image: haproxy:latest	# 直接从镜像启动，而不是Dockerfile启动
+    privileged: true		# 开启特权模式
     volumes:				# 挂载的卷
         - ./haproxy:/haproxy-override
     links:					# 连接另外的容器
@@ -255,7 +262,7 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
                 --binlog_do_db=test
     ```
 
-- **CentOS7容器无法使用systemctl命令**，提示`Failed to get D-Bus connection: No connection to service manager.`不知道为何不能支持，但可以有其他方法，在创建容器的时候使用如下命令`docker run --privileged XXX /usr/sbin/init`
+- **CentOS7容器无法使用systemctl命令提示`Failed to get D-Bus connection: No connection to service manager.`/ 无法设置交换分区等错误**。新版本默认不会提供特权模式，容器内部的root用户并不是真正的root用户，有很多权限都没有，可以在创建容器的时候添加特权模式`docker run --privileged XXX /usr/sbin/init`
 
 - **出现`Exit status 255`错误**，可能是虚拟机长期开启未关闭导致的，进入virtualBox将该docker machine关闭即可再次重新打开了
 

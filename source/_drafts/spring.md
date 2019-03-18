@@ -15,7 +15,9 @@ categories: 编程之路
 
 #### BIZ层
 
-Service(业务逻辑，可以建立子文件夹来进行分类，这样每个biz就可以更细分)、Schedule(定时任务)、Common(一些中间件认证登录等)。也有Service和BIZ平行的分层方式，这种情况，一般是Service在调用Biz，Biz执行数据库操作，类似于Manager。
+Service(业务逻辑，可以建立子文件夹来进行分类，这样每个biz就可以更细分)、Schedule(定时任务)、Common(一些中间件认证登录等)、Manager、RPC Service、MQTask、JobTask。也有Service和BIZ平行的分层方式，这种情况，一般是Service在调用Biz，Biz执行数据库操作，类似于Manager。
+
+BO(Business Object)
 
 #### COMMON层
 
@@ -25,11 +27,11 @@ Service(业务逻辑，可以建立子文件夹来进行分类，这样每个biz
 
 一般是由MyBatis等工具自动生成的。
 
-PO(持久对象persistant object，与数据表直接对应，也叫Entity层或者Model层)：用于存放实体类，与数据库中的属性值保持一致。
+DO/PO(Data Object/Persistant Object，与数据表直接对应，也叫Entity层或者Model层)：用于存放实体类，与数据库中的属性值保持一致。
 
 Mapper: 对数据库进行数据持久化操作，它的内部方法就是直接对数据库进行操作的。它类似于manager层。可以封装对数据库的复杂的操作。
 
-VO(value object，类似于将数据库的字段抽象为新的业务相关的字段)。
+VO(value object，类似于将数据库的字段抽象为新的业务相关的字段): VO往往用于请求处理层，即Controller。
 
 #### INTEGRATE层
 
