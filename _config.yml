@@ -74,10 +74,14 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+#deploy:
+#  type: git
+#  repo: git@github.com:haoflynet/haoflynet.github.io.git
+#  branch: master
 deploy:
-  type: git
-  repo: git@github.com:haoflynet/haoflynet.github.io.git
-  branch: master
+  # other deployer
+  - type: leancloud_counter_security_sync
+
 
 symbols_count_time:
   symbols: true
