@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2018-12-05 16:00:00
+updated: 2019-03-20 16:01:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -45,7 +45,7 @@ http{
 	##
 	# Basic Settings
 	##
-	sendfile on; # 开启高效文件传输模式，如果是高IO的应用可设置为off
+	sendfile on; # 开启高效文件传输模式，普通应用可以on，调用sendfile可以减少用户空间与系统空间的切换，直接将数据从磁盘读到系统缓存，增加性能。但是如果是高IO的应用可设置为off，以平衡磁盘与网络IO处理速度，降低系统复杂。如果发现更改了图片但是图片没更新，可以尝试关闭该选项重启nginx试试。
 	tcp_nopush on;
 
 	server_tokens off; # 隐藏系统版本号 # server_names_has_bucket_size 64; #
@@ -146,7 +146,7 @@ location / {
 在server里：
 server{
     listen 80;
-    server_name haofly.net;
+    server_name haofly.net, *.haofly.net;	# 支持通配符
     location / {
         proxy_redirect off;
         proxy_set_header Host $host;
