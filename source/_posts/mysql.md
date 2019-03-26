@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-03-12 10:20:00
+updated: 2019-03-25 11:20:00
 categories: database
 ---
 ## 安装方法
@@ -122,9 +122,11 @@ SELECT table1.* FROM table1 LEFT JOIN table2 ON (table1.name = table2.name AND t
 
 ```shell
 /: //
-': /'
+': /'，用于包裹搜索条件
 ": /"
 \: \\\\	# 没错，右斜杠需要这样做
+_: 一定要注意下划线，在like里面代表任意一个字符
+%: 代表任意数目的任意字符
 ```
 
 ##### 连表查询
