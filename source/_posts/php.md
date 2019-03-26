@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-01-20 03:23:21
+updated: 2019-03-26 13:53:21
 categories: php
 ---
 # PHP
@@ -106,6 +106,10 @@ ucfirst($str): 将字符串首字母大写
 ucwords($str): 将字符串每个单词首字母大写
                       
 str_replace(' ', '', lcfirst(ucwords(str_replace(['-', '_'], ' ', $str))));	# 字符串转换为驼峰命名法
+                      
+$long_str = <<<EOT
+abcdefg
+EOT;		# 定义长字符串
 ```
 ### 数字
 ```php
@@ -419,6 +423,15 @@ composer config --global secure-http false
 "package/ppkg": "2.7.*@beta"	# 安装beta版
 
 rm -rf ~/.composer/cache	# 清除缓存
+
+# 版本约束符号
+~1.2.3	# ~表示定义了最小的小版本号，并且允许最后以为版本号进行升级，相当于>=1.2.3并且<1.3.0
+^1.2.3	# ^表示允许升级到安全的版本，相当于>=1.2.3并且<2.0.0
+
+# composer太慢解决方法
+composer update-self	# 首先更新composer本身
+composer global require hirak/prestissimo	# 然后安装平行安装工具，但是效果感觉不是很明显
+composer update --prefer-dist -vvv	# 加入这个看看日志
 ```
 
 ### composer事件脚本
@@ -543,7 +556,7 @@ while ($it->valid())
 
 - **PDOException "could not find driver"**: 安装`php-mysql/php5-mysql/php7-mysql`扩展
 
-
+  
 
 ##### 扩展阅读
 

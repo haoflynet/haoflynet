@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-03-13 10:58:30
+updated: 2019-03-25 11:08:30
 categories: system
 ---
 # Linux手册
@@ -438,6 +438,9 @@ apt-get install iputils-ping
 
 # 查看进程的网速
 nethogs
+
+# 使用curl查看出口IP及服务商
+curl ipinfo.io
 
 # CentOS6
 /etc/init.d/iptables status     # 查询防火墙状态

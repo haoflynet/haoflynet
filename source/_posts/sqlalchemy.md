@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2018-11-09 15:40:00
+updated: 2019-03-26 15:34:00
 categories: python
 ---
 
@@ -251,8 +251,11 @@ query.filter(User.name.like('%王%'))
 
 ### 插入
 
+- 注意在连接数据库时`autoflush`参数默认为`True`，但是并不是`add`之后就自动将语句`flush`到数据库，而是指每次查询前回自动`flush`，所以无论`autoflush`是否为`True`，`add`之后都需要手动`session.flush()`
+
 ```python
 session.add(User(name='haofly'))	# 直接插入一条数据
+session.flush()	# 必须手动flush
 
 # 批量插入ORM版
 session.bulk_save_objects([User(name="wang") for i in xrange(1000)])
@@ -269,7 +272,7 @@ session.commit()
 
 ```python
 query.filter(...).update({User.age: 10})
-session.flush()	# 写数据库，不提交
+session.flush()
 
 user.name = 'new'
 session.commit()
@@ -279,6 +282,7 @@ session.commit()
 
 ```python
 session.delete(user)
+session.flush()
 ```
 
 ### 其他

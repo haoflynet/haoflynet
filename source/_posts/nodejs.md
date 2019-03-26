@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2019-02-11 21:10:30
+updated: 2019-03-25 11:20:30
 categories: frontend
 ---
 # node.js教程
@@ -12,11 +12,11 @@ categories: frontend
 稳定版: 
 
 ```shell
-＃ centos用
+# centos用下面命令安装指定版本nodejs
 sudo curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
 sudo yum install -y nodejs
 
-＃ ubuntu用
+# ubuntu用下面命令安装指定版本nodejs
 sudo curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 docker里面没有sudo就直接
 curl -sL https://deb.nodesource.com/setup_4.x | bash -
