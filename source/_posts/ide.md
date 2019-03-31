@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2019-03-04 11:09:00
+updated: 2019-03-29 16:49:00
 categories: 编程之路
 ---
 
@@ -26,7 +26,6 @@ categories: 编程之路
   # 最后注销重新登录即可生效
   ```
 
-  
 
 ## IDEA系列
 
@@ -35,7 +34,8 @@ categories: 编程之路
 ### Intellij IDEA
 
 - 自动生成`serialVersionUID`的设置：`Preferences->Editor->Inspections->Serialization issues->Serializable class withou 'serialVersionUID'`勾选上
-- 配置`Maven`项目。在`Run->Configurations`中添加配置，选择`maven`，然后直接在`Command line`中输入`tomcat:run`即可
+- 使用`tomcat`运行`Maven`项目。在`Run->Configurations`中添加配置，选择`maven`，然后直接在`Command line`中输入`tomcat:run`即可
+- 使用`jetty`运行`Maven`项目或者出现`No plugin found for prefix 'jetty' in the current project and in the plugin groups`错误。在`Run->Configurations`中添加配置，选择`maven`，然后`Working directory`中选择项目的`web`目录，最后`Command line`中输入`org.mortbay.jetty:maven-jetty-plugin:run`
 
 ### PhpStorm
 

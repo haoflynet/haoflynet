@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2019-03-13 09:35:00
+updated: 2019-03-28 10:40:00
 categories: tools
 ---
 需要注意的是在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -97,7 +97,7 @@ ADD: 将指定的主机目录中的文件代替要构建的镜像中的文件,�
 COPY: 和ADD功能一样，不过ADD指令还支持通过URL从远程服务器读取资源并复制到镜像中。不过远程资源其实更推荐用RUN wget
 RUN: 执行一条shell命令
 EXPOSE: 暴露什么端口给主机,需要注意的是,即使指定了,也得在docker run的时候通过-p参数执行端口的映射
-WORKDIR: 切换工作目录,这样下面的CMD等就可以在新的目录执行
+WORKDIR: 切换工作目录,这样下面的CMD等就可以在新的目录执行，并且每次exec进入容器的时候默认目录也会被切换为这个
 CMD: 一般写于最后,因为它是容器启动时才执行的命令,并且无论写多少,都只执行最后那一条,一般用于容器中镜像的启动,例如`CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]`,当然,也可不加括号和引号,直接用shell的方式写一条命令.但是如果docker run 中指定了命令过后,CMD将不被执行
 ENTRYPOINT: 和CMD类似,但是如果docker run中指定了命令,它仍然会被执行
 ENV: 指定环境变量，在dockerfile里面使用export是没用的
