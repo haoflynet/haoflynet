@@ -33,3 +33,63 @@ categories: graphql
 1. 安装Python3.7并安装依赖
 2. 新建数据库，并导入初始化数据
 3. `python3.7 run app.py`
+
+## 增删该查
+
+### 添加记录
+
+```json
+mutation {
+  createArticle(authorId:123, content:"abc",title:"def") {
+    ok
+    article {
+      content
+      title
+    }
+  }
+}
+```
+
+### 删除记录
+
+```json
+mutation {
+  deleteArticle(articleId:6) {
+    ok
+  }
+}
+```
+
+### 查询记录
+
+获取文章列表及其评论内容
+
+```json
+{
+  articles {
+    datas {
+      title
+      comments {
+        content
+      }
+    }
+  }
+}
+```
+
+### 更新记录
+
+```json
+mutation {
+  updateArticle(articleId:2, content:"更新内容") {
+    ok
+    article {
+      title
+      content
+    }
+  }
+}
+```
+
+
+
