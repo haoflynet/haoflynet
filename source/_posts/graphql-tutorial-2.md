@@ -1,6 +1,7 @@
 ---
 title: "GraphQL 入门教程（二）—— GraphQL 生态"
 date: 2019-03-18 21:52:00
+updated: 2019-04-02 16:43:00
 categories: graphql
 ---
 
@@ -18,7 +19,7 @@ GraphQL发展至今，已有Github、Facebook、Airbnb等大厂在大量地使�
 
 ![](https://haofly.net/uploads/graphql-tutorial-2_02.png)
 
-在左边输入框可以输入查询语句，自带补全和校错功能，`Prettify`用于格式化查询语句。右边就是查询结果
+在左边输入框可以输入查询语句，自带补全和校错功能，`Prettify`用于格式化查询语句，左下角点击`QUERY VARIABLES`可以以JSON格式输入附带的变量等参数。右边就是查询结果
 
 ![](https://haofly.net/uploads/graphql-tutorial-2_03.png)
 

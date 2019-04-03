@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2019-03-29 16:49:00
+updated: 2019-04-02 11:10:00
 categories: 编程之路
 ---
 
@@ -30,6 +30,16 @@ categories: 编程之路
 ## IDEA系列
 
 - 展开左边文件目录树快捷方式设置，默认是`NumPad *`，我真不知道是哪个键，于是统一改成`command +`
+- 代码风格设置(直接在Preferences里面搜索设置项)
+  - 赋值语句等号对齐: `Align consecutive assignments`
+  - 数组内键值对对齐: `Align key-value pairs`
+  - 类变量定义等号对齐并且变量也对齐: `Class field/constant groups -> Align fields in columns & Align constatns`
+  - 简单的函数直接在一行: `Simple methods in one line`
+  - 函数参数多行时自动对齐: `Function/constructor call arguments -> Align when multiline`
+  - 函数参数多行时括号和第一个参数换行: `Function/constructor call arguments -> New line after '()'`
+  - 函数参数多行时将反括号单独一行: `Function/constructor call arguments ->Place ')' on new line`
+  - 函数注释中描述和参数之间空一行`PHPDoc -> Blank line before the first tag`
+- 
 
 ### Intellij IDEA
 
