@@ -1,6 +1,7 @@
 ---
-title: "GraphQL 入门教程（一）——What’s GraphQL"
+title: "GraphQL 教程（一）——What’s GraphQL"
 date: 2019-01-20 21:52:00
+updated: 2019-04-05 22:00:00
 categories: graphql
 ---
 
@@ -58,3 +59,13 @@ categories: graphql
 中文官网：http://graphql.cn/
 
 免费书籍：[The Road to GraphQL](https://www.robinwieruch.de/the-road-to-graphql-book/)
+
+
+
+[GraphQL 教程demo地址](https://github.com/haoflynet/graphql-tutorial)
+[GraphQL 教程（一）——What’s GraphQL](https://haofly.net/graphql-tutorial-1/)
+[GraphQL 教程（二）—— GraphQL 生态](https://haofly.net/graphql-tutorial-2/)
+[GraphQL 教程（三）—— GraphQL 原理](https://haofly.net/graphql-tutorial-3/)
+[GraphQL 教程（四）—— Python Demo搭建](https://haofly.net/graphql-tutorial-4/)
+[GraphQL 教程（五）—— 增删改查语法及类型系统](https://haofly.net/graphql-tutorial-5/)
+[GraphQL 教程（六）—— N+1问题和缓存等问题](https://haofly.net/graphql-tutorial-6/)
