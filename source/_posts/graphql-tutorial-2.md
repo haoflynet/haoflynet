@@ -1,7 +1,7 @@
 ---
-title: "GraphQL 入门教程（二）—— GraphQL 生态"
+title: "GraphQL 教程（二）—— GraphQL 生态"
 date: 2019-03-18 21:52:00
-updated: 2019-04-02 16:43:00
+updated: 2019-04-05 22:43:00
 categories: graphql
 ---
 
@@ -33,3 +33,14 @@ GraphQL发展至今，已有Github、Facebook、Airbnb等大厂在大量地使�
 
 [GraphQL-Voyager](https://github.com/APIs-guru/graphql-voyager): 生成交互式的schema图。
 
+另外，当前正在使用GraphQL的大厂有GitHub、Shopify、Twitter、 Coursera、Yelp、Wordpress等
+
+
+
+[GraphQL 教程demo地址](https://github.com/haoflynet/graphql-tutorial)
+[GraphQL 教程（一）——What’s GraphQL](https://haofly.net/graphql-tutorial-1/)
+[GraphQL 教程（二）—— GraphQL 生态](https://haofly.net/graphql-tutorial-2/)
+[GraphQL 教程（三）—— GraphQL 原理](https://haofly.net/graphql-tutorial-3/)
+[GraphQL 教程（四）—— Python Demo搭建](https://haofly.net/graphql-tutorial-4/)
+[GraphQL 教程（五）—— 增删改查语法及类型系统](https://haofly.net/graphql-tutorial-5/)
+[GraphQL 教程（六）—— N+1问题和缓存等问题](https://haofly.net/graphql-tutorial-6/)

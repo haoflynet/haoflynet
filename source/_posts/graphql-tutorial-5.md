@@ -1,6 +1,7 @@
 ---
-title: "GraphQL 入门教程（五）—— 增删改查语法"
+title: "GraphQL 教程（五）—— 增删改查语法及类型系统"
 date: 2019-04-02 22:52:00
+updated: 2019-04-04 16:44:44
 categories: graphql
 ---
 
@@ -11,6 +12,8 @@ categories: graphql
 ![](https://haofly.net/uploads/graphql-tutorial-5_01.png)
 
 <!--more-->
+
+## 基本语法
 
 ### 查询记录
 
@@ -242,5 +245,89 @@ mutation {
 }
 ```
 
+## 类型系统
+
+`demo`中涉及到了`GraphQL`的大部分对象类型，总结一下，`GraphQL`包含如下几种类型系统
+
+#### 查询和变更类型
+
+即`query`和`mutation`
+
+#### 标量类型
+
+包含`Int`(32位有符号整数)、`Float`(有符号双精度浮点数)、`String`(UTF-8字符序列)、`Boolean`、自定义类型。
+
+#### 枚举类型
+
+#### 列表和非空
+
+类型定义的时候，后面加感叹号表示非空，它也可用在变量查询中。
+
+````json
+type ArticleSchema {
+  title: String!
+  comments: [CommentSchema]!
+}
+````
+
+#### 接口类型(Interfaces)
+
+类似基类或者抽象类，上面查询示例中有实际的例子。
+
+```json
+interface AuthorWriterInterface {
+  author_id: Int!
+}
+```
+
+#### 联合类型(Union Types)
+
+和接口类型非常相似，但是它不用指定类型间的相同字段。这样表示：
+
+```json
+union writers = OrdinaryWriterSchema | ProfessionalWriterSchema
+```
+
+#### 输入类型(Input Types)
+
+将一组需要复用的输入字段作为一个整体进行输入，只能用于输入，与返回的`Schema`无关。例如
+
+```json
+input addArticleInput {
+  title: String!
+  content: String!
+}
+```
+
+那么可以定义一个包含该输入类型的动作：
+
+```json
+mutation CreateArticle($request: addArticleInput!) {
+  createArticleMutation(request: $request) {
+    article
+  }
+}
+```
+
+然后直接在`variables`中这样定义
+
+```json
+{
+  "request": {
+    "title": "标题",
+    "content": "内容"
+  }
+}
+```
 
 
+
+
+
+[GraphQL 教程demo地址](https://github.com/haoflynet/graphql-tutorial)
+[GraphQL 教程（一）——What’s GraphQL](https://haofly.net/graphql-tutorial-1/)
+[GraphQL 教程（二）—— GraphQL 生态](https://haofly.net/graphql-tutorial-2/)
+[GraphQL 教程（三）—— GraphQL 原理](https://haofly.net/graphql-tutorial-3/)
+[GraphQL 教程（四）—— Python Demo搭建](https://haofly.net/graphql-tutorial-4/)
+[GraphQL 教程（五）—— 增删改查语法及类型系统](https://haofly.net/graphql-tutorial-5/)
+[GraphQL 教程（六）—— N+1问题和缓存等问题](https://haofly.net/graphql-tutorial-6/)
