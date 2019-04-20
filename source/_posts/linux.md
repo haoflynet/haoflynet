@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-03-25 11:08:30
+updated: 2019-04-10 11:08:30
 categories: system
 ---
 # Linux手册
@@ -104,6 +104,8 @@ gtop: 功能十分强大的系统监视器
 ```shell
 ls -lR | grep "^-" | wc -l # 递归统计文件夹下所有文件的个数
 ls -lt	# ls的时候按时间排序
+ls -Slh	# 按文件从大到小排序
+ls -Slrh # 按文件从小到大排序
 wc -l: 统计行数
 fdupes -r /home		# 快速查找重复文件
 fdupes -f /home | xargs rm -f	# fdupes居然没有直接删除的功能，-d参数必须询问，这样子就能直接进行删除了，-f参数表示忽略第一个文件，这样出来的就都是重复的了

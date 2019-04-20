@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-01-24 22:58:00
+updated: 2019-04-17 22:58:00
 categories: java
 ---
 
@@ -64,12 +64,18 @@ System.out.println(date.toString());
 #### Array/Vector/Stack/Enumeration数组
 
 ```java
-// Array
+// 初始化&赋值
 typeName[] arrayName; // 声明数组的基本方式，也可以typeName arrayName[]
 typeName arrayName[][] = new typeName[3][4];	// 定义多维数组
 double[] myList = new double[5];
 List<String> name = Arrays.asList("xxx","yyy","zzz");	// 直接初始化固定长度的数组
-for (double element: myList) {}	// 遍历数组
+List<String> name = new ArrayList<>();	// 初始化一个空数组，之后用add添加元素
+list1.addAll(list2);	// 将数组2合并到数组1
+
+// 遍历数组
+for (double element: myList) {}
+for (int i = 0 ; i < myList.size(); i++) {}
+
 
 // Vector类，动态数组
 // Stack栈

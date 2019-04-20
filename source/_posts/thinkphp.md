@@ -1,7 +1,7 @@
 ---
 title: "ThinkPHP 手册"
 date: 2016-10-28 00:08:39
-updated: 2018-11-29 10:33:00
+updated: 2019-04-15 10:33:00
 categories: php
 ---
 垃圾框架，用了`Laravel`过后感觉其他的PHP框架都是垃圾。但是由于生活所迫，不得不研究一下ThinkPHP框架了，哎。
@@ -14,6 +14,9 @@ categories: php
 
 ```php
 $this->redirect('')	# 重定向
+Log::record('');	# 记录日志信息到内存
+Log::save('');	# 手动将保存在内存中的日志信息写入日志
+Log::write('');	# 实时写入一条日志信息，不受配置的允许日志级别影响，可以实时写入任意级别的日志信息
 ```
 
 ## 数据库

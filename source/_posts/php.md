@@ -1,7 +1,7 @@
 ---
-title: "PHP 手册"
+吧title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-03-26 13:53:21
+updated: 2019-04-16 13:53:21
 categories: php
 ---
 # PHP
@@ -327,10 +327,14 @@ parse_str(file_get_contents("php://input"),$post_vars); # 获取PUT数据
 getallheaders		# 获取请求头
 error_log('message')	# 把错误信息发送到web服务器的错误日志，或者到一个文件里，有长度限制
 
-ob_start()		# 打开输入输出缓冲，打开后，脚本会将输出缓冲起来直到ob_flush()
+ob_start();		# 打开输入输出缓冲，打开后，脚本会将输出缓冲起来直到ob_flush()
+session_save_path("/var/lib/php/session");	# 更改session路径
+session_save_path();	# 获取session路径
 ```
 ### MySQL
-	mysql_errno():	# 打印SQL出错信息
+```php
+mysql_errno();	# 打印SQL出错信息
+```
 
 ### 异常处理
 
@@ -429,8 +433,9 @@ rm -rf ~/.composer/cache	# 清除缓存
 ^1.2.3	# ^表示允许升级到安全的版本，相当于>=1.2.3并且<2.0.0
 
 # composer太慢解决方法
-composer update-self	# 首先更新composer本身
+composer self-update	# 首先更新composer本身
 composer global require hirak/prestissimo	# 然后安装平行安装工具，但是效果感觉不是很明显
+composer clear-cache
 composer update --prefer-dist -vvv	# 加入这个看看日志
 ```
 

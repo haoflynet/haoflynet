@@ -1,7 +1,7 @@
 ---
 title: "Java Spring手册"
 date: 2018-11-01 21:32:00
-update: 2019-02-25 09:30:00
+update: 2019-04-19 17:30:00
 categories: 编程之路
 ---
 
@@ -53,7 +53,8 @@ Controller、Config(一些初始化配置，例如线程池、缓存池等配置
 
 ## TroubleShooting
 
-- 
+- 启动时在`Initializing Spring FrameworkServlet 'spring'`这一句日志时候，可能是以下原因之一
+  - `Mybatis`的`xml`文件的id可能重复了
 
 
 
