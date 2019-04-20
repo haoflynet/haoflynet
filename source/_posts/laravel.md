@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2019-02-12 15:57:00
+updated: 2019-04-15 15:57:00
 categories: php
 ---
 # Laravel指南
@@ -58,8 +58,16 @@ app()->environment()
 
 ### 控制器
 
-laravel可以直接通过命令创建一个控制器:
-`php artisan make:controller HomeController`，然后就会有这么一个控制器文件了:`app/Http/Controllers/HomeController.php`
+- laravel可以直接通过命令创建一个控制器:
+  `php artisan make:controller HomeController`，然后就会有这么一个控制器文件了:`app/Http/Controllers/HomeController.php`
+
+- 重定向到控制器方法中
+
+  ```php
+  return redirect()->action('HomeController@index', ['page' => 123])
+  ```
+
+  
 
 #### 数据校验Validation
 
@@ -703,6 +711,8 @@ foreach ( $books as $book) {
 App\Post::wth('user', 'author')->get();
 # 嵌套使用
 App\Post::with('user.phone')->get(); # 取出用户并且取出其电话
+# 预加载指定的列
+App\Post::with('user:name,nickname')->get();
 
 # 也可以不用全部取出来
 $users = User::with(['posts' => function ($query) {

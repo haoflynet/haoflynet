@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-03-25 11:20:00
+updated: 2019-04-16 15:20:00
 categories: database
 ---
 ## 安装方法
@@ -106,7 +106,8 @@ SELECT * FROM table_name limit m, n
 
 # 模糊查询/正则查找
 SELECT * FROM table_name like '%abc_';	# 模糊查询，其中%贪婪匹配任意数量的任意字符，_匹配一个任意字符
-SELECT * FROM table_name REGEXP '(.*?)wtf';
+SELECT * FROM table_name WHERE field REGEXP '(.*?)wtf';
+SELECT * FROM table_name WHERE field REGEXP 'ABC|DEF|GHI';	# 类似于LIKE IN的功能
 
 # 分组GROUP BY
 SELECT * FROM table_name GROUP BY `field1`, `field2`;	# 分组显示，有多少不同的field就会有多少条记录，而其他的字段则是随机选择一条记录显示，当然，如果对其他字段进行SUM等操作，那么就可以获取分类的SUM，十分有用
@@ -329,6 +330,8 @@ DAYOFYEAR(date)    # 返回date在一年中的日数(1-366)
 HOUR(datetime)    # 获取小时数
 MINUTE(datetime)    # 获取分钟数
 SECOND(datetime)    # 获取秒数
+DATE_ADD(`field`, interval -1 day)	# 时间减一天
+DATE_ADD(`field`, interval 1 week)	# 时间加一周
 
 # 统计相关
 SUM(field_name)
