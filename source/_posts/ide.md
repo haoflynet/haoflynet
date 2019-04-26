@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2019-04-11 10:40:00
+updated: 2019-04-23 10:10:00
 categories: 编程之路
 ---
 
@@ -48,6 +48,8 @@ categories: 编程之路
 - 使用`jetty`运行`Maven`项目或者出现`No plugin found for prefix 'jetty' in the current project and in the plugin groups`错误。在`Run->Configurations`中添加配置，选择`maven`，然后`Working directory`中选择项目的`web`目录，最后`Command line`中输入`org.mortbay.jetty:maven-jetty-plugin:run`。在运行前，需要先`mav install`一下，可以直接在ide中右边侧栏选择`Maven`然后选择根目录`Lifecycle->install`
 
 ### PhpStorm
+
+- 设置PHP版本: `Perferences->Languages->Frameworks`
 
 [EAP 版本下载地址](https://www.jetbrains.com/phpstorm/eap/)
 

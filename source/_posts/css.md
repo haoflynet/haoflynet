@@ -1,12 +1,14 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2018-09-13 12:50:00
+updated: 2019-04-25 09:45:00
 categories: frontend
 ---
 ## 浏览器兼容
 
 - 首行的`<!DOCTYPE html>`很关键
+
+- 谷歌浏览器或者新的浏览器支持在十六进制颜色后面加两位数来表示透明度，但是其他浏览器不支持，会直接不显示颜色
 
 - IE9以下需要专门调用这几个js
 
@@ -42,16 +44,39 @@ a:active: a标签被点击的时候
 - border-radius: 设置边框圆角大小
 - border-style: 设置4个边框的样式。可能的值有none(无边框)、hidden(对于表，用于解决边框冲突，和none一样)、dotted(点状边框)、dashed(虚线)、solid(实线)、double(双线)、groove(3D凹槽边框)、ridge(3D垄状边框)、inset(3D inset边框)、outset(3D outset边框)、inherit(从父元素继承)
 - border-width: 边框宽度
+- 可以将三个属性一起定义:`border: width style color`，例如`border-right: 10px solid black`
+
+##### box-shadow
+
+- 给框添加阴影
+- `box-shadow: h-shadow v-shadow blur spread color inset;`，例如`box-shadow: 10px 10px 5px #888888;`
+
+##### display
+
+- 规定元素应该生成的显示框的类型
+- none(不显示)、block(块级元素，前后会带有换行符)、inline(默认，内联元素，前后没有换行符)、inline-block(行内块元素)、list-item(会作为列表显示)、inherit(继承父元素display属性)
 
 ##### input
 
 - text-align: 内容显示方式，`center`表示居中显示
+
+##### line-height
+
+- 设置行间距
 
 ##### margin
 
 ```css
 margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ```
+
+##### position
+
+- absolute: 绝对定位，相对于static定位以外的第一个父元素进行定位
+- fixed: 绝对定位，相对于浏览器窗口进行定位
+- relative: 相对定位，相对于其正常位置进行定位
+- static: 默认值。没有定位ie，元素出现在正常的流中
+- inherit: 从父元素继承position属性
 
 ##### table
 
@@ -62,6 +87,10 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### text
 
 - text-indent: 段落缩进设置
+
+##### white-space
+
+- nowrap: 强制不换行
 
 ##### width元素宽度 
 
@@ -94,7 +123,19 @@ div {margin:0 auto}
     display: block;  
     margin-left: auto;  
     margin-right: auto;  
-}  
+}
+# 方法五，css3里面超级简单
+.div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: traslate(-50%, -50%);
+}
+# 方法六：让容器内部的元素垂直居中
+.parent {
+  display: flex; 
+  align-items: center;
+}
 ```
 
 #### 将某元素置于底层，使用z-index属性，例如：

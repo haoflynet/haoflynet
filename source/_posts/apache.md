@@ -1,7 +1,7 @@
 ---
-title: "Apache手册"
+title: "Apache/Httpd手册"
 date: 2013-09-17 08:52:39
-updated: 2018-11-21 17:36:00
+updated: 2019-04-25 15:36:00
 categories: server
 ---
 ## Apache安装与配置
@@ -13,6 +13,32 @@ Apache 2.4与2.2配置上的区别见: [Upgrading to 2.4 from 2.2](http://httpd.
 ```shell
 httpd -v # 查看apache版本
 ```
+## 添加Gzip压缩
+
+1. 首先，开启相关模块:
+
+   ```shell
+   LoadModule deflate_module modules/mod_deflate.so
+   LoadModule headers_module modules/mod_headers.so
+   ```
+
+2. 然后，在项目下的`.htaccess`下添加如下内容并重启即可
+
+   ```shell
+   <IfModule mod_deflate.c>
+       SetOutputFilter DEFLATE
+       SetEnvIfNoCase Request_URI .(?:gif|jpe?g|png)$ no-gzip dont-vary
+       SetEnvIfNoCase Request_URI .(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary
+       SetEnvIfNoCase Request_URI .(?:pdf|mov|avi|mp3|mp4|rm)$ no-gzip dont-vary
+       AddOutputFilterByType DEFLATE text/*
+       AddOutputFilterByType DEFLATE application/ms* application/vnd* application/postscript application/javascript application/x-javascript
+       AddOutputFilterByType DEFLATE application/x-httpd-php application/x-httpd-fastphp
+       BrowserMatch ^Mozilla/4 gzip-only-text/html
+       BrowserMatch ^Mozilla/4.0[678] no-gzip
+       BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+   </IfModule>
+   ```
+
 ## 配置虚拟目录/设置二级域名
 
 <!--more-->

@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2019-04-03 13:50:00
+updated: 2019-04-22 10:50:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -57,6 +57,7 @@ docker run -t -i ubuntu:14.04.1      # 从ubuntu:14.04.1镜像创建一个容器
 docker run -t -i ubuntu:14.04.1 /bin/bash # 从ubuntu:14.04.1创建容器并在容器中执行命令
 docker run -t -i -d ubuntu:14.04.1  # 创建容器并作为daemon运行
 docker run -t -i -p 80:80 ubuntu:14.04.1 # 创建容器并映射容器的80端口到主机的80端口
+docker run -t -i -p 127.0.0.1:80:80 ubuntu:14.04.1 # 指定端口映射的IP，默认是0.0.0.0
 docker run -t -i -v /etc/hehe/:/etc/haha ubuntu:14.04.1 # 创建容器并映射主机的/etc/hehe目录到容器的/etc/haha目录
 docker run -t -i
 exit # 退出容器

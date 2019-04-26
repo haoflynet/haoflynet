@@ -1,7 +1,7 @@
 ---
 title: "ThinkPHP 手册"
 date: 2016-10-28 00:08:39
-updated: 2019-04-15 10:33:00
+updated: 2019-04-23 10:33:00
 categories: php
 ---
 垃圾框架，用了`Laravel`过后感觉其他的PHP框架都是垃圾。但是由于生活所迫，不得不研究一下ThinkPHP框架了，哎。
@@ -37,6 +37,13 @@ $model->select()	# findall功能
 $model->where('name="haofly"')->find()	# 查找满足条件的第一条数据
 $model->where('name="haofly"')->select()# 查找满足条件的所有数据
   
+# 创建数据
+$model->create(['name' => 'test']);
+  
+# 更新数据
+$model->where('id=5')->save(['name' => 'test']);	// 根据条件更新记录
+$model->name = 'test' && $model->where('id=5')->save();	// 使用对象的方式来操作
+
 # 删除数据
 $model->where('id=5')->delete()
 ```
