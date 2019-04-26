@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-02-26 21:12:00
+updated: 2019-04-22 09:12:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -63,6 +63,7 @@ Math.floor(0.2);	// 四舍五入
 Math.ceil(0.2);		// 向上取整
 
 num.toString(8);	// 把数字转换为指定进制的字符串
+num.toFixed(2);	// 保留两位小数
 ```
 ### 字符串
 

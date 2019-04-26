@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-04-10 11:08:30
+updated: 2019-04-25 10:08:30
 categories: system
 ---
 # Linux手册
@@ -83,6 +83,7 @@ pstree -p 进程ID：查看线程的进程数以及进程ID
 lsof -i :端口号   # 查看端口占用情况，不仅能看到哪个进程开启的端口，还能查看谁在使用该端口
 lsof -i -n -P | egrep ':8000.+ESTABLISHED'   # 查看8000端口的连接列表
 lsof -i -n -P | egrep -c ':8000.+ESTABLISHED' # 查看8000端口的连接数字
+time 命令	# 查看命令的执行时间
 
 # 结束进程
 kill -s 9 进程ID
