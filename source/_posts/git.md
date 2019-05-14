@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2019-02-14 13:58:00
+updated: 2019-05-06 23:58:00
 categories: tools
 ---
 # Git指南
@@ -44,11 +44,11 @@ ssh-keygen -t rsa -C "haoflynet@gmail.com"
 
 ## Github的使用
 
-打开公钥文件，然后复制其中的内容到Github上的setting->SSH keys->Add SSH key，如下  
-![](http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_0.png)  
-点击Add Key后会要求输入github密码，因为这是特别敏感的操作  
-然后进行新建仓库，无论是github还是其他托管网站都可以新建远程库，新建完成后都会提示你下一步该怎么做  
-![](http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_1.png)  
+打开公钥文件，然后复制其中的内容到Github上的setting->SSH keys->Add SSH key，如下 
+![](http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_0.png) 
+点击Add Key后会要求输入github密码，因为这是特别敏感的操作 
+然后进行新建仓库，无论是github还是其他托管网站都可以新建远程库，新建完成后都会提示你下一步该怎么做 
+![](http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_1.png) 
 按照上图给出 操作指南，有三种方法分别是
 - 在本地建立一个新库，并新建一个README.md到远程库
 - 直接将本地库的代码推送到远程库，不过在本地需要将文件夹编程一个库
@@ -64,6 +64,8 @@ GIT_CURL_VERBOSE=1 GIT_TRACE=1 git ...	# 相当于debug，能看到git命令执�
 
 git remote -v 	# 列出远程仓库地址
 git remote set-url origin git@xxx.git	# 修改git远程仓库地址
+git remote add author git@xxx.git	# 添加一个远程仓库地址
+git pull author master:origin/master	# 从指定远程仓库拉取分支合并到本地分支
 
 git log  # 查看提交的历史,--oneline按行显示，--graph查看分支的合并情况，--all显示所有分支的历史
 git reflog	# 查看HEAD的历史情况

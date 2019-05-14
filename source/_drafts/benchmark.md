@@ -45,7 +45,7 @@ python进程数量一般是cpu核心数量的2倍。
 
 
 
-ab -n 100 -c 10 -H "client:xxx" http://test.com/` 其中－n表示请求数，－c表示并发数
+`ab -n 100 -c 10 -H "client:xxx" http://test.com/` 其中－n表示请求数，－c表示并发数
 
 ab -p data.txt -T application/json -H "client:xxx" -H "token:xxx" -n400 -c400 http://localhost:8080/xxx
 

@@ -1,7 +1,7 @@
 ---
 title: "Scrapy python爬虫"
 date: 2016-08-07 11:02:20
-updated: 2018-01-22 21:44:01
+updated: 2019-05-08 21:44:01
 categories: python
 ---
 ## Scrapy
@@ -94,8 +94,9 @@ class TestSpider(scrapy.Spider):
     handle_httpstatus_list = [301]	# 捕获非200的响应，301表示允许重定向。HTTPERROR_ALLOW_ALL = True表示捕获所有
 
     def start_requests(self):
-        yield url
-    
+      """生成初始请求"""
+      yield Request(url, self.parse, meta={})
+  
     def parse(self, respone):
         yield item
         
@@ -311,7 +312,7 @@ def start_requests(self):
 - **安装出错`no module named w3lib.http`**
    `pip install w3lib`
 
-- ​
+- 
 
 
 
