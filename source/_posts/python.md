@@ -14,6 +14,8 @@ yum groupinstall -y 'development tools'
 yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel xz-libs  libffi-devel
 # for Ubuntu
 apt-get install -y build-essential libssl-dev libffi-dev
+# for alpine
+apk add --update alpine-sdk
 
 # Linux下不区分64和32位
 wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz	

@@ -1,7 +1,7 @@
 ---
 title: Kafka 教程
 date: 2016-12-23 11:20:44
-updated: 2016-12-26 11:32:00
+updated: 2019-05-16 17:32:00
 categories: tools
 ---
 
@@ -54,14 +54,15 @@ services:
     ports:
       - "9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 172.31.148.174	# docker宿主机的IP，直接ifconfig获取，这是重点，否则，在容器内部启动生产者消费者都会失败的
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://:9092	# 这是重点，否则，在容器内部启动生产者消费者都会失败的
+      KAFKA_LISTENERS: PLAINTEXT://:9092
       KAFKA_CREATE_TOPICS: "test:1:1"				# 自动创建一个默认的topic
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"		# 禁用掉自动创建topic的功能，使用上面的镜像，kafka的参数设置都可以以这样的方式进行设置
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   kafka-manager:
-    image: sheepkiller/kafka-manager		# 如果要安装web管理工具可以同时安装这个，最后通过苏主机IP的9000端口进行访问，例如172.31.148.174:9000
+    image: sheepkiller/kafka-manager		# 如果要安装web管理工具可以同时安装这个，最后通过宿主机IP的9000端口进行访问，例如172.31.148.174:9000
     links:
       - kafka
       - zookeeper
@@ -127,4 +128,5 @@ Kafka可以配合SSL+ACL来进行安全认证: http://orchome.com/185
 - **容器内部启动生产者出现错误:`[2016-12-26 03:03:39,983] WARN Error while fetching metadata with correlation id 0 : {test=UNKNOWN_TOPIC_OR_PARTITION} (org.apache.kafka.clients.NetworkClient)`**
 
   是因为`docker-compose`文件里面的宿主讥IP设置出错，如果是动态IP的话就没办法了，只能删除重新创建了
-
+  
+- **启动生产者或者消费者出现LEADER_NOT_AVAILABLE**：原因是没有执行`docker-compose scale kafka=n`
