@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2019-04-22 10:50:00
+updated: 2019-05-16 17:40:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -41,6 +41,7 @@ docker tag id name:tag	# 给镜像更改名称
 ```shell
 --add-host=host:IP	# 给hosts添加一行
 -d						# 使容器在后台运行(detached mode)
+-t					# 启用tty模式，有些镜像不启用tty模式的话执行完第一条命令后就立马退出
 --name haofly			# 给容器命名
 --net=host				# 网络模式，host表示容器不会获得独立的Network Namspace，而是和宿主机公用一个Network Namespace。容器将不会虚拟网卡，配置自己的IP，而是使用宿主机器的IP和端口；none表示没有网络；bridge是docker默认的网络设置；container:NAME_or_ID表示container模式，指定新创建的容器和已经存在的一个容器共享一个Network Namespace，和指定的容器共享IP、端口范围等。
 --restart=no			# 容器的重启模式，no表示不自动重启，on-failure表示当容器推出码为非零的时候自动重启，always表示总是自动重启，docker重启后也会自动重启，unless-stopped表示只有在docker重启时不重启，其他时候都自动重启。
@@ -153,6 +154,10 @@ haproxy:			# 第三方容器
         - "80:80"
     expose:					# 暴露的端口
         - "80"
+        
+python:
+		image: python
+		tty: true		# 有些镜像启动时候不用tty会直接退出
 ```
 
 ### docker-compose常用命令
@@ -312,4 +317,4 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
 
 - **容器内部无网络**: 首先可以使用`--net=host`使用主机的网络来检查是否是容器内部的网络问题，如果使用该参数依然无法访问网络，那么使用`ping`直接`ping`IP地址，如果IP通但是域名不通，那就是dns的问题，去查看一下容器的dns配置，一般目录是在`/etc/resolv.conf`
 
-
+- **exited with code 0** 容器没有任何报错就退出，日志也没有。有可能是因为该镜像的启动命令不是`daemon`方式，容器启动完成后立马就退出了，这个时候可以参照上面的`-t`或者`docker-compose`里面的`tty: true`进行设置

@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-04-25 10:08:30
+updated: 2019-05-15 14:08:30
 categories: system
 ---
 # Linux手册
@@ -383,6 +383,11 @@ usermod -a -G groupName userName
 # ACL权限分配: 可以给指定的用户指定目录分配指定的权限
 
 su - www -c "php artisan"	# 以指定用户执行命令
+
+# 清空登录日志
+echo > /var/log/wtmp	# 成功登录的用户
+echo > /var/log/btmp	# 尝试登录的用户信息
+echo > /var/log/lastlog	# 最近登录的用户信息
 ```
 
 #### 系统相关
