@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2018-04-27 11:08:00
+updated: 2019-05-22 17:30:00
 categories: system
 ---
 ## Shell配置使用
@@ -20,6 +20,10 @@ categories: system
 ```shell
 export ALL_PROXY=socks5://127.0.0.1:1080	# homebrew走ss代理
 ```
+
+### 查看每个CPU的负载/GPU负载
+
+`活动监视器->窗口->CPU使用率/CPU历史记录/GPU历史记录`
 
 ### 修改终端欢迎字符
 
@@ -66,6 +70,6 @@ mackup uninstall# 将配置文件拷回原来的系统目录
    sudo mdutil -i on /
    ```
 
-   ​
+   
 
-   ​
+   
