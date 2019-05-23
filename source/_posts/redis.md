@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2019-03-07 17:19:00
+updated: 2019-05-22 16:32:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -145,7 +145,7 @@ ZREVRANGEBYSCORE key max min	# 与上面相反，这是分数由高到低排列�
 ```shell
 HKEYS key	# 取出哈希表key中所有的域
 HMGET key field [field...]	# 取出某个key指定域的值
-HSET key field value	# 将hash表key中的域field的值设为value，如果key不存在则会新建，如果已有field则会覆盖
+HSET key field value	# 将hash表key中的域field的值设为value，如果key不存在则会新建，返回结果为1，如果已有field则会覆盖，返回结果为0
 HMSET key field value [field value ...]	# 同时将多个field-value(域-值)对设置到哈希表key中，会覆盖哈希表中已存在的域
 HINCRBY key field increment	# 将hash key中的域field增加increment，如果没有key则会新建key，如果没有域则默认为0并增加increment
 HGETALL key	# 取出hash表中所有的域和值

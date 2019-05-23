@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2018-10-26 17:49:00
+updated: 2019-05-22 15:43:00
 categories: go
 ---
 
@@ -19,13 +19,20 @@ categories: go
 
 需要注意的是，在使用go之前，必须设置GOPATH这个环境变量，并且该环境变量不允许和`GOROOT`一样，该目录是用来存放第三方包的源码的地方。
 
-```shell
-
-```
-
 ## 编译与构建
 
-如果是一个单独的文件运行程序，那么该文件的package必须是`package main`，否则会出现`go run: cannot run non-main package`错误
+如果是一个单独的文件运行程序，那么该文件的package必须是`package main`，否则会出现`go run: cannot run non-main package`错误。
+
+### 依赖管理
+
+推荐使用[govendor](https://github.com/kardianos/govendor)进行依赖管理，go默认会先搜索`vendor`目录下的内容，`govendor`会将源码中引用的外部依赖的源码以及版本固化到当前项目的`vendor`目录中去。
+
+```shell
+go get -u -v github.com/kardianos/govendor	# 安装govendor
+govendor init	# 初始化vendor目录
+govendor add +external
+govendor add +e			# 将外部依赖添加到vendor中
+```
 
 ## 基本语法
 
@@ -100,6 +107,7 @@ k = append(k, 1)	// 向切片增加元素
 // 动态数组/不定长数组
 var arr []string
 newArr = append(arr, "one")
+newArr := append(arr1, arr2...)	// 合并两个数组
 ```
 
 #### 字符串/json
@@ -291,7 +299,9 @@ if err != nil {return}
 
 ### go协程-go程
 
-Go的协程居然就叫go。`select`语句让go可以等待多个通信操作。
+- Go的协程居然就叫go。`select`语句让go可以等待多个通信操作。
+
+- 即使如此，Go默认所有的任务都是在一个cpu核里面，如果想使用多核来跑goroutine的任务，需要配置`runtime.GOMAXPROCS(N)`，其中N一般就设置为CPU核心数。不过，并行只是适合CPU密集型计算，IO密集的任务如果在多核上面跑，由于cpu切换开销比较大，有时候反而会降低性能。
 
 ```go
 go f(x,y,z)	// 这样会启动一个新的协程去处理f函数
@@ -414,11 +424,60 @@ start := time.Now()	// 获取当前时间，格式虽然不大懂，但是时间
 start - time.Now()	// 计算时间差，自带单位换算，而且非常精准
 ```
 
+## 性能分析
+
+Go自带性能分析工具`pprof`。它可以提供可视化的分析结果。如果要分析程序的性能，得在程序中添加如下代码:
+
+```go
+package main
+
+import(
+  "flag"
+	"log"
+  "runtime"
+  "runtime/pprof"
+)
+
+var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
+var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
+
+main(){
+	flag.Parse()
+	if *cpuprofile != "" {
+		f, err := os.Create(*cpuprofile)
+		if err != nil {
+			log.Fatal("could not create CPU profile: ", err)
+		}
+		defer f.Close()
+		if err := pprof.StartCPUProfile(f); err != nil {
+			log.Fatal("could not start CPU profile: ", err)
+		}
+		defer pprof.StopCPUProfile()
+	}
+
+	if *memprofile != "" {
+		f, err := os.Create(*memprofile)
+		if err != nil {
+			log.Fatal("could not create memory profile: ", err)
+		}
+		defer f.Close()
+		runtime.GC() // get up-to-date statistics
+		if err := pprof.WriteHeapProfile(f); err != nil {
+			log.Fatal("could not write memory profile: ", err)
+		}
+    
+    // 这里是你元俩的主程序
+}
+```
+
+如果想要直接在web页面查看程序调用流程图或者火焰图，可以安装一个工具:`go get -u github.com/google/pprof`，然后`pprof -http=:8080 cpu.prof`即可在web端以多种形式查看样本数据。
+
 ## 扩展库推荐
 
 基本上可以理解为`gopkg.in`才是Go官方推荐的库网站，地址与github中的地址其实是相对应的，不过这个好处是可以在后面加一个版本号做到版本控制
 
 - **gjson**: 非常好用的redis数据读取库(仅仅是读)
+- **[go-dirtyfilter](https://github.com/antlinker/go-dirtyfilter)**: 基于DFA算法实现的敏感词过滤(实际使用比正则匹配快10倍以上)
 - **logrus**: 日志库，默认日志级别为`Info`，`Debug`级别需要主动设置
 - **[mgo](https://godoc.org/gopkg.in/mgo.v2#Bulk.Insert)**: mongo驱动
 - **[redigo](http://godoc.org/github.com/gomodule/redigo/redis)**: redis驱动

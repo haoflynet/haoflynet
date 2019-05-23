@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-02-26 23:23:30
+updated: 2019-05-20 13:23:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -633,8 +633,10 @@ def __new__(cls, *args, **kwargs):
 ```python
 __dir__		# 实现动态属性
 class AttrDict(dict):
-    def __getattr__(self, item):	# 是为了直接用点号可以访问动态属性
+    def __getattr__(self, item):	# 当对象的属性不存在时会调用该方法，你可以在该方法里面定义自定义的属性，但是一定要注意当不存在时，最后要抛出AttributeError
+      if item in self.my_dict:	# 不能在这里面直接调用getattr方法，因为不存在就会出现递归错误
         return self[item]
+      raise AttributeError
 
     def __dir__(self):				# 是为了能自动完成，和用__dir__能够查找到该动态属性
         return super().__dir__() + [str(k) for k in self.keys()]
@@ -782,13 +784,26 @@ def test():
 
 # 类装饰器dataclasses
 ## python3.7使用这个可以生成__init__、__repr__和比较相关的魔术方法
+@dataclass
+class A:
+  a: float
+  b: int = 1	# 可以不用写构造方法了
+    
 ```
 
 
 
 #### property(描述符)
 
-可将类的方法变为类的属性，比如之前用`person.name()`，现在可以直接`person.name`了
+可将类的方法变为类的属性，比如之前用`person.name()`，现在可以直接`person.name`了。
+
+```python
+class A:
+  @property
+  def value(self):
+    return 'ok'
+A().value	# 即可访问
+```
 
 ## 标准库
 

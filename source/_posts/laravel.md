@@ -1441,3 +1441,7 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 [如何少写PHP"烂"代码](https://juejin.im/post/5b4ecffef265da0fa1221f45): 更好的MVC分层实践
 
 [打造 Laravel 优美架构 谈可维护性与弹性设计](https://juejin.im/post/5be4475c518825170559c044)
+
+[laravelio/portal](https://github.com/laravelio/portal): 一个很好的参考项目，连测试都写得非常好
+
+[octobercms](https://github.com/octobercms/october): laravel写的cms系统

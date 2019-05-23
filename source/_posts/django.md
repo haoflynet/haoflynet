@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2018-11-26 17:26:00
+updated: 2019-05-20 14:26:00
 categories: python
 ---
 # Django教程
@@ -695,7 +695,7 @@ ifnotequal同上
 可以直接格式化输出，是一种最便捷的转换变量输出格式的方式。
 
 ```django
-{{ today | data: "F j, Y" }}	# 格式化输出时间
+{{ today | data: "Y m d" }}	# 格式化输出时间
 {{ content | safe}}				# 输出富文本，不对html转义
 ```
 这里是常见的过滤器：

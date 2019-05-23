@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2019-04-25 09:45:00
+updated: 2019-05-20 11:45:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -103,6 +103,21 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### user-select
 
 - none(文本不能被选择)、text(可以选择文本)
+
+##### @media
+
+- 媒体查询，可以定义当满足某个条件时的css，例如
+
+  ```css
+  @media (max-width: 600px) {	// 当屏幕最大宽度小于600px的时候
+    .tag {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 700px) and (orientation: landscape) {}	// 仅在横屏并且宽度大于700px的时候
+  @media tv and (min-width: 700px) and (orientation: landscape){}// 仅在电视上
+  ```
 
 ## TroubleShooting
 #### 元素居中方法
