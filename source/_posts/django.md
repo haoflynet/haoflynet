@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2019-05-20 14:26:00
+updated: 2019-05-30 14:56:00
 categories: python
 ---
 # Django教程
@@ -339,7 +339,7 @@ Blog.objects.all().exclude(id=7)  		# 排除，即不等于，同上
 Blog.objects.filter(name__contains="") 	# 模糊查找name字段的值，返回列表
 Blog.objects.filter(name__in=[])	# in操作
 BLog.objects.filter(id__range=[3, 8])	# between操作
-Blog.objects.order_by("字段1", "字段2")  # 排序，order_by不加任何参数表示不需要排序
+Blog.objects.order_by("字段1", "-字段2")  # 排序，order_by不加任何参数表示不需要排序，前面加减号表示逆序
 Blog.objects.all().order_by("字段")
 Blog.objects.count()     				# 返回记录总数
 
@@ -611,13 +611,13 @@ return render(request, 'test.html', {'name1': value1, 'name2': value2} )
 ### 继承与引用
 模板方便之处就是可以使用继承将代码分块并且将重复的地方都写在一个`base.html`里。当要实现继承的时候在html文件第一行写上
 
-```
+```django
 {% extends 'base.html' %}
 ```
 
 然后分别实现其区块即可。 在base模板中一般这样定义区块：
 
-```html
+```django
 {% block 块名 %}
 	这里直接写html代码
 {% endblock %}
@@ -626,7 +626,7 @@ return render(request, 'test.html', {'name1': value1, 'name2': value2} )
 如果子模块没有定义某个block的内容，那么就采用父模板的，如果需要使用父模板的内容可以用`{{ block.super }}` 
 模板也可以通过引用其它模板的代码，例如，在要引用的地方使用：
 
-```html
+```django
 {% include 'nav.html' %}
 {% include 'includes/nav.html' %}
 ```
@@ -688,7 +688,12 @@ url(r'^oauth/', include('oauth.urls', namespace='oauth'))	# 第三方APP的路�
 {% ifequal 变量1 变量2 %}
 比较值
 {% endifequal %}
-ifnotequal同上
+##ifnotequal同上
+  
+# with语句(QuerySet不能用last)
+{% with list|last as last_item %}
+  {{ last_item }}
+{% endwith %}
 ```
 
 ### 过滤器
@@ -701,7 +706,7 @@ ifnotequal同上
 这里是常见的过滤器：
 
 ```html
-add：将该数字加上一个数字，例如 `{{ value|add:"2" }}`，如果原来的值为4，那么新的值就为6，不仅进可以作用与int，还能作用与列表，将列表中每个值都加
+add：将该数字加上一个数字，例如 {{ value|add:"2" }}，如果原来的值为4，那么新的值就为6，不仅进可以作用与int，还能作用与列表，将列表中每个值都加
 addslashes：添加反斜杠到需要转义的地方前
 capfirst：第一个字母大写
 center：在字符串前后加空格，并让该字符串位于中间，例如 `{{ value|center: "5" }}`，那么输出时前后都是5个空格
@@ -717,7 +722,7 @@ first：返回列表的第一个值
 floatformat：设置浮点数的显示形式
 get_digit：获取一个整数的倒数第几个数字，例如`{{ value|get_digit:"2" }}`,那么123456789的值为8
 join：将一个列表的值添加一个分隔符并以字符串形式输出，例如`{{ value|join:"//"}}`那么['a', 'b', 'c']输出将是"a//b//c"
-last：返回列表的最后yield值
+last：返回列表的最后yield值，由于QuerySet没有[-1]索引获取元素的方法，所以无法使用with获取最后一个元素。需要这样做: {% for obj in queryset%}{% if forloop.last %}{{ obj.key }}{% endif %}{% endfor %}
 length：返回变量的长度，也可以在if语句里面使用，例如 {% if messages|length >= 100%} ...{% endif %}
 length_is：判断一长度是否是某个值，例如`{{ vlaue|length_is:"4" }}`如果value长度是4那么就返回True
 linebreaks：替换换行符，例如如果value的值是Joel\nis a slug，那么输出就是<<p>Joel<br /> is a slug</p>
@@ -791,126 +796,7 @@ yesno：
 {% endwith %}
 ```
 
-## Admin后台管理
-
-Django自带了强大的名为`admin`的后台管理功能，app名称为`django.contrib.admin`，它同时依赖了`django.contrib.auth`认证系统和`django.contrib.sessions`系统，当然，即使不用admin，后面两者都建议加上，不用自己写用户登录逻辑。
-
-- 为了使用它，我们需要先使用`migrate`功能去创建相应的数据库表，直接执行`python manage.py makemigrations && python manage.py migrate`即可。运行程序后，直接访问`http://127.0.0.1:8000/admin/`就能访问admin了。
-- 我们需要先创建一个超级管理员`python manage.py createsuperuser`，按照提示输入用户名密码即可用来登录了。
-- 如果要让字段非必填，需要在定义model字段的时候就加上`blank=True`参数
-
-### 使用admin管理数据表
-
-为了管理具体的某张表，我们需要在app下的`admin.py`文件里面注册相应的`model`：
-
-```python
-from django.contrib import admin
-from myapp.models import MyModel
-admin.site.register([MyModel])
-```
-
-如果需要自定义数据表创建数据和修改数据的表单，我们可以定制化：
-
-```python
-from django import forms
-from django.contrib import admin
-from django.contrib.auth.models import Group
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from myapp.models import MyModel
-
-class MyModelCreationForm(forms.ModelForm):
-    """自定义创建表单"""
-    field_name = forms.CharField(label='field_name')
-    
-    class Meta:
-        model = MyModel
-        fields = ('email', 'field2')
-
-class MyModelChangeForm(forms.ModelForm):
-    """自定义修改表单"""
-    password = ReadOnlyPasswordHashField(label= ("Password"), help_text= ("Raw passwords are not stored, so there is no way to see this user's password, but you can change the password using <a href=\"../password/\">this form</a>."))	# 如果要修改密码字段，我们需要这样提示
-    def clean_password(self):
-        return self.initial["password"]
-
-class UserAdmin(BaseUserAdmin):	# 如果是普通model，直接继承admin.ModelAdmin
-    form = UserChangeForm	# 指定修改表单
-    add_form = UserCreationForm	# 指定创建表单
-
-    list_display = ('id', )	# 列表显示时需要显示哪些字段
-    list_per_page = 50	# 每页显示多少条记录，默认是100条
-    list_filter = ('role', )	# 列表页面右边的直接筛选字段，会列出该字段所有的值
-    list_editable = ['field']	# 可以直接在列表页进行更改的字段
-    fk_fields = ('field', )	# 列表页显示的外键字段
-    ordering = ('-email',)	# 指定字段的显示顺序，负号表示降序排序
-    fieldsets = (		# 可以对字段进行分类设置
-        (None, {'fields': ('username', 'password', )}),
-        ('Personal info', {'fields': ('firstname', )}),
-        ('Permissions', {'fields': ('groups', )}),
-    )
-    add_fieldsets = (	# 添加数据时需要填写哪些字段
-        (None, {
-            'classes': ('wide',),
-            'fields': ('username', 'password1', 'password2', 'is_superuser', 'is_staff', 'is_active', )}
-         ),
-    )
-    search_fields = ('username', 'email',)	# 指定能搜索哪些字段
-    filter_horizontal = ('posts')	# 显示多对多字段
-    readonly_fields = ('username')	# 只读字段
-    
-    def save_model(self, request, obj):	# 保存model的时候执行操作
-        obj.user = request.user
-        super().save_model(request, obj, form, change)
-
-class DataAdmin(admin.ModelAdmin):
-    search_fields = ('id', 'table_name', 'zh_name')
-    fields = ('table_name', 'zh_name', 'intro', 'description', 'doc', 'logo', 'created_at')
-
-admin.site.register(User, UserAdmin)
-admin.site.register(Data, DataAdmin)
-admin.site.register([User_Datas])
-admin.site.site_header = '修改后台页面'
-admin.site.site_title = '修改后台的title'
-```
-
-### 后台记录增改的时候让某些字段支持富文本编辑
-
-使用`django-ckeditor`扩展，使用简单，前端也漂亮
-
-1. 安装`pip install django-ckeditor`，如果要在富文本里添加图片还需要`pip install pillow`
-
-2. 注册应用，`INSTALLED_APPS`里添加`ckeditor`，图片还需要添加`ckeditor_uploader`
-
-3. 如果要处理图片，还需要在`settings.py`里面添加如下设置:
-
-   ```python
-   # 前面两个可能已经设置了，是存放用户上传文件的地方
-   MEDIA_URL = '/media/'
-   MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    
-   CKEDITOR_UPLOAD_PATH = 'upload/'
-   ```
-
-   另外还需要添加一个路由用于上传请求
-
-   ```python
-   from django.conf.urls.static import static
-   
-   urlpatterns = [
-   	...
-       path('ckeditor/', include('ckeditor_uploader.urls')),
-   ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-   ```
-
-   模型里面对应的字段设置
-
-   ```python
-   from ckeditor.fields import RichTextField
-   
-   class Post(models.Model):
-       content = RichTextField()
-       content2 = RichTextUploadingField()	# 带有上传图片功能的富文本编辑
-   ```
+## [Admin后台管理](https://haofly.net/django-admin)
 
 ## 用户管理功能
 
@@ -1029,6 +915,12 @@ class Post(models.Model):
 
 ## [Django部署](https://haofly.net/django-deploy)
 
+## [自定义存储系统/七牛云存储](https://haofly.net/django-storage)
+
+### Django缓存系统
+
+能够缓存视频或者模板片段或者API。
+
 ## Django国际化
 
 - `I18N`表示国际化，`L10N`表示本地化。Django使用的是`gettext`工具进行国际化的翻译。
@@ -1099,6 +991,12 @@ class Post(models.Model):
 
 Django根据以下顺序去决定应该使用哪种语言
 
+- 请求的时候手动更改，这种方法仅用于当前请求:
+
+  ```python
+  django.utils.translation.active('en')
+  ```
+
 - i18n_patterns: 即直接根据url中的语言来判断
 
   ```python
@@ -1115,6 +1013,15 @@ Django根据以下顺序去决定应该使用哪种语言
 - request.COOKIES[translation.LANGUAGE_COOKIE_NAME]
 
 - request.META['HTTP_ACCEPT_LANGUAGE']，即http的header头中的`Accept-Language`
+
+#### 获取当前语言
+
+```python
+request.session[translation.LANGUAGE_SESSION_KEY]	# 如果在session有设置可以从session读
+request.COOKIES[translation.LANGUAGE_COOKIE_NAME]	# 如果在cookie有设置可以从cookie读
+django.utils.translation.get_language()	# 返回当前使用的语言
+get_language_from_request(request)	# 这才是准确的。。。
+```
 
 #### 翻译JS中的内容
 
@@ -1248,9 +1155,10 @@ Django下的定时任务插件，我以前用的是`django-crontab`，但是现�
   {% if a=='2' %}	# 是错误的，不仅%需要有空格，==两边都得有空格
   ```
 
-- 
+- **迁移数据库后即使输入正确的用户名密码也无法进入后台管理**: 重设密码，或者清除cookie即可
 
-   
+- **使用nginx代理静态文件前端静态文件能正常获取，但是管理后台的静态文件都404了**: 原因是没有使用`python manage.py collectstatic`命令将所有的静态文件提取到根目录的`/static`目录下
+
 
 ##### 扩展阅读
 
