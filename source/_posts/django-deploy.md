@@ -1,7 +1,7 @@
 ---
 title: "使用nginx+uWSGI部署Django/Python应用"
 date: 2018-08-04 21:32:00
-updated: 2018-10-16 22:19:00
+updated: 2019-05-30 14:19:00
 categories: python
 ---
 
@@ -34,7 +34,13 @@ categories: python
   	location / {
   		uwsgi_pass django;
   
-          # 下面的配置可以保存成文件然后include，有些nginx版本自带了/etc/nginx/uwsgi_params的，直接在这里include uwsgi_params即可
+      # 设置nginx与uwsgi之间的超时时间，默认是60秒
+      uwsgi_send_timeout 180;
+      uwsgi_connect_timeout 180;
+      uwsgi_read_timeout 180;
+  
+      # 下面的配置可以保存成文件然后include，有些nginx版本自带了/etc/nginx/uwsgi_params的，直接在这里include uwsgi_params即可
+      
   		uwsgi_param  QUERY_STRING       $query_string;
   		uwsgi_param  REQUEST_METHOD     $request_method;
   		uwsgi_param  CONTENT_TYPE       $content_type;
@@ -52,6 +58,11 @@ categories: python
   		uwsgi_param  SERVER_PORT        $server_port;
   		uwsgi_param  SERVER_NAME        $server_name;
   	}
+    
+    # 代理静态文件，需要注意的是，admin等插件的静态文件是在库里面的，需要使用python manage.py collectstatic命令将所有静态文件移动到/static/下面
+    location /static/ {
+      alias /pathto/mysite/static/;
+    }
   }
   ```
 
