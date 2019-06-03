@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2019-05-22 15:43:00
+updated: 2019-05-30 16:43:00
 categories: go
 ---
 
@@ -245,6 +245,9 @@ switch {
     case t.Hour() < 12:	// 没错，可以这样写条件。反正都是从上往下，匹配到第一个就终止。其他语言为啥不这样
     	...
 }
+
+// 定时任务/延迟执行，由于是延迟的，所以这个函数的资源在执行完之前都不会释放，有内存泄漏的风险
+time.AfterFunc(10 * time.Second, func(){"函数"})
 ```
 
 ### 函数
@@ -265,7 +268,7 @@ func my(a int) (string, error) {
     return "123", nil	
 }
 
-// 定义不确定变量数量的函数/可选参数
+// 定义不确定变量数量的函数/可选参数，三个点可以接收任意个数的参数
 func test(v ...interface{}) {
     fmt.Println(v)	// 是一个切片/数组
     fmt.Println(v[0])
@@ -426,7 +429,11 @@ start - time.Now()	// 计算时间差，自带单位换算，而且非常精准
 
 ## 性能分析
 
-Go自带性能分析工具`pprof`。它可以提供可视化的分析结果。如果要分析程序的性能，得在程序中添加如下代码:
+Go自带性能分析工具`pprof`。它可以提供可视化的分析结果。
+
+### 生成取样文件方式分析
+
+这种方式可以在代码中加入如下代码，运行时加上指定参数即可进行分析，不加参数不会进行分析操作。但是有一个缺点是如果程序是一直运行着的，那么可能会出现分析文件为空的问题。
 
 ```go
 package main
@@ -466,11 +473,62 @@ main(){
 			log.Fatal("could not write memory profile: ", err)
 		}
     
-    // 这里是你元俩的主程序
+    // 这里是你原来的主程序
 }
 ```
 
 如果想要直接在web页面查看程序调用流程图或者火焰图，可以安装一个工具:`go get -u github.com/google/pprof`，然后`pprof -http=:8080 cpu.prof`即可在web端以多种形式查看样本数据。
+
+### 实时在线分析
+
+这种方法需要在代码中加入如下代码，需要提供一个http服务供在线分析使用:
+
+```go
+import 'net/http'
+import _ "net/http/pprof"
+
+func main() {
+  http.ListenAndServe("0.0.0.0:8000", nil)
+}
+```
+
+之后直接访问`http://127.0.0.1:8000/debug/pprof`即可，可以在网页上看到这几种统计:
+
+- block: 导致阻塞同步的堆栈跟踪
+
+- goroutine: 当前所有运行的goroutines堆栈跟踪
+
+- heap: 当前活动对象的内存分配情况，有如下几个重要的信息
+
+  ```shell
+  # runtime.MemStats
+  # Alloc = 37613200
+  # TotalAlloc = 18489602056
+  # Sys = 71227640							# 进程从系统获得的内存空间，虚拟地址空间
+  # Lookups = 3514
+  # Mallocs = 293449371
+  # Frees = 292804691
+  # HeapAlloc = 37613200				# 进程堆内存分配使用的空间
+  # HeapSys = 54394880					# 从系统获得的堆内存
+  # HeapIdle = 14475264
+  # HeapInuse = 39919616
+  # HeapReleased = 0
+  # HeapObjects = 644680
+  # Stack = 2228224 / 2228224
+  # MSpan = 733920 / 950272
+  # MCache = 67200 / 81920
+  # BuckHashSys = 1555437
+  # NextGC = 46304434
+  # PauseNs = [443308 425353 ]	# 每次GC暂停的时间(纳秒)，最多记录组新的256次数据
+  # NumGC = 1498								# GC发生的次数
+  # DebugGC = false
+  ```
+
+- mutex: 导致互斥锁的竞争持有者的堆栈跟踪
+
+- threadcreate: 创建新OS线程的堆栈跟踪
+
+这种方式仍然可以在交互式终端中进行查看，只需要在命令行执行`go tool pprof http://127.0.0.1:8000/debug/pprof`即可。
 
 ## 扩展库推荐
 
@@ -497,3 +555,5 @@ main(){
 [官方FAQ](https://golang.org/doc/faq): 我见过写得最详细的编程语言官方FAQ
 
 [Why you can have millions of Goroutines but only thousands of Java Threads](https://rcoh.me/posts/why-you-can-have-a-million-go-routines-but-only-1000-java-threads/)
+
+[如何写出优雅的Golang代码](https://draveness.me/golang-101)

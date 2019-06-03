@@ -1,7 +1,7 @@
 ---
 title: Kafka 教程
 date: 2016-12-23 11:20:44
-updated: 2019-05-16 17:32:00
+updated: 2019-05-27 16:32:00
 categories: tools
 ---
 
@@ -97,6 +97,7 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --t
 
 ```shell
 kafka-console-producer.sh --broker-list localhost:9092 --topic test	# 启动一个生产者，直接输入消息回车即可发送消息了
+kafka-console-producer.sh --broker-list localhost:9092 --topic test	< access.log # 直接将文件内容传入kafka
 ```
 
 #### kafka-consumer-groups.sh
