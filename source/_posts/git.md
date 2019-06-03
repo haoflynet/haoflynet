@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2019-05-06 23:58:00
+updated: 2019-05-30 14:23:00
 categories: tools
 ---
 # Git指南
@@ -271,3 +271,5 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 - **两个人用同一个账号登录同一台服务器居然有一个人有git权限，另一个却没有**: 这是因为虽然是同一个用户登录的服务器，但是所带的key确实不一样的，可以使用`ssh-add -l`查看你登录的`ssh key`，看是否有权限。
 
 - **warning: refname 'remotes/origin/dev' is ambiguous. fatal: 歧义的对象名: 'remotes/origin/dev'**: 原因是错误的新建了一个和远程分支同名的分支，在新建分支的时候一定要`-b`让本地分支与远程分支相对应，遇到这种情况，只需要先删除本地分支即可`git branch -d 分支名`
+
+- **提交时出现`fatal: Unable to create '.git/index.lock': File exists.`**: 原因是检测到有其他的Git在同时操作该本地仓库，如果确认没有其他的，那么直接删除它即可`rm -rf .git/index.lock`

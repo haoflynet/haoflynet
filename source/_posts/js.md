@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-05-10 09:12:00
+updated: 2019-05-31 18:33:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -498,7 +498,15 @@ $.post('some.php', {name: 'haofly'})
      <input type="checkbox" name="option" value="true"/>
      ```
 
+- **隐藏CNZZ“站长统计”四个字**: 直接在添加这行js:
+
+  ```javascript
+  $('a').last().hide();
+  ```
+
 - **Unexpected token o in JSON at position 1**: 原因是在使用`JSON.parse(str)`的时候，传入的不是字符串而是一个对象，即`[object Object]`，把`[`理解为了数组的开始，但是`o`就无法理解了。
+
+- **Uncaught TypeError: a.indexOf is not a function**: 版本问题。`$(window).load(function(){})`在高版本中已经废弃了，需要用`$(window).on('load', function(){})`替代
 
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
