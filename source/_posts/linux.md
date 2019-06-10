@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-05-15 14:08:30
+updated: 2019-05-24 15:58:30
 categories: system
 ---
 # Linux手册
@@ -80,6 +80,7 @@ gtop: 命令行式的活动监视器
 htop: 比top更好看的进程监视，还支持查看进程的每个子进程
 cat /proc/进程ID/status：查看进程详细信息，包括线程数，线程名称，线程状态，占用内存大小
 pstree -p 进程ID：查看线程的进程数以及进程ID
+lsof	# 能看到所有进程打开的文件
 lsof -i :端口号   # 查看端口占用情况，不仅能看到哪个进程开启的端口，还能查看谁在使用该端口
 lsof -i -n -P | egrep ':8000.+ESTABLISHED'   # 查看8000端口的连接列表
 lsof -i -n -P | egrep -c ':8000.+ESTABLISHED' # 查看8000端口的连接数字
@@ -195,6 +196,7 @@ zip -r *.zip file dir   # 压缩文件或目录一起为zip格式
 zip -e 结果.zip 目标     # 压缩并加密(OSX可用)
 zip -P 密码 结果.zip 目标	# 压缩并加密，直接把密码写在命令行
 7z x 目标.7z			# 解压.7z文件
+unrar -e *.rar	# 解压.rar文件
 
 # 压缩格式对比
 # 压缩比率: tar.bz2=tar.bz>tgz>tar
