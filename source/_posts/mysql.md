@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-05-20 13:50:00
+updated: 2019-05-31 18:50:00
 categories: database
 ---
 ## 安装方法
@@ -285,6 +285,9 @@ SHOW ENGINE INNODB STATUS;
 # 备份整个数据库
 mysqldump -u... -p... -h... -A > all.sql
 mysqldump -uroot -pmysql --databases -h127.0.0.1 abc | gzip > test.sql.1.gz # 压缩，只能在本地进行压缩
+mysqldump -u... -p... -h... dbname tablename > table.sql	# 备份单张表
+mysqldump -u... -p... -h... -d dbname > db.sql # 备份数据库的结构
+mysqldump -u... -p... -h... -d dbname tablename > table.sql # 备份单张表的结构
 
 # 备份多个数据库
 mysqldump -u... -p... -h... --databases data1 data2 > backup.sql

@@ -150,4 +150,4 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
        content2 = RichTextUploadingField()	# 带有上传图片功能的富文本编辑
    ```
    
-   `Django-CKeditor`目前还不支持粘贴的时候自动上传图片，我的做法是在对象的`Admin`的`save_model`方法里面对没有转换为内链的外部链接图片通过`requests`抓取下来再上传到七牛云，以达到自动替换的效果。
+   `Django-CKeditor`目前还不支持粘贴的时候自动上传图片，我的做法是在对象的`Admin`的`save_model`方法里面对没有转换为内链的外部链接图片通过`requests`抓取下来再上传到七牛云，以达到自动替换的效果。这只是最简单的做法，当然，最好的做法还是在前端监听粘贴事件，实时上传。
