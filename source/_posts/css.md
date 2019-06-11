@@ -65,6 +65,12 @@ a:active: a标签被点击的时候
 
 - 设置行间距
 
+##### list-style
+
+- 把图像设置为列表中的列表项目标记(就是每一行的头那个地方设置为圆点显示还是数字显示)
+- 包括三个属性: `list-style-type list-style-position list-style-image`，默认值为`disc outside none`
+- `list-style-type`就是左边的样式，可选值有none(无标记)、disc(实心圆，默认)、circle(空心圆)、square(实心方块)、decimal(数字)、decimal-leading-zero(0开头的数字)等
+
 ##### margin
 
 ```css
