@@ -1,7 +1,7 @@
 ---
 吧title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-05-08 13:38:21
+updated: 2019-05-31 18:11:21
 categories: php
 ---
 # PHP
@@ -191,14 +191,7 @@ r	RFC 822 格式的日期	例如：Thu, 21 Dec 2000 16:01:07 +0200
 U	从 Unix 纪元（January 1 1970 00:00:00 GMT）开始至今的秒数	参见 time()
 ```
 
-##### Carbon时间处理第三方库
-
-```php
-Carbon::parse('2017-08-25 18:18:18');	# 不用指定格式即可将时间字符串自动转换为Carbon对象
-Carbon::now()->subDays(24);			# 计算24天前的时间
-$now = Carbon::now();	// 获取当前时间
-$now->addYears(n);		// 当前时间加n年，直接用addYear表示加一年
-```
+##### [Carbon时间处理第三方库](https://haofly.net/php-carbon)
 
 ### 文件操作
 
@@ -424,6 +417,7 @@ composer require package_name --dev	# 安装包，并将其写入composer.json�
 composer remove package_name	# 移除包
 composer config -g repo.packagist composer https://packagist.phpcomposer.com	# 更换为国内的源
 composer config repositories.mypkg composer https://ppkg.haofly.net	# 增加源，并写入composer文件中的repositories字段
+composer config -g --unset repos.packagist	# 删除指定仓库
 
 # 忽略ssl证书验证
 composer config --global disable-tls true

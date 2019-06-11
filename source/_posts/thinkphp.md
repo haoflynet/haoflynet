@@ -1,7 +1,7 @@
 ---
 title: "ThinkPHP 手册"
 date: 2016-10-28 00:08:39
-updated: 2019-04-23 10:33:00
+updated: 2019-05-27 10:33:00
 categories: php
 ---
 垃圾框架，用了`Laravel`过后感觉其他的PHP框架都是垃圾。但是由于生活所迫，不得不研究一下ThinkPHP框架了，哎。
@@ -9,6 +9,10 @@ categories: php
 ## 配置
 
 数据库配置放在`database.php`
+
+```php
+THINK_VERSION = '3.2.2'	# thinkphp版本
+```
 
 ## 帮助函数
 

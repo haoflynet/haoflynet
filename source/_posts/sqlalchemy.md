@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2019-03-26 15:34:00
+updated: 2019-05-23 15:34:00
 categories: python
 ---
 
@@ -194,6 +194,13 @@ def fullname(self):
 ## CRUD
 
 - 像`join`自身类似的需求，可以使用别名`user_model1 = aliased(UserModel)`
+
+- 执行原生语句:
+
+  ```python
+  result = conn.execute("INSERT INTO user (name) VALUES ('haofly')")
+  result = conn.execute("INSERT INTO user (name) VALUES ('haofly') RETURNING id")	# 插入并拿到插入的id
+  ```
 
 ### 查询
 
