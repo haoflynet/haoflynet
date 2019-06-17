@@ -1,6 +1,7 @@
 ---
 title: "Go Web框架gin"
 date: 2018-05-04 23:25:00
+updated: 2019-06-12 09:53:00
 categories: Go
 ---
 
@@ -72,6 +73,9 @@ c.DefaultQuery("name", "Guest")
 // 获取表单参数
 c.PostForm("name")
 c.DefaultPostForm("name")
+
+// 获取URL
+c.Request.URL.Path	// 获取路径
 ```
 
 #### 参数绑定
