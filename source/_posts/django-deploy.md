@@ -1,7 +1,7 @@
 ---
 title: "使用nginx+uWSGI部署Django/Python应用"
 date: 2018-08-04 21:32:00
-updated: 2019-05-30 14:19:00
+updated: 2019-06-12 14:19:00
 categories: python
 ---
 
@@ -9,7 +9,9 @@ categories: python
 
 <!--more-->
 
-## 部署步骤
+## 使用Nginx+uWsgi部署Django/Python应用
+
+### 部署步骤
 
 - 首先，要保证你的应用能使用`python manage.py runserver`命令启动起来
 
@@ -126,6 +128,36 @@ stdout_logfile=/var/log/supervisor/uwsgi.stdout.log
 stderr_logfile=/var/log/supervisor/uwsgi.stderr.log
 redirect_stderr=true
 ```
+
+## 使用Gunicorn部署Django应用
+
+### 部署步骤
+
+1. 安装依赖: `pip install gunicorn gevent`
+
+2. 测试能否正常运行程序`gunicorn -w4 -b0.0.0.0:8000 myproject.wsgi:application`
+
+3. 还有一种方式是以文件的方式加载配置文件:
+
+   ```shell
+   # vim test.coonf
+   import os
+   
+   bind = ["127.0.0.1:8000", "unix:///tmp/myproject.sock"]
+   workers = 4
+   chdir = os.path.dirname(os.path.realpath(__file__))
+   raw_env = ["DJANGO_SETTINGS_MODULE=myproject.settings"]
+   accesslog = "/var/log/myproject_access.log"
+   errorlog = "/var/log/myproject_error.log"
+   daemon = False
+   pidfile = "/tmp/myproject_server.pid"
+   worker_class = "gevent"
+   timeout = 500%
+   ```
+
+   然后直接执行`gunicorn --config=test.conf myproject.wsgi:application`
+
+4. 最后再像`uWsgi`那样配合`supervisor`和`Nginx`即可
 
 ## TroubleShooting
 

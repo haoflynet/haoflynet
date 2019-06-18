@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-05-20 13:23:30
+updated: 2019-06-12 16:23:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -268,7 +268,7 @@ class IStream(metaclass=ABCMeta):
 # 随机数
 import random
 random.choice(list)  # 随机选择一个
-random.sample(list, n) # 随机选择n个
+random.sample(list, n) # 随机选择n个，可以实现随机字符串
 random.shuffle(list)  # 打乱选择择后的顺序
 random.randint(0, 10)  # 0到10的随机整数
 random.random()   # 0到1得浮点数
@@ -351,6 +351,7 @@ pathlib.Path.home()		# 同上
 os.path.basedir('/a/b')	# 获取当前目录或文件的父路径，例如/a/b返回/a，但是/a/b/返回/a/b
 os.remove(filename)  # 删除单个文件
 os.rmdir(dirname)   # 删除空目录
+os.walk(dirname)	# 遍历目录，返回的是迭代器，每一个元素表示(dirpath, dirnames, filenames)即目录路径，包含的子目录列表，包含的文件列表
 
 # shutil库
 import shutil
@@ -1003,6 +1004,16 @@ inspect.getfile(object)		# 获取对象的文件名
 inspect.getsource(object)	# 以string形式返回object的源代码
 ```
 
+#### ipaddress
+
+IP地址处理模块
+
+```python
+ip = ipaddress.ip_address('192.0.2.1')	# 新建一个IP地址对象IPv4Address('192.0.2.1')
+network = ipaddress.ip_network('192.0.2.1/24', strict=False)	# 新建一个网络段
+ip in network	# 判断ip是否在某个地址段内
+```
+
 #### itertools
 
 [参考](http://www.wklken.me/posts/2013/08/20/python-extra-itertools.html#itertoolscountstart0-step1)
@@ -1315,6 +1326,10 @@ conn.close()	# 关闭连接
 - **TypeError: must be type, not classobj**: 在2里面，继承的时候，父类没有继承自object
 
 - **`pipenv`初始化的目录出错**: 请检查其上级或者上上级目录里是否有`Pipenv`文件，如果有没必要的文件，删除即可
+
+- **Unsupported operation :not writeable python**: 一般是在写文件时候打开方式没有加'w'，而是直接`open('file')`
+
+- **fatal error: Python.h No such file or directory**: 需要安装python相关的开发库: `yum install python-devel`
 
 - **`Click will abort further execution because Python 3 was
     configured to use ASCII as encoding for the environment.`**: 错误原理见[click](https://click.palletsprojects.com/en/7.x/python3/)，设置一下系统的语言就好了:
