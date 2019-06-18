@@ -1,7 +1,7 @@
 ---
 title: "Python 进程、线程与协程"
 date: 2015-12-30 11:02:30
-updated: 2018-03-19 14:44:00
+updated: 2019-06-18 18:44:00
 categories: python
 ---
 ## 基本概念
@@ -131,6 +131,9 @@ print('main: waiting for real results')
 real_results = list(results)
 print('main: results: {}'.format(real_results)) # 返回真实的结果
 
+# map中函数如果需要多参数，可以这样做(只需要替换lambda中的函数名即可)
+for result in ex.map(lambda p: task(*p), arguements_list):
+	print(result)
 
 # 用map只能处理相同的任务，可以通过submit来执行需要执行的任务
 from concurrent import futures

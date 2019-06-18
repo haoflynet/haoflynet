@@ -1,7 +1,7 @@
 ---
-吧title: "PHP 手册"
+title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-05-31 18:11:21
+updated: 2019-06-13 10:11:21
 categories: php
 ---
 # PHP
@@ -110,6 +110,8 @@ str_replace(' ', '', lcfirst(ucwords(str_replace(['-', '_'], ' ', $str))));	# �
 $long_str = <<<EOT
 abcdefg
 EOT;		# 定义长字符串
+                      
+addslashes($str);		// 使用反斜线引用字符串
 ```
 ### 数字
 ```php

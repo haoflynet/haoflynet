@@ -169,6 +169,7 @@
 {"title":"Python包推荐,PHP包推荐,JS包推荐,Java包推荐,Go包推荐","url":"/packages/"},
 {"title":"《怦然心动的人生整理魔法》——家到底该怎么整理","url":"/pengranxindongderenshengzhenglimofa/"},
 {"title":"权限系统的构想(少用户多权限场景)","url":"/permissions-system-little-user-much-privileges/"},
+{"title":"PHP 使用Carbon扩展进行时间处理","url":"/php-carbon/"},
 {"title":"PHP单元测试","url":"/php-unit-test/"},
 {"title":"PHP 手册","url":"/php/"},
 {"title":"","url":"/php/"},
