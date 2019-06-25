@@ -17,11 +17,11 @@ categories: tools
 1. 点击设置按钮然后进入`Proxy Setting`，设置Http代理
    ![Http代理设置](https://haofly.net/uploads/charles_1.png)
 2. 系统代理设置
-   ![](http://ojccjqhmb.bkt.clouddn.com/charles_2.png)
+   ![](https://haofly.net/uploads/charles_2.png)
 3. 安装Charles的证书: Help -> SSL Proxying -> Install Charles Root Certificate，安装证书，并完全信任该证书
-   ![Mac 钥匙串管理](http://ojccjqhmb.bkt.clouddn.com/charles_3.png)
+   ![Mac 钥匙串管理](https://haofly.net/uploads/charles_3.png)
 4. 虽然设置了ssl证书，但是默认并没有对每个请求开启https的抓取，还需要针对单独的请求进行选择，在请求上面右键选择`SSL Proxy: Enabled`
-   ![](http://ojccjqhmb.bkt.clouddn.com/charles_4.png)
+   ![](https://haofly.net/uploads/charles_4.png)
 
 
 
@@ -31,13 +31,13 @@ categories: tools
 
 2. 手机连接Mac的Wifi，在wifi详情的最下面设置http代理，代理地址即使路由地址，也即mac的地址
 
-   ![](http://ojccjqhmb.bkt.clouddn.com/charles_6.png)
+   ![](https://haofly.net/uploads/charles_6.png)
 
 3. 选择Help -> SSL Proxying -> Instanll Charles Root Certificate on a Mobile Device or Remote Browse。在移动端上面安装
-   ![](http://ojccjqhmb.bkt.clouddn.com/charles_5.png)
+   ![](https://haofly.net/uploads/charles_5.png)
 
 4. 这样和mac端一样进行抓取。抓取示例:
-   ![](http://ojccjqhmb.bkt.clouddn.com/charles_7.png)
+   ![](https://haofly.net/uploads/charles_7.png)
 
 ##### TroubleShooting
 

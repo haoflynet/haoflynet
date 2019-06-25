@@ -1,67 +1,9 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2018-11-21 17:48:00
+updated: 2019-06-11 17:48:00
 categories: python
 ---
-## 编码问题
-
-- **2中打印str显示前面加了个u且中文类似\u8be5\u9879**：这是十六进制的Unicode编码，使用`string.encode('utf-8')`进行转换
-
-- **2中类似\uiahd\u9483这样的字符串**：需要注意的是，该字符串本来就是这样，而不是编码成这样的，这时候需要反编码：`string.decode('unicode_escape'))`
-
-- **无法解析\u2c这样的unicode字符，出现错误`UnicodeDecodeError: 'unicodeescape' codec can't decode bytes in position 0-3:truncated \uXXXX escape`**: 原因是unicode默认是\uxxxx这样的形式来解析字符串的，但是如果出现`\u2c`这种，是解析不了的，应该写成`\u002c`这种形式，前面需要补全
-
-- **url编码** Python3中，url编码放在了url lib.parse中了
-
-  ```python
-  from urllib import parse
-  parse.quote(str)	# urlencode
-  parse.quote_plus(str)
-  parse.unquote(str)	# urldecode
-  ```
-
-- **bytes to string**
-
-  ```pythohn
-  b"abcde".decode('utf-8')
-  ```
-
-- **将字符串输出为16进制字节**:
-
-  ```python
-  ":".join("\{:02x\}".format(ord(x) for x in 字符串))
-  # 或
-  ":".join("\{0:x\}".format(ord(x) for x in 字符串))
-  # 输出类似于: 12:45:45
-  ```
-
-- **16进制转换为utf-8** :类似 `\xe5\x94\xae\`这种，使用如下方式进行转换
-
-  ```python
-  unicode(string, 'utf-8')
-  ```
-
-- **base64编码和解码**
-
-  ```python
-  import base64
-  a = base64.b64encode(s)
-  b = base64.b64decode(a)
-  ```
-
-- **gb2312字符串转换为utf-8**
-
-  ```python
-  data.encode('latin1').decode('gb2312')
-  ```
-
-- **查看字符编码**
-
-  ```python
-  import chardet
-  chardet.detect(string)
-  ```
 
 
 ## 常用操作
@@ -103,9 +45,19 @@ s.replace(' ', '') # 去掉所有空白
 # 大小写转换
 s.upper()    # 全部转为大写
 s.lower()    # 全部转为小写
+
+# json格式去掉冒号后的空格
+json.dumps(string, separators=',', ':')	# 默认的分隔符是(', ', ': ')
+
+# url编码与解码
+from urllib import parse
+parse.unquote(url)	# url解码
+result = parse.urlparse(url)	# url解析
+query_dict = parse.parse_qs(request.query)	# 获取查询参数
+query_dict.get('field', [])	# 获取指定参数
 ```
 
-### 查找与替换
+## 查找与替换
 
 ```python
 # startswith
@@ -235,6 +187,65 @@ interval = today - begin
 interval.seconds()	# 时间差多少秒
 interval.days # 相差多少天，对应的.seconds表示相差多少秒，小时等同理
 ```
+## 编码问题
+
+- **2中打印str显示前面加了个u且中文类似\u8be5\u9879**：这是十六进制的Unicode编码，使用`string.encode('utf-8')`进行转换
+
+- **2中类似\uiahd\u9483这样的字符串**：需要注意的是，该字符串本来就是这样，而不是编码成这样的，这时候需要反编码：`string.decode('unicode_escape'))`
+
+- **无法解析\u2c这样的unicode字符，出现错误`UnicodeDecodeError: 'unicodeescape' codec can't decode bytes in position 0-3:truncated \uXXXX escape`**: 原因是unicode默认是\uxxxx这样的形式来解析字符串的，但是如果出现`\u2c`这种，是解析不了的，应该写成`\u002c`这种形式，前面需要补全
+
+- **url编码** Python3中，url编码放在了url lib.parse中了
+
+  ```python
+  from urllib import parse
+  parse.quote(str)	# urlencode
+  parse.quote_plus(str)
+  parse.unquote(str)	# urldecode
+  ```
+
+- **bytes to string**
+
+  ```pythohn
+  b"abcde".decode('utf-8')
+  ```
+
+- **将字符串输出为16进制字节**:
+
+  ```python
+  ":".join("\{:02x\}".format(ord(x) for x in 字符串))
+  # 或
+  ":".join("\{0:x\}".format(ord(x) for x in 字符串))
+  # 输出类似于: 12:45:45
+  ```
+
+- **16进制转换为utf-8** :类似 `\xe5\x94\xae\`这种，使用如下方式进行转换
+
+  ```python
+  unicode(string, 'utf-8')
+  ```
+
+- **base64编码和解码**
+
+  ```python
+  import base64
+  a = base64.b64encode(s)
+  b = base64.b64decode(a)
+  ```
+
+- **gb2312字符串转换为utf-8**
+
+  ```python
+  data.encode('latin1').decode('gb2312')
+  ```
+
+- **查看字符编码**
+
+  ```python
+  import chardet
+  chardet.detect(string)
+  ```
+
 
 ## TroubleShooting
 
