@@ -1,6 +1,7 @@
 ---
-title: "Django Admin 后台管理系统及富文本编辑器Django-Ckeditor的使用"
+title: "Django Admin 后台管理系统"
 date: 2019-06-01 00:00:00
+updated: 2019-06-11 14:32:00
 categories: 编程之路
 ---
 
@@ -151,3 +152,141 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
    ```
    
    `Django-CKeditor`目前还不支持粘贴的时候自动上传图片，我的做法是在对象的`Admin`的`save_model`方法里面对没有转换为内链的外部链接图片通过`requests`抓取下来再上传到七牛云，以达到自动替换的效果。这只是最简单的做法，当然，最好的做法还是在前端监听粘贴事件，实时上传。
+   
+   ### Django-MarkdownX文本编辑器使用
+   
+   目前，`Django-CKeditor`暂时还不支持`markdown`，所以只能用`Django-Markdownx`来代替，要兼容两者就只能用两个字段来存储了。引入步骤：
+   
+   1. 安装依赖，并且将`markdownx`加入`INSTALLED_APPS`中
+   
+      ```
+      pip install django-markdownx
+      ```
+   
+   2. 添加路由`vim app/urls.py`:
+   
+      ```python
+      urlpatterns = [
+          [...]
+          url(r'^markdownx/', include('markdownx.urls')),
+      ]
+      ```
+   
+   3. 字段定义
+   
+      ```python
+      class Post(models.Model):
+        content = MarkdownxField()
+      ```
+   
+   4. 自定义tag，`vim app/templatetags/base.py`
+   
+      ```python
+      import markdown
+      from django import template
+      from django.utils.safestring import mark_safe
+      
+      register = template.Library()
+      
+      @register.filter(is_safe=True)
+      def custom_markdown(value):
+          return mark_safe(
+              markdown.markdown(
+                  value,
+                  extensions=[
+                      "markdown.extensions.extra",
+                      "markdown.extensions.toc",
+                      "markdown.extensions.sane_lists",
+                      "markdown.extensions.nl2br",
+                      "markdown.extensions.codehilite",
+                  ],
+                  safe_mode=True,
+                  enable_attributes=False,
+              )
+          )
+      
+      @register.filter(is_safe=False)
+      def custom_markdown_unsafe(value):
+          return mark_safe(
+              markdown.markdown(
+                  value,
+                  extensions=[
+                      "markdown.extensions.extra",
+                      "markdown.extensions.toc",
+                      "markdown.extensions.sane_lists",
+                      "markdown.extensions.nl2br",
+                      "markdown.extensions.codehilite",
+                  ],
+                  safe_mode=False,
+                  enable_attributes=False,
+              )
+          )
+      ```
+   
+   4. 添加相关配置到配置文件
+   
+      ```python
+      MARKDOWNX_MARKDOWNIFY_FUNCTION = 'markdownx.utils.markdownify'
+      MARKDOWNX_MARKDOWN_EXTENSION_CONFIGS = {}
+      MARKDOWNX_URLS_PATH = '/markdownx/markdownify/'
+      MARKDOWNX_UPLOAD_URLS_PATH = '/markdownx/upload/'
+      MARKDOWNX_MEDIA_PATH = 'media/markdownx/img'
+      MARKDOWNX_UPLOAD_MAX_SIZE = 5 * 1024 * 1024
+      MARKDOWNX_UPLOAD_CONTENT_TYPES = ['image/jpeg', 'image/png', 'image/svg+xml']
+      MARKDOWNX_IMAGE_MAX_SIZE = {'size': (800, 500), 'quality': 100,}
+      MARKDOWNX_EDITOR_RESIZABLE = True
+      MARKDOWNX_MARKDOWN_EXTENSIONS = [
+          'markdown.extensions.fenced_code',
+          'markdown.extensions.codehilite',
+          'markdown.extensions.smarty',
+          'markdown.extensions.extra',
+          'markdown.extensions.tables',
+          'markdown.extensions.sane_lists',
+          ]
+      ```
+      
+6. 前端模板这样渲染
+   
+      ```django
+      <div>
+        {{ content | custom_markdown }}
+      </div>
+      ```
+   
+   ##### 左右分割显示
+   
+   默认的编辑器样式是上下分割，上面编辑，下面实时显示，但是对于长文本十分不方便，如果要进行左右分割，需要这样做：
+   
+   1. 引入`bootstrap`依赖，并且将`bootstrap3`加入`INSTALLED_APPS`中
+   
+      ```shell
+      pip install django-bootstrap3
+      ```
+   
+   2. 覆写原本的编辑框，`app/templates/markdownx/widget2.html`:
+   
+      ```django
+      {% load bootstrap3 %}
+      {% bootstrap_css %}
+      {% bootstrap_javascript %}
+      <div class="markdownx row">
+          <div class="col-md-6">
+              {% include 'django/forms/widgets/textarea.html' %}
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+              <div class="markdownx-preview"></div>
+          </div>
+      </div>
+      ```
+   
+   3. 添加admin管理：
+   
+      ```python
+      class PostAdmin(admin.ModelAdmin):
+            formfield_overrides = {
+              models.TextField: {'widget': AdminMarkdownxWidget},
+          }
+      ```
+   
+      
