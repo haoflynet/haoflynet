@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2019-06-11 17:48:00
+updated: 2019-06-26 14:48:00
 categories: python
 ---
 
@@ -32,7 +32,7 @@ import textwrap
 print(textwrap,fill(s, 70)) # 将s字符串已70列显示，多的换行
 os.get_terminal_size().columns # 可以使用这个方法获得终端的大小和尺寸
 
-# 字符串填充
+# 字符串填充，数字前补零
 a = 'abc'
 print(a.zfill(5)) # 输出'00abc'
 

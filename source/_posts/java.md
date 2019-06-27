@@ -1,7 +1,7 @@
 ---
-title: "java 手册"
+`title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-04-17 22:58:00
+updated: 2019-06-26 15:58:00
 categories: java
 ---
 
@@ -110,6 +110,8 @@ public class Sample {
 
 ```java
 import java.io.*;		// 导入java_installation/java/io下的所有类
+java -jar myjar.jar;	// 直接用命令行运行jar包
+java -cp myjar.jar com.example.MainClass	// 指定jar入口
 ```
 
 ### 三方库

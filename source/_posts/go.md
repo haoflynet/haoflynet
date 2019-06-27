@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2019-05-30 16:43:00
+updated: 2019-06-27 10:07:00
 categories: go
 ---
 
@@ -116,6 +116,7 @@ newArr := append(arr1, arr2...)	// 合并两个数组
 str = `定义超长的字符串`
 if str == "" {}	// 判断字符串是否为空
 fmt.Sprintf("%s %d", "abc", 1)	// 字符串格式化
+strings.TrimSpace(str)	// 去除字符串的前后空白
 
 int,err:=strconv.Atoi(string)	// 字符串转换为int类型
 int64, err := strconv.ParseInt(string, 10, 64)	// 字符串转换为指定类型指定进制的整型
