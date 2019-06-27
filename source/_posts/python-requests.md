@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2018-12-14 16:58:00
+updated: 2019-06-26 16:58:00
 categories: python
 ---
 # python requests模块
@@ -131,13 +131,15 @@ with open('filename.mp4', 'wb') as fd:
         fd.write(chunk)
 ```
 
-# TroubleShooting:
+# TroubleShooting
 
-- **设置最大重试次数**  
+- **设置最大重试次数**
   之前发现设置了timeout时间却没反应，原来是因为查询不到ip地址，导致在timeout时间内就已经默认在重试了，要设置就得先执行语句`requests.adapters.DEFAULT_RETRIES=5`
 
-- **无法获取httponly的cookie信息**  
+- **无法获取httponly的cookie信息**
   通过`headers.get('Set-Cookie')`获取cookies字符串，然后通过正则匹配来查找
+
+- **SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1038)**: 检查代理ssl的代理设置是否正确，可以取消全局代理，直接用`proxies`参数设置代理试试
 
 - **发送https请求出现警告: `Suppress InsecureRequestWarning: Unverified HTTPS request is being made`**
 
@@ -157,7 +159,7 @@ with open('filename.mp4', 'wb') as fd:
   ```
 
 - **user-agent列表﻿**  
-```
+```shell
 user_agent_list = [  
     'Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166  Safari/535.19',  
     'Mozilla/5.0 (Linux; U; Android 4.0.4; en-gb; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',  
