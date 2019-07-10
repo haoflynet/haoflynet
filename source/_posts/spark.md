@@ -1,7 +1,7 @@
 ---
 title: "Spark & PySpark 使用手册"
 date: 2019-05-22 21:32:00
-updated: 2019-06-20 09:40:00
+updated: 2019-07-04 14:30:00
 categories: 编程之路
 ---
 最近公司有一个安全方面的业务，需要实时监控所有访客的情况。之前是定时去查询`Elasticsearch`的接口进行统计分析，但是这个时间间隔不好把握，并且`Elasticsearch`并不适合特别实时的查询操作。实时的分布式流计算引擎首推`Spark`，它与`Hadoop`等相比的优势在[这里](http://dblab.xmu.edu.cn/blog/1710-2/)讲得比较清楚了。
@@ -18,6 +18,10 @@ categories: 编程之路
   - **execution**: 执行内存，基本的算子都是在这里面执行的，这块内存满了就写入磁盘。
   - **storage**: 用于存储broadcast, cache, persist
   - **other**: 程序预留给自己的内存，这个可以不用考虑
+- **Duration**
+  - **batchDuration**: 批次时间
+  - **windowDuration**: 窗口时间，要统计多长时间内的数据，必须是`batchDuration`的整数倍
+  - **slideDuration**:  滑动时间，窗口多长时间滑动一次，必须是`batchDuration`的整数倍，一般是跟`batchDuration`时间相同
 
 <!--more-->
 
@@ -38,7 +42,7 @@ categories: 编程之路
 - subtractByKey(other): 删除在RDD1中的RDD2中key相同的值
 - groupByKey(numPartitions=None): 将(K, V)数据集上所有Key相同的数据聚合到一起，得到的结果是(K, (V1, V2...))
 - reduceByKey(func, numPartitions=None): 将(K, V)数据集上所有Key相同的数据聚合到一起，func的参数即是每两个K-V中的V。可以使用这个函数来进行计数，例如reduceByKey(lambda a,b:a+b)就是将key相同数据的Value进行相加。
-- reduceByKeyAndWindow(func, invFunc, windowdurartion, slideDuration=None, numPartitions=None, filterFunc=None): 与reduceByKey类似，不过它是在一个时间窗口上进行计算，由于时间窗口的移动，有增加也有减少，所以必须提供一个逻辑和func相反的函数invFunc，例如func为(lambda a, b: a+b)，那么invFunc一般为(lambda a, b: a-b)，其中a和b都是key相同的元素的value
+- reduceByKeyAndWindow(func, invFunc, windowdurartion, slideDuration=None, numPartitions=None, filterFunc=None): 与reduceByKey类似，不过它是在一个时间窗口上进行计算，由于时间窗口的移动，有增加也有减少，所以必须提供一个逻辑和func相反的函数invFunc，例如func为(lambda a, b: a+b)，那么invFunc一般为(lambda a, b: a-b)，其中a和b都是key相同的元素的value。另外需要注意的是，程序默认会缓存一个时间窗口内所有的数据以便后续能进行inv操作，所以如果窗口太长，内存占用可能会非常高
 - join(other, numPartitions=None): 将(K, V)和(K, W)类型的数据进行类似于SQL的JOIN操作，得到的结果是这样(K, (V, W))
 - union(other): 并集运算，合并两个RDD
 - intersection(other): 交集运算，保留在两个RDD中都有的元素
@@ -216,6 +220,7 @@ val df = spark.read.format("image").load("/images/")
 
 - **py4j.protocol.PyAJNetworkError: Answer from Java side is empty**: 默认的使用的内存为1G，无论你有没有这么大
 - **TypeError: 'JavaPackage' object is not callable**: 如果是使用`spark-submit`命令进行任务的提交，那么在程序内部指定`spark-streaming-kafka-0-8-assembly`路径就不行了，必须给`spark-submit`命令添加上参数(注意版本):`--jars spark-streaming-kafka-0-8-assembly_2.11-2.0.2.jar`
+- **Exception inthread "main" java.lang.NoSuchMethodError: scala.Predef$.$conforms()Lscala/Predef$$less**: 原因是`IDEA`中的`scala`依赖有问题，在`File->Project Structure-> Global Labraries`中修改`Scala SDK`为自己代码中使用的`Scala`版本
 
 ##### 扩展阅读
 
@@ -227,3 +232,4 @@ val df = spark.read.format("image").load("/images/")
 
 [Spark性能优化指南——高级篇](https://tech.meituan.com/2016/05/12/spark-tuning-pro.html): 解决数据倾斜(通常出现在distinct、groupByKey、reduceByKey、aggregateByKey、join、cogroup、repartition)的几个方案。
 
+[aokoInychyi/spark-streaming-kafka-example](https://github.com/aokolnychyi/spark-streaming-kafka-example): scala版本的示例代码

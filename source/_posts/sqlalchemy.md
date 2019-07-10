@@ -195,11 +195,12 @@ def fullname(self):
 
 - 像`join`自身类似的需求，可以使用别名`user_model1 = aliased(UserModel)`
 
-- 执行原生语句:
+- 执行原生语句，返回的是`ResultProxy`对象:
 
   ```python
   result = conn.execute("INSERT INTO user (name) VALUES ('haofly')")
   result = conn.execute("INSERT INTO user (name) VALUES ('haofly') RETURNING id")	# 插入并拿到插入的id
+  result.fetchall()
   ```
 
 ### 查询

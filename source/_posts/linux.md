@@ -467,10 +467,24 @@ iptables -D INPUT 5	# 参考上面的status，指定删除某个规则下面某�
 iptables -A OUTPUT -p tcp --dport 6379 -j DROP	# 禁止访问外部的6379端口
 iptables -A INPUT -p tcp --dport 6379 -j DROP	# 进制外部访问内部的6379端口
 
-# CentOS7 
+# CentOS7 用firewall代替了iptables
+firewalld		# 启动服务，启动的时候需要注意，默认不会开启任何端口
+systemctl disable firewalld && systemctl stop firewalld	# 关闭服务
+firewall-cmd --state	# 查看firewall运行状态
 firewall-cmd --add-port=3306/tcp --permanent	# 添加端口，需要注意的是，很多时候需要重启firewall才能生效
-firewall-cmd --reload			# 重启CentOS
+firewall-cmd --remove-port=3306/tcp --permanent	# 将某个端口从zone删除
+firewall-cmd --reload			# 重启服务
 firewall-cmd --list-ports		# 列出开放的端口
+firewall-cmd --list-all-zones	# 查看都有哪些区域，默认有下面这些区域。如果客户端的源地址匹配了zone的sources，那么就直接使用该zone的规则。
+## block，阻塞区域，会拒绝进入的网络连接，返回icmp-host-prohibited
+## dmz，隔离区域，
+## drop，丢弃区域，任何进入的数据包将被丢弃
+## external，外部区域，只有指定的连接会被接受
+## home，家庭区域，只接受被选中的连接，默认未ssh,samba-client和dhcpv6-client
+## internal，内部区域
+## public，公共区域，只接受那些被选中的连接，默认只允许ssh和dhcpv6-client，默认的区域
+## trusted，信任区域，允许所有网络通信通过
+## work，工作区域，只能定义内部网络
 ```
 
 ##### Dns设置及常用DNS

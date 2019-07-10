@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-06-13 10:11:21
+updated: 2019-07-03 08:11:21
 categories: php
 ---
 # PHP
@@ -125,6 +125,7 @@ sprintf('%04d', 2)	// 数字前补零
 10 % 3 = 1;	// 求余操作
 str_pad($nu, 4, "0", STR_PAD_LEFT);	// 数字前面补0
 round($num, 2);	// 四舍五入，保留两位小数
+base_convert(number,frombase,tobase);	// 进制转换
 ```
 
 ### 时间
