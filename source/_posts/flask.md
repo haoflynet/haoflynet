@@ -1,7 +1,7 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
-updated: 2018-08-21 23:57:00
+updated: 2019-07-12 17:43:00
 categories: python
 ---
 
@@ -46,6 +46,9 @@ request.args.get('q', '')
 # 处理get请求
 data = request.get_json(silent=False)
 
+# 获取header头
+request.headers.get('Auth-Token')
+
 # 获取用户真实IP
 if request.headers.getlist('X-Forwarded-For'):
 	ip = request.headers.getlist('X-Forwarded-For')[0]
@@ -55,6 +58,9 @@ else:
 ### resposne
 
 ```python
+# 返回指定状态码
+return make_response(jsonify({'a': 'b'}), 201)
+
 # 返回JSON数据
 from flask import jsonify
 return jsonify(username=g.user.username, email='asd')
@@ -81,6 +87,22 @@ def allow_cross_domain(fun):
 ```
 
 ## 数据库
-flask
+使用`flask-sqlalchemy`操作数据库，具体文档可以参考[SQLAlchemy手册](https://haofly.net/sqlalchemy)。`flask-sqlalchemy`帮我们做了很多我们其实不用关心的操作，例如自动新建和关闭`session`，但是需要注意的是，`flask-sqlalchemy`默认会在每次使用session的时候开启一个事务，每次请求完成自动结束事务，所以千万不要用它来运行长任务，否则事务一直不关闭，会导致表级锁，无法对表进行操作
 
 ## TroubleShooting
+
+- **AssertionError: View function mapping is overwriting an existing endpoint function: main**: 原因可能是在给控制器函数添加装饰器的时候没有重新定义其名称，导致每个使用该装饰器的控制器的签名都一样了，可以这样设置控制器:
+
+  ```python
+  def route_decorator(func):
+      def wrapper():
+          try:
+              return func()
+          except Exception as e:
+              print(str(e))
+              return {"message": str(e), "success": False, "code": 500}
+      wrapper.__name__ = func.__name__	# 需要将签名设置为和以前的函数签名一致
+      return wrapper
+  ```
+
+  

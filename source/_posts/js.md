@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-06-10 18:33:00
+updated: 2019-07-12 15:33:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -86,6 +86,7 @@ str.replace(/[\r\n]/g, ' ')	// 去掉换行
 JSON.parse(text)	// 将字符串转换为JSON
 str.replace(reg, function(s, value){})	// 替换字符串，reg可以是正则表达式
 str.indexOf(substring)	// 查找子字符串出现的位置，-1表示没找到
+str.includes(substring)	// 查看是否存在某个子字符串
 string.slice(start, end);	// 字符串分片
 str.split('#')	// 字符串分割，返回分割后的列表
 str.split(/\s+/) // 也可以用正则分割
