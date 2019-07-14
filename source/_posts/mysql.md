@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-06-14 15:25:00
+updated: 2019-07-12 14:25:00
 categories: database
 ---
 ## 安装方法
@@ -60,7 +60,7 @@ ALTER TABLE 表名 DROP COLUMN 字段名;	# 给表删除字段
 ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
 ALTER TABLE 表名 MODIFY COLUMN 列名 属性; # 除了不能修改列名以外，其他都和CHNAGE一样
 
-CREATE INDEX name_idx ON `表名`(`列名`);	# 给表添加索引
+ALTER TABLE 表名 ADD INDEX 索引名 (列名);# 给表添加索引
 ALTER TABLE `表名` ADD UNIQUE `键名`(`列名1`, `列名2`);
 
 # mariadb创建Json字段，VARCHAR或者BLOB都可以使用，不对格式做要求，如果要做要求也可以强制做，例如
@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREME
 ##### timestamp
 
 - `TIMESTAMP(3)/TIMESTAMP(6)`表示精确到毫秒微妙级别
+- 对于timestamp字段，如果直接插入数字形式的时间戳可能会变成`0000-00-00 00:00:00`的结果，我们需要使用`FROM_UNIXTIME(1234567890)`函数对其进行转换
 
 ### 数据增删改查
 
@@ -455,9 +456,11 @@ JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是�
   SELECT * FROM `posts` WHERE id<3 LIMIT 1;
   ```
 
-*   **Row size too large. The maximum row size for the used table type, not counting BLOBs, is 65535. You have to change some columns to TEXT or BLOBs**，这是一行的长度超过了65535个字节的限制，一般是因为字段过大或者字段过多，例如`varchar(255)`就能存储255个字符，然而一个字符要占3个字节，就相当于有765个字节了。遇到这种情况，首先应该按实际情况减少部分字段的长度，如果字段不能减少，长度仍然不能减少，就只有用`TEXT`或者`BLOBs`来存储部分字段了，这两种类型不算在65535内。
+* **Row size too large. The maximum row size for the used table type, not counting BLOBs, is 65535. You have to change some columns to TEXT or BLOBs**，这是一行的长度超过了65535个字节的限制，一般是因为字段过大或者字段过多，例如`varchar(255)`就能存储255个字符，然而一个字符要占3个字节，就相当于有765个字节了。遇到这种情况，首先应该按实际情况减少部分字段的长度，如果字段不能减少，长度仍然不能减少，就只有用`TEXT`或者`BLOBs`来存储部分字段了，这两种类型不算在65535内。
 
+* **User 'xxx' has exceeded the 'max_user_connections' resource (current value: 10)**，原因是超出了设置的单个用户的最大连接数(可以使用`select @@max_user_connections;`进行查看)，默认为0表示无限制，单如果大于零并且超过了就会出现该错误。可以这样修改`set  @@global.max_user_connections=1;`
 
+*   **某个语句一直卡住，或者无法修改表结构，但是又找不到表锁**，可能的原因是客户端有未关闭或提交的事务，会出现`waiting for table metadata lock`。
 
 ##### 扩展阅读
 

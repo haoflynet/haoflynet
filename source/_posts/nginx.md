@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2019-05-27 16:01:00
+updated: 2019-07-12 14:01:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -53,7 +53,13 @@ http{
 
 	include /etc/nginx/mime.types;
 	default_type application/octet-stream;
-
+  
+  ##
+  # 访问频率限制。limit_req_zone只能在http中使用，limit_req可以用在http、server和location中
+  ##
+  limit_req_zone $binary_remote_addr zone=myzone:10m rate=5r/s;	# ，key可以设置为binary_remote_addr表示针对某个域名，存储访问数量的zone叫myzone，大小为10M，频率为5个请求每秒
+  limit_req zone=myzone burst=5 nodelay;	# 限制每个IP每秒不超过20个请求
+  
 	##  
 	# Logging Settings  全局日志文件
 	##  
