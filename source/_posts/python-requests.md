@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2019-06-26 16:58:00
+updated: 2019-07-12 16:58:00
 categories: python
 ---
 # python requests模块
@@ -29,6 +29,7 @@ r = requests.post(url, verify=False)	# 禁用https的验证
 
 ```python
 requests.get(url, timeout=30)	# 设置连接超时时间为多少秒，不是响应时间
+requests.get(url, timeout=(10, 30))	# 第一个是连接时间，第二个是等待响应的时间
 ```
 
 #### 自定义HTTP头
