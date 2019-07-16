@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-06-12 16:23:30
+updated: 2019-07-15 17:29:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -84,6 +84,7 @@ A.T @ A			# @矩阵乘法
 #### 字典
 
 - 字典也能用生成式，例如`{a.id: a.value for a in list}`
+- **使用del删除字典的元素后，内存并不会释放，可能会有内存泄漏的问题**
 
 ```python
 # 字典遍历
@@ -152,6 +153,15 @@ dict(dict1.items() + dict2.items())
 dict(dict1, **dict2)
 dict1.update(dict2)	# 这种方式不会返回新的字典，只会更新原有dict1字典
 ```
+#### 集合
+
+```python
+a = {'a', 'b'}	# 集合定义
+a.add('b')	# 给集合添加元素
+a.remove('b')	# 给集合移除元素
+a.clear()	# 清空集合
+```
+
 #### 类/函数
 
 - 定义在`__init__`外的属性相当于静态变量，所有对象公用，`__init__`内部的才是对象私有的
@@ -433,6 +443,19 @@ else:	# 如果没有发生异常会执行这里
   pass
 finally:	# 只要离开try代码块都会执行这里的代码，即使执行了except也会执行这里，即使except里面有return语句，也会先执行这里
   pass
+
+# 同时except多个异常
+except (OneExcetion, SecondException) as e:
+  pass
+
+# 自定义异常
+class BadRequestException(BaseException):
+    def __init__(self, message, status=400):
+        super().__init__(message, status)
+        self.message = message
+
+    def __str__(self):
+        return self.message
 ```
 #### 系统相关
 
@@ -1229,17 +1252,32 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[[source]]
+url = "https://pypi.douban.org/simple"
+verify_ssl = true
+name = "douban"
+
 [packages]		# 运行锁依赖的包
 sqlalchemy = "*"
 mysqlclient = "*"
 sanic-graphql = "*"
 graphene = "*"
-graphene-sqlalchemy = "*"
+graphene-sqlalchemy = {version='*', index='douban'}	# 指定需要的源
+django = ">=2.0.0"	# 指定版本
 
 [dev-packages]	# 开发所依赖的包
 
 [requires]		# 需要的python版本，把本模块删除表示不限制python版本
 python_version = "3.7"
+```
+
+pipenv常用命令
+
+```shell
+pipenv --python 3.7		# 指定python版本
+pipenv check					# 检查已安装的包中是否有安全隐患
+pipenv check --style test.py	# 检查指定文件的编码风格
+pipenv uninstall --all	# 删除所有的安装包
 ```
 
 ## 语言本身
@@ -1299,7 +1337,7 @@ conn.close()	# 关闭连接
 
 - `segmentation fault`，在使用`keyboard`和`pynput`的时候曾经遭遇过不可预料的原因，原因是这两个库都没有考虑中文输入法的问题，对于中文输入法，MacOS的Carbon库有另外兼容的做法(详见Pynput的issue)。最简单的解决方法就是切换到`American`
 
-- **Python序列化出现`maximum recursion depth`错误**。可以设置`sys.setrecursionlimit(1000)`来解决。
+- **Python序列化出现`maximum recursion depth`错误**。可以设置`sys.setrecursionlimit(2000)`来解决，默认的递归深度是1000
 
 - **`__main__ is not a package`**: 去掉import前面的点
 
@@ -1330,6 +1368,8 @@ conn.close()	# 关闭连接
 - **Unsupported operation :not writeable python**: 一般是在写文件时候打开方式没有加'w'，而是直接`open('file')`
 
 - **fatal error: Python.h No such file or directory**: 需要安装python相关的开发库: `yum install python-devel`
+
+- **gcc failed with exit status 1**: 原因是没有安装python开发相关扩展，需要先安装`yum install python-devel`
 
 - **`Click will abort further execution because Python 3 was
     configured to use ASCII as encoding for the environment.`**: 错误原理见[click](https://click.palletsprojects.com/en/7.x/python3/)，设置一下系统的语言就好了:

@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2019-06-26 14:48:00
+updated: 2019-07-12 15:48:00
 categories: python
 ---
 
@@ -172,7 +172,10 @@ date = time.strptime(string, '\%Y年\%m月\%d日 \%H:\%M:\%S')
 b = time.mktime(date)   # 获取时间戳
 
 # datetime转时间戳
-time.mktime(the_date.timetuple()
+time.mktime(the_date.timetuple())
+
+# 时间戳转datetime
+datetime.datetime.fromtimestamp(1234567890)
 
 # 获取本月有多少天，以及最后一天的计算方法
 import calendar

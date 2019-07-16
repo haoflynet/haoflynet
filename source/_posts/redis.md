@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2019-05-22 16:32:00
+updated: 2019-07-12 13:32:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -81,6 +81,9 @@ db0:keys=2333,expires=12,avg_ttl=0	# key的统计信息在最后一行
 - **严禁在生产环境使用`keys *`进行搜索，因为这表命令会引发Redis锁，导致其他查询不可用，如果真有类似业务，可以使用scan命令**
 
 ```shell
+SETNX	key value	# 将键key的值设置为value，如果key不存在则set成功返回1，如果key存在，则设置不成功返回0，常用与锁中
+SET key value	EX 10 PX 10000 NX# 原始SET命令后面其实也可以跟很多参数的，EX表示多少秒后过期，PX表示多少毫秒后过期，NX相当于SETNX，XX表示只有键盘存在时才设置
+
 flushall	# 删除所有数据库的key
 flushdb		# 删除当前数据库所有的key
 del key		# 删除某个key
@@ -123,6 +126,7 @@ lset key index value       # key中下标为index的元素的值设置为value�
 ```shell
 SADD key member [member...]
 SMEMBERS key 	# 返回集合key中的所有成员
+SISMEMBER key member	# 判断集合key中是否存在成员
 ```
 
 ### 有序集合
@@ -213,7 +217,7 @@ Redis从4.0开始支持组件的开发，能为redis提供更多实用的定制�
 
 ## Redis Cluster集群方案
 
-和`redis sentinel`不同的是，前者主要是高可用，每一个机器都保存完整的数据，而cluster则住重在分片，当内存占用大于每台机器实际内存时候更实用。
+和`redis sentinel`不同的是，前者主要是高可用，每一个机器都保存完整的数据，而cluster则住重在分片，当内存占用大于每台机器实际内存时候更实用。Python连接Redis集群需要使用`redis-py-cluster`
 
 ## TroubleShooting
 
