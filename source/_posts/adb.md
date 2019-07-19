@@ -1,7 +1,7 @@
 ---
 title: "ADB: Android调试工具与自动化操作工具"
 date: 2018-03-12 21:32:00
-updated: 2018-12-12 17:29:00
+updated: 2019-07-02 09:29:00
 categories: android
 ---
 
@@ -19,46 +19,107 @@ ADB(Android Debug Bridge)，即android的一个调试工具，主要用于开发
 
 ## 常用命令
 
+### 设备管理
+
 ```shell
 adb devices	# 列出当前连接的设备(包括连接到电脑的手机以及模拟器)
-
-adb install apk文件	# 安装指定的apk文件到设备
-adb uninstall 软件包	# 卸载软件包
-
-adb shell	# 登录设备的shell
-adb push 本地路径 远程路径	# 将电脑上的文件复制到设备
-adb pull 远程路径 本地路径	# 将设备上的文件复制到电脑
-
-# 包管理命令pm，package manager
-pm install -r $path/ES.apk	# 安装指定apk包
-
-# 命令am，activity manager
-am start -n com.estrongs.android.pop/com.estrongs.android.pop.view.FileExplorerActivity
-	# 启动指定activity
 ```
 
-## 控制安卓设备
+### 信息查看
 
-### 模拟输入文字
+```shell
+# 打印电源相关的信息
+adb shell dumpsys power	# mScreenOn=false表示当前为息屏状态
+```
 
-**adb输入中文的问题：**adb默认是不支持中文字符输入的，不过这里有一个解决方法[ADBKeyBoard](https://github.com/senzhk/ADBKeyBoard)，将其中的apk文件传入手机然后安装上，然后将手机输入法选择为`ADBKeyBoard`即可用`adb shell input`命令来输入中文。
+### 文件管理
+
+```shell
+adb push 本地路径 远程路径	# 将电脑上的文件复制到设备
+adb pull 远程路径 本地路径	# 将设备上的文件复制到电脑
+```
+
+### 包管理
+
+- pm(package manager)
+
+```shell
+adb shell pm list packages	# 列出所有的包名
+adb shell pm install -r $path/ES.apk	# 安装指定apk包
+adb shell am start -n 包名	# 打开指定应用
+adb shell dumpsys package 包名	# 查看指定包的详情，Activity等
+adb install apk文件	# 安装指定的apk文件到设备
+adb uninstall 软件包	# 卸载软件包
+```
+
+### 应用内部管理
+
+- am(activity manager)
+
+```shell
+am start -n com.estrongs.android.pop/com.estrongs.android.pop.view.FileExplorerActivity
+```
+
+### 输入文字
+
+- **adb输入中文的问题：**adb默认是不支持中文字符输入的，不过这里有一个解决方法[ADBKeyBoard](https://github.com/senzhk/ADBKeyBoard)，将其中的apk文件传入手机然后安装上，然后将手机输入法选择为`ADBKeyBoard`即可用命令来输入中文。
 
 ```shell
 adb shell input text "haofly.net"	# 在安卓设备中输入文字
+
+# 如果打开了ADBKeyBoard键盘，那么应该这样输入中英文:
+adb shell am broadcast -a ADB_INPUT_TEXT --es msg '输入中文'
+adb shell am broadcast -a ADB_INPUT_CODE --es code 67	# KEYCODE_DEL
 ```
 
-### 模拟输入按键
+### 模拟按键
 
-```shell
-adb shell input keyevent 67
+键码对照表
 
-# 常用键码对照
-1(KEYCODE_MENU): menu键
-3(KEYCODE_HOME): home键
-4(KEYCODE_BACK): back键
-21(KEYCODE_DPAD_LEFT): 光标左移
-22(KEYCODE_DPAD_RIGHT): 光标右移
-```
+| 数字表示 | 常量表示               | 功能                 |
+| -------- | ---------------------- | -------------------- |
+| 3        | KEYCODE_HOME           | home键               |
+| 4        | KEYCODE_BACK           | back键               |
+| 5        | KEYCODE_CALL           | 拨号键               |
+| 6        | KEYCODE_ENDCALL        | 挂机键               |
+| 19       | KEYCODE_DPAD_UP        | 方向键向上           |
+| 20       | KEYCODE_DPAD_DOWN      | 方向键向下           |
+| 21       | KEYCODE_DPAD_LEFT      | 光标左移             |
+| 22       | KEYCODE_DPAD_RIGHT     | 光标右移             |
+| 26       | KEYCODE_POWER          | 电源键(息屏、亮屏)   |
+| 28       | KEYCODE_CLEAR          | 清除键               |
+| 55       | KEYCODE_COMMA          | ,                    |
+| 56       | KEYCODE_PERIOD         | .                    |
+| 62       | KEYCODE_SPACE          | 空格键盘             |
+| 64       | KEYCODE_EXPLORER       | 资源管理器           |
+| 66       | KEYCODE_ENTER          | 回车                 |
+| 67       | KEYCODE_DEL            | 删除、退格           |
+| 68       | KEYCODE_GRAVE          | `                    |
+| 69       | KEYCODE_MINUS          | -                    |
+| 70       | KEYCODE_EQUALS         | =                    |
+| 71       | KEYCODE_LEFT_BRACKET   | [                    |
+| 72       | KEYCODE_RIGHT_BRACKET  | ]                    |
+| 73       | KEYCODE_BACKSLASH      | \                    |
+| 74       | KEYCODE_SEMICOLON      | ;                    |
+| 75       | KEYCODE_APOSTROPHE     | '                    |
+| 76       | KEYCODE_SLASH          | /                    |
+| 77       | KEYCODE_AT             | @                    |
+| 82       | KEYCODE_MENU           | menu菜单键           |
+| 83       | KEYCODE_NOTIFICATION   | 通知键               |
+| 92       | KEYCODE_PAGE_UP        | 向上翻页             |
+| 93       | KEYCODE_PAGE_DOWN      | 向下翻页             |
+| 95       | KEYCODE_SWITCH_CHARSET | 开关符号集(Emoji)    |
+| 115      | KEYCODE_CAPS_LOCK      | 大写锁定             |
+| 143      | KEYCODE_NUM_LOCK       | 小键盘锁             |
+| 187      | KEYCODE_APP_SWITCH     | 应用程序切换         |
+| 223      | KEYCODE_SLEEP          | 睡眠键               |
+| 224      | KEYCODE_WAKEUP         | 唤醒键，一般没用     |
+| 276      | KEYCODE_SOFT_SLEEP     | 睡眠，除非持有唤醒锁 |
+| 277      | KEYCODE_CUT            | 剪切                 |
+| 278      | KEYCODE_COPY           | 复制                 |
+| 279      | KEYCODE_PASTE          | 粘贴                 |
+| 284      | KEYCODE_ALL_APPS       | 显示所有应用程序     |
+
 
 ### 模拟触摸
 
@@ -69,3 +130,19 @@ adb shell input tap 100 400	# 鼠标触控(100, 400)这个点
 adb shell input swipe 10 10 200 200 # 从(10,10)滑动到(200, 200)
 adb shell input touchscreen swipe 100 200 100 200 2000	# 在(100, 200)这个点持续按2000ms
 ```
+
+### 其他操作
+
+#### 截图
+
+```shell
+adb shell /system/bin/screencap -p /sdcard/screenshot.png
+adb pull /sdcard/screenshot.png /tmp	# 将截图拷贝到宿主机的/tmp目录
+```
+
+#### 事件
+
+```shell
+adb shell getevent	# 监听触摸事件，但是只能监听用收点击屏幕，而不能监听用模拟器的事件
+```
+

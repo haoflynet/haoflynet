@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2019-06-05 11:45:00
+updated: 2019-07-15 09:45:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -50,6 +50,10 @@ a:active: a标签被点击的时候
 
 - 给框添加阴影
 - `box-shadow: h-shadow v-shadow blur spread color inset;`，例如`box-shadow: 10px 10px 5px #888888;`
+
+##### cursor
+
+- 当设置为`pointer`的时候鼠标悬停会出现小手
 
 ##### display
 
@@ -221,5 +225,17 @@ http://www.w3cplus.com/content/css3-gradient
 
 ```html
 <div onclick="location.href='https://haofly.net'" style="cursor:pointer"></div>
+```
+
+#### 在Chrome显示小于12px的字体
+
+- 需要注意的是这个方法只是单纯地缩小了显示的字，并不是将字体变小了，换行那个地方可能有问题
+
+```css
+.item {
+	-webkit-transform: scale(.5);
+  -moz-transform: scale(.5);
+  transform: scale(.5);
+}
 ```
 
