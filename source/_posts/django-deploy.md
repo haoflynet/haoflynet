@@ -1,7 +1,7 @@
 ---
-title: "使用nginx+uWSGI部署Django/Python应用"
+title: "Python程序(Django/Flask)部署方式"
 date: 2018-08-04 21:32:00
-updated: 2019-06-12 14:19:00
+updated: 2019-07-18 14:49:00
 categories: python
 ---
 
@@ -131,6 +131,8 @@ redirect_stderr=true
 
 ## 使用Gunicorn部署Django应用
 
+- 需要注意的是不能使用`gunicorn ... > /log`这样的方式来重定向输出，而是应该直接指定日志文件的方式，例如`gunicorn --worker-class=gevent --capture-output --access-logfile=/var/log/python/python-safe-risk-web.log --error-logfile=/var/log/python/python-safe-risk-web.log -w 4 -b 0.0.0.0:5000 run:app`，还要设置环境变量`PYTHONUNBUFFERED=1`
+
 ### 部署步骤
 
 1. 安装依赖: `pip install gunicorn gevent`
@@ -144,7 +146,9 @@ redirect_stderr=true
    import os
    
    bind = ["127.0.0.1:8000", "unix:///tmp/myproject.sock"]
-   workers = 4
+   workers = 4	# 相当于进程数，一般设置为2*CPU+1
+   worker_connections = 1000	# 每个work的连接数
+   threads = 2	# 每个worker有2个线程
    chdir = os.path.dirname(os.path.realpath(__file__))
    raw_env = ["DJANGO_SETTINGS_MODULE=myproject.settings"]
    accesslog = "/var/log/myproject_access.log"
@@ -156,6 +160,8 @@ redirect_stderr=true
    ```
 
    然后直接执行`gunicorn --config=test.conf myproject.wsgi:application`
+
+   
 
 4. 最后再像`uWsgi`那样配合`supervisor`和`Nginx`即可
 

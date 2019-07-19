@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2019-05-30 16:10:00
+updated: 2019-07-15 09:10:00
 categories: frontend
 ---
 # Html
@@ -12,6 +12,7 @@ categories: frontend
 <html lang="zh-CN">               <!--指定页面语言-->
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">    <!--兼容IE-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">	<!--编码声明-->
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">	<!--将网页中的http请求默认提升到https请求，防止出现mixed-content错误-->
     <title>标题信息</title>
     <link href="styles.css" rel="stylesheet" ><!--添加样式表-->
