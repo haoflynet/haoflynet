@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-06-26 15:58:30
+updated: 2019-07-17 14:58:30
 categories: system
 ---
 # Linux手册
@@ -219,7 +219,8 @@ cp -r 目录1 目录2  # 递归复制
 cp -a 目录1 目录2  # 递归复制目录，同时将文件属性也复制过去
 
 # 文件分割
-split -b 1024m   # 文件分隔-b表示按大小分隔，-l表示按行数分隔
+split -b 1024m targetfile prefix  # 文件分隔-b表示按大小分隔，-l表示按行数分隔,prefix是分割后每个文件的前缀
+cat prefix* > newtarget	# 将分割后的文件又合并在一起
 
 # 查看文件内容
 cat filename | more  # 表示分页查看文件内容
