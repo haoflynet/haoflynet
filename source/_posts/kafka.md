@@ -1,7 +1,7 @@
 ---
 title: Kafka 教程
 date: 2016-12-23 11:20:44
-updated: 2019-05-27 16:32:00
+updated: 2019-07-15 17:42:00
 categories: tools
 ---
 
@@ -12,7 +12,7 @@ categories: tools
 
 ### 消费者(Consumer)
 
-消费消息。每个`consumer`属于一个特定的`consumer group`。使用`consumer high level API`时，同一个topic的一条消息只能被同一个`consumer group`内的一个`consumer`消费，但多个`consumer group`可同时消费这一消息。
+消费消息。每个`consumer`属于一个特定的`consumer group`。使用`consumer high level API`时，同一个topic的一条消息只能被同一个`consumer group`内的一个`consumer`消费，但多个`consumer group`可同时消费这一消息。每个partition只会由一个consumer消费。
 
 ### 集群(Cluster)
 
@@ -28,7 +28,7 @@ categories: tools
 
 ### Partition
 
-Kafka中每个Topic都会有一个或多个Partition，他是Kafaka数据存储的基本单元，每个Partition对应一个文件夹，文件夹下存储这个Partition的所有消息和索引。Kafka内部会根据算法得出一个值，根据这个值放入对应的partition目录中。所以读取时间复杂度为O(1)。分区的每一个消息都有一个连续的序列号叫做offset，用来在分区中唯一标识这个消息。一个topic可以保存在多个partition。
+Kafka中每个Topic都会有一个或多个Partition，他是Kafaka数据存储的基本单元，每个Partition对应一个文件夹，文件夹下存储这个Partition的所有消息和索引。Kafka内部会根据算法得出一个值，根据这个值放入对应的partition目录中。所以读取时间复杂度为O(1)。分区的每一个消息都有一个连续的序列号叫做offset，用来在分区中唯一标识这个消息。一个topic可以保存在多个partition。Kafka会保证每个partition内部的顺序，但是不能保证跨partition的全局顺序，如果要保证全局有序，那么topic就只能有一个partition。如果一个group内部的consumer数量大于partition数量，那么至少有一个consumer会消费多个partition。
 
 ### Segment
 
@@ -131,3 +131,7 @@ Kafka可以配合SSL+ACL来进行安全认证: http://orchome.com/185
   是因为`docker-compose`文件里面的宿主讥IP设置出错，如果是动态IP的话就没办法了，只能删除重新创建了
   
 - **启动生产者或者消费者出现LEADER_NOT_AVAILABLE**：原因是没有执行`docker-compose scale kafka=n`
+
+##### 拓展阅读
+
+- [kafka-python基本使用](https://zhuanlan.zhihu.com/p/38330574)

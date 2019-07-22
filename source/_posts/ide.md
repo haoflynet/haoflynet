@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2019-04-23 10:10:00
+updated: 2019-07-19 10:10:00
 categories: 编程之路
 ---
 
@@ -29,7 +29,14 @@ categories: 编程之路
 
 ## IDEA系列
 
+- 常用快捷键
+
+  ```shell
+  Shift+option	# 多列选择
+  ```
+
 - 展开左边文件目录树快捷方式设置，默认是`NumPad *`，我真不知道是哪个键，于是统一改成`command +`
+
 - 代码风格设置(直接在Preferences里面搜索设置项)
   - 赋值语句等号对齐: `Align consecutive assignments`
   - 数组内键值对对齐: `Align key-value pairs`
@@ -39,6 +46,7 @@ categories: 编程之路
   - 函数参数多行时括号和第一个参数换行: `Function/constructor call arguments -> New line after '()'`
   - 函数参数多行时将反括号单独一行: `Function/constructor call arguments ->Place ')' on new line`
   - 函数注释中描述和参数之间空一行`PHPDoc -> Blank line before the first tag`
+  
 - 
 
 ### Intellij IDEA

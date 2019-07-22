@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-07-12 15:33:00
+updated: 2019-07-17 15:03:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -106,6 +106,15 @@ b = decodeURIComponent(uri);	// url解码
 
 ```javascript
 Date.parse(new Date());	// 获取时间戳，单位为毫秒
+```
+
+### 网络请求
+
+```javascript
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.open("GET", "https://haofly.net", false); // false表示用异步的方式
+xmlHttp.send(null);
+console.log(xmlHttp.responseText);
 ```
 
 ## DOM操作
@@ -511,7 +520,7 @@ $.post('some.php', {name: 'haofly'})
 
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
-  ```javascript
+  ```命令javascript
   var obj = { alert: alert};
   obj.alert('hello');		// 这样就会报错
   
