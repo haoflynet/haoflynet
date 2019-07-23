@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-07-03 08:11:21
+updated: 2019-07-17 15:05:21
 categories: php
 ---
 # PHP
@@ -112,6 +112,7 @@ abcdefg
 EOT;		# 定义长字符串
                       
 addslashes($str);		// 使用反斜线引用字符串
+pack(format, args+);	// 将数据装入一个二进制字符串，通常用户低级socket编程中，需要注意的是format的可选值和其他语言的可选值可能不一样，多语言交互的时候对照一下
 ```
 ### 数字
 ```php
@@ -279,7 +280,8 @@ $o->sayHello();		// 输出的是Hello World
 
 ### 发送CURL请求
 
-注意：使用CURL之前一定要先确定服务器是否已经安装php的curl扩展，如果没有，可能会报奇怪的错误，安装完扩展后记得重启php进程。
+- 注意使用CURL之前一定要先确定服务器是否已经安装php的curl扩展，如果没有，可能会报奇怪的错误，安装完扩展后记得重启php进程。
+- PHP curl中的每一个设置项都有一个唯一的数值与其对应，如果要`var_dump`一个`curl`对象，打印出来的就是这些数值，数值都应可以参考`https://www.kancloud.cn/baibaoyun/developer/312099`
 
 ```php
 $ch = curl_init();								// 初始化curl

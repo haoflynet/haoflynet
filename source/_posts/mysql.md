@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-07-12 14:25:00
+updated: 2019-07-22 11:25:00
 categories: database
 ---
 ## 安装方法
@@ -149,6 +149,7 @@ SELECT * FROM table_A, table_B WHERE tableB.a_id =table_A.id;	# 设置可以不�
 ## 更改某字段的值，特别需要注意的是，mysql和mariadb是没有update from的，sql server才有。更新的时候WHERE语句一定是在SET语句后面，而JOIN语句则是在SET语句前面
 UPDATE 表名 SET 字段=新值,字段2=新值2 WHERE 条件;
 UPDATE table_A, table_B SET table_A.a=table_B.a;
+UPDATE table_A SET a=x,b=y,c=z;
 
 ## 更新中也能使用CASE，例如
 UPDATE `table` SET `field` = CASE
@@ -373,6 +374,7 @@ JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是�
 - **char和varchar**: Char是定长类型，对于经常变更的数据，一般采用CHAR来进行存储，因为CHAR类型在变化的时候不容易产生碎片。VARCHAR是变长类型，它比CHAR更节省空间。
 - **使用ENUM枚举类型来代替字符串类型**
 - **LIKE查询优化**: 如果是`abc%`型的`like`查询是能用到该字段的索引的，如果是前后都模糊搜索，那么最好是加一个有索引的字段进行筛选，例如时间
+- **对于Limit语句，即使where条件有索引，在数据量太大的时候仍然会有问题**: 例如，`LIMIT 10000000000 10`即使只取10条数据依然会很慢，好的做法是每次查询将上一次查询的末尾值拿到，然后在下次查询的时候将该值放入查询中，例如`WHERE time > 'xxx' ORDER BY time LIMIT 10`即可。
 
 ### 索引类型
 
