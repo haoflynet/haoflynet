@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2019-07-12 15:48:00
+updated: 2019-07-22 11:03:00
 categories: python
 ---
 
@@ -19,10 +19,12 @@ string.isdigit()	# 是否为数字
 "my name is {} at {}".format(name, address)	# 这种方式可以在少数变量的情况下偷一下懒
 "{1} {0} {1}".format("hello", "world")	# 可以指定位置
 f'my name is {变量名}'	# Python3.6里面新增的特性，可用这种方式直接格式化字符串
+f'{name=}'	# python3.8开始直接这样可以输出name=value形式的字符串
 my_dict = {'name': '...', 'addr': '...'}
 'my name is {name} at {}'.format(**my_dict)	# 直接解析字典的参数
 my_list = {'name', 'addr'}
 'my name is {0[0]} at {0[1]}'.format(my_list)	# 直接解析列表的参数
+''.join(['a','b'])	# 合并字符串列表并增加分隔符，需要注意的是列表中必须为字符串，如果是数字需要强制转换一下
 
 # 格式化数字
 '{:.2f}'.format(3.1415926)	# 3.14, 保留两位小数
@@ -242,6 +244,10 @@ interval.days # 相差多少天，对应的.seconds表示相差多少秒，小�
   data.encode('latin1').decode('gb2312')
   ```
 
+- **大端/小端**
+
+  Python使用`struct.pack和struct.unpack`来将数据封装成大端/小端的字节流，例如`struct.pack('>h',14)`表示将14封装成大端模式
+  
 - **查看字符编码**
 
   ```python

@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-07-15 17:29:30
+updated: 2019-07-18 14:29:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -606,6 +606,8 @@ main(['install', 'requests'])	# 安装包
 ```
 
 #### 输入输出
+
+- Python默认会有输出缓冲区，所以有时候`print`没有输出不用担心，可能是缓冲区没有刷新，可以在运行程序的命令加上`-u`参数，例如`python -u main.py`，或者直接添加一个环境变量`PYTHONUNBUFFERED=1`
 
 ```python
 print('string', file=sys.stderr)	# 直接输出到文件
@@ -1370,6 +1372,16 @@ conn.close()	# 关闭连接
 - **fatal error: Python.h No such file or directory**: 需要安装python相关的开发库: `yum install python-devel`
 
 - **gcc failed with exit status 1**: 原因是没有安装python开发相关扩展，需要先安装`yum install python-devel`
+
+- **Libraries for snappy compression codec not found**: 需要安装依赖库
+
+    ```shell
+    sudo apt-get install libsnappy-dev	# debian
+    yum install snappy-devel	# centos
+    brew install snapy	# macos
+    
+    pip install python-snappy	# 成功
+    ```
 
 - **`Click will abort further execution because Python 3 was
     configured to use ASCII as encoding for the environment.`**: 错误原理见[click](https://click.palletsprojects.com/en/7.x/python3/)，设置一下系统的语言就好了:
