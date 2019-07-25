@@ -4,6 +4,10 @@ date: 2016-09-06 01:02:30
 updated: 2019-05-22 17:30:00
 categories: system
 ---
+## Mac瘦身
+
+- `~/Library/Application Support/Code/User/workspaceStorage`: VS COde的工作区文件夹唉，但是所有的扩展都会重建这个文件夹，把年代久远的删除了
+
 ## Shell配置使用
 
 ### mac shell使用rz、sz直接上传或者下载服务器文件

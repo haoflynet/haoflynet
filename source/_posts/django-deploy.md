@@ -1,7 +1,7 @@
 ---
 title: "Python程序(Django/Flask)部署方式"
 date: 2018-08-04 21:32:00
-updated: 2019-07-18 14:49:00
+updated: 2019-07-23 17:49:00
 categories: python
 ---
 
@@ -132,6 +132,7 @@ redirect_stderr=true
 ## 使用Gunicorn部署Django应用
 
 - 需要注意的是不能使用`gunicorn ... > /log`这样的方式来重定向输出，而是应该直接指定日志文件的方式，例如`gunicorn --worker-class=gevent --capture-output --access-logfile=/var/log/python/python-safe-risk-web.log --error-logfile=/var/log/python/python-safe-risk-web.log -w 4 -b 0.0.0.0:5000 run:app`，还要设置环境变量`PYTHONUNBUFFERED=1`
+- 主程序`run.py`里面一定要暴露出`app`才能用`run:app`运行，把`app`放到`__main__`里面是不行的
 
 ### 部署步骤
 

@@ -1,7 +1,7 @@
 ---
 title: "微信小程序开发手册"
 date: 2018-10-17 13:15:00
-updated: 2019-03-04 09:25:00
+updated: 2019-07-15 11:12:00
 categories: javascript
 ---
 
@@ -217,6 +217,21 @@ wx.request({
 })
 ```
 
+#### 分享/转发
+
+```javascript
+// 添加该元素，打开页面之后就能在右上角点击分享了
+onShareAppMessage: function () {
+    return {
+      path: '/pages/index/index
+      title: 'name',
+    }
+}
+
+// 如果同一个页面有些能分享有些不能分享，可以在load里面调用这个方法，隐藏分享
+wx.hideShareMenu()
+```
+
 #### 位置
 
 ```javascript
@@ -263,6 +278,8 @@ wx.openLocation(OBJECT)	// 使用微信内置的地图查看某个位置
       align-items: center;
   }
   ```
+
+- **开发时分享出去的链接用户打开提示“暂无开发权限”**: 原因是没有将对方设置为开发者或者体验者，需要在后台的开发设置中进行设置，或者在微信“小程序助手”中进行成员管理
 
 - **warning： Now you can provide attr "wx:key" for a "wx:for" to improve performance.**这是因为在使用循环`block`的时候没有给循环的item设置一个唯一的id，可以这样做:
 
