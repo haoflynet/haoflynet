@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-07-17 14:58:30
+updated: 2019-07-23 10:26:30
 categories: system
 ---
 # Linux手册
@@ -403,7 +403,8 @@ cat /proc/cpuinfo    # 查看CPU信息
 cat /etc/issue     # Debian系列查看系统版本
 cat /etc/redhat-release # redhat系列查看系统版本
 cat /proc/version	# 更详细的系统版本
-lspci				# 显示当前主机的所有PCI总线信息
+lspci				# 显示当前主机的所有PCI总线信息、vga/navidia表示的是显卡GPU信息
+lspci -v -s 00:0f.2	# 显示指定硬件信息的详情，例如查看GPU大小等
 
 # 环境变量
 env	# 查看环境变量
