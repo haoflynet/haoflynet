@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2019-05-23 15:34:00
+updated: 2019-07-22 11:11:00
 categories: python
 ---
 
@@ -195,6 +195,8 @@ def fullname(self):
 
 - 像`join`自身类似的需求，可以使用别名`user_model1 = aliased(UserModel)`
 
+- 目前没有找到合适的方法去返回影响的行数，但是在`UPDATE/DELETE`方法中可以使用`result.rowcount`来返回SQL中where语句匹配到的行数，折衷方案是可以多加一个where条件去返回实际的影响行数。
+
 - 执行原生语句，返回的是`ResultProxy`对象:
 
   ```python
@@ -269,11 +271,13 @@ session.flush()	# 必须手动flush
 session.bulk_save_objects([User(name="wang") for i in xrange(1000)])
 
 # 批量插入非ORM版
-session.execute(
+result = session.execute(
     User.__table__.insert(),
     [{'name': 'wang', 'age': 10}, {}]
 )
 session.commit()
+
+result.lastrowid	# 获取上一次插入的主键id
 ```
 
 ### 修改
@@ -327,13 +331,12 @@ expire/first_init/init/init_failure/load/pickle/refresh/refresh_flush/unpickle
 after_attach/after_begin/after_bulk_delete/after_bulk_update/after_commit/after_flush/after_flush_postexec/after_rollback/after_soft_rollback/after_transaction_create/after_transaction_end/before_attach/before_commit/before_flush/deleted_to_detached/deleted_to_persistent/detached_to_persistent/loaded_as_persistent/pending_to_persistent/pending_to_transient/persistent_to_deleted/persistent_to_detached/persistent_to_transient/transient_to_pending
 ```
 
-
-
 ## TroubleShooting
 
 - **Tornado中使用SQLAlchemy连接SQLite进行commit操作的时候程序中断: Segment Fault**: 原因是`SQLite`的自增主键`id`重复了😂
 - **UnicodeEncodeError：'latin-1' codec can't encode characters in position 0-1: ordinal not in range(256)**: 连接数据库没有指定utf8的charset，参考本文连接数据库设置。
 - **Can't recoonect until invalid transaction is rolled back**: 要么在每次执行sql语句之后主动close，要么在连接的时候设置`autocommit=True` 
+- **MySQL server has gone away**: 程序运行久了出现该问题。如果是使用了线程池，那么可能的原因是线程池的回收时间大于了mysql的最长交互时间(可使用`SHOW VARIABLES LIKE '%interactive_timeout%';`查看)。这个时候可以把`POOL_RECYCLE`参数设置为比那个时间小就行了。
 
 ##### 扩展阅读
 
