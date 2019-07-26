@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-07-18 14:29:30
+updated: 2019-07-24 15:59:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -485,7 +485,7 @@ stdoutdata, stderrdata = child.communicate(input=None)	# 与子进程进行交�
 # 接收输入
 a = input('Input: ')
                          
-sys.getsizeof(name)  # 获取变量占用内存的大小
+sys.getsizeof(name)  # 获取变量占用内存的大小，但这只是对象本身，它内部包含的其他对象的引用并不会计算在内的
 sys.argv	# 获取命令行参数                         
 
 id(x)   # 返回对象标识，即内存地址
@@ -1149,7 +1149,10 @@ if __name__ == '__main__':
 
 #### pickle: 序列化工具
 
-将一个对象序列化为一个字节流，这样方便讲对象保存在文件中。对于那种需要在不同地方执行，或者直接想以文件的方式保留执行过程变量，而不借助复杂的数据库的情况，是非常方便的。
+将一个对象序列化为一个字节流，这样方便将对象保存在文件中。对于那种需要在不同地方执行，或者直接想以文件的方式保留执行过程变量，而不借助复杂的数据库的情况，是非常方便的。
+
+- 需要注意的是pickle会将对象引用的所有的对象都进行序列化，所以体积往往会比`getsizeof`大得多。如果想要渐小体积，可以直接用`ba2.BZ2File(filename, 'w')`来写入文件，用`bz2.open(filename)`来读取文件
+- `pickle.dump`的第三个参数是协议版本，如果是同版本语言之间`dump`和`load`，那么完全可以用`pickle.HIGHEST_PROTOCOL`目前是5，而默认值`pickle.DEFAULT_PROTOCOL`默认是3，会根据语言版本不同而改变，最好就用最新的，在效率上肯定更好
 
 ```python
 import pickle

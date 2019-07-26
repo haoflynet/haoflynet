@@ -1,7 +1,7 @@
 ---
 title: "Python 进程、线程与协程"
 date: 2015-12-30 11:02:30
-updated: 2019-06-18 18:44:00
+updated: 2019-07-12 15:44:00
 categories: python
 ---
 ## 基本概念
@@ -98,6 +98,44 @@ async def main():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
 loop.close()
+```
+
+#### asyncio中使用requests
+
+```python
+async def req(url):
+  loop = asyncio.get_event_loop()
+  await loop.run_in_executor(None, requests.get, url)
+  
+async def req2(url):
+  await req(url)
+
+tasks = [req2(url1), req2(url2)]  
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(asyncio.await(tasks))
+```
+
+#### asyncio动态添加任务
+
+```python
+async def produce_task():
+  while True:
+    url = redis.pop()
+    asyncio.run_coroutine_threadsafe(req2(url), thread_loop)	# 这里的req2参考上面的定义，是一个异步任务函数thread_loop是我们单独的一个事件循环
+
+def start_loop(loop):
+  asyncio.set_event_loop(loop)
+  loop.run_forever()
+    
+# 单独启动了一个线程来做消费者
+thread_loop = asyncio.new_event_loop()
+run_loop_thread = Thrad(target=start_loop, args=(thread_loop,))
+run_loop_thread.start()
+
+# 主线程则直接进行事件循环
+loop = asyncio.get_event_loop()
+loop.run_until_complete(produce_task())
 ```
 
 ## 并发框架
