@@ -1,7 +1,7 @@
 ---
 title: "Chrome扩展开发手册"
 date: 2018-04-10 18:32:00
-updated: 2018-04-16 17:56:00
+updated: 2019-07-17 15:02:00
 categories: chrome
 ---
 
@@ -9,7 +9,7 @@ categories: chrome
 
 ### 目录结构
 
-实例文件夹结构及内容见: []()
+实例文件夹结构及内容见:
 
 ```shell
 .
@@ -26,13 +26,75 @@ categories: chrome
 └── popup.js		# 该样例里面主要的业务逻辑就在这里面
 ```
 
+#### manifest.json 详细配置
+
+```javascript
+{
+  "name": "插件名称",
+  "version": "0.1",	// 插件版本
+  "description": "插件描述",
+  "default_locale": "zh_CN",
+  "permissions": [
+    "activeTab", 
+    "contentMenus",	// 右键菜单
+    "declarativeContent", 	
+    "notifications",	// 通知
+    "storage",	// 本地存储
+    "tabs",	// 标签
+    "webRequest", // web请求
+    "https://*.taobao.com/*", 	// 定义插件能访问哪些域名
+    "https://*.tmall.com/*"
+  ],
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"],
+    // "page": "background.html",	// 要么是scripts要么是page，如果是js，那么会自动生成一个北京页
+    "persistent": false
+  },
+  // browser_action、page_action、app三选一表示浏览器右上角图标的设置
+  "page_action": {	// 当某些特定页面打开时才显示图标，否则是灰色
+    "default_popup": "popup.html",	// 当用户点击扩展程序图标时弹出的页面
+    "default_title": "",
+    "default_icon": {
+      "16": "images/get_started16.png",
+      "32": "images/get_started32.png",
+      "48": "images/get_started48.png",
+      "128": "images/get_started128.png"
+    }
+  },
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_title": "图标悬停时的标题",
+    "default_popup": "popup.html"
+  }
+  "icons": {
+    "16": "images/get_started16.png",
+    "32": "images/get_started32.png",
+    "48": "images/get_started48.png",
+    "128": "images/get_started128.png"
+  },
+  "content_scripts": [{	// 定义需要直接注入页面的JS
+    "matches": ["http//*/*"],
+    "js": ["js/query-1.8.3.js", "js/mine.js"],
+    "css": ["css/custom.css"],
+    "run_at": "document_start", // 执行时机，可选document_start, document_end,documen_idle(默认值表示页面空闲时)
+  }],
+  "homepage_url": "https://haofly.net",	// 插件主页
+  "chrome_url_overrides": {	// 覆盖浏览器默认页面
+    "newtab": "my_newtab.html",	// 用自己的页面替换新标签页
+  }
+  "manifest_version": 2
+}
+
+```
+
 ### 调试技巧
 
 在`扩展程序`管理界面，可以看到自己的插件，点击背景页即可看到自己插件在后台的调试面板。
 
 如果要在后台打印日志，不能直接用`console.log()`而是应该用`    chrome.extension.getBackgroundPage().console.log()`代替。
 
-如果想要调试`popup.js`的内容，光有上面的还不够，还得在插件图标上`右键`->`审查弹出的内容`，所以，基本上，得同时打开三个调试面板…不过popup的生命周期仅仅是弹出过后，如果重新点击图标，那么调试面板也需要重新去打开。
+如果想要调试`popup.js/popup.html`的内容，光有上面的还不够，还得在插件图标上`右键`->`审查弹出的内容`，所以，基本上，得同时打开三个调试面板…不过popup的生命周期仅仅是弹出过后，如果重新点击图标，那么调试面板也需要重新去打开。
 
 ### API/权限列表
 
@@ -57,22 +119,40 @@ categories: chrome
   chrome.runtime.onInstalled.addListener(function() {
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
       chrome.declarativeContent.onPageChanged.addRules([{
-        conditions: [new chrome.declarativeContent.PageStateMatcher({
-          pageUrl: {hostEquals: 'haofly.net'},
-        })],
+        conditions: [
+          new chrome.declarativeContent.PageStateMatcher({
+          	pageUrl: {hostEquals: 'haofly.net'},
+      	  }),
+          // 可以直接在这里添加多个
+          new chrome.declarativeContent.PageStateMatcher({
+          	pageUrl: {hostEquals: 'haofly1.net'},
+      	  }),
+        ],
         actions: [new chrome.declarativeContent.ShowPageAction()]
       }]);
     });
   });
   ```
 
-- ​
+- 
 
 ## TroubleShooting
 
 - **发送http请求网站出现`Access-Control-Allow-Origin not checking in chrome extension`错误**
   原因是并没有向浏览器申请对该域名的访问权限，可以在`manifest.json`中的`permissions`添加该url，可以用正则，例如，如果要匹配所有的网址，啊呢吗`"*://*/*"`
-- ​
+  
+- **无法在popup.html中给元素添加onclick属性**: 这是Chrome的限制，可以在`popup.js`中手动给元素添加事件:
+
+  ```javascript
+  document.addEventListener('DOMContentLoaded', function() {
+      var link = document.getElementById('my_link');
+      link.addEventListener('click', function() {
+          console.log("that's it");
+      });
+  });
+  ```
+
+  
 
 参考文章:
 

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-07-17 15:03:00
+updated: 2019-07-26 11:28:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -54,6 +54,8 @@ arr.every(function(value, key, arr){});	// 筛选数组，是否每个元素都�
 $.each($array, function(k, v){});	// 遍历数组
 $.inArray('a', $arr): 判断数组是否包含某个元素
 delete a['a']	// 删除字典元素，如果用它来删除数组中的元素，删除完以后，数组总的长度不变，元素会被换成undefined，和php一样的坑
+
+Array.isArray(arr) && arr.length === 0	// 判断是否是空数组
 ```
 ### 数字
 
