@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2019-05-22 17:30:00
+updated: 2019-07-30 09:11:00
 categories: system
 ---
 ## Mac瘦身
@@ -74,6 +74,12 @@ mackup uninstall# 将配置文件拷回原来的系统目录
    sudo mdutil -i on /
    ```
 
-   
+- **Library not loaded: /usr/local/opt/readline/lib/libreadline.6.2.dylib Referenced from: /usr/local/bin/gawk Reason: image not found**: 执行下面这个命令更新所有`brew`安装的包可以修复
 
+  ```shell
+  brew upgrade
+  ```
+  
+  
+  
    

@@ -32,6 +32,7 @@ categories: 编程之路
 - 常用快捷键
 
   ```shell
+  Alt+Enter # 万能的快捷键，弹出你用鼠标悬停看到的提示的帮助
   Shift+option	# 多列选择
   ```
 

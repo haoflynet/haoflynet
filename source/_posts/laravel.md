@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2019-07-15 08:57:00
+updated: 2019-07-29 15:07:00
 categories: php
 ---
 # Laravel指南
@@ -665,6 +665,11 @@ $author->posts()->saveMany([$post1, $post2])	# 添加hasmany
 $post->author()->save(Author::find(1))	# 设置外键
 $author->posts()->detach([1,2,3])
 $author->posts()->attach([1,2,3=>['expires'=>$expires]])
+$datas = [
+  ['field1' => 'value1', 'field2' => 'value2'],
+  ['field1' => 'value3', 'field2' => 'value4'],
+];
+Post::insert($datas);	// 批量创建并插入
 
 # 修改
 $user->restore();		# 恢复软删的数据

@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2019-07-15 09:10:00
+updated: 2019-07-29 09:10:00
 categories: frontend
 ---
 # Html
@@ -133,4 +133,24 @@ var dt = canvas.toDataURL('image/png');	# 得到的值是图片的base64编码
 
 
 * **`<a href="..." download></a> `可以直接将a标签的内容进行下载  **
+
 * `&nbsp`html中的空格
+
+* **网页视频或音频无法自动播放的问题**: 新版本的浏览器中，只有静音的网页视频可以自动播放，其他有音频的都无法自动播放(但是在微信或者qq这种应用内部自带的浏览器是允许自动播放的)。不过在[stackoverflow](https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome)上也找到一种在浏览器里有用的绕过方式(但是在手机浏览器中仍然不行): 
+
+  ```html
+  <!--在网页中同时使用这两个标签 -->
+  <iframe src="silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+  <audio id="player" autoplay loop>
+      <source src="audio/source.mp3" type="audio/mp3">
+  </audio>
+  ```
+
+  还有一种方式是让用户在网页触发一次交互操作，无论什么东西，也不一定要点击音频，只要点击后就能用js去进行播放了。如果在用户没交互操作的情况下用js进行`audio.play()`那么会报错:**`Uncaught (in promise) DOMException: The play() request was interrupted by a new load request.`**，这是因为`play()`在新版本里面变成了一个异步函数，必须主动`catch`这个`promise`，例如:
+
+  ```javascript
+  result = video.play();
+  result.then().catch(error => {})
+  ```
+
+  
