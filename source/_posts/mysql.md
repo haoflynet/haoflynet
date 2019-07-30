@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-07-26 09:25:00
+updated: 2019-07-29 09:15:00
 categories: database
 ---
 ## 安装方法
@@ -101,6 +101,7 @@ update table_1 as a, (select id from biao_2 where name='a') as b set a.title='xx
 
 # 随机读取数据库记录
 SELECT * FROM table WHERE id >= (SELECT FLOOR(RAND() * (SELECT MAX(id) FROM table))) ORDER BY id LIMIT 1
+SELECT * FROM table ORDER BY RAND() LIMIT 10;
 
 # 分页功能，获取m开始的n条记录
 SELECT * FROM table_name limit m, n
