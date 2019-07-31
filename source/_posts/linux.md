@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-07-23 10:26:30
+updated: 2019-07-31 18:26:30
 categories: system
 ---
 # Linux手册
@@ -278,11 +278,24 @@ ssh-add -A	# 将当前所有的key都带上
 ssh IP "ls"
 ssh IP "echo \`uname -a | awk '{print \$3}'\`"	# 特殊符号
 
+# ssh config设置，可以修改~/.ssh/config来设置简单的ssh配置，例如，如果设置了下面这几行，那么就可以直接ssh ali来进行指定服务器的登录了
+Host ali
+  HostName 233.233.233.233
+  User root
+  Port 22
+
 # SSH自动把host加入到known_hosts
 ssh -o StrictHostKeyChecking=no root@ip
 
 # 命令行直接输入密码，使用sshpass，当然，这样子在history就会记录下你的密码了，可以使用history的相关功能屏暂时屏蔽掉记录密码的功能
-sshpass -ppassword ssh 
+sshpass -ppassword ssh
+
+# 交互式SHELL自动输入，可以这样写一个可执行文件:
+#!/usr/bin/expect -f	# 可以加入-d参数进行调试
+spawn target.sh		# 需要执行的脚本
+expect "Select group"	# 期望出现的字符
+send "1\n"	# 当出现上面字符的时候输入指定字符
+interact	# 保持交互状态，这样不会退出交互
 
 # CentOS下的安装
 yum install openssh-client openssh-server
