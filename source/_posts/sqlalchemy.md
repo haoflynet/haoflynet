@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2019-07-22 11:11:00
+updated: 2019-08-02 11:11:00
 categories: python
 ---
 
@@ -314,9 +314,26 @@ append/bulk_replace/dispose_collection/init_collection/init_scalar/modified/remo
 
 ###Mapper Events
 
+都无法获取请求context，接收的参数仅仅是Mapper、Connection、Target(目标model对象)
+
 ```python
 after_configuree/after_delete/after_insert/after_update/before_configured/before_delete/ 
 before_insert/before_update/instrument_class/mapper_configured
+```
+
+例如
+
+```python
+@event.listens_for(Test, 'after_update')
+def receive_after_update(mapper: Mapper, connection: Connection, target: Test):
+    print('receive_after_update')
+
+    state = inspect(target)
+    # model能够记住自己的历史状态，所以这里可以直接获取哪些字段被更改了
+    for attr in state.attrs:
+        hist = attr.load_history()
+        if hist.has_changes():
+            print('change ' + attr.key + ' from ' + str(hist.non_added()[0]) + ' to ' + str(hist.non_deleted()[0]))
 ```
 
 ### Instance Events
@@ -337,6 +354,7 @@ after_attach/after_begin/after_bulk_delete/after_bulk_update/after_commit/after_
 - **UnicodeEncodeError：'latin-1' codec can't encode characters in position 0-1: ordinal not in range(256)**: 连接数据库没有指定utf8的charset，参考本文连接数据库设置。
 - **Can't recoonect until invalid transaction is rolled back**: 要么在每次执行sql语句之后主动close，要么在连接的时候设置`autocommit=True` 
 - **MySQL server has gone away**: 程序运行久了出现该问题。如果是使用了线程池，那么可能的原因是线程池的回收时间大于了mysql的最长交互时间(可使用`SHOW VARIABLES LIKE '%interactive_timeout%';`查看)。这个时候可以把`POOL_RECYCLE`参数设置为比那个时间小就行了。
+- **2013 Lost connection to MySQL server during query**: 原因是超过了`wait_timeout`规定的时间了，首先`show GLOBAL variables LIke '%wait_timeout%'`看看全局的超时时间是多少(这里一定要先看GLOBAL的，因为当前session的会首先被全局的影响)，这种情况，尽量优化sql，实在不行再修改这个配置。
 
 ##### 扩展阅读
 
