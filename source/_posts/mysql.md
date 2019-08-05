@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-07-29 09:15:00
+updated: 2019-08-01 11:07:00
 categories: database
 ---
 ## 安装方法
@@ -376,6 +376,7 @@ JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是�
 - **使用ENUM枚举类型来代替字符串类型**
 - **LIKE查询优化**: 如果是`abc%`型的`like`查询是能用到该字段的索引的，如果是前后都模糊搜索，那么最好是加一个有索引的字段进行筛选，例如时间
 - **对于Limit语句，即使where条件有索引，在数据量太大的时候仍然会有问题**: 例如，`LIMIT 10000000000 10`即使只取10条数据依然会很慢，好的做法是每次查询将上一次查询的末尾值拿到，然后在下次查询的时候将该值放入查询中，例如`WHERE time > 'xxx' ORDER BY time LIMIT 10`即可。
+- **`wait_timeout`设置**: 最好将全局的`wait_timeout`设置为120，防止因为慢sql太多导致数据库性能变慢，特别是针对大企业的公共数据库。并且连接自己设置的`wait_timeout`依然首先会受到全局设置的影响，当`wait_timeout`超时后会出现**2013: Lost connection to MySQL server during query**错误
 
 ### 索引类型
 
