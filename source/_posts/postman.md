@@ -1,7 +1,7 @@
 ---
 title: "Postman 高级用法"
 date: 2018-09-09 20:32:00
-updated: 2018-10-09 15:40:00
+updated: 2019-08-13 10:40:00
 categories: tools
 ---
 
@@ -33,9 +33,28 @@ Postman，一款功能强大的HTTP调试软件(以前只是谷歌浏览器的�
 
 
 
+### Pre-request Script
+
+- 如果需要加解密或者计算hash值等，可以直接在这里面使用`CryptoJS`
+- 这里一般可以添加自定义的认证方式
+
+个性化的请求前执行的脚本，可以在这里定义一些变量的获取方式，例如如果要传入一个时间戳字段，可以在这里进行获取，并传入请求，例如:
+
+```javascript
+body = pm.request.body	// 获取请求体
+timestamp = (Date.parse(new Date()) / 1000).toString();
+body = {
+    query: pm.request.body.graphql.query
+}
+sign = CryptoJS.HmacSHA1(timestamp + JSON.stringify(body), pm.environment.get("auth_sk")).toString(CryptoJS.enc.Hex);
+
+pm.environment.set("timestamp", timestamp);
+pm.environment.set("auth_sign", sign);
+```
+
 ### 自动进行认证
 
-`Postman`自带了多种认证方式，可以让你在请求前自动去进行认证。
+`Postman`自带了多种认证方式，可以让你在请求前自动去进行认证。另外，如果自带的几种认证方式无法满足，可以编写`Pre-request Script`来进行个性化的脚本。
 
 ![](https://haofly.net/uploads/postman_6.png)
 

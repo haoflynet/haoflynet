@@ -1,17 +1,25 @@
 ---
 title: "python单元测试"
 date: 2015-09-07 3:12:30
-updated: 2017-09-27 21:32:00
+updated: 2019-08-14 15:19:00
 categories: python
 ---
 ## pytest
 
 Python的测试类，调研了一下nose和pytest，虽然nose的使用量确实比pytest多一点，但是活跃度并不高，从15年后就没发布新版本了，而pytest的github还在一直刷。所以选择了pytest来学习python的测试。
 
+### 常用命令
+
+```python
+pytest test.py		# 测试脚本
+pytest -x					# 当第一次出现失败的时候就停止测试
+pytest --maxfail=2	# 设置最大失败次数
+```
+
 ### 测试类
 
 ```python
-class TestName:
+class TestName:	# 测试类必须以Test开头
   def setup_class(self):
     """测试类开始的时候执行，相当于__init__"""
   def teardown_class(self):
@@ -20,6 +28,8 @@ class TestName:
     """每个测试方法开始的时候执行"""
   def teardown_method(self):
     """每个测试方法结束的时候执行"""
+  def test_one(self):	# 测试方法必须以test_开头
+    assert 1 is 2
 ```
 
 ## mock对象

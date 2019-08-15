@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-07-31 17:58:00
+updated: 2019-08-09 17:58:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -108,7 +108,7 @@ b = decodeURIComponent(uri);	// url解码
 `XDate`
 
 ```javascript
-Date.parse(new Date());	// 获取时间戳，单位为毫秒
+Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
 ```
 
 ### 网络请求
@@ -523,7 +523,7 @@ $.post('some.php', {name: 'haofly'})
 
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
-  ```命令javascript
+  ```javascript
   var obj = { alert: alert};
   obj.alert('hello');		// 这样就会报错
   
