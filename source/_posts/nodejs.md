@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2019-03-25 11:20:30
+updated: 2019-08-12 13:53:30
 categories: frontend
 ---
 # node.js教程
@@ -30,8 +30,22 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 安装package.json 直接`npm install`后面不加package.json的名字
 
-
 ## 常用命令
+
+- 报名前面带"@"符号的，表示是属于某个组织，又组织上传到镜像源里面的
+
+#### Nvm
+
+可以通过`nvm`来同时使用多个`node`版本，mac上可以直接`brew install nvm`进行安装，安装完成后根据提示添加`sh`的`rc`文件，常用命令如下:
+
+```shell
+nvm ls-remote	# 查看所有可用的node版本
+nvm install xxx	# 下载需要的版本
+nvm use xxx	# 使用指定的版本
+nvm alias default xxx 	# 设置默认的node版本
+```
+
+#### Npm
 
 ```shell
 npm init		# 将当前目录设置为一个npm库，自动生成package.json文件
