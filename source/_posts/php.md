@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-07-17 15:05:21
+updated: 2019-08-21 15:05:21
 categories: php
 ---
 # PHP
@@ -564,6 +564,8 @@ while ($it->valid())
 - **fatal error: pcre.h: No such file or directory**: `yum install pcre-devel/sudo apt-get install libpcre3-dev`
 
 - **PDOException "could not find driver"**: 安装`php-mysql/php5-mysql/php7-mysql`扩展
+
+- **Composer报错`Failed to decode response: zlib_decode(): data error`**: 出现在更换源之后，这时候应该先执行`composer clear-cache`
 
   
 
