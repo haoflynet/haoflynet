@@ -1,12 +1,12 @@
 ---
 title: "Python使用Splinter(Selenium)进行浏览器模拟测试"
 date: 2016-08-10 19:56:39
-updated: 2018-03-13 18:43:00
+updated: 2019-08-19 14:37:00
 categories: python
 ---
 每次看到selenium都觉得很牛，但是苦于文档(包括英文)太少，我到今天才真正完整地安装使用了一把。我不喜欢来一个项目就在自己电脑上搭一个运行环境，而是喜欢在docker或者虚拟机里进行操作，问题是docker或者虚拟机里并没有任何的可视化的浏览器，而Selenium又依赖于这些浏览器驱动，我是最讨厌安装驱动的，因为驱动这个东西电脑不同差距特别大，总是会出现各种问题。而在服务器上如何安装selenium或者splinter，这个过程在网上基本是找不到的，所以这里记录下自己的安装方法。
 
-注：这里之所以要使用`splinter`，而不只使用`selenium`是因为`splinter`在`selenium`之上又封装了一层，使得接口更为简单。
+注：这里之所以要使用`splinter`，而不只使用`selenium`是因为`splinter`在`selenium`之上又封装了一层，使得接口更为简单。另外，即使是用的`splinter`，也可以通过`browser.driver`直接获取到`selenium`的驱动的。
 
 ## Linux install Splinter(Selenium)
 
@@ -107,7 +107,7 @@ option.add_argument('--user-data-dir=/path')	# 指定个人资料路径，指向
 
 ### 获取所有网络请求
 
-很多时候访问一个页面，在该页面可能会同时访问其他的资源，例如js，css，甚至其他一些关键信息。这时候就要求我们能够获取中间的所有的请求，但是`selenium`是不带这个功能的，只能使用一些代理，例如：[browsermob-proxy](https://github.com/lightbody/browsermob-proxy)。其不需要安装，只需要下载`bin`包，然后在使用的时候指定路径即可。例如：
+很多时候访问一个页面，在该页面可能会同时访问其他的资源，例如js，css，甚至其他一些关键信息。这时候就要求我们能够获取中间的所有的请求，但是`selenium`是不带这个功能的，只能使用一些代理，例如：[browsermob-proxy](https://github.com/lightbody/browsermob-proxy)。其不需要安装，只需要`release`下载`bin`包，然后`pip install browsermob-proxy`，然后在使用的时候指定路径即可。例如：
 
 ```python
 from browsermobproxy import Server
@@ -119,6 +119,7 @@ chrome_options = Options()
 chrome_options.add_argument('--proxy-server={host}:{port}'.format(host='localhost', port=proxy.port))
 browser = Browser('chrome', executable_path='~/share/chromedriver2.28', options=chrome_options)
 browser.driver.set_window_size(1500, 900)	# 设置浏览器的size
+browser.driver.set_page_load_timeout(1)	# 设置页面加载超时时间，防止visit一直卡住
 
 proxy.new_har()
 browser.visit('https://haofly.net')
@@ -137,6 +138,7 @@ browser.window[0].close_others()	# 关闭其他窗口
 browser.window[0].is_current # 序号为零的窗口是否是当前的窗口
 browser.window[0].next	# 下一个窗口
 browser.window[0].prev	# 上一个窗口
+browser.quit()			# 退出浏览器
 ```
 
 ## 页面操作
@@ -169,13 +171,31 @@ browser.find_by_name('send').first.click()
 browser.find_link_by_text('my link').first.click()
 
 # 表单填写
-browser.fill('query', 'my name')
+browser.fill('query', 'my name')	# 直接通过name属性的元素输入
+browser.find_by_tag('input').first.fill('my name')
 browser.attach_file('file', '/path/to/file/somefile.jpg')
 browser.choose('some-radio', 'radio-value')
 browser.check('check-name') # checkbox
 browser.choose('name', 'value')	# radio
 browser.uncheck('some-check')
 browser.select('uf', 'rj')
+
+# 元素基本操作方法
+ele.click()	# 点击元素
+ele.fill('value')	# 输入字符
+ele.has_class('name')	# 是否包含某个类
+ele.mouse_out()
+ele.mouse_over()
+ele.screenshot()
+ele.select('option', slowly=False)	# 下拉选择option
+ele.text	# 元素内部的文字内容
+ele.type('value', slowly=False)
+ele.uncheck()
+ele.value	# 跟.text差不多
+ele.clear()	# 清空元素内容
+
+# selenium发送按键
+browser.driver.find_element_by_id('title').send_keys(Keys.BACKSPACE)
 ```
 
 ## 数据获取
@@ -196,6 +216,7 @@ browser.find_by_name('name')
 browser.find_by_text('Hello World!')[1]
 browser.find_by_id('firstheader').last
 browser.find_by_value('query').first
+browser.driver.find_element_by_name('A').find_element_by_xpath('..')	# 利用selenium原生来实现寻找parent父级元素
 
 # 寻找网页链接
 browser.find_link_by_text()
@@ -205,6 +226,9 @@ browser.find_link_by_partial_href()
 
 # 可以连续用的
 browser.find_by_tag('div').first.find_by_name('name')
+
+# 获取Alert/Prompt
+alert = browser.get_alert(wait_time=None)	# 获取alert，官方文档说获取不到返回为None，但是实际会报超时错误
 ```
 
 ## TroubleShooting
@@ -214,6 +238,8 @@ browser.find_by_tag('div').first.find_by_name('name')
   原因可能是服务器内存太低了，需要加大虚拟内存
 
 - **selenium.common.exceptions.WebDriverException: Message: session not created exception**，将webdriver更新到最新版基本上能解决问题
+
+- **session not created: This version of ChromeDriver only supports Chrome version 77**: 这是因为下载的`chromedriver`版本和你当前系统已经安装的`chrome`版本不一致造成的，需要对其中某一个进行升级或降级
 
 ##### 相关文章
 

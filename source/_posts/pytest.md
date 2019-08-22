@@ -1,7 +1,7 @@
 ---
 title: "python单元测试"
 date: 2015-09-07 3:12:30
-updated: 2019-08-14 15:19:00
+updated: 2019-08-19 17:19:00
 categories: python
 ---
 ## pytest
@@ -30,6 +30,9 @@ class TestName:	# 测试类必须以Test开头
     """每个测试方法结束的时候执行"""
   def test_one(self):	# 测试方法必须以test_开头
     assert 1 is 2
+    
+    with pytest.raises(MyException) as e:	# 断言下面的语句会抛出指定的错误
+      x = 1/1
 ```
 
 ## mock对象
