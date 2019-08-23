@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-08-02 18:06:30
+updated: 2019-08-19 18:06:30
 categories: system
 ---
 # Linux手册
@@ -349,6 +349,8 @@ apt-cache show 包名 	   # 显示apt库里面的软件的版本号
 apt-get clean 			# 自动清理安装程序时缓存的deb包
 apt-get autoclean  		# 清理已卸载软件的无用的依赖包
 apt list --installed	# 查看已经安装的包
+apt-get install 包名	# 安装或者更新指定的软件包
+apt-get upgrade	# 更新所有已安装的软件包
 ```
 
 #### 磁盘管理
@@ -685,7 +687,7 @@ f 根据窗口min搜索选择窗口
 " 上下平分两个窗格
 x 关闭当前窗格
 o 切换窗格
-[ 可以用PgUp和PgDn等滚屏
+[ 可以用PgUp和PgDn等滚屏，按q可以退出滚屏
 
 ## 会话操作
 tmux a 恢复至上一次的会话

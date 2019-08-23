@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-08-02 14:49:30
+updated: 2019-08-21 17:59:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -139,6 +139,11 @@ class ErrorMsg(dict):
     """自定义错误类"""
     def __init__(self, e: Exception, code: int):
         dict.__init__(self, msg=str(e), code=code)
+class CustomError(Exception):
+    def __init__(self, message, status):
+        super().__init__(message, status)
+        self.message = message
+        self.status = status
 json.dumps(ErrorMsg(e, 200))	# {"msg":"xxx", "code":200}
 
 # 字典列表的筛选，直接用filter
@@ -429,10 +434,12 @@ glob.globa('/path/**/*.avi', recursive=True)	# 可以找到path目录下的所�
 #### 异常处理
 
 ```python
+import traceback
 try:
-	raise RuntimeError('错误原因')
+  raise RuntimeError('错误原因')
 except (SystemErrork, SyncError) as e:		# 同时catch多个错误
-    raise RuntimeError('')
+  print(traceback.format_exc())	# 以字符串的形式打印栈信息
+  raise RuntimeError('')
 except Exception as e:
 	print(e)或者print(str(e))或者print(unicode(e))
 	# 上面是打印基本的错误信息，如果要打印错误信息／文件名／错误行数，那么可以这样子:
@@ -467,7 +474,7 @@ class BadRequestException(BaseException):
 # Popen与这些run的区别是Popen不会阻塞，而且可以于子线程进行交流(获取其运行状态)
 import subprocess
 command = '...'
-result = subprocess.check_output(command, shell=True)# 不能实时看到shell的输出，输出会以返回值返回，程序出错抛出异常。等价于run(..., check=True, stdout=PIPE).stdout
+result = subprocess.check_output(command, shell=True, encoding='utf-8')# 不能实时看到shell的输出，输出会以返回值返回，程序出错抛出异常。等价于run(..., check=True, stdout=PIPE).stdout
 result = subprocess.check_call(command, shell=True)	# 可以直接看到输出结果，程序出错会抛出异常，程序成功返回0。等价于run(..., check=True)
 result = subprocess.call(command, shell=True)	# 跟check_call返回结果一样。等价于run(...).returncode
 # 注意1: subprocess是不能实现ssh输入密码登录的。OpenSSH并不是使用STDOUT/STDIN与进程进行通信的，而是直接与终端进行通信。所以要实现用程序去与ssh进行交互，最好的方法是使用pexpect模块(pty模块)，它们会建立一个伪终端。另外，如果直接安装了linux的ssh扩展程序sshpass，则可以直接在命令行输入密码了。
@@ -571,7 +578,7 @@ pip install git+git@github.com:lynzt/python_people_names.git
     
 # 将python包打包成debian包，可以用https://github.com/spotify/dh-virtualenv
 
-# 从指定目录引入包，正如PyCharm里面经常不会出现import的问题，是因为它会首先将当前的项目路径添加到环境变量里面去，在终端执行的时候也要
+# 从指定目录引入包，正如PyCharm里面经常不会出现import的问题，是因为它会首先将当前的项目路径添加到环境变量里面去，在终端执行的时候需要添加下面的代码，或者直接执行` export PYTHONPATH=$PYTHONPATH:/path/to/project`
 import sys
 sys.path.append('..')
 
@@ -893,6 +900,12 @@ with open(file, 'r') as fp:
 print(ast.get_docstring(syntax_truee))
 ```
 
+ast还能代替`eval`的功能执行安全的操作将字符串类型的对象转换为对应的对象。(`eval`)会转换所有的操作，有很大的安全风险。
+
+```python
+ast.literal_eval("{'field1' : 'value1', 'field2' : 'value2'}")	# 会直接输出一个字典
+```
+
 #### atexit
 
 可以定义整个程序结束之前需要执行的代码，相当于程序的析构函数，可以使用register函数注册程序退出时的回调函数。当然，如果程序`crash`掉或者通过`os._exit()`退出，该函数不会被执行。可以同时注册多个函数，到时候会按照逆序来执行。
@@ -981,6 +994,8 @@ cProfile.run("timeit_profile()")
 
 提供C语言兼容的数据类型，可以方便调用DLL中的函数，例如win/mac平台的系统库。
 
+- `Python3`里面跟C语言传参时需要`encode('utf-8')`一下，以防出现`<class 'TypeError'>: wrong type`错误
+
 ```python
 from ctypes import *
 dll = cdll.LoadLibrary('./libtest.so')
@@ -1027,6 +1042,7 @@ inspect.isclass(object)		# 是否为类
 inspect.getdoc(object)		# 获取documentation信息
 inspect.getfile(object)		# 获取对象的文件名
 inspect.getsource(object)	# 以string形式返回object的源代码
+inspect.getfullargspec(func).args	# 获取函数的参数列表
 ```
 
 #### ipaddress
@@ -1386,6 +1402,8 @@ conn.close()	# 关闭连接
     pip install python-snappy	# 成功
     ```
 
+- **from Crypto.Cipher import AES报错No module named 'Crypto'**: 卸载`pycrypto`直接安装`pycryptodome`
+  
 - **`Click will abort further execution because Python 3 was
     configured to use ASCII as encoding for the environment.`**: 错误原理见[click](https://click.palletsprojects.com/en/7.x/python3/)，设置一下系统的语言就好了:
 

@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2019-05-30 14:23:00
+updated: 2019-08-23 14:23:00
 categories: tools
 ---
 # Git指南
@@ -50,6 +50,7 @@ ssh-keygen -t rsa -C "haoflynet@gmail.com"
 然后进行新建仓库，无论是github还是其他托管网站都可以新建远程库，新建完成后都会提示你下一步该怎么做 
 ![](http://7xnc86.com1.z0.glb.clouddn.com/configuration-of-git_1.png) 
 按照上图给出 操作指南，有三种方法分别是
+
 - 在本地建立一个新库，并新建一个README.md到远程库
 - 直接将本地库的代码推送到远程库，不过在本地需要将文件夹编程一个库
 - 从别的库导入代码到该库  
@@ -90,7 +91,7 @@ git diff 分支名 -- filename	# 比较不同分支的指定文件的不同
 
 git reset HEAD filename		# 把已经commit了的文件取消暂存
 git checkout -- filename	# 放弃指定文件的更改
-git commit --amend			# 撤销上一次提交，并将暂存区文件重新提交
+git commit --amend			# 撤销上一次提交，并将暂存区文件重新提交。当然如果没有git add，直接执行这条命令就相当于修改message
 
 git stash					# 暂存，常用于要切换分支，但是当前分支上面的更改并不想现在提交，需要先把当前分支的状态暂存起来。暂存起来后就可以自由切换到其他分支了。
 git stash list				# 查看所有的"储藏"
@@ -124,6 +125,64 @@ git reset --hard origin/master
 ### 在新的分支如bug-fix修改完成后，执行以下操作
 git checkout dev	# 切换回dev分支
 git merge bug-fix	# 将bug-fix合并到当前分支，即dev分支
+```
+
+#### 变基(rebase)
+
+- 简单地说就是将多个`commit`合并为一个`commit`，以使提交历史变得干净整洁。
+- 最好不要修改已经`push`过的提交进行修改，如果一定要修改，需要使用`git push -f origin 分支名`进行推送以覆盖历史提交
+- 需要注意的是变基后提交的`hash`会改变
+- 可以使用`git filter-branch --treefilter 'rm -f password.txt' HEAD`命令对整个版本历史中的每次提交进行修改，可以以此来删除误提交的敏感信息
+
+例如，我在本地新建了一个文件，并且先后对文件进行了三次修改操作，但是我想将更新操作合并。通过`git log --oneline`查看本地的提交历史如下:
+
+```shell
+4721d5f update readme file
+c4cd33c update readme file
+31cf944 update readme file
+7c040d1 add readme file
+```
+
+接下来，我就使用`rebase`命令编辑提交历史:` git rebase -i  [startpoint]  [endpoint]`，其中`-i`参数表示交互式界面，后面两个参数表示指定一个编辑区间，如果不提供，那么`startpoint`默认为当前已经提交到远程仓库的最后一次提交，`endpoint`为当前为提交到远程仓库的最后一次提交，是一个左开右闭区间。我这里直接执行`git rebase -i 7c040d1`表示只合并最后三个提交。会弹出下面这个交互式页面:
+
+```shell
+pick 31cf944 update readme file
+pick c4cd33c update readme file
+pick 4721d5f update readme file
+
+# Rebase 7c040e1..4721d5f onto 7c040e1 (3 commands)
+#
+# Commands:
+# p, pick = use commit	保留该commit
+# r, reword = use commit, but edit the commit message 保留该commit，但是修改commit的注释
+# e, edit = use commit, but stop for amending 保留该commit，但是要停下来修改该次提交
+# s, squash = use commit, but meld into previous commit	将该commit和前一个commit合并
+# f, fixup = like "squash", but discard this commit's log message 将该commit和前一个commit合并，但是不保留注释信息
+# x, exec = run command (the rest of the line) using shell 执行shell命令
+# d, drop = remove commit 丢弃该次commit
+#
+# These lines can be re-ordered; they are executed from top to bottom.	需要注意的是rebase操作是从上往下执行，也就是从最新的commit到最开始的commit执行
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+```
+
+其中开头几行为几次提交的信息，下面的则是操作说明。我现在直接将上面的提交信息修改为
+
+```shell
+pick 31cf944 update readme file
+s c4cd33c update readme file
+s 4721d5f update readme file
+```
+
+然后`:wq`保存即可。现在查看提交历史就变成了这样
+
+```shell
+2783433 update readme file
+7c040e1 add readme file
 ```
 
 #### 标签
