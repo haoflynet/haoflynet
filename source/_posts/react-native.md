@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2019-01-10 11:44:00
+updated: 2019-08-12 14:44:00
 categories: js
 ---
 
@@ -9,6 +9,7 @@ categories: js
 
 **特别注意: **
 
+- `React-Native`是基于`React`实现的，更多语法可以参考[React 开发手册](https://haofly.net/react)
 - 如果是自己开发新产品，那么希望每次都把各个基础组件升级到最新稳定版。
 - 初学者不要用网上的一些`generator`生成程序框架，好多组件用不到，而且版本不对基本上也运行不起来
 

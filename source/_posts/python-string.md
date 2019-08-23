@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2019-07-22 11:03:00
+updated: 2019-08-21 16:03:00
 categories: python
 ---
 
@@ -12,6 +12,11 @@ categories: python
 # 字符判断
 string.isalpha()	# 是否为字母
 string.isdigit()	# 是否为数字
+string.isalnum()	# 是否为数字或字幕
+string.islower()	# 是否都是小写
+string.isupper()	# 是否都是大写
+string.istitle()	# 是否都首字母大写
+string.isspace()	# 是否都是空白字符
 
 # 格式化字符串
 'abcdef %s' % (123)	# 特别适合长字符串不用加号来拼接字符串的情况
@@ -57,6 +62,9 @@ parse.unquote(url)	# url解码
 result = parse.urlparse(url)	# url解析
 query_dict = parse.parse_qs(request.query)	# 获取查询参数
 query_dict.get('field', [])	# 获取指定参数
+
+# 进制转换
+binascii.b2a_hex(string.encode('utf-8'))	# 字符串转16进制
 ```
 
 ## 查找与替换
@@ -198,15 +206,25 @@ interval.days # 相差多少天，对应的.seconds表示相差多少秒，小�
 
 - **2中类似\uiahd\u9483这样的字符串**：需要注意的是，该字符串本来就是这样，而不是编码成这样的，这时候需要反编码：`string.decode('unicode_escape'))`
 
+- **2中无法输出中文**: 无论是`str`还是`unicode`还是`encode('utf-8')`都无法输出中文，可以试试在print的时候不带括号: `print a`，但是print一个对象依然不行，可以单独打印某个字段
+
 - **无法解析\u2c这样的unicode字符，出现错误`UnicodeDecodeError: 'unicodeescape' codec can't decode bytes in position 0-3:truncated \uXXXX escape`**: 原因是unicode默认是\uxxxx这样的形式来解析字符串的，但是如果出现`\u2c`这种，是解析不了的，应该写成`\u002c`这种形式，前面需要补全
+
+- **UnicodeDecodeError: 'ascii' codec can't decode byte**: 可以试试`unicode(string, 'utf-8)`
 
 - **url编码** Python3中，url编码放在了url lib.parse中了
 
   ```python
+  # python3
   from urllib import parse
   parse.quote(str)	# urlencode
   parse.quote_plus(str)
   parse.unquote(str)	# urldecode
+  
+  # python2
+  urllib.urlencode(dict)
+  urllib.quote(str)
+  urllib.unquote(str)	# urldecode
   ```
 
 - **bytes to string**
