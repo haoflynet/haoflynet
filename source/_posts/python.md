@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-08-21 17:59:30
+updated: 2019-08-23 14:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -359,10 +359,15 @@ data.b = 2	# 这样data就是namespace(a=1, b=2)
 ```python
 os.mkdir # 新建目录、文件
 os.makedires('a/b')  # 创建多级目录
+pathlib.Path('src/').mkdir(parents=True, exist_ok=True)	# 在指定目录下新建目录
 os.path.join(path, filename)	# 合并成全路径，用这个函数不用管路径用/还是\，也不用管最后有没有/
 os.path.abspath(__file__)	# 获取当前文件的绝对路径
+pathlib.Path(__file__)	# 同上
+pathlib.Path(__file__).resolve().parent.parent	# 直接获取父级目录
+pathlib.Path(__file__).resolve().parent.joinpath('abc')	# 代替os.path.join功能
 os.path.expanduser('~')	# 得到当前用户的家目录
 pathlib.Path.home()		# 同上
+
 os.path.basedir('/a/b')	# 获取当前目录或文件的父路径，例如/a/b返回/a，但是/a/b/返回/a/b
 os.remove(filename)  # 删除单个文件
 os.rmdir(dirname)   # 删除空目录
@@ -386,6 +391,7 @@ os.getcwd()   # 获取当前目录
 os.chdir(newdir)  # 切换目录
 os.path.exists(name)  # 判断目录是否存在
 os.rename(original_name, new_name) # 修改文件名称
+pathlib.Path('.original_name').rename('newname')
 
 # 文件打开与关闭,'r+b'表示打开二进制的读写。第三个参数为buffering用于设置buffer，0代表关闭buffer只能用于二进制，1代表line buffer只能用于文本，>1表示初始化的buffer的大小
 fp = open('a.txt', 'w', 1)
