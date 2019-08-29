@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-08-19 18:06:30
+updated: 2019-08-28 11:26:30
 categories: system
 ---
 # Linux手册
@@ -324,6 +324,12 @@ sshd:IP
 # 登录shell和非登录shell的区别: 加载的文件不同，登录式shell加载/etc/profile、/.bash_profile和~/.profile，而非登录式shell加载/etc/bashrc或者/etc/bash.bashrc、~/.bash_rc，所以在切换用户是最好加上-，即su - haofly就切换到那个心的地方了
 ```
 
+##### ssl证书
+
+```shell
+openssl x509 -in cert.pem -noout -text	# 打印出证书的内容
+```
+
 #### 包管理
 
 ```shell
@@ -332,12 +338,14 @@ rpm -qa					# 列出当前系统所有安装的包
 rpm -ql 包名			   # 查询已经安装的包的文件路径或者查询是否安装某个包
 rpm -ivh *.rpm			# 安装指定rpm包
 rpm -ivh --test *.rpm	# 检查指定rpm包的依赖关系是否完全满足，并不真正安装
+rpm -vhU https://nmap.org/dist/nmap-7.80-1.x86_64.rpm	# 下载并安装包
 rpm -qpf *.rpm			# 查询指定rpm包都有哪些依赖
 rpm -qpi *.rpm			# 查询指定rpm包的元信息
 rpm -e 包名			   # 卸载软件包
 rpm -qf 文件名		      # 查询指定文件属于哪个包
 yum --showduplicates list 软件名	# 查询源里面指定软件都有哪些版本并标明当前所使用的版本
 yum -y downgrade mysql-0.2.2-1536136655.el7	# 将软件降级到指定版本
+yum update 报名	# 更新软件包
 
 # dpkg管理工具
 dpkg -i *.deb # 安装deb包，但是它不会自动解决依赖，安装完成后还要使用apt-get -f install这条命令来安装没有安装好的依赖
@@ -657,7 +665,7 @@ mput ./*		# 同时上传多个文件
 
 #### nmap
 
-端口扫描工具
+端口扫描工具，为了使`banner`信息更加准确，建议将`nmap`的版本升级到最新
 
 ```shell
 nmap -Pn 8.8.8.8			# 扫描一个禁ping的机器
