@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-08-09 17:58:00
+updated: 2019-08-28 15:58:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -41,7 +41,8 @@ arr.push(obj)		// 在数组尾部添加元素
 arr.pop(obj)		// 去除数组尾部元素
 arr.unshift(obj)	// 在数组头添加元素
 arr.shift(obj)		// 去除数组头部元素
-arr.slice(start, end): 数组分片
+arr.slice(start, end) // 数组分片
+arr instance of Array	// 判断是否是数组
 
 // 遍历数组方法
 for (var index in arr) {}
@@ -344,6 +345,14 @@ $.post('some.php', {name: 'haofly'})
 
 - **代码中打断点直接`debugger;`语句，这样浏览器会自动在该处断点，对于会有js压缩的代码调试非常有用**
 - **浏览器console.log**打印出来的对象，如果没有点击展开，那么点开的时候会是最后一次该对象的值。
+
+## 第三方库
+
+### lodash
+
+```javascript
+// isMatchWith(object, source, [customizer]): 具有基本的isMatch功能，并且能添加`customizer`进行定制化的比较。判断source是否包含在object里，customizer返回true或者false。我fuck，这个函数只要source里面有key没在object，立马就返回false了，都不执行customizer的
+```
 
 ## 推荐阅读
 

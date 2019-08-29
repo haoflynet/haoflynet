@@ -1,7 +1,7 @@
 ---
 title: "使用Supervisor管理进程"
 date: 2015-08-11 10:07:33
-updated: 2019-07-12 15:43:00
+updated: 2019-08-26 17:43:00
 categories: 编程之路
 ---
 supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理Nginx、Apache等，都比较方便，这里是其使用方法：
@@ -50,6 +50,7 @@ loglevel=info	# supervisor默认的日志级别，当这个值为debug的时候�
 process_name=%(program_name)s_%(process_num)02d # 指定当前进程的名称，如果有多个numprocs，必须设置该参数否则无法启动
 command=/usr/bin/python manage.py runserver 0.0.0.0:8000     # 启动该进程的命令
 directory=/media/sf_company/frontend/frontend                # 在执行上面命令前切换到指定目录
+environment=PYTHONUNBUFFERED="1",PYTHONPATH="/data/www"	# 设置环境变量
 startsecs=0
 startretries=3		# 启动失败自动重试次数，并不是程序退出autorestart的次数
 stopwaitsecs=0
