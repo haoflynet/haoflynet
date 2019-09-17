@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2019-07-15 09:45:00
+updated: 2019-09-05 09:25:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -59,6 +59,12 @@ a:active: a标签被点击的时候
 
 - 规定元素应该生成的显示框的类型
 - none(不显示)、block(块级元素，前后会带有换行符)、inline(默认，内联元素，前后没有换行符)、inline-block(行内块元素)、list-item(会作为列表显示)、inherit(继承父元素display属性)
+- 值为`flex`表示弹性布局
+
+##### font-weight
+
+- 设置字体粗细
+- 如果值为`bold`，表示直接加粗，相当于值为`700`
 
 ##### input
 
@@ -239,3 +245,6 @@ http://www.w3cplus.com/content/css3-gradient
 }
 ```
 
+##### 扩展阅读
+
+[Flex 布局教程](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)

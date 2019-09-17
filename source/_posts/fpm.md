@@ -1,7 +1,7 @@
 ---
 title: "fpm 打包工具"
 date: 2016-08-07 05:52:39
-updated: 2019-02-12 14:07:00
+updated: 2019-09-16 14:07:00
 categories: tools
 ---
 
@@ -12,7 +12,7 @@ categories: tools
 ```shell
 yum install -y rpm-build ruby-devel virtualenv gcc
 pip install virtualenv-tools 
-gem install fpm
+gem install -V fpm
 fpm -h
 ```
 ## 常用参数
