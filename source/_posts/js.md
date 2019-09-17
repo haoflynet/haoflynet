@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-08-28 15:58:00
+updated: 2019-09-16 11:31:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -26,6 +26,7 @@ window.test = 123;	// 声明全局变量
 ```javascript
 object instanceof constructor	// 判断某个对象是否属于某个类
 var copyObj = Object.assign({}, original_obj);	// 对象的深拷贝，直接用等于赋值是浅拷贝
+Object.keys(obj);	// 获取对象所有的key，返回一个数组
 ```
 
 ### 数组
@@ -43,6 +44,7 @@ arr.unshift(obj)	// 在数组头添加元素
 arr.shift(obj)		// 去除数组头部元素
 arr.slice(start, end) // 数组分片
 arr instance of Array	// 判断是否是数组
+arr.filter(Boolean)	// 快速移除所有"false"类型(false、null、undefined等)的元素
 
 // 遍历数组方法
 for (var index in arr) {}
@@ -51,6 +53,7 @@ arr.map((value) => {console.log(value); return newValue;}) // 返回值为一个
 arr.filter(function(value, key, arr) {return true}); // 返回新数组，如果元素返回true则保留，返回false则抛弃
 arr.some(function(value, key, arr){});	// 筛选数组，如果返回true则停止循环。返回布尔值，表示是否有满足条件的
 arr.every(function(value, key, arr){});	// 筛选数组，是否每个元素都返回true
+arr.slice(0).reverse().map(function(){});	// 反向遍历数组，加个slice作用是防止原数组的顺序被更改
 
 // for jQuery
 $.each($array, function(k, v){});	// 遍历数组
@@ -59,7 +62,9 @@ delete a['a']	// 删除字典元素，如果用它来删除数组中的元素，
 
 Array.isArray(arr) && arr.length === 0	// 判断是否是空数组
 ```
-### 数字
+### 数字/布尔
+
+- `!!{}`的值为`true`，`!!''`的值为false
 
 ```javascript
 Math.floor(0.2);	// 向下取整
@@ -95,6 +100,8 @@ string.slice(start, end);	// 字符串分片
 str.split('#')	// 字符串分割，返回分割后的列表
 str.split(/\s+/) // 也可以用正则分割
 str.split('...', n)	// n表示返回数组的最大长度，分割还是会分割成所有，只是返回前n个
+str.toUpperCase()	// 转换为大写
+str.toLowerCase()	// 转换为小写
 parseInt(数字)  // 将数字取整
 
 btoa(str);	// 字符串转换为base64
@@ -102,6 +109,9 @@ atob(str);	// base64转换为字符串
 
 a = encodeURIComponent(uri);	// url编码
 b = decodeURIComponent(uri);	// url解码
+
+// 字符串格式化
+`我是${name}`;
 ```
 
 #### 时间处理
