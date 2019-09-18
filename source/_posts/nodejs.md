@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2019-08-12 13:53:30
+updated: 2019-09-09 10:53:30
 categories: frontend
 ---
 # node.js教程
@@ -66,6 +66,15 @@ npm config delete name	# 删除某个配置
 npm config set proxy=http://127.0.0.1:1080
 npm config set proxy=https://127.0.0.1:1080
 ```
+#### yarn
+
+- `yarn`从`1.10x`开始会在`yarn.lock`中增加`integrity`字段，用于验证包的有效性
+
+```shell
+yarn add 包名	# 安装包
+npm install yarn@latest -g	# 升级yarn
+```
+
 ## TroubleShooting
 
 - **Permission Denied**问题，使用npm命令总是会出现这个问题，解决方法最简单的是把npm目录的拥有者修改为当前用户的名字` sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}`

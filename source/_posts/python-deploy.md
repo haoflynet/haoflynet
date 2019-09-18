@@ -1,7 +1,7 @@
 ---
 title: "Python程序(Django/Flask)部署方式"
 date: 2018-08-04 21:32:00
-updated: 2019-08-02 09:49:00
+updated: 2019-09-1 16:42:00
 categories: python
 ---
 
@@ -158,6 +158,7 @@ redirect_stderr=true
    pidfile = "/tmp/myproject_server.pid"
    worker_class = "gevent"
    timeout = 30	# 默认30秒断开连接并且会终止worker并重启它
+   reload = False	# 修改代码是否自动重启work，默认为Fa
    ```
 
    然后直接执行`gunicorn --config=test.conf myproject.wsgi:application`
