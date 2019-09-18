@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2019-08-23 15:18:00
+updated: 2019-09-05 17:18:00
 categories: python
 ---
 # python requests模块
@@ -113,7 +113,7 @@ response.cookies	# 获取响应cookie对象
 response.status_code  # HTTP status，http状态码
 response.raise_for_status()	# 当响应出错，即为4xx或者5xx的时候直接抛出requests.RequestException错误
 response.encoding	# 获取网页的编码方式，需要注意的是，requests参照的严格http协议标准写的，如果响应中的Content-Type字段没有设置charset，那么即使网页标签中有明确是utf-8编码也是会自动设置成ISO-8859-1编码的。此时只需要下面这样修改编码即可
-response.encoding = 'utf-8'	# 直接将response设置为指定的编码
+response.encoding = 'utf-8'	# 直接将response设置为指定的编码，最好只针对ISO-8859-1进行这样转换，因为其他有声明编码的用这种方式可能反而获取不到正确的值
 ```
 #### 重定向
 

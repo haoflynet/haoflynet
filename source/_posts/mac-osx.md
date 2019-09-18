@@ -1,16 +1,30 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2019-07-30 09:11:00
+updated: 2019-09-17 09:11:00
 categories: system
 ---
+## Mac自带截图功能
+
+- `Command + Shift + 4` 普通截图
+- `Command + Shift + 4`，然后按`空格`，对指定窗口截图
+- `Command + Shift + 3` 全屏截图
+
 ## Mac瘦身
 
 - `~/Library/Application Support/Code/User/workspaceStorage`: VS COde的工作区文件夹唉，但是所有的扩展都会重建这个文件夹，把年代久远的删除了
 
 ## Shell配置使用
 
+### Mac使用Iterm2的Profile功能实现类似ssh标签/xshell登录的功能
+
+在`Preferences`中不仅可以设置默认`Profile`的窗口样式等，还是通过新建不同的`Profile`来实现自动登录。例如: ![](https://haofly.net/uploads/macos_01.png)
+
+这样如果想要进入某个服务器，只需要在`iterm2`中点击顶部菜单`Profiles->aliyun`即可直接进入服务器。对于复杂的输入密码的场景，可以参考[Linux 手册](https://haofly.net/linux)的`expect`进行配置
+
 ### mac shell使用rz、sz直接上传或者下载服务器文件
+
+- 需要注意的是在使用`except`登录服务器的情况下，使用`lrzsz`不会起作用
 
 打开`iterm2`，`Perferences->Profiles->Advanced->Triggers->Edit`，添加如下`trigger`
 

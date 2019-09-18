@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2019-08-02 17:01:00
+updated: 2019-09-11 14:01:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -203,13 +203,17 @@ location /test {
     proxy_set_header Host $host;
 }
 ```
-### 配置nginx IP黑名单
+### 配置nginx IP黑白名单
 
 新建配置文件`/etc/nginx/blockips.conf`，内容格式如下
 
 ```shell
 deny 1.1.1.1;	# 屏蔽单个IP
 deny 2.2.2.0/24;# 屏蔽IP段
+
+# 白名单的话可以这样做
+allow 1.1.1.1;
+deny all;
 ```
 
 然后在nginx主配置文件`/etc/nginx/nginx.conf`的`http`中导入该文件`include blockips.conf;`
