@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2019-08-21 16:03:00
+updated: 2019-09-05 14:03:00
 categories: python
 ---
 
@@ -54,7 +54,9 @@ s.upper()    # 全部转为大写
 s.lower()    # 全部转为小写
 
 # json格式去掉冒号后的空格
-json.dumps(string, separators=',', ':')	# 默认的分隔符是(', ', ': ')
+json.dumps(string, separators=(',', ':'))	# 默认的分隔符是(', ', ': ')
+# json格式输出中文而不是unicode字符串
+json.dumps(string, ensure_ascii=False)
 
 # url编码与解码
 from urllib import parse
@@ -65,6 +67,8 @@ query_dict.get('field', [])	# 获取指定参数
 
 # 进制转换
 binascii.b2a_hex(string.encode('utf-8'))	# 字符串转16进制
+
+''.join(random.sample(string.ascii_letters + string.digits, 10))	# 生成随机字符串
 ```
 
 ## 查找与替换
@@ -220,6 +224,7 @@ interval.days # 相差多少天，对应的.seconds表示相差多少秒，小�
   parse.quote(str)	# urlencode
   parse.quote_plus(str)
   parse.unquote(str)	# urldecode
+  parse.encode()	# 把字典转换为query的方式
   
   # python2
   urllib.urlencode(dict)

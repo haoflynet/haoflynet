@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-09-16 11:31:00
+updated: 2019-09-27 14:31:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -127,7 +127,7 @@ Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
 ```javascript
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.open("GET", "https://haofly.net", false); // false表示用异步的方式
-xmlHttp.send(null);
+xmlHttp.send();
 console.log(xmlHttp.responseText);
 ```
 
@@ -297,8 +297,8 @@ $(document).ready(function);	// 当DOM已经加载，并且页面已经完全呈
 
 ```javascript
 // 定时器
-var t = window.setTimeout(func(), delay);	// 延迟delay秒后执行函数func
-var t = window.setInterval(func(), delay);	// 每隔delay秒就执行函数func
+var t = window.setTimeout(func, delay);	// 延迟delay毫秒后执行函数func
+var t = window.setInterval(func, delay);	// 每隔delay毫秒就执行函数func
 var t = setImmediate(func);					// 在浏览器完全结束当前运行的操作之后立即执行指定的函数
 clearInterval(t)				// 清除计时器，setInterval返回的是一个定时器的id，如果不清楚定时器名称，可以直接来个for循环清理所有的Interval：for(var i = 0; i<= 2000; i++) {clearInterval(i);}
 

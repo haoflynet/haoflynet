@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-09-11 16:46:30
+updated: 2019-09-29 10:46:30
 categories: system
 ---
 # Linux手册
@@ -430,6 +430,7 @@ cat /proc/cpuinfo    # 查看CPU信息
 cat /etc/issue     # Debian系列查看系统版本
 cat /etc/redhat-release # redhat系列查看系统版本
 cat /proc/version	# 更详细的系统版本
+rpm -q centos-release|cut -d- -f3	# 查看centos是6还是7
 lspci				# 显示当前主机的所有PCI总线信息、vga/navidia表示的是显卡GPU信息
 lspci -v -s 00:0f.2	# 显示指定硬件信息的详情，例如查看GPU大小等
 
@@ -462,12 +463,47 @@ sudo service lightdm start	# Linux Mint关闭GUI，重启gui
 #### systemctl/service
 
 ```shell
-sudo systemctl start docker	# 开启服务
-sudo systemctl enable docker.service	# 开机启动服务
-sudo systemctl stop teamviewerd	# 停止服务
-sudo systemctl disable docker.service	# 禁用开机启动
+systemctl list-unit-files --type=service	# 查看系统所有安装的服务项，enabled的表示设置为了开机自启动
+systemctl list-units --type=service	# 查看系统所有运行的服务项(如果某个服务显示为红色表示有问题)
+systemctl list-units --type=service --state=failed	# 仅查看当前运行的出错的服务
+systemctl list-dependencies nginx	# 查看服务项的依赖关系
+systemctl daemon-reload	# 修改添加或删除服务项目后执行这个命令
+systemctl get-default	# 查看系统的默认启动级别
+systemctl isolate graphical.target	# 切换系统的默认启动级别到图形界面
+
+systemd-analyze	# 查看系统启动耗时
+systemd-analyze blame | grep .service	# 查看各项服务的启动耗时
+
+systemctl status nginx # 查看服务状态，是否启动、是否激活及日志
+systemctl start docker	# 开启服务
+systemctl restart teamviewerd	# 重启
+systemctl stop teamviewerd	# 停止服务
+systemctl reload nginx	# 重新读取配置文件
+
+systemctl enable docker.service	# 开机启动服务
+systemctl disable docker.service	# 禁用开机启动
+
 service httpd status	# 检查服务状态
 systemctl list-units --type=service	# 显示所有已启动的服务
+```
+
+如果要将自己的程序变成系统的一项服务，那么可以在`/etc/systemd/system/`下新建一个以`.service`后缀 的文件，内容格式如下，新建完成执行`systemctl daemon-reload`:
+
+```shell
+[Unit]
+Description=这里是服务的描述
+Documentation=http://nginx.org/en/docs/	# 这里服务的文档地址
+After=newtork-online.target			# 表示在哪些服务(模块)之后启动，多个的以空格分隔
+
+[Service]
+Type=<simple|forking|oneshot>	# simple命令前台持续运行，forking命令后台持续运行，oneshot命令只执行一次
+PIDFile=/var/run/nginx.pid	# pid文件所在位置
+ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf	# 表示启动参数
+ExecReload=/bin/kill -s HUP $MAINPID	# 重新读取配置文件的命令
+ExecStop=/bin/kill -s TERM $MAINPID	# 服务退出命令
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 #### 网络/防火墙
@@ -789,6 +825,8 @@ fi
 if [[ ! -s filename ]]; then
 echo 'a'
 fi
+
+if [ ! `which vim` ]; then yum install vim; fi
 
 或且非
 # -a 与
