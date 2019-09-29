@@ -1,7 +1,7 @@
 ---
 title: "使用Supervisor管理进程"
 date: 2015-08-11 10:07:33
-updated: 2019-08-26 17:43:00
+updated: 2019-09-03 10:43:00
 categories: 编程之路
 ---
 supervisor是使用Python编写的进程管理软件，在实际开发中，一般用它来同时开始一批相关的进程，无论是Django的runserver还是直接管理Nginx、Apache等，都比较方便，这里是其使用方法：
@@ -40,6 +40,8 @@ sudo supervisorctl                        # 进入命令行界面管理进程
 [supervisord]
 logfile=/var/log/supervisor/supervisord.log	# supervisor默认的全局日志文件
 loglevel=info	# supervisor默认的日志级别，当这个值为debug的时候，管理的进程无论有无输出重定向，都会将日志同步输出到这里
+minfds=1024                 ; (min. avail startup file descriptors;default 1024)，supervisor启动前需要的最小的文件句柄数，这些句柄数必须是可使用的，同时也是被启动进程的最大的能分配到的文件句柄数
+minprocs=200                ; (min. avail process descriptors;default 200)
 ```
 
 ### 进程配置

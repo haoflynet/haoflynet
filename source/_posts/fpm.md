@@ -1,7 +1,7 @@
 ---
 title: "fpm 打包工具"
 date: 2016-08-07 05:52:39
-updated: 2019-09-16 14:07:00
+updated: 2019-09-26 14:07:00
 categories: tools
 ---
 
@@ -36,8 +36,9 @@ fpm -h
 - --vendor: 供应商名称
 - --verbose: 打印详细安装过程
 - -m, --maintainer: 维护者
-- --rpm-sumarry '': 简介
-- --description '': 详情
+- --rpm-sumarry: 简介
+- --description: 详情
+- --interation: 定义系统的迭代版本，`el6`表示`centos6`，`el7`表示`centos7`，会生成在包名中，例如: `example-0.1.0-el7.x86_64.rpm`
 
 ## 以Virtualenv的方式打包Python包
 
