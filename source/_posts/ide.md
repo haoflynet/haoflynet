@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2019-07-19 10:10:00
+updated: 2019-09-25 11:22:00
 categories: 编程之路
 ---
 
@@ -65,3 +65,10 @@ categories: 编程之路
 ### PyCharm
 
 [EAP 版本下载地址](https://www.jetbrains.com/pycharm/nextversion/)
+
+### WebStorm
+
+- 配置`Prettier`
+  - 首先需要安装: `npm install --save-dev prettier`或者`yarn add prettier --dev --exact`
+  - 然后`Preferences->Tools->file Watchers`，点击"+"添加一个`prettier`类型的watcher，默认设置，然后保存即可
+  - 然后`Preferences->Keymap`，搜索prettier关键字，设置`Reformat with Prettier`的快捷键，我一般设置成: `Shift + alt + cmd + P`

@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2019-08-21 16:32:00
+updated: 2019-09-10 16:32:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -119,6 +119,7 @@ llen keyname                      # 返回列表长度
 lpop keyname                      # 移除并返回key的头元素
 rpop keyname                  # 移除并返回key的尾元素
 lset key index value       # key中下标为index的元素的值设置为value，如果key不存在则会报错no such key
+LTRIM key start stop	# 只会保留列表从左往右的start至stop数量的元素
 ```
 
 ### 集合

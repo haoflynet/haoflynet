@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2019-08-23 14:23:00
+updated: 2019-09-25 11:46:00
 categories: tools
 ---
 # Git指南
@@ -130,7 +130,7 @@ git merge bug-fix	# 将bug-fix合并到当前分支，即dev分支
 #### 变基(rebase)
 
 - 简单地说就是将多个`commit`合并为一个`commit`，以使提交历史变得干净整洁。
-- 最好不要修改已经`push`过的提交进行修改，如果一定要修改，需要使用`git push -f origin 分支名`进行推送以覆盖历史提交
+- 最好不要修改已经`push`过的提交进行修改，如果一定要修改，需要使用`git push -f origin 分支名`进行推送以覆盖历史提交，对于还没合并进主分支的提交，其实也还可以，但是一定要慎重。
 - 需要注意的是变基后提交的`hash`会改变
 - 可以使用`git filter-branch --treefilter 'rm -f password.txt' HEAD`命令对整个版本历史中的每次提交进行修改，可以以此来删除误提交的敏感信息
 
@@ -143,7 +143,9 @@ c4cd33c update readme file
 7c040d1 add readme file
 ```
 
-接下来，我就使用`rebase`命令编辑提交历史:` git rebase -i  [startpoint]  [endpoint]`，其中`-i`参数表示交互式界面，后面两个参数表示指定一个编辑区间，如果不提供，那么`startpoint`默认为当前已经提交到远程仓库的最后一次提交，`endpoint`为当前为提交到远程仓库的最后一次提交，是一个左开右闭区间。我这里直接执行`git rebase -i 7c040d1`表示只合并最后三个提交。会弹出下面这个交互式页面:
+为了防止合并多次或者多个冲突，在`rebase`之前最好先`git fetch origin master`将远程分支的提交log拉取下来。
+
+接下来，我就使用`rebase`命令编辑提交历史:` git rebase -i  [startpoint]  [endpoint]`，其中`-i`参数表示交互式界面，后面两个参数表示指定一个编辑区间，如果不提供，那么`startpoint`默认为当前已经提交到远程仓库的最后一次提交，`endpoint`为当前为提交到远程仓库的最后一次提交，是一个左开右闭区间。我这里直接执行`git rebase -i 7c040d1`(一般情况下只需要`git rebase origin/master`即可)表示只合并最后三个提交。会弹出下面这个交互式页面:
 
 ```shell
 pick 31cf944 update readme file

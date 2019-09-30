@@ -4,9 +4,19 @@ date: 2017-11-01 21:32:00
 categories: python
 ---
 
-系统
+### 系统
 
-进程
+#### CPU
+
+####  Memory
+
+#### Disks
+
+#### Network
+
+#### Sensors
+
+## 进程
 
 ```python
 psuti.pids()	# 打印所有进程id
