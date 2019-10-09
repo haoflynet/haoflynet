@@ -59,6 +59,10 @@ dscacheutil -q group	# 查看所有用户和组
 
 http://www.cnblogs.com/wormday/archive/2011/05/06/2038703.html
 
+## 与Android联动
+
+- `brew cask install android-file-transfer`可以管理小米手机上的文件
+
 ## 自制iPhone铃声
 
 [iTunes 簡單自製 iPhone 鈴聲不求人](http://applefans.today/blog/1266100502)
