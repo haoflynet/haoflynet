@@ -8,9 +8,9 @@ categories: tools
 1. 安装服务(pypi)已经没怎么维护了，这里直接从github拉取源码)
 
     ```shell
+    yum install git -y
     git clone -b master https://github.com/shadowsocks/shadowsocks.git
-    cd shadowsocks
-    python3.6 setup.py install
+    cd shadowsocks && python3.6 setup.py install
     ```
 
     安装完成后使用`ssserver -p 443 -k password -m aes-256-gcm`(完整daemon命令`ssserver -p 443 -k password -m aes-256-gcm --log-file /var/log/ssserver -d start`)进行测试(不再推荐其他协议)，从客户端发起连接，发现能科学上网了。
@@ -38,10 +38,8 @@ categories: tools
 ### 新机器一键安装脚本
 
 ```shell
-yum update
-yum groupinstall -y 'development tools'
-yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel xz-libs
-yum install -y git wget
+yum update && yum groupinstall -y 'development tools'
+yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel xz-libs git wget
 
 wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
 xz -d Python-3.6.0.tar.xz
@@ -51,11 +49,10 @@ cd Python-3.6.0
 cd
 
 git clone https://github.com/shadowsocks/shadowsocks.git
-cd shadowsocks
-git checkout -b master origin/master
+cd shadowsocks && git checkout -b master origin/master
 python3.6 setup.py install
 
-ssserver -p 443 -k password -m aes-256-gcm --log-file /var/log/ssserver -d start
+ssserver -p 443 -k zuguowansui -m aes-256-gcm --log-file /var/log/ssserver -d start
 ```
 
 ## 客户端
