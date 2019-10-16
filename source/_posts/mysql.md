@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-08-01 11:07:00
+updated: 2019-10-09 16:07:00
 categories: database
 ---
 ## 安装方法
@@ -302,6 +302,12 @@ bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
 # 忘记密码时候'Access denied for user 'root'@'localhost'的时候，可以用这种方式修改root权限
 sudo mysqld_safe --skip-grant-tables	# 这条命令能够登录进去，然后可以执行设置密码的操作
 ```
+
+### binlog
+
+数据库的sql日志。
+
+使用`canal`可以很方便地监听数据库的所有操作。
 
 ### 帮助函数
 

@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-09-29 10:46:30
+updated: 2019-10-14 09:46:30
 categories: system
 ---
 # Linux手册
@@ -391,6 +391,7 @@ yum install ncdu
 ```shell
 # 添加用户
 sudo useradd -s /bin/bash -d /home/username -m username
+sudo userdel -r username	# -r参数表示同时删除主目录和邮件池
 
 # 修改用户密码
 sudo passwd username

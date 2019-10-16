@@ -1,7 +1,7 @@
 ---
 title: "ADB: Android调试工具与自动化操作工具"
 date: 2018-03-12 21:32:00
-updated: 2019-07-02 09:29:00
+updated: 2019-10-15 06:29:00
 categories: android
 ---
 
@@ -23,7 +23,12 @@ ADB(Android Debug Bridge)，即android的一个调试工具，主要用于开发
 
 ```shell
 adb devices	# 列出当前连接的设备(包括连接到电脑的手机以及模拟器)
+adb shell netcfg	# 查看手机IP
 ```
+
+#### 无线连接
+
+要使用无线的方式进行管理，必须得先在手机上打开一个监听端口。方法就是先用usb线连接电脑，然后执行`adb tcpip 5555`命令开启端口，接下来就可以用`adb connect {ip}`的方式管理手机了。(对于root的手机，可以直接在手机上面的terminal类软件上执行`setprop service.adb.tcp.port 5555 && stop adbd && start adbd`即可，当然也有类似的软件可以直接一键开启，不过都得要root权限)
 
 ### 信息查看
 

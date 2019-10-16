@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2019-09-16 13:48:00
+updated: 2019-10-15 15:48:00
 categories: Javascript
 ---
 
@@ -135,7 +135,7 @@ ReactDOM.render(
   yield call(myfunc, param1, param2);
   
   // put: 和dispatch类似，用于发送action，dispatch in saga
-  yidle put({type: 'login'})
+  yield put({type: 'login'})
   
   // select: 和getState类似，用于获取store中的state
   const state = yield select()
@@ -147,19 +147,27 @@ ReactDOM.render(
 
 - 简单的例子: 
 
-```react
-// 在编写saga的文件里面一般这样写钩子函数
-export function * mySaga() {
-  console.log("Hello Saga");
-}
+  ```javascript
+  // 在编写saga的文件里面一般这样写钩子函数
+  export function * mySaga() {
+    console.log("Hello Saga");
+  }
+  
+  // 在main.js中，这样引入saga中间件
+  import createSagaMiddleware from 'redux-saga';
+  import {helloSaga} from './saga.js';
+  const sageMiddleware = createSagaMiddleware();
+  const store = createStore(rerducer, aplyMiddleware(sagaMiddleware));
+  sagaMiddleware.run(helloSaga);
+  ```
 
-// 在main.js中，这样引入saga中间件
-import createSagaMiddleware from 'redux-saga';
-import {helloSaga} from './saga.js';
-const sageMiddleware = createSagaMiddleware();
-const store = createStore(rerducer, aplyMiddleware(sagaMiddleware));
-sagaMiddleware.run(helloSaga);
-```
+- `saga`中使用`fetch`
+
+  ```shell
+  function* onGetSuccess(state) {
+  	const res = yield fetch("https://example.com").then(response => response.json());
+  }
+  ```
 
 ### Styled-Components
 
