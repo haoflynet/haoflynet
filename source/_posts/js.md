@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery教程"
 date: 2015-02-07 11:52:39
-updated: 2019-09-27 14:31:00
+updated: 2019-10-15 15:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -315,6 +315,50 @@ export {var1, var2, var3};	// 一次多个
 export function myfunc(x, y) {};	// 导出函数
 export {var1 as var2};	// 重新命名
 export default function () {};	// 这样在import的时候可以自定义name，例如import customName from '...';
+```
+
+## Async/Promise
+
+- 异步执行代码能防止单线程的js被阻塞，但是却让响应的顺序不可预计。
+- 如果要同时保证异步函数的顺序，要么就需要一层一层使劲的嵌套，除非使用Promise，它允许将这种回调函数的嵌套改为链式调用，然后将回调放到then中。
+- 但是then依然不够直观，所以就有Async和await了。写起来的代码就像是同步的了。async函数内部可以有一个或多个异步操作，一旦遇到await就会立即返回一个pending状态的Promise对象，然后回到主线程执行住线程代码。等到await的异步请求被resolve/reject后，才会继续执行async函数内后面的部分。
+
+```javascript
+// 模拟一个异步函数
+let asyncFunc = async() => {
+  await new Promise((resove, reject) => {
+    console.log("actions");
+    setTimeout(() => {
+      console.log("模拟异步返回结果");
+    }, 0);
+  });
+  return "ok";
+}
+let promise = asyncFunc();
+promise.then(value => {
+  console.log(value);
+});
+
+
+// mock一个Promise(比如mockfetch函数)
+mockFetch = (url) => {
+    return new Promise((resolve, reject) => {
+      const code = 200;
+      process.nextTick(() =>
+        status === 200 ?               
+          resolve({
+            json: function() {
+              return {
+                msg: "ok",
+              };
+            },
+          }) : reject({
+        		error: "error"
+      		}),
+      );
+    });
+  };
+mockFetch("https://api.github.com/users/haoflynet/repos");
 ```
 
 ## Ajax
