@@ -1,7 +1,7 @@
 ---
 title: "fpm 打包工具"
 date: 2016-08-07 05:52:39
-updated: 2019-09-26 14:07:00
+updated: 2019-10-21 14:07:00
 categories: tools
 ---
 
@@ -17,14 +17,17 @@ fpm -h
 ```
 ## 常用参数
 - -a: 架构名称，值可以为`  x86_64`
-- --config-files: 指定配置文件，可以指定多个
+- --config-files: 指定配置文件，可以指定多个。需要注意的是并不是所有文件都适合以配置文件的方式放入包中，不要将动态的文件放入配置文件中
 - -d '名称': 指定程序依赖，多个依赖的话就写多个-d
 - --debug：打印编译时的详细日志
 - -C: 指定在打包前需要进入的目录(打包时的相对路径)，相当于把那个目录打包
 - -n: 包名
 - **-s**: 源的类型，值可以为dir,rpm,gem,python,virtualenv,empty,tar,deb,cpan,npm,osxpkg,pear,pkgin,zip
 - **-t**: 目标类型，值可以为rpm,deb,solaris,puppet,dir,osxpkg,p5p,puppet,sh,solaris,tar,zip
+- -epoch 0，比`-v`更优先级的一个版本号
 - -v: 版本号，例如`1.0.0`
+- --iteration 1: 比`-v`更低优先级的一个版本号
+- --rpm-dist el7: 定义系统的迭代版本，`el6`表示`centos6`，`el7`表示`centos7`，会生成在包名中，例如: `example-0.1.0-el7.x86_64.rpm`
 - --before-install, --pre-install 名称.sh: 安装前执行的脚本
 - --after-install, --post-install 名称.sh: 安装后执行的脚本
 - --before-remove, --pre-uninstall 名称.sh: 卸载前执行的操作
@@ -38,7 +41,7 @@ fpm -h
 - -m, --maintainer: 维护者
 - --rpm-sumarry: 简介
 - --description: 详情
-- --interation: 定义系统的迭代版本，`el6`表示`centos6`，`el7`表示`centos7`，会生成在包名中，例如: `example-0.1.0-el7.x86_64.rpm`
+- `usr=/`，以这种方式，可以直接将当前目录下的目录在打包后放到指定的目录，例如，这里将工程目录下的`uer`目录放到了打包后的根目录，这样`usr`下的所有文件或文件夹都会被递归地打入包中。
 
 ## 以Virtualenv的方式打包Python包
 
@@ -95,6 +98,8 @@ fpm \
 	--prefix /usr/share/my-agent \	# 指定安装目录，如果不指定会默认安装到/usr/share/python/下面
 	.
 ```
+
+
 
 ## 其他相关命令
 

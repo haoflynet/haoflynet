@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2019-09-25 11:46:00
+updated: 2019-10-23 14:21:00
 categories: tools
 ---
 # Git指南
@@ -94,6 +94,7 @@ git checkout -- filename	# 放弃指定文件的更改
 git commit --amend			# 撤销上一次提交，并将暂存区文件重新提交。当然如果没有git add，直接执行这条命令就相当于修改message
 
 git stash					# 暂存，常用于要切换分支，但是当前分支上面的更改并不想现在提交，需要先把当前分支的状态暂存起来。暂存起来后就可以自由切换到其他分支了。
+git stash -p	# 以交互的方式确定每一个修改是否需要stash
 git stash list				# 查看所有的"储藏"
 git stash apply				# 应用最近一次的“储藏”
 git show stash@{1}			# 查看stash

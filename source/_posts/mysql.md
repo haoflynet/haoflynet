@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-10-09 16:07:00
+updated: 2019-10-23 09:47:00
 categories: database
 ---
 ## 安装方法
@@ -262,7 +262,7 @@ character_set_database				# 数据库的编码
 character_set_results				# 结果集的编码
 character_set_server				# 数据库服务器的编码
 
-# 设置数据库不区分大小写，vim /etc/mysql/my.cnf，在[mysqld]后面添加这句话，然后重启
+# 设置数据库表名不区分大小写，vim /etc/mysql/my.cnf，在[mysqld]后面添加这句话，然后重启。如果要设置内容的大小写敏感，则是在数据表的字符集上进行设置，_ci表示大小写不敏感，_cs表示大小写敏感
 lower_case_table_names=1
 
 # 查询数据库数据存放目录
