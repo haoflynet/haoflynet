@@ -344,6 +344,8 @@ rpm -ivh --test *.rpm	# 检查指定rpm包的依赖关系是否完全满足，�
 rpm -vhU https://nmap.org/dist/nmap-7.80-1.x86_64.rpm	# 下载并安装包
 rpm -qpf *.rpm			# 查询指定rpm包都有哪些依赖
 rpm -qpi *.rpm			# 查询指定rpm包的元信息
+rpm -qpl *.rpm			# 查询指定rpm包的下都有哪些文件
+rpm -qpl -c *.rpm		# 查询指定rpm包的下都有哪些配置文件
 rpm -e 包名			   # 卸载软件包
 rpm -qf 文件名		      # 查询指定文件属于哪个包
 yum --showduplicates list 软件名	# 查询源里面指定软件都有哪些版本并标明当前所使用的版本

@@ -1,9 +1,22 @@
 ---
 title: "Vue.js教程"
 date: 2017-05-25 17:09:39
-updated: 2019-03-07 15:48:00
+updated: 2019-10-23 15:48:00
 categories: js
 ---
+
+## 模板语法
+
+```javascript
+// v-bind
+<a v-bind:href="url">...</a>
+<a :href="url">...</a>	// 缩写
+<a :hidden="shouldHidden==='letshidden'">	// 在v-bind中直接用表达式
+
+// v-on
+<a v-on:click="doSomething">...</a>
+<a @click="doSomething">...</a>
+```
 
 ## 网络交互组件axios
 
