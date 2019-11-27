@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-08-21 15:05:21
+updated: 2019-11-06 15:05:21
 categories: php
 ---
 # PHP
@@ -86,6 +86,8 @@ strlen() # 求字符串长度
 strpos('abc', 'a'); 	# 在字符串中查找第一次出现位置，没找到返回false
 str_repeat('abc', n)	# 将字符串重复n次
 str_replace(搜索值，替换值，目标)	# 字符串替换，需要注意的是原字符串不会变化，返回的结果才是替换后的字符串
+str_replace_first()	# 替换第一个
+str_replace_last()	# 替换最后一个
 str_replace(array("\r\n", "\r", "\n"), '', $content);	# 去除换行符
 substr_count($haystack, $needle, [$offset, $length]);	# 计算子字符串needle在字符串haystack中出现的次数
 trim($string);	# 去除字符串前后的空白字符，如果要去除所有的字符只能使用preg_replace('/\s+/', '', $string)，这是stackoverflow上面给出的答案

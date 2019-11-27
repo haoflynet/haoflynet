@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-10-14 09:46:30
+updated: 2019-11-13 15:58:30
 categories: system
 ---
 # Linux手册
@@ -122,6 +122,7 @@ find / -type d -mtime -1 # 查找1天内修改过的文件夹(好吧，我用了
 find ./ -ctime -10 # 查找最近10天修改过的文件，atime表示最后一次访问时间，ctime表示最后一次状态修改时间，mtime表示最后一次内容修改时间
 cat /proc/cpuinfo | grep "model name" | wc -l	# 获取服务器核心数
 cat -E filename	# 显示每行末尾的结束字符$，可以用来排查有些配置文件被多输入了字符
+cat filename|tr -s '\n'	# cat命令不输出空行
 free -h | sed -n '2p' | awk '{print $2}'		# 获取服务器内存大小
 df -h | sed -n '2p' | awk '{print $2}'			# 获取服务器磁盘大小
 sort filename | uniq -c	# 去除文件中重复的行
@@ -581,6 +582,20 @@ deb http://ftp.debian.org/debian sid main
 # CentOS 软件源位置/etc/yum.repos.d
 ```
 
+##### 创建自己的yum源
+
+通过简单的`createrepo --update /data/mypath/`命令即可在指定路径创建自己的源仓库。然后再启动一个http服务将该目录暴露出来即可，最简单的可以直接`python3 -m http.server`即可。最后在需要安装该仓库软件的机器上新建一个源文件即可:
+
+```shell
+# vim /etc/yum.repos.d/myrepo.conf，输入以下内容
+[my_test_repo]	# 指定仓库的名称
+name=my test repo
+baseurl=http://127.0.0.2:8000
+enabled=1	# 是否启用这个更新库
+gpgcheck=0	# 是否使用gpg文件来检查软件包的签名
+gpgkey=...	# 表示gpg文件存放位置，如果gpgcheck为0可以不用写
+```
+
 ## 其它工具
 
 #### chokconfig系统服务
@@ -818,6 +833,8 @@ if语句：
 	-z：为空
 	-n：不为空
 	-gt：大于
+	-eq: 等于，仅针对数字
+	==: 等于，针对字符串
 	
 # 判断文件是否存在
 if [ ! -f "$filename" ]; then	# 文件夹有-d
@@ -827,6 +844,20 @@ fi
 # 判断文件是否为空
 if [[ ! -s filename ]]; then
 echo 'a'
+fi
+
+# 多个if判断
+if [ -z $1 ] || [ -z $2 ] || [ -z $3 ]; then
+    echo "it's not ok"
+fi
+
+# if...elif...else...fi
+if []; then
+	...
+elif []; then
+	...
+else
+	...
 fi
 
 if [ ! `which vim` ]; then yum install vim; fi
@@ -844,6 +875,7 @@ if [ ! `which vim` ]; then yum install vim; fi
 [[]]：双中括号，之间的字符不会发生文件名扩展或者单词分割
 (())：双小括号，整数扩展，其中的变量可以不适用$符号前缀
 $?：获取上一条命令的退出码，0表示成功，其他则是失败
+$@: 获取所有参数
 ```
 
 **日期处理**
