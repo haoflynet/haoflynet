@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-08-23 14:36:30
+updated: 2019-10-22 16:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -1150,6 +1150,19 @@ logger.error('%s service is down', 'own')	# 格式化输出日志
 logging.basicConfig(filename='test.log', level=logging.DEBUG)	# 比较直接简单那的用法
 
 logger.info('test', extra={'key': value})	# 传递给formatter的参数(如果formatter里面有自定义参数)
+
+# logging日志默认是按照系统的时区输出的，如果想换自己的时区，可以有这两种方法
+## 方法一，python程序中直接修改当前环境变量，但是可能影响当前项目其他代码的时区获取
+os.environ['TZ'] = 'Asia/Chongqing'
+time.tzset()
+## 方法二，使用pytz
+from pytz import timezone, utc
+def customTime(*args):
+    utc_dt = utc.localize(datetime.utcnow())
+    my_tz = timezone("Asia/Chongqing")
+    converted = utc_dt.astimezone(my_tz)
+    return converted.timetuple()
+logging.Formatter.converter = customTime
 ```
 
 #### http.server(SimpleHTTPServer)
