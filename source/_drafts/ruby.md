@@ -9,7 +9,7 @@ categories: ruby
 ## 安装Ruby
 
 ```shell
-\curl -sSL https://get.rvm.io | bash -s stable	# 安装rvm
+curl -sSL https://get.rvm.io | bash -s stable	# 安装rvm
 rvm install ruby	# 安装ruby
 ```
 
