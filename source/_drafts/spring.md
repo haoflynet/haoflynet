@@ -1,7 +1,7 @@
 ---
 title: "Java Spring手册"
 date: 2018-11-01 21:32:00
-update: 2019-04-19 17:30:00
+update: 2019-11-27 17:30:00
 categories: 编程之路
 ---
 
@@ -15,7 +15,7 @@ categories: 编程之路
 
 #### BIZ层
 
-Service(业务逻辑，可以建立子文件夹来进行分类，这样每个biz就可以更细分)、Schedule(定时任务)、Common(一些中间件认证登录等)、Manager、RPC Service、MQTask、JobTask。也有Service和BIZ平行的分层方式，这种情况，一般是Service在调用Biz，Biz执行数据库操作，类似于Manager。
+Service(业务逻辑，可以建立子文件夹来进行分类，这样每个biz就可以更细分，如果Biz和Servic都单独作为一层，那么Biz的粒度更细，`Service`则是提供给别人的接口)、Schedule(定时任务)、Common(一些中间件认证登录等)、Manager、RPC Service、MQTask、JobTask。也有Service和BIZ平行的分层方式，这种情况，一般是Service在调用Biz，Biz执行数据库操作，类似于Manager。
 
 BO(Business Object)
 
@@ -43,6 +43,21 @@ Controller、Config(一些初始化配置，例如线程池、缓存池等配置
 
 ### 注解
 
+### @Async
+
+- 必须用在`public`方法上，同一个类的其他方法调用此方法无法实现异步
+- `Spring`使用的是`SimpleAsyncTaskExecutor`来处理`@Async`注解的任务
+
+```java
+@EnableAsync
+public class MyClass {
+  @Async
+  public void testMethod() {
+    	System.out.println("Currently Executing thread name - " + Thread.currentThread().getName());
+  }
+}
+```
+
 @Service用于标注业务层组件
 
 @Controller用于标注控制层组件（如struts中的action）
@@ -50,6 +65,14 @@ Controller、Config(一些初始化配置，例如线程池、缓存池等配置
 @Repository用于标注数据访问组件，即DAO组件
 
 @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。
+
+## 重要概念
+
+### bean
+
+- `bean`有两种初始化方法:
+  - 在`applicationContext.xml`中直接添加指定的类`<bean id="myBean" class="com.MyBean" init-method="initMethod"></bean>`
+  - 实现`InitializingBean`接口，并实现`afterPropertiesSet`方法，这样可以在所有其他的属性设置完成后才初始化该类，如果用上面的方式，则无法实现依赖注入(其他的依赖都还没有初始化)。可以在里面新建一个线程实现启动完成后添加监听线程的功能。
 
 ## TroubleShooting
 
