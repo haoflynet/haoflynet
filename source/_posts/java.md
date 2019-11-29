@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-06-26 15:58:00
+updated: 2019-11-28 17:21:00
 categories: java
 ---
 
@@ -11,11 +11,16 @@ categories: java
 
 ### 数据类型
 
+- `final`关键字: 修饰类表示该类不能被继承，内部所有成员变量都是final的; 类的`private`方法也会隐式地指定为`final`方法。修饰变量时，如果是基本数据类型的变量，则其数值在初始化之后就不能更改; 如果是引用类型的变量，则初始化后不能被指向另一个对象。
+
 #### Integer/Long数字
 
 ```java
 a.longValue();	// 整型转长整型
 longValue.intValue;	// long转换为int
+1L;	// 直接将数字转换成Long型
+Long.toString(123);	// 整型转字符串
+(byte)1;	// int to byte，int转字节
 ```
 
 #### String/StringBuffer字符串
@@ -26,11 +31,12 @@ longValue.intValue;	// long转换为int
 // String
 String a = "World";
 String b = new String(array);	// 将array拼接成字符串
+String[] c = new String[] {"A", "B", "C"};
 int len = b.length();			// 得到字符串长度
 b.concat(a);					// 连接字符串
 b + a;							// 连接字符串
 System.out.printf("test %s", a);
-System.out.format("test %s", a);// 格式化字符串
+System.format("test %s", a);// 格式化字符串
 b.charAt(0);					// 得到指定索引的字符
 a.compareTo(Object o);			
 a.compareToIgnoreCase(String str);// 比较字符串
@@ -39,7 +45,7 @@ a.endsWith(String suffix);			// 验证字符串是否以某个子字符串结尾
 a.indexOf(String str);				// 返回子字符串首次出现的位置
 a.matches(".*?");					// 验证字符串是否复合正则表达式
 a.replaceAll(String regex, String replacement); // 替换字符串
-a.split(String regex);			// 拆分字符串
+String[] strArr = a.split(String regex);			// 拆分字符串，字符串分隔/字符串分割
 a.trim();						// 移除首尾空白
 Integer.parseInt(str);		// 字符串转整型
 Long.parseLong(str);		// 字符串转Long型
@@ -59,6 +65,9 @@ c.capacity();			// 返回当前字符串的容量
 // 日期时间
 Date date = new Date();
 System.out.println(date.toString());
+
+// Json字符串转换为Dto
+MyDto myDto = new Gson().fromJson(jsonString, MyDto.class);
 ```
 
 #### Array/Vector/Stack/Enumeration数组
@@ -68,9 +77,19 @@ System.out.println(date.toString());
 typeName[] arrayName; // 声明数组的基本方式，也可以typeName arrayName[]
 typeName arrayName[][] = new typeName[3][4];	// 定义多维数组
 double[] myList = new double[5];
-List<String> name = Arrays.asList("xxx","yyy","zzz");	// 直接初始化固定长度的数组
-List<String> name = new ArrayList<>();	// 初始化一个空数组，之后用add添加元素
+List<String> names = Arrays.asList("xxx","yyy","zzz");	// 直接初始化固定长度的数组，但是要超过一个元素才行
+List<String> names = new ArrayList<>();	// 初始化一个空数组，之后用add添加元素
 list1.addAll(list2);	// 将数组2合并到数组1
+List<String> names = new ArrayList<String>() {
+  {
+    for (int i = 0; i< 10; i++) {
+      add("add"+i);
+    }
+  }
+};
+
+// 数组是否包含某个值
+Arrays.asList("a", "b").contains("c");
 
 // 遍历数组
 for (double element: myList) {}
@@ -89,29 +108,140 @@ dayNames.add("Sunday");	// 添加枚举元素
 days = dayNames.elements();
 ```
 
-#### Dictionary/Hashtable字典
+#### Dictionary/Hashtable/Map字典
 
 ```java
 // Dictionary字典
 // Hashtable
+
+// map的初始化
+HashMap<String, String> map = new HashMap<String, String>();
+map.put("key", "value");
+HashMap<String, String> map = new HashMap<String, String>() {
+  {
+    map.put("key1", "value1");
+    map.put("key2", "value2");
+  }
+};
+
+// Map的遍历
+Map<String, String> map = new HashMap<String, String>();
+// 遍历方法一
+for (Map.Entry<String, String> entry : map.entrySet()) {
+  System.out.println(entry.getKey(), entry.getValue);
+}
+// 遍历方法二
+for (String key : map.keySet()) {String value = map.get(Key);}
+for (String value : map.values()) {}
+
+// Map转为Json格式字符串
+String jsonStr = new Gson().toJson(myMap);
+```
+
+#### 时间处理
+
+```java
+System.currentTimeMillis();	// 毫秒级时间戳
 ```
 
 #### 类和对象
 
+- 类中可以使用`static {}`设置静态代码块，有助于优化程序性能，`static块`可以放置于类中的任何地方，当类初次被加载的时候，会按照`static块`的顺序来执行每个块，并且只会执行一次。
+
 ```java
 // 一个类可以有多个构造方法
 public class Sample {
-    public Sample() {}	// 不带参数的构造方法
-    public Sample(String param1) {}	// 带参数的构造方法
+  static {	// 静态代码块
+    long a = System.nanoTime();
+    testMethod();
+  }
+  public Sample() {}	// 不带参数的构造方法
+  public Sample(String param1) {}	// 带参数的构造方法
+  private static void testMethod() {}
+}
+```
+
+#### 文件
+
+```java
+// 以行为单位读取文件
+File file = new File(fileName);
+BufferedReader reader = null;
+reader = new BufferedReader(new FileReader(file));
+String tempString = null;
+int line = 1;
+while ((tempString = reader.readLine()) != null) {
+	System.out.println("line " + line + ": " + tempString);
+	line++;
+}
+reader.close();
+
+// 读取整个文件
+File file = new File(fileName);
+if (file.isFile() && file.exists()) {
+  long fileLength = file.length();
+  byte[] fileContent = new byte[(int) fileLength];
+  FileInputStream in = new FileInputStream(file);
+  in.read(fileContent);
+  in.close();
+  String[] fileContentArr = new String(fileContent);	// 结果字符串数组
+}
+```
+
+#### Shell
+
+```java
+// Java执行shell命令
+Process process = Runtime.getRuntime().exec("ls");
+BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+while ((s = stdInput.readline()) != null) {
+  System.out.println(s);
 }
 ```
 
 #### 包
 
+- JavaSE程序可以打包成Jar包(与平台无关的格式)，JavaWeb程序可以打包成War包
+
 ```java
 import java.io.*;		// 导入java_installation/java/io下的所有类
 java -jar myjar.jar;	// 直接用命令行运行jar包
 java -cp myjar.jar com.example.MainClass	// 指定jar入口
+```
+
+### 线程/进程
+
+- `ThreadLocal`: 保证线程安全(一次HTTP请求从开始到响应都是在一个线程内部，其他用户是在其他的线程里面)
+
+```java
+Thread current = THread.currentThread();	// 获取当前进程
+current.getId();	// 获取当前进程Id
+```
+
+#### 多线程
+
+- 线程池只能放入实现`Runnable/callable`类的线程，不能放入继承`Thread`的类
+
+```java
+// 方法一、继承Thread类，缺点是无法多重继承
+public class MyThread extends Thread {
+  @Override
+  public void run()
+  {
+    System.out.println("线程执行");
+  }
+}
+new MyThread().start();	
+
+// 方法二、实现Runnable接口，适合多线程共享资源
+public class MyThread implements Runnable {
+  public void run () {
+    System.out.println("线程执行");
+  }
+}
+
+MyThread mythread = new MyThread();
+new Thread(mythread).start();
 ```
 
 ### 三方库
@@ -153,7 +283,9 @@ channelExec.getExitStatus();	// 获取返回状态码
 
 
 
+## TroubleShooting
 
+- **`Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $`**，这是在使用`Gson`解析字符串时的报错，一般是因为字符串非标准`Json`格式造成的
 
 
 
