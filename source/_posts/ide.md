@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2019-09-25 11:22:00
+updated: 2019-11-27 17:08:00
 categories: 编程之路
 ---
 
@@ -48,17 +48,27 @@ categories: 编程之路
   - 函数参数多行时将反括号单独一行: `Function/constructor call arguments ->Place ')' on new line`
   - 函数注释中描述和参数之间空一行`PHPDoc -> Blank line before the first tag`
   
-- 
 
 ### Intellij IDEA
 
 - 自动生成`serialVersionUID`的设置：`Preferences->Editor->Inspections->Serialization issues->Serializable class withou 'serialVersionUID'`勾选上
-- 使用`tomcat`运行`Maven`项目。在`Run->Configurations`中添加配置，选择`maven`，然后直接在`Command line`中输入`tomcat:run`即可
+- 使用`Tomcat`运行`Maven`项目。在`Run->Edit Configurations`中添加配置，选择`maven`，然后直接在`Command line`中输入`tomcat:run`即可。如果这种方式有问题，那么可以自己去`Tomcat`[官网](https://tomcat.apache.org/download-90.cgi)下载最新版的`Tomcat`(Mac可以下载`tar.gz`格式的文件，下载后解压即可)，然后在`IDEA`中通过`mav package`将项目打成war包，再添加运行配置`Run->Edit Configurations`添加`Smart Tomcat`，填入以下几个必要配置:
+  - Tomcat Server: 选择刚才解压后的目录即可，例如`/Users/name/Downloads/apache-tomcat-9.0.27`
+  - Deployment Directory: 填入war包的生成目录，例如`./project-web/src/main/webapp`
+  - Context Path: 填入webapp的目录，前缀直接填斜杠即可，例如`/project-web`
 - 使用`jetty`运行`Maven`项目或者出现`No plugin found for prefix 'jetty' in the current project and in the plugin groups`错误。在`Run->Configurations`中添加配置，选择`maven`，然后`Working directory`中选择项目的`web`目录，最后`Command line`中输入`org.mortbay.jetty:maven-jetty-plugin:run`。在运行前，需要先`mav install`一下，可以直接在ide中右边侧栏选择`Maven`然后选择根目录`Lifecycle->install`
+- 运行`spring`项目直接点击运行`Application.java`即可
+- 如果本地有两个项目，其中一个依赖于另外一个作为jar包，可以在另外一个里面先`maven install`然后在本地的仓库目录即可更新该包，这样依赖的那个项目`maven reimport`就能够更新了
+- **添加依赖不生效解决方法**
+  - 可能是网络问题导致没有拉取到最新的仓库列表，搭梯子试试
+- **IDEA运行Tomcat报错 java.lang.NullPointerException**，项目都还没有启动就报这个错，按照如下方法解决:
+  - 检查项目目录是否已经生成了`war`包
+  - 看[论坛](https://intellij-support.jetbrains.com/hc/en-us/community/posts/360000416199-Error-running-Tomcat-java-lang-NullPointerException)可能是`bug`，可以通过随便修改运行配置的方式恢复`Run->editConfiguration`，选择`Tomcat`配置随便修改其中某个值，然后保存
 
 ### PhpStorm
 
 - 设置PHP版本: `Perferences->Languages->Frameworks`
+- 取消注释引入全名的警告: `Perference->搜索Fully qualified name usage`，右边的勾取消
 
 [EAP 版本下载地址](https://www.jetbrains.com/phpstorm/eap/)
 
