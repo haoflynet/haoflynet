@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-11-28 17:21:00
+updated: 2019-11-30 21:21:00
 categories: java
 ---
 
@@ -19,7 +19,7 @@ categories: java
 a.longValue();	// 整型转长整型
 longValue.intValue;	// long转换为int
 1L;	// 直接将数字转换成Long型
-Long.toString(123);	// 整型转字符串
+long.toString(123);	// 整型转字符串
 (byte)1;	// int to byte，int转字节
 ```
 
@@ -76,7 +76,7 @@ MyDto myDto = new Gson().fromJson(jsonString, MyDto.class);
 // 初始化&赋值
 typeName[] arrayName; // 声明数组的基本方式，也可以typeName arrayName[]
 typeName arrayName[][] = new typeName[3][4];	// 定义多维数组
-double[] myList = new double[5];
+double[] myList = new double[5];	// 创建指定长度的数组
 List<String> names = Arrays.asList("xxx","yyy","zzz");	// 直接初始化固定长度的数组，但是要超过一个元素才行
 List<String> names = new ArrayList<>();	// 初始化一个空数组，之后用add添加元素
 list1.addAll(list2);	// 将数组2合并到数组1
@@ -141,10 +141,21 @@ String jsonStr = new Gson().toJson(myMap);
 #### 时间处理
 
 ```java
+Date date = new Date();	// 获取时间对象
+Long timestamp = date.getTime();			// 获取时间戳(毫秒)
 System.currentTimeMillis();	// 毫秒级时间戳
+Date date = new Date(1234567890000); // 毫秒级时间戳转Date对象
+
+// 获取今天开始的时间
+Calendar calendar = Calendar.getInstance();
+calendar.setTime(new Date());
+calendar.set(Calendar.HOUR_OF_DAY, 0);
+calendar.set(Calendar.MINUTE, 0);
+calendar.set(Calendar.SECOND, 0);
+Date zero = calendar.getTime();
 ```
 
-#### 类和对象
+#### 类/对象/方法
 
 - 类中可以使用`static {}`设置静态代码块，有助于优化程序性能，`static块`可以放置于类中的任何地方，当类初次被加载的时候，会按照`static块`的顺序来执行每个块，并且只会执行一次。
 
@@ -159,6 +170,25 @@ public class Sample {
   public Sample(String param1) {}	// 带参数的构造方法
   private static void testMethod() {}
 }
+
+// 泛型类，T可以传入任意类型
+public class MyClass<T> {
+  // 成员变量
+  private T t;
+  public MyClass(T t) {
+    super();
+    this.t = t;
+  }
+  public T getT() {return t;}
+}
+
+// 方法中使用Optinal表示可能为null，很大程度上能帮助调用者了解内部可能返回null
+public Optinal<User> getUser(Long id) {
+  if (null != id) {return Optinal.of(new User());}
+  return Optinal.empty();
+}
+Optional<user> userOp = getUser(1L);
+if (userOp.isPresent()) {...} else {...}
 ```
 
 #### 文件
@@ -281,13 +311,11 @@ error.toString();	// 标准错误输出
 channelExec.getExitStatus();	// 获取返回状态码
 ```
 
-
-
 ## TroubleShooting
 
 - **`Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $`**，这是在使用`Gson`解析字符串时的报错，一般是因为字符串非标准`Json`格式造成的
 
+##### 扩展阅读
 
-
-
-
+- [JdbcUtils.java，用于动态连接多个数据库，并执行简单的增删改查](https://blog.csdn.net/cleanness/article/details/43231473)
+- [Java实现DFA算法对敏感词、广告词过滤功能示例](https://www.jb51.net/article/128990.htm)

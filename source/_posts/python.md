@@ -130,6 +130,10 @@ prices = {'A': 1, 'B': 2, 'C': 3}
 min_price = min(zip(prices.values(), prices.keys()))  # 获取value最小的
 prices_sorted = sorted(zip(prices.values(), prices.keys()))
 for a, b in zip(x, y) # 多个列表同时迭代，让长度取决于最短的那一个,这样就不会超出长度
+
+sorted(mydict.keys())	# 字典按key值排序
+sorted(mydict.items(), key=lambda item:item[1])	# 字典按value值排序
+
 # 字典合并（ChainMap只是将两个字典在逻辑上变为一个，在它上面的修改只会影响第一个字典a)
 from collections import ChainMap
 c = ChainMap(a, b)
