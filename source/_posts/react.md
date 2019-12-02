@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2019-10-15 15:48:00
+updated: 2019-10-16 15:48:00
 categories: Javascript
 ---
 
@@ -118,7 +118,7 @@ ReactDOM.render(
 - 可以用`connect`将组件与`store`进行连接，它可以接收四个参数: 
   - `mapStateToProps(state, ownProps) : stateProps`，第一个参数就是Redus的`store`，这个方法的返回值就会作为组件的`props`
 
-### React-Saga
+### Redux-Saga
 
 - 从后端的角度看，就是在启动应用的时候，再启动一些单独的线程，这些线程可以异步去做些更改变量或者监听的事情，类似于钩子。
 
@@ -134,7 +134,7 @@ ReactDOM.render(
   // call: 调用指定函数
   yield call(myfunc, param1, param2);
   
-  // put: 和dispatch类似，用于发送action，dispatch in saga
+  // put: 触发dispatch，用于发送action，dispatch in saga
   yield put({type: 'login'})
   
   // select: 和getState类似，用于获取store中的state
@@ -149,7 +149,7 @@ ReactDOM.render(
 
   ```javascript
   // 在编写saga的文件里面一般这样写钩子函数
-  export function * mySaga() {
+  export function * mySaga(action) {	// 这里的参数action，是包含了payload,state的对象
     console.log("Hello Saga");
   }
   
@@ -168,6 +168,27 @@ ReactDOM.render(
   	const res = yield fetch("https://example.com").then(response => response.json());
   }
   ```
+
+### Redux-actions
+
+将`redux-actions`和`react-sage`配合使用可以简化大量的重复代码。在之前我们要创建一个`action`需要线这样子定义:
+
+```javascript
+// 在使用redux-actions之前，需要这样创建一个action并使用
+export const saveResult = (resultList) => {
+  console.log(resultList);
+  return {
+    type: "SAVE_RESULT",
+    resultList
+  }
+};
+
+// 现在只需要这样定义多个动作
+export const actionCreators = createActions({
+  ["SAVE_RESULT"]: resultList=>resultList,
+});
+
+```
 
 ### Styled-Components
 

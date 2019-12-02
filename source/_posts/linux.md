@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-11-13 15:58:30
+updated: 2019-11-30 10:58:30
 categories: system
 ---
 # Linux手册
@@ -141,6 +141,7 @@ cat file | awk {system($0)}	# 执行文件中的每一行命令
 
 ```shell
 grep -c "词语"   # 统计出现的次数
+grep -i ""	# 忽略大小写
 grep -n ""		# 把匹配到的行号也打印出来
 grep -v "Java"	# 查找没有该词的行
 grep -v ^$		# 排除空白行
@@ -261,6 +262,8 @@ find *.txt -exec sh -c "iconv -f GBK -t UTF8 {} > change.{}" \;	# 这里将GBK�
 ls *.txt	# 直接使用通配符
 ls -l # 列出文件详细信息
 ls -ld # 列出文件夹详细信息
+
+\cp -rf file1 file2	# cp命令不弹出确认Y/N的解决方法是在前面加上斜杠
 ```
 
 #### ssh

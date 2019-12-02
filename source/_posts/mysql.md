@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-10-31 14:33:00
+updated: 2019-11-29 15:24:00
 categories: database
 ---
 ## 安装方法
@@ -281,6 +281,11 @@ show processlist;
 
 # 查看最近一次死锁发生的原因
 SHOW ENGINE INNODB STATUS;
+
+# 获取数据库当前的时间/查看数据库时区
+select curtime();
+select now();
+show variables like "%time_zone%"
 ```
 ### 数据库维护
 
