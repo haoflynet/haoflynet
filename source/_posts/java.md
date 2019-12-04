@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-11-30 21:21:00
+updated: 2019-12-03 14:30:00
 categories: java
 ---
 
@@ -19,7 +19,7 @@ categories: java
 a.longValue();	// 整型转长整型
 longValue.intValue;	// long转换为int
 1L;	// 直接将数字转换成Long型
-long.toString(123);	// 整型转字符串
+String.valueOf(123); // 整型转字符串，避免用toString出现空指针异常
 (byte)1;	// int to byte，int转字节
 ```
 
@@ -49,6 +49,7 @@ String[] strArr = a.split(String regex);			// 拆分字符串，字符串分隔/
 a.trim();						// 移除首尾空白
 Integer.parseInt(str);		// 字符串转整型
 Long.parseLong(str);		// 字符串转Long型
+String.join(",", new String[]{"foo", "bar"})	// 合并字符串，类似PHP的implode，字符串中间添加空格
 
 // 判断字符串是否为空
 str == null;
@@ -68,9 +69,15 @@ System.out.println(date.toString());
 
 // Json字符串转换为Dto
 MyDto myDto = new Gson().fromJson(jsonString, MyDto.class);
+
+// 字符数组转字符串，不用toString方法
+char[] data = {'a', 'b', 'c'};
+String str = new String(data);
 ```
 
 #### Array/Vector/Stack/Enumeration数组
+
+- 数组的大小是无法改变的，如果要实现改变数组长度，可以采取新建一个数组然后返回新数组的指针的方式。
 
 ```java
 // 初始化&赋值
