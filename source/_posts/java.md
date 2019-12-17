@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-12-03 14:30:00
+updated: 2019-12-17 15:06:00
 categories: java
 ---
 
@@ -21,6 +21,11 @@ longValue.intValue;	// long转换为int
 1L;	// 直接将数字转换成Long型
 String.valueOf(123); // 整型转字符串，避免用toString出现空指针异常
 (byte)1;	// int to byte，int转字节
+new Long(12);	// Integer转Long
+
+Math.ceil(9.2);	// 向上取整
+Math.floor(9.2);// 向下取整
+Math.round(9.2); // 四舍五入
 ```
 
 #### String/StringBuffer字符串
@@ -42,7 +47,8 @@ a.compareTo(Object o);
 a.compareToIgnoreCase(String str);// 比较字符串
 a.startsWith(String prefix);
 a.endsWith(String suffix);			// 验证字符串是否以某个子字符串结尾
-a.indexOf(String str);				// 返回子字符串首次出现的位置
+a.indexOf(String str);				// 返回子字符串首次出现的位置，验证是否包含某个子字符串，没找到返回-1
+a.contains(str);			// 直接检验是否包含某个子字符串
 a.matches(".*?");					// 验证字符串是否复合正则表达式
 a.replaceAll(String regex, String replacement); // 替换字符串
 String[] strArr = a.split(String regex);			// 拆分字符串，字符串分隔/字符串分割
@@ -69,13 +75,55 @@ System.out.println(date.toString());
 
 // Json字符串转换为Dto
 MyDto myDto = new Gson().fromJson(jsonString, MyDto.class);
+new JsonParser().parse(jsonString).getAsJsonObject().get("key1").toString();	// 直接获取指定的key的值，而不用新建一个对象。但是有个坑是这样得到的字符串两边会带上引号。。。
 
 // 字符数组转字符串，不用toString方法
 char[] data = {'a', 'b', 'c'};
 String str = new String(data);
+
+// ArrayList<Chracter> to String 
+String getStringRepresentation(ArrayList<Character> list)
+{    
+    StringBuilder builder = new StringBuilder(list.size());
+    for(Character ch: list)
+    {
+        builder.append(ch);
+    }
+    return builder.toString();
+}
+
+// 字符串反转
+StringBuilder sb = new StringBuilder("content");
+StringBuilder re = sb.reverse();
+
+List list = new ArrayList(myCollections);	// Collections转list
+
+
+// URLDecode/URLEncode，需要注意的是，如果出现特殊符号%，后面跟着中文，那么decode居然会报错
+URLDecode.decode("test", "utf-8");
 ```
 
-#### Array/Vector/Stack/Enumeration数组
+##### 正则匹配
+
+- java的正则匹配没有`findAll`的概念，需要自己在正则中加入类似`()*`来实现多次匹配
+
+```java
+Pattern p = Pattern.compile("(a.*?a)*", Pattern.CASE_INSENSITIVE|Pattern.MULTILINE);	// 可以配置大小写不敏感;查找多行
+Matcher matcher = p.matcher("content");
+// 遍历匹配结果方式一
+while (matcher.find()) {
+  System.out.println(matcher.group());
+}
+// 遍历匹配结果方式二
+if (matcher.find() && matcher.groupCount() >= 1) {
+  matches = new ArrayList9);
+  for (int i = 1; i <= matcher.groupCount(); i++) {
+    System.out.println(matcher.group(i));
+  }
+}
+```
+
+#### Array/Vector/Stack/Enumeration/Collections数组
 
 - 数组的大小是无法改变的，如果要实现改变数组长度，可以采取新建一个数组然后返回新数组的指针的方式。
 
@@ -85,7 +133,7 @@ typeName[] arrayName; // 声明数组的基本方式，也可以typeName arrayNa
 typeName arrayName[][] = new typeName[3][4];	// 定义多维数组
 double[] myList = new double[5];	// 创建指定长度的数组
 List<String> names = Arrays.asList("xxx","yyy","zzz");	// 直接初始化固定长度的数组，但是要超过一个元素才行
-List<String> names = new ArrayList<>();	// 初始化一个空数组，之后用add添加元素
+List<String> list1 = new ArrayList<>();	// 初始化一个空数组，之后用add添加元素
 list1.addAll(list2);	// 将数组2合并到数组1
 List<String> names = new ArrayList<String>() {
   {
@@ -113,6 +161,16 @@ Enumeration<String> days;	// 定义枚举变量
 Vector<String> dayNames = new Vector<StringL>();
 dayNames.add("Sunday");	// 添加枚举元素
 days = dayNames.elements();
+
+// 数组反转
+List<String> new = Lists.reverse(lists1);
+```
+
+#### Set/HashSet集合
+
+```java
+String[] myList = new String[] { "a", "b" };
+Set<String> mySet = new HashSet<String>(Arrays.asList(myList));	// 初始化
 ```
 
 #### Dictionary/Hashtable/Map字典
@@ -160,6 +218,12 @@ calendar.set(Calendar.HOUR_OF_DAY, 0);
 calendar.set(Calendar.MINUTE, 0);
 calendar.set(Calendar.SECOND, 0);
 Date zero = calendar.getTime();
+
+// 获取ISO8601格式的时间，类似2019-12-12T12:12:12Z
+TimeZone tz = TimeZone.getTimeZone("UTC");
+DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+df.setTimeZone(tz);
+return df.format(new Date());
 ```
 
 #### 类/对象/方法
@@ -198,7 +262,7 @@ Optional<user> userOp = getUser(1L);
 if (userOp.isPresent()) {...} else {...}
 ```
 
-#### 文件
+#### 文件/文件夹
 
 ```java
 // 以行为单位读取文件
@@ -223,13 +287,31 @@ if (file.isFile() && file.exists()) {
   in.close();
   String[] fileContentArr = new String(fileContent);	// 结果字符串数组
 }
+
+// 写入文件/新建文件
+File file = new File(path);	// new File第二个参数如果为true，表示追加
+if (!file.exists()) {
+  file.createNewFile();
+}
+FileWriter fw = new FileWriter(file.getAbsoluteFile());
+BufferedWriter bw = new BufferedWriter(fw);
+bw.write(content);
+bw.close();
+
+// 新建文件夹
+File dir = new File("/tmp/test/deep");
+if (!dir.exists()) {
+  dir.mkdirs();
+}
 ```
 
 #### Shell
 
 ```java
 // Java执行shell命令
-Process process = Runtime.getRuntime().exec("ls");
+String cmd = "ls | grep abc";
+String[] commands = {"/bin/sh", "-c", cmd}; // 加入/bin/sh可以防止很多命令执行出错或者转义出错
+Process process = Runtime.getRuntime().exec(commands);
 BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
 while ((s = stdInput.readline()) != null) {
   System.out.println(s);
@@ -322,7 +404,17 @@ channelExec.getExitStatus();	// 获取返回状态码
 
 - **`Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $`**，这是在使用`Gson`解析字符串时的报错，一般是因为字符串非标准`Json`格式造成的
 
+- **Unchecked assignment for 'java.util.ArrayList' to 'java.util.ArrayList <...>**: 可能是定义`ArrayList`的时候没有使用`<>`，可以用下面两种方法进行定义:
+
+  ```java
+  ArrayList<MyList> myList = new ArrayList<>();
+  ArrayList<MyList> myList = new ArrayList<MyList>();
+  ```
+
+- 
+
 ##### 扩展阅读
 
 - [JdbcUtils.java，用于动态连接多个数据库，并执行简单的增删改查](https://blog.csdn.net/cleanness/article/details/43231473)
 - [Java实现DFA算法对敏感词、广告词过滤功能示例](https://www.jb51.net/article/128990.htm)
+- [Java实现DFA算法敏感词过滤(参照上面代码的改进版，支持字符串替换)](https://gist.github.com/haoflynet/428ca120ea4669c03e3ce989997fef5b)

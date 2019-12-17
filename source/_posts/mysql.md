@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-12-03 15:24:00
+updated: 2019-12-06 16:24:00
 categories: database
 ---
 ## 安装方法
@@ -56,6 +56,7 @@ TRUNCATE TABLE 表名 # 这种方式很快，但不会产生二进制日志，�
 
 ALTER TABLE 表名 DROP FOREIGN KEY '外键名';	# 删除外键
 ALTER TABLE 表名 ADD 字段名 属性 AFTER 字段名;	# 给表添加字段
+ALTER TABLE 表名 ADD `id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST; # 添加字段到最前面
 ALTER TABLE 表名 DROP COLUMN 字段名;	# 给表删除字段
 ALTER TABLE 表名 CHANGE COLUMN 列名 新的列名 属性;	# 修改列属性
 ALTER TABLE 表名 MODIFY COLUMN 列名 属性; # 除了不能修改列名以外，其他都和CHNAGE一样
