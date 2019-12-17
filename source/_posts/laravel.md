@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2019-07-29 15:07:00
+updated: 2019-12-09 15:07:00
 categories: php
 ---
 # Laravel指南
@@ -1452,3 +1452,5 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 [octobercms](https://github.com/octobercms/october): laravel写的cms系统
 
 [[Laravel 从学徒到工匠系列] 目录结构篇](https://laravelacademy.org/post/9711.html#toc_2): 详细解释了laravel为何没有Model目录
+
+[老司机带你深入理解 Laravel 之 Facade](https://learnku.com/articles/37493)

@@ -1,7 +1,8 @@
 ---
 title: "logstash 手册"
 date: 2019-11-29 15:26:00
-categories: 大叔据
+updated: 2019-12-13 21:10:00
+categories: 大数据
 ---
 
 `Logstash`是一个开源的数据转化工具，可以将不同的数据源的数据进行收集、分析、处理，并存储到指定的介质，常用于搜集服务器上的日志到`elasticsearch`，或者快速地将数据从一种介质转移到另一种介质。
@@ -17,14 +18,28 @@ categories: 大叔据
 
 ## 常用插件
 
-### logstash-input-jdbc
-
 <!--more-->
+
+### logstash-filter-urldecode/urlencode
+
+- 用于对指定字段进行`urldecode/urlencode`操作
+
+可以在`filter`配置区块里这样指定:
+
+```shell
+filter {
+	urldecode {
+		all_fields => true
+	}
+}
+```
+
+### logstash-input-jdbc
 
 - 用于连接数据库
 - 使用`./bin/logstash-plugin install logstash-input-jdbc`进行安装
 - 一定要单独下载`mysql-connector-java`的`jar`包，并一定得放在`logstash`的安装目录中的`logstash-core/lib/lib/jars`下(注意`logstash`的安装目录不一定在`/opt`下面)，否则会出现找不到`com.mysql.jdbc.Driver/jdbc_driver_library`的错误，可以在这里[下载](https://mvnrepository.com/artifact/mysql/mysql-connector-java/6.0.6)指定的jar包版本
-- 下面的参考配置，当实际执行的时候，其实是定时去执行这样的查询语句:`SELECT id, field1, field2 FROM database_name.table_name WHERE id > 1000 ORDER BY id ASC LIMIT 1000, 1000`，并会一直去执行，根据官方论坛的反馈，它没有终止条件，所以如果想要停止查询，只能主动`kill`掉该进程
+- 下面的参考配置，当实际执行的时候，其实是定时去执行这样的查询语句:`SELECT * FROM (SELECT id, field1, field2 FROM database_name.table_name WHERE id > 1000 ORDER BY id ASC) as 't1' LIMIT 1000 OFFSET 0`，并会一直去执行，根据官方论坛的反馈，它没有终止条件，所以如果想要停止查询，只能主动`kill`掉该进程
 - 参考配置文件如下:
 
 ```shell
@@ -75,3 +90,5 @@ output {
 ## TroubleShooting
 
 - **`ERROR: Installation aborted, verification failed for logstash-input-jdbc`**，加上忽略验证的参数试试`./logstash-plugin install --no-verify logstash-input-jdbc` 
+- **logstash-input-jdbc分页不起作用**: 特定版本确实有bug，[issue](https://github.com/logstash-plugins/logstash-input-jdbc/issues/360)，可以使用`./bin/logstash-plugin install --version 4.3.14 logstash-input-jdbc`安装指定的版本 
+- **Logstash could not be started because there is already another instance using the configured data directory.  If you wish to run multiple instances, you must change the "path.data" setting.无法同时运行多个logstash实例**: 需要在命令中加入`--path.data anotherpath`指定logstash及其插件用于任何持久性需求的目录
