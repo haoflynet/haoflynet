@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-10-22 16:36:30
+updated: 2019-12-17 17:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -1446,3 +1446,5 @@ conn.close()	# 关闭连接
 [Python项目的配置管理](https://www.keakon.net/2016/10/22/Python%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86)
 
 [Python十大web框架](https://hackernoon.com/top-10-python-web-frameworks-to-learn-in-2018-b2ebab969d1a): 全栈框架(Django/Pyramid/TurboGears/Web2py)、微框架(Flask/Bottle/CherryPy/)、异步框架(Sanic/Tornado)
+
+[Unofficial Windows Binaries for Python Extension Packages 非官方的Python扩展windows平台二进制包](https://www.lfd.uci.edu/~gohlke/pythonlibs/): 对于windows平台总是安装不成功的包可以尝试这样安装

@@ -1,7 +1,7 @@
 ---
 title: "微信小程序开发手册"
 date: 2018-10-17 13:15:00
-updated: 2019-07-31 18:12:00
+updated: 2019-12-14 18:12:00
 categories: javascript
 ---
 
@@ -294,6 +294,7 @@ wx.openLocation(OBJECT)	// 使用微信内置的地图查看某个位置
 - [微信小程序跨页面通信解决思路](https://aotu.io/notes/2017/01/19/wxapp-event/index.html)
 - [Gitter for GitHub](https://github.com/huangjianke/Gitter): 小程序版的Github客户端
 - [小程序云开发实战 - 口袋工具之“历史上的今天”](https://juejin.im/post/5d3eaa3af265da039a285fa3)
+- [如何开发微信小程序打车应用](https://mp.weixin.qq.com/s/ObR__SOz40y0TCnWsAfRWw)
 
 ##### 推荐UI扩展
 
