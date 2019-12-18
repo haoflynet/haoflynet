@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2019-11-27 17:08:00
+updated: 2019-12-17 17:08:00
 categories: 编程之路
 ---
 
@@ -51,7 +51,7 @@ categories: 编程之路
 
 ### Intellij IDEA
 
-- 自动生成`serialVersionUID`的设置：`Preferences->Editor->Inspections->Serialization issues->Serializable class withou 'serialVersionUID'`勾选上
+- **自动生成`serialVersionUID`的设置**：`Preferences->Editor->Inspections->Serialization issues->Serializable class withou 'serialVersionUID'`勾选上
 - 使用`Tomcat`运行`Maven`项目。在`Run->Edit Configurations`中添加配置，选择`maven`，然后直接在`Command line`中输入`tomcat:run`即可。如果这种方式有问题，那么可以自己去`Tomcat`[官网](https://tomcat.apache.org/download-90.cgi)下载最新版的`Tomcat`(Mac可以下载`tar.gz`格式的文件，下载后解压即可)，然后在`IDEA`中通过`mav package`将项目打成war包，再添加运行配置`Run->Edit Configurations`添加`Smart Tomcat`，填入以下几个必要配置:
   - Tomcat Server: 选择刚才解压后的目录即可，例如`/Users/name/Downloads/apache-tomcat-9.0.27`
   - Deployment Directory: 填入war包的生成目录，例如`./project-web/src/main/webapp`

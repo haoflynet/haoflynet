@@ -1,7 +1,7 @@
 ---
 title: "[转]RESTful API设计指南"
 date: 2015-04-11 23:24:07
-updated: 2019-08-09 16:02:00
+updated: 2019-12-13 16:02:00
 categories: 编程之路
 ---
 原文地址：[阮一峰的网络日志](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
@@ -182,6 +182,8 @@ Hypermedia API的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)�
 ## 扩展阅读
 
 [RESETful API 设计规范](https://segmentfault.com/a/1190000015384373)
+
+[微软的Rest API设计指南](https://github.com/microsoft/api-guidelines/blob/master/Guidelines.md)
 
 ## 个人总结
 
