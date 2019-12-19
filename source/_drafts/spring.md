@@ -1,7 +1,7 @@
 ---
 title: "Java Spring手册"
 date: 2018-11-01 21:32:00
-update: 2019-11-27 17:30:00
+update: 2019-12-09 17:30:00
 categories: 编程之路
 ---
 
@@ -43,7 +43,7 @@ Controller、Config(一些初始化配置，例如线程池、缓存池等配置
 
 ### 注解
 
-### @Async
+#### @Async
 
 - 必须用在`public`方法上，同一个类的其他方法调用此方法无法实现异步
 - `Spring`使用的是`SimpleAsyncTaskExecutor`来处理`@Async`注解的任务
@@ -57,6 +57,23 @@ public class MyClass {
   }
 }
 ```
+
+#### Autowired
+
+- 自动注入，默认按照类型去匹配`bean`
+
+#### @Resource
+
+- 和`Autowired`类似，默认按照`name`去匹配`bean`
+
+```java
+public class Post {
+  @Resource(name = "author")
+  private Author author;
+}
+```
+
+
 
 @Service用于标注业务层组件
 
@@ -73,6 +90,49 @@ public class MyClass {
 - `bean`有两种初始化方法:
   - 在`applicationContext.xml`中直接添加指定的类`<bean id="myBean" class="com.MyBean" init-method="initMethod"></bean>`
   - 实现`InitializingBean`接口，并实现`afterPropertiesSet`方法，这样可以在所有其他的属性设置完成后才初始化该类，如果用上面的方式，则无法实现依赖注入(其他的依赖都还没有初始化)。可以在里面新建一个线程实现启动完成后添加监听线程的功能。
+  
+- 在任意地方获取指定的`bean`，可以有效解决循环依赖的问题，如下，建立一个方法类:
+
+  ```java
+  package com.haofly.net.common.utils;
+  
+  import org.springframework.context.ApplicationContext;
+  import org.springframework.context.ApplicationContextAware;
+  import org.springframework.stereotype.Component;
+  
+  @Component	// 一定要加这个
+  public class SpringContextUtil implements ApplicationContextAware {
+      /**
+       * Spring应用上下文环境
+       */
+      private static ApplicationContext applicationContext;
+      /**
+       * 实现ApplicationContextAware接口的回调方法，设置上下文环境
+       */
+      @Override
+      public void setApplicationContext(ApplicationContext applicationContext) {
+          SpringContextUtil.applicationContext = applicationContext;
+      }
+  
+      public static ApplicationContext getApplicationContext() {
+          return applicationContext;
+      }
+  
+      /**
+       * 获取bean对象
+       *
+       * @param name bean名称
+       * @return Object 一个以所给名字注册的bean的实例
+       */
+      public static Object getBean(String name) {
+          return applicationContext.getBean(name);
+      }
+  }
+  
+  
+  // 在其他地方可以这样子直接获取指定的bean
+  BusniessServiceImpl businessServiceImpl = (BusinessServiceImpl) SpringContextUtil.get("businessServiceImpl");	// 需要注意的是，如果放在应用初始化的过程中，那么该类中的applicationContext可能还没有初始化，可以sleep以下或者其他方式
+  ```
 
 ## TroubleShooting
 
@@ -106,3 +166,8 @@ https://blog.tengshe789.tech/2018/08/04/springboot/?hmsr=toutiao.io&utm_medium=t
 
 
 
+kafka
+
+https://spring.io/projects/spring-kafka#overview
+
+https://juejin.im/entry/5b5ac2aff265da0f6263877c
