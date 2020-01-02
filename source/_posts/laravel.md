@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2019-12-09 15:07:00
+updated: 2019-12-30 15:07:00
 categories: php
 ---
 # Laravel指南
@@ -617,6 +617,7 @@ User::find(1)->logs->where(...)	# 关系中的结果也能用where等字句
 User::->where('updated_at', '>=', date('Y-m-d H:i').':00')->where('updated_at', '<=', date('Y-m-d H:i').':59') 					# 按分钟数查询
 User::find(1)->sum('money')		# 求和SUM
 User::where(...)->get()->pluck('name')	# 只取某个字段的值，而不是每条记录取那一个字段，这是平铺的,这里的pluck针对的是一个Collection，注意，这里只能针对Collection，千万不要直接针对一个Model，这样只会取出那张表的第一条数据的那一列，需要注意的是这里是先get除了所有的记录，然后在Collection上面进行的pluck操作，如果想少去一点数据可以先用select()再用pluck
+User::modelKeys()	# 直接获取模型的主键集合(不是'id'为名字的主键都可以)
 User::select('name')->where()	# 也是只取出某个字段，但是这里不是平铺的
 User::where()->get(['id', 'name'])# 更简单的方法
 User::where(...)->pluck('name')	# 这是取出单独的一个行的一个列，不再需要first

@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-12-17 15:06:00
+updated: 2019-12-31 15:06:00
 categories: java
 ---
 
@@ -26,6 +26,9 @@ new Long(12);	// Integer转Long
 Math.ceil(9.2);	// 向上取整
 Math.floor(9.2);// 向下取整
 Math.round(9.2); // 四舍五入
+
+a == 0 ? false : true;	// 整型转换为布尔
+a ? 1 : 0;	// 布尔转换为整型 
 ```
 
 #### String/StringBuffer字符串
@@ -37,6 +40,7 @@ Math.round(9.2); // 四舍五入
 String a = "World";
 String b = new String(array);	// 将array拼接成字符串
 String[] c = new String[] {"A", "B", "C"};
+List<String> list = Arrays.asList(c);	// String[] 转换为 List<String>
 int len = b.length();			// 得到字符串长度
 b.concat(a);					// 连接字符串
 b + a;							// 连接字符串
@@ -97,7 +101,6 @@ StringBuilder sb = new StringBuilder("content");
 StringBuilder re = sb.reverse();
 
 List list = new ArrayList(myCollections);	// Collections转list
-
 
 // URLDecode/URLEncode，需要注意的是，如果出现特殊符号%，后面跟着中文，那么decode居然会报错
 URLDecode.decode("test", "utf-8");
