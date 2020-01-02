@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2019-12-17 17:08:00
+updated: 2019-12-31 10:08:00
 categories: 编程之路
 ---
 
@@ -38,6 +38,8 @@ categories: 编程之路
 
 - 展开左边文件目录树快捷方式设置，默认是`NumPad *`，我真不知道是哪个键，于是统一改成`command +`
 
+- 手动将一个文件夹变为`resources`目录或者`tests`目录，只需要在左侧目录树右键需要设置的目录，选择`Mark Directory as`，可以选择设置成`Test Sources Root/Resources Root/Test Resources Root/Excluded`等
+
 - 代码风格设置(直接在Preferences里面搜索设置项)
   - 赋值语句等号对齐: `Align consecutive assignments`
   - 数组内键值对对齐: `Align key-value pairs`
@@ -64,6 +66,11 @@ categories: 编程之路
 - **IDEA运行Tomcat报错 java.lang.NullPointerException**，项目都还没有启动就报这个错，按照如下方法解决:
   - 检查项目目录是否已经生成了`war`包
   - 看[论坛](https://intellij-support.jetbrains.com/hc/en-us/community/posts/360000416199-Error-running-Tomcat-java-lang-NullPointerException)可能是`bug`，可以通过随便修改运行配置的方式恢复`Run->editConfiguration`，选择`Tomcat`配置随便修改其中某个值，然后保存
+- **`maven reimport`不起作用**: 可以先后采取以下几种方法:
+  - 删除依赖包路径中的源码包
+  - `File->Invalidate Caches / Restart`
+  - 重启`Idea`
+  - 关闭`Idea`，删除项目目录下的`.idea`文件夹，再重新打开`Idea`
 
 ### PhpStorm
 

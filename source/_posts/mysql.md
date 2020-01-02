@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2019-12-06 16:24:00
+updated: 2020-01-02 16:24:00
 categories: database
 ---
 ## 安装方法
@@ -43,7 +43,7 @@ mysql -uroot -pmysql --default-character-set=gbk  jpkc_db < jpkc_db.sql # 这里
 ## 创建数据库，如果是gbk编码，分别用gbk、gbk_chinese_ci;
 CREATE DATABASE 库名 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 TRUNCATE tablename	# 清空数据表
-DROP database_name	# 删除数据库
+DROP DATABASE database_name	# 删除数据库
 ```
 
 ### 数据表操作
