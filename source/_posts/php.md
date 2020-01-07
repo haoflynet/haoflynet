@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2019-11-06 15:05:21
+updated: 2019-12-30 15:05:21
 categories: php
 ---
 # PHP
@@ -13,6 +13,7 @@ categories: php
 
 - 判断两个变量是否相等，如果`==`和`===`都能用的情况，那么尽量用`===`，因为它仅检查闭合范围。
 - 三元运算符可以这样用`$a = $a ? : 1`，表示如果为真则直接使用`$a`的值，7里面可以写成`$a = $a ?? 1`
+- `??=`运算符表示有key则赋值，例如`$array['key'] ??= 1`表示数组中有`key`这个key才会被赋值
 
 <!--more-->
 
@@ -222,6 +223,19 @@ public # 权限最多，可以内部调用，实例调用
 protected	# 受保护类型，用于本类和继承类调用
 private		# 私有类型，只有在本类中使用
   
+# PHP7终于支持lambda了，使用的是fn关键字
+array_map(fn($n) => $n * 2, [1, 2, 3]);
+
+# PHP7支持类属性指定类型
+class Post {
+  public int $id;
+  public string $name;
+  // 指定方法的返回类型
+  public function test(): A {
+    return a;
+  }
+}
+  
 # 对象的序列化和反序列化
 serialize()
 unserialize()
@@ -277,7 +291,6 @@ class MyHelloWorld extends Base {
 
 $o = new MyHelloWorld();
 $o->sayHello();		// 输出的是Hello World
-?>
 ```
 
 ### 发送CURL请求

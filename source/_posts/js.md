@@ -1,7 +1,7 @@
 ---
-title: "JavaScript & Ajax & jQuery教程"
+title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2019-10-15 15:43:00
+updated: 2020-01-06 14:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -112,6 +112,9 @@ b = decodeURIComponent(uri);	// url解码
 
 // 字符串格式化
 `我是${name}`;
+
+
+util.format('this is %s', 'foo');	// nodejs的util模块格式化字符串
 ```
 
 #### 时间处理
@@ -122,6 +125,28 @@ b = decodeURIComponent(uri);	// url解码
 Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
 ```
 
+### 文件/文件夹
+
+- 主要是使用`Nodejs`中的`fs`模块
+- 下面很多方法默认都是异步方法，一般加上`Async`就是其同步的方法，但是同步方法要加上`try...catch...`
+
+```js
+fs.statAsync(path); // 同步判断文件或文件夹是否存在，同步方法最好加上try...catch
+fs.stat(path, function(exists) {}); // 异步的方式判断文件或文件夹是否存在
+
+fs.access(path, 权限, function(err){}); // 判断是否拥有指定文件的指定的权限，权限可以有fs.F_OK(文件是否可见，也可用来判断文件是否存在),fs.R_OK(是否可读),fs.W_OK(是否可写),fs.X_OK(是否可执行)
+
+fs.readdir('目录名', 'utf-8', function (err, data) {	// 获取目录下的文件
+  data.forEach(function(item, index)) {	// 遍历目录
+    fs.reradFile('文件名', 'utf-8', function(err, content) {	// 读取文件内容
+    	fs.writeFile('文件名', "abc", "utf-8", function(err) {	// 向文件写入内容
+        
+      });
+  	});
+  }
+});
+```
+
 ### 网络请求
 
 ```javascript
@@ -129,6 +154,17 @@ var xmlHttp = new XMLHttpRequest();
 xmlHttp.open("GET", "https://haofly.net", false); // false表示用异步的方式
 xmlHttp.send();
 console.log(xmlHttp.responseText);
+```
+
+### 进程/线程/Shell命令执行
+
+- 使用`child_process`模块
+- 可用来执行`shell`命令
+
+```js
+var p = require('child_process');
+p.exec("ls abc", function (error, stdout, stderr) {});	// 异步执行shell命令
+p.execSync("ls abc");	// 同步方式执行SHELL命令
 ```
 
 ## DOM操作

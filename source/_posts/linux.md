@@ -184,6 +184,14 @@ cat url-list.txt | xargs wget -c	# 下载一个文件中所有的链接
 cat folder-list.txt | xargs ls		# 列出一个文件夹文件中的所有文件
 ```
 
+##### watch
+
+周期性地执行指定的命令
+
+```shell
+watch -n 3 'cat /proc/loadavg'	# 每3秒执行一次
+```
+
 ##### while
 
 循环语句，可以直接在shell中单行写，例如
