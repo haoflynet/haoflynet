@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2019-12-31 15:06:00
+updated: 2020-01-06 14:56:00
 categories: java
 ---
 
@@ -119,7 +119,7 @@ while (matcher.find()) {
 }
 // 遍历匹配结果方式二
 if (matcher.find() && matcher.groupCount() >= 1) {
-  matches = new ArrayList9);
+  matches = new ArrayList();
   for (int i = 1; i <= matcher.groupCount(); i++) {
     System.out.println(matcher.group(i));
   }

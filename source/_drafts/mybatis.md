@@ -23,9 +23,21 @@ int updateByExampleSelective(User record, UserExample example) thorws SQLExcepti
 
 
 
+# PageHelper分页插件
 
 
 
+
+
+
+
+
+
+
+
+insert和insertselective的区别  https://blog.csdn.net/jiangyu1013/article/details/86504688
+
+获取列表的时候居然能自动把bolb(text)类型的字段给忽略掉https://blog.csdn.net/yup1212/article/details/88013655
 
 
 
@@ -34,6 +46,31 @@ int updateByExampleSelective(User record, UserExample example) thorws SQLExcepti
 insert，返回值是：新插入行的主键（primary key）；需要包含<selectKey>语句，才会返回主键，否则返回值为null。
 
 update/delete，返回值是：更新或删除的行数；无需指明resultClass；但如果有约束异常而删除失败，只能去捕捉异常。
+
+
+
+
+
+```
+or查询
+查询条件1：a=? and (b=? or c=?) 不支持
+
+查询条件2：(a=? And b=?) or (a=? And c=?) 支持
+
+AfsKeywordsExample example = new AfsKeywordsExample();
+AfsKeywordsExample.Criteria[] criteria = new AfsKeywordsExample.Criteria[2];
+criteria[0] = example.createCriteria().andIsEnbaledEqualTo((byte) 1).andIsAutoscanEqualTo((byte) 1);
+criteria[1] = example.createCriteria().andIsEnbaledEqualTo((byte) 1).andCreateTimeLessThanOrEqualTo(DateUtil.getTodayBeginTime());
+example.or(criteria[0]);
+example.or(criteria[1]);
+
+List<AfsKeywords> afsKeywords = afsKeywordsMapper.selectByExample(example);
+
+List<String> keywords = new ArrayList<>();
+for (AfsKeywords afsKeyword : afsKeywords) {
+   keywords.add(afsKeyword.getKeywordsName());
+}
+```
 
 
 
