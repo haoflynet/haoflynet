@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-01-02 16:24:00
+updated: 2020-01-09 21:24:00
 categories: database
 ---
 ## 安装方法
@@ -395,7 +395,7 @@ JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是�
 
 #### 唯一索引
 
-- **注意唯一索引不能建在可以为NULL的字段上，否则，唯一该唯一索引在NULL上不会生效**
+- **注意唯一索引不能建在可以为NULL的字段上，否则，唯一该唯一索引在NULL上不会生效，可以参考底部关于软删除的文章**
 
 #### 聚簇索引(clustered index)
 
@@ -484,3 +484,4 @@ JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是�
 ##### 扩展阅读
 
 - [记一次神奇的Mysql死锁排查](https://juejin.im/post/5c774114f265da2d993d9908): 一种非常隐蔽的发生死锁的情况。
+- [软删除之痛](https://blog.wolfogre.com/posts/trap-of-soft-delete/): 软删除很好用，但还是具体场景具体分析，不要一味地用，需要考虑数据是否有软删的必要，和如何解决软删的副作用

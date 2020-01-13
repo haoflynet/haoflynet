@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2019-12-31 10:08:00
+updated: 2020-01-09 09:08:00
 categories: 编程之路
 ---
 
@@ -29,6 +29,10 @@ categories: 编程之路
 
 ## IDEA系列
 
+- 最好只安装一个`IDEA`，`PhpStrom/PyCharm/WebStorm`可以以插件的方式引入，而且支持都非常不错
+
+- `Intellij IDEA`的[配置文档](https://www.jetbrains.com/help/idea/javascript-specific-guidelines.html)
+
 - 常用快捷键
 
   ```shell
@@ -54,7 +58,7 @@ categories: 编程之路
 ### Intellij IDEA
 
 - **自动生成`serialVersionUID`的设置**：`Preferences->Editor->Inspections->Serialization issues->Serializable class withou 'serialVersionUID'`勾选上
-- 使用`Tomcat`运行`Maven`项目。在`Run->Edit Configurations`中添加配置，选择`maven`，然后直接在`Command line`中输入`tomcat:run`即可。如果这种方式有问题，那么可以自己去`Tomcat`[官网](https://tomcat.apache.org/download-90.cgi)下载最新版的`Tomcat`(Mac可以下载`tar.gz`格式的文件，下载后解压即可)，然后在`IDEA`中通过`mav package`将项目打成war包，再添加运行配置`Run->Edit Configurations`添加`Smart Tomcat`，填入以下几个必要配置:
+- **使用`Tomcat`运行`Maven`项目**。在`Run->Edit Configurations`中添加配置，选择`maven`，然后直接在`Command line`中输入`tomcat:run`即可。如果这种方式有问题，那么可以自己去`Tomcat`[官网](https://tomcat.apache.org/download-90.cgi)下载最新版的`Tomcat`(Mac可以下载`tar.gz`格式的文件，下载后解压即可)，然后在`IDEA`中通过`mav package`将项目打成war包，再添加运行配置`Run->Edit Configurations`添加`Smart Tomcat`(**需要先下载Smart Tomcat插件，自带的Tomcat Server我配置过好几次都没能成功**)，填入以下几个必要配置:
   - Tomcat Server: 选择刚才解压后的目录即可，例如`/Users/name/Downloads/apache-tomcat-9.0.27`
   - Deployment Directory: 填入war包的生成目录，例如`./project-web/src/main/webapp`
   - Context Path: 填入webapp的目录，前缀直接填斜杠即可，例如`/project-web`
@@ -71,6 +75,8 @@ categories: 编程之路
   - `File->Invalidate Caches / Restart`
   - 重启`Idea`
   - 关闭`Idea`，删除项目目录下的`.idea`文件夹，再重新打开`Idea`
+- **Could not autowire. No beans of 'xxx' type found**: 这篇文章提供了7个方法，我最终选择了修改检测级别的方法，因为其他的方法都需要对代码有改动。
+- **IDEA 运行Django项目提示No module named xxx**: 需要在`File->Project Structure->modules`中将当前`module`删除，然后新建`module`，选择当前项目的根目录，将当前项目设置为一个`Django`项目
 
 ### PhpStorm
 
@@ -86,6 +92,13 @@ categories: 编程之路
 ### WebStorm
 
 - 配置`Prettier`
-  - 首先需要安装: `npm install --save-dev prettier`或者`yarn add prettier --dev --exact`
-  - 然后`Preferences->Tools->file Watchers`，点击"+"添加一个`prettier`类型的watcher，默认设置，然后保存即可
+
+  - 首先需要安装`prettier`，可以全局安装也可以安装在当前项目
+
+  - 在`Preferences->Languages & Frameworks->Javascript->Prettier`中设置`prettier package`的路径，例如`~/.nvm/versions/node/v10.16.2/lib/node_modules/prettier`
+
   - 然后`Preferences->Keymap`，搜索prettier关键字，设置`Reformat with Prettier`的快捷键，我一般设置成: `Shift + alt + cmd + P`
+
+  - 如果想要保存文件后自动格式化，就需要再配置`watcher`，在`Preferences->Tools->file Watchers`，点击"+"添加一个`prettier`类型的watcher，默认设置，然后保存即可
+
+    

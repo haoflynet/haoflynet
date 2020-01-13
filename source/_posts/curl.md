@@ -1,7 +1,7 @@
 ---
 title: "curl手册"
 date: 2016-04-07 08:01:39
-updated: 2018-10-09 15:41:00
+updated: 2020-01-08 10:41:00
 categories: tools
 ---
 ## 常用参数
@@ -47,3 +47,4 @@ Host: 客户端指定自己想要访问的WEB服务器的域名/IP地址
 ##### TroubleShooting
 
 - **curl: (3) [globbing] nested braces not supported at pos 131**: 特殊字符需要转义，例如`{}`
+- **遇到curl编码问题，可以尝试用[在线编码转换网站](https://tool.oschina.net/encode?type=4)进行url encode**

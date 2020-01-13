@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2019-12-22 20:53:30
+updated: 2020-01-07 07:50:30
 categories: frontend
 ---
 # node.js教程
@@ -48,7 +48,7 @@ nvm alias default xxx 	# 设置默认的node版本
 #### Npm
 
 ```shell
-npm init		# 将当前目录设置为一个npm库，自动生成package.json文件
+npm init		# 将当前目录设置为一个npm库，自动生成package.json文件，如果没有package.json文件可以用这个方法生成，它也会自动把node_module下的已安装包加进来的
 npm install 包名 --save	# 安装包，并且更新到package.json中去
 npm install 报名 --save-dev	# 安装包，并且更新到package.json的开发依赖中区
 npm list --depth=0	# 列出已安装模块
