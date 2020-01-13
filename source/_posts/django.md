@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2019-06-21 20:46:00
+updated: 2020-01-09 11:01:00
 categories: python
 ---
 # Django教程
@@ -302,7 +302,7 @@ UUIDField
 ```python
 # 获取原始SQL语句
 from django.db import connection
-print(Blog.objects.filter(name="").query)	# 这样可以将SQL语句打印出来
+print(Blog.objects.filter(name="").query)	# 这样可以将SQL语句打印出来，但是这种方法只能输出select的语句，写操作的语句无法打印，只能用下面的方法
 connection.queries			# 会返回一个所有执行过的SQL的列表，并且每条时一个字典，包含了SQL语句以及SQL所执行的时间
 
 # 执行原生SQL语句
@@ -330,6 +330,8 @@ def dictfetchall(cursor):
 
 - `model`对象转换为json: `model_to_dict(blog)`，或者`result = django.core.serializers.serialize('json', some_queryset)`，但是对于特殊的字段，例如文件字段依然不能正常转换，最好还是自己写个`transform`去转换
 - `Blog.objects.all()[3:30]`只取出部分数据，相当于limit，并不会查处全部
+- 偶尔使用自定义的查询条件: `Model.objects.extra(where['FIND_IN_SET(1, field)])`
+- `get`方法如果找不到默认会报错，可以使用`try except`或者使用`filter(id="").first()`进行不报错处理，效果差不多
 
 ```python
 Blog.objects.all()   		# 获取该表的所有记录，返回的是记录对象组成的列表
@@ -923,6 +925,42 @@ class Post(models.Model):
 
 能够缓存视频或者模板片段或者API。
 
+## Django测试
+
+- 如果想要在正式的数据库中测试数据，而不是让测试工具自己创建一个新的数据库，可以在`settings.py`中这样指定测试数据库，但是需要注意的是一定要加`--keepdb`选项，否则可能删除掉原来的数据库
+
+  ```python
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.mysql',
+          'NAME': 'test',
+          'USER': 'root',
+          'PASSWORD': 'test',
+          'HOST': '127.0.0.1',
+          'PORT': 3306,
+          'CONN_MAX_AGE': 0,
+          'TEST': {
+              'NAME': 'test',	# 与上面的数据库名相同
+          }
+      }
+  }
+  ```
+
+- `--keepdb`选项只是防止测试数据库被销毁，但是测试时候执行的其他操作依然都会回滚，如果想要操作数据库不回滚，那么可以在测试类上重载`_rollback_atomics`这个方法:
+
+  ```python
+  class MyModelTest(TestCase):
+      @classmethod
+      def _rollback_atomics(cls, atomics):
+          """Rollback atomic blocks opened by the previous method."""
+          for db_name in reversed(cls._databases_names()):
+              # transaction.set_rollback(True, using=db_name)	# 注释掉这一行即可
+              atomics[db_name].__exit__(None, None, None)
+  
+      def test_get_by_id(self):
+          print(MyModelTest.get_by_id(1))
+  ```
+
 ## Django国际化
 
 - `I18N`表示国际化，`L10N`表示本地化。Django使用的是`gettext`工具进行国际化的翻译。
@@ -1160,6 +1198,10 @@ Django下的定时任务插件，我以前用的是`django-crontab`，但是现�
 - **迁移数据库后即使输入正确的用户名密码也无法进入后台管理**: 重设密码，或者清除cookie即可
 
 - **使用nginx代理静态文件前端静态文件能正常获取，但是管理后台的静态文件都404了**: 原因是没有使用`python manage.py collectstatic`命令将所有的静态文件提取到根目录的`/static`目录下
+
+- **django.core.exceptions.ImproperlyConfigured: Requested setting DEBUG, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing setting**: 需要手动设置`export DJANGO_SETTINGS_MODULE=my_project.settings`，但是如果是下面这种情况依然是不行的
+
+- **DJANGO_SETTINGS_MODULE not working**: 在项目还在初始化的时候，我们应该用`django-admin.py`命令，但是项目初始化完成后我们就应该用`python manage.py`命令来代替，这样才能正确地找到路径
 
 
 ##### 扩展阅读
