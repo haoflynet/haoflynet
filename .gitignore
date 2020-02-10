@@ -1,4 +1,5 @@
-node_module/*
+node_modules/*
+.idea/*
 public/*
 qiniu_sync.py
 npm-debug.log

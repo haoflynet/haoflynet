@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-01-09 21:24:00
+updated: 2020-01-21 16:24:00
 categories: database
 ---
 ## 安装方法
@@ -479,7 +479,9 @@ JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是�
 
 * **某个语句一直卡住，或者无法修改表结构，但是又找不到表锁**，可能的原因是客户端有未关闭或提交的事务，会出现`waiting for table metadata lock`。
 
-*   **Mariadb/Mysql不锁表实时添加列**: `10.2`开始是默认支持的，但是只能在表最后一列后加，不能出现`after`，参考https://mariadb.com/kb/en/library/instant-add-column-for-innodb/
+* **Mariadb/Mysql不锁表实时添加列**: `10.2`开始是默认支持的，但是只能在表最后一列后加，不能出现`after`，参考https://mariadb.com/kb/en/library/instant-add-column-for-innodb/
+
+*   **mysqldump出现Access denied for user xxx when using LOCK TABLES**: 可以在`mysqldump`命令添加上`--single-transaction`参数
 
 ##### 扩展阅读
 

@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-01-06 14:56:00
+updated: 2020-01-14 10:56:00
 categories: java
 ---
 
@@ -13,7 +13,7 @@ categories: java
 
 - `final`关键字: 修饰类表示该类不能被继承，内部所有成员变量都是final的; 类的`private`方法也会隐式地指定为`final`方法。修饰变量时，如果是基本数据类型的变量，则其数值在初始化之后就不能更改; 如果是引用类型的变量，则初始化后不能被指向另一个对象。
 
-#### Integer/Long数字
+#### Integer/Long/Double数字
 
 ```java
 a.longValue();	// 整型转长整型
@@ -28,7 +28,7 @@ Math.floor(9.2);// 向下取整
 Math.round(9.2); // 四舍五入
 
 a == 0 ? false : true;	// 整型转换为布尔
-a ? 1 : 0;	// 布尔转换为整型 
+a ? 1 : 0;	// 布尔转换为整型
 ```
 
 #### String/StringBuffer字符串
@@ -77,10 +77,6 @@ c.capacity();			// 返回当前字符串的容量
 Date date = new Date();
 System.out.println(date.toString());
 
-// Json字符串转换为Dto
-MyDto myDto = new Gson().fromJson(jsonString, MyDto.class);
-new JsonParser().parse(jsonString).getAsJsonObject().get("key1").toString();	// 直接获取指定的key的值，而不用新建一个对象。但是有个坑是这样得到的字符串两边会带上引号。。。
-
 // 字符数组转字符串，不用toString方法
 char[] data = {'a', 'b', 'c'};
 String str = new String(data);
@@ -106,6 +102,14 @@ List list = new ArrayList(myCollections);	// Collections转list
 URLDecode.decode("test", "utf-8");
 ```
 
+##### JSON
+
+```java
+// Json字符串转换为Dto
+MyDto myDto = new Gson().fromJson(jsonString, MyDto.class);
+new JsonParser().parse(jsonString).getAsJsonObject().get("key1").toString();	// 直接获取指定的key的值，而不用新建一个对象。但是有个坑是这样得到的字符串两边会带上引号。。。
+```
+
 ##### 正则匹配
 
 - java的正则匹配没有`findAll`的概念，需要自己在正则中加入类似`()*`来实现多次匹配
@@ -126,7 +130,7 @@ if (matcher.find() && matcher.groupCount() >= 1) {
 }
 ```
 
-#### Array/Vector/Stack/Enumeration/Collections数组
+#### Array/Vector/Stack/Enumeration/Collections/ArrayList数组
 
 - 数组的大小是无法改变的，如果要实现改变数组长度，可以采取新建一个数组然后返回新数组的指针的方式。
 
@@ -153,7 +157,6 @@ Arrays.asList("a", "b").contains("c");
 for (double element: myList) {}
 for (int i = 0 ; i < myList.size(); i++) {}
 
-
 // Vector类，动态数组
 // Stack栈
 Stack<Integer> d = new Stack<integer>();
@@ -167,13 +170,27 @@ days = dayNames.elements();
 
 // 数组反转
 List<String> new = Lists.reverse(lists1);
+
+// 数组分片
+List<E> subList(fromIndex, toIndex);
 ```
 
-#### Set/HashSet集合
+#### Set/HashSet/Stream集合
 
 ```java
 String[] myList = new String[] { "a", "b" };
 Set<String> mySet = new HashSet<String>(Arrays.asList(myList));	// 初始化
+```
+
+##### Stream API
+
+- 是一系列对集合便利操作的工具集，类似`Laravel`里面的`Collection`
+
+```java
+Record record = list.stream()
+  .filter(record -> "name".equals(record.getName()))
+  .findFirst()
+  .orElse(null);
 ```
 
 #### Dictionary/Hashtable/Map字典

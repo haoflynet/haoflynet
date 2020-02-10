@@ -1,7 +1,7 @@
 ---
 title: "Django Admin 后台管理系统"
 date: 2019-06-01 00:00:00
-updated: 2019-06-11 14:32:00
+updated: 2020-01-14 14:32:00
 categories: 编程之路
 ---
 
@@ -244,9 +244,9 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
           'markdown.extensions.sane_lists',
           ]
       ```
-      
-6. 前端模板这样渲染
    
+6. 前端模板这样渲染
+  
       ```django
       <div>
         {{ content | custom_markdown }}
@@ -289,4 +289,7 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
           }
       ```
    
-      
+   
+   ## TroubleShooting
+   
+   - **Python crashes after trying to visit admin page with exit code 245**: 每次进入admin页面程序就崩溃，可以尝试更新`python`版本或者更新`django`版本，我`3.7.0b2`遇到过这个问题，升级`Python`得以解决
