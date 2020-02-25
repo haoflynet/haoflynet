@@ -16,32 +16,20 @@ categories: 编程之路
 
 首先，使用composer安装laravel的安装器
 
-
-
     composer global require "laravel/installer"
 
 然后再将其加入系统路径(在环境变量里添加如下目录)：
-
-
 
     C:\\Users\\haofly\\AppData\\Roaming\\Composer\\vendor\\bin
 
 之后再打开终端检查是否安装成功，如果出现如下信息表示安装成功了
 
-
-
     C:\\Users\\haofly>laravel
     Laravel Installer version 1.2.0
-
-
-
-
+    
     Usage:
      [options] command [arguments]
-
-
-
-
+     
     Options:
      --help (-h)           Display this help message
      --quiet (-q)          Do not output any message
@@ -51,10 +39,7 @@ categories: 编程之路
      --ansi                Force ANSI output
      --no-ansi             Disable ANSI output
      --no-interaction (-n) Do not ask any interactive question
-
-
-
-
+     
     Available commands:
      help   Displays help for a command
      list   Lists commands
@@ -62,8 +47,6 @@ categories: 编程之路
 
 
 之后就可以在wamp环境的www目录下执行如下命令即可建立新的项目了：
-
-
 
     >> laravel new 项目名
     Crafting application...
@@ -78,24 +61,16 @@ categories: 编程之路
 这里就是官网说的不大明显的地方了，害我之前做错了一步。 现在需要打开apache的mod_rewrite模式，打开apache的配置文件httpd.conf
 (我的电脑是D:\\wamp\\bin\\apache\\apache2.4.9\\conf\\httpd.conf)，把下面一行前面的注释去掉
 
-
-
     LoadModule rewrite_module modules/mod_rewrite.so
 
-
-此时重启wamp服务，就可以访问localhost/laravel/public的欢迎页了  
+此时重启wamp服务，就可以访问localhost/laravel/public的欢迎页了 
 ![](http://7xnc86.com1.z0.glb.clouddn.com/windows-wamp-install-laravel.png)  
 
 # 测试环境
 
-在我使用apache设置了虚拟目录后访问[http://localhost:8080即访问到laravel项目，laravel自带了一个登录的页面`http
-://localhost:8080/home`，当然要成功注册和的登录，必须先将默认的...](http://localhost:8080即访问到larav
-el项目，laravel自带了一个登录的页面<code>http://localhost:8080/home</code>，当然要成功注册和的登录，必须先将
-默认的数据库及数据表建立好)：
+在我使用apache设置了虚拟目录后访问`http://localhost:8080`，即访问到laravel项目，laravel自带了一个登录的页面`http://localhost:8080/home`，当然要成功注册和的登录，必须先将默认的`http://localhost:8080`即访问到laravel项目，laravel自带了一个登录的页面`http://localhost:8080/home`，当然要成功注册和的登录，必须先将默认的数据库及数据表建立好) :
 
 首先，在数据库的配置文件 `learnlaravel5/.env`里面填好数据库的基本信息
-
-
 
     DB_HOST=localhost
     DB_DATABASE=faxie
@@ -103,8 +78,6 @@ el项目，laravel自带了一个登录的页面<code>http://localhost:8080/home
     DB_PASSWORD=mysql
 
 然后执行前移数据库操作
-
-
 
     php artisan migrate
 
