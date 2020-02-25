@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2019-11-30 10:58:30
+updated: 2020-01-17 17:58:30
 categories: system
 ---
 # Linux手册
@@ -285,8 +285,9 @@ ssh-keygen -lf ~/.ssh/id_rsa.pub	# mac下计算ssh key的指纹
 ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub	# linux上计算ssh key的指纹
 ssh-keygen -p -f ~/.ssh/id_rsa.pub		# 修改key密码
 
-# ssh-add命令，转发ssh key，常用与跳板机
-ssh-add -l	# 列出当前登录用户的ssh key
+# ssh-add命令，将专用密钥添加到ssh-agent的高速缓存中。转发ssh key，常用与跳板机
+ssh-add -L	# 列出ssh-agent的公钥
+ssh-add -l	# 列出ssh-agent的密钥
 ssh-add -k -i ~/.ssh/my.pub	# 将指定ssh key添加到当前用户的key列表中去，之后的ssh命令都会自动带上该key
 ssh-add -A	# 将当前所有的key都带上
 
@@ -386,7 +387,7 @@ sudo fdisk /dev/sdb # 对某一硬盘进行分区(千万不要在当前硬盘进
 sudo mkfs -t ext4 /dev/sdb   # 将硬盘格式化为ext4文件系统
 sudo df -lh   # 显示硬盘挂载情况
 sudo mount -t ext4 /dev/sdb /mydata  # 挂载某个分区文件为ext4
-vim /etc/fstab中添加
+# vim /etc/fstab中添加，特别注意，修改完该文件后需要执行mount -a测试一下语法是否有错误，以免无法启动
 UUID=硬盘的UUID  /挂载位置   ext4 defaults 0  0   # 在系统启动时自动挂载硬盘blkid /dev/sda1  查看硬盘UUID用sudo blkid
 
 sudo du -h -d 1 /path	# 获取指定目录下一级的各个目录的大小
@@ -1191,3 +1192,5 @@ date +"%T"	# 仅显示时间，比如10:44:00
 - **SSH KEY公钥添加成功，但依然无法登录**: 一般是认证文件权限的问题，权限过高和过低都不行，`~/.ssh`文件夹的权限是700，`~/.ssh/*`的权限是600.
 
 - **`rm -rf`删除目录的时候报错: 目录非空**: 检查一下是否有进程在占用目录，或者目录下是否有一些隐藏的状态文件
+
+- **spawn command not found**: `spawn`命令必须在安装`except`之后，并且不能在`/bin/bash`中使用，只能在`!/usr/bin/expect`中使用

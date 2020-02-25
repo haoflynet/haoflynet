@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-01-14 10:56:00
+updated: 2020-02-22 10:56:00
 categories: java
 ---
 
@@ -244,6 +244,10 @@ TimeZone tz = TimeZone.getTimeZone("UTC");
 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 df.setTimeZone(tz);
 return df.format(new Date());
+
+// 解析CST格式的时间
+String dateStr = "Wed Sep 11 10:10:10 CST 2020"; 
+Date date = (Date) df.parse(df);
 ```
 
 #### 类/对象/方法
@@ -281,6 +285,10 @@ public Optinal<User> getUser(Long id) {
 Optional<user> userOp = getUser(1L);
 if (userOp.isPresent()) {...} else {...}
 ```
+
+#### 异常处理
+
+- 异常类的`getMessage()`和`toString()`方法的区别，前者仅仅返回错误的信息，如果是空指针异常，一般返回的是null，而后者则会包含异常类的类型信息。建议如果是打印日志则使用`toString()` 方法，因为更详细，如果是给用户看的信息可以使用`getMessage`方法仅展示给用户关键信息
 
 #### 文件/文件夹
 

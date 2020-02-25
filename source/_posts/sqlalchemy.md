@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2019-08-02 11:11:00
+updated: 2019-12-30 16:11:00
 categories: python
 ---
 
@@ -203,6 +203,13 @@ def fullname(self):
   result = conn.execute("INSERT INTO user (name) VALUES ('haofly')")
   result = conn.execute("INSERT INTO user (name) VALUES ('haofly') RETURNING id")	# 插入并拿到插入的id
   result.fetchall()
+  ```
+
+- 执行原生语句的时候，防止SQL注入:
+
+  ```python
+  bind_sql = 'SELECT * FROM xxx WHERE field = :value'
+  session.execute(bind_sql, {'value': 'value1'})
   ```
 
 ### 查询

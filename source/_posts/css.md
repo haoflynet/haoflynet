@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2019-09-05 09:25:00
+updated: 2020-02-17 09:25:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -231,6 +231,18 @@ http://www.w3cplus.com/content/css3-gradient
 
 ```html
 <div onclick="location.href='https://haofly.net'" style="cursor:pointer"></div>
+```
+
+#### 底部居中对齐
+
+```css
+.class {
+  position:absolute;
+  bottom: 30px;
+  margin: auto;
+  left: 0;
+  right: 0;
+} 
 ```
 
 #### 在Chrome显示小于12px的字体
