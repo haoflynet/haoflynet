@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2019-12-17 17:36:30
+updated: 2020-02-22 1:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -40,6 +40,15 @@ python3.3 get-pip.py
 ## 基本语法
 
 <!--more-->
+
+- 3.8开始支持海象运算符，又能少写一行代码了
+
+  ```python
+  if (n := len(a)) > 10:
+    print(n)
+  ```
+
+- 
 
 #### 列表
 
@@ -1208,9 +1217,8 @@ data = pickle.load(s)		# 将字符串反转成其对应的变量
 
 ```python
 import smtplib
-from email import encoders
-from email.mime.text import MIMEText
 from email.header import Header
+from email.mime.text import MIMEText
 
 # 腾讯SMTP
 mail_host = '发件服务器'
@@ -1230,6 +1238,15 @@ smtpObj.connect(mail_host)
 smtpObj.login(mail_user, mail_pass)
 smtpObj.sendmail(sender, receivers, message.as_string())
 print('邮件发送成功')
+
+# TLS加密方式
+smtp = smtplib.SMTP(smtpHost, smtpPort)
+smtp.starttls()
+smtp.login(mail_user, mail_pass)
+
+# SSL加密方式
+smtp = smtplib.SMTP_SSL(smtpHost, smtpPort)
+smtp.login(mail_user, mail_pass)
 ```
 
 #### sorted: 数组/字典排序
