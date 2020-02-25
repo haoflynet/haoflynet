@@ -84,9 +84,9 @@ Quit the server with CONTROL-C.
 
 需要注意的是，新建的项目的文件夹mysite并不是仅仅存在在那个虚拟环境里，而是在实际的文件中，只是运行它使用的是虚拟的环境而已，不信呆会儿退出该虚拟环境后，你可以用实体环境在该目录下测试。
 
-现在就可以直接访问<http://127.0.0.1:8000，不需要端口映射，可直接访问，如下>：
+现在就可以直接访问`http://127.0.0.1:8000`，不需要端口映射，可直接访问：
 
-## ![](http://7xnc86.com1.z0.glb.clouddn.com/virtualenv-python-django_0.jpg)  
+![](https://haofly.net/uploads/virtualenv-python-django_0.jpg) 
 
 ## 退出虚拟环境
 
