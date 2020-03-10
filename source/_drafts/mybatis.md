@@ -74,3 +74,7 @@ for (AfsKeywords afsKeyword : afsKeywords) {
 
 
 
+多个like查询，可以这样用
+
+public void addKeywordTo(String keyword, UserExample userExample) {  userExample.or().andDisplayNameLike("%" + keyword + "%");  userExample.or().andOrgLike(keyword + "%");  userExample.or().andStatusLike("%" + keyword + "%");  userExample.or().andIdLike(keyword + "%"); }
+

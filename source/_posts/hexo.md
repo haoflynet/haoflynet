@@ -1,7 +1,7 @@
 ---
 title: "hexo 教程"
 date: 2016-08-11 8:52:39
-updated: 2018-08-06 15:51:00
+updated: 2020-03-05 10:51:00
 categories: tools
 ---
 ### 安装hexo
@@ -56,6 +56,5 @@ categories: tools				# 文章分类
   {% load	# 这样子开头
   ```
 
-- 
+- **Error: Cannot find module 'babel-runtime/regenerator'**: 原因是没有安装这个包，可以执行`npm install babel-runtime --save`
 
-##### 

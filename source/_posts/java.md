@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-02-22 10:56:00
+updated: 2020-03-09 10:56:00
 categories: java
 ---
 
@@ -12,6 +12,7 @@ categories: java
 ### 数据类型
 
 - `final`关键字: 修饰类表示该类不能被继承，内部所有成员变量都是final的; 类的`private`方法也会隐式地指定为`final`方法。修饰变量时，如果是基本数据类型的变量，则其数值在初始化之后就不能更改; 如果是引用类型的变量，则初始化后不能被指向另一个对象。
+- `object.getField() == 1`: 这种比较可能出现空指针异常
 
 #### Integer/Long/Double数字
 
