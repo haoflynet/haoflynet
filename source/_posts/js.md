@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-01-06 14:43:00
+updated: 2020-03-05 15:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -195,6 +195,7 @@ $('p.intro')  	// class为intro的所有p元素
 $('p:first')  	// 选取第一个<p>元素
 $('p a:first')	// 选取p元素下的第一个a元素
 $('p[name=abc]')
+$('body >div:first-child') // 查找第一级的第一个元素
 $('*')        		// 所有元素
 $(this)       		// 当前元素
 $(this).next()  	// 获取下一个同级元素
