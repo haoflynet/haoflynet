@@ -1,7 +1,7 @@
 ---
 title: "GraphQL 简介"
 date: 2018-08-13 22:52:39
-updated: 2018-09-09 16:53:00
+updated: 2020-03-10 16:53:00
 categories: python
 ---
 
@@ -106,5 +106,7 @@ query Hero($episode: Episode, $withFriends: Boolean!) {
 [使用React及GraphQL的仿hackernews网站](https://github.com/clintonwoo/hackernews-react-graphql)
 
 [阻碍你使用 GraphQL 的十个问题](http://jerryzou.com/posts/10-questions-about-graphql/)
+
+[GraphQL + Space Cloud 简化你的API设计](https://mp.weixin.qq.com/s/zPW1kZ32usMxt6UFlD7O2Q)
 
  

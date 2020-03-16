@@ -1,7 +1,7 @@
 ---
 title: "Java Spring手册"
 date: 2018-11-01 21:32:00
-update: 2019-12-09 17:30:00
+update: 2020-03-11 17:30:00
 categories: 编程之路
 ---
 
@@ -83,9 +83,9 @@ public class Post {
 
 @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。
 
-## 重要概念
+### 重要概念
 
-### bean
+#### bean
 
 - `bean`有两种初始化方法:
   - 在`applicationContext.xml`中直接添加指定的类`<bean id="myBean" class="com.MyBean" init-method="initMethod"></bean>`
@@ -133,6 +133,25 @@ public class Post {
   // 在其他地方可以这样子直接获取指定的bean
   BusniessServiceImpl businessServiceImpl = (BusinessServiceImpl) SpringContextUtil.get("businessServiceImpl");	// 需要注意的是，如果放在应用初始化的过程中，那么该类中的applicationContext可能还没有初始化，可以sleep以下或者其他方式
   ```
+
+#### AOP切片
+
+- 切片的功能类似于中间件，或者说插件
+
+在`applicationContext.xml`中定义切片:
+
+```xml
+<bean id="myLogAspect" class="net.haofly.commons.util.LogAspect"></bean>
+<aop:config>
+  <!-- 设置切入点 -->
+  <aop:pointcut expression="execution(* net.haofly.cloud.service.*.impl.*.*Impl.*(..)) and !execution(* net.haofly.service.tt.impl.ServerImpl.createServer(..))" id="myPointcut"/>	<!-- 排除某个方法直接用! -->
+  
+  <!-- 设置切面: 将指定bean对象中的某个方法切入到某个切入点，这里是把日志里面的validate方法切入到上面那些切入点中 -->
+  <aop:aspect ref="myLogAspect">
+    <aop:around method="validate" pointcut-ref="myPointcut"/>
+  </aop:aspect>
+</aop:config>
+```
 
 ## TroubleShooting
 
