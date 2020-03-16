@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2019-10-23 14:21:00
+updated: 2020-03-11 17:21:00
 categories: tools
 ---
 # Git指南
@@ -335,3 +335,5 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 - **warning: refname 'remotes/origin/dev' is ambiguous. fatal: 歧义的对象名: 'remotes/origin/dev'**: 原因是错误的新建了一个和远程分支同名的分支，在新建分支的时候一定要`-b`让本地分支与远程分支相对应，遇到这种情况，只需要先删除本地分支即可`git branch -d 分支名`
 
 - **提交时出现`fatal: Unable to create '.git/index.lock': File exists.`**: 原因是检测到有其他的Git在同时操作该本地仓库，如果确认没有其他的，那么直接删除它即可`rm -rf .git/index.lock`
+
+- **The project you were looking for could not be found**: 切换用户试试
