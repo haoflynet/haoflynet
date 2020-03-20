@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-03-09 10:56:00
+updated: 2020-03-16 11:56:00
 categories: java
 ---
 
@@ -12,7 +12,27 @@ categories: java
 ### 数据类型
 
 - `final`关键字: 修饰类表示该类不能被继承，内部所有成员变量都是final的; 类的`private`方法也会隐式地指定为`final`方法。修饰变量时，如果是基本数据类型的变量，则其数值在初始化之后就不能更改; 如果是引用类型的变量，则初始化后不能被指向另一个对象。
+
 - `object.getField() == 1`: 这种比较可能出现空指针异常
+
+- 使用`Optional`来减少空指针异常:
+
+  ```java
+  public static Optional<List<String>> getA(boolean a) {
+    if (a) {
+      String [] results = {"a", "b", "c"};
+      return Optional.of(Arrays.asList(results));
+    }
+    return Optional.empty();	// 不用返回null或者空数组了
+  }
+  
+  public static void test() {
+    Optional<List<String>> re = getA(true);
+    re.ifPresent(result -> {
+      console.log(result);
+    });
+  }
+  ```
 
 #### Integer/Long/Double数字
 
@@ -129,6 +149,10 @@ if (matcher.find() && matcher.groupCount() >= 1) {
     System.out.println(matcher.group(i));
   }
 }
+
+
+// 正则替换
+str.replaceAll(reg, "");
 ```
 
 #### Array/Vector/Stack/Enumeration/Collections/ArrayList数组
@@ -249,6 +273,13 @@ return df.format(new Date());
 // 解析CST格式的时间
 String dateStr = "Wed Sep 11 10:10:10 CST 2020"; 
 Date date = (Date) df.parse(df);
+
+// 时间计算
+date1.before(date2);	// 判断date1是否在date2之前
+
+Calendar now = Calendar.getInstance()
+now.setTime(date);	// 可以指定其他的date，不用非要是进Tina
+now.set(Calendar.DATE, now.get(Calendar.DATE) + 7);	// 计算7天后的时间
 ```
 
 #### 类/对象/方法
