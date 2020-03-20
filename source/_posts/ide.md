@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2020-03-12 14:08:00
+updated: 2020-03-16 16:08:00
 categories: 编程之路
 ---
 
@@ -32,6 +32,8 @@ categories: 编程之路
 - 最好只安装一个`IDEA`，`PhpStrom/PyCharm/WebStorm`可以以插件的方式引入，而且支持都非常不错
 
 - `Intellij IDEA`的[配置文档](https://www.jetbrains.com/help/idea/javascript-specific-guidelines.html)
+
+- `Extract Method`功能能够快速将一段代码提取并成为一个方法，对于代码重构十分方便，特别是在一个方法特别长的时候想要将其中某几行代码提取作为一个方法的时候只需要选中然后`Refactor->Extract Method`即可，能直接生成方法，并且还能自动给方法取名。
 
 - 常用快捷键
 

@@ -1,7 +1,7 @@
 ---
 title: "Chrome扩展开发手册"
 date: 2018-04-10 18:32:00
-updated: 2019-07-17 15:02:00
+updated: 2020-03-20 15:02:00
 categories: chrome
 ---
 
@@ -22,8 +22,8 @@ categories: chrome
 ├── manifest.json			# 入口文件，定义了插件的基本信息。page_action定义了有哪些页面，default_popup表示点击后默认的弹出页
 ├── options.html
 ├── options.js
-├── popup.html		# 默认的弹出页，就是一个完整的html，需要js脚本的话也许要单独引用。chrome强制要求js与html文件分开放
-└── popup.js		# 该样例里面主要的业务逻辑就在这里面
+├── popup.html		# 默认的弹出页，就是一个完整的html，需要js脚本的话也需要单独引用。chrome强制要求js与html文件分开放
+└── popup.js		# 主要的业务逻辑就在这里面
 ```
 
 #### manifest.json 详细配置
@@ -35,7 +35,7 @@ categories: chrome
   "description": "插件描述",
   "default_locale": "zh_CN",
   "permissions": [
-    "activeTab", 
+    "activeTab",	// 使扩展程序在用户调用扩展程序的时候能够临时访问当前活动的标签页，可以代替<all_urls>，在安装过程中不显示警告信息
     "contentMenus",	// 右键菜单
     "declarativeContent", 	
     "notifications",	// 通知
@@ -46,12 +46,12 @@ categories: chrome
     "https://*.tmall.com/*"
   ],
   "options_page": "options.html",
-  "background": {
+  "background": {		// 注册事件页面
     "scripts": ["background.js"],
-    // "page": "background.html",	// 要么是scripts要么是page，如果是js，那么会自动生成一个北京页
+    // "page": "background.html",	// 要么是scripts要么是page，如果是js，那么会自动生成一个背景页
     "persistent": false
   },
-  // browser_action、page_action、app三选一表示浏览器右上角图标的设置
+  // browser_action(浏览器按钮)、page_action(页面按钮)、app(单独的APP)三选一表示浏览器右上角图标的设置
   "page_action": {	// 当某些特定页面打开时才显示图标，否则是灰色
     "default_popup": "popup.html",	// 当用户点击扩展程序图标时弹出的页面
     "default_title": "",
@@ -73,9 +73,9 @@ categories: chrome
     "48": "images/get_started48.png",
     "128": "images/get_started128.png"
   },
-  "content_scripts": [{	// 定义需要直接注入页面的JS
+  "content_scripts": [{	// 定义需要直接注入页面的JS，不会出现在插件的审查弹出内容中，而是直接出现在浏览器当前页面里面，相当于一个附加在后面的js文件
     "matches": ["http//*/*"],
-    "js": ["js/query-1.8.3.js", "js/mine.js"],
+    "js": ["js/query-1.8.3.js", "js/mine.js", "content.js"],
     "css": ["css/custom.css"],
     "run_at": "document_start", // 执行时机，可选document_start, document_end,documen_idle(默认值表示页面空闲时)
   }],
@@ -113,10 +113,12 @@ categories: chrome
 
 ## 常用功能实现
 
-- **仅在指定域名激活插件图标**: 需要在`background.js`中进行如下设置
+#### 仅在指定域名激活插件图标
 
-  ```javascript
-  chrome.runtime.onInstalled.addListener(function() {
+需要在`background.js`中进行如下设置
+
+```javascript
+chrome.runtime.onInstalled.addListener(function() {
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
       chrome.declarativeContent.onPageChanged.addRules([{
         conditions: [
@@ -132,9 +134,39 @@ categories: chrome
       }]);
     });
   });
-  ```
+```
 
-- 
+#### popup.js与content.js通信
+
+```javascript
+// popup.js发送消息
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('my_tag').addEventListener('click', function () {
+    console.log('点击特定元素，发送消息给content.js，触发其中的函数');
+    
+		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
+            console.log(response.farewell);
+        });
+    });
+ });
+});
+
+// content.js直接接收消息
+chrome.runtime.onMessage.addListener(msgObj => {	// 这里的msgObj即是发送的对象{greeting: "hello"}
+    console.log(msgObj);
+});
+
+// content.js接收消息并返回结果
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+      sendResponse({farewell: "goodbye"});
+});
+```
 
 ## TroubleShooting
 

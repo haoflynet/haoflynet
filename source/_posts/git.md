@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2020-03-11 17:21:00
+updated: 2020-03-16 17:21:00
 categories: tools
 ---
 # Git指南
@@ -268,9 +268,9 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 - **.gitignore无效，该忽略的依然没有被忽略**
 
    ```shell
-   git rm -r --cached .
+   git rm -r --cached .	# 这条命令处理不了文件夹，如果是文件夹，需要把最后的点修改为文件夹的路径
    git add .
-   git commit -m "fixed untracked files
+   git commit -m "fixed untracked files"
    ```
 
    这样会删除github上面已经提交了的但是现在忽略了的文件，如果要在github上面保留一份，那么执行`git add -f filename`
