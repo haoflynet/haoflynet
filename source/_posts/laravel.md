@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2020-02-22 15:07:00
+updated: 2020-03-16 15:07:00
 categories: php
 ---
 # Laravel指南
@@ -1457,3 +1457,5 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 [老司机带你深入理解 Laravel 之 Facade](https://learnku.com/articles/37493)
 
 [Laravel项目深度优化指南](https://learnku.com/articles/35470)
+
+[如何在Laravel中使用PHP的装饰器模式](https://learnku.com/laravel/t/41757): 这篇文章中的仓库模式也是十分有用的

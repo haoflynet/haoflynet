@@ -1,7 +1,7 @@
 ---
 title: "Chrome扩展开发手册"
 date: 2018-04-10 18:32:00
-updated: 2020-03-20 15:02:00
+updated: 2020-03-20 15:42:00
 categories: chrome
 ---
 
@@ -46,7 +46,7 @@ categories: chrome
     "https://*.tmall.com/*"
   ],
   "options_page": "options.html",
-  "background": {		// 注册事件页面
+  "background": {		// 注册事件页面，和content.js不通，它是在后台一直有效的，常用来维护某些状态，监听某些事件，只会被加载一次的
     "scripts": ["background.js"],
     // "page": "background.html",	// 要么是scripts要么是page，如果是js，那么会自动生成一个背景页
     "persistent": false
@@ -99,6 +99,15 @@ categories: chrome
 ### API/权限列表
 
 [官方API列表](https://developers.chrome.com/extensions/api_index)
+
+- webRequest: 页面的相关的请求内容
+
+```javascript
+chrome.webRequest.onCompleted.addListener(
+    function(obj) {console.log(obj)},
+    {urls: ["<all_urls>"]}	// 这里需要单独指定哪些url需要被监听
+);
+```
 
 [官方权限列表](https://developer.chrome.com/apps/declare_permissions)
 
@@ -168,6 +177,10 @@ chrome.runtime.onMessage.addListener(
 });
 ```
 
+#### 无法获取页面发送的请求的响应
+
+应该是谷歌还没开放这方面的权限，目前只能通过`chrome.webRequest`[API](https://developer.chrome.com/extensions/webRequest)获取简单的请求相关信息，比如请求的url，部分请求头和响应头等，敏感信息基本上都是获取不到的。除非你想要开发一个`devtools`工具，在调试面板打开的情况下才能获取。
+
 ## TroubleShooting
 
 - **发送http请求网站出现`Access-Control-Allow-Origin not checking in chrome extension`错误**
@@ -189,4 +202,6 @@ chrome.runtime.onMessage.addListener(
 参考文章:
 
 [官网开发手册](https://developer.chrome.com/extensions/getstarted)
+
+[Chrome插件开发--后台监控网页并自动刷新，点击页面元素](https://blog.csdn.net/lchina1314/article/details/84725084): 快速创建一个抢购插件
 

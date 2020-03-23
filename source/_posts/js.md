@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-03-05 15:43:00
+updated: 2020-03-19 18:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -150,10 +150,19 @@ fs.readdir('目录名', 'utf-8', function (err, data) {	// 获取目录下的文
 ### 网络请求
 
 ```javascript
+// 同步方式
 var xmlHttp = new XMLHttpRequest();
-xmlHttp.open("GET", "https://haofly.net", false); // false表示用异步的方式
+xmlHttp.open("GET", "https://haofly.net", false);
 xmlHttp.send();
 console.log(xmlHttp.responseText);
+
+// 异步方式
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.onreadystatechange = function() {
+    console.log(xmlHttp.responseText);
+};
+xmlHttp.open("GET", 'https://haofly.net', true);
+xmlHttp.send();
 ```
 
 ### 进程/线程/Shell命令执行
