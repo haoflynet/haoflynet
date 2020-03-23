@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2020-01-07 07:50:30
+updated: 2020-03-10 07:50:30
 categories: frontend
 ---
 # node.js教程
@@ -79,6 +79,7 @@ npm install yarn@latest -g	# 升级yarn
 
 - **Permission Denied**问题，使用npm命令总是会出现这个问题，解决方法最简单的是把npm目录的拥有者修改为当前用户的名字` sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}`
 - **安装包时报错Unexpected end of JSON input while parsing near ' : '** 尝试先执行`npm cache clean --force`，然后再安装
+- **gyp: No Xcode or CLT version detected!**: 需要先安装`xcode`命令工具: `xcode-select --install`
 
 ##### 扩展阅读
 
