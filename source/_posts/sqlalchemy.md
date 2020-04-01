@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2019-12-30 16:11:00
+updated: 2020-03-27 23:11:00
 categories: python
 ---
 
@@ -285,6 +285,7 @@ result = session.execute(
 session.commit()
 
 result.lastrowid	# 获取上一次插入的主键id
+modelobj.id	# 如果是ORM，那么直接在add后获取主键id值就行了
 ```
 
 ### 修改
@@ -359,6 +360,7 @@ after_attach/after_begin/after_bulk_delete/after_bulk_update/after_commit/after_
 
 - **Tornado中使用SQLAlchemy连接SQLite进行commit操作的时候程序中断: Segment Fault**: 原因是`SQLite`的自增主键`id`重复了😂
 - **UnicodeEncodeError：'latin-1' codec can't encode characters in position 0-1: ordinal not in range(256)**: 连接数据库没有指定utf8的charset，参考本文连接数据库设置。
+- **UnicodeEncodeError: 'ascii' codec can't encode characters in position 7-8: ordinal not in range(128)**: 除了上面那种可能，还有中可能是直接把含有中文的json对象拿来给model的字符类型赋值了
 - **Can't recoonect until invalid transaction is rolled back**: 要么在每次执行sql语句之后主动close，要么在连接的时候设置`autocommit=True` 
 - **MySQL server has gone away**: 程序运行久了出现该问题。如果是使用了线程池，那么可能的原因是线程池的回收时间大于了mysql的最长交互时间(可使用`SHOW VARIABLES LIKE '%interactive_timeout%';`查看)。这个时候可以把`POOL_RECYCLE`参数设置为比那个时间小就行了。
 - **2013 Lost connection to MySQL server during query**: 原因是超过了`wait_timeout`规定的时间了，首先`show GLOBAL variables LIke '%wait_timeout%'`看看全局的超时时间是多少(这里一定要先看GLOBAL的，因为当前session的会首先被全局的影响)，这种情况，尽量优化sql，实在不行再修改这个配置。
