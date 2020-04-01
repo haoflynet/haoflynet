@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2020-03-16 16:08:00
+updated: 2020-03-23 12:08:00
 categories: 编程之路
 ---
 
@@ -57,6 +57,7 @@ categories: 编程之路
   - 函数参数多行时将反括号单独一行: `Function/constructor call arguments ->Place ')' on new line`
   - 函数注释中描述和参数之间空一行`PHPDoc -> Blank line before the first tag`
   - 取消自动将多个`import`替换为`import *`: `Editor -> Code Style -> Java `，将`Class count to use import with '*'`和`Names count to use static import with '*'`变大比如99，然后将下面的`Packages to Use Imporot with '*'`中的`import java.awt.*`和`import javax.swing`删除
+  - 取消js循环中属性不存在的提示: `Unfiltered for ..in loop`取消即可
   
 
 ### Intellij IDEA

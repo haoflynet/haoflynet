@@ -1,7 +1,7 @@
 ---
 title: "Chrome扩展开发手册"
 date: 2018-04-10 18:32:00
-updated: 2020-03-20 15:42:00
+updated: 2020-03-23 15:42:00
 categories: chrome
 ---
 
@@ -103,6 +103,7 @@ categories: chrome
 - webRequest: 页面的相关的请求内容
 
 ```javascript
+// popup.js
 chrome.webRequest.onCompleted.addListener(
     function(obj) {console.log(obj)},
     {urls: ["<all_urls>"]}	// 这里需要单独指定哪些url需要被监听
@@ -147,6 +148,8 @@ chrome.runtime.onInstalled.addListener(function() {
 
 #### popup.js与content.js通信
 
+- 如果只是想执行简单的东西，可以直接在`popup.js`中这样执行脚本:`chrome.tabs.executeScript({code:'console.log("abc");myfunc();'})`
+
 ```javascript
 // popup.js发送消息
 document.addEventListener('DOMContentLoaded', function() {
@@ -179,7 +182,11 @@ chrome.runtime.onMessage.addListener(
 
 #### 无法获取页面发送的请求的响应
 
-应该是谷歌还没开放这方面的权限，目前只能通过`chrome.webRequest`[API](https://developer.chrome.com/extensions/webRequest)获取简单的请求相关信息，比如请求的url，部分请求头和响应头等，敏感信息基本上都是获取不到的。除非你想要开发一个`devtools`工具，在调试面板打开的情况下才能获取。
+应该是谷歌还没开放这方面的权限，目前只能通过`chrome.webRequest`[API](https://developer.chrome.com/extensions/webRequest)获取简单的请求相关信息，比如请求的url，部分请求头和响应头等，敏感信息基本上都是获取不到的。除非你想要开发一个`devtools`工具，在调试面板打开的情况下才能获取。[这里](https://medium.com/p/dd9ebdf2348b/responses/show)提供了两种方法获取响应，第一种目测是有效的，但是实际我的目标网页可能请求方式有变化，导致我仍然获取不到。
+
+#### 模拟请求
+
+最好在`content.js`中发送而不是`popup.js`中，因为前者相当于直接在页面发送，会自动携带真实的cookie，且不是跨域的。
 
 ## TroubleShooting
 

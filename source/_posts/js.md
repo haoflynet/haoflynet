@@ -1,12 +1,15 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-03-19 18:43:00
+updated: 2020-03-24 11:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
 
 TODO: 逐步用原生方法替换jQuery，参考[You-Dont-Need-jQuery](https://github.com/oneuijs/You-Dont-Need-jQuery#query-selector)
+
+- 判断是否是非数字: `isNaN(a)`
+- 生产环境直接全局屏蔽掉`console.log`的输出，只需要复写即可:`console.log=()=>{}`
 
 ## 基本语法
 
@@ -47,7 +50,7 @@ arr instance of Array	// 判断是否是数组
 arr.filter(Boolean)	// 快速移除所有"false"类型(false、null、undefined等)的元素
 
 // 遍历数组方法
-for (var index in arr) {}
+for (var index in arr) {}	// 注意这里的循环变量不是数组元素而是索引
 a.forEach(function(value, key, arr) {}); 
 arr.map((value) => {console.log(value); return newValue;}) // 返回值为一个新的数组，原数组不会改变
 arr.filter(function(value, key, arr) {return true}); // 返回新数组，如果元素返回true则保留，返回false则抛弃
@@ -158,6 +161,9 @@ console.log(xmlHttp.responseText);
 
 // 异步方式
 var xmlHttp = new XMLHttpRequest();
+xmlHttp.onload = function(e) {
+  
+}
 xmlHttp.onreadystatechange = function() {
     console.log(xmlHttp.responseText);
 };
@@ -215,6 +221,32 @@ $(this).nextAll('cl')	// 获取指定元素的所有指定的同级元素
 $('p').find('input')	// 查找input下的所有input元素		
 $('input:checked') 		// 查找所有checked为true的checkbox的input元素
 document.getElementById('test:abc')	// 有特殊字符的元素的查找，jquery往往无法处理过来
+```
+
+#### 同步等待元素存在可见
+
+由于有些元素不一定是在`window.load`之后就全部展示的，有时候我们需要通过滚动页面才能让某些元素出现，这个时候就需要一个比较方便的方法用于等待元素出现。如果是异步的需求，可以直接用`setInterval`每隔几秒去检查一次(注意不能用while循环去一直判断，因为会占用计算时间，导致异步任务无法完成)，但是对于复杂的需求，比如等待一个元素出现后需要等待另外的元素出现，或者是需要同步判断一系列的元素，那么就需要另外的方法，目前能找到的最好的方法是这样的:
+
+```javascript
+function rafAsync() {
+    return new Promise(resolve => {
+        requestAnimationFrame(resolve);
+    });
+}
+
+// 用这种方式去检查元素的效率比setInterval高很多
+async function checkElement(selector, index = 0) {
+    let querySelector = document.querySelectorAll(selector)[index];
+    while (querySelector === null || querySelector === undefined) {
+        querySelector = document.querySelectorAll(selector)[index];
+        await rafAsync()
+    }
+    return querySelector;
+}
+
+checkElement('#my_tag').then((element) => {	// 当元素可见时会执行then里面的回调逻辑
+  console.log(element);
+})
 ```
 
 ### 获取元素内容

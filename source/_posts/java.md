@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-03-16 11:56:00
+updated: 2020-03-30 15:56:00
 categories: java
 ---
 
@@ -38,7 +38,7 @@ categories: java
 
 ```java
 a.longValue();	// 整型转长整型
-longValue.intValue;	// long转换为int
+longValue.intValue();	// long转换为int
 1L;	// 直接将数字转换成Long型
 String.valueOf(123); // 整型转字符串，避免用toString出现空指针异常
 (byte)1;	// int to byte，int转字节
@@ -212,10 +212,17 @@ Set<String> mySet = new HashSet<String>(Arrays.asList(myList));	// 初始化
 - 是一系列对集合便利操作的工具集，类似`Laravel`里面的`Collection`
 
 ```java
+// 过滤
 Record record = list.stream()
   .filter(record -> "name".equals(record.getName()))
   .findFirst()
   .orElse(null);
+
+// 排序
+Record record = list.stream()
+  .sorted(Comparator.comparingInt(Record::getTime))
+  .reversed()
+  .collect(Collectors.toList());
 ```
 
 #### Dictionary/Hashtable/Map字典
