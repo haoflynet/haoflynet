@@ -1,7 +1,7 @@
 ---
 title: "Go 手册"
 date: 2018-04-13 19:02:30
-updated: 2019-06-27 10:07:00
+updated: 2020-04-03 10:07:00
 categories: go
 ---
 
@@ -558,3 +558,5 @@ func main() {
 [Why you can have millions of Goroutines but only thousands of Java Threads](https://rcoh.me/posts/why-you-can-have-a-million-go-routines-but-only-1000-java-threads/)
 
 [如何写出优雅的Golang代码](https://draveness.me/golang-101)
+
+[分析标准库和优秀项目的接口：Go中接口应该这么定义](https://mp.weixin.qq.com/s/hj9sJov2XBBtq-HIPSWiHQ)

@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2020-03-23 12:08:00
+updated: 2020-04-03 12:08:00
 categories: 编程之路
 ---
 
@@ -59,6 +59,21 @@ categories: 编程之路
   - 取消自动将多个`import`替换为`import *`: `Editor -> Code Style -> Java `，将`Class count to use import with '*'`和`Names count to use static import with '*'`变大比如99，然后将下面的`Packages to Use Imporot with '*'`中的`import java.awt.*`和`import javax.swing`删除
   - 取消js循环中属性不存在的提示: `Unfiltered for ..in loop`取消即可
   
+- 设置新建文件模板，比如自动加入`Created By name on ${DATE}`等功能:
+
+  - `Perferences->Editor->File and Code Templates`，这里面可以针对不同类型的文件创建不同的模板
+
+  - 找到`Class`表示新建`Java`类的时候的模板，只需要在中间插入需要加入的注释信息即可:
+
+    ```shell
+    #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+    #parse("File Header.java")
+    /**
+     * Created by haofly on ${DATE}
+     */
+    public class ${NAME} {
+    }
+    ```
 
 ### Intellij IDEA
 

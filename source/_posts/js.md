@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-03-24 11:43:00
+updated: 2020-04-03 11:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -671,3 +671,9 @@ $.post('some.php', {name: 'haofly'})
   var obj = { alert: alert.bind(window) }
   obj.alert('hello');		// 这样就能正常调用了
   ```
+
+
+
+##### 扩展阅读
+
+- [一大波JS开发工具函数](https://zhuanlan.zhihu.com/p/113385396?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
