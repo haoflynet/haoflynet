@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2017-05-25 17:09:39
-updated: 2019-10-23 15:48:00
+updated: 2020-04-05 15:48:00
 categories: js
 ---
 
@@ -41,12 +41,13 @@ axios({
 
 ##### 相关链接
 
-仿造猫眼电影客户端实例: https://github.com/zhixuanziben/gouyan-movie-vue   
+- 仿造猫眼电影客户端实例: https://github.com/zhixuanziben/gouyan-movie-vue   
 
-Objc中国的全平台客户端: https://github.com/halfrost/vue-objccn
+- Objc中国的全平台客户端: https://github.com/halfrost/vue-objccn
 
-仿闲鱼：https://github.com/Sukura7/vue-ali-xianyu
+- 仿闲鱼：https://github.com/Sukura7/vue-ali-xianyu
 
-仿hackernews: https://github.com/vuejs/vue-hackernews-2.0
+- 仿hackernews: https://github.com/vuejs/vue-hackernews-2.0
 
-Flask与Vuejs创建一个简单的单页应用https://testdriven.io/developing-a-single-page-app-with-flask-and-vuejs
+- Flask与Vuejs创建一个简单的单页应用https://testdriven.io/developing-a-single-page-app-with-flask-and-vuejs
+- [Vue表单可视化生成器](https://github.com/dream2023/vue-ele-form-generator)
