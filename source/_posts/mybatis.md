@@ -1,8 +1,11 @@
 ---
 title: "MyBatis 手册"
 date: 2020-04-06 18:00:00
+updated: 2020-04-08 15:11:00
 categories: java
 ---
+
+建议安装[Mybatis-plus](https://github.com/baomidou/mybatis-plus)
 
 ## 目录结构
 
@@ -74,6 +77,13 @@ public interface Table1Mapper {
 ### 编写自定义的查询方法
 
 - 为了避免每次`MyBatis`执行后都覆盖自己添加的自定义方法，所以最好将自定义查询方法写在`mapper/ext`文件夹中，但是这样做有个缺点就是字段如果有修改得改一下其对应的`xml`文件以防止使用这里面的方法时字段缺失
+
+- 因为配置是`xml`文件，所以对于特殊符号需要使用`XML`的转义方法，例如:
+
+  ```xml
+  start_time <![CDATA[ <= ]]> #{endTimestamp} 	// 转义小于符号
+  ```
+
 - 首先编写XML文件，例如`MyExtMapper.xml`，该文件可以将之前该表对应的XML文件复制过来，删除掉原来XML中已经存在的方法定义，可以直接根据id判断，例如`<select id="selectByExample"...>`就是`selectByExample`方法的定义。删除完成后按照之前的语法定义自己的查询方法即可，然后把id拿到再建一个同名的接口文件`MyExtMapper.java`即可。例如一个自定义的统计接口，可以这样写:
 
 ```java
@@ -96,7 +106,14 @@ public interface Table1Mapper {
 </select>
   
 // MyExtMapper.java中这样定义该方法
-List<Table1> countByMyCondition(Table1Example example);
+Integer countByMyCondition(Table1Example example);
+
+// 使用自定义的入参
+List<Table1> selectByMySelct(@Param("beginTimestamp") Long beginTimestamp, @Param("endTImestamp") Long endTImestamp);
+// 在xml中parameterType设置为"map"，就可以直接这样使用入参:
+<if test="beginTimestamp != null">
+  AND created_at >= FROM_UNIXTIME(#{beginTimestamp})
+</if>
 ```
 
 ### 复杂OR查询
@@ -115,4 +132,3 @@ List<Table1> table1List = table1Mapper.selectByExample(example);
 example.or().andField1EqualTo("A")
 example.or().andField2EqualTo("B");
 ```
-

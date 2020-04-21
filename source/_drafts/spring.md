@@ -1,7 +1,7 @@
 ---
 title: "Java Spring手册"
 date: 2018-11-01 21:32:00
-update: 2020-03-11 17:30:00
+update: 2020-04-13 15:30:00
 categories: 编程之路
 ---
 
@@ -72,8 +72,6 @@ public class Post {
   private Author author;
 }
 ```
-
-
 
 @Service用于标注业务层组件
 
@@ -157,6 +155,12 @@ public class Post {
 
 - 启动时在`Initializing Spring FrameworkServlet 'spring'`这一句日志时候，可能是以下原因之一
   - `Mybatis`的`xml`文件的id可能重复了
+
+
+
+##### 扩展阅读
+
+- [Aliyun Java Initializr](https://start.aliyun.com/): Spring的国内的脚手架
 
 
 
