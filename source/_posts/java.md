@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-03-30 15:56:00
+updated: 2020-04-21 12:56:00
 categories: java
 ---
 
@@ -28,13 +28,16 @@ categories: java
   
   public static void test() {
     Optional<List<String>> re = getA(true);
+    re.isPresent();	// 对象是否存在
     re.ifPresent(result -> {
       console.log(result);
     });
   }
   ```
 
-#### Integer/Long/Double数字
+#### Integer/Long/Double/Float/BigDecimal数字
+
+- 千万不要用`Double/Float`来定义金额，因为经常会出现浮点数的精度问题，最好用大数类，例如`BigDecimal/BigInteger`
 
 ```java
 a.longValue();	// 整型转长整型
@@ -42,6 +45,7 @@ longValue.intValue();	// long转换为int
 1L;	// 直接将数字转换成Long型
 String.valueOf(123); // 整型转字符串，避免用toString出现空指针异常
 (byte)1;	// int to byte，int转字节
+(float) 1;	// int to float
 new Long(12);	// Integer转Long
 
 Math.ceil(9.2);	// 向上取整
@@ -50,6 +54,16 @@ Math.round(9.2); // 四舍五入
 
 a == 0 ? false : true;	// 整型转换为布尔
 a ? 1 : 0;	// 布尔转换为整型
+
+BigDecimal.ZERO;	// 直接就是BigDecimal类型的0
+a.add(b);	// BigDecimal加法
+a.subtract(b);	// BigDecimal减法
+a.multiply(b);	// BigDecimal乘法
+a.divide(b);	// BigDecimal除法
+a.compareTo(b); // 比较BigDecimal，结果为0表示相当，为-1表示小于，为1表示大于，>-1表示大于等于，小于1表示小于等于。不要用equals方法来比较BigDecimal对象，如果scale不一样，会直接返回false
+a.setScale(2);	// 四舍五入保留两位小数
+a.setScale(2, BigDecimal.ROUND_DOWN); // 向下取整
+a.setScale(2, BigDecimal.ROUND_UP); // 向上取整
 ```
 
 #### String/StringBuffer字符串
@@ -150,7 +164,6 @@ if (matcher.find() && matcher.groupCount() >= 1) {
   }
 }
 
-
 // 正则替换
 str.replaceAll(reg, "");
 ```
@@ -210,6 +223,14 @@ Set<String> mySet = new HashSet<String>(Arrays.asList(myList));	// 初始化
 ##### Stream API
 
 - 是一系列对集合便利操作的工具集，类似`Laravel`里面的`Collection`
+- Concat: 合并两个流: `Stream.concat(stream1, stream2)`
+- foreach: 遍历
+- map: 映射，返回新的元素
+- mapToInt/mapToDouble/mapToLong: 映射成指定的数字类型，映射完成后可以使用`summaryStatistics`方法得到统计的结果然后使用`getMax/getMin/getSum/getAverage`等方法
+- filter: 过滤，仅保留返回true的元素
+- limit: 仅保留指定数量的元素
+- sorted: 排序
+- Collectors: 用于返回列表或字符串
 
 ```java
 // 过滤
@@ -225,7 +246,9 @@ Record record = list.stream()
   .collect(Collectors.toList());
 ```
 
-#### Dictionary/Hashtable/Map字典
+#### Dictionary/Hashtable/Map/ConcurrentHashMap字典
+
+- `ConcurrentHashMap`是线程安全的
 
 ```java
 // Dictionary字典
@@ -253,6 +276,18 @@ for (String value : map.values()) {}
 
 // Map转为Json格式字符串
 String jsonStr = new Gson().toJson(myMap);
+```
+
+#### Queue队列
+
+```java
+Queue<String> queue = new LinkedList<String>();	// 定义队列
+queue.offer("a");	// 添加元素，如果无法添加会返回false
+queue.add("a");	// 添加元素，如果无法添加会抛出来异常
+queue.poll();	// 返回第一个元素，并在队列中删除，没有会返回null
+queue.remove();	// 从队列删除第一个元素，没有会抛出异常
+queue.element();	// 返回第一个元素，没有会抛出异常
+queue.peek();	// 返回第一个元素，没有会返回null
 ```
 
 #### 时间处理
@@ -292,6 +327,7 @@ now.set(Calendar.DATE, now.get(Calendar.DATE) + 7);	// 计算7天后的时间
 #### 类/对象/方法
 
 - 类中可以使用`static {}`设置静态代码块，有助于优化程序性能，`static块`可以放置于类中的任何地方，当类初次被加载的时候，会按照`static块`的顺序来执行每个块，并且只会执行一次。
+- 泛型类使用`<T>`来表示，`? extends 类名`(上边界限定)表示只要继承某个类的都可以，`? super 类名`(下边界限定)表示只要是某个类的父类都可以，单独的`?`(无边界限定)表示没有任何限制
 
 ```java
 // 一个类可以有多个构造方法
@@ -323,6 +359,43 @@ public Optinal<User> getUser(Long id) {
 }
 Optional<user> userOp = getUser(1L);
 if (userOp.isPresent()) {...} else {...}
+```
+
+#### Function接口
+
+- `Java8`新增的函数式编程方法，主要用来做lambda表达式
+
+- 任何标注了`@FunctionalInterfaced`都接口都表示是一个函数式的接口
+
+- `Functiond`源码简介:
+
+  ```java
+  @FunctionalInterface
+  public interface Function<T, R> {	// T表示入参，R表示出参
+    R apply(T t);
+    // compose接收一个Function参数，返回时先用传入的逻辑执行apply，然后在执行当前Function的apply，
+    // 相当于 a.compose(b).apply(1) = a.apply(b.apply(1))
+    default <V> Function<V, R> compose(Function<? super V, ? extends T> before) {
+          Objects.requireNonNull(before);
+          return (V v) -> apply(before.apply(v));
+    };
+    // andTthen是先执行当前的逻辑，再执行传入的逻辑。
+    // 相当于a.andThen(b).apply(1) = b.apply(a.apply(1))
+    default <V> Function<T, V> andThen(Function<? super R, ? extends V> after) {
+          Objects.requireNonNull(after);
+          return (T t) -> after.apply(apply(t));
+    };
+    static <T> Function<T, T> identity() {
+      return t -> t;
+    };
+  }
+  ```
+
+- 例子:
+
+```java
+Function<Integer,Integer> test=i->i+1;
+test.apply(1);	// 会得到2
 ```
 
 #### 异常处理
