@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-04-21 12:56:00
+updated: 2020-04-28 12:56:00
 categories: java
 ---
 
@@ -143,6 +143,14 @@ URLDecode.decode("test", "utf-8");
 // Json字符串转换为Dto
 MyDto myDto = new Gson().fromJson(jsonString, MyDto.class);
 new JsonParser().parse(jsonString).getAsJsonObject().get("key1").toString();	// 直接获取指定的key的值，而不用新建一个对象。但是有个坑是这样得到的字符串两边会带上引号。。。
+
+// 验证是否是Json字符串
+try {
+  JSONObject result = JSONObject.parseObject(string);
+  return null != result;
+} catch (Exception e) {
+  return false;
+}
 ```
 
 ##### 正则匹配
@@ -263,6 +271,16 @@ HashMap<String, String> map = new HashMap<String, String>() {
     map.put("key2", "value2");
   }
 };
+
+map.containsKey(Object key);	// 是否包含某个key
+map.containsValue(Object value);	// 是否包含某个value
+map.equals(Object o);	// 比较指定的对象与此映射是否相等个
+map.get(Object key);	// 获取某个key的值
+map.isEmpty();	// 是否为空
+map.put(K key, V value);	// 设置值
+map.remove(Object key);	// 移除某个键值对
+map.size();	// 获取键值对数量
+map.values();	// 返回所有的value，是一个Collection对象
 
 // Map的遍历
 Map<String, String> map = new HashMap<String, String>();

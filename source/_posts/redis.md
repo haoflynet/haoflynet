@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2019-09-10 16:32:00
+updated: 2020-04-13 16:32:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -79,6 +79,7 @@ db0:keys=2333,expires=12,avg_ttl=0	# key的统计信息在最后一行
 ### 通用
 
 - **严禁在生产环境使用`keys *`进行搜索，因为这表命令会引发Redis锁，导致其他查询不可用，如果真有类似业务，可以使用scan命令**
+- `setnx`常用于分布式锁，建议将`value`设置为一个随机字符串，而不是无意义的"OK"啥的，因为这样在释放锁的时候可以验证一下是否释放的是正确的锁
 
 ```shell
 SETNX	key value	# 将键key的值设置为value，如果key不存在则set成功返回1，如果key存在，则设置不成功返回0，常用与锁中
@@ -237,4 +238,8 @@ Redis从4.0开始支持组件的开发，能为redis提供更多实用的定制�
 * **Redis自动退出，log无报错**: 目前遇到的情况是可能连接数过高。操作系统让它挂掉了
 
 * **MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.**持久化的时候磁盘不可写了，一般是因为磁盘满了
+
+##### 扩展阅读
+
+- [使用Redis锁处理并发问题](https://haofly.net/redis-lock-handle-concurrency)
 
