@@ -241,6 +241,15 @@ class Product(object):
         raise ValueError(...)
 new Project(1, 'name')	# 好处是不用在__init__里面一个一个定义所有的属性了
 ```
+##### Type Hint类型标注
+
+```python
+def test(
+  datas: List[String]	# 传入数组类型
+):
+  return ['a', 'b']
+```
+
 #####　元类
 
 Python里面所有的类也都是一个对象，type是Python用来创建所有类的元类，元类是用来创建“类”这个对象的东西。通过在类中定义`metaclass`(python2中是在函数内部定义`__metaclass__`属性)，可以指定该类使用哪个元类来创建，如果没有改属性，并且父类里面都没有，那么默认就用type这个元类来创建。很好的元类使用的例子就是Django ORM，这就是元类的作用，把内部很复杂的东西变成一个简单的API。

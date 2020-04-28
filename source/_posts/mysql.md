@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-02-21 16:24:00
+updated: 2020-04-23 18:44:00
 categories: database
 ---
 ## 安装方法
@@ -12,6 +12,8 @@ yum install mariadb-server mariadb-client mariadb-devel -y
 systemctl start mariadb.service # 启动服务
 systemctl enable mariadb.service	# 开机启动
 ```
+另外，更新方式可以参考这篇文章: [如何更新到MariaDB 10.4](https://www.mysterydata.com/update-upgrade-to-mariadb-10-4-on-vestacp-cwp-centos-7/)
+
 Ubuntu: 
 
 ```shell
@@ -80,11 +82,18 @@ CREATE TABLE IF NOT EXISTS products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREME
 - `TIMESTAMP(3)/TIMESTAMP(6)`表示精确到毫秒微妙级别
 - 对于timestamp字段，如果直接插入数字形式的时间戳可能会变成`0000-00-00 00:00:00`的结果，我们需要使用`FROM_UNIXTIME(1234567890)`函数对其进行转换
 
+##### decimal
+
+- 定义时候需要提供两个参数: `DECIMAL(P, D)`，其中P表示有效数字的精度，范围为`1-65`，D表示小数点后的位数，范围是`0-30`，其中`D<P`
+
 ### 数据增删改查
 
 - `LEFT JOIN`是`LEFT OUTER JOIN`的简写，`RIGHT JOIN`是`RIGHT OUTER JOIN`的简写，`JOIN`是`INNER JOIN`的简写
+- 获取某个表的自增下一个自增ID: `SHOW TABLE STATUS`，结果中的`auto_increment`
 
 ##### 查询
+
+- 在程序中遇到要拼接`SQL`语句的，可以在条件里面加一个`where 1=1`能有效简化代码
 
 ```mysql
 # 普通查询
@@ -179,6 +188,8 @@ DELETE `deadline` FROM `deadline` LEFT JOIN `job` 	# 有LEFT JOIN情况时删除
 INSERT INTO 表名(属性列表) VALUES(值列表)
 # 忽略重复的记录
 INSERT IGNORE INTO ... 
+# insert or update，插入或更新部分字段
+INSERT INTO 表名 (属性列表) VALUES (值列表) ON DUPLICATE KEY UPDATE field_name=VALUES(field_name)
 # 包含子查询的插入INSERT INTO SELECT，后面不用括号
 INSERT INTO db_name(field1, field2) SELECT 'field1', `db_name2`.`field` FROM db_name2
 ```
@@ -283,6 +294,7 @@ show processlist;
 
 # 查看最近一次死锁发生的原因
 SHOW ENGINE INNODB STATUS;
+select * from information_schema.innodb_trx;	# 查找当前所有的锁
 
 # 获取数据库当前的时间/查看数据库时区
 select curtime();
@@ -320,6 +332,24 @@ sudo mysqld_safe --skip-grant-tables	# 这条命令能够登录进去，然后�
 
 使用`canal`可以很方便地监听数据库的所有操作。
 
+### Hint
+
+可以指定查询优化的方式
+
+```shell
+FORCE INDEX 	# 强制指定索引
+IGNORE INDEX 	# 忽略指定索引
+SQL_NO_CACHE 	# 关闭查询缓存，SELECT SQL_NO_CACHE FROM table
+SQL_CACHE 		# 强制查询缓存
+HIGH_PRIORITY	# 优先操作
+LOW_PRIORITY	# 滞后操作
+INSERT DELAYED	# 延时插入，INSERT DELAYED INTO table1...
+STRAIGHT_JOIN	# 强制连接顺序
+SQL_BUFFER_RESULT	# 强制使用临时表(可以很快地释放表锁)
+SQL_BIG_RESULT/SQL_SMALL_RESULT	# 分组使用临时表
+
+```
+
 ### 帮助函数
 
 ```mysql
@@ -342,6 +372,7 @@ CURDATE()			# 获取当前日期
 CURRENT_DATE()		# 同上
 CURRENT_TIMESTAMP()	# 获取当前时间戳
 DATEDIFF('2018-08-08', '2019-08-08')	# 获取日期差，结果是天数，可以为负数
+DATE_FORMAT(`create_timestamp`, '%Y%m%d') # 时间戳格式化，可以使用这个方法实现时间戳的按年按月的分组
 YEAR(datetime)    # 获取年份
 QUARTER(datetime)    # 获取季度数
 MONTH(datetime)    # 获取月份
@@ -358,10 +389,11 @@ DATE_ADD(`field`, interval -1 day)	# 时间减一天
 DATE_ADD(`field`, interval 1 week)	# 时间加一周
 
 # 统计相关
-SUM(field_name)
+SUM(field_name)	# 如果该字段所有的值都为空，那么会返回NULL，而不是0，可以这样做以保证在没有数据的时候返回预期的0: COALESCE(SUM(field_name), 0)
 COUNT(field_name)
 SUM(case when field='wang' then 1 else 0 end) as sum_if
 COUNT(IF(field='wang',1,NULL)) as count_if	# 使用if做统计
+COUNT(DISTINCT IF(field='wang', field2, NULL))	# COUNT配合DISTINCT和IF同时使用
 
 # 逻辑相关
 CASE 
@@ -380,6 +412,7 @@ REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜
 
 # JSON相关函数
 JSON_ARRAY([])	# 将数组转换为json格式
+JSON_CONTAINS(field_name, '{"A":"B"}')	# JSON是否包含子文档，例如{"A":"B", "C": "D"}，包含了{"A":"B"}
 JSON_KEYS(field_name)	# 获取json数据的所有key
 JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是，结果前后是带有双引号的可用json_unquote函数取消其双引号
 ```
@@ -465,7 +498,7 @@ JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是�
 
 * **[Table is specified twice, both as a target for 'UPDATE' and as a separate source for data in mysql](https://stackoverflow.com/questions/44970574/table-is-specified-twice-both-as-a-target-for-update-and-as-a-separate-source)**: 在`10.1.24-MariaDB`有问题，但是`10.3.7-MariaDB`上没有问题，应该跟版本有关，解决办法就是在子查询外面再嵌套一层`select * 表名 as 新表名`。
 
-* **column "c.name" must appear in the GROUP BY clause or be used in an aggregate**: 见于SQL与MySQL语法不兼容的情况，可以直接给字段加个`max(c.name)`
+* **column "c.name" must appear in the GROUP BY clause or be used in an aggregate**: 见于SQL与MySQL语法不兼容的情况，在SQL3标准以前，选择显示的字段必须出现在`GROUP BY`中。解决办法要么是将该字段加入`GROUP BY`，要么在子查询中完成聚合，在外部在获取字段。
 
 * **数据写入成功但是却读取不到**: 其中一种原因是使用`mysqldump`进行备份的时候，默认会给数据表加锁，此时如果写入数据，那么主库会写入成功(肯定是在从库进行dump)，但是此时从库上了锁，数据更新有延迟。解决办法是错开高并发写入的时间进行备份，另一种是使用不会锁表的备份方式
 
@@ -481,7 +514,7 @@ JSON_EXTRACT(表名,'$.id')	# 获取json数据key=id的值，需要注意的是�
 
 * **User 'xxx' has exceeded the 'max_user_connections' resource (current value: 10)**，原因是超出了设置的单个用户的最大连接数(可以使用`select @@max_user_connections;`进行查看)，默认为0表示无限制，单如果大于零并且超过了就会出现该错误。可以这样修改`set  @@global.max_user_connections=1;`
 
-* **某个语句一直卡住，或者无法修改表结构，但是又找不到表锁**，可能的原因是客户端有未关闭或提交的事务，会出现`waiting for table metadata lock`。
+* **某个语句一直卡住，或者无法修改表结构，但是又找不到表锁**，可能的原因是客户端有未关闭或提交的事务，会出现`waiting for table metadata lock`，可以先使用`select * from information_schema.innodb_trx;`查看当前有哪些事务锁，然后用`KILL thread_id`杀掉该锁进程。
 
 * **Mariadb/Mysql不锁表实时添加列**: `10.2`开始是默认支持的，但是只能在表最后一列后加，不能出现`after`，参考https://mariadb.com/kb/en/library/instant-add-column-for-innodb/
 
