@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2020-02-22 1:36:30
+updated: 2020-04-28 1:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -1474,3 +1474,5 @@ conn.close()	# 关闭连接
 [Python十大web框架](https://hackernoon.com/top-10-python-web-frameworks-to-learn-in-2018-b2ebab969d1a): 全栈框架(Django/Pyramid/TurboGears/Web2py)、微框架(Flask/Bottle/CherryPy/)、异步框架(Sanic/Tornado)
 
 [Unofficial Windows Binaries for Python Extension Packages 非官方的Python扩展windows平台二进制包](https://www.lfd.uci.edu/~gohlke/pythonlibs/): 对于windows平台总是安装不成功的包可以尝试这样安装
+
+[pyexcel](https://github.com/pyexcel/pyexcel): Python处理Excel表格数据，如果只是读取，可以直接用[pyexcel-xls](https://github.com/pyexcel/pyexcel-xls)
