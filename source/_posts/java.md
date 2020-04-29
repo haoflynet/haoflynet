@@ -315,6 +315,7 @@ Date date = new Date();	// 获取时间对象
 Long timestamp = date.getTime();			// 获取时间戳(毫秒)
 System.currentTimeMillis();	// 毫秒级时间戳
 Date date = new Date(1234567890000); // 毫秒级时间戳转Date对象
+Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2020-05-01 00:00:00");	// 获取指定日期的date
 
 // 获取今天开始的时间
 Calendar calendar = Calendar.getInstance();

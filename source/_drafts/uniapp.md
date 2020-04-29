@@ -1,7 +1,7 @@
 ---
 title: "uniapp 开发手册"
 date: 2020-02-05 21:02:30
-updated: 2020-03-10 11:41:00
+updated: 2020-04-28 11:41:00
 categories: uniapp
 ---
 
@@ -120,3 +120,4 @@ uni.getLocation({
 ##### 扩展阅读
 
 - [uni-app 全局变量的几种实现方式](https://ask.dcloud.net.cn/article/35021)
+- [完整的 uni-App+Laravel+jwt-auth 小程序权限认证](https://learnku.com/articles/43682)
