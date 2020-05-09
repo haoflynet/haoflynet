@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-04-28 12:56:00
+updated: 2020-05-08 12:56:00
 categories: java
 ---
 
@@ -51,6 +51,7 @@ new Long(12);	// Integer转Long
 Math.ceil(9.2);	// 向上取整
 Math.floor(9.2);// 向下取整
 Math.round(9.2); // 四舍五入
+Math.abs(-0.9);	// 取绝对值
 
 a == 0 ? false : true;	// 整型转换为布尔
 a ? 1 : 0;	// 布尔转换为整型
