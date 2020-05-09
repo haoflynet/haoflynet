@@ -412,9 +412,12 @@ REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜
 
 # JSON相关函数
 JSON_ARRAY([])	# 将数组转换为json格式
+JSON_ARRAYAGG(字段)	# 返回某个字段值组成的json格式数组
 JSON_CONTAINS(field_name, '{"A":"B"}')	# JSON是否包含子文档，例如{"A":"B", "C": "D"}，包含了{"A":"B"}
 JSON_KEYS(field_name)	# 获取json数据的所有key
 JSON_EXTRACT(字段名,'$.id')	# 获取json数据key=id的值，需要注意的是，结果前后是带有双引号的可用json_unquote函数取消其双引号
+JSON_MERGE_PRESERVE(@json1, @json2);	# 合并两个JSON，当key重复的时候，会将value当作数组来合并，功能和JSON_MERGE一样，但是JSON_MERGE快弃用了
+JSON_MERGE_PATCH(@json1, @json2);	# 合并两个JSON，当key重复的时候，会覆盖
 ```
 
 ## 数据库优化
