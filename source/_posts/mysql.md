@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-04-28 18:44:00
+updated: 2020-05-11 18:44:00
 categories: database
 ---
 ## 安装方法
@@ -131,6 +131,7 @@ SELECT * FROM virtuals WHERE ip in (SELECT ip FROM virtuals GROUP BY ip HAVING C
 
 # 找出每个分组的最新的一条记录(目前我能找到的最有效的方法，虽然效率依然很低)
 SELECT table1.* FROM table1 LEFT JOIN table2 ON (table1.name = table2.name AND table1.id < table2.id) WHERE m2.id IS NULL;
+SELECT * FROM table1 WHERE id IN (SELECT MAX(ID) FROM table1 GROUP BY field1);	# 如果有group by可以通过这种方式找到每个分组中最新的一条记录
 ```
 **LIKE查询的特殊转义**
 
