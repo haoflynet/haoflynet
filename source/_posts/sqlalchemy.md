@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2020-03-27 23:11:00
+updated: 2020-04-25 23:11:00
 categories: python
 ---
 
@@ -210,9 +210,15 @@ def fullname(self):
   ```python
   bind_sql = 'SELECT * FROM xxx WHERE field = :value'
   session.execute(bind_sql, {'value': 'value1'})
+  
+  # 或者用下面的方式插入一个字典或者列表
+  session.execute(MyModel.__table__.insert(), modelDict)
+  session.execute(MyModel.__table__.insert(), modelDicts)
   ```
 
 ### 查询
+
+- `filter_by`只能用`=`，而`filter`可以用`==,!=`等多种取值方式，且必须带表名
 
 ```python
 # 查询表
@@ -235,9 +241,13 @@ query.filter(
     User.name.in_(['hao', 'fly'])	# IN操作
 ).first().name
 query.filter('id = 2').first()	# 复杂的filter
+query.filter_by(deleted_at == None)	# flask-sqlalchemy的查询方式
 query.order_by('user_name').all()		# 排序
 query.order_by(desc('name')).all()		# 倒序排序，from sqlalchemy import desc
+
+# 使用功能函数
 query(func.count('*')).all()
+query(func.json_contains(User.age, '{"A":"B"}')).all()	# 使用JSON_CONTAINS
 
 # 查询列
 session.query(User.name)	# 去除指定列
@@ -245,7 +255,8 @@ session.query(User.id, User.name)
 session.query.with_entities(User.id, User.name)	# 获取指定列
 
 # 拼接
-query2.filter(or_(User.id == 1))	# or操作
+query2.filter(or_(User.id == 1))	# or操作，or ...
+query2.filter(or_(User.id == 1, User.name.like('')))	# or操作，or (xxx AND xxx)
 
 # 关联查询
 query(User).join(Post, User.id == Post.user_id).all()	# join查询
@@ -264,6 +275,7 @@ for name, in session.query(User.name).filter(stmt):	# 查询存在Post的user
     
 # LIKE查询
 query.filter(User.name.like('%王%'))
+MyModel.query.filter(User.name.like('%hao%'))
 ```
 
 ### 插入
@@ -303,6 +315,22 @@ session.commit()
 ```python
 session.delete(user)
 session.flush()
+```
+
+### 自定义SQL构造
+
+```python
+# 在所有的Insert语句前加上指定的前缀/后缀，例如加上ON DUPLICATE KEY UPDATE。例如下面这个例子，当传入append_string参数时会将指定的字符串添加到后面
+from sqlalchemy.sql.expression import Insert
+
+@compiles(Insert)
+def prefix_inserts(insert, compiler, **kw):
+    s = compiler.visit_insert(insert, **kw)
+    if 'append_string' in insert.kwargs:
+        return s + " " + insert.kwargs['append_string']
+    return s
+  
+session.execute(MyModel.__table__.insert(append_string = 'ON DUPLICATE KEY UPDATE fieldname="abc"'), objects)
 ```
 
 ### 其他
@@ -360,10 +388,11 @@ after_attach/after_begin/after_bulk_delete/after_bulk_update/after_commit/after_
 
 - **Tornado中使用SQLAlchemy连接SQLite进行commit操作的时候程序中断: Segment Fault**: 原因是`SQLite`的自增主键`id`重复了😂
 - **UnicodeEncodeError：'latin-1' codec can't encode characters in position 0-1: ordinal not in range(256)**: 连接数据库没有指定utf8的charset，参考本文连接数据库设置。
-- **UnicodeEncodeError: 'ascii' codec can't encode characters in position 7-8: ordinal not in range(128)**: 除了上面那种可能，还有中可能是直接把含有中文的json对象拿来给model的字符类型赋值了
+- **UnicodeEncodeError: 'ascii' codec can't encode characters in position 7-8: ordinal not in range(128)**: 除了上面那种可能，还有种可能是直接把含有中文的json对象拿来给model的字符类型赋值了
 - **Can't recoonect until invalid transaction is rolled back**: 要么在每次执行sql语句之后主动close，要么在连接的时候设置`autocommit=True` 
 - **MySQL server has gone away**: 程序运行久了出现该问题。如果是使用了线程池，那么可能的原因是线程池的回收时间大于了mysql的最长交互时间(可使用`SHOW VARIABLES LIKE '%interactive_timeout%';`查看)。这个时候可以把`POOL_RECYCLE`参数设置为比那个时间小就行了。
 - **2013 Lost connection to MySQL server during query**: 原因是超过了`wait_timeout`规定的时间了，首先`show GLOBAL variables LIke '%wait_timeout%'`看看全局的超时时间是多少(这里一定要先看GLOBAL的，因为当前session的会首先被全局的影响)，这种情况，尽量优化sql，实在不行再修改这个配置。
+- **SqlAlchemy实现ON DUPLICATE KEY UPDATE**: 目前没找到ORM的实现方式，但是有相对[复杂的方式](https://stackoverflow.com/questions/6611563/sqlalchemy-on-duplicate-key-update)，更简单的方式是直接执行原生语句，在后面添加`ON DUPLICATE KEY UPDATE`即可。可以参见上面的自定义SQL构造方法。
 
 ##### 扩展阅读
 

@@ -12,7 +12,7 @@ categories: 编程之路
 
 ### 1xx消息
 
-  * 100：continu
+  * 100：continue
   * 101：Switching Protocols
   * 102：Processing
 

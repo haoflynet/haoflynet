@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2020-05-09 17:36:30
+updated: 2020-05-2 17:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -271,6 +271,7 @@ a:int=123	# 直接定义变量的类型
 def func(a: int) -> int	# 这表示该函数的参数a要求是整型，返回值是整型号
 def func(a: int=None) # 参数赋予默认值
 def func(a: int=None) -> typing.Optional[int]	# 返回int或者None
+def func(a: Union[int, str])	# 入参允许int或者str
 
 # 在运行时强制检查类型
 @enforce.runtime_validation
