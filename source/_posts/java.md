@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-05-08 12:56:00
+updated: 2020-05-22 11:56:00
 categories: java
 ---
 
@@ -45,6 +45,7 @@ longValue.intValue();	// long转换为int
 1L;	// 直接将数字转换成Long型
 String.valueOf(123); // 整型转字符串，避免用toString出现空指针异常
 (byte)1;	// int to byte，int转字节
+(int) myByte;	// byte to int，字节转int
 (float) 1;	// int to float
 new Long(12);	// Integer转Long
 
@@ -96,7 +97,8 @@ a.trim();						// 移除首尾空白
 Integer.parseInt(str);		// 字符串转整型
 Long.parseLong(str);		// 字符串转Long型
 String.join(",", new String[]{"foo", "bar"})	// 合并字符串，类似PHP的implode，字符串中间添加空格
-
+new BigDecimal("1.00"); // String转BigDecimal
+  
 // 判断字符串是否为空
 str == null;
 "".equals(str);
@@ -571,7 +573,9 @@ channelExec.getExitStatus();	// 获取返回状态码
   ArrayList<MyList> myList = new ArrayList<MyList>();
   ```
 
-- 
+- **com.alibaba.fastjson.JSONException: default constructor not found.  **: `fastjson`的坑，要求对应class必须有默认的构造函数(空参数) 
+
+- **fastjson出现$ref: $.data[2].indexs[0]**: 又是`fastjson`的坑，如果是需要序列化的对象中有对同一个对象的依赖，那么在JSON序列化中可能会将后续的对象转成这种字符串
 
 ##### 扩展阅读
 

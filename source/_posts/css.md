@@ -109,17 +109,21 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 
 - nowrap: 强制不换行
 
+##### user-select
+
+- none(文本不能被选择)、text(可以选择文本)
+
+##### white-space
+
+- nowrap: 强制不换行
+
 ##### width元素宽度 
 
 - max-width设置最大宽度，默认为none
 
-##### word
+##### word-wrap
 
-- white-space: nowrap 强制不换行
-
-##### user-select
-
-- none(文本不能被选择)、text(可以选择文本)
+- break-word: 强制换行(a标签太长强制换行)
 
 ##### @media
 
