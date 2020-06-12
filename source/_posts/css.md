@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-02-17 09:25:00
+updated: 2020-06-11 14:25:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -37,6 +37,12 @@ a:visited: 表示一个已经被点击过的a标签的属性
 a:hover: 鼠标移动到a标签上面
 
 a:active: a标签被点击的时候
+
+##### background-color
+
+- 设置透明
+- transparent: 直接设置
+- rgba(255, 255, 255, 0.5): 前三个是颜色，最后一个是透明度
 
 ##### border边框
 

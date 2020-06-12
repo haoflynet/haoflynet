@@ -1,11 +1,13 @@
 ---
 title: "MyBatis 手册"
 date: 2020-04-06 18:00:00
-updated: 2020-04-08 15:11:00
+updated: 2020-06-11 15:11:00
 categories: java
 ---
 
 建议安装[Mybatis-plus](https://github.com/baomidou/mybatis-plus)
+
+[Mybatis官方文档](https://mybatis.org/mybatis-3/zh/)
 
 ## 目录结构
 
@@ -82,6 +84,13 @@ public interface Table1Mapper {
 
   ```xml
   start_time <![CDATA[ <= ]]> #{endTimestamp} 	// 转义小于符号
+  ```
+
+- 如果是简单的SQL语句，可以不用XML文件，而是直接这样子写
+
+  ```java
+  @Select("SELECT * FROM user_info WHERE user_name = #{userName,jdbcType=VARCHAR}")
+  Integer countMyRecord(@Param(value = "userName") String userName);
   ```
 
 - 首先编写XML文件，例如`MyExtMapper.xml`，该文件可以将之前该表对应的XML文件复制过来，删除掉原来XML中已经存在的方法定义，可以直接根据id判断，例如`<select id="selectByExample"...>`就是`selectByExample`方法的定义。删除完成后按照之前的语法定义自己的查询方法即可，然后把id拿到再建一个同名的接口文件`MyExtMapper.java`即可。例如一个自定义的统计接口，可以这样写:

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-06-10 11:43:00
+updated: 2020-06-11 11:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -74,6 +74,7 @@ Array.isArray(arr) && arr.length === 0	// 判断是否是空数组
 Math.floor(0.2);	// 向下取整
 Math.floor(0.2);	// 四舍五入
 Math.ceil(0.2);		// 向上取整
+Math.abs(-1);		// 取绝对值
 
 num.toString(8);	// 把数字转换为指定进制的字符串
 num.toFixed(2);	// 保留两位小数
