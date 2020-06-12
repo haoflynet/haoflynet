@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-05-11 18:44:00
+updated: 2020-06-11 14:44:00
 categories: database
 ---
 ## 安装方法
@@ -65,7 +65,10 @@ ALTER TABLE 表名 MODIFY COLUMN 列名 属性; # 除了不能修改列名以外
 ALTER TABLE 表名 engine=innodb; # 修改数据表引擎
 
 ALTER TABLE 表名 ADD INDEX 索引名 (列名);# 给表添加索引
-ALTER TABLE `表名` ADD UNIQUE `键名`(`列名1`, `列名2`);
+ALTER TABLE 表名 ADD UNIQUE `键名`(`列名1`, `列名2`);
+ALTER TABLE 表名 DROP INDEX 索引名;	# 给表删除索引
+
+ALTER TABLE 表名 AUTO_INCREMENT = 10;	# 重置自增主键
 
 # mariadb创建Json字段，VARCHAR或者BLOB都可以使用，不对格式做要求，如果要做要求也可以强制做，例如
 CREATE TABLE IF NOT EXISTS products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -132,6 +135,11 @@ SELECT * FROM virtuals WHERE ip in (SELECT ip FROM virtuals GROUP BY ip HAVING C
 # 找出每个分组的最新的一条记录(目前我能找到的最有效的方法，虽然效率依然很低)
 SELECT table1.* FROM table1 LEFT JOIN table2 ON (table1.name = table2.name AND table1.id < table2.id) WHERE m2.id IS NULL;
 SELECT * FROM table1 WHERE id IN (SELECT MAX(ID) FROM table1 GROUP BY field1);	# 如果有group by可以通过这种方式找到每个分组中最新的一条记录
+
+# 合并两条SQL的查询结果
+SELECT field1 FROM table1
+UNION
+SELECT field1 FROM table2
 ```
 **LIKE查询的特殊转义**
 
@@ -440,6 +448,10 @@ JSON_MERGE_PATCH(@json1, @json2);	# 合并两个JSON，当key重复的时候，�
 
 #### 聚簇索引(clustered index)
 
+- 索引必须为唯一索引，局促索引不一定是主键，但是主键一定是局促索引
+- 叶子结点存储的是整行数据，所以查询速度非常快
+- 如果没有主见，那么聚簇索引可能是第一个不允许为null的唯一索引
+
 保存了每一样的所有数据，聚簇索引的选择方法如下:
 
 ```shell
@@ -450,7 +462,11 @@ JSON_MERGE_PATCH(@json1, @json2);	# 合并两个JSON，当key重复的时候，�
 
 #### 辅助索引(secondary index)
 
-聚簇索引以外的就是辅助索引，辅助索引的每一行记录都包含每一行的主键列，辅助索引指向主键，想较于聚簇索引，由于只有一个字段，所以空间占用非常少。
+聚簇索引以外的就是辅助索引，辅助索引的每一行记录都包含每一行的主键列，辅助索引指向主键，想较于聚簇索引，由于只有一个字段，所以空间占用非常少。当然这就导致肯定需要回表查询，即拿着聚簇索引去查找该行数据
+
+#### 覆盖索引
+
+当sql语句的所求查询字段（select列）和查询条件字段（where子句）全都包含在一个索引中 **（联合索引）**，可以直接使用索引查询而不需要回表。
 
 ### 排序算法
 
@@ -522,7 +538,17 @@ JSON_MERGE_PATCH(@json1, @json2);	# 合并两个JSON，当key重复的时候，�
 
 * **Mariadb/Mysql不锁表实时添加列**: `10.2`开始是默认支持的，但是只能在表最后一列后加，不能出现`after`，参考https://mariadb.com/kb/en/library/instant-add-column-for-innodb/
 
-*   **mysqldump出现Access denied for user xxx when using LOCK TABLES**: 可以在`mysqldump`命令添加上`--single-transaction`参数
+* **mysqldump出现Access denied for user xxx when using LOCK TABLES**: 可以在`mysqldump`命令添加上`--single-transaction`参数
+
+* **将逗号分割的字符串转换为Array的形式**: 
+
+  ```mysql
+  SELECT
+    CAST( 
+      CONCAT('["', REPLACE(REPLACE(`field`, '"', '\"'), ',', '","'), '"]')
+      AS JSON
+    );
+  ```
 
 ##### 扩展阅读
 
