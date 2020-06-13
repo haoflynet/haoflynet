@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2019-09-17 09:11:00
+updated: 2020-06-12 22:11:00
 categories: system
 ---
 ## Mac自带截图功能
@@ -82,6 +82,10 @@ mackup restore	# 数据恢复
 mackup uninstall# 将配置文件拷回原来的系统目录
 ```
 
+## ios safari移动端真机调试
+
+https://www.jianshu.com/p/ed4b1bfb57dc
+
 ## TroubleShooting
 
 - **磁盘空间爆了，重启后spotlight一直显示正在索引**: 原因可能是误删了索引的文件(索引文件确实有哦几个G)，修复需要执行以下几个命令：
@@ -98,6 +102,17 @@ mackup uninstall# 将配置文件拷回原来的系统目录
   brew upgrade
   ```
   
+- **明明安装了xcode命令行工具却还是提示找不到**，可以用这个命令重装一下: 
+  
+  ```shell
+  xcode-select --print-path	# 一般会打印/Library/Developer/CommandLineTools
+  sudo rm -r -f /Library/Developer/CommandLineTools
+  xcode-select --install	# 重新安装
+  ```
   
   
-   
+  
+  
+  
+  
+  

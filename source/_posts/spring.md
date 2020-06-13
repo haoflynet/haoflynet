@@ -1,7 +1,6 @@
 ---
 title: "Java Spring手册"
-date: 2018-11-01 21:32:00
-update: 2020-04-13 15:30:00
+date: 2020-06-13 09:32:00
 categories: 编程之路
 ---
 
@@ -40,6 +39,8 @@ VO(value object，类似于将数据库的字段抽象为新的业务相关的�
 #### Web层
 
 Controller、Config(一些初始化配置，例如线程池、缓存池等配置的初始化)
+
+<!--more-->
 
 ### 注解
 
@@ -127,7 +128,6 @@ public class Post {
       }
   }
   
-  
   // 在其他地方可以这样子直接获取指定的bean
   BusniessServiceImpl businessServiceImpl = (BusinessServiceImpl) SpringContextUtil.get("businessServiceImpl");	// 需要注意的是，如果放在应用初始化的过程中，那么该类中的applicationContext可能还没有初始化，可以sleep以下或者其他方式
   ```
@@ -156,41 +156,10 @@ public class Post {
 - 启动时在`Initializing Spring FrameworkServlet 'spring'`这一句日志时候，可能是以下原因之一
   - `Mybatis`的`xml`文件的id可能重复了
 
-
-
 ##### 扩展阅读
 
 - [Aliyun Java Initializr](https://start.aliyun.com/): Spring的国内的脚手架
+- [Spring技术内幕：设计理念和整体架构概述](https://mp.weixin.qq.com/s/2dCebIpVjE43xUpx-2YCTg)
 
-
-
-```java
-// 控制器
-@RestController	// 就是@Controller与@ResponseBody的组合，@ResponseBody表示该方法返回值应绑定到web响应正文。当然这个表示当前控制器支持REST
-public class HelloController {
-    @RequestMapping("/hello")	    // 路由映射，也可以绑定在类上，还可以使用GetMapping/PostMapping/PutMapping/DeleteMapping/PatchMapping
-    public String hello() {
-        return "Hello World! Welcome to visit waylau.com!";
-    }
-}
-```
-
-
-
-
-
-
-
-https://mp.weixin.qq.com/s/2dCebIpVjE43xUpx-2YCTg
-
-
-
-https://blog.tengshe789.tech/2018/08/04/springboot/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io
-
-
-
-kafka
-
-https://spring.io/projects/spring-kafka#overview
-
-https://juejin.im/entry/5b5ac2aff265da0f6263877c
+- [这是一篇优雅的Springboot2.0使用手册](https://blog.tengshe789.tech/2018/08/04/springboot/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [Spring kafka版本](https://spring.io/projects/spring-kafka#overview)
