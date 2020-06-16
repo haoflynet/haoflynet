@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-06-11 14:25:00
+updated: 2020-06-16 14:25:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -92,6 +92,11 @@ a:active: a标签被点击的时候
 ```css
 margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ```
+
+##### overflow-y
+
+- 当垂直方向溢出时添加滚动条
+- scroll: 可以用这个属性给单独的两列创建单独的滚动条
 
 ##### position
 
