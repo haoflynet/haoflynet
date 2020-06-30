@@ -1,20 +1,23 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-06-16 14:56:00
+updated: 2020-06-28 14:56:00
 categories: js
 ---
 
 ## 模板语法
 
+- 模板中如果遇到这种类型的三目运算符`a ? a : b`，最好用`{a || b}`来代替
+
 ```javascript
 // v-bind
 <a v-bind:href="url">...</a>
-<a v-bind:href="['//api/' + item.id]">...</a> // 属性绑定的时候拼接字符串
+<a v-bind:href="`/api/${item.id}`">...</a> // 属性绑定的时候拼接字符串，也可以用['/api/' + item.id]的方式
 <a :href="url">...</a>	// 缩写
+<a title="test"></a>// 如果仅想传入一个字符串作为props给组件，那么不用加冒号
 <a :hidden="shouldHidden==='letshidden'">	// 在v-bind中直接用表达式
 <img v-bind:src="pic" v-for="pic in pics" />
-ß
+
 // v-on
 <a v-on:click="doSomething">...</a>
 <a @click="doSomething">...</a>

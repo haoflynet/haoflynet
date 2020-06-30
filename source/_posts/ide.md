@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2020-04-03 12:08:00
+updated: 2020-06-21 12:08:00
 categories: 编程之路
 ---
 
@@ -99,6 +99,20 @@ categories: 编程之路
 - **IDEA 运行Django项目提示No module named xxx**: 需要在`File->Project Structure->modules`中将当前`module`删除，然后新建`module`，选择当前项目的根目录，将当前项目设置为一个`Django`项目
 - **Maven编译java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTags**，原因可能是`lombok`版本过低，`Java`版本过高导致，要么升`lombok`，要么降`Java`
 - **Error: java: 不支持发行版本5**: 依然是java版本的问题，可以尝试在`Project Settings->Project->Project SDK`中选择不同的`Java`版本
+
+#### IDEA推荐插件
+
+- **Alibaba Java Coding Guidelines**: 阿里巴巴Java开发规范
+- **CodeGlance**: 类似sublime，显示在右边的代码缩略图
+
+
+- **.env files support**: .env文件支持
+- **.ignore**: 生成我们需要的`.gitignore`文件模版
+- **Key Promoter X**: 会统计你鼠标点击某个功能的次数，提示你应该用什么快捷键
+- **Prettier**: JS格式化工具
+- **Python**: 支持Python开发
+- **Rainbow Brackets**: 可以实现配对括号使用相同的颜色
+- **Vue.js**: 支持Vue.js开发
 
 ### PhpStorm
 

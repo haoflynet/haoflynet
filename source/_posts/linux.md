@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2020-04-28 17:58:30
+updated: 2020-06-19 16:03:30
 categories: system
 ---
 # Linux手册
@@ -204,7 +204,7 @@ ls | while read line; do xargs zip $line.zip $line;done
 
 ```shell
 # 压缩，7zip需要安装工具yum install p7zip
-tar -czvf 结果.tar.gz 目标/    # 打包并使用gzip压缩
+tar -czvf --exclude=.git --exclude=*.jar 结果.tar.gz 目标/    # 打包并使用gzip压缩，exclude命令用于排除某些目录或文件
 tar -cjvf 结果.tar.bz2 目标/   # 打包并使用bzip2压缩
 zip *.zip file          # 压缩file为zip格式
 zip -r *.zip file dir   # 压缩文件或目录一起为zip格式
