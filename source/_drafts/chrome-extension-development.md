@@ -46,7 +46,7 @@ categories: chrome
     "https://*.tmall.com/*"
   ],
   "options_page": "options.html",
-  "background": {		// 注册事件页面，和content.js不通，它是在后台一直有效的，常用来维护某些状态，监听某些事件，只会被加载一次的
+  "background": {		// 注册事件页面，和content.js不同，它是在后台一直有效的，常用来维护某些状态，监听某些事件，只会被加载一次的
     "scripts": ["background.js"],
     // "page": "background.html",	// 要么是scripts要么是page，如果是js，那么会自动生成一个背景页
     "persistent": false
