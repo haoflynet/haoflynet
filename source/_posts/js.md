@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-06-11 11:43:00
+updated: 2020-07-05 1:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -12,6 +12,9 @@ TODO: 逐步用原生方法替换jQuery，参考[You-Dont-Need-jQuery](https://g
 - 生产环境直接全局屏蔽掉`console.log`的输出，只需要复写即可:`console.log=()=>{}`
 
 ## 基本语法
+
+- `?.`可选链`optionalChaining`，`a?.b`，表示如果a对象存在那么取`a.b`属性，否则直接返回`null`，而不会因为找不到属性报错，但是这个语法在`vue2`的`template`中无法使用
+- `??`双问号，`a ?? b`，如果左边的值为`null`或者`undefined`，那么就返回右边的值，需要注意的是左边为`false`的时候依然是左边的值
 
 ### 变量
 
@@ -30,12 +33,18 @@ window.test = 123;	// 声明全局变量
 object instanceof constructor	// 判断某个对象是否属于某个类
 var copyObj = Object.assign({}, original_obj);	// 对象的深拷贝，直接用等于赋值是浅拷贝
 Object.keys(obj);	// 获取对象所有的key，返回一个数组
+Object.values(obj); // 获取对象所有的value，返回一个数组
+Object.entries(obj); // 获取对象所有的键值对，返回一个数组，例如{a:123,b:233}, 会返回['a':123], ['b': 233]
 Object.keys(obj).length == 0; // 判断对象是否为空
 ```
 
 ### 数组
 
 ```javascript
+Array.from('abc')	// 会得到['a', 'b', 'c']
+Array.from(['abc', 'def']) // 会得到['abc', 'def']
+Array.from([1, 2], x => x+ x) // 会得到[2, 4]
+
 arrA.concat(arrB)			// 合并两个数组
 arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1
 arr.includes('元素');		// 判断数组是否包含某元素
@@ -124,10 +133,22 @@ util.format('this is %s', 'foo');	// nodejs的util模块格式化字符串
 
 #### 时间处理
 
-`XDate`
+```javascript
+// 原生方法
+Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
+
+// moment
+moment(new Date()).add(1, 'days'); // 计算明天的时间
+moment(new Date()).add(-1, 'days'); // 计算昨天的时间
+```
+
+### 函数
 
 ```javascript
-Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
+// 不定参数，会把needles当作一个数组，没有值也是空数组
+function containsAll(haystack, ...needles) {
+	console.log(haystack, needles);
+}
 ```
 
 ### 文件/文件夹
@@ -322,6 +343,12 @@ ele.removeEventListener('change', func () {});
 // 页面事件
 window.onload = function () {};	// 页面加载完成后触发
 document.onkeyup = function(e) {};	// 用户按键事件
+// 监听页面全局异常
+window.addEventListener("unhandledrejection", event => {
+  console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`);
+});
+window.addEventListener('error', function(event) { ... })
+
 
 // jQuery事件列表
 change()	// 当元素发生改变时触发，常用于input、select
@@ -482,10 +509,63 @@ $.post('some.php', {name: 'haofly'})
 
 ## 第三方库
 
-### lodash
+### lodash/常用帮助函数
+
+##### every
+
+必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`
+
+##### filter
+
+过滤数组，将返回为`true`(满足条件)的元素组成为一个新数组
 
 ```javascript
-// isMatchWith(object, source, [customizer]): 具有基本的isMatch功能，并且能添加`customizer`进行定制化的比较。判断source是否包含在object里，customizer返回true或者false。我fuck，这个函数只要source里面有key没在object，立马就返回false了，都不执行customizer的
+Array.from([1,2,3]).filter(item => item > 2)	// 得到[3]
+```
+
+##### find
+
+返回回调结果为`true`的第一个元素 
+
+##### findIndex
+
+返回回调结果为`true`的第一个元素的索引位置
+
+##### _.flatMap
+
+对数组中的所有值运用函数，函数的返回值即是一个新的数组
+
+```javascript
+function duplicate(n) {
+  return [n, n];
+}
+ 
+_.flatMap([1, 2], duplicate);
+// => [1, 1, 2, 2]
+```
+
+##### forEach
+
+对数组中每一个值运用函数，但是无需返回值，只是单纯的遍历
+
+##### _.isMatchWith
+
+`isMatchWith(object, source, [customizer])`, 具有基本的isMatch功能，并且能添加`customizer`进行定制化的比较。判断source是否包含在object里，customizer返回true或者false。我fuck，这个函数只要source里面有key没在object，立马就返回false了，都不执行customizer的
+
+##### map
+
+对数组中每一个值运用函数，返回一个新的值作为新数组，没有返回值的位置会被设置为`undefined`
+
+```javascript
+myArr.map(Match.sqrt)
+```
+
+##### some
+
+只要其中一个值返回`true`，那么整个表达式的结果就是`true`
+
+```javascript
+Arrays.from([12, 22, 33]).some(item => item > 30)
 ```
 
 ## 推荐阅读
@@ -673,8 +753,6 @@ $.post('some.php', {name: 'haofly'})
   var obj = { alert: alert.bind(window) }
   obj.alert('hello');		// 这样就能正常调用了
   ```
-
-
 
 ##### 扩展阅读
 

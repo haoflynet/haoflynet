@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2020-06-21 12:08:00
+updated: 2020-07-04 17:08:00
 categories: 编程之路
 ---
 
@@ -34,6 +34,8 @@ categories: 编程之路
 - `Intellij IDEA`的[配置文档](https://www.jetbrains.com/help/idea/javascript-specific-guidelines.html)
 
 - `Extract Method`功能能够快速将一段代码提取并成为一个方法，对于代码重构十分方便，特别是在一个方法特别长的时候想要将其中某几行代码提取作为一个方法的时候只需要选中然后`Refactor->Extract Method`即可，能直接生成方法，并且还能自动给方法取名。
+
+- 设置不索引某个目录，在目录上右键`Mark Directory as -> Excluded`
 
 - 常用快捷键
 
@@ -99,6 +101,7 @@ categories: 编程之路
 - **IDEA 运行Django项目提示No module named xxx**: 需要在`File->Project Structure->modules`中将当前`module`删除，然后新建`module`，选择当前项目的根目录，将当前项目设置为一个`Django`项目
 - **Maven编译java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTags**，原因可能是`lombok`版本过低，`Java`版本过高导致，要么升`lombok`，要么降`Java`
 - **Error: java: 不支持发行版本5**: 依然是java版本的问题，可以尝试在`Project Settings->Project->Project SDK`中选择不同的`Java`版本
+- **添加外部工具External Tools**: 可以参见下面的`Prettier`配置
 
 #### IDEA推荐插件
 
@@ -114,6 +117,36 @@ categories: 编程之路
 - **Rainbow Brackets**: 可以实现配对括号使用相同的颜色
 - **Vue.js**: 支持Vue.js开发
 
+#### Prettier配置
+
+- 首先需要安装`prettier`，可以全局安装也可以安装在当前项目
+
+- 在`Preferences->Languages & Frameworks->Javascript->Prettier`中设置`prettier package`的路径，例如`~/.nvm/versions/node/v10.16.2/lib/node_modules/prettier`
+
+- 然后`Preferences->Keymap`，搜索prettier关键字，设置`Reformat with Prettier`的快捷键，我一般设置成: `Shift + alt + cmd + P`
+
+- 如果想要保存文件后自动格式化，就需要再配置`watcher`，在`Preferences->Tools->file Watchers`，点击"+"添加一个`prettier`类型的watcher，默认设置，然后保存即可
+
+- 在项目根目录下可以新建一个`.prettierrc`配置文件用于覆盖默认配置，配置完成后可直接在该文件名上右键点击`Apply Prettier Code Style Rules`。例如:
+
+```json
+{
+  "singleQuote": true,	// 使用单引号
+  "semi": false,	// 每行末尾是否带分号
+  "trailingComma": "none",	// JSON格式的数据或对象最后一个元素后需不需要逗号
+  "useTabs": false,	// 是否使用tab而不是用空格
+  "printWidth": 120	// 每行最长宽度120
+}
+```
+
+- **prettier没有在函数名和参数口号之间加空格的功能(eslint默认开启了space-before-function-paren设置的)**，如果需要实现这个功能，可以先使用`prettier`格式化代码，再使用`eslint`格式化一下。可以添加一个`External Tools`，填写如下参数。有人说这个可以用`prettier-eslint`来代替，可是我实在不知道这个东西怎么用
+
+  ```shell
+  Program: /bin/bash	# 因为有多条命令，External Tools不能直接写多条命令，所以用这个代替
+  Arguments: -c "prettier --write $FileName$; /Users/haofly/workspace/sparrows-web/node_modules/.bin/eslint --fix $FileName$"
+  Working directory: $FileDir$
+  ```
+
 ### PhpStorm
 
 - 设置PHP版本: `Perferences->Languages->Frameworks`
@@ -125,16 +158,4 @@ categories: 编程之路
 
 [EAP 版本下载地址](https://www.jetbrains.com/pycharm/nextversion/)
 
-### WebStorm
 
-- 配置`Prettier`
-
-  - 首先需要安装`prettier`，可以全局安装也可以安装在当前项目
-
-  - 在`Preferences->Languages & Frameworks->Javascript->Prettier`中设置`prettier package`的路径，例如`~/.nvm/versions/node/v10.16.2/lib/node_modules/prettier`
-
-  - 然后`Preferences->Keymap`，搜索prettier关键字，设置`Reformat with Prettier`的快捷键，我一般设置成: `Shift + alt + cmd + P`
-
-  - 如果想要保存文件后自动格式化，就需要再配置`watcher`，在`Preferences->Tools->file Watchers`，点击"+"添加一个`prettier`类型的watcher，默认设置，然后保存即可
-
-    

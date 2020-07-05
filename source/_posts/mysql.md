@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-06-11 14:44:00
+updated: 2020-07-05 14:44:00
 categories: database
 ---
 ## 安装方法
@@ -51,7 +51,9 @@ DROP DATABASE database_name	# 删除数据库
 ### 数据表操作
 
 ```mysql
+CREATE TABLE `table2` SELECT * FROM `table1`;	# 从一张旧表直接建立一张新表
 DROP TABLE name; # 删表
+ALTER TABLE 表名 RENAME TO 新表名	# 修改表名称
 ## 清空数据表
 DELETE FROM 表名; # 这种方式比较慢，但是可以恢复
 TRUNCATE TABLE 表名 # 这种方式很快，但不会产生二进制日志，无法回复数据
@@ -403,6 +405,7 @@ COUNT(field_name)
 SUM(case when field='wang' then 1 else 0 end) as sum_if
 COUNT(IF(field='wang',1,NULL)) as count_if	# 使用if做统计
 COUNT(DISTINCT IF(field='wang', field2, NULL))	# COUNT配合DISTINCT和IF同时使用
+COALESCE (field1, field2, field3)	# 只要其中有一个为NULL，表达式的值就为NULL，类似于some，用于判断几个字段是否都为NULL
 
 # 逻辑相关
 CASE 
@@ -417,7 +420,8 @@ IF(sex=1, '男', '女')				# if条件语句
 IF(sex=1 OR field='b', 1, NULL)		# 复杂的
 
 # 字符串处理
-REPLACE(field_name, "search", "replace")	# 将search替换为replace，正则搜索，例如UPDATE `table` SET `value` = REPLACE(`value`, 'abc', 'def')
+REPLACE(field_name, "search", "replace")	# 将search替换为replace，例如UPDATE `table` SET `value` = REPLACE(`value`, 'abc', 'def')
+REGEXP_REPLACE(field_name, "search", "replace")	# 正则替换，但是是从mysql8.0开始才有的。另外几个相关的正则函数有NOT_REGEXP、REGEXP、REGEXP_INSTR、REGEXP_LIKE、REGEXP_SUBSTR、RLIKE
 
 # JSON相关函数
 JSON_ARRAY([])	# 将数组转换为json格式
@@ -425,8 +429,9 @@ JSON_ARRAYAGG(字段)	# 返回某个字段值组成的json格式数组
 JSON_CONTAINS(field_name, '{"A":"B"}')	# JSON是否包含子文档，例如{"A":"B", "C": "D"}，包含了{"A":"B"}
 JSON_KEYS(field_name)	# 获取json数据的所有key
 JSON_EXTRACT(字段名,'$.id')	# 获取json数据key=id的值，需要注意的是，结果前后是带有双引号的可用json_unquote函数取消其双引号
-JSON_MERGE_PRESERVE(@json1, @json2);	# 合并两个JSON，当key重复的时候，会将value当作数组来合并，功能和JSON_MERGE一样，但是JSON_MERGE快弃用了
+JSON_MERGE_PRESERVE(@json1, @json2);	# 合并两个JSON，当key重复的时候，会将value当作数组来合并，功能和JSON_MERGE一样，但是JSON_MERGE快弃用了。一定一定要注意值为NULL的情况，如果@json1为NULL，那么无论@json2是怎样的数组，结果都为NULL
 JSON_MERGE_PATCH(@json1, @json2);	# 合并两个JSON，当key重复的时候，会覆盖
+JSON_REMOVE(@json1, '$.A'); # 移除指定的key，但是只能移除key->value形式的json数据，如果是数组，不支持用*或**来通配
 ```
 
 ## 数据库优化

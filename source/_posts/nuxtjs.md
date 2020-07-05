@@ -1,6 +1,7 @@
 ---
 title: "Nuxt.js 教程"
 date: 2020-06-16 20:09:39
+updated: 2020-07-05 10:22:00
 categories: js
 ---
 
@@ -137,5 +138,8 @@ async fetch ({ store, params }) {
 ##### TroubleShooting
 
 - **让组件不在服务端渲染而是在客户端渲染**: 可以给组件加一个`<no-ssr></no-ssr>`包围，但是注意它只能一次包含一个组件，不能多个
+
 - **The client-side rendered virtual DOM tree is not matching server-rendered content. ** 出现这个`error`，解决方法同上
+
+- **Mismatching childNodes vs. VNodes**: 也同上
 - **<no-ssr>不生效**: 可能是因为其包含的组件里面有槽，例如我在使用`vue-infinite-loading`的时候错误地在组件上加了`slot="append"`属性，导致`<no-ssr>`不生效，导致该组件既没在服务端渲染，也没在客户端渲染。
