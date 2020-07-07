@@ -110,7 +110,7 @@ module.exports = {
 
 ### asyncData
 
-- 渲染组件之前异步获取数据
+- 渲染组件之前异步获取数据，顺序在`beforeCreate`和`created`之前
 
 ### fetch
 
@@ -134,6 +134,20 @@ async fetch ({ store, params }) {
   store.commit('setStars', data)
 }
 ```
+
+## 性能优化
+
+- 可以在配置文件中添加如下配置进行打包性能分析:
+
+  ```json
+  build: {
+    analyze: true
+  }
+  ```
+
+  然后这样打包即可得到分析结果:`nuxt build --analyze`
+
+- `element-ui`的按需引入插件`babel-plugin-component`
 
 ##### TroubleShooting
 

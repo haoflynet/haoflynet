@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-06-16 14:25:00
+updated: 2020-07-06 11:25:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -70,7 +70,24 @@ a:active: a标签被点击的时候
 ##### font-weight
 
 - 设置字体粗细
+
 - 如果值为`bold`，表示直接加粗，相当于值为`700`
+
+- 如果想要字体超过900，可以尝试这些方法
+
+  - 更换字体
+
+  - 尝试给字加阴影，加少一点也有一定的加粗字体的效果
+
+    ```css
+    text-shadow: 0px 1px, 1px 0px, 1px 0px;
+    
+    // 或者几个属性配合
+    text-shadow: 1px 0;
+    letter-spacing:1px;
+    font-weight:bold;
+    letter-spacing: 0.5px;
+    ```
 
 ##### input
 
@@ -98,6 +115,10 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 - 当垂直方向溢出时添加滚动条
 - scroll: 可以用这个属性给单独的两列创建单独的滚动条
 
+##### pointer-events
+
+- `none`: 可以实现某个元素仅仅能看，但是无法触发其事件。屏蔽掉某个元素上的所有的事件
+
 ##### position
 
 - absolute: 绝对定位，相对于static定位以外的第一个父元素进行定位
@@ -105,6 +126,7 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 - relative: 相对定位，相对于其正常位置进行定位
 - static: 默认值。没有定位ie，元素出现在正常的流中
 - inherit: 从父元素继承position属性
+- 如果**父元素设置了margin auto且overflow-x:none，子元素如果想单独撑开(而不是所有子元素撑开)父元素且横屏占满，可以采取修改position的值为fixed然后width：200%，然后left一点到左边去即可**
 
 ##### table
 
@@ -115,6 +137,10 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### text
 
 - text-indent: 段落缩进设置
+
+##### top
+
+- 如果`top`属性不起作用，可以尝试修改当前元素或者父元素或兄弟元素的`position`值试试
 
 ##### white-space
 
@@ -182,6 +208,10 @@ div {margin:0 auto}
 .parent {
   display: flex; 
   align-items: center;
+}
+# 方法六：让标签中的文字剧中
+div {
+  text-align: center;
 }
 ```
 
@@ -272,6 +302,6 @@ http://www.w3cplus.com/content/css3-gradient
 }
 ```
 
-##### 扩展阅读
+**扩展阅读**
 
 [Flex 布局教程](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
