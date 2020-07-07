@@ -1,7 +1,7 @@
 ---
 title: "Chrome扩展开发手册"
 date: 2018-04-10 18:32:00
-updated: 2020-06-14 15:42:00
+updated: 2020-07-05 15:42:00
 categories: chrome
 ---
 
@@ -209,6 +209,8 @@ chrome.runtime.onMessage.addListener(
 参考文章:
 
 [官网开发手册](https://developer.chrome.com/extensions/getstarted)
+
+[Chrome 扩展(插件)开发教程—中文文档](https://dev.crxhome.org/)
 
 [Chrome插件开发--后台监控网页并自动刷新，点击页面元素](https://blog.csdn.net/lchina1314/article/details/84725084): 快速创建一个抢购插件
 
