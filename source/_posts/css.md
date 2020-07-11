@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-07-06 11:25:00
+updated: 2020-07-07 11:25:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -177,7 +177,239 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
   @media tv and (min-width: 700px) and (orientation: landscape){}// 仅在电视上
   ```
 
+## CSS选择器
+
+##### .class1.class2
+
+- 表示既包含class1又包含class2的元素
+
+##### .class1 .class2
+
+- 表示class1下的class2的元素
+
+##### element > element
+
+- 例如`div > p`表示选择所有父节点为`div` 的`p`元素
+
+##### element + element
+
+- 例如`div + p`表示选择所有前面是`div`标签的`p`标签
+
+##### element ～ element
+
+- 例如`p ~ ul`表示选择所有`p`标签后的`ul`标签
+
+##### [attribute]
+
+- 例如`a[target]`表示选择所有含有`target`属性的`a`标签
+
+##### [attribute=value]
+
+- 例如`a[target=_blank]`表示选择所有`target`属性为`_blank`的`a`标签
+
+##### [attribute~=value]
+
+- 例如`[title~=flower]`表示选择所有`title`属性里面包含`flower`的标签
+
+##### [attribute|=value]
+
+- 例如`[lang|=en]`表示选择所有`lang`属性以`en`开头的标签
+
+##### [attribute^=value]
+
+- 例如`a[href^="https"]`表示选择所有`href`属性以`https`开头的`a`标签
+
+##### [attribute$=value]
+
+- 例如`a[href$=".pdf"]`表示所有`href`属性以`.pdf`结尾的`a`标签
+
+##### [attribute*=value]
+
+- 例如`a[href*="test"]`表示所有`href`包含`test`的`a`标签
+
+##### :active
+
+- 例如`a:active`表示`a`标签被激活
+
+##### ::after
+
+- 例如`p::after`表示在`p`标签后插入一些内容
+
+```css
+// 这样每一个p标签后面都会跟上这个内容了
+p::after { 
+  content: " - Remember this";
+}
+```
+
+##### ::before
+
+- 例如`p::before`表示在`p`标签前插入一些内容
+
+##### :checked
+
+- 例如`input:checked`表示选择所有`checked`了的`input`
+
+##### :default
+
+- 例如`input:default`表示选择所有默认状态下的`input`
+
+##### :disabled
+
+- 例如`input:disabled`表示选择所有禁用了的`input`
+
+##### :empty
+
+- 例如`p:empty`表示选择没有子元素的`p`标签
+
+##### :enabled
+
+- 例如`input:enabled`表示选择所有可用的`input`标签
+
+##### :first-child
+
+- 第一个子元素
+
+##### ::first-lettter
+
+- 第一个字母
+
+##### ::first-line
+
+- 第一行
+
+##### :first-of-type
+
+- 例如`p:first-of-type`表示全局所有的`p`标签里面的第一个
+
+##### :focus
+
+- 表示获得焦点的时候
+
+##### :hover
+
+- 鼠标浮动的时候
+
+##### :in-range
+
+- 当值在某个范围内的时候
+
+```css
+<style>
+input:in-range {
+  border: 2px solid yellow;
+}
+</style>
+// 下面的7在input的范围内，当值为7的时候就应用上面的样式
+<input type="number" min="5" max="10" value="7">
+```
+
+##### :indeterminate
+
+- 元素为不确定状态时
+
+##### :invalid
+
+- 当输入为不合法的时候`input:invalid`
+
+##### :lang(language)
+
+- `p:lang(it)`表示选择所有`lang`属性为`it`的`p`标签
+
+##### :last-child
+
+- 最后一个子元素
+
+##### :last-of-type
+
+- 全局最后一个指定元素
+
+##### :link
+
+- `a:link`表示所有为访问的`a`标签
+
+##### :not(selector)
+
+- `:not(p)`表示所有不是`p`标签的标签
+
+##### nth-child(n)
+
+- 前n个子元素
+
+##### nth-last-child(n)
+
+- 表示倒数n个子元素
+- 参数除了数字，还可以填入`odd`和`even`表示奇偶
+
+```css
+// 表示该div标签下的最后2个元素的属性
+div:nth-last-child(2) {
+  background: red;
+}
+```
+
+##### :nth-last-of-type(n)
+
+- 最后n个元素
+
+##### :nth-of0type(n)
+
+- 前n个元素
+
+##### :only-of-type
+
+- `p:only-of-type`选择所有的`p`标签为父元素的`p`标签
+
+##### :only-child
+
+- `p:only-child`选择所有的`p`标签为子元素的`p`标签
+
+##### :optional
+
+- `input:optional`表示输入框为非必选的时候
+
+##### out-of-range
+
+- 和`in-range`相反
+
+##### ::placeholder
+
+- `input::placeholder`
+
+##### :read-only
+
+- `input:read-only`表示只读的`input`标签
+
+##### :read-write
+
+- `input:read-write`表示可读写的`input`标签
+
+##### :required
+
+- `input:required`表示必填的`input`标签
+
+##### :root
+
+- 选择文档的跟元素
+
+##### ::selection
+
+- 用户当前选择的元素
+
+##### :target
+
+- 
+
+##### :valid
+
+- 合法的输入框
+
+##### :visited
+
+- 访问过的连接
+
 ## TroubleShooting
+
 #### 元素居中方法
 ```css
 方法一：
@@ -305,3 +537,5 @@ http://www.w3cplus.com/content/css3-gradient
 **扩展阅读**
 
 [Flex 布局教程](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+[CSS Viewport 视口单位](https://juejin.im/post/5efd21f2f265da2307399020#heading-19): 一种新的单位`vw/vh/vmin/vmax`，这篇文章中有很多应用案例，例如: 响应式字体大小、全屏、粘性布局、响应式元素、垂直和水平间距、模态框、页面头部、纵横比、顶部边框、移动端滚动等
