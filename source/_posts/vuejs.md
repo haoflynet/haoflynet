@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-06-28 14:56:00
+updated: 2020-07-11 11:56:00
 categories: js
 ---
 
@@ -17,6 +17,15 @@ categories: js
 <a title="test"></a>// 如果仅想传入一个字符串作为props给组件，那么不用加冒号
 <a :hidden="shouldHidden==='letshidden'">	// 在v-bind中直接用表达式
 <img v-bind:src="pic" v-for="pic in pics" />
+  
+// v-model
+<input type="text" v-model="msg"> // 等价于<input type="text" :value='msg' @input='handleInput'>
+  
+// 遍历v-for
+<li v-for="item in items">{{item}}</li>
+<li v-for="(item, index) in items">{{item}}的索引是{{index}}</li>
+<li v-for="(value, name, index) in items">遍历key=>value格式的数组，顺便还有索引</li>
+<li v-for="(item,index) in items"><span v-if="index !== items.length-1">判断是否是列表最后一个元素，目前没找到更好的方法</span></li>
 
 // v-on
 <a v-on:click="doSomething">...</a>
@@ -27,9 +36,18 @@ categories: js
 <div v-html="$options.filter.myfilter(data)"></div>	// v-html中使用过滤器
 
 // v-if, v-else, v-else-if, 条件判断
+// v-show，只是控制是否展示，DOM是存在的
 ```
 
 <!--more-->
+### 动态数据绑定
+
+```javascript
+// 动态绑定class
+<div :class={
+  'class_name': isOk ? true : false
+}></div>
+```
 
 ### slot插槽
 
@@ -90,14 +108,237 @@ Vue.component('mycomponent', {
 </mycomponent>
 ```
 
-## 动态数据绑定
+## 页面Script相关方法
 
-```javascript
-// 动态绑定class
-<div :class={
-  'class_name': isOk ? true : false
-}></div>
+### 实例/组件属性
+
+- `$options`: 获取用户自定义的配置
+
+  ```vue
+  {{abc | $options.filters.myFilters}}
+  ```
+
+- `parent`: 从子组件访问父组件的实例
+
+- `$ref`: 可以通过`this.$refs.xxx`来访问当前组件的指定的子组件/元素常用于获取表单
+
+  ```vuejs
+  <el-form :model="formData" :rules="rules" ref="testForm" @validate="validateForm" inline-message></el-form>
+  <my-component ref="mine"></my-component>
+  
+  <script>
+   const fields = this.$refs.contactForm.fields
+   this.$refs.contactForm.validate(async (valid) => {})
+   this.$refs.mine.myMethod()
+   this.$refs.mine.offsetHeight // 获取元素高度宽度
+  </script>
+  ```
+
+- `$root`: 用来访问`vue`的根实例
+
+- `$watch`: 跟`watch`用法一样
+
+  ```vue
+  this.$watch('msg', function (oldValue, newValue) {})
+  ```
+
+### computed
+
+- 用于计算一些`props`或`data`无法直接得到的变量
+- 不会立马取值，用到的时候才会取值，并且有缓存，依赖数据不改变不会更新结果
+
+```vue
+<script>
+  computed: {
+    isOk: {
+      get () {
+        return this.myList.every((item) => item > 0)
+      },
+      set (newValue) {
+        this.myList.forEach(item => item = newValue)
+      }
+    }
+  }
+</script>
 ```
+
+### directives
+
+- 指令，如果直接写在组件的`script`中则是局部的，这个用得少
+- 定义了后就可以在要使用的标签上添加`v-xxx`，其中的`xxx`为指令名字
+
+### filter
+
+- 过滤器，如果直接写在组件的`script`中则是局部的
+
+```vue
+<template>
+  <div>
+    {{ myValue | format1('newValue')}}
+  </div>
+</template>
+<script>
+  filters: {
+    format1(value) {
+      return newValue
+    }
+  }
+</script>
+```
+
+### watch
+
+- 用于观测值的变化，执行相应的函数
+- 子组件如果有个单独的初始化函数可以用它来监听某个`prop`的值变化，变化了则可以执行一次初始化函数
+- 与`computed`不同的是，它会立即执行，会先算出来一个老值，数据变化就执行函数
+
+```vue
+<script>
+  watch: {
+    msg: {
+      handler: function (newValue, oldValue) {	// 需要触发的方法
+        this.method1()
+      },
+      deep: true	// 是否深度遍历,
+      immediate: true // 是否立即执行
+    },
+    field (value) {
+      this.val = value
+    },
+    'queryData.status': 'fn', // 表示queryData.status值改变后执行methods的fn方法
+  }
+</script>
+```
+
+## 组件通信
+
+### 父子组件通信
+
+- `broadcast + dispatch`的方式已经弃用了
+- 下面示例列出了两种方式
+
+```vuejs
+// 父组件
+<template>
+	<div>
+	  // 方法一： 直接把属性和函数传送给子组件，自组件能直接使用
+    <Son :value="value" :changeValue="changeValue"></Son>
+    // 方法二：emit的方式，子组件触发某个事件，父组件监听某个事件触发某个函数
+		<Son :value="value" @myClickEvent="changeValue"></Son>
+	</div>
+</temlate>
+<script>
+import Son from './Son'
+export default {
+  components: {
+    Son
+  },
+	data() {
+		return {
+		 value: 100
+		}
+	},
+	methods: {
+	  changeValue(newValue) {
+	  	this.value = newValue
+	  },
+	  changeValue2(newValue) {
+	    this.value += newValue
+	  }
+	}
+}
+</script>
+
+// 子组件
+<template>
+	<div>
+	  <button @click="changeValue(500)">button1</butotn>
+	  <button @click="change">button2</button>
+	</div>
+</template>
+<script>
+ export default {
+   props: {
+     value: {
+       type: Number,
+       default: 10
+     },
+     changeValue: {
+       type: Function,
+       default: ()=> {}
+     }
+   },
+   methods: {
+     change () {
+       this.$emit('myClickEvent', 10)
+     }
+   }
+ }
+</script>
+```
+
+### 非父子组件的通信
+
+- 用`$bus`或者`$root`应该都能实现
+- 其实是一种发布/订阅模式，谁都能订阅
+
+```vuejs
+// 组件一
+<template>
+  <div></div>
+</template>
+<script>
+export default {
+  mounted () { // 组件挂载的时候即监听该事件
+  	this.$root.$on('myEvent:search', (value) => {
+     console.log(value)
+    })
+    
+    // 只监听一次，监听完成后立马移除
+    this.$root.$once('myEvent:serach', (value) => {})
+  },
+  // 防止重复进入页面执行多次的现象
+  beforeDestroy () {
+    this.$root.$off('myEvent:search')
+  }
+}
+</script>
+
+// 组件二，其实是一个输入框
+<template>
+  <el-input prefix-icon="el-icon-search" placeholder="Search" v-model="keyword" @keyup.enter.native="onInputSearch" />
+</template>
+<script>
+export default {
+  data () {
+    return {
+      keyword: ''
+    }
+  },
+  methods: {
+    async onInputSearch () {
+      this.$root.$emit('myEvent:search', this.keyword)
+      this.keyword = ''
+    }
+  }
+}
+</script>
+
+```
+
+## 页面样式
+
+- 经常给`style`标签添加`scoped`属性，表示当前CSS只作用于当前组件中的元素(其实现就是给元素添加data-xxx属性)，当然可以在一个组件中写两个不同的`style`以混用全局和局部样式。
+
+- 使用`scoped`后，父组件的样式不会渗透到子组件，但是一个子组件的根节点会同事受其父组件有作用域的CSS和子组件有作用域的CSS的影响。所以父组件的样式调整可能会影响到子组件
+
+- 如果不使用`scoped`，最好在需要覆盖的样式前加上顶级作用域：
+
+  ```vuejs
+  .myDiv .el-tag {
+   color: black;
+  }
+  ```
 
 ## 常用事件
 
@@ -112,6 +353,23 @@ Vue.component('mycomponent', {
 <div @mouseup.native="func"></div> // 鼠标按下
 <div @mouseover.native="func"></div> // 鼠标移动到元素上
 <div @mouseout.native="func"></div> // 鼠标移开
+```
+
+## 异常处理
+
+捕获全局异常可以这样做:
+
+```javascript
+// 除了errorHandler，还有
+Vue.config.errorHandler = function (err, vm, info) {
+  console.info(err, vm, info)
+}
+
+// 也可以在组件里面使用原生的页面监听方式
+window.addEventListener("unhandledrejection", event => {
+  console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`);
+});
+window.addEventListener('error', function(event) { ... })
 ```
 
 ## Vuex
@@ -368,6 +626,8 @@ var _lsTotal=0,_xLen,_x;for(_x in localStorage){ if(!localStorage.hasOwnProperty
 
 ## 网络交互组件axios
 
+- axios默认不会对url进行编码，可以使用`encodeURI`或者`encodeURIComponent`对URL进行编码，前者会避开`&/?/[/]`等url中的功能性字符
+
 (Vue官方已经不推荐vue-resource，而是推荐axios了)用法其实与Ajax类似，例如:
 
 ```javascript
@@ -385,7 +645,7 @@ axios({
 
 - **更改数据页面不渲染**，可能有如下原因
   - 在给data赋值后只是简单地添加新的属性，没有用this.$set等方法，导致没有新添加的属性没有实现双向绑定，从而导致重新渲染失败。常见现象也有改变一个值，第一次改变页面渲染成功，之后再改变页面不会更新等
-- 
+- **页面跳转出错/NavigationDuplicated**: 页面跳转经常出现莫名其妙的错误，所以一般都会把异常直接忽略，例如`router.push('/next').catch(err => {})`
 
 相关链接
 
