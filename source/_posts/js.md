@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-07-05 1:43:00
+updated: 2020-07-12 14:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -10,6 +10,7 @@ TODO: 逐步用原生方法替换jQuery，参考[You-Dont-Need-jQuery](https://g
 
 - 判断是否是非数字: `isNaN(a)`
 - 生产环境直接全局屏蔽掉`console.log`的输出，只需要复写即可:`console.log=()=>{}`
+- 包含关系(超集): TypeScript > ES2016 > ES2015 > ES5
 
 ## 基本语法
 
@@ -116,7 +117,9 @@ str.split(/\s+/) // 也可以用正则分割
 str.split('...', n)	// n表示返回数组的最大长度，分割还是会分割成所有，只是返回前n个
 str.toUpperCase()	// 转换为大写
 str.toLowerCase()	// 转换为小写
-parseInt(数字)  // 将数字取整
+parseInt(数字)  // 将数字取整，字符串转整数
+parseInt(num, 10) // 转整数，传入基数
+parseFloat(num) // 字符串转浮点数
 
 btoa(str);	// 字符串转换为base64
 atob(str);	// base64转换为字符串
@@ -140,6 +143,20 @@ Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
 // moment
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
+```
+
+#### URL Params处理
+
+```javascript
+let searchParams = new URLSearchParams(url.split('?')[1])
+
+// 遍历请求参数
+for (const [key, value] of mySearchParams.entries()) {}
+
+let builder = new URLSearchParams()
+builder.set('field1', 'value')
+builder.set('feild2', JSON.stringify(myObj))
+builder.toString()	// 生成URL查询字符串
 ```
 
 ### 函数
@@ -566,6 +583,15 @@ myArr.map(Match.sqrt)
 
 ```javascript
 Arrays.from([12, 22, 33]).some(item => item > 30)
+```
+
+##### _.xorWith
+
+- 得到在两个数组中都不存在的元素组成的数组，第三个参数是一个比较函数，用于比较是否相等
+
+```js
+_.xorWith([3], [1,2], _.isEqual)	// 得到[3,1,2]
+_.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
 ```
 
 ## 推荐阅读
