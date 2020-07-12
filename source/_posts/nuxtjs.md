@@ -1,7 +1,7 @@
 ---
 title: "Nuxt.js 教程"
 date: 2020-06-16 20:09:39
-updated: 2020-07-05 10:22:00
+updated: 2020-07-11 20:22:00
 categories: js
 ---
 
@@ -114,10 +114,12 @@ module.exports = {
 
 ### fetch
 
+- 发生在`created`之后
 - 渲染页面之前填充应用的状态树(store)数据，与`asyncData`方法类似，不同的是它不会设置组件的数据
 - 每次组件加载前被调用(在服务端或切换至目标路由之前)
 - `fetch`内部是无法使用`this`获取当前组件实例，因为此时组件还未初始化
 - 为了让获取过程可以异步，需要返回一个`Promise`，`Nuxt.js`会等这个`promise`完成后再渲染组件
+- **`fetch`可能在`server` 端执行也可能在`client`端执行**(第一次进入页面在`client`端，之后在`server`端)
 
 ```javascript
 fetch ({ store, params }) {
@@ -156,4 +158,17 @@ async fetch ({ store, params }) {
 - **The client-side rendered virtual DOM tree is not matching server-rendered content. ** 出现这个`error`，解决方法同上
 
 - **Mismatching childNodes vs. VNodes**: 也同上
+
 - **<no-ssr>不生效**: 可能是因为其包含的组件里面有槽，例如我在使用`vue-infinite-loading`的时候错误地在组件上加了`slot="append"`属性，导致`<no-ssr>`不生效，导致该组件既没在服务端渲染，也没在客户端渲染。
+
+- **在`asyncData/fetch`中获取用户真实IP**: 注意参考[nginx 教程](https://haofly.net/nginx/index.html)，设置`x-forwarded-for`头，当然如果是`process.client`，后端接口能够直接获取到它的`req.headers['x-forwarded-for']`
+
+  ```javascript
+  async asyncData( { req } ) {
+    if (process.server) {
+      req.headers['x-forwarded-for']
+    }
+  }
+  ```
+
+  

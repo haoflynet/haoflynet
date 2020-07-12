@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2019-09-11 14:01:00
+updated: 2020-07-11 11:01:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -146,7 +146,9 @@ location / {
 }
 ```
 
-### 端口转发配置
+### 端口转发配置/获取真实IP
+
+- `proxy_set_header`几个配置可以让程序获取到真实的用户IP，而不是多级代理时候的`nginx`内网地址
 
 ```nginx
 在server里：
@@ -180,6 +182,42 @@ server{
         location ^~ /multiple-addresses-in-one-map/ {
                 alias /usr/share/nginx/multiple-addresses-in-one-map/;
         }
+}
+```
+
+### 自定义日志格式
+
+- 日志的一些变量:
+  - `$host`访问的域名
+  - `$remote_addr/$http_x_forwarded_for`客户端IP地址
+  - `$time_local`访问时间
+  - `$status`访问状态码
+  - `$upstream_response_time`应用返回到Nginx的时间
+  - `$request_time`请求时间
+  - `$http_referer`请求来源
+  - `$http_user_agent`访问客户端
+  - `$body_bytes_sent`返回给客户端的大小
+
+`nginx`的默认日志格式为
+
+```nginx
+log_format '$remote_addr - $remote_user [$time_local] '
+						'"$request" $status $body_bytes_sent '
+						'"$http_referer" "$http_user_agent" "$gzip_ratio"'
+```
+
+将真实IP记录在日志中，而不是代理的日志(需要设置`proxy_set_header`等信息，参考代理配置):
+
+```nginx
+# my_format即是自己定义的日志格式别名
+log_format my_format '$http_x_forwarded_for - $remote_addr - $remote_user [$time_local] '
+						'"$request" $status $body_bytes_sent '
+						'"$http_referer" "$http_user_agent" "$gzip_ratio"'
+
+# 定义在http区块中，然后在server区块中这样使用即可覆盖默认的日志配置
+# 需要注意的是千万别在http区块中使用，否则会重复打印多条日志
+server {
+  access_log /var/log/nginx/access.log my_format;
 }
 ```
 
