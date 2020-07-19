@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2020-03-16 17:21:00
+updated: 2020-07-12 17:21:00
 categories: tools
 ---
 # Git指南
@@ -203,6 +203,40 @@ git push origin :refs/tags/v1.0.0		# 本地删除标签后远程也要删除
 ```shell
 # 统计代码行数
 git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | gawk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END { printf "added lines: %s removed lines : %s total lines: %s\n",add,subs,loc }' -
+```
+
+## 钩子/hook
+
+- 不仅仅`Github`有`webhook`钩子，`git`本身也是有钩子的
+- 所有的`git hooks`都在`.git/hooks`目录下，并且所有钩子类型都在该文件有提供示例脚本文件，可以直接根据脚本文件进行修改，例如，可以这样设置钩子
+- 常常可以在这里做代码检查
+- 常用钩子包括: `pre-commit`提交前、`prepare-commit-msg`准备提交信息、`commit-msg`提交日志、`post-commit`提交后，`post-checkout`切换后、`pre-rebase`Rebase前
+
+#### 禁止本地提交到master/develop分支
+
+```shell
+# .git/hooks/pre-commit
+#!/bin/sh
+# disable commit to master and develop branch
+branch=$(git rev-parse --symbolic --abbrev-ref HEAD)
+if [ "master" == "$branch" ] || [ "develop" == "$branch" ]; then
+  echo ".git/hooks: can not commit to $branch branch"
+  exit 1
+fi
+```
+
+#### 禁止提交包含非ASCII的文件
+
+```shell
+# .git/hooks/pre-commit
+#!/bin/sh
+# disable commit non-ascii content
+TEXT=$(git diff)
+LC_CTYPE=C
+if [[ $TEXT = *[![:ascii:]]* ]]; then
+  echo "Contain Non-ASCII"
+  exit 1
+fi
 ```
 
 ## 贡献PR(Fork别人的项目)

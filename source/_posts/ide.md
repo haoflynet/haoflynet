@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2020-07-04 17:08:00
+updated: 2020-07-19 17:08:00
 categories: 编程之路
 ---
 
@@ -116,6 +116,10 @@ categories: 编程之路
 - **Python**: 支持Python开发
 - **Rainbow Brackets**: 可以实现配对括号使用相同的颜色
 - **Vue.js**: 支持Vue.js开发
+
+#### 集成Python代码格式化工具black
+
+https://github.com/psf/black/blob/master/docs/editor_integration.md
 
 #### Prettier配置
 

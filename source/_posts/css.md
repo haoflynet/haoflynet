@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-07-07 11:25:00
+updated: 2020-07-19 16:25:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -531,6 +531,31 @@ http://www.w3cplus.com/content/css3-gradient
 	-webkit-transform: scale(.5);
   -moz-transform: scale(.5);
   transform: scale(.5);
+}
+```
+
+#### 让两个Div或其它元素始终并排显示
+
+- UI中可能会有将两个元素合并成一个元素，并且无论响应式如何改变，两个元素始终按原来的样式在一起
+- 可以先调整两个元素的样式，让他们挨在一起，然后新建一个父类将他们包裹
+
+```css
+.parent {
+  min-width: 150px; // 父组件设置最小宽度，这样即使是响应式也不会影响父组件内部的元素了。剩下的就是让外部无论如何也不能让parent元素的宽度变小了
+}
+.leftElement {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+}
+.rightElement {
+  position: relative;
+  display: inline-block;
+  left: -4px;	// 微调右边的元素
+  top: 1px;
+  border: 1px solid #e1e4e6;
+  border-left: none;
+  width: 50px;
 }
 ```
 
