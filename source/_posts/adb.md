@@ -1,7 +1,7 @@
 ---
 title: "ADB: Android调试工具与自动化操作工具"
 date: 2018-03-12 21:32:00
-updated: 2019-10-15 06:29:00
+updated: 2020-07-19 06:29:00
 categories: android
 ---
 
@@ -14,6 +14,13 @@ ADB(Android Debug Bridge)，即android的一个调试工具，主要用于开发
 - 管理与电脑连接的android设备
 - 管理android模拟器
 - 上传/下载文件至android设备或者模拟器
+
+##### Mac安装方式
+
+```shell
+brew tap homebrew/cask
+brew cask install android-platform-tools
+```
 
 <!--more-->
 

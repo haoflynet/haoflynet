@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2019-07-29 09:10:00
+updated: 2020-07-19 16:10:00
 categories: frontend
 ---
 # Html
@@ -18,7 +18,6 @@ categories: frontend
     <link href="styles.css" rel="stylesheet" ><!--添加样式表-->
     <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">	<!--设置favicon-->
     
-      
     <script src="scripts.js"></script> <!--添加Js脚本-->
     <style type="text/css"></style> <!--内嵌CSS-->
   </head>
@@ -45,10 +44,17 @@ categories: frontend
 ## 常用控件
 
 ```html
-  # 单行文本框
-  <input type="text" value="默认值">或<input type="password">
-  # 多行文本框
-  <textarea>默认值</textarea>
+# 单行文本框
+<input type="text" value="默认值">或<input type="password">
+
+# 文件上传
+<input type="file" accept="image/*" />
+
+# 多文件上传
+<input type="file" accept="image/*" multiple />
+
+# 多行文本框
+<textarea>默认值</textarea>
   # 复选框
   <input type="checkbox">
   # 单选按钮
