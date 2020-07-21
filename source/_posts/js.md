@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-07-12 14:43:00
+updated: 2020-07-19 16:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
