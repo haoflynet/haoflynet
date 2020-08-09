@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2020-05-2 17:36:30
+updated: 2020-07-25 10:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -316,7 +316,7 @@ abs(-123)	# 获取绝对值
 
 # 除法
 14/3 = 4.666666666666667	# 精确除法
-14//3 = 4			# 取整
+14//3 = 4			# 取整，整除
 14%3 = 2  # 求余
 math.ceil(10/3) = 4	# 向上取整
 math.floor(10/3)= 3	# 向下取整
@@ -1001,8 +1001,8 @@ copy.deepcopy()	# 深拷贝
 # 例如
 a = {'a': {'b': 1}}
 b = a			# 简单的建立一个对象的引用，"a is b" is True
-b = copy.copy()	# 浅拷贝，"a is b" is False, "a['a'] is b['a']" is True，此时b['a']['b']=2会同时改变a['a']['b']的值
-b = copy.deepcopy()	# 深拷贝，"a is b" is False, "a['a'] is b['a']" is True，此时b['a']['b']=2，并不会改变a['a']['b']的值
+b = copy.copy(a)	# 浅拷贝，"a is b" is False, "a['a'] is b['a']" is True，此时b['a']['b']=2会同时改变a['a']['b']的值
+b = copy.deepcopy(a)	# 深拷贝，"a is b" is False, "a['a'] is b['a']" is True，此时b['a']['b']=2，并不会改变a['a']['b']的值
 ## 浅拷贝
 ```
 
