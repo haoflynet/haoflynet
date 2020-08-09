@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-07-11 11:56:00
+updated: 2020-08-09 15:35:00
 categories: js
 ---
 
@@ -142,10 +142,46 @@ Vue.component('mycomponent', {
   this.$watch('msg', function (oldValue, newValue) {})
   ```
 
+### 全局API
+
+#### Vue.nextTick
+
+- 在下次DOM更新循环结束知乎执行延迟回调，在修改数据之后立即使用这个方法，可以在该方法里面获取到更新后的DOM
+- 因为本质上数据修改后DOM的更新是异步的，该方法提供了一个等待DOM渲染完成后的回调操作
+
+```javascript
+// 修改数据
+vm.msg = 'Hello'
+// DOM 还没有更新，如果这个时候直接去获取DOM只能获取到更新前的
+Vue.nextTick(function () {
+  // DOM 更新了
+})
+
+// 作为一个 Promise 使用 (2.1.0 起新增，详见接下来的提示)
+Vue.nextTick()
+  .then(function () {
+    // DOM 更新了
+  })
+
+// 例如，可以在一个组件中每次进入时候重新选然后执行某个操作
+watch: {
+  visible: {
+    handler: function (value) {
+      if (value) {
+        this.$nextTick(function () {
+          this.initSwiper()
+        })
+      }
+    }
+  }
+}
+```
+
 ### computed
 
 - 用于计算一些`props`或`data`无法直接得到的变量
 - 不会立马取值，用到的时候才会取值，并且有缓存，依赖数据不改变不会更新结果
+- 在非严格模式下，如果用引用的方式对数据进行修改，例如`myAttr[key]`，可能会发生值改变了但是`set` 却没有触发器的情况
 
 ```vue
 <script>
@@ -215,6 +251,32 @@ Vue.component('mycomponent', {
 ### 父子组件通信
 
 - `broadcast + dispatch`的方式已经弃用了
+
+- 子组件如果要监听父组件值的变化，可以直接用`watch`监听`props`，当然如果子组件需要单独修改这值，可以在`datas`里面另外定一个一个变量，例如:
+
+  ```javascript
+  props: {
+    field1: Boolean
+  },
+  data (props) {
+    return {
+      field1Rename: props.field1
+    }
+  },
+  watch: {
+    field1: {
+      handler: function () {
+        field1Rename = this.field1	// 每次父组件改变该prop的时候子组件需要恢复到初始值
+      }
+    }
+  },
+  methods: {
+    changeField () {
+      this.field1Rename = false	// 子组件能够单独修改该字段
+    }
+  }
+  ```
+
 - 下面示例列出了两种方式
 
 ```vuejs
@@ -340,7 +402,58 @@ export default {
   }
   ```
 
-## 常用事件
+## 事件处理
+
+### 事件监听
+
+```javascript
+// 可以直接在监听里写语句
+<button v-on:click="counter += 1">Add 1</button>
+// 可以传递一个method给事件监听
+<button @click="greet">Greet</button>
+// 可以在事件监听的时候带上参数
+<button v-on:click="say('what')">Say what</button>
+// 可以将事件对象$event传递给方法
+<button v-on:click="say('what', $event)">Say what</button>
+```
+
+### 事件修饰符
+
+- 用得最多的是拿来阻止某些事件的发生或冒泡，例如`@keydown.enter.native.prevent`可以阻止`textarea`输入换行符，`@keyup.enter.native.stop`阻止回车时间向上冒泡
+
+```vue
+<!-- stop: 阻止单击事件继续传播 -->
+<a v-on:click.stop="doThis"></a>
+
+<!-- prevent: 提交事件不再重载页面 -->
+<form v-on:submit.prevent="onSubmit"></form>
+
+<!-- 多个修饰符可以串联 -->
+<a v-on:click.stop.prevent="doThat"></a>
+
+<!-- 可以只有修饰符，没有监听方法 -->
+<form v-on:submit.prevent></form>
+
+<!-- 添加事件监听器时使用事件捕获模式 -->
+<!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 -->
+<div v-on:click.capture="doThis">...</div>
+
+<!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
+<!-- 而不会等待 `onScroll` 完成  -->
+<!-- 这其中包含 `event.preventDefault()` 的情况 -->
+<div v-on:scroll.passive="onScroll">...</div>
+
+<!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+<!-- 即事件不是从内部元素触发的 -->
+<div v-on:click.self="doThat">...</div>
+
+<!-- 事件将只会触发一次 -->
+<a v-on:click.once="doThis"></a>
+```
+
+### 常用事件
+
+- 如果是普通的`div`标签可以直接加`@click`监听，但是对于自定义的组件则应该加上`native`修饰符才行，监听组件根元素的原生事件
 
 ```javascript
 // 鼠标按下
@@ -378,6 +491,7 @@ window.addEventListener('error', function(event) { ... })
 - 解决了多个试图依赖于同一状态，来自不同视图的行为需要变更同一个状态的情况，有了`vuex`则就集中式管理了，否则可能需要再每次切换页面将所有的状态都带上才行
 - 与全局变量不同，它的状态存储是响应式的。当Vue组件从store中读取状态的时候，若store中的状态发生变化，那么相应的组件也会相应地更新
 - 不能直接改变`store`中的状态，改变的唯一途径就是显式地提交(commit) mutation
+- `state`即是公共数据池
 - 需要遵守的响应规则:
   - 最好提前在store中初始化好所有所需属性
   - 当需要在对象上添加新属性时，应该选择下面的方法之一
@@ -392,6 +506,7 @@ window.addEventListener('error', function(event) { ... })
 ```javascript
 // 定义方法一: 使用Store直接定义
 const store = new Vuex.Store({
+  strict: true, // 是否开启严格模式，当开启后，是无法在mutations外面直接修改数据池里面的值的。如果不开启严格模式，在使用饮用的方式来修改对象的时候可能不会触发某些对象的computed的setterc
   state: {
     todos: [
       { id: 1, text: '...', done: true },
@@ -639,6 +754,32 @@ axios({
 }).then(function (response) {
     console.log(response.data);
 });
+```
+
+##  文件上传处理
+
+```javascript
+// template只需要input即可
+<input type="file" accept="image/*" @change="onFile($event)" multiple />
+  
+onFile (event) {
+  const fileLength = event.target.files.length
+  for (let i = 0; i < fileLength; i++) {
+    const file = event.target.files[i]
+    const reader = new FileReader()
+    reader.onload = (e) => {
+			// 读取上传照片的size尺寸
+      let image = new Image()
+      image.src = e.target.result
+      image.onload = (e) => {
+      if (e.path && e.path[0] && e.path[0].width && e.path[0].height) {
+        const width = event.path[0].width
+        const height = event.path[0].height
+      }
+    }
+    reader.readAsDataURL(file)
+  }
+}
 ```
 
 ##### TroubleShooting
