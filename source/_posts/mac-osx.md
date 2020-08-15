@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2020-06-12 22:11:00
+updated: 2020-08-02 22:11:00
 categories: system
 ---
 ## Mac自带截图功能
@@ -25,6 +25,10 @@ categories: system
 ### mac shell使用rz、sz直接上传或者下载服务器文件
 
 - 需要注意的是在使用`except`登录服务器的情况下，使用`lrzsz`不会起作用
+
+首先使用`brew install lrzsz`安装命令行工具
+
+然后保存iterm2-send-zmodem.sh 和iterm2-recv-zmodem.sh[两个脚本](https://github.com/aikuyun/iterm2-zmodem)到`/usr/local/bin`目录下
 
 打开`iterm2`，`Perferences->Profiles->Advanced->Triggers->Edit`，添加如下`trigger`
 
