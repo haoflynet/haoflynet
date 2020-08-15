@@ -1,6 +1,7 @@
 ---
 title: "Vue-Element 手册"
 date: 2020-08-09 16:00:00
+updated: 2020-08-09 16:56:00
 categories: javascript
 ---
 
@@ -12,13 +13,13 @@ categories: javascript
 
 - `el-row`支持如下属性
 
-| 参数    | 含义                     | 说明   | 可选值                                      | 默认值 |
-| ------- | ------------------------ | ------ | ------------------------------------------- | ------ |
-| gutter  | 栅格间隔                 | number | -                                           | 0      |
-| type    | 布局模式                 | string | -                                           | -      |
-| justify | flex布局下的水平排列方式 | string | start/end/center/space-around/space-between | start  |
-| align   | flex布局下的垂直排列方式 | string | top/middle/bottom                           | top    |
-| tag     | 自定义元素标签           | string | *                                           | div    |
+| 参数    | 含义                           | 说明   | 可选值                                      | 默认值 |
+| ------- | ------------------------------ | ------ | ------------------------------------------- | ------ |
+| gutter  | 每两个栅格之间的间隔(单位是px) | number | -                                           | 0      |
+| type    | 布局模式                       | string | -                                           | -      |
+| justify | flex布局下的水平排列方式       | string | start/end/center/space-around/space-between | start  |
+| align   | flex布局下的垂直排列方式       | string | top/middle/bottom                           | top    |
+| tag     | 自定义元素标签                 | string | *                                           | div    |
 
   - `el-col`支持如下属性
 

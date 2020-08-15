@@ -344,6 +344,8 @@ error_log('message')	# 把错误信息发送到web服务器的错误日志，或
 ob_start();		# 打开输入输出缓冲，打开后，脚本会将输出缓冲起来直到ob_flush()
 session_save_path("/var/lib/php/session");	# 更改session路径
 session_save_path();	# 获取session路径
+
+header('Content-Type: text/css'); // 直接设置响应的header头
 ```
 ### MySQL
 ```php

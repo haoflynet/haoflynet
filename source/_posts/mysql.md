@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-07-11 11:44:00
+updated: 2020-08-02 11:44:00
 categories: database
 ---
 ## 安装方法
@@ -326,7 +326,6 @@ mysqldump -u... -p... -h... dbname tablename > table.sql	# 备份单张表
 mysqldump -u... -p... -h... -d dbname > db.sql # 备份数据库的结构
 mysqldump -u... -p... -h... -d dbname tablename > table.sql # 备份单张表的结构
 
-
 # 备份多个数据库
 mysqldump -u... -p... -h... --databases data1 data2 > backup.sql
 
@@ -359,7 +358,6 @@ INSERT DELAYED	# 延时插入，INSERT DELAYED INTO table1...
 STRAIGHT_JOIN	# 强制连接顺序
 SQL_BUFFER_RESULT	# 强制使用临时表(可以很快地释放表锁)
 SQL_BIG_RESULT/SQL_SMALL_RESULT	# 分组使用临时表
-
 ```
 
 ### 帮助函数
@@ -402,13 +400,17 @@ DATE_ADD(`field`, interval 1 week)	# 时间加一周
 
 # 统计相关
 SUM(field_name)	# 如果该字段所有的值都为空，那么会返回NULL，而不是0，可以这样做以保证在没有数据的时候返回预期的0: COALESCE(SUM(field_name), 0)
-COUNT(field_name)
+COUNT(field_name)	# 需要注意，验证是否存在某一条数据，用LIMIT 1比COUNT的效率高很多
 SUM(case when field='wang' then 1 else 0 end) as sum_if
 COUNT(IF(field='wang',1,NULL)) as count_if	# 使用if做统计
 COUNT(DISTINCT IF(field='wang', field2, NULL))	# COUNT配合DISTINCT和IF同时使用
 COALESCE (field1, field2, field3)	# 只要其中有一个为NULL，表达式的值就为NULL，类似于some，用于判断几个字段是否都为NULL
 
 # 逻辑相关
+IFNULL()	# 判断是否为NULL
+IFNULL(expr1, expr2)	# 如果expr1不为NULL，那么表达式的值为expr1，如果为NULL那么表达式的值为expr2
+NULLIF(expr1, expr2)	# 如果expr1成立，那么表达式的值为expr1，如果不成立表达式的值就为expr2
+
 CASE 
 	WHEN 'field' = 1 THEN 2
 	WHEN 'field' = 2 THEN 3
@@ -419,6 +421,7 @@ CASE field WHEN '1' THEN '2' WHEN '3' ELSE '4' END
 
 IF(sex=1, '男', '女')				# if条件语句
 IF(sex=1 OR field='b', 1, NULL)		# 复杂的
+IF(name!='', sex, NULL)	# 判断值为空或者空字符串，当然如果是JSON需要用IF(JSON_LENGTH(name)!=0, name, NULL)来进行判断
 
 # 字符串处理
 REPLACE(field_name, "search", "replace")	# 将search替换为replace，例如UPDATE `table` SET `value` = REPLACE(`value`, 'abc', 'def')
