@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-08-09 15:35:00
+updated: 2020-08-09 20:35:00
 categories: js
 ---
 
@@ -198,10 +198,34 @@ watch: {
 </script>
 ```
 
+- **针对类似的get/set方法批量创建computed属性**，可以参考类似`mapGetters`的写法原理
+
+  ```javascript
+  const myProps = (computedNames: string[]) => {
+    const computedProp: any = {};
+    for (const prop of computedNames {
+      computedProp[prop] = {
+        get() {
+          return 'computed' + prop;
+        },
+        set(newValue: any) {
+          ......
+        }
+      }
+    }
+    return computedProp;
+  }
+  
+  computed: {
+    ...myProps(['value1', 'value2', 'value3']),
+  }
+  ```
+
 ### directives
 
 - 指令，如果直接写在组件的`script`中则是局部的，这个用得少
 - 定义了后就可以在要使用的标签上添加`v-xxx`，其中的`xxx`为指令名字
+- [指令实例: Vue实现简单的鼠标拖拽滚动效果](https://haofly.net/vue-dragscroll/)
 
 ### filter
 
@@ -715,6 +739,11 @@ store.registerModule('myModule', {});	// 模块动态注册
 store.state.a // -> moduleA 的状态
 store.state.b // -> moduleB 的状态
 ```
+
+## 静态文件
+
+- 可以通过`@/assets/fileName`来访问`assets`下的静态文件，例如`<img src="@/assets/filaneme">`
+- img的src是无法动态解析的，一般都只能硬编码，不能放一个变量在这里，除非它是`base64`或者把图片放到src同级的static目录下然后用static/a.png这种方式来访问，因为`url-lodaer`无法解析js动态生成的路径
 
 ## 存储
 
