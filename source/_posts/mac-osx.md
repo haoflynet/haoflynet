@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2020-08-02 22:11:00
+updated: 2020-08-16 22:11:00
 categories: system
 ---
 ## Mac自带截图功能
@@ -107,16 +107,23 @@ https://www.jianshu.com/p/ed4b1bfb57dc
   ```
   
 - **明明安装了xcode命令行工具却还是提示找不到**，可以用这个命令重装一下: 
-  
+
   ```shell
   xcode-select --print-path	# 一般会打印/Library/Developer/CommandLineTools
   sudo rm -r -f /Library/Developer/CommandLineTools
   xcode-select --install	# 重新安装
   ```
-  
-  
-  
-  
-  
-  
-  
+
+- **Macos使用ssh登陆linux服务器无法显示中文**，需要设置终端的字符集:
+
+   ```shell
+   # vim ~/.zshrc，在底部输入如下内容，然后保存重启终端
+   export LC_ALL=en_US.UTF-8  
+   export LANG=en_US.UTF-8
+   ```
+
+   
+
+   
+
+   
