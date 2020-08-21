@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-07-12 14:43:00
+updated: 2020-08-15 21:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -96,6 +96,7 @@ num.toFixed(2);	// 保留两位小数
 var re = new RegExp("a|b", "i");	// 通过字符串来生成正则表达式，相当于/a|b/i
 
 // 搜索
+a.toUpperCase() === b.toUpperCase()	// 验证字符串是否相等大小写不敏感
 str.match(/<title>(.*?)<\/title>/)	// 正则提取
 str.match(/<title>(.*?)<\/title>/g)	// 全局搜索，不加g默认只取找到的第一个嘛，但是global不支持分组，会把前后的都给返回到结果中去。这种情况，要么匹配后，循环对结果进行前后去除；要么用exec对先行获取每一个结果的match[1]
 str.match(/<title>(<abc>.*?)<\/title>/)	// 正则提取，带命名组的正则提取
@@ -130,7 +131,6 @@ b = decodeURIComponent(uri);	// url解码
 // 字符串格式化
 `我是${name}`;
 
-
 util.format('this is %s', 'foo');	// nodejs的util模块格式化字符串
 ```
 
@@ -140,7 +140,7 @@ util.format('this is %s', 'foo');	// nodejs的util模块格式化字符串
 // 原生方法
 Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
 
-// moment
+// moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
 ```
@@ -188,6 +188,18 @@ fs.readdir('目录名', 'utf-8', function (err, data) {	// 获取目录下的文
   	});
   }
 });
+```
+
+### 错误处理
+
+```javascript
+try {
+  
+} catch (error) {
+  // 错误则会执行
+} finally {
+  // 无论是否成功都执行
+}
 ```
 
 ### 网络请求
@@ -528,6 +540,8 @@ $.post('some.php', {name: 'haofly'})
 
 ### lodash/常用帮助函数
 
+- **尽量不要在一个回调函数中使用另外一个下列的帮助函数，这样能使代码看起来更清晰更规范**
+
 ##### every
 
 必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`
@@ -550,7 +564,7 @@ Array.from([1,2,3]).filter(item => item > 2)	// 得到[3]
 
 ##### _.flatMap
 
-对数组中的所有值运用函数，函数的返回值即是一个新的数组
+对数组中的所有值运用函数，函数的返回值即是一个新的数组，如果不返回则是`undefined`
 
 ```javascript
 function duplicate(n) {
@@ -569,6 +583,10 @@ _.flatMap([1, 2], duplicate);
 
 `isMatchWith(object, source, [customizer])`, 具有基本的isMatch功能，并且能添加`customizer`进行定制化的比较。判断source是否包含在object里，customizer返回true或者false。我fuck，这个函数只要source里面有key没在object，立马就返回false了，都不执行customizer的
 
+##### isNaN
+
+判断value是否是`NaN`
+
 ##### map
 
 对数组中每一个值运用函数，返回一个新的值作为新数组，没有返回值的位置会被设置为`undefined`
@@ -583,6 +601,23 @@ myArr.map(Match.sqrt)
 
 ```javascript
 Arrays.from([12, 22, 33]).some(item => item > 30)
+```
+
+##### _.toPath
+
+转化value为属性路径的数组
+
+```javascript
+_.toPath('a.b.c')		// => ['a', 'b', 'c']
+_.toPath('a[0].b.c') // => ['a', '0', 'b', 'c']
+```
+
+##### uniq
+
+创建一个去重后的`array`数组副本
+
+```javascript
+_.uniq([1, 2, 2]) // 得到[1, 2]
 ```
 
 ##### _.xorWith

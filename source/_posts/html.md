@@ -17,6 +17,8 @@ categories: frontend
     <title>标题信息</title>
     <link href="styles.css" rel="stylesheet" ><!--添加样式表-->
     <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">	<!--设置favicon-->
+    <link rel="canonical" href="https://haofly.net/html" />	<!--权威内容标签，SEO有用，可以参考https://ahrefs.com/blog/zh/canonical-tags/-->
+		<link rel="alternate" href="https://haofly.net/en/html" hreflang="en" /> <!--网页可选语言-->
     
     <script src="scripts.js"></script> <!--添加Js脚本-->
     <style type="text/css"></style> <!--内嵌CSS-->
@@ -40,6 +42,15 @@ categories: frontend
     * **注释**：<!--注释内容-->
     * **字符编码**：全部采用UTF-8
     * **属性顺序**：`class id name src href title alt`
+
+## 标签列表
+
+### a标签
+
+##### rel属性
+
+- 用于指定当前文档与被链接文档的关系
+- alternate(文档的可选版本)、stylesheet(文档的外部样式表)、start(集合中的第一个文档)、next(集合中的下一个文档)、prev(集合中国呢的前一个文档)、contents(文档目录)、index(文档索引)、glossay(文档中所用字词的术语表或解释)、copyright(包含版权信息的文档)、chapter(文档的章)、section(文档的节)、subsection(文档的字段)、appendix(文档附录)、help(帮助文档)、bookmark(相关文档)、nofloow(指定谷歌搜索引擎不要跟踪链接)、licence、tag、friend
 
 ## 常用控件
 

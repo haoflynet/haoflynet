@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2020-07-12 17:21:00
+updated: 2020-08-15 21:21:00
 categories: tools
 ---
 # Git指南
@@ -371,3 +371,34 @@ fi
 - **提交时出现`fatal: Unable to create '.git/index.lock': File exists.`**: 原因是检测到有其他的Git在同时操作该本地仓库，如果确认没有其他的，那么直接删除它即可`rm -rf .git/index.lock`
 
 - **The project you were looking for could not be found**: 切换用户试试
+
+- **git revert后如何将分支再次合并进去**: 有时候我们在发现合并错分支后执行了`git revert`进行分支回滚，但是之后再次上线时发现应该合并的代码合并不了了。例如有三个分支prod、master和dev，在dev分支上修改了代码，分别合并到了prod和master，但是prod执行了git revert进行了回滚，之后再想把master合并到prod发现该次的修改消失了，这时候可以再prod上执行git revert，但是revert后的分支合并到mster，而不是prod，这样master之后就能将这次的提交重新合并到prod了
+
+- **github后台添加ssh key但是错误提示: Key is already in use**: 原因是github限制一个key只能在一个账户里面设置，该key已经在其它用户的账户设置里面了，可以用命令`ssh -T -ai ~/.ssh/id_rsa git@github.com`查看到底是谁已经在使用该key了，返回值类似这样:
+
+   ```shell
+   Hi haoflynet! You've successfully authenticated, but GitHub does not provide shell acess.
+   ```
+
+   其中，Hi后面的即是占用该key的用户名，如果响应类似于 "username/repo"，则表示密钥已作为部署密钥附加到仓库。
+
+- **系统中存在多个key，给git指定使用哪一个key**:
+
+   - 解决方法一，在`~/.ssh/config` 中添加这样的配置:
+
+      ```shell
+      host github.com
+        HostName github.com
+        IdentifyFile ~/.ssh/id_rsa_mygit
+        User git
+      ```
+
+   - 解决方法二，每次执行命令都使用`GIT_SSH_COMMAND`，例如:
+
+      ```shell
+      GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_mygit" git pull
+      ```
+
+      
+
+   
