@@ -1,7 +1,7 @@
 ---
 title: "ADB: Android调试工具与自动化操作工具"
 date: 2018-03-12 21:32:00
-updated: 2020-07-19 06:29:00
+updated: 2020-07-26 15:29:00
 categories: android
 ---
 
@@ -86,24 +86,43 @@ adb shell am broadcast -a ADB_INPUT_CODE --es code 67	# KEYCODE_DEL
 
 ### 模拟按键
 
+`adb shell input keyevent KEYCODE_HOME`
+
 键码对照表
 
 | 数字表示 | 常量表示               | 功能                 |
 | -------- | ---------------------- | -------------------- |
+| 1        | KEYCODE_MENU           |                      |
+| 2        | KEYCODE_SOFT_RIGHT     |                      |
 | 3        | KEYCODE_HOME           | home键               |
 | 4        | KEYCODE_BACK           | back键               |
 | 5        | KEYCODE_CALL           | 拨号键               |
 | 6        | KEYCODE_ENDCALL        | 挂机键               |
+| 7至16    | KEYCODE_0 至 KEYCODE_9 | 按键'0'至'9'         |
+| 17       | KEYCODE_STAR           | *                    |
+| 18       | KEYCODE_POUND          | #                    |
 | 19       | KEYCODE_DPAD_UP        | 方向键向上           |
 | 20       | KEYCODE_DPAD_DOWN      | 方向键向下           |
 | 21       | KEYCODE_DPAD_LEFT      | 光标左移             |
 | 22       | KEYCODE_DPAD_RIGHT     | 光标右移             |
+| 23       | KEYCODE_DPAD_CENTER    | 导航键 确定键        |
+| 24       | KEYCODE_VOLUME_UP      | 音量加键             |
+| 25       | KEYCODE_VOLUME_DOWN    | 音量减键             |
 | 26       | KEYCODE_POWER          | 电源键(息屏、亮屏)   |
+| 27       | KEYCODE_CAMERA         | 拍照键               |
 | 28       | KEYCODE_CLEAR          | 清除键               |
+| 29-54    | KEYCODE_A 至 KEYCODE_Z | 按键'A' 至'Z'        |
 | 55       | KEYCODE_COMMA          | ,                    |
 | 56       | KEYCODE_PERIOD         | .                    |
+| 57       | KEYCODE_ALT_LEFT       |                      |
+| 58       | KEYCODE_ALT_RIGHT      |                      |
+| 59       | KEYCODE_SHIFT_LEFT     |                      |
+| 60       | KEYCODE_SHIFT_RIGHT    |                      |
+| 61       | KEYCODE_TAB            | Tab键                |
 | 62       | KEYCODE_SPACE          | 空格键盘             |
+| 63       | KEYCODE_SYM            |                      |
 | 64       | KEYCODE_EXPLORER       | 资源管理器           |
+| 65       | KEYCODE_ENVELOPE       |                      |
 | 66       | KEYCODE_ENTER          | 回车                 |
 | 67       | KEYCODE_DEL            | 删除、退格           |
 | 68       | KEYCODE_GRAVE          | `                    |
@@ -116,13 +135,30 @@ adb shell am broadcast -a ADB_INPUT_CODE --es code 67	# KEYCODE_DEL
 | 75       | KEYCODE_APOSTROPHE     | '                    |
 | 76       | KEYCODE_SLASH          | /                    |
 | 77       | KEYCODE_AT             | @                    |
+| 78       | KEYCODE_NUM            |                      |
+| 79       | KEYCODE_HEADSETHOOK    |                      |
+| 80       | KEYCODE_FOCUS          | 拍照对焦键           |
+| 81       | KEYCODE_PLUS           |                      |
 | 82       | KEYCODE_MENU           | menu菜单键           |
 | 83       | KEYCODE_NOTIFICATION   | 通知键               |
+| 84       | KEYCODE_SEARCH         | 搜索键               |
+| 85       | KEYCODE_TAG_LAST       |                      |
+| 91       | KEYCODE_MUTE           | 话筒静音键           |
 | 92       | KEYCODE_PAGE_UP        | 向上翻页             |
 | 93       | KEYCODE_PAGE_DOWN      | 向下翻页             |
 | 95       | KEYCODE_SWITCH_CHARSET | 开关符号集(Emoji)    |
+| 111      | KEYCODE_ESCAPE         | ESC键                |
+| 112      | KEYCODE_FORWARD_DEL    | 删除键               |
 | 115      | KEYCODE_CAPS_LOCK      | 大写锁定             |
+| 116      | KEYCODE_SCROLL_LOCK    | 滚动锁定键           |
+| 121      | KEYCODE_BREAK          | Break/Pause键        |
+| 122      | KEYCODE_MOVE_HOME      | 光标移动到开始键     |
+| 123      | KEYCODE_MOVE_END       | 光标移动到结尾键     |
+| 124      | KEYCODE_INSERT         | 插入键               |
 | 143      | KEYCODE_NUM_LOCK       | 小键盘锁             |
+| 164      | KEYCODE_VOLUME_MUTE    | 扬声器静音键         |
+| 168      | KEYCODE_ZOOM_IN        | 放大键               |
+| 169      | KEYCODE_ZOOM_OUT       | 缩小键               |
 | 187      | KEYCODE_APP_SWITCH     | 应用程序切换         |
 | 223      | KEYCODE_SLEEP          | 睡眠键               |
 | 224      | KEYCODE_WAKEUP         | 唤醒键，一般没用     |
@@ -131,6 +167,13 @@ adb shell am broadcast -a ADB_INPUT_CODE --es code 67	# KEYCODE_DEL
 | 278      | KEYCODE_COPY           | 复制                 |
 | 279      | KEYCODE_PASTE          | 粘贴                 |
 | 284      | KEYCODE_ALL_APPS       | 显示所有应用程序     |
+|          | KEYCODE_ALT_LEFT       | Alt + Left           |
+|          | KEYCODE_ALT_RIGHT      | Alt + Right          |
+|          | KEYCODE_CTRL_LEFT      | Control + Left       |
+|          | KEYCODE_CTRL_RIGHT     | Control + Right      |
+|          | KEYCODE_SHIFT_LEFT     | Shift + Left         |
+|          | KEYCODE_SHIFT_RIGHT    | Shift + Right        |
+
 
 
 ### 模拟触摸
@@ -140,7 +183,7 @@ adb shell am broadcast -a ADB_INPUT_CODE --es code 67	# KEYCODE_DEL
 ```shell
 adb shell input tap 100 400	# 鼠标触控(100, 400)这个点
 adb shell input swipe 10 10 200 200 # 从(10,10)滑动到(200, 200)
-adb shell input touchscreen swipe 100 200 100 200 2000	# 在(100, 200)这个点持续按2000ms
+adb shell input touchscreen swipe 100 200 100 200 2000	# 在(100, 200)这个点持续按2000ms，应用一般会根据划屏的速度来移动不一样的距离
 ```
 
 ### 其他操作

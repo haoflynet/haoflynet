@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-07-19 16:25:00
+updated: 2020-08-15 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -26,6 +26,12 @@ categories: frontend
   <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
   ```
 
+## 特殊函数
+
+##### cacl
+
+- 非常棒的函数，能够借助css直接对属性进行计算，例如`width: cacl(50% - 4px)`，表示宽度为父组件宽度的一半减4px	
+
 ## 各种属性
 
 ##### a链接
@@ -38,11 +44,30 @@ a:hover: 鼠标移动到a标签上面
 
 a:active: a标签被点击的时候
 
+##### background
+
+- 可以同时设置背景图像的color、image、repeat、attachment、position属性，如`.style1{background:beige url(mypic.png) no-repeat top center}`
+
 ##### background-color
 
 - 设置透明
 - transparent: 直接设置
 - rgba(255, 255, 255, 0.5): 前三个是颜色，最后一个是透明度
+
+##### background-image
+
+- 设置背景图片，如`background-iamge: url(mypic.png)`
+- 需要注意的是背景图片并不会撑起元素的高度，如果想要这种效果，可以参考[图片做背景撑开div](https://blog.csdn.net/u013205165/article/details/99000978)或者[css背景图撑开盒子高度](https://blog.csdn.net/qq_34812257/article/details/84867616)还有[响应式背景图片]([http://www.topcss.org/tag/%E5%93%8D%E5%BA%94%E5%BC%8F%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/](http://www.topcss.org/tag/响应式背景图片/))
+
+##### background-repeat
+
+- 设置是否及如何重复背景图像
+- repeat(默认值，背景图像在摧之方向和水平方向重复)、repeate-x(水平方向重复)、repeat-y(垂直方向重复)、no-repeat(不重复)、inherit(继承父元素)
+
+##### background-size
+
+- 设置背景图片的大小
+- 可选值：auto(以背景图片的比例缩放背景图片)、cover(缩放背景图片以完全覆盖背景区，可能背景图片部分看不见，宽高比例不变)、contain(缩放背景图片以完全转入背景区，可能背景区部分空白，宽高比例不变)、直接指定宽度(如50%、3em、12px、auto等)、指定宽度和高度(如50% auto、100% 100%等)
 
 ##### border边框
 
@@ -59,7 +84,9 @@ a:active: a标签被点击的时候
 
 ##### cursor
 
-- 当设置为`pointer`的时候鼠标悬停会出现小手
+- 设置鼠标悬停效果
+- default(默认光标，一个箭头)、auto(默认值，浏览器自己设置)、crosshair(十字光标)、pointer(一只手、拖拽光标)、move(可被移动的光标)、e-resize/ne-resize/nw-resize/n-resize/se-resize/sw-resize/s-resize/w-resize(光标指示矩形框的边缘可往哪个方向移动，常用于往8个方向改变窗口大小)、text(文本)、wait(在忙，一只表或沙漏)、help(帮助，问号或气球)、no-drop/not-allowed(禁止，红色的圈加一个斜杠)
+- `cursor:pointer`在`input type="file"`的情况下可能会不生效，可以给`input`标签添加`font-size: 0`，这样就能实现鼠标移到input元素上变成手形了
 
 ##### display
 
@@ -94,6 +121,17 @@ a:active: a标签被点击的时候
 - text-align: 内容显示方式，`center`表示居中显示
 - 如果direction属性是ltr，则默认值是left；如果direction是rtl，则为right
 
+##### justify-content
+
+- 用于设置弹性盒子元素在主轴(横轴)方向上的对齐方式，`align-content`用于设置垂直轴
+- flex-start: 默认值，项目位于容器的开头
+- flex-end: 项目位于容器的结尾
+- center: 项目位于容器的中心
+- Space-between: 项目位于各行之间留有空白的容器内
+- space-around: 项目位于各行之前、之间、之后都留有空白的容器内
+- initial: 设置该属性为它的默认值
+- Inherit: 从父元素继承该属性
+
 ##### line-height
 
 - 设置行间距
@@ -110,6 +148,39 @@ a:active: a标签被点击的时候
 margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ```
 
+##### outline
+
+- 如果想要`Button`等点击后不出现蓝色的边框，可以把该属性设置为`none`
+
+##### overflow
+
+- 当水平或垂直方向溢出时添加滚动条
+
+- `visible`: 内容不会被截断，且可以显示在内容盒之外
+
+- `hidden`: 内容会被截断，且不会显示滚动条
+
+- `scroll`: 总是显示滚动条，无论内容是否发生溢出
+
+- `auto`: 取决于浏览器本身
+
+- **既要有滚动效果，又要隐藏滚动条**，可以使用这种方法:
+
+  ```css
+  .hide-scrollbar{
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+  
+    &::-webkit-scrollbar {
+      width: 0 !important
+    }
+  }
+  ```
+
+##### overflow-x
+
+- 当水平方向溢出时添加滚动条
+
 ##### overflow-y
 
 - 当垂直方向溢出时添加滚动条
@@ -117,7 +188,10 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 
 ##### pointer-events
 
+- 指定在什么情况下某个特定的图形元素可以成为鼠标事件的target
+
 - `none`: 可以实现某个元素仅仅能看，但是无法触发其事件。屏蔽掉某个元素上的所有的事件
+- 这个属性的其他值都只适用于`SVG`
 
 ##### position
 
@@ -134,9 +208,19 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 - word-wrap:break-word，超过宽度自动换行
 - word-break: break-all，超过宽度，无论是不是一个单词都换行
 
+##### scroll-behavior
+
+- smooth: 使滚动变为平滑滚动，如果想要自己通过手动控制滚动，如`scrollTo`等，一定要加该参数，这样才能使滚动看起来平顺一点
+- auto: 滚动框立即滚动
+
 ##### text
 
 - text-indent: 段落缩进设置
+
+##### text-overflow
+
+- 设置当文本溢出包含元素时怎么做
+- clip(直接截断文本)、ellipsis(截断文本并显示省略号)
 
 ##### top
 
@@ -149,6 +233,22 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### user-select
 
 - none(文本不能被选择)、text(可以选择文本)
+
+##### vertical-align
+
+- 设置元素的垂直对齐方式，定义行内元素的基线相对于该元素所在行的基线的垂直对齐
+- 参考值：baseline(默认，元素放置在父元素的基线上)、sub(垂直对齐文本的下标)、super(垂直对齐文本的上标)、top(把元素的顶端与行中最高元素的顶端对齐)、text-top(把元素的顶端与父元素字体的顶端对齐)、middle(把此元素放置在父元素的中部)、bottom(把元素的顶端与行中最低的元素的顶端对齐)、text-bottom(把元素的底端与父元素字体的底端对齐)、%(使用line-height属性的百分比值来排列此元素，允许为负)、inherit(继承父元素的值)
+
+##### -webkit-text-fill-color
+
+- 检索或设置对象中的文字填充颜色。如果同时设置了text-fill-color和color，text-fill-color定义的颜色将覆盖color属性；通常-webkit-text-fill-color与-webkit-text-stroke一起使用，能实现一些例如渐变文字和镂空文字的效果。
+
+- 可以使用该参数来解决safari和firefoxinput框在disabled时[颜色不一样的问题](https://stackoverflow.com/questions/262158/disabled-input-text-color):
+
+  ```css
+  -webkit-text-fill-color: #880000;
+  opacity: 1; /* required on iOS */
+  ```
 
 ##### white-space
 
@@ -244,7 +344,8 @@ p::after {
 
 ##### ::before
 
-- 例如`p::before`表示在`p`标签前插入一些内容
+- 例如`p::before`表示在`p`标签前插入一些内容，和`::after`用法类似
+- `::before/::after`可组合实现一些[绚丽的效果](https://juejin.im/post/6854573204011221000#heading-13): 伪类光圈、伪类括号效果、丝带效果、几何图形(三角形、五角星)、水滴、流动边框、Tooltip提示、伪类盒子阴影、Tabs当前激活状态、伪元素模糊背景、蓝湖文字、主要标题、鼠标浮层、遮罩浮层、伪类美化文字、照片堆叠效果
 
 ##### :checked
 
@@ -319,6 +420,7 @@ input:in-range {
 ##### :last-child
 
 - 最后一个子元素
+- **慎用这几个相关的伪类选择器，因为不总是能达到预期的效果**，可以参考[选择某类的最后一个元素——CSS3伪类选择器走过的坑](https://juejin.im/post/6844904072206614535)
 
 ##### :last-of-type
 
@@ -362,7 +464,25 @@ div:nth-last-child(2) {
 
 ##### :only-child
 
-- `p:only-child`选择所有的`p`标签为子元素的`p`标签
+- `p:only-child`选择`p`标签为唯一子元素的父元素
+
+- 例如
+
+  ```css
+  p:only-child
+  {
+  background:#ff0000;
+  }
+  
+  <div> <!--这里选择到的是div元素-->
+  	<p>这是一个段落。</p>
+  </div>
+  
+  <div> <!--不唯一，不选择该元素-->
+  <p>这是一个 span。</p>
+  <p>这是一个段落。</p>
+  </div>
+  ```
 
 ##### :optional
 
@@ -408,6 +528,64 @@ div:nth-last-child(2) {
 
 - 访问过的连接
 
+## Flex布局
+
+参考
+[Flex 布局教程：语法篇](https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html) 
+
+[Flex 布局教程：实例篇](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html): 这里面可以看到居中对齐、右对齐、左对齐、上部居中对齐、下部居中对齐、右下对齐等，以及网格布局、圣杯布局(传统网页的布局方式)、输入框的布局、悬挂式布局、固定的底栏、流式布局
+
+#### flex容器的属性
+
+| 属性名          | 含义                                                         | 可选值                                                       | 默认值     |
+| --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- |
+| flex-direction  | 决定主轴的方向（即项目的排列方向）                           | row \| row-reverse \| column \| column-reverse               | row        |
+| flex-wrap       | 定义换行方式                                                 | nowrap \| wrap(第一行在上方) \| wrap-reverse(第一行在下方)   | nowrap     |
+| flex-flow       | flex-direction和flex-wrap属性的简写形式                      |                                                              | row nowrap |
+| justify-content | 定义了项目在主轴上的对齐方式                                 | flex-start(左对齐) \| flex-end(右对齐) \| center(居中) \| space-between(两端对齐，项目之间的间隔都相等) \| space-around(每个项目两侧的间隔相等) |            |
+| align-items     | 定义项目在交叉轴上如何对齐                                   | flex-start(交叉轴的起点对齐，上对齐) \| flex-end(交叉轴的终点对齐，下对齐) \| center(交叉轴的中点对齐，居中对齐) \| baseline(项目的第一行文字的基线对齐) \| stretch(如果项目未设置高度或设为auto，将占满整个容器的高度) | stretch    |
+| align-content   | 定义了多根轴线的对齐方式.如果项目只有一根轴线，该属性不起作用 | flex-start(与交叉轴的起点对齐) \| flex-end(与交叉轴的终点对齐) \| center(与交叉轴的中点对齐) \| space-between(与交叉轴两端对齐，轴线之间的间隔平均分布) \| space-around(每根轴线两侧的间隔都相等) \| stretch(轴线占满整个交叉轴) | stretch    |
+
+#### flex容器下项目的属性
+
+| 属性名      | 含义                                                         | 可选值                                                       | 默认值                                                       |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| order       | 定义项目的排列顺序，数值越小，排列越靠前，默认为0            |                                                              | 0                                                            |
+| flex-grow   | 项目的放大比例                                               | 如果所有项目的`flex-grow`属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的`flex-grow`属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。这个就类似于element里面的xs了 | 0(如果存在剩余空间也不放大)                                  |
+| flex-shrink | 项目的缩小比例                                               | 如果所有项目的`flex-shrink`属性都为1，当空间不足时，都将等比例缩小。如果一个项目的`flex-shrink`属性为0，其他项目都为1，则空间不足时，前者不缩小。 | 1(即如果空间不足，该项目将缩小)                              |
+| flex-basis  | 在分配多余空间之前，项目占据的主轴空间.浏览器根据这个属性，计算主轴是否有多余空间 | 可以设为跟`width`或`height`属性一样的值（比如350px），则项目将占据固定空间 | Auto                                                         |
+| flex        | 是`flex-grow`, `flex-shrink` 和 `flex-basis`的简写           |                                                              | 0 1 auto                                                     |
+| align-self  | 允许单个项目有与其他项目不一样的对齐方式，可覆盖`align-items`属性 | auto \| flex-start \| flex-end \| center \| baseline \| stretch | auto(继承父元素的`align-items`属性，如果没有父元素，则等同于`stretch`) |
+
+## Grid布局
+
+- 参考底部推荐文章
+
+## 动画transitions
+
+- `transitions`允许我们平滑地改变属性值(而不是立马变更到某个值)
+
+  ```css
+  // 最简单的例子，当鼠标移动到div上面的时候div的宽度由100px平滑变更为300px，总共耗时2秒
+  div {
+    width: 100px;
+    transition: width 2s;
+  }
+  div:hover {
+    width: 300px;
+  }
+  ```
+
+- transition-property表示绑定的属性名称，transition-duration表示属性变更的时间，transition-timing-function表示属性变更方式，transition-delay表示变更延迟，可以简写为
+
+  ```css
+  div {
+    transition: width 2s linear 1s;
+  }
+  ```
+
+- transition-timing-function变更方式默认为linear表示匀速(cubiz-bezier(0,0,1,1))，ease表示中间快两头慢(cubiz-bezier(0.25,0.1,0.25,1))，ease-in表示先慢后快(0.42, 0, 1, 1)，ease-out表示先快后慢(0, 0, 0.58, 1)，ease-in-out表示中间慢两头快(0.42, 0, 0.58, 1)，cubiz-bezier(n, n, n, n)自定义快慢
+
 ## TroubleShooting
 
 #### 元素居中方法
@@ -445,6 +623,12 @@ div {margin:0 auto}
 div {
   text-align: center;
 }
+# 方法七：绝对定位元素的居中对齐
+<div style="position: absolute; left: 50%;">
+<div style="position: relative; left: -50%;>
+content
+</div>
+</div>
 ```
 
 #### 将某元素置于底层，使用z-index属性，例如：
@@ -559,8 +743,88 @@ http://www.w3cplus.com/content/css3-gradient
 }
 ```
 
+#### 子元素位于父元素底部
+
+```css
+.parent{
+  position: relative;
+  height: 300px;
+  width: 300px;
+  margin:0 auto;
+}
+.child{
+  position: absolute;
+  bottom: 0;
+  height: 80px;
+}
+```
+
+#### 多行文字截断/仅显示3行/实现see more/read more功能
+
+```css
+// 方法一：文本设置固定高度，超过某个高度就隐藏
+div {
+  line-height: 20px;
+  overflow: hidden;
+  max-height: 60px; // 3行文本的高度
+  
+  .read-more {	// 当点击read more后最大高度就变大
+    max-height: 9999px;
+    transition: max-height 0.2s ease;
+  }
+}
+
+// 方法二：使用-webkit-line-clamps，但是可能存在浏览器兼容问题，例如Firefox和IE浏览器不支持该属性，移动端浏览器一般都基于webkit内核，兼容性还行
+div {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+// 方法三：通过伪元素绝对定位到行尾并遮住文字
+p {
+    position: relative;
+    line-height: 20px;
+    height: 40px;
+    overflow: hidden;
+}
+p::after {
+    content:"...";
+    font-weight:bold;
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding:0 20px 1px 45px;
+    
+    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(white), color-stop(50%, white));
+    background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+    background: -o-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+    background: -ms-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+}
+```
+
+#### 两个并排inline-block的元素一样的高度却不在同一水平线上，但又不是多余的属性导致的上下空白
+
+- 这是一个比较奇怪的问题，甚至有时候在不同的浏览器里面会有不同的表现
+- 这涉及到基准线的对齐方式，可以将两个元素都设置`vertical-align: top;`解决，具体的可以参考上文`vertical-align`属性的设置
+
+#### 实现图片的等比例自动缩放
+
+```css
+img{
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;	
+}
+```
+
 **扩展阅读**
 
 [Flex 布局教程](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 
 [CSS Viewport 视口单位](https://juejin.im/post/5efd21f2f265da2307399020#heading-19): 一种新的单位`vw/vh/vmin/vmax`，这篇文章中有很多应用案例，例如: 响应式字体大小、全屏、粘性布局、响应式元素、垂直和水平间距、模态框、页面头部、纵横比、顶部边框、移动端滚动等
+
+[最强大的 CSS 布局 —— Grid 布局](https://juejin.im/post/6854573220306255880)
