@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-08-09 20:35:00
+updated: 2020-08-30 20:35:00
 categories: js
 ---
 
@@ -107,6 +107,10 @@ Vue.component('mycomponent', {
   </div>  
 </mycomponent>
 ```
+
+## 路由
+
+- `vue router`默认在跳转新页面会保持当前页面的`scroll`，有时候我们需要在新页面手动`window.scrollTo(0, 0)`
 
 ## 页面Script相关方法
 
@@ -221,7 +225,7 @@ watch: {
   }
   ```
 
-### directives
+### directives指令
 
 - 指令，如果直接写在组件的`script`中则是局部的，这个用得少
 - 定义了后就可以在要使用的标签上添加`v-xxx`，其中的`xxx`为指令名字
@@ -473,6 +477,15 @@ export default {
 
 <!-- 事件将只会触发一次 -->
 <a v-on:click.once="doThis"></a>
+```
+
+### 手动触发事件
+
+- 由于可以通过`this.$refs.refName.$el` 的方式得到原生的元素，所以原生的方法都能使用
+
+```javascript
+this.$refs.myEle.dispatchEvent(new MouseEvent('mouseenter'))	// 手动触发原生mouseenter事件
+this.$refs.myEle.click()	// 可以这样直接调用某些自定义了方法的组件的事件(其实是组件的method)
 ```
 
 ### 常用事件

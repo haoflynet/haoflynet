@@ -1,7 +1,7 @@
 ---
 title: "Vue-Element 手册"
 date: 2020-08-09 16:00:00
-updated: 2020-08-09 16:56:00
+updated: 2020-08-23 16:56:00
 categories: javascript
 ---
 
@@ -138,7 +138,11 @@ categories: javascript
     })
     ```
 
-##### TroubleShooting
+### dialog对话框
+
+- `el-dialog`多重嵌套的时候，最好在子`dialog`上添加`append-to-body`属性，这样才能保证弹窗正常显示且遮罩层表现正常
+
+## TroubleShooting
 
 - **slider组件在小屏幕上离开焦点后tooltip却不消失**:  这应该是一个已知的[bug](https://github.com/ElemeFE/element/issues/19008)，可以这个`issue`下的解决方案:
 
