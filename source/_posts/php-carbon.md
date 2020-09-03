@@ -1,6 +1,7 @@
 ---
 title: "PHP 使用Carbon扩展进行时间处理"
 date: 2019-05-31 18:32:00
+updated: 2020-08-31 09:21:00
 categories: php
 ---
 
@@ -31,4 +32,5 @@ Carbon::now()->modify('-2 days');
 Carbon::now()->toDateTimeString();
 Carbon::now()->subDays(5)->diffForHumans();	// 5天前
 Carbon::now()->dayOfWeek	// 获取今天是星期几，直接返回一个数字
+Carbon::now()->format('m/y') // 指定输出格式: 12/2020
 ```

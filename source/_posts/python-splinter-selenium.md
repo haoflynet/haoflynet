@@ -1,7 +1,7 @@
 ---
 title: "Python使用Splinter(Selenium)进行浏览器模拟测试"
 date: 2016-08-10 19:56:39
-updated: 2020-02-12 17:58:00
+updated: 2020-08-23 17:58:00
 categories: python
 ---
 每次看到selenium都觉得很牛，但是苦于文档(包括英文)太少，我到今天才真正完整地安装使用了一把。我不喜欢来一个项目就在自己电脑上搭一个运行环境，而是喜欢在docker或者虚拟机里进行操作，问题是docker或者虚拟机里并没有任何的可视化的浏览器，而Selenium又依赖于这些浏览器驱动，我是最讨厌安装驱动的，因为驱动这个东西电脑不同差距特别大，总是会出现各种问题。而在服务器上如何安装selenium或者splinter，这个过程在网上基本是找不到的，所以这里记录下自己的安装方法。
@@ -243,6 +243,18 @@ alert = browser.get_alert(wait_time=None)	# 获取alert，官方文档说获取�
 - **session not created: This version of ChromeDriver only supports Chrome version 77**: 这是因为下载的`chromedriver`版本和你当前系统已经安装的`chrome`版本不一致造成的，需要对其中某一个进行升级或降级
 
 - **Unable to connect host**: 如果浏览器能正常访问，那么可能是`chromedriver`打开网页有问题，导致`splinter`未去访问目标网页，并不是网络连接问题
+
+- **browsermob-proxy 地址已在使用中**: 可以指定代理服务器的端口:
+
+  ```python
+  from browsermobproxy import Server
+  dict={'port':8090}
+  server = Server(path="./browsermob-proxy",options=dict)
+  server.start()
+  proxy = server.create_proxy()
+  ```
+
+  
 
 ##### 相关文章
 
