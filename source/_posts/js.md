@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-08-15 21:43:00
+updated: 2020-08-23 21:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -393,6 +393,7 @@ mouseup		// 在元素上松开鼠标按钮
 resize() 	// 大小调整，一般是$(window).resize(function(){})
 
 // 事件的触发
+document.getElementById('').dispatchEvent(new MouseEvent('mouseenter')) // 原生方式触发事件
 $('a').trigger('click')  // 触发a标签的click事件
 $('#myModal').modal('show')  // bootstrap中modal的触发
 
@@ -502,6 +503,8 @@ mockFetch("https://api.github.com/users/haoflynet/repos");
 最普遍的用法:
 
 ```javascript
+$('myForm').serializeArray();	// 将表单数据转换成array然后用ajax提交
+
 $.ajax({
 	url: 'url',
 	dataType: 'json',
@@ -552,6 +555,9 @@ $.post('some.php', {name: 'haofly'})
 
 ```javascript
 Array.from([1,2,3]).filter(item => item > 2)	// 得到[3]
+Array.from([1,2,3]).filter((item, index) => function({ // 带索引
+  return true;
+}))	// 得到[3]
 ```
 
 ##### find
@@ -686,14 +692,14 @@ _.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
 
 * **Laravel 5 要使用Input获取输入的信息**，必须先`use Input`，看来Laravel 5 对命名空间的管理更加严格了
 
-* **Ajax请求总是执行error部分代码**，原因可能是返回数据的格式不对，一定要返回dataType所规定的数据格式
+* **Ajax请求总是执行error部分代码/Ajax文件上传**，原因可能是返回数据的格式不对，一定要返回dataType所规定的数据格式
     上传文件，需要特殊的几个参数和变量
 
     ```javascript
     $('input#uploadh').bind('change', function(){
         var f = this.files;
         var formdata = new FormData();
-        formdata.append('image', f[0]);
+        formdata.append('image', f[0]);	// 或者$("#uploadh")[0].files[0]);
         $.ajax({
             url: "{{ url('uploadimg') }}",
             type: "POST",

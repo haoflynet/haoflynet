@@ -1,7 +1,7 @@
 ---
 title: "Apache/Httpd手册"
 date: 2013-09-17 08:52:39
-updated: 2019-04-25 15:36:00
+updated: 2020-09-03 15:36:00
 categories: server
 ---
 ## Apache安装与配置
@@ -12,6 +12,12 @@ Apache 2.4与2.2配置上的区别见: [Upgrading to 2.4 from 2.2](http://httpd.
 
 ```shell
 httpd -v # 查看apache版本
+apachectl start apache # 启动
+apachectl stop	# 停止
+apachectl restart # 重启
+apachectl graceful # 不中断当前连接重启服务器，类似于nginx -s reload
+apachectl configtest # 验证配置文件语法是否正确，类似于nginx -t
+apachectl fullstatus	# 显示服务器完整的状态信息
 ```
 ## 添加Gzip压缩
 
