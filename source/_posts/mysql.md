@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-08-02 11:44:00
+updated: 2020-08-30 11:44:00
 categories: database
 ---
 ## 安装方法
@@ -563,3 +563,4 @@ JSON_REMOVE(@json1, '$.A'); # 移除指定的key，但是只能移除key->value�
 
 - [记一次神奇的Mysql死锁排查](https://juejin.im/post/5c774114f265da2d993d9908): 一种非常隐蔽的发生死锁的情况。
 - [软删除之痛](https://blog.wolfogre.com/posts/trap-of-soft-delete/): 软删除很好用，但还是具体场景具体分析，不要一味地用，需要考虑数据是否有软删的必要，和如何解决软删的副作用
+- [最完整的Explain总结，SQL优化不再困难](https://juejin.im/post/6863832433062739981)

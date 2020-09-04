@@ -9,3 +9,11 @@ swiper不能滑动，可以参考这个https://segmentfault.com/a/11900000130446
 
 官方文档：https://swiperjs.com/get-started/
 
+```javascript
+	lazy: {
+    	preloaderClass: 'my-gallery-img-preloader', // 应该放在lazy里面
+
+
+  }
+```
+

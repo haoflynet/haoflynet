@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2020-07-19 16:10:00
+updated: 2020-09-03 16:10:00
 categories: frontend
 ---
 # Html
@@ -47,10 +47,22 @@ categories: frontend
 
 ### a标签
 
+##### href=”javascript:void(0);”
+
+- 当要a标签表现为链接形式又需要用js来执行的时候可以这样写href，而不是直接将href删除
+
 ##### rel属性
 
 - 用于指定当前文档与被链接文档的关系
 - alternate(文档的可选版本)、stylesheet(文档的外部样式表)、start(集合中的第一个文档)、next(集合中的下一个文档)、prev(集合中国呢的前一个文档)、contents(文档目录)、index(文档索引)、glossay(文档中所用字词的术语表或解释)、copyright(包含版权信息的文档)、chapter(文档的章)、section(文档的节)、subsection(文档的字段)、appendix(文档附录)、help(帮助文档)、bookmark(相关文档)、nofloow(指定谷歌搜索引擎不要跟踪链接)、licence、tag、friend
+
+### textarea
+
+- 支持的html属性: rows(文本区域可见的高度)、cols(文本区域可见的宽度)、autofocus(页面加载时是否自动获得焦点)、maxlength(规定文本区域允许的最大字符数)、raadonly(规定文本区域为只读)、required(规定文本区域是否为必填)
+
+```html
+<textarea rows="10" cols="30">内容</textarea>
+```
 
 ## 常用控件
 
@@ -170,4 +182,7 @@ var dt = canvas.toDataURL('image/png');	# 得到的值是图片的base64编码
   result.then().catch(error => {})
   ```
 
-  
+
+#####  扩展阅读
+
+- [HTTP Content-type列表](https://tool.oschina.net/commons)
