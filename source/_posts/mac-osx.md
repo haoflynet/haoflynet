@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2020-08-16 22:11:00
+updated: 2020-09-06 22:04:00
 categories: system
 ---
 ## Mac自带截图功能
@@ -56,6 +56,10 @@ vim /private/etc/motd	# 直接输入即可
 ## 系统管理命令
 
 ```shell
+# lsof
+lsof # 查看所有进程打开的文件
+lsof -i # 查看有网络连接的应用程序列表
+
 dscacheutil -q group	# 查看所有用户和组
 ```
 

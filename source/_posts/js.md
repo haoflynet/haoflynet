@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-08-23 21:43:00
+updated: 2020-09-05 21:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -359,6 +359,8 @@ myVideo.pause()	// 暂停播放
 var a_tag = document.createElement('a');	// 首先创建一个空元素
 parent_tag.after(a_tag);	// 然后将元素放到指定的位置
 a_tag.outerHTML = '<a class="..." name="">ok</a>'; // 最后将元素html替换成我们想要的
+
+$("#<form_id>").trigger("reset"); // jQuery清空表单字段
 ```
 
 ### 元素事件
@@ -398,7 +400,12 @@ $('a').trigger('click')  // 触发a标签的click事件
 $('#myModal').modal('show')  // bootstrap中modal的触发
 
 // 事件的订阅
-$('p').bind('click', function(){})	// 用bind进行事件的绑定，即使是之后生成的元素也能与事件绑定
+$('p').bind('click', function(){});	// 用bind进行事件的绑定，即使是之后生成的元素也能与事件绑定
+
+// modal模态框关闭事件                                           
+$('#myModal').on('hidden.bs.modal', function () {});
+$('#myModal').on('hidden', function () {});
+$('#myModal').on('hide', function () {});
 ```
 ### 页面属性
 ```javascript
