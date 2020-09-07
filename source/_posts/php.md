@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2020-08-30 15:05:21
+updated: 2020-09-06 15:05:21
 categories: php
 ---
 # PHP
@@ -488,16 +488,16 @@ composer在执行的时候会在时间点上都会抛出相应的事件，可以
 ```json
 "scripts": {
     "post-root-package-install": [
-        "php -r \"copy('.env.example', '.env');\""
+        "php -r \"copy('.env.example', '.env');\""	// 复制文件命令
     ],
     "post-create-project-cmd": [
         "php artisan key:generate"
     ],
-    "post-install-cmd": [
+    "post-install-cmd": [	// composer install命令执行后触发
         "Illuminate\\Foundation\\ComposerScripts::postInstall",
         "php artisan optimize"
     ],
-    "post-update-cmd": [
+    "post-update-cmd": [	// composer update命令执行后触发
         "Illuminate\\Foundation\\ComposerScripts::postUpdate",
         "php artisan optimize"
     ]

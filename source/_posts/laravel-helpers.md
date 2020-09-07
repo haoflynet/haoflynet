@@ -1,6 +1,7 @@
 ---
 title: "Laravel Collection及helpers帮助方法汇总"
 date: 2020-09-05 16:00:00
+Updated: 2020-09-06 22:24:00
 categories: php
 ---
 
@@ -150,6 +151,11 @@ forget('key');			// 根据key移除某个项目，如果是数组，应该输入
 forPage();				// 集合分页
 groupBy('field');		// 根据键值分组
 implode('field', ',');	// 合并集合中指定键的值为字符串，如果不提供field，则表示直接将项目进行合并
+
+// 取指定的key组成新的集合	
+$collection = collect(['Desk' => 'Sofa', 'Chair' => 'aaa']);
+$intersect = $collection->intersect(['Desk']); // ['Desk' => 'Sofa']
+
 map(function ($value, $key) {return 'a';});		// 遍历修改集合中的值
 random(n=0);				// 随机返回一个项目，n可以不填，如果n>1则会返回一个集合，注意为1的时候返回的不是集合而是里面的项目
 reject(function($item){return true;});			// 从集合中移除元素，当返回true的时候，该元素会被移除
