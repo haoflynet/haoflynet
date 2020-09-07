@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2020-09-03 16:10:00
+updated: 2020-09-05 16:10:00
 categories: frontend
 ---
 # Html
@@ -55,6 +55,27 @@ categories: frontend
 
 - 用于指定当前文档与被链接文档的关系
 - alternate(文档的可选版本)、stylesheet(文档的外部样式表)、start(集合中的第一个文档)、next(集合中的下一个文档)、prev(集合中国呢的前一个文档)、contents(文档目录)、index(文档索引)、glossay(文档中所用字词的术语表或解释)、copyright(包含版权信息的文档)、chapter(文档的章)、section(文档的节)、subsection(文档的字段)、appendix(文档附录)、help(帮助文档)、bookmark(相关文档)、nofloow(指定谷歌搜索引擎不要跟踪链接)、licence、tag、friend
+
+### form
+
+- 原生方法验证表单:
+
+  ```javascript
+  const form = document.getElementById(formId);
+  form.checkValidity(); // 报错则返回false
+  form.reportValidity(); // 以原生的方式显示错误信息
+  
+  const inputField = document.getElementByName('name');
+  name.checkValidity(); name.reportValidity(); // 也可以直接在指定元素上进行校验
+  ```
+
+### input
+
+- accept(当为文件上传时，指定上传文件的类型)、alt(当为图片上传时，定义图像输入的替代文本)、autocomplete(是否开启自动完成)、autofocus(页面加载时是否自动获得焦点)、checked(是否被选中)、disabled(是否禁用)、form(规定输入字段所属的一个或多个表单)、formaction(覆盖表单的action属性)、formencrypt(覆盖表单的enctype属性)、formmethod(覆盖表单的method属性)、formnovalidate(覆盖表单的novalidate属性，提交表单时不需要验证)、formtarget(覆盖表单的target属性)、width/height(当为图片上传时定义input字段的高度)、max(规定输入字段的最大值)、maxlength(规定输入字段的字符的最大长度)、min(规定输入字段的最小值)、multiple(可选择多个文件)、pattern(规定输入字段的格式，例如pattern="[0-9]")、readonly、required、size(输入字段的宽度)、src(定义以提交按钮形式显示的图像的URL)、
+
+### radio
+
+- 当在`radio`中使用`required`时，只需要在第一个`radio`中设置即可
 
 ### textarea
 

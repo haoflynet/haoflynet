@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2020-09-05 10:28:00
+updated: 2020-09-06 22:18:00
 categories: php
 ---
 
@@ -26,6 +26,10 @@ protected $except = [
   'users/*/profile'
 ];
 ```
+
+####  一个页面调用多个接口如何传递CSRF Token
+
+由于`csrf`的`_token`是存储于session的，依照`laravel`的实现机制，同一时间只能有一个`_token`，所以无法实现一个页面设置多个`csrf token`，要解决这个问题要么将非必要的接口忽略`csrf`，要么每次请求`api`后从后台生成并返回一个新的`token`
 
 <!--more-->
 
