@@ -1,6 +1,7 @@
 ---
 title: "Laravel Validation数据校验"
 date: 2020-09-06 22:29:00
+updated: 2020-09-07 10:32:00
 categories: php
 ---
 
@@ -19,7 +20,7 @@ $request->query('name', 'Helen'); // 带默认值
 $request->all(); // 获取所有请求参数为一个数组
 $request->input(); // 同上
 $request->query(); // 所有查询参数转换为数组
-$request->boolean('archived'); // 获取布尔值，能够自动判断1/"1"/true/"true"/"on"/"yes"
+$request->boolean('archived'); // 获取布尔值，能够自动判断1/"1"/true/"true"/"on"/"yes"，6.x开始
 $request->only(['username', 'password']); // 仅获取指定字段的请求
 $request->except(['credit_card']); // 仅排除指定字段的请求
 

@@ -1,6 +1,7 @@
 ---
 title: "Laravel Validation数据校验"
 date: 2020-09-06 16:00:00
+updated: 2020-09-08 22:24:00
 categories: php
 ---
 
@@ -106,6 +107,14 @@ class MyRequest extends Request {
   public function response(array $errors){
     return redirect()->back()->withInput()->withErrors($errors);
   }
+  
+  // 如果要验证路由中的参数，可以复写all字段，将路由参数放入即可
+  public function all($keys = null) 
+  {
+     $data = parent::all($keys);
+     $data['token'] = $this->route('token');
+     return $data;
+  }
 }
 ```
 
@@ -175,5 +184,15 @@ class Uppercase implements Rule
         return 'The :attribute must be uppercase.';
     }
 }
+```
+
+## 验证失败返回
+
+- `blade`模板中可以直接使用验证失败的信息
+- 需要注意的是`laravel`会自动屏蔽`password`和`password_confirmation`字段，即使用`old`也无法获取到之前的输入，这也是为了安全考虑，如果一定要返回，那么可以在`app/Exceptions/Handler.php`中将这两个字段屏蔽掉
+
+```php
+// 当出错刷新页面后能够显示用户之前的输入
+<input value="{{ old('username') }}"> 
 ```
 

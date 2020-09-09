@@ -1,11 +1,16 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2020-09-05 16:10:00
+updated: 2020-09-08 16:10:00
 categories: frontend
 ---
 # Html
 ## 基本格式
+
+- `defer`和`async`的区别:
+  - defer: `<script defer src="myscript.js"></script>`，加载后续文档元素的过程将和该脚本的加载并行进行(异步)，并在最后执行
+  - async: `<script async src="script.js"></script>`，加载后续文档元素的过程将和该脚本并行进行，并在最后执行
+  - 什么都没有则是立即加载并且立即执行
 
 ```html
 <!DOCTYPE html>                   <!--文档声明-->
