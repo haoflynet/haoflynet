@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-09-05 21:43:00
+updated: 2020-09-08 21:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -132,6 +132,15 @@ b = decodeURIComponent(uri);	// url解码
 `我是${name}`;
 
 util.format('this is %s', 'foo');	// nodejs的util模块格式化字符串
+
+// 判断字符串是否为数字
+var str = "123";
+var n = Number(str);
+if (!isNaN(n))
+{
+    alert("it is");
+}
+
 ```
 
 #### 时间处理

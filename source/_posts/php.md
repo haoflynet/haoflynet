@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2020-09-06 15:05:21
+updated: 2020-09-08 23:05:21
 categories: php
 ---
 # PHP
@@ -91,6 +91,7 @@ json_decode(string, $assoc=false);	# 将字符串转换为json对象,$assoc=true
 lcfirst($str)			# 将字符串首字母转换为小写
 mb_strlen($str, 'utf-8') # 求中文字符串长度
 mb_substr($str, $start, $length, 'utf-8'): 字符串分割，可以分割中文哟，如果要获得所有右边的，那么$length不用填或者填上NULL，如果版本不行那就是用功能弱一点的substr
+substr('abcdefg', -1); // 获取字符串最后一个字符
 nl2br() # 将字符串中的\n转换成网页的换行符<br>
 sprintf()	# 字符串格式化，需要注意的是，它不是用\转义，而是用的%来转义
 strlen() # 求字符串长度
@@ -226,6 +227,8 @@ is_writable($name);	# 检查文件或者目录是否有写入权限
 ```
 
 ### 函数/类/对象
+
+- `(array) myobj`对象可强制转换为数组
 
 ```php
 # public, private, projtected的区别:
