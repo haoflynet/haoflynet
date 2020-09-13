@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-08-15 11:30:00
+updated: 2020-09-13 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -28,9 +28,11 @@ categories: frontend
 
 ## 特殊函数
 
-##### cacl
+##### Calc
 
-- 非常棒的函数，能够借助css直接对属性进行计算，例如`width: cacl(50% - 4px)`，表示宽度为父组件宽度的一半减4px	
+- 非常棒的函数，能够借助css直接对属性进行计算，例如`width: cacl(50% - 4px)`，表示宽度为父组件宽度的一半减4px，需要注意的时候中间计算符号的两边必须有空格，否则会被浏览器认为是一个错误的属性而被忽略
+- 可以通过它实现简单的固定顶部和底部，而中间刚好撑满浏览器的布局:
+  ![](https://haofly.net/uploads/css_01.jpg)
 
 ## 各种属性
 
@@ -529,6 +531,8 @@ div:nth-last-child(2) {
 - 访问过的连接
 
 ## Flex布局
+
+- 注意flex是无法给容器设置`height`的，但是可以通过设置内部元素的`height/max-height/min-height`来间接控制其高度
 
 参考
 [Flex 布局教程：语法篇](https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html) 
