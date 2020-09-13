@@ -1,5 +1,5 @@
 ---
-title: "Laravel Validation数据校验"
+title: "Laravel 请求与响应"
 date: 2020-09-06 22:29:00
 updated: 2020-09-07 10:32:00
 categories: php
