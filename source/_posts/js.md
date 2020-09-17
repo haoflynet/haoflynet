@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-09-08 21:43:00
+updated: 2020-09-17 21:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -274,10 +274,14 @@ $('p[name=abc]')
 $('body >div:first-child') // 查找第一级的第一个元素
 $('*')        		// 所有元素
 $(this)       		// 当前元素
-$(this).next()  	// 获取下一个同级元素
-$(this).prev()		// 获取上一个统计元素
+$(this).next()  	// 获取下一个同级元素/兄弟节点
+$(this).nextAll() // 获取所有之后的兄弟节点
+$(this).prev()		// 获取上一个同级元素/兄弟节点
+$(this).prevAll() // 获取所有之前的兄弟节点
+$(this).siblings() // 返回兄弟姐妹节点，不分前后
 $(this).parent()	// 获取父元素
-$(this).children()	// 获取子元素
+$(this).parents('myclass')	// 查找所有组件元素
+$(this).children('myclass')	// 获取子元素，只会返回直接的子节点
 $(this).nextAll('cl')	// 获取指定元素的所有指定的同级元素
 $('p').find('input')	// 查找input下的所有input元素		
 $('input:checked') 		// 查找所有checked为true的checkbox的input元素
