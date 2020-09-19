@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-09-17 21:43:00
+updated: 2020-09-19 21:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -152,6 +152,13 @@ Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
+
+// 时间格式化
+moment().format(); // "2014-09-08T08:02:17-05:00"
+moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
+moment().format("ddd, hA");                       // "Sun, 3PM"
+moment().format("[Today is] dddd");               // "Today is Sunday"
+moment('gibberish').format('YYYY MM DD');         // "Invalid date"
 ```
 
 #### URL Params处理
