@@ -1,6 +1,6 @@
 ---
-title: "Sequelize "
-date: 2019-09-05 14:40:00
+title: "Sequelize 使用手册"
+date: 2020-09-19 17:00:00
 categories: Javascript
 ---
 
@@ -20,6 +20,7 @@ const captains = await Captain.bulkCreate([
 ]);
 ```
 
+<!--more-->
 
 ### 查询操作
 
@@ -88,6 +89,32 @@ User.findAll({
   }
 })
 ```
+
+#### 复杂嵌套查询语句示例
+
+ ```javascript
+const users = await User.findall({
+  attributes: ['username'],
+  where: {
+    status: 1,
+    [Op.or]: [
+      {
+        username: {
+          [Op.like]: `${username}%`
+        }
+      },
+      {
+        username: username
+      }
+    ]
+  }
+})
+ ```
+
+#### 查询结果处理
+
+- 结果如果是多条记录，那么它会是一个集合，可以执行集合相关的操作，如`map`等
+- 单个的记录对象，可以执行`toJSON()`操作转换为json格式
 
 ### 更新操作
 

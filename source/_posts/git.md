@@ -70,6 +70,7 @@ git pull author master:origin/master	# 从指定远程仓库拉取分支合并�
 
 git log  # 查看提交的历史,--oneline按行显示，--graph查看分支的合并情况，--all显示所有分支的历史
 git reflog	# 查看HEAD的历史情况
+git log -S password	# 搜索一个字符串在所有历史中的出现记录，--all可以搜索所有分支
 
 # 版本回退/回滚,--hard表示将该次提交之前所有的更改都丢弃，git reset是把HEAD向历史移动，之后的所有提交都会删除掉，而git revert是HEAD继续向前，新的commit就和revert的内容刚好相反，所以推荐使用revert，reset的target是要会退到的版本，而revert得target是要取消的版本
 git reset --hard HEAD^  # 回退到上一个版本
