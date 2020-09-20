@@ -1,7 +1,7 @@
 ---
 title: "Python使用beautifulsoup解析HTML、XML"
 date: 2015-05-22 23:21:57
-updated: 2018-05-16 18:52:00
+updated: 2020-09-19 17:52:00
 categories: 编程之路
 ---
 Python官方文档都说自己解析XML的方式存在漏洞了，那我也只能用他推荐的了。
@@ -60,8 +60,6 @@ soup.select('#name')  # 查找id为name的标签
 ```
 ## 获取内容
 ```python
-soup.prettify()	# 直接获取所有内容
-
 tag.name        # 如果是Tag，那么返回它本身，例如，如果是a标签，那就返回a；如果是soup对象，那么返回[document]，返回值都是str类型
 tag.attrs       # 获取该标签的属性，返回的是一个字典，例如，如果有个a标签是<a class="a" href="#"></a>那么返回{'class': 'a', 'href': '#'}
 soup.a['class'] # 直接获取a标签的class属性值
@@ -91,7 +89,7 @@ tag.extract()	# 移除当前tag
 
 ## 遍历
 
-获取tag内的字符串用tag.string，可以通过unicode方法将NavigableString对象转换成Unicode字符串，如unicode_st
+获取tag内的字符串用`tag.string`，可以通过unicode方法将NavigableString对象转换成Unicode字符串，如unicode_st
 ring = unicode(tag.string)
 
 ## TroubleShooting
@@ -101,61 +99,61 @@ ring = unicode(tag.string)
 如果要获取xml/html中的注释使用Comment对象，如
 
 ```python
-    markup = "<b><!--Hey, buddy. Want to buy a used parser?--></b>"
-    soup = BeautifulSoup(markup)
-    comment = soup.b.string
-    commment就是注释的东西
-    print(comment)
-    >>>u'Hey, buddy. Want to buy a used parser'
-    可以
-    print(soup.b.prettify())打印全部<b>
-    也可以用CDATA替代注释：如
-    from bs4 import CData
-    cdata = CData("A CDATA block")
-    comment.replace_with(cdata)
+markup = "<b><!--Hey, buddy. Want to buy a used parser?--></b>"
+soup = BeautifulSoup(markup)
+comment = soup.b.string
+commment就是注释的东西
+print(comment)
+>>>u'Hey, buddy. Want to buy a used parser'
+可以
+print(soup.b.prettify())打印全部<b>
+也可以用CDATA替代注释：如
+from bs4 import CData
+cdata = CData("A CDATA block")
+comment.replace_with(cdata)
 
 
-    print(soup.b.prettify())
-    打印：
-    <b><![CDATA[A CDATA block]]></b>
+print(soup.b.prettify())
+打印：
+<b><![CDATA[A CDATA block]]></b>
 ```
 通过点去属性的方式只能获得当前名字的第一个tag，如果要得到所有的就用soup.find_all('a')
 
 tag的.contents属性可以将tag的子节点以列表的方式输出(包括子节点的所有内容)
 
 ```python
-    head_tag = soup.head
-    head_tag # <head><title>The Dormouse's story</title></head>  
+head_tag = soup.head
+head_tag # <head><title>The Dormouse's story</title></head>  
 
-    head_tag.contents
-    [<title>The Dormouse's story</title>]
+head_tag.contents
+[<title>The Dormouse's story</title>]
 
-    title_tag = head_tag.contents[0]
-    title_tag
+ title_tag = head_tag.contents[0]
+ title_tag
 
-    #<title>The Dormouse's story</title>  
+ #<title>The Dormouse's story</title>  
 
-    title_tag.contents
+ title_tag.contents
 
-    [u'The Dormouse's story']
+ [u'The Dormouse's story']
 ```
 BeautifulSoup对象本身一定会包含子节点，也就是说<html>标签也是该对象的子节点，如 soup.contents[0].name就是html
 
 通过tag的.children生成器，可以对tag的子节点进行循环：
 
-```
-    for child in title_tag.children:
-        print(child)
-        # The Dormouse's story
+```python
+for child in title_tag.children:
+  print(child)
+  # The Dormouse's story
 ```
 。desendants属性可以对所有tag的子孙节点进行递归循环
 
-```
-    for child in head_tag.descendants:
-        print(child)
-        # <title>The Dormouse's story</title>
-        # The Dormouse's story
-    字符串也是一个子节点
+```python
+for child in head_tag.descendants:
+  print(child)
+  # <title>The Dormouse's story</title>
+  # The Dormouse's story
+  字符串也是一个子节点
 ```
 如果tag只有一个NavigableString类型的子节点，就可以用title_tag.string访问子节点
 
@@ -198,7 +196,9 @@ attr表示具有该属性的name标签，text可以搜索非标签的字符串�
 
 
 
-    soup.find_all(id="link2")[<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]
+```python
+soup.find_all(id="link2")[<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]
+```
 
 limit参数：find_all()方法返回全部的搜索结果，如果文档数很大那么搜索会很慢，如果不需要全部结果，可以用limit参数，类似于SQL中的limi
 t，如soup.find_all("a", limit=2)
@@ -221,12 +221,12 @@ nd_next()，find_all_previous()，find_previous()
 
 # 修改
 
+```python
+# 删除当前节点
+tag.extract()  
 
-
-    # 删除当前节点
-    tag.extract()  
-    
-    # 插入节点
-    new_tag = '<url>dagasgga</url>'
-    new_tag = BeautifulSoup(new_url, 'html.parser')
-    soup.tag.insert(位置如1, new_tag)
+# 插入节点
+new_tag = '<url>dagasgga</url>'
+new_tag = BeautifulSoup(new_url, 'html.parser')
+soup.tag.insert(位置如1, new_tag)
+```
