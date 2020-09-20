@@ -1,7 +1,7 @@
 ---
 title: "PHP 使用Carbon扩展进行时间处理"
 date: 2019-05-31 18:32:00
-updated: 2020-08-31 09:21:00
+updated: 2020-09-19 09:21:00
 categories: php
 ---
 
@@ -22,6 +22,8 @@ Carbon::parse('2 days ago');
 Carbon::parse('+3 weeks');
 Carbon::parse('last friday');
 Carbon::parse('Fri May 31 2019 06:50:14 GMT+0000 (UTC)')->toDateTimeString();	// 这个会得到2019-05-31 06:50:14，而不是东8区的时间
+Carbon::createFromFormat('Y-m-d H', '1975-05-21 22')->toDateTimeString(); // 1975-05-21 22:00:00
+
 
 # 时间计算
 Carbon::now()->addDays(3);

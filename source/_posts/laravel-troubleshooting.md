@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2020-09-06 22:18:00
+updated: 2020-09-19 20:18:00
 categories: php
 ---
 
@@ -147,3 +147,6 @@ require_once __DIR__.'/public/index.php';
 \Illuminate\Support\Facades\URL::forceRootUrl('https://localhost');
 ```
 
+#### Laravel migrate出现错误: No such file or directory (SQL: create table `migrations`)
+
+可以尝试清除一下配置，`php artisan config:clear && php artisan migrate:install`

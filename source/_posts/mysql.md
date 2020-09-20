@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-08-30 11:44:00
+updated: 2020-09-19 19:44:00
 categories: database
 ---
 ## 安装方法
@@ -49,6 +49,8 @@ DROP DATABASE database_name	# 删除数据库
 ```
 
 ### 数据表操作
+
+- 给字段设置默认值的时候可以使用表达式，并且外面必须加括号，例如给`json`数据设置默认值可以为`DEFAULT (JSON_ARRAY()) `
 
 ```mysql
 CREATE TABLE `table2` SELECT * FROM `table1`;	# 从一张旧表直接建立一张新表
@@ -436,6 +438,7 @@ JSON_EXTRACT(字段名,'$.id')	# 获取json数据key=id的值，需要注意的�
 JSON_MERGE_PRESERVE(@json1, @json2);	# 合并两个JSON，当key重复的时候，会将value当作数组来合并，功能和JSON_MERGE一样，但是JSON_MERGE快弃用了。一定一定要注意值为NULL的情况，如果@json1为NULL，那么无论@json2是怎样的数组，结果都为NULL
 JSON_MERGE_PATCH(@json1, @json2);	# 合并两个JSON，当key重复的时候，会覆盖
 JSON_REMOVE(@json1, '$.A'); # 移除指定的key，但是只能移除key->value形式的json数据，如果是数组，不支持用*或**来通配
+SELECT count(*) from users WHERE data LIKE '%[]%'; # 判断JSON格式是否为空数组
 ```
 
 ## 数据库优化
