@@ -56,6 +56,13 @@ module.exports = {
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
+  
+  /**
+   * ServerMiddleware服务端中间件
+   */
+  serverMiddleware: [
+    '~/serverMiddleware/rate-limiter.js'
+  ],
 
   /*
   ** Global CSS
@@ -105,6 +112,8 @@ module.exports = {
   }
 }
 ```
+
+## [serverMiddlware 服务端渲染中间件](https://haofly.net/nuxtjs-server-middleware)
 
 ## API
 

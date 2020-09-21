@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-09-19 21:43:00
+updated: 2020-09-20 20:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -57,6 +57,7 @@ arr.pop(obj)		// 去除数组尾部元素
 arr.unshift(obj)	// 在数组头添加元素
 arr.shift(obj)		// 去除数组头部元素
 arr.slice(start, end) // 数组分片
+arr.slice(-1)[0] // 获取数组最后一个元素
 arr instance of Array	// 判断是否是数组
 arr.filter(Boolean)	// 快速移除所有"false"类型(false、null、undefined等)的元素
 
@@ -278,6 +279,7 @@ $('p.intro')  	// class为intro的所有p元素
 $('p:first')  	// 选取第一个<p>元素
 $('p a:first')	// 选取p元素下的第一个a元素
 $('p[name=abc]')
+$('*[data-abc="22"]');	// 获取data-*元素
 $('body >div:first-child') // 查找第一级的第一个元素
 $('*')        		// 所有元素
 $(this)       		// 当前元素
@@ -479,6 +481,8 @@ export {var1, var2, var3};	// 一次多个
 export function myfunc(x, y) {};	// 导出函数
 export {var1 as var2};	// 重新命名
 export default function () {};	// 这样在import的时候可以自定义name，例如import customName from '...';
+
+exports.myFunc = function () {}
 ```
 
 ## Async/Promise

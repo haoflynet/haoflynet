@@ -1,7 +1,7 @@
 ---
 title: "Laravel Collection及helpers帮助方法汇总"
 date: 2020-09-05 16:00:00
-Updated: 2020-09-06 22:24:00
+Updated: 2020-09-19 22:24:00
 categories: php
 ---
 
@@ -124,6 +124,27 @@ Str::contains('This is my name', ['my', 'foo']); // 是否包含其中一个
 Str::containsAll('This is my name', ['my', 'name']);// 是否包含全部
 ```
 
+### 其它方法
+
+```php
+# blank, 验证对象是否为空。filled和blank正好相反
+## 下面是为true的情况
+blank('');
+blank(' ');
+blank(null);
+blank(colelct());
+## 下面是为false的情况
+blank(0);
+blank(true);
+blank(false);
+
+# optional
+optional($user->address)->street;	// 如过内部条件为空，那么不会报错
+optional(User::find($id), function ($user) {
+  return new DummyUser;
+})
+```
+
 ## Collection集合
 
 `Illuminate\Support\Collection`类提供了一个非常方便的操作来操作数组
@@ -135,10 +156,13 @@ User::where('name', 'wang')->get();		// 操作数据库经常会返回一个Coll
 all();					// 返回该集合所代表的底层数组[1, 2, 3]
 avg();					// 返回集合中所有项目的平均值
 avg('field');			// 指定键值的平均值
-chunk(n);				// 拆分集合
-collapse([1,2], [2,3])	// 合并数组为一个集合
+chunk(n);				// 拆分集合，如collect([1,2,3,4,5,6,7])，按chunk(4)拆分成[[1,2,3,4], [5,6,7]]
+collapse([1,2], [2,3])	// 合并数组为一个集合, [1,2,3]
+combine(collect); // 合并两个集合，collect(['name', 'age'])->combine(['George', 29])->all(); // ['name' => 'Gerge', 'age' => 29]
+concat(); // 连接集合，collect(['John Doe'])->concat(['Jane Doe'])->concat(['name' => 'Johnny Doe']) 得到 ['John Doe', 'Jane Doe', 'Johnny Doe']
 contains('key');		// 判断集合是否含有某个key
 count();				// 返回集合总数
+countBy(); // collect([1,2,2,2,3])->countBy()->all() 得到[1=>1, 2=>3, 3=>1]，也可以指定聚合方式function
 diff(arr2);				// 返回在第一个集合中存在而在第二个集合中不存在的值
 each(function ($item, $key) {return false;});	// 遍历集合，回调函数返回false的时候会中断循环
 every(function ($value, $key) {return 1>2;});	// 判断集合中的每个元素是否都满足条件

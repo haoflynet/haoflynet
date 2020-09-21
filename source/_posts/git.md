@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2020-08-15 21:21:00
+updated: 2020-09-20 11:21:00
 categories: tools
 ---
 # Git指南
@@ -400,6 +400,6 @@ fi
       GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_mygit" git pull
       ```
 
-      
 
-   
+- **Unable to append to .git/**: 可能是因为当前目录存在当前用户无权访问的文件或文件夹，可以使用`ls -al`查看文件夹权限，然后使用`chown`改变目录所属用户
+
