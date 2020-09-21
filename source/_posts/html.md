@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2020-09-08 16:10:00
+updated: 2020-09-20 16:10:00
 categories: frontend
 ---
 # Html
@@ -76,7 +76,26 @@ categories: frontend
 
 ### input
 
-- accept(当为文件上传时，指定上传文件的类型)、alt(当为图片上传时，定义图像输入的替代文本)、autocomplete(是否开启自动完成)、autofocus(页面加载时是否自动获得焦点)、checked(是否被选中)、disabled(是否禁用)、form(规定输入字段所属的一个或多个表单)、formaction(覆盖表单的action属性)、formencrypt(覆盖表单的enctype属性)、formmethod(覆盖表单的method属性)、formnovalidate(覆盖表单的novalidate属性，提交表单时不需要验证)、formtarget(覆盖表单的target属性)、width/height(当为图片上传时定义input字段的高度)、max(规定输入字段的最大值)、maxlength(规定输入字段的字符的最大长度)、min(规定输入字段的最小值)、multiple(可选择多个文件)、pattern(规定输入字段的格式，例如pattern="[0-9]")、readonly、required、size(输入字段的宽度)、src(定义以提交按钮形式显示的图像的URL)、
+- accept(当为文件上传时，指定上传文件的类型)、alt(当为图片上传时，定义图像输入的替代文本)、autocomplete(是否开启自动完成)、autofocus(页面加载时是否自动获得焦点)、checked(是否被选中)、disabled(是否禁用)、form(规定输入字段所属的一个或多个表单)、formaction(覆盖表单的action属性)、formencrypt(覆盖表单的enctype属性)、formmethod(覆盖表单的method属性)、formnovalidate(覆盖表单的novalidate属性，提交表单时不需要验证)、formtarget(覆盖表单的target属性)、width/height(当为图片上传时定义input字段的高度)、max(规定输入字段的最大值)、maxlength(规定输入字段的字符的最大长度)、min(规定输入字段的最小值)、multiple(可选择多个文件)、pattern(规定输入字段的格式，例如pattern="[0-9]")、readonly、required、size(输入字段的宽度)、src(定义以提交按钮形式显示的图像的URL)
+
+- type=number数字输入框
+
+  ```html
+  <input type="number">
+  <input type="number" step="10" min="0" max="100">	<!--设置步长、最小值和最大值-->
+  <input type="number" step="0.01"> <!--允许小数点-->
+  
+  <!--提供建议值-->
+  <input id="ticketNum" type="number" name="ticketNum" list="defaultNumbers">
+  <span class="validity"></span>
+  <datalist id="defaultNumbers">
+    <option value="10045678">
+    <option value="103421">
+    <option value="11111111">
+    <option value="12345678">
+    <option value="12999922">
+  </datalist>
+  ```
 
 ### radio
 
