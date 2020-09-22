@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-08-30 20:35:00
+updated: 2020-09-19 20:35:00
 categories: js
 ---
 
@@ -115,6 +115,8 @@ Vue.component('mycomponent', {
 ## 页面Script相关方法
 
 ### 实例/组件属性
+
+- `$forceUpdate`: 强制页面重新渲染
 
 - `$options`: 获取用户自定义的配置
 

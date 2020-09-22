@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2020-09-20 16:10:00
+updated: 2020-09-21 16:10:00
 categories: frontend
 ---
 # Html
@@ -63,6 +63,14 @@ categories: frontend
 
 ### form
 
+- 点击`submit`但是阻止`form`表单默认的`submit`行为:
+
+  ```javascript
+  $("body").on("submit", "form", function( event ){
+      event.preventDefault();
+  });
+  ```
+  
 - 原生方法验证表单:
 
   ```javascript

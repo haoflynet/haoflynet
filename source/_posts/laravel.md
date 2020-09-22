@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2020-08-15 15:07:00
+updated: 2020-09-09 10:37:00
 categories: php
 ---
 # Laravel指南
@@ -67,101 +67,8 @@ app()->environment()
   return redirect()->action('HomeController@index', ['page' => 123])
   ```
 
-  
 
-#### 数据校验Validation
-
-- 默认启用了`TrimStrings`和`ConvertEmptyStringsToNull`两个中间件的，一个自动去除前后空白，一个将空字符串转换为null
-
-```
-# 通过Validator进行校验，第一个参数是一个key-value的数组
-$validation = Validator::make($request->all(), [
-  'ip' => 'required|ip'			# 校验key=ip的值是否真的是ip
-  'arr.arr.field' => 'required'	# 验证多级数组内部字段，其实都是字典
-  'arr.*.field'	=> 'required'	# 验证数组内部的字段，数组下面是一个数组的情况，5.1不支持
-])
-
-# 常用框架自带的认证类型
-active_url			# 该url一定能访问
-array				# 仅允许为数组
-between:min,max		# 介于最小值和最大值之间，两边都是闭区间，如果是数字，一定要先声明当前字段为integer
-boolean				# 必须是true,false,1,0,"1","0"
-date				# 必须是时间类型
-exists:table,column	# 判断字段的值是否存在于某张表的某一列里面
-exists:table,column1,column2,value	# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值为多少
-exists:table,column1,column2,!value	# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值不为多少
-exists:table,column1,column2,{$field}# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值和前面的某个字段提供的值一样
-in:value1,value2,...# 字段值必须是这些值中的一个，枚举值
-not_in:value1,value2,...	# 字段值不为这其中的任何一个
-integer				# 必须是整数
-ip					# 必须是IP字符串
-json				# 必须是JSON字符串
-max:value			# 规定最大值
-min:value			# 规定最小值
-numeric				# 是数字
-required			# 必填
-required_if:anotherfield,value1,value2	# 当指定的anotherfield字段等于任何一个value时，此字段必填
-required_unless:anotherfield,value1,value2 # 当指定的anotherfield字段等于任何一个value时，此字段不用必填
-required_with:foo,bar,...  # 当指定的字段中任何一个有值时，此字段为必填
-required_with_all:foo,bar,...	# 当指定的所有字段都有值时，此字段为必填
-required_without:foo,bar,...	# 如果缺少任意一个指定的字段，则自此字段为必填
-required_with_out_all:foo,bar,...	# 如果所有指定的字段你都没有值，则此字段为必填
-same:foo			# 必须和指定字段的值保持一致
-string				# 必须是字符串
-url					# 必须是合法的url
-regex				# 必须符合这个正则表达式，例如regex:/^[a-z]{1}[a-z0-9-]+$/，需要注意的是，如果正则表达式中用了|符号，必须用数组的方式来写正则表达式，否则会报错，例如['required', 'regex:/[0-9]([0-9]|-(?!-))+/']
-
-# 自定义错误提示的消息，可以通过传递进去，不过也可以直接在语言包文件resources/lang/xx/validation.php文件的的custom数组中进行设置
-
-# 验证数组里面的字段用这样的方式
-'person.email' => 'email|unique:users'
-'person.first_name' => 'required_with:person.*.last_name'
-
-# 将表单的验证提取出来作为单独的表单请求验证Form Request Validation
-# 使用php artisan make:request BlogPostRequest创建一个表单请求验证类，会在app/Http/Requests里面生成相应的类，之后表单验证逻辑就只需要在这里写上就行了，例如
-<?php
-namespace App\Http\Requests;
-use Route;
-use Illuminate\Support\Facades\Auth;
-class BlogPost extends Request{
-	// 这个方法验证用户是否有权限访问当前的控制器
-    public function authorize()    {
-        $id = Route::current()->getParameter('post');	// 如果是resource的东西，要获取id，在这里是这样子获取，不能直接用id，而是相对应的资源名
-        switch($this->method()){	# 我这里，姑且卸载一起
-            case 'POST':{
-                return Auth::user()->can('create', Project::class);
-            }
-            case 'PUT':{
-                return Auth::user()->can('update', Project::find($id));
-            }
-        }
-    }
-
-    /**
-     * 这里则是返回验证规则
-     */
-    public function rules(){
-        switch($this->method()){
-            case 'POST': {
-                return [
-                    'name'              => 'required|string|max:100',
-                ];
-            }
-            case 'PUT':{
-                return [
-                    'name'              => 'required|string|max:100',
-
-                ];
-            }
-        }
-    }
-
-	// 自定义返回格式
-    public function response(array $errors){
-        return redirect()->back()->withInput()->withErrors($errors);
-    }
-}
-```
+#### [Laravel 数据校验Validation](https://haofly.net/laravel-validation.md)
 
 #### Restful资源控制器
 
@@ -188,6 +95,10 @@ public function show($photoId, $commentId)
 | GET       | /photos/{photo}/edit | edit    | photos.edit    |
 | PUT/PATCH | /photos/{photo}      | update  | photos.update  |
 | DELETE    | /photos/{photo}      | destroy | photos.destroy |
+
+## Resources目录
+
+`resource`目录包含了视图`views`和未编译的资源文件(如LESS、SASS或javascript)，还包括语言文件`lang`
 
 ### 路由url
 
@@ -225,35 +136,38 @@ public function show($photoId, $commentId)
 route('post.comment.store', ['id'=> 12]) # 这样子就获取到id为12的post的comment的创建接口地址
 ```
 
-### 视图/静态资源
-
-#### 提供文件下载
+#### 路由相关方法
 
 ```php
-return response()->download($pathToFile);	# 直接提供文件下载
-return response()->download($pathToFile, $name, $headers);	# 设置文件名和响应头
-return response()->download($pathToFile)->deleteFileAfterSend(true); # 设置为下载后删除
+# 获取当前页面的地址
+URL::full();
+rl()->full();
+URL::current();
+url()->current();
+Request::url();
+$request->url();
+Request::path();
+$request->path();
+Request::getRequestUri();
+$request->getRequestUri();
+Request::getUri();
+$request->getUri();
+
+# 获取当前页面的路由名称(即使带参数也没问题)
+Route::currentRouteName() === 'businessEditView'
+
+# 获取前一个页面的地址
+URL::previous()
+url()->previous();
+
+Request::url();
 ```
 
-### 模板Template
-
-#### 标签
-
-```tex
-# 转义
-{!! $name !!}
-
-# if else
-@if()
-@else
-@endif
-# 需要注意的是，if else是不能写在一行的如果非要写在同一行，建议使用这样的方法
-{!! isset($a) && $a['a'] == 'a' ? 'disabled': '' !!}
-```
+### [Laravel Blade模板引擎](https://haofly.net/laravel-blade)
 
 #### 分页
 
-Larval的分页主要靠Eloquent来实现，如果要获取所有的，那么直接把参数写成`PHP_INT_MAX`就行了嘛
+Larvel的分页主要靠Eloquent来实现，如果要获取所有的，那么直接把参数写成`PHP_INT_MAX`就行了嘛
 
 ```php
 Paginator::currentPagesolver(function () use ($currentPage) {return $currentPage}); # 动态改变paginator获取page的方式，全局搜索可以发现它就是从request参数获取的page
@@ -321,53 +235,59 @@ Laravel提供了migration和seeding为数据库的迁移和填充提供了方便
 
 生成一个model: `php artisan make:model user -m`，这样会在`app`目录下新建一个和user表对应的model文件
 
-	<?php
-	namespace App;
-	use Illuminate\Database\Eloquent\Model;
-	class Flight extends Model
-	{
-	    //
-	}
+```php
+<?php
+namespace App;
+use Illuminate\Database\Eloquent\Model;
+class Flight extends Model
+{
+    //
+}
+```
 加上`-m`参数是为了直接在`database/migrations`目录下生成其迁移文件，对数据库表结构的修改都在此文件里面，命名类似`2016_07_04_051936_create_users_table`，对数据表的定义也在这个地方，默认会按照复数来定义表名:
 
 
-	<?php
-	use Illuminate\Database\Schema\Blueprint;
-	use Illuminate\Database\Migrations\Migration;
-	
-	class CreateApplicationsTable extends Migration
-	{
-	    /**
-	     * Run the migrations.
-	     *
-	     * @return void
-	     */
-	    public function up()
-	    {
-	        Schema::create('applications', function (Blueprint $table) {
-	            $table->increments('id');
-	            $table->timestamps();
-	        });
-	        DB::statement('ALTER TABLE `'.DB::getTablePrefix().'applications` comment "这里写表的备注"');
-	    }
-	
-	    /**
-	     * Reverse the migrations.
-	     *
-	     * @return void
-	     */
-	    public function down()
-	    {
-	        Schema::drop('applications');
-	    }
-	}
+```php
+<?php
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateApplicationsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('applications', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+        });
+        DB::statement('ALTER TABLE `'.DB::getTablePrefix().'applications` comment "这里写表的备注"');
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('applications');
+    }
+}
+```
 
 当数据表定义完成过后，执行`php artisan migrate`即可在真的数据库建表了
 
-	php artisan migrate				// 建表操作，运行未提交的迁移
-	php artisan migrate:rollback 	// 回滚最后一次的迁移
-	php artisan migrate:reset		// 回滚所有迁移
-	php artisan migrate:refresh   	// 回滚所有迁移并重新运行所有迁移
+```shell
+php artisan migrate				# 建表操作，运行未提交的迁移
+php artisan migrate:rollback 	# 回滚最后一次的迁移
+php artisan migrate:reset		# 回滚所有迁移
+php artisan migrate:refresh   	# 回滚所有迁移并重新运行所有迁移
+```
 
 如果要修改原有model，不能直接在原来的migrate文件上面改动，而是应该新建修改migration，例如，执行`php artisan make:migration add_abc_to_user_table`这样会新建一个迁移文件，修改语句写在up函数里面:
 
@@ -401,57 +321,62 @@ class User extends Model{
   protected $connection = 'second';		// 设置为非默认的那个数据库连接
   protected $fillable = ['id', 'name']; // 设置可直接通过->访问或者直接提交保存的字段
   protected $table = 'my_flights';		// 自定义表明，默认的表明会以model的复数形式，需要注意的是，英语单词复数的变化有所不同，如果取错了表明活着以中文拼音作为表明，有时候就需要明确表的名称了
+  protected $appends = ['id2'];	// 有时候在转换模型到数组时，希望增加一个数据库不存在的字段，可以用这种方式增加
+  protected $visible = ['id']; // 转换为数组的时候限制某些字段可见
 }
 ```
 
 #### 字段的定义
 
-	# 字段定义
-	$table->increments('id')	# 默认都有的自增的主键
-	$table->string('name', 45)->comment('名字') # 字符串类型,添加注释，长度可指明也可不指名
-	$table->boolean('type') 	# 相当于tinyint(1)
-	$table->softDeletes()    # 软删除，名为deleted_at类型为timestamp的软删除字段
-	$table->bigInteger('')	# bigint(20),加不加sign都是20
-	$table->integer()	# int(10)
-	$table->integer()->uninsign()	# int(11)
-	$table->integer()->unsigned()	# int(10)
-	$table->mediumInteger('')	# int(9)
-	$table->mediumInteger('')->unsign()	# int(9)
-	$table->mediumInteger('')->unsigned()
-	# 相当于int(8)
-	$table->smallInteger('') # smallint(6)
-	$table->smallInteger('')->unsign() # smallint(6)
-	$table->smallInteger('')->unsigned() # smallint(5)
-	$table->tinyInteger('') # tinyint(4)
-	$table->tinyInteger('')->unsign() # tinyint(4)
-	$table->tinyInteger('')->unsigned() # tinyint(1)
+```php
+# 字段定义
+$table->increments('id')	# 默认都有的自增的主键
+$table->string('name', 45)->comment('名字') # 字符串类型,添加注释，长度可指明也可不指名
+$table->boolean('type') 	# 相当于tinyint(1)
+$table->softDeletes()    # 软删除，名为deleted_at类型为timestamp的软删除字段
+$table->bigInteger('')	# bigint(20),加不加sign都是20
+$table->integer()	# int(10)
+$table->integer()->uninsign()	# int(11)
+$table->integer()->unsigned()	# int(10)
+$table->mediumInteger('')	# int(9)
+$table->mediumInteger('')->unsign()	# int(9)
+$table->mediumInteger('')->unsigned()
+# 相当于int(8)
+$table->smallInteger('') # smallint(6)
+$table->smallInteger('')->unsign() # smallint(6)
+$table->smallInteger('')->unsigned() # smallint(5)
+$table->tinyInteger('') # tinyint(4)
+$table->tinyInteger('')->unsign() # tinyint(4)
+$table->tinyInteger('')->unsigned() # tinyint(1)
+
+$table->float('')	# 相当于DOUBLE
+
+$table->text('')	# text()
+
+$table->dateTime('created_at')  # DATETIME类型
+
+# 字段属性
+->nullable()	# 允许null
+->unsigned()	# 无符号，如果是integer就是int(10)
+->unsign()	# 无符号，如果是integer就是int(11)
+->default('')	# 默认值
 	
-	$table->float('')	# 相当于DOUBLE
-	
-	$table->text('')	# text()
-	
-	$table->dateTime('created_at')  # DATETIME类型
-	
-	# 字段属性
-	->nullable()	# 允许null
-	->unsigned()	# 无符号，如果是integer就是int(10)
-	->unsign()	# 无符号，如果是integer就是int(11)
-	->default('')	# 默认值
-		
-	# 索引定义
-	$table->index('user_id')
-	
-	# 主键定义
-	$table->primary('id')  # 默认不用写这个
-	$table->primary(array('id', 'name')) # 多个主键的情况
-	
-	# 外键定义
-	$table->integer('user_id')->unsigned();	# 先要有一个字段，而且必须是unsigned的integer
-	$table->foreign('user_id')->references('id')->on('users');	# 关联到users表的id字段
+# 索引定义
+$table->index('user_id')
+
+# 主键定义
+$table->primary('id')  # 默认不用写这个
+$table->primary(array('id', 'name')) # 多个主键的情况
+
+# 外键定义
+$table->integer('user_id')->unsigned();	# 先要有一个字段，而且必须是unsigned的integer
+$table->foreign('user_id')->references('id')->on('users');	# 关联到users表的id字段
+```
 
 #### 定义表之间的关系
 
-直接在ORM里面进行表关系的定义，可以方便查询操作。
+- 直接在ORM里面进行表关系的定义，可以方便查询操作
+- 5.4开始新增了`withDefault`方法，在定义关系的时候，如果对象找不到那么返回一个空对象，而不是一个null
 
 ##### 一对多hasMany
 
@@ -467,31 +392,45 @@ $this->hasMany('App\Post', 'foreign_key', 'local_key')
 ```
 ##### 一对一hasOne
 
-	public function father(){
-		return $this->hasOne('App\Father');
-	}
-	
-	$this->hasOne('App\Father', 'id', 'father');	# 表示father的id对应本表的father
+```php
+public function father(){
+	return $this->hasOne('App\Father');
+}
+
+$this->hasOne('App\Father', 'id', 'father');	# 表示father的id对应本表的father
+```
 ##### 相对关联belongsTo(多对一)
 
-	public function user(){
-		return $this->belongsTo('App\User');
-		// return $this->belongsTo('App\User')->withDefault();	// 这样子如果找不到关联对象，则会返回一个空对象
-		// return $this->belongsTo('App\User')->withDefault(['name' => '不知道'] ); // 还可以给这个空对象赋予默认值
-	}
-	Posts::find(1)->user  # 可以找到作者
+```php
+public function user(){
+	return $this->belongsTo('App\User');
+	// return $this->belongsTo('App\User')->withDefault();	// 这样子如果找不到关联对象，则会返回一个空对象
+	// return $this->belongsTo('App\User')->withDefault(['name' => '不知道'] ); // 还可以给这个空对象赋予默认值
+}
+Posts::find(1)->user  # 可以找到作者
+```
 ##### 多对多关系belongsToMany
 
 如果有三张表，users,roles,role_user其中，role_user表示users和roles之间的多对多关系。如果要通过user直接查出来其roles，那么可以这样子
 
-	class User extends Model {
-	  public funciton roles()
-	  {
-	    return $this->belongsToMany('App\Role', 'user_roles', 'user_id', 'foo_id');	# 其中user_roles是自定义的关联表表名，user_id是关联表里面的user_id，foo_id是关联表里面的role_id
-	  }
-	}
-	
-	$roles = User::find(1)->roles;	# 这样可以直接查出来，如果想查出来roles也需要在roles里面进行定义
+```php
+class User extends Model {
+  public funciton roles()
+  {
+    return $this->belongsToMany('App\Role', 'user_roles', 'user_id', 'foo_id');	# 其中user_roles是自定义的关联表表名，user_id是关联表里面的user_id，foo_id是关联表里面的role_id
+  }
+}
+
+$roles = User::find(1)->roles;	# 这样可以直接查出来，如果想查出来roles也需要在roles里面进行定义
+
+# 使用pivot查询中间表的信息
+foreach ($user->roles as $role) {
+    echo $role->pivot->created_at;
+}
+
+# 不过，如果中间表包含了额外的属性，在定义关系的时候需要使用withPivot显式指定，如果需要中间表自动维护时间字段需要加withTimestamps
+return $this->belongsToMany(Role::class)->withPivot('field1', 'field2')->withTimestamps();
+```
 ##### 多态关联
 
 一个模型同时与多种模型相关联，可以一对多(morphMany)、一对一(morphOne)、多对多(mar)
@@ -526,39 +465,39 @@ $this->morphedByMany('App\Models\Posts', 'target', 'table_name'); // 一种多�
 
 ```
 
-
-
 #### 数据库填充
 
 Laravel使用数据填充类来填充数据，在`app/database/seeds/DatabaseSeeder.php`中定义。可以在其中自定义一个填充类，但最
 好以形式命名，如(默认填充类为DatabaseSeeder，只需要在该文件新建类即可，不是新建文件):
 
-	class DatabaseSeeder extends Seeder
-	{
-	    /**
-	     * Run the database seeds.
-	     */
-	    public function run()
-	    {
-	        $this->call(UsersTableSeeder::class);
-	    }
-	}
-	
-	class UsersTableSeeder extends Seeder
-	{
-	    /**
-	     * Run the user seeds.
-	     */
-	    public function run()
-	    {
-	        DB::table('users')->delete();
-	
-	        App\User::create([
-	            'email' => 'admin@haofly.net',
-	            'name' => '系统管理员',
-	        ]);
-	    }
-	}
+```php
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run()
+    {
+        $this->call(UsersTableSeeder::class);
+    }
+}
+
+class UsersTableSeeder extends Seeder
+{
+    /**
+     * Run the user seeds.
+     */
+    public function run()
+    {
+        DB::table('users')->delete();
+
+        App\User::create([
+            'email' => 'admin@haofly.net',
+            'name' => '系统管理员',
+        ]);
+    }
+}
+```
 
 然后在Composer的命令行里执行填充命令
 
@@ -696,34 +635,40 @@ $newUser = $user->replicate();$newUser->save();
 
 #### 查询缓存
 
-##### With(预加载)
+##### With/load(预加载/渴求式加载)
 
-with在laravel的ORM中被称为预加载，作用与关联查询上
+- with/load在laravel的ORM中被称为预加载，作用与关联查询上，能有效缓解N+1查询问题
+- 通常的做法是在一次请求开始处理的时候一次性把所有需要用到的关联关系取出来，例如: `Auth::user()->load('detail', 'posts:name', 'posts.comments')`
 
 ```php
-# 例如要查询所有文章的作者的名字，可以这样子做
+# 例如要查询所有文章的作者的名字，以前是这样做的，总共查询了1+N次数据库
 $posts = App\Post::all();
 foreach($posts as $post) {
   var_dump($post->user->name);
 }
-# 但是，这样做的话，每一篇文章都会查询一次用户，而如果这些文章的用户都是一个人，那岂不是要查询n次了。这时候预加载就有用了。
+
+# 如果使用with的话，就只需要查询两次，一次查询所有的文章，一次查询所有的书
+# SELECT * FROM posts;
+# SELECT * FROM books WHERE id in (...);
 $posts = App\Post::with('user')->get();
 foreach ( $books as $book) {
   var_dump($post->user->name);
 }
-# 这样子做，所有的数据在foreach前就都读取出来了，后面循环的时候并没有查询数据库，总共只需要查询2次数据库。
 
 # with还可以一次多加几张关联表
-App\Post::wth('user', 'author')->get();
+App\Post::with('user', 'author')->get();
 # 嵌套使用
-App\Post::with('user.phone')->get(); # 取出用户并且取出其电话
+App\Post::with('user.phone')->get(); # 去除文章关联的用户信息，并取出用户关联的电话信息
 # 预加载指定的列
 App\Post::with('user:name,nickname')->get();
-
-# 也可以不用全部取出来
+# 带条件的预加载
 $users = User::with(['posts' => function ($query) {
   $query->where('title', '=', 'test');
 }])->get();
+
+# 而如果父模型已经被获取后，想要再使用预加载，就需要用load了
+$posts = Post::all();
+$posts->laod('user', 'category');
 ```
 
 ##### Cache
@@ -1096,52 +1041,14 @@ class TestServiceProvider extends ServiceProvider
 
 ### 重要对象
 
-#### Request
-
-```php
-$request->route()	# 通过request获取Route对象
-```
-
 #### Route
 
 ```php
 $route->parameters()	# 获取路由上的参数，即不是GET和POST之外的，定义在路由上面的参数
 ```
 
-### 帮助类
+### [Laravel helpers帮助方法以及Collection集合](https://haofly.net/laravel-helpers)
 
-#### Collection Laravel的集合
-
-`Illuminate\Support\Collection`类提供了一个非常方便的操作来操作数组
-
-```php
-$collection = collect([1, 2, 3]);		// 创建一个集合类
-User::where('name', 'wang')->get();		// 操作数据库经常会返回一个Collection
-
-all();					// 返回该集合所代表的底层数组[1, 2, 3]
-avg();					// 返回集合中所有项目的平均值
-avg('field');			// 指定键值的平均值
-chunk(n);				// 拆分集合
-collapse([1,2], [2,3])	// 合并数组为一个集合
-contains('key');		// 判断集合是否含有某个key
-count();				// 返回集合总数
-diff(arr2);				// 返回在第一个集合中存在而在第二个集合中不存在的值
-each(function ($item, $key) {return false;});	// 遍历集合，回调函数返回false的时候会中断循环
-every(function ($value, $key) {return 1>2;});	// 判断集合中的每个元素是否都满足条件
-except(['field']);		// 返回集合中除了制定键以外的所有项目
-filter(function ($value, $key) {return 1>2;});	// 在回调函数中筛选集合，只留下return true的项目
-filter();				// 不提供参数的时候，集合中为false的元素都被移除
-first(function ($value, $key) {return 1>2;});	// 返回第一个return true的项目
-first();				// 不提供参数则返回第一个项目
-forget('key');			// 根据key移除某个项目，如果是数组，应该输入序号
-forPage();				// 集合分页
-groupBy('field');		// 根据键值分组
-implode('field', ',');	// 合并集合中指定键的值为字符串，如果不提供field，则表示直接将项目进行合并
-map(function ($value, $key) {return 'a';});		// 遍历修改集合中的值
-random(n=0);				// 随机返回一个项目，n可以不填，如果n>1则会返回一个集合，注意为1的时候返回的不是集合而是里面的项目
-reject(function($item){return true;});			// 从集合中移除元素，当返回true的时候，该元素会被移除
-unique(function ($item) {return $item;} );		// 仅仅返回唯一的值，相当于去重
-```
 
 #### Crypt
 
@@ -1150,24 +1057,6 @@ unique(function ($item) {return $item;} );		// 仅仅返回唯一的值，相当
 ```php
 $encrypted = Crypt::encrypt('password');
 $decrypted = Crypt::decrypt($encrypted);
-```
-
-### 帮助函数
-
-```php
-# intersect 获取request的字段来更新字段
-$record->update($request->intersect([
-    'title',
-    'label',
-    'year',
-    'type'
-]));
-
-$re = request();	// 任何地方获取请求对象，5.1开始
-$re = response();	// 任何地方获取响应对象，5.1开始
-
-str_contains('Hello foo bar.', 'foo');	# 判断给定字符串是否包含指定内容
-str_random(25);			# 产生给定长度的随机字符串
 ```
 
 ### 错误和日志
@@ -1251,7 +1140,7 @@ public function report(Exception $e)
 
 ### Artisan Console
 
-- `php artisan serve`: 运行内置的服务器
+- `php artisan serve --port=80`: 运行内置的服务器
 
 - `php artisna config:cache`: 把所有的配置文件组合成一个单一的文件，让框架能够更快地去加载。
 
@@ -1293,6 +1182,17 @@ public function report(Exception $e)
   * * * * * php /data/www/html/furion/artisan schedule:run >> /dev/null 2>&1	# 需要注意的是laravel会将程序的错误输出重定向到/dev/null，即直接抛弃。这里的schedule:run只是所有任务的一个总的进程。它负责调度kernel.php里面定义的所有定时任务。而其他定时任务的错误输出同样会重定向到/dev/null，如果想要自定义输出可以这样做:
   $schedule->command('test')->everyMinute()->appendOutputTo($fileCronLog);
   ```
+
+#### 缓存清理
+
+```shell
+php artisan cache:clear
+php artisan route:clear
+php artisan config:clear
+php artisan view:clear
+```
+
+
 
 ### 框架扩展/管理者/工厂
 
