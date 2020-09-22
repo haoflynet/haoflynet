@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-09-17 22:30:00
+updated: 2020-09-20 17:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -534,6 +534,20 @@ div:nth-last-child(2) {
 ## Flex布局
 
 - 注意flex是无法给容器设置`height`的，但是可以通过设置内部元素的`height/max-height/min-height`来间接控制其高度
+
+- 如果`flex`的宽度较长，明明有剩余空间却自动换行了可能需要这样设置(flex布局的内容超出了盒子的宽度):
+
+  ```css
+  .content {
+      flex: 1;
+      width: 0;
+  }
+  // 或者
+  .content {
+      flex: 1;
+      overflow: hidden；
+  }
+  ```
 
 参考
 [Flex 布局教程：语法篇](https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html) 

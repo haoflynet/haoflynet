@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2020-07-11 11:01:00
+updated: 2020-09-21 22:01:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -283,6 +283,43 @@ server {
 	}
 }
 ```
+
+### 本地localhost开启https/ssl
+
+配置流程主要参考的是[local-cert-generator](https://github.com/dakshshah96/local-cert-generator/)
+
+1. 生成根证书
+
+   ```shell
+   openssl genrsa -des3 -out rootCA.key 2048
+   openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 7300 -out rootCA.pem
+   ```
+
+2. 打开MacOS的`Keychain Access`然后点击左下角`Category->Certificates`，然后点击顶部菜单`File->Import Items`选择刚才生成的`rootCA.pem`，然后双击，选择始终信任该证书:
+   ![](https://haofly.net/uploads/nginx_0.png)
+
+3. 签发证书
+
+   ```shell
+   openssl req -new -sha256 -nodes -out server.csr -newkey rsa:2048 -keyout server.key -config server.csr.cnf	# server.csr.cnf见https://github.com/dakshshah96/local-cert-generator/blob/master/server.csr.cnf
+   openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out server.crt -days 825 -sha256 -extfile v3.ext # v3.ext见https://github.com/dakshshah96/local-cert-generator/blob/master/v3.ext
+   ```
+
+4. 把上一步生成的证书配置到`nginx` 中即可
+
+   ```nginx
+   server {
+     listen 443 ssl;
+     charset utf-8;
+     server_name localhost;
+   
+     ssl_certificate /etc/nginx/conf.d/server.crt;
+     ssl_certificate_key /etc/nginx/conf.d/server.key;
+     location / {
+       proxy_pass http://127.0.0.1:8000;	# 这里是服务的地址
+     }
+   }
+   ```
 
 ## 查看负载均衡状态
 
