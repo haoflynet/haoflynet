@@ -12,3 +12,7 @@ categories: Javascript
 &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;
 </span>
 ```
+
+SPF，Sender Policy Framework，发件人策略框架，这里有详细介绍https://www.renfei.org/blog/introduction-to-spf.html，这个如果没有配置好，就容易被放到垃圾邮件中
+
+# MX、SPF记录查询的方法https://blog.csdn.net/gdali/article/details/51882100
