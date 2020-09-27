@@ -127,6 +127,10 @@ Align key-value paris
 - **Rainbow Brackets**: 可以实现配对括号使用相同的颜色
 - **Vue.js**: 支持Vue.js开发
 
+#### JS Library
+
+`Languages & Frameworks -> JavaScript -> Libraries`，在这里可以为指定框架或者语言下载单独的语法提示功能，非常全，比如`React/Vue/JsX/material-ui/bootstrap/stripe/lodash/jquery`等
+
 #### 集成Python代码格式化工具black
 
 https://github.com/psf/black/blob/master/docs/editor_integration.md

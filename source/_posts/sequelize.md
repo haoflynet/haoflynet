@@ -1,6 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
+updated: 2020-09-27 11:11:11
 categories: Javascript
 ---
 
@@ -26,6 +27,12 @@ const captains = await Captain.bulkCreate([
 
 ```javascript
 const users = await User.findAll();	// 查询所有
+const user = await User.findOne({	// 查询单条记录
+  where: {
+    id: userId
+  }
+})
+
 Model.findAll({			// 查询指定字段
   attributes: ['field1', 'field2', 
                ['field3', 'new_field3'],	// 对查询出来的字段重命名
@@ -139,6 +146,61 @@ await User.destroy({
 await User.destroy({
   truncate: true
 });
+```
+
+## Migrate
+
+### migrate语法
+
+```javascript
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    const { INTEGER, DATE } = Sequelize
+    // 添加字段
+    queryInterface.addColumn('another_table', 'first_name', {
+    	type: String,
+    	after: "user_id"	// AFTER语法
+    });
+    // 添加key
+    queryInterface.addConstraint('table_name', ['fistname', 'lastname'], {
+      type: 'unique',
+      name: 'key_name_unique'
+    })
+    // 创建表
+    return queryInterface.createTable('users', {
+      id: {
+        autoIncrement: true,
+        primaryKey: true,
+        type: INTEGER
+      },
+      user_id: {
+        type: INTEGER
+      },
+      user_name: {
+        type: String
+      }
+      created_at: DATE,
+      updated_at: DATE
+    }, {
+      uniqueKeys: {
+        user_name_unique: {
+          fields: ['user_name']
+        }
+      }
+    })
+  },
+  down: (queryInterface, Sequelize) => {
+    queryInterface.removeColumn('table_name', 'field_name');	// 删除字段
+    queryInterface.removeConstraint('table_name', 'key_name'); // 删除索引
+    return queryInterface.dropTable('users');	// 删除表
+  }
+}
+```
+
+### migrate命令
+
+```shell
+ npx sequelize db:migrate:undo --name 20200925092611-xxxxxxxxxx.js	# 回滚指定的migrate
 ```
 
 
