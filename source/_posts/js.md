@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-09-20 20:43:00
+updated: 2020-09-27 11:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -87,6 +87,8 @@ Math.floor(0.2);	// 四舍五入
 Math.ceil(0.2);		// 向上取整
 Math.abs(-1);		// 取绝对值
 
+var a = 100;
+a.toString();	// 数字转字符串
 num.toString(8);	// 把数字转换为指定进制的字符串
 num.toFixed(2);	// 保留两位小数
 ```
@@ -630,6 +632,11 @@ _.flatMap([1, 2], duplicate);
 
 ```javascript
 myArr.map(Match.sqrt)
+
+// 在map中使用异步函数
+await Promise.all(_.map(['a','b'], async (item) => {
+  await ...
+}))
 ```
 
 ##### some
@@ -638,6 +645,21 @@ myArr.map(Match.sqrt)
 
 ```javascript
 Arrays.from([12, 22, 33]).some(item => item > 30)
+```
+
+##### _.template
+
+创建一个预编译的模板方法来进行字符串的格式化
+
+```javascript
+// 默认就能直接解析ES的分隔符
+var compiled = _.template('hello ${ user }!');
+compiled({ 'user': 'pebbles' });
+
+// 使用自定义的模板分隔符{{ }}
+_.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+var compiled = _.template('hello {{ user }}!');
+compiled({ 'user': 'mustache' });
 ```
 
 ##### _.toPath
