@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2020-09-19 20:18:00
+updated: 2020-09-27 22:18:00
 categories: php
 ---
 
@@ -93,6 +93,10 @@ $file->getSize();                  // 获取上传文件的大小
 #### Class env does not exist / Class request does not exist
 
 通常出现在框架还未加载完成就报错，但是在处理错误的时候却使用了`env()/request()`这个功能，导致没有打印真实的错误。处理方式，一是不要使用`app()->environment('...')`，而是检查`.env`文件中是否有错误，例如包含空格的值，必须用双引号包围。我在自定义`ExceptionHandler`中遇到过几次
+
+#### env('xxxx') 总是返回空
+
+原因是缓存了配置，需要注意的是，如果使用了`config:cache`，那么配置必须是在配置文件夹`config`中使用`env`才能调用，如果里面没有定义，在外面直接使用，那么总是返回`null`
 
 #### The given data failed to pass validation
 

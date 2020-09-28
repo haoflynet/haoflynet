@@ -7,6 +7,12 @@ categories: Javascript
 
 [官方中文文档](https://github.com/demopark/sequelize-docs-Zh-CN)
 
+## 常用命令CLI
+
+```shell
+npm install --save-dev sequelize-cli	# 安装命令行工具npx
+```
+
 ## 增删改查
 
 ### 创建操作
@@ -100,6 +106,15 @@ User.findAll({
 #### 复杂嵌套查询语句示例
 
  ```javascript
+// 动态查询条件
+const users = await User.findall({
+  where: Object.assign({
+    'firstname': 'abc'
+  }, lastname ? {
+    'lastname': lastname
+  } : {})
+})
+
 const users = await User.findall({
   attributes: ['username'],
   where: {
@@ -197,10 +212,32 @@ module.exports = {
 }
 ```
 
-### migrate命令
+### seed语法
+
+```javascript
+// 批量插入
+queryInterface.bulkInsert('Users', [{
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'example@example.com',
+  createdAt: new Date(),
+  updatedAt: new Date()
+}]);
+
+// 批量删除
+queryInterface.bulkDelete('Users', null, {});
+```
+
+### migrate/seed命令
 
 ```shell
- npx sequelize db:migrate:undo --name 20200925092611-xxxxxxxxxx.js	# 回滚指定的migrate
+npx sequelize-cli db:migrate	# 执行所有还未执行的migrate
+npx sequelize db:migrate:undo --name 20200925092611-xxxxxxxxxx.js	# 回滚指定的migrate
+
+npx sequelize-cli db:seed:all	# 执行所有未执行的seed
+npx sequelize-cli seed:generate --name demo-user	# 创建一个seed文件
+npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data	# 取消执行指定seed
+npx sequelize-cli db:seed:undo:all # 取消执行所有seed
 ```
 
 
