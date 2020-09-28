@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-09-19 20:35:00
+updated: 2020-09-27 22:35:00
 categories: js
 ---
 
@@ -232,6 +232,14 @@ watch: {
 - 指令，如果直接写在组件的`script`中则是局部的，这个用得少
 - 定义了后就可以在要使用的标签上添加`v-xxx`，其中的`xxx`为指令名字
 - [指令实例: Vue实现简单的鼠标拖拽滚动效果](https://haofly.net/vue-dragscroll/)
+
+### document对象
+
+- 同样可以获取document对象
+
+```javascript
+document.body.clientWidth	// 获取屏幕宽度
+```
 
 ### filter
 

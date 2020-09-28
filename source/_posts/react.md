@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2019-10-16 15:48:00
+updated: 2020-09-27 10:48:00
 categories: Javascript
 ---
 
@@ -17,6 +17,33 @@ categories: Javascript
 ### Props
 
 <!--more-->
+
+### Effect Hook
+
+- 在函数组件中执行副作用操作，可以直接使用`state`，不用编写class
+
+```react
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
 
 ## 路由
 
@@ -68,9 +95,40 @@ this.props.location.pathname;	// 获取当前的url路径
   message={(params) => params.pathname == '/当前路径' ? true : "确认离开" } />	// 当返回文字的时候会弹出确认，而返回true的时候则不会弹出
 ```
 
-## 条件渲染
+## JSX语法
 
-如果实在`JSX`外部的`js`部分代码，那么直接使用`js`自己的`if`或者其他条件判断即可完成。在`JSX`内部的话一般则是使用逻辑与`&&`或者三目运算符完成。例如
+### 基本语法
+
+```jsx
+<div tabIndex="0">ttt</div>	// 可以使用双引号来直接指定属性值
+<img src={user.avatarUrl}</img>	// 也可以使用大括号来指定变量属性值
+```
+
+### 代码片段fragments
+
+- 为一个组件添加元素，并且不会在DOM中增加额外的节点，常规的做法是在外层包一个`div`，这样就会多一层DOM元素，为了减少元素数量，可以这样做
+
+```jsx
+return (
+  <React.Fragment>
+    <ChildA />
+    <ChildB />
+    <ChildC />
+  </React.Fragment>
+);
+
+// 简写语法<>
+return (
+<>
+  <td>mycontent</td>
+  <td>mycontent</td>
+</>
+)
+```
+
+### 条件渲染
+
+如果是在`JSX`外部的`js`部分代码，那么直接使用`js`自己的`if`或者其他条件判断即可完成。在`JSX`内部的话一般则是使用逻辑与`&&`或者三目运算符完成。例如
 
 ```react
 render() {
@@ -79,6 +137,9 @@ render() {
     	{this.state.posts.length > 0 && 
       	<p>There is some posts</p>
       }
+      <p>
+      	{length > 0 && '还可以这样直接写文字'}
+      </p>
     </div>
     <div>
       <p>There is {this.state.posts !== undefined ? this.state.posts.length : 0} posts.</p>
@@ -210,7 +271,48 @@ const StyledComponent = styled(Card)`		// 可以接收一个React-Componetn例�
 <StyledComponent width={"12px"}></StyledComponent>
 ```
 
+### [SWR](https://github.com/vercel/swr)
 
+- `state-while-revalidate`的缩写，是`HTTP RFC 5861`中描述的一种`Cache-Control`扩展
+- `React`的`Hook`组件，用于缓存从远端获取的数据
+- 常用语多次请求相同URL获取数据，或者更新数据后，先返回缓存的响应，与此同时去后台发送新的请求，以提高响应速度，减少等待时间
+- 请求的结果根据标识`key`放在`redux`里缓存，取数据的时候直接从`redux`里面取
+- `SWR`并不是一个请求库，只是一种管理数据的方式
+
+```react
+import useSWR from 'swr';
+
+// 请求参数
+// key: 表示请求的标识，可以是任意字符串，但是我们一般会设置为请求的url，这样方便识别。如果key传入null就代表不请求数据，什么都不做
+// fetcher: 返回请求数据的异步方法，一般会是一个axios对象
+// options: 其它配置项
+// 返回值
+// data: 相应数据
+// error: 错误
+// isValidating: 是否正在请求或重新验证数据
+// mutate(data?, shouldRevalidate): 用于直接修改缓存数据
+const { data, error, isValidating, mutate } = useSWR(key, fetcher, options);
+
+
+const fetcher = Axios.create({
+  baseURL: 'https://haofly.net/api/',
+  responseType: "json",
+});
+
+const { data: user } = useSWR('/user', fetcher);	// SWR会将key作为参数传递给fetcher
+const { data: users, mutate } = useSWR(['/users', userIds], fetcher); 	// 可以传递多个参数，swr会将多个参数组合为一个key
+
+import useSWR, { mutate } from 'swr';
+mutate('/users');	// 手动再次获取数据，会让所有拥有相同key的swr主动去获取一次数据，并更新缓存
+
+mutate();	// 或者直接用useSWR返回的mutate，可以省略key
+
+mutate('/users', {...users, new: true});	// 触发更新操作，但是在更新操作完成前先直接用第二个参数来代替缓存，相当于先直接修改缓存
+mutate({...users, new: true}); // 使用返回的mutate，省略key
+
+const { newDate } = await axios.patch('/users');	// 更新users操作，直接返回新的数据
+mutate(updated, false);	// 如果更新操作直接返回更新后的资源，那么mutate可以直接使用它，然而最后一个参数设置为false，这样就可以不用去请求获取新的资源了，表示无需重新验证资源
+```
 
 ## 事件
 
@@ -242,3 +344,4 @@ onFocus
 ##### 扩展阅读
 
 - [在React中使用Redux](https://juejin.im/post/5b755537e51d45661d27cdc3)
+- [React Icons库](https://react-icons.github.io/react-icons/)

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-09-27 11:43:00
+updated: 2020-09-27 22:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -37,6 +37,7 @@ Object.keys(obj);	// 获取对象所有的key，返回一个数组
 Object.values(obj); // 获取对象所有的value，返回一个数组
 Object.entries(obj); // 获取对象所有的键值对，返回一个数组，例如{a:123,b:233}, 会返回['a':123], ['b': 233]
 Object.keys(obj).length == 0; // 判断对象是否为空
+Object.assign({}, {}); // 合并两个对象/合并两个字典
 ```
 
 ### 数组
