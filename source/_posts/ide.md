@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2020-08-16 17:08:00
+updated: 2020-10-05 17:08:00
 categories: 编程之路
 ---
 
@@ -164,6 +164,11 @@ https://github.com/psf/black/blob/master/docs/editor_integration.md
   Arguments: -c "prettier --write $FileName$; /Users/haofly/workspace/sparrows-web/node_modules/.bin/eslint --fix $FileName$"
   Working directory: $FileDir$
   ```
+
+#### FTP配置
+
+- 必须开启`FTP/SFTP Connectivity (ex. Remote Hosts Access)`插件并重启
+- `Tools->Deployment->Configuration`进行配置
 
 ### PhpStorm
 
