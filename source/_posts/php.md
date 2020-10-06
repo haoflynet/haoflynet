@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2020-09-19 23:05:21
+updated: 2020-10-05 23:05:21
 categories: php
 ---
 # PHP
@@ -47,6 +47,8 @@ array_sum($arr); //计算数组中所有值的和
 array_unique();	// 数组去重
 array_values($arr); //获取数组所有的value值
 array_walk(); // 利用回调函数对数组中每一个元素做回调处理
+array_keys();	// 获取所有的key
+array_values(); // 获取所有的value
 
 count()函数：输出数组的长度
 empty()函数：判断数组是否为空

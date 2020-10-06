@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-09-27 22:43:00
+updated: 2020-10-05 22:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -114,6 +114,10 @@ str.replace(/[\r\n]/g, ' ')	// 去掉换行
 
 JSON.parse(text)	// 将字符串转换为JSON
 str.replace(reg, function(s, value){})	// 替换字符串，reg可以是正则表达式
+str.replace('/abc(.*?)def/', function (a, b) {	// 分组正则替换
+  return 'newstring';
+})
+str.replace(/_(.*?)_/g, "<div>$1</div>")	// 或者直接这样分组正则替换
 str.indexOf(substring)	// 查找子字符串出现的位置，-1表示没找到
 str.includes(substring)	// 查看是否存在某个子字符串
 string.slice(start, end);	// 字符串分片
@@ -579,6 +583,16 @@ $.post('some.php', {name: 'haofly'})
 
 - **尽量不要在一个回调函数中使用另外一个下列的帮助函数，这样能使代码看起来更清晰更规范**
 
+##### _camelCase
+
+- 将字符串转换为驼峰写法
+
+```javascript
+_.camelCase('Foo Bar');	// => 'fooBar'
+_.camelCase('--foo-bar--');	// => 'fooBar'
+_.camelCase('__FOO_BAR__');	// => 'fooBar'
+```
+
 ##### every
 
 必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`
@@ -627,6 +641,16 @@ _.flatMap([1, 2], duplicate);
 
 判断value是否是`NaN`
 
+##### _.kebabCase
+
+- 将字符串转换为`kebaba`格式，中线分割
+
+```javascript
+_.kebabCase('Foo Bar');	// => 'foo-bar'
+_.kebabCase('fooBar');	// => 'foo-bar'
+_.kebabCase('__FOO_BAR__');	// => 'foo-bar'
+```
+
 ##### map
 
 对数组中每一个值运用函数，返回一个新的值作为新数组，没有返回值的位置会被设置为`undefined`
@@ -640,12 +664,32 @@ await Promise.all(_.map(['a','b'], async (item) => {
 }))
 ```
 
+##### _.snakeCase
+
+- 将字符串转换为`snake`形式，下划线分割
+
+```javascript
+_.snakeCase('Foo Bar');	// => 'foo_bar'
+_.snakeCase('fooBar');	// => 'foo_bar'
+_.snakeCase('--FOO-BAR--');	// => 'foo_bar'
+```
+
 ##### some
 
 只要其中一个值返回`true`，那么整个表达式的结果就是`true`
 
 ```javascript
 Arrays.from([12, 22, 33]).some(item => item > 30)
+```
+
+##### _.startCase
+
+- 将字符串转换为每个单词首字母大写的格式，空格分割
+
+```javascript
+_.startCase('--foo-bar--');	// => 'Foo Bar'
+_.startCase('fooBar');	// => 'Foo Bar'
+_.startCase('__FOO_BAR__');	// => 'FOO BAR'
 ```
 
 ##### _.template

@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2020-09-27 11:11:11
+updated: 2020-10-05 15:11:11
 categories: Javascript
 ---
 
@@ -11,6 +11,34 @@ categories: Javascript
 
 ```shell
 npm install --save-dev sequelize-cli	# 安装命令行工具npx
+```
+
+## 模型定义
+
+```javascript
+const Post = app.model.define('post', {
+    id: {
+      autoIncrement: true,
+      primaryKey: true,
+      type: INTEGER
+    },
+    name: {
+      type: STRING
+    },
+    data: {
+      type: JSON
+    },
+    created_at: {
+      type: DATE
+    }
+  }
+);
+
+// 定义模型关系
+Post.associate = () => {
+  Post.User = Post.belongsTo(app.model.Post, { foreignKey: 'post_id', as: 'Post' }),
+  Post.PostOwn = User.belongsTo(app.model.Post, {'foreignKey': 'id', as: 'PostOwn'})	// 古国要与当前表自身做join等操作，那么也需要定义一个与自身的关联
+}
 ```
 
 ## 增删改查
@@ -100,12 +128,45 @@ User.findAll({
       [Op.notIRegexp]: '',
       [Op.any]: [2, 3],	// ANY ARRAY[2, 3], // 仅Postgres
   }
-})
+});
 ```
 
 #### 复杂嵌套查询语句示例
 
+##### 关联查询
+
  ```javascript
+return Message.findAndCountAll({
+	where: {
+    '$PostOwn.id$': null	// 如果是关联后的where条件需要写在这里
+  },
+  order: [ ['created_at', 'desc'] ],	// 排序
+  include: [
+    {
+      association: Post.PostOwn,	// 与自身进行join操作
+      on: {	// 可以自定义ON关联，如果不指定则是associate中的默认查询条件
+        id: where(col('post.id'), '<', col('PostOwn.id')),
+        name: where(col('post.name'), '=', col('PostOwn.PostOwn'))
+      },
+      attributes: ['id'],	// 取出哪些字段
+      required: false	// 表示left join，如果为true那么就是inner join
+    },
+    {
+      association: Post.Sender,
+      attributes: ['id', 'type', 'email'],	// 多级关联
+        include: [{
+          association: User.Professional,
+          attributes: ['first_name', 'last_name', 'avatar']
+      }, {
+            association: User.Company,
+            attributes: ['name', 'logo']
+      }]
+    }],
+    group: ['name', 'name1'], // group by 操作
+    offset: 50,
+    limit: 50
+})
+
 // 动态查询条件
 const users = await User.findall({
   where: Object.assign({

@@ -20,6 +20,9 @@ categories: Javascript
 
 ### Effect Hook
 
+- 副作用：数据获取、设置订阅、手动更改DOM
+- 可以把`useEffect Hook`看作`componentDidMount、componentDidUpdate、componentWillUnmount`这三个函数的组合
+- 默认`useEffect`在第一次渲染之后和每次更新之后都会执行
 - 在函数组件中执行副作用操作，可以直接使用`state`，不用编写class
 
 ```react
