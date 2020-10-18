@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-09-19 19:44:00
+updated: 2020-10-17 19:44:00
 categories: database
 ---
 ## 安装方法
@@ -439,6 +439,9 @@ JSON_MERGE_PRESERVE(@json1, @json2);	# 合并两个JSON，当key重复的时候�
 JSON_MERGE_PATCH(@json1, @json2);	# 合并两个JSON，当key重复的时候，会覆盖
 JSON_REMOVE(@json1, '$.A'); # 移除指定的key，但是只能移除key->value形式的json数据，如果是数组，不支持用*或**来通配
 SELECT count(*) from users WHERE data LIKE '%[]%'; # 判断JSON格式是否为空数组
+
+# base64
+SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64编码的字段的内容
 ```
 
 ## 数据库优化

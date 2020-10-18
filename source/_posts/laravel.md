@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2020-09-09 10:37:00
+updated: 2020-10-17 20:37:00
 categories: php
 ---
 # Laravel指南
@@ -511,6 +511,7 @@ Laravel 查询构建器使用 PDO 参数绑定来避免 SQL 注入攻击，不�
 ```php
 DB::statement('drop table xxx');	# 直接执行原生sql语句
 DB::select('select xxx');	# 如果要获取结果的原生语句可以这样
+
 # 数据库信息获取
 ## 获取查询SQL
 DB::connection('default')->enableQueryLog(); # 如果不指定连接可以直接DB::enableQueryLog()
@@ -556,6 +557,7 @@ User::find(1)->logs->where(...)	# 关系中的结果也能用where等字句
 User::->where('updated_at', '>=', date('Y-m-d H:i').':00')->where('updated_at', '<=', date('Y-m-d H:i').':59') 					# 按分钟数查询
 User::find(1)->sum('money')		# 求和SUM
 User::where(...)->get()->pluck('name')	# 只取某个字段的值，而不是每条记录取那一个字段，这是平铺的,这里的pluck针对的是一个Collection，注意，这里只能针对Collection，千万不要直接针对一个Model，这样只会取出那张表的第一条数据的那一列，需要注意的是这里是先get除了所有的记录，然后在Collection上面进行的pluck操作，如果想少去一点数据可以先用select()再用pluck
+User::where(DB::raw('YEAR(created_at)'), $year); # 嵌套原生函数语句
 User::modelKeys()	# 直接获取模型的主键集合(不是'id'为名字的主键都可以)
 User::select('name')->where()	# 也是只取出某个字段，但是这里不是平铺的
 User::where()->get(['id', 'name'])# 更简单的方法
@@ -1045,6 +1047,17 @@ class TestServiceProvider extends ServiceProvider
 
 ```php
 $route->parameters()	# 获取路由上的参数，即不是GET和POST之外的，定义在路由上面的参数
+```
+
+#### Mail
+
+- 发送邮件相关功能
+- `to`: 邮件接收人，`cc`: 抄送对象，`bcc`: 暗抄送对象
+
+```php
+Mail::to($email)
+    ->cc(['admin@haofly.net','admin1@haofly.net'])
+    ->send('document');
 ```
 
 ### [Laravel helpers帮助方法以及Collection集合](https://haofly.net/laravel-helpers)
