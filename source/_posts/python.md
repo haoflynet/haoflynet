@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2020-07-25 10:36:30
+updated: 2020-11-07 10:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -403,6 +403,8 @@ os.path.isdir(filename)  # 是否是目录
 os.path.isfile(filename) # 是否是文件
 os.path.islink  # 是否是链接
 os.path.getsize(filename) # 获取文件大小
+os.path.getatime(filename)	# 获取文件的访问时间
+os.path.getctime(filename)	# 获取文件创建时间
 os.path.getmtime(filename)	# 获取文件最近一次内容更改的时间
 os.path.basename(fname)  # 从完整路径获取其路径
 os.path.dirname(fname) # 从完整路径获取其名称
@@ -1473,3 +1475,5 @@ conn.close()	# 关闭连接
 [Unofficial Windows Binaries for Python Extension Packages 非官方的Python扩展windows平台二进制包](https://www.lfd.uci.edu/~gohlke/pythonlibs/): 对于windows平台总是安装不成功的包可以尝试这样安装
 
 [pyexcel](https://github.com/pyexcel/pyexcel): Python处理Excel表格数据，如果只是读取，可以直接用[pyexcel-xls](https://github.com/pyexcel/pyexcel-xls)
+
+[Python连接FTP/FTPS](https://haofly.net/python-ftp/)

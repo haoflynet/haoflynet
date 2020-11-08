@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-09-27 22:35:00
+updated: 2020-11-07 22:35:00
 categories: js
 ---
 
@@ -853,6 +853,9 @@ onFile (event) {
 - [Bootstrap Vue](https://bootstrap-vue.org/docs)
 - [Echarts Vue](https://github.com/ecomfe/vue-echarts/blob/master/README.zh_CN.md)
 - [Vue 开发谷歌浏览器的脚手架](https://github.com/Kocal/vue-web-extension)
+- Toasts Notification Bar 库: vue-toastification
+- Table库：vue-good-table
+- 时间选择库: vue2-datepicker
 
 
 
