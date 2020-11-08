@@ -1,6 +1,7 @@
 ---
 title: "wordpressd 开发手册"
-date: 2020-10-03 10:26:00
+date: 2020-10-18 10:26:00
+updated: 2020-10-18 15:56:00
 categories: php
 ---
 
@@ -36,6 +37,20 @@ get_users([
   'include' => $userIds, 	// 指定id列表
   'fields' => ['id', 'user_email', 'user_nicename'],	// 指定获取字段
 ]);
+```
+
+#### WP_User_Query
+
+- 获取满足条件的用户列表
+
+```php
+$args  = array(
+    'meta_key' => 'customField',
+    'meta_value' => ['a', 'b'],
+    'meta_compare' => 'IN'	// 支持=/!=/>/>=/</<=/LIKE/NOT/LIKE/IN/NOT/IN/BETWEEN/EXISTS/NOT EXISTS/ REGEXP/RLIKE/NOT REGEXP
+);
+ 
+$user_query = new WP_User_Query( $args );
 ```
 
 ### 文章相关函数

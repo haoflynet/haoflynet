@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2020-10-17 20:37:00
+updated: 2020-10-30 11:48:00
 categories: php
 ---
 # Laravel指南
@@ -68,7 +68,7 @@ app()->environment()
   ```
 
 
-#### [Laravel 数据校验Validation](https://haofly.net/laravel-validation.md)
+#### [Laravel 数据校验/验证Validation](https://haofly.net/laravel-validation)
 
 #### Restful资源控制器
 
@@ -587,7 +587,7 @@ $posts = Post::has('comments')->get();	# 获取所有有评论的posts
 $posts = Post::has('comments', '>=', 3)->get();	# 获取评论数量大于3的
 $posts = Post::has('comments.votes')->get();	# 嵌套has
   $posts = Post::whereHas('comments', function($query) {
-    $query->where('content', 'like', 'foo%');	# 比较复杂的has语法
+    $query->where('content', 'like', 'foo%')->whereHas('user');	# 比较复杂的has语法，whereHas也可以不带第二个参数
   });  
 
 # 访问器，如果在Model里面有定义这样的方法
