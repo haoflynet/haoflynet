@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2020-01-09 11:01:00
+updated: 2020-11-08 17:01:00
 categories: python
 ---
 # Django教程
@@ -336,7 +336,7 @@ def dictfetchall(cursor):
 ```python
 Blog.objects.all()   		# 获取该表的所有记录，返回的是记录对象组成的列表
 Blog.objects.get(pk=1)      # 根据主键获取数据
-Blog.objects.get(name="")  	# 只会找到第一个匹配的数据
+Blog.objects.get(name="")  	# 只会找到第一个匹配的数据，找不到就报错
 Blog.objects.filter(name="")# 这个就会找到匹配的多个数据
 Blog.objects.filter(~Q(name=''))	# 不等于
 Blog.objects.all().exclude(id=7)  		# 排除，即不等于，同上
@@ -350,9 +350,9 @@ Blog.objects.count()     				# 返回记录总数
 Blog.objects.values('id', 'name')  		# 相当于select id name from Blog，返回的事是一个字典
 Blog.objects.values('name').distinct()  # distinct在django的mysql引擎中无法对field进行distinct操作，所以需要这样做
 Blog.objects.values_list('id', flat=True)# 查询该字段的所有值并且返回的是id的列表，而不是包括了名字的字典
-Blog.objects.all().defer('title')		# 仅仅取某个字段，这里返回是一个model对象
-Blog.objects.all().only('title')		# 仅仅取某个字段，也是返回一个model对戏那个
-Blog.objects.all().values_list('title')	# 仅仅取某个字段，这里返回一个数组
+Blog.objects.all().defer('title')		# 不取某个字段，这里返回是一个model对象
+Blog.objects.all().only('title', 'field1')		# 仅仅取某个字段，也是返回一个model对象
+Blog.objects.all().values_list('title')	# 仅仅取某个字段，这里返回一个元组
 
 Blog.objects.latest('id')  				# 根据某个字段查找其最后一条记录，返回的是一个对戏那个，不是id
 Blog.objects.filter(time__gte = '2015-07-23', time__lte = '2015-07-24') # 大于等于并且小于等于，不加e表示不能等于
@@ -800,7 +800,9 @@ yesno：
 {% endwith %}
 ```
 
-## [Admin后台管理](https://haofly.net/django-admin)
+## [DJango Admin后台管理](https://haofly.net/django-admin)
+
+## [Django Form表单系统](https://haofly.net/django-form)
 
 ## 用户管理功能
 
@@ -889,14 +891,16 @@ AUTHENTICATION_BACKENDS = (
 
 ## media文件处理
 
-用户上传的文件一般叫做media，可以在`settings.py`里面添加如下配置定义其目录
+- 如果要在`template`里使用`MEDIA_URL`变量，那么需要在配置文件的`TEMPLATES->OPTIONS->context_processors`添加`django.template.context_processors.media`
+- `media`和`static`一样，都只能在`DEBUG=True`的时候生效，在线上环境，这两者都是使用的服务器进行代理静态文件
+- 用户上传的文件一般叫做media，可以在`settings.py`里面添加如下配置定义其目录
 
 ```python
 MEDIA_URL = '/media'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ```
 
-在model里面，可以直接定义某个字段上传到的路径:
+- 在model里面，可以直接定义某个字段上传到的路径:
 
 ```python
 class Post(models.Model):

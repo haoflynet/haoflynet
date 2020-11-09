@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2020-10-05 17:08:00
+updated: 2020-10-22 14:08:00
 categories: 编程之路
 ---
 
@@ -98,7 +98,8 @@ categories: 编程之路
   - 重启`Idea`
   - 关闭`Idea`，删除项目目录下的`.idea`文件夹，再重新打开`Idea`
 - **Could not autowire. No beans of 'xxx' type found**: 这篇文章提供了7个方法，我最终选择了修改检测级别的方法，因为其他的方法都需要对代码有改动。
-- **IDEA 运行Django项目提示No module named xxx**: 需要在`File->Project Structure->modules`中将当前`module`删除，然后新建`module`，选择当前项目的根目录，将当前项目设置为一个`Django`项目
+- **IDEA 运行Django项目提示No module named xxx 或者 please select django module**: 需要在`File->Project Structure->modules`中将当前`module`删除，然后新建`module`，选择当前项目的根目录，将当前项目设置为一个`Django`项目
+- **Django项目No manage.py file specified in Settings->Django Support**: 原因是ide找不到默认的`settings.py`文件，可以在运行时候增加环境变量:`DJANGO_SETTINGS_MODULE=myCustomFolder.settings`
 - **Maven编译java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTags**，原因可能是`lombok`版本过低，`Java`版本过高导致，要么升`lombok`，要么降`Java`
 - **Error: java: 不支持发行版本5**: 依然是java版本的问题，可以尝试在`Project Settings->Project->Project SDK`中选择不同的`Java`版本
 - **添加外部工具External Tools**: 可以参见下面的`Prettier`配置

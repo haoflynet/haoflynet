@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-09-20 17:30:00
+updated: 2020-10-18 17:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -828,6 +828,30 @@ p::after {
 
 - 这是一个比较奇怪的问题，甚至有时候在不同的浏览器里面会有不同的表现
 - 这涉及到基准线的对齐方式，可以将两个元素都设置`vertical-align: top;`解决，具体的可以参考上文`vertical-align`属性的设置
+
+#### 火狐浏览器input的placeholder不再同一水平线上
+
+尝试设置如下伪类，[来源](https://stackoverflow.com/questions/36421637/input-placeholder-not-vertically-aligned-in-firefox)
+
+```css
+::-webkit-input-placeholder {
+   color: brand-blue;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: brand-blue;  
+   line-height 60px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: brand-blue;  
+   line-height 60px;
+}
+
+:-ms-input-placeholder {  
+   color: brand-blue;
+}
+```
 
 #### 实现图片的等比例自动缩放
 

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-10-05 22:43:00
+updated: 2020-11-09 08:43:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -107,7 +107,7 @@ str.match(/<title>(<abc>.*?)<\/title>/)	// 正则提取，带命名组的正则�
 
 // 去除空格
 str.replace(/\s+/g, "")    		// 去除所有的空格
-str.trim() / str.replace(/^\s+|\s+$/g, "")	// 去除两端的空格
+str.trim() / str.replace(/^\s+|\s+$/g, "");	// 去除两端的空格, trip
 str.trimLeft() / str.replace( /^\s*/, '')		// 去除左边的空格
 str.trimRight() / str.replace(/(\s*$)/g, "")		// 去除右边的空格
 str.replace(/[\r\n]/g, ' ')	// 去掉换行
@@ -393,6 +393,9 @@ $("#<form_id>").trigger("reset"); // jQuery清空表单字段
 ```
 
 ### 元素事件
+
+- 对于动态生成的元素，绑定事件需要绑定在父元素上才能生效，或者直接绑定在document上，`$(document).on('click', '#myButton', function(){})`
+
 ```javascript
 // js原生事件
 ele.onchange = function () {};
