@@ -1,7 +1,7 @@
 ---
 title: "Laravel Validation数据校验"
 date: 2020-09-06 16:00:00
-updated: 2020-09-08 22:24:00
+updated: 2020-10-28 22:24:00
 categories: php
 ---
 
@@ -14,8 +14,8 @@ categories: php
 $validatedData = $request->validate([
   'title' => 'required|unique:posts|max:255',
   'title' => ['required', 'unique:posts', 'max:255'], // 也可以写成数组的形式
-	'person.email' => 'email|unique:users', // 校验数组
-	'person.*.first_name' => 'required_with:person.*.last_name',
+	'person.*.email' => 'email|unique:users', // 校验数组
+	'person.*.first_name' => 'required_with:person.*.last_name'
   'title' => ['required', function ($attribute, $value, $fail) { // 简单的自定义验证规则可以不用建验证类，直接用匿名函数
             if ($value === 'foo') {
                 $fail($attribute.' is invalid.');

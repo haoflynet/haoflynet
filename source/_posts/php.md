@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2020-10-05 23:05:21
+updated: 2020-11-09 08:47:21
 categories: php
 ---
 # PHP
@@ -115,6 +115,7 @@ parse_url($url): 解析url成数组，与http_build_query()功能相反
 preg_replace('/user_id=\d+&name=/', 'user_id=' . 1048 . '&name=', $code); // 正则替换
 preg_replace('/user_id=(\d+)', '/user_id=${1}', $code);	// 获取分组，${1}、${2}...
 preg_replace_callback('//', function($matches){return strtolower($matchs[0])}: 执行一个正则表达式搜索并且使用一个回调函数进行替换
+preg_split('/a/', $subject); // 通过一个正则表达式分隔给定字符串
 preg_match('/Chongqing(?<right>.*)/', $string, $matches): 正则匹配，pattern参数前后必须加斜杠，匹配成功返回1，匹配结果在$matches中，匹配失败，返回0
 sprintf("sahgoiahg%s", $a): 格式化输出
 strtolower($str)/strtoupper($str): 大小写字符串
@@ -129,6 +130,8 @@ EOT;		# 定义长字符串
                       
 addslashes($str);		// 使用反斜线引用字符串
 pack(format, args+);	// 将数据装入一个二进制字符串，通常用户低级socket编程中，需要注意的是format的可选值和其他语言的可选值可能不一样，多语言交互的时候对照一下
+                      
+ctype_alnum($string);	# 检查字符串是否由字符和数字组成，等同于preg_match('/[a-zA-Z0-9]+/', $string);
 ```
 ### 数字
 ```php

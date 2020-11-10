@@ -1,11 +1,31 @@
 ---
-title: "wordpressd 开发手册"
+title: "wordpressd 插件开发手册"
 date: 2020-10-18 10:26:00
-updated: 2020-10-18 15:56:00
+updated: 2020-11-09 11:56:00
 categories: php
 ---
 
-- 在本地开发的时候，由于有很多东西依赖于`cookie`，有些插件在写入`cookie`的时候可能由于没有判断服务端口导致无法写入`cookie`，功能无法正常使用，所以在开发和使用过程中最好用正常的`http`端口，即`80`或`443`
+- 在本地开发的时候，由于有很多东西依赖于`cookie`，有些插件在写入`cookie`的时候可能没有判断服务端口导致无法写入`cookie`，功能无法正常使用，所以在开发和使用过程中最好用正常的`http`端口，即`80`或`443`
+
+## 插件开发基本概念
+
+### 插件目录结构
+
+- 在`wordpress`源码的`/wp-content/plugins`下，一个目录就是一个插件
+
+- 插件内部的目录结构一般是这样的:
+
+  ```shell
+  test-plugin
+    ├── assets
+    │   ├── css
+    │   │   └── test-plugin.css
+    │   └── js
+    │ 			└── test-plugin.js
+    ├── include
+    │		└── test-plugin.php
+    └── readme.txt
+  ```
 
 ## 帮助函数
 
@@ -55,7 +75,7 @@ $user_query = new WP_User_Query( $args );
 
 ### 文章相关函数
 
-### get_permalink
+#### get_permalink
 
 - 获取永久链接
 
@@ -71,6 +91,16 @@ $user_query = new WP_User_Query( $args );
 ```php
 global $wpdb;
 $results = $wpdb->get_results( $sql );	// 执行原生SQL
+```
+
+### 插件管理相关函数
+
+#### is_plugin_active
+
+- 验证指定插件是否激活
+
+```php
+is_plugin_active( 'plugin-directory/plugin-file.php' )
 ```
 
 ### 邮件相关函数
