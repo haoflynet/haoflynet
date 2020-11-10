@@ -1,6 +1,7 @@
 ---
 title: "Laravel Blade模板引擎"
 date: 2020-09-17 22:38:00
+updated: 2020-10-18 16:02:00
 categories: php
 ---
 
@@ -24,8 +25,13 @@ categories: php
 # 获取当前路由
 {{ url()->current() == route('/user') }}
 
+# 获取路由参数
+{{ request()->get('abc') }}
+
 # 带路由参数的路由生成
 {{ route('/users', $id)}}
+{{ route('/users', [$id])}}
+{{ route('/users', ['id' => $id])}}
 
 {{-- 模板的注释语法 --}}
 ```
@@ -96,17 +102,24 @@ categories: php
 ```php
 // layout.blade.php
 <html>
-    <head>
-    	@hasSection('title')	# 判断子组件是否有复写这个section
-  			@yield('title') - Site Name
-  		@else
-  			Site Name
-			@endif
+	<head>
+		<title>App Name - @yield('title')</title>	
   
-  		@stack('css')	# 定义一个堆，子组件可以多次push内容进去，会以堆的顺序堆放
-    </head>
-    <body>
-    	@yield('content')
+    @hasSection('title')	# 判断子组件是否有复写这个section
+    	@yield('title') - Site Name
+    @else
+    	Site Name
+    @endif
+  @stack('css')	# 定义一个堆，子组件可以多次push内容进去，会以堆的顺序堆放
+  </head>
+  <body>
+  	@section('sidebar')
+  		This is the master sidebar.
+  	@show
+  
+  	<div class="container">
+	  	@yield('content')
+  	</div>
 		</body>
 </html>
 
@@ -116,6 +129,13 @@ categories: php
 
 @extends('layout')	// 声明该模板继承自基本的layout.blade.php模板
 
+@section('title', 'Page Title')
+  
+@section('sidebar')
+  @parent	// 可以直接使用父模版中的内容
+  <p>This is appended to the master sidebar.</p>
+@endsection
+  
 @push('css')	// 向堆stack中压入内容
 @endpush
   
