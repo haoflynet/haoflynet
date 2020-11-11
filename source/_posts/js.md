@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-11-09 08:43:00
+updated: 2020-11-10 08:53:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -296,7 +296,7 @@ $(this).prev()		// 获取上一个同级元素/兄弟节点
 $(this).prevAll() // 获取所有之前的兄弟节点
 $(this).siblings() // 返回兄弟姐妹节点，不分前后
 $(this).parent()	// 获取父元素
-$(this).parents('myclass')	// 查找所有组件元素
+$(this).parents('myclass')	// 查找所有祖先元素
 $(this).children('myclass')	// 获取子元素，只会返回直接的子节点
 $(this).nextAll('cl')	// 获取指定元素的所有指定的同级元素
 $('p').find('input')	// 查找input下的所有input元素		
