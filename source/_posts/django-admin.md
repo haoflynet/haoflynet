@@ -1,7 +1,7 @@
 ---
 title: "Django Admin 后台管理系统"
 date: 2019-06-01 00:00:00
-updated: 2020-11-04 14:32:00
+updated: 2020-11-15 15:32:00
 categories: 编程之路
 ---
 
@@ -294,10 +294,15 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
    
    - **Python crashes after trying to visit admin page with exit code 245**: 每次进入admin页面程序就崩溃，可以尝试更新`python`版本或者更新`django`版本，我`3.7.0b2`遇到过这个问题，升级`Python`得以解决
    
-   - **隐藏Admin中的第三方APP管理**: 随便找个自己的`app`，在`admin.py`中取消该`app`的注册:
+   - **隐藏或修改Admin中的第三方APP管理**: 随便找个自己的`app`，在`admin.py`中取消该`app`的注册:
    
      ```python
      admin.site.unregister(ThirdModel)
+     
+   # 而如果要修改第三方的管理类，可以这样做，重新注册一个新的类
+     class NewThirdModel(ThirdModel):
+       pass
+     admin.site.register(ThirdModel, NewThirdModel)
      ```
-   
+     
      

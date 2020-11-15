@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-11-10 08:53:00
+updated: 2020-11-15 16:31:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -214,6 +214,36 @@ fs.readdir('目录名', 'utf-8', function (err, data) {	// 获取目录下的文
 });
 ```
 
+#### FileList
+
+- web原生的文件对象，是`input[type=file]`的value，是一个只读的对象
+
+  ```javascript
+  var fileInput = document.getElementById("myfileinput");
+  var files =fileInput.files
+
+  // 遍历FileList对象
+  for (var i = 0; i < files.length; i++) {
+      file = files.item(i);
+      file = files[i];
+      alert(file.name);	// 获取上传的文件的文件名
+  }
+  ```
+  
+- 虽然`FileList`是一个只读对象，但是仍然有办法删除上传的某个文件
+
+  ```javascript
+  const input = $('myInput')[0];
+  const deletedIndex = 2;
+  const dt = new DataTransafer();
+  for (var i = 0; i < input.files.length; i++) {
+    if (i !== deletedIndex) {
+      dt.items.add(files[i]);
+    }
+  }
+  input.files = dt.files;
+  ```
+
 ### 错误处理
 
 ```javascript
@@ -281,12 +311,13 @@ ele.previousElementSibling;
 
 // jQuery元素选择
 $('p')  		// 选取标签<p>的所有元素
+$('p')[0]	// 获取原生对象
 $('p#intro')  	// id为intro的所有p元素
 $('p.intro')  	// class为intro的所有p元素
 $('p:first')  	// 选取第一个<p>元素
 $('p a:first')	// 选取p元素下的第一个a元素
 $('p[name=abc]')
-$('*[data-abc="22"]');	// 获取data-*元素
+$('*[data-abc="22"]');	// 获取data-*元素，按data数据获取元素
 $('body >div:first-child') // 查找第一级的第一个元素
 $('*')        		// 所有元素
 $(this)       		// 当前元素
@@ -299,7 +330,8 @@ $(this).parent()	// 获取父元素
 $(this).parents('myclass')	// 查找所有祖先元素
 $(this).children('myclass')	// 获取子元素，只会返回直接的子节点
 $(this).nextAll('cl')	// 获取指定元素的所有指定的同级元素
-$('p').find('input')	// 查找input下的所有input元素		
+$('p').find('input')	// 查找input下的所有input元素
+$('p').last()		// 选择最后一个元素
 $('input:checked') 		// 查找所有checked为true的checkbox的input元素
 document.getElementById('test:abc')	// 有特殊字符的元素的查找，jquery往往无法处理过来
 ```
@@ -347,6 +379,7 @@ $('div').height()	// 获取元素高度
 $('div').height(20)	// 设置元素高度
 $('select').val()	// select标签的值
 $('select option:selected').text();	// select被选中项的文本
+$('div').data('abc'); // 获取元素的data数据，例如<div data-abc="dsiahoaihgio"></div>
 ```
 
 ### 编辑元素
@@ -370,6 +403,7 @@ after()		// 在被选元素之后插入内容
 before()	// 在被选元素之前插入内容
 remove()	// 删除当前元素
 empty()		// 清空当前元素的子元素
+clone()		// 克隆/复制一个元素
 
 // 属性更改
 addClass('')	// 给元素添加类
@@ -551,17 +585,20 @@ $.ajax({
 	dataType: 'json',
 	type: 'POST',
 	data: data,
+  beforeSend: function (xhr) {	// 发送请求前需要做什么
+    
+  },
 	error: function(re){
 	},
 	success: function(re){
-	}
-    complete: function(re) { 	 // 无论怎样都会执行
-        if (re.statusText == "success") { 
-            console.log("Sent successfully");
-        } else { 
-            console.log("Not Sent");
-        }
+	},
+  complete: function(re) { 	 // 无论怎样都会执行
+    if (re.statusText == "success") { 
+      console.log("Sent successfully");
+    } else { 
+      console.log("Not Sent");
     }
+  }
 });
 ```
 
@@ -573,6 +610,15 @@ $.post('some.php', {name: 'haofly'})
     .fail(function(xhr, status, error) {
         // error handling
     });
+```
+
+## jQuery Effects特效
+
+- 能实现一些简单的效果，例如blind(百叶窗特效)、bounce(反弹特效)、clip(剪辑特效)、drop(降落特效)、explode(爆炸特效)、fade(淡入淡出特效)、fode(折叠特效)、highlight(突出特效)、puff(膨胀特效)、pulsate(跳动特效)、scale(缩放特效)、shake(震动特效)
+
+```javascript
+$('#mydiv').fadeout();	// 使用方法很简单
+$('#mydiv').fadein().delay(1000).fadeout(); // 延迟执行
 ```
 
 ## 调试技巧
@@ -912,6 +958,28 @@ _.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
 
 - **Uncaught TypeError: a.indexOf is not a function**: 版本问题。`$(window).load(function(){})`在高版本中已经废弃了，需要用`$(window).on('load', function(){})`替代。如果仍然有问题，可以直接引入一个兼容包`<script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>`
 
+- **出发表单submit事件但是不想要表单自动提交并刷新网页**: 
+
+  ```javascript
+  $('#contactForm').submit(function () {
+   sendContactForm();
+   return false;
+  });
+  ```
+
+- **限制input框输入特殊字符**
+
+  ```javascript
+  $(".myinput").keypress(function (e) {
+  	if ((event.which != 46 || 
+         $(this).val().indexOf('.') != -1) && 
+        (event.which < 48 || event.which > 57)
+       ) {
+  		return false;
+  	}
+  });
+  ```
+  
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
   ```javascript

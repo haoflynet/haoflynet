@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2020-10-30 11:48:00
+updated: 2020-11-15 11:48:00
 categories: php
 ---
 # Laravel指南
@@ -170,6 +170,7 @@ Request::url();
 Larvel的分页主要靠Eloquent来实现，如果要获取所有的，那么直接把参数写成`PHP_INT_MAX`就行了嘛
 
 ```php
+# 动态设置页
 Paginator::currentPagesolver(function () use ($currentPage) {return $currentPage}); # 动态改变paginator获取page的方式，全局搜索可以发现它就是从request参数获取的page
 $users = User::where('age', 20)->paginate(20);	// 表示每页为20条，不用去获取页面是第几页，laravel会自动在url后面添加page参数，并且paginate能自动获取，最后的结果，用json格式显示就是
 {

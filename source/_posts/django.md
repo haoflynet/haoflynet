@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2020-11-08 17:01:00
+updated: 2020-11-15 15:01:00
 categories: python
 ---
 # Django教程
@@ -354,11 +354,13 @@ Blog.objects.all().defer('title')		# 不取某个字段，这里返回是一个m
 Blog.objects.all().only('title', 'field1')		# 仅仅取某个字段，也是返回一个model对象
 Blog.objects.all().values_list('title')	# 仅仅取某个字段，这里返回一个元组
 
-Blog.objects.latest('id')  				# 根据某个字段查找其最后一条记录，返回的是一个对戏那个，不是id
+Blog.objects.first()	# 获取第一条记录，如果没有使用order by，那么默认是order by主键
+Blog.objects.last()	# 和fitst相反
+Blog.objects.latest('id', '-expire_data')  				# 根据某个字段查找其最后一条记录，返回的是一个对象，不是id，类似于last()
+Blog.objects.earest('id', '-expire_data')	# 和latest正好相反，取最早的一条记录
 Blog.objects.filter(time__gte = '2015-07-23', time__lte = '2015-07-24') # 大于等于并且小于等于，不加e表示不能等于
 Blog.objects.filter(time__isnull = True)# 判断某个字段是否为空
 Blog.objects.filter('time__year': '2015', 'time__month': '08', 'time__day': '17')：按年月日查询日期，可仅查询其中某一个条件
-
 
 # Q查询，可以对关键字参数进行封装，可以使用&,|,~等操作
 from django.db.models import Q
@@ -464,6 +466,29 @@ user_goods.objects.create(user=User.objects.create(), goods=Goods.objects.create
 
 #### OneToOneField
 必须是一对一，而不是多对一或一对多
+
+#### OneToDifferentModel(Generic relations)
+
+- 类似于`Laravel`种的多态关联，一个对象可以同时与多个不同的model进行关联
+
+```python
+# 例如有一张评论表，可以给商家评论，也能给用户评论
+class Comment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)	# 评论发表者
+    comment = models.TextField()	# 评论内容
+    
+    # 下面是定义关联，其中content_type是与ContentType关联，这是DJango内置的模型，里面包括了表信息；而object_id就是目标model的主键id
+    content_type = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING)
+    object_id = models.PositiveIntegerField()
+
+    content_object = GenericForeignKey()	# conent_object则是目标对象
+    
+comment = MediaFile.objects.first()
+comment.content_object	# 这样可以获取该评论的目标，如果是商家则返回商家model，如果是用户则是用户model
+
+# 而如果要在评论对象那边反查，则可以在对象那边定义这样一个属性
+comments = GenericRelation(Comment)
+```
 
 ### 分页
 
