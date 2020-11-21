@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2020-11-09 08:47:21
+updated: 2020-11-16 22:47:21
 categories: php
 ---
 # PHP
@@ -13,9 +13,15 @@ categories: php
 
 - 判断两个变量是否相等，如果`==`和`===`都能用的情况，那么尽量用`===`，因为它仅检查闭合范围。
 
-- 三元运算符可以这样用`$a = $a ? : 1`，表示如果为真则直接使用`$a`的值，7里面可以写成`$a = $a ?? 1`
+- `??`: null合并运算符。如果遍历那个存在且值不为NULL，就返回本身，否则返回它的第二个操作数。三元运算符可以这样用`$a = $a ? : 1`，表示如果为真则直接使用`$a`的值，7里面可以写成`$a = $a ?? 1`
 
-- `??=`运算符表示有key则赋值，例如`$array['key'] ??= 1`表示数组中有`key`这个key才会被赋值
+  ```php
+  $username = isset($_GET['user']) ? $_GET['user'] : 'nobody';
+  $username = $_GET['user'] ?? 'nobody';	// 和上面语句等价
+  $username = $_GET['user'] ?? $_POST['user'] ?? 'nobody'; // 甚至可以连接多个
+  ```
+
+- `??=`(7.4): 运算符表示有key则赋值，例如`$array['key'] ??= 1`表示数组中有`key`这个key才会被赋值
 
 - `compact`函数，能够创建一个包含变量和它们的值的数组，例如
 
@@ -28,6 +34,9 @@ categories: php
 <!--more-->
 
 ### 数组
+
+- 7.4支持数组展开操作: `['banana', 'orange', ...$parts, 'watermelon']`，其中`$parts`为一个数组
+
 ```php
 array_chunk($array, $size);	// 将数组按size大小分为多个数组
 array_column($array, $column_key);	// 返回字典型数组里面指定key的那一列
@@ -86,6 +95,8 @@ if (($key = array_search($del_val, $messages)) !== false) {
 
 ### 字符串
 
+- 7.1开始支持负数作为偏移: `"abcdefg"[-2] == 'f'`
+
 PHP里面单引号和双引号确实有些地方的用法是不同的，比如匹配换行符的时候。我们应该尽量使用单引号，因为如果是双引号，那么程序会去检测其中的变量。
 
 ```php
@@ -132,6 +143,14 @@ addslashes($str);		// 使用反斜线引用字符串
 pack(format, args+);	// 将数据装入一个二进制字符串，通常用户低级socket编程中，需要注意的是format的可选值和其他语言的可选值可能不一样，多语言交互的时候对照一下
                       
 ctype_alnum($string);	# 检查字符串是否由字符和数字组成，等同于preg_match('/[a-zA-Z0-9]+/', $string);
+                      
+// php7.1新增短数组语法
+$data = [[1, 'tom'], [2, 'fred']];
+list($id1, $name1) = $data[0]; // 和python有点像
+[$id2, $name2] = $data[1];
+foreach ($data as [$id, $name]) {	// 循环中也能直接用
+    // logic here with $id and $name
+}
 ```
 ### 数字
 ```php
@@ -146,6 +165,7 @@ sprintf('%04d', 2)	// 数字前补零
 str_pad($nu, 4, "0", STR_PAD_LEFT);	// 数字前面补0
 round($num, 2);	// 四舍五入，保留两位小数
 base_convert(number,frombase,tobase);	// 进制转换
+bcsub($left, $right, 2); // 将两个高精度的数字相见，第三个参数表示结果的小数点位数
 ```
 
 ### 时间
@@ -234,6 +254,9 @@ is_writable($name);	# 检查文件或者目录是否有写入权限
 ### 函数/类/对象
 
 - `(array) myobj`对象可强制转换为数组
+- 7.2开始允许重写抽象方法
+- 7.4开始可以给类属性指定类型了，例如:`private int $id;`
+- 7.4开始支持直接用箭头的简写的匿名函数，例如: `$nums = array_map(fn($n) => $n * $factor, [1, 2, 3, 4]);`
 
 ```php
 # public, private, projtected的区别:
@@ -383,6 +406,17 @@ mysql_errno();	# 打印SQL出错信息
 ### 异常处理
 
 - 有时候，我们会发现`catch`不到`Exception`或者`Error`，可能的原因是使用了`set_error_handler`等函数进行了错误的单独捕获，还可以使用`register_shutdown_function`注册程序退出时候的回调函数
+
+- 7.1开始能够同时捕获多个异常
+
+  ```php
+  try {
+      // some code
+  } catch (FirstException | SecondException $e) {
+      // handle first and second exceptions
+  }
+  ```
+
 - `error_log`打印日志到php的错误日志中去，配置在`php.ini`中的路径
 
 ```php
@@ -630,6 +664,16 @@ ini_get('upload_max_filesize'); // 但是该属性只能获取，不能在代码
 
 - **Class 'Maatwebsite\Excel\Excel' not found**: 尝试升级该依赖`composer require maatwebsite/excel:^3.0.1`
 
+- **PHP安装SOAP扩展/docker容器安装php-soap扩展**: 
+
+  ```shell
+  yum install php-soap	# centos系统php-soap扩展
+  apt-get install php-soap	# debian系统安装php-soap扩展
+  apt-get update -y && apt-get install -y libxml2-dev && apt-get clean -y && docker-php-ext-install soap	# docker容器安装php-soap扩展
+  php -m | grep soap	# 查看是否安装完成
+  ```
+
 ##### 扩展阅读
 
 - [DuckChat](https://github.com/duckchat/gaga): 一款独立部署的聊天系统
+- [WSDL转PHP代码](https://www.wsdltophp.com/)

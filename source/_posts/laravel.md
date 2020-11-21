@@ -1,11 +1,13 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2020-11-15 11:48:00
+updated: 2020-11-16 08:48:00
 categories: php
 ---
 # Laravel指南
 [Laravel项目基本结构](https://github.com/haoflynet/project-structure/blob/master/Laravel/README.md)
+
+十分推荐安装[laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
 
 ### 配置
 
@@ -285,6 +287,7 @@ class CreateApplicationsTable extends Migration
 
 ```shell
 php artisan migrate				# 建表操作，运行未提交的迁移
+php artisan migrate --path=databases/migrations/				# 运行指定目录下的迁移，这里无法指定具体文件，只能指定文件夹
 php artisan migrate:rollback 	# 回滚最后一次的迁移
 php artisan migrate:reset		# 回滚所有迁移
 php artisan migrate:refresh   	# 回滚所有迁移并重新运行所有迁移
