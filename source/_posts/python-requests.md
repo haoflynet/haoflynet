@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2019-09-05 17:18:00
+updated: 2020-11-18 21:18:00
 categories: python
 ---
 # python requests模块
@@ -10,6 +10,9 @@ categories: python
 ## 发送请求
 
 ```python
+# 动态method
+requests.request(method, url, ...)
+
 # GET请求
 response = requests.get(url, params={}, timeout=5, allow_redirects=False)	# allow_redirects表示是否允许重定向，默认为True
 r = requests

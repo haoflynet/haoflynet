@@ -1,6 +1,7 @@
 ---
 title: "Django Form 表单系统"
 date: 2020-11-08 15:00:00
+updated: 2020-11-19 22:47:00
 categories: python
 ---
 
@@ -116,6 +117,17 @@ class DynamicModelChoiceField(ModelChoiceField):
 class MyForm(forms.ModelForm):
   def __init__(self, *args, **kwargs):
     self.fields['abc'] = DynamicModelChoiceField(queryset=States.objects.filter(country=self.instance.country)) # 根据用户输入的国家展示对应的省份
+```
+
+### 自定义model的展示名称
+
+- 复写Field的`label_from_instance`方法能够自定义model的展示名称，而不是直接用Model的`__str__`
+
+```python
+class UserModelChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+         return obj.firstname + obj.lastname
+UserModelChoiceField(queryset=User.objects.all())
 ```
 
 ## 应用表单

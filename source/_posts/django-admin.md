@@ -39,6 +39,10 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from myapp.models import PostModel
 
 class PostAdmin(admin.ModelAdmin):
+  class Media:
+    js = ["js/test.js"]	# 可以引入自定义的js实现更多的个性化功能(这里该js文件位于static/js/test.js下)
+    css = ["css/test.css"]	# 自定义css
+    
   list_display = ('id', 'name', 'created_at')	# 定义后台列表显示时需要显示哪些字段
   list_per_page = 50		# 定义后台列表显示时每页显示数量
   list_filter = ('id', 'name', )	# 定义后台列表显示时能够筛选的字段(会列出所有的可筛选值)
@@ -48,7 +52,7 @@ class PostAdmin(admin.ModelAdmin):
   filter_horizontal = ('posts')	# 显示多对多字段
   readonly_fields = ('username')	# 设置只读字段，不允许更改
   ordering = ('-created_at', )	# 定义列表显示的顺序，负号表示降序
-  fieldsets = (		# 对字段进行分类设置，前端会分开显示
+  fieldsets = (		# 对字段进行分类/分组设置，前端会分开显示
   	(None, {'fields': ('username', 'password', )}),
   	('Personal info', {'fields': ('firstname', )}),
     ('Permissions', {'fields': ('groups', )}),
@@ -78,6 +82,10 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(PostModel, PostAdmin)	# 注册管理模型
 admin.site.site_header = '后台页面的header'
 admin.site.site_title = '后台的title'
+
+@admin.register(UserModel)	# 也可以用装饰器直接进行注册
+class UserAdmin(admin.ModelAdmin):
+  pass
 ```
 
 ### 自定义admin管理数据创建及修改表单
