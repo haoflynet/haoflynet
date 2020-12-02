@@ -1,7 +1,7 @@
 ---
 title: "Django Form 表单系统"
 date: 2020-11-08 15:00:00
-updated: 2020-11-19 22:47:00
+updated: 2020-11-21 22:47:00
 categories: python
 ---
 
@@ -50,6 +50,7 @@ class PostForm(forms.ModelForm):
             "created_at": forms.TextInput(attrs={	# 设置html的一些属性
               "type": "date",
               "class": "my-class custom-class"
+              "placeholder": "设置placeholder"
             }),
         }
 
