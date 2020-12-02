@@ -1,7 +1,7 @@
 ---
 title: "Django Admin 后台管理系统"
 date: 2019-06-01 00:00:00
-updated: 2020-11-15 15:32:00
+updated: 2020-11-21 15:32:00
 categories: 编程之路
 ---
 
@@ -108,8 +108,19 @@ class MyModelChangeForm(forms.ModelForm):
 
 class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
     form = UserChangeForm				# 指定修改表单
-    add_form = UserCreationForm	# 指定创建表单
+    add_form = UserCreationForm	# 指定创建表单，如果不指定默认都会使用form
+    
+    def get_form(self, request, obj=None, **kwargs):
+      """如果仅仅是某几个字段的简单修改可以直接这样写，不用定义新的Form类"""
+      kwargs['widgets'] = {
+        'name': forms..TextInput(attrs={'placeholder': 'this is a example'})
+      }
+      return super().get_form(request, obj, **kwargs)
 ```
+
+#### admin中字段动态hide与show
+
+- 目前没有找到更好的方法，不过可以直接用`class Media: js=()`来自定义js文件，通过jQuery来实现
 
 ### Django-CKeditor富文本编辑使用
 
@@ -307,6 +318,7 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
      ```python
      admin.site.unregister(ThirdModel)
      
+     ```
    # 而如果要修改第三方的管理类，可以这样做，重新注册一个新的类
      class NewThirdModel(ThirdModel):
        pass
@@ -314,3 +326,4 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
      ```
      
      
+     ```

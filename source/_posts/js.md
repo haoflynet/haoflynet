@@ -320,6 +320,10 @@ $('p[name=abc]')
 $('*[data-abc="22"]');	// 获取data-*元素，按data数据获取元素
 $('body >div:first-child') // 查找第一级的第一个元素
 $('*')        		// 所有元素
+$('[id^="test"]')	// 查找id以test开头的元素
+$('[id$="test"]')	// 查找id以test结尾的元素
+$('[id*="test"]')	// 通配符查找
+$('[id!="test"]')	// 查找id不为test的元素
 $(this)       		// 当前元素
 $(this).next()  	// 获取下一个同级元素/兄弟节点
 $(this).nextAll() // 获取所有之后的兄弟节点

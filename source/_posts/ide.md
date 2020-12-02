@@ -162,7 +162,7 @@ https://github.com/psf/black/blob/master/docs/editor_integration.md
 
   ```shell
   Program: /bin/bash	# 因为有多条命令，External Tools不能直接写多条命令，所以用这个代替
-  Arguments: -c "prettier --write $FileName$; /Users/haofly/workspace/sparrows-web/node_modules/.bin/eslint --fix $FileName$"
+  Arguments: -c "prettier --write $FileName$; /Users/haofly/workspace/myproject/node_modules/.bin/eslint --fix $FileName$"
   Working directory: $FileDir$
   ```
 
