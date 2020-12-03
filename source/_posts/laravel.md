@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2020-11-16 08:48:00
+updated: 2020-11-21 18:48:00
 categories: php
 ---
 # Laravel指南
@@ -641,7 +641,7 @@ $newUser = $user->replicate();$newUser->save();
 
 #### 查询缓存
 
-##### With/load(预加载/渴求式加载)
+##### With/load(预加载/渴求式加载/eager load)
 
 - with/load在laravel的ORM中被称为预加载，作用与关联查询上，能有效缓解N+1查询问题
 - 通常的做法是在一次请求开始处理的时候一次性把所有需要用到的关联关系取出来，例如: `Auth::user()->load('detail', 'posts:name', 'posts.comments')`
@@ -669,7 +669,7 @@ App\Post::with('user.phone')->get(); # 去除文章关联的用户信息，并�
 App\Post::with('user:name,nickname')->get();
 # 带条件的预加载
 $users = User::with(['posts' => function ($query) {
-  $query->where('title', '=', 'test');
+  $query->where('title', '=', 'test')->orderBy('id', 'desc');	// eager load的orderby
 }])->get();
 
 # 而如果父模型已经被获取后，想要再使用预加载，就需要用load了
@@ -1189,6 +1189,9 @@ public function report(Exception $e)
   $exitCode = Artisan::call('email:send', [
       'user' => 1, '--queue' => 'default'
   ]);
+  
+  # 或者直接在shell里面执行
+  php artisan test:test 
   ```
 
 - 定时任务

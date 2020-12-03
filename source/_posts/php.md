@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2020-11-16 22:47:21
+updated: 2020-11-21 22:47:21
 categories: php
 ---
 # PHP
@@ -663,6 +663,23 @@ ini_get('upload_max_filesize'); // 但是该属性只能获取，不能在代码
 - **Composer报错`Failed to decode response: zlib_decode(): data error`**: 出现在更换源之后，这时候应该先执行`composer clear-cache`
 
 - **Class 'Maatwebsite\Excel\Excel' not found**: 尝试升级该依赖`composer require maatwebsite/excel:^3.0.1`
+
+- **PHP实现startsWith和endsWith功能**: 不过`Laravel`框架自带了这两个函数的
+
+  ```php
+  function startsWith( $haystack, $needle ) {
+       $length = strlen( $needle );
+       return substr( $haystack, 0, $length ) === $needle;
+  }
+  
+  function endsWith( $haystack, $needle ) {
+      $length = strlen( $needle );
+      if( !$length ) {
+          return true;
+      }
+      return substr( $haystack, -$length ) === $needle;
+  }
+  ```
 
 - **PHP安装SOAP扩展/docker容器安装php-soap扩展**: 
 
