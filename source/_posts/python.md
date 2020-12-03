@@ -128,6 +128,7 @@ print(json.dump(sdata, indent=2))
 # 有序字典(占用的内存是普通字典的两倍)
 from collections import OrderedDict
 d = OrderedDict()
+for k, v in d.items(): # 有序字典的遍历
 
 # 字典组成的列表排序
 通过某个关键字来排序

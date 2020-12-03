@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2020-05-09 13:03:00
+updated: 2020-11-18 13:03:00
 categories: python
 ---
 
@@ -48,6 +48,8 @@ s.strip()          # 去掉两端空白
 s.lstrip()         # 去掉左边空白，加参数可以
 s.rstrip()         # 去掉右边空白
 s.replace(' ', '') # 去掉所有空白
+s.removeprefix('.png')	# py3.9，删除后缀
+s.removesuffix('abc')	# py3.9，删除前缀
 
 # 大小写转换
 s.upper()    # 全部转为大写

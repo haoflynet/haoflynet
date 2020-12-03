@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-10-17 19:44:00
+updated: 2020-11-21 19:44:00
 categories: database
 ---
 ## 安装方法
@@ -554,6 +554,13 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 * **Mariadb/Mysql不锁表实时添加列**: `10.2`开始是默认支持的，但是只能在表最后一列后加，不能出现`after`，参考https://mariadb.com/kb/en/library/instant-add-column-for-innodb/
 
 * **mysqldump出现Access denied for user xxx when using LOCK TABLES**: 可以在`mysqldump`命令添加上`--single-transaction`参数
+
+* **mysql8使用group出现only_full_group_by错误**: 执行一下sql命令即可:
+
+  ```mysql
+  set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+  set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+  ```
 
 * **将逗号分割的字符串转换为Array的形式**: 
 
