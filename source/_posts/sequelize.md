@@ -293,6 +293,7 @@ queryInterface.bulkDelete('Users', null, {});
 
 ```shell
 npx sequelize-cli db:migrate	# 执行所有还未执行的migrate
+npx sequelize-cli migration:generate --name add_field	# 生成迁移文件
 npx sequelize db:migrate:undo --name 20200925092611-xxxxxxxxxx.js	# 回滚指定的migrate
 
 npx sequelize-cli db:seed:all	# 执行所有未执行的seed

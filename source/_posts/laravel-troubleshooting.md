@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2020-09-27 22:18:00
+updated: 2020-11-21 22:18:00
 categories: php
 ---
 
@@ -154,3 +154,14 @@ require_once __DIR__.'/public/index.php';
 #### Laravel migrate出现错误: No such file or directory (SQL: create table `migrations`)
 
 可以尝试清除一下配置，`php artisan config:clear && php artisan migrate:install`
+
+#### 改变默认的asset函数行为
+
+默认的asset函数为框架的内置函数，无法直接改变，可以在`app/Http/helpers.php`中自定义另外一个函数来封装一下，这样也可以全局使用了，例如:
+
+```php
+function my_asset($path, $secure = null){
+    return 'https://cloudinary.com/' . asset($path, $secure);
+}
+```
+
