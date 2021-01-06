@@ -1,6 +1,7 @@
 ---
 title: "Mongoose 使用手册"
 date: 2019-09-05 14:40:00
+Updated: 2021-01-06 22:07:00
 categories: Javascript
 ---
 
@@ -57,13 +58,15 @@ User.findOne({
     $in: ["123", "321"]
   }
 })
+	.offset(0)
+	.limit(10)	// 分页
 	.sort('-created_at') // 排序
 	.select: ["username", "email"] // 选取指定字段
 	.populate(['father'])	// 查询关联对象，相当于left join
 	.populate({
   	path: 'friends',	// 获取关联对象
   	select: 'username',	// 仅获取关联对象的某个字段
-  	select: ['username', 'email'],	// select多个字段
+  	select: ['username', '-email'],	// select多个字段，复数表示去掉某个字段
   	match: {	// 在关联对象上使用where对象，注意这里如果不匹配只是会把关联对象设置为null，而不是把父级对象设置为null，相当于这是left join中的一个额外的ON条件，而不是where条件
   		username: {
   			$regex: '.*' + keyword + '.*',	// 正则查询
@@ -106,7 +109,7 @@ User.findOneAndUpdate({
     'name': 'lvelvelve'
   },
   $inc: {	// 直接increment
-    'count': 1
+    'count': 1 // 也可以-1
   },
   $addToSet: {	// 可以直接push进一个数组/集合
     friends: userId
@@ -114,6 +117,8 @@ User.findOneAndUpdate({
   $pull: {			// 从数组/集合中移出对象
     friends:: userId
   }
+}, {
+  new: true	// 返回更新后的数据
 })
 ```
 
@@ -123,3 +128,6 @@ User.findOneAndUpdate({
 User.remove({_id: 'xxxxxxxxxxxx'})
 ```
 
+## TroubleShooting
+
+- **mongoose create的时候怎么也拿不到返回的id**: 可能是在给`create`的参数中传入了`id=null`的值，导致程序没有从数据库获取而是直接返回的传入值null

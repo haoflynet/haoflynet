@@ -1,6 +1,7 @@
 ---
 title: "Js强大的表格插件Datatables配置指南"
 date: 2020-11-15 20:40:00
+updated: 2020-12-27 22:41:00
 categories: Javascript
 ---
 
@@ -128,7 +129,6 @@ $('#exampleTable').dataTable({
   scrollX: true,
   searching: false,	// 屏蔽搜索框
   serverSide: true,	// 是否服务器端分页
-
 });
 ```
 
@@ -173,6 +173,23 @@ $('table').DataTable().ajax.reload();	// 手动重新请求ajax
   'recordsFiltered': 100, //筛选的总量
   'data': [{}],	// 当前页数据
 }
+```
+
+## [laravel-datatables](https://github.com/yajra/laravel-datatables): laravel扩展
+
+- 通常我们不会一次性查询出所有的数据让前端进行分页，而是后端直接返回分页后的数据，这时候在使用该扩展时需要这样设置:
+
+```php
+$data = Users::paginate();	// 分页查询后的结果
+return DataTables::of($data->data)
+            ->addIndexColumn()	// 添加索引列
+            ->addColumn('name', function ($user) {	// 添加自定义的列
+                return $user . '===';
+            })
+            ->setFilteredRecords(count($data->data))	// 设置当前页的条数
+            ->setTotalRecords($data->total)	// 设置总的条数
+            ->skipPaging() // 表示已经是分好页的数据，这个参数必须加上
+            ->make(true);
 ```
 
 ## Troubleshooting
