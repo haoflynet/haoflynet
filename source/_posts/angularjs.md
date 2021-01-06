@@ -1,28 +1,47 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2017-10-26 12:53:00
+updated: 2021-01-06 22:53:00
 categories: frontend
 ---
 ## 语法
 
 ### 控制语句
 
-```javascript
+```html
+// for 循环
 <ul>
   <li *ngFor="let item of items; let i = index">
   	{{i}}:{{item}}
   </li>
 </ul>
+
+// switch语句
+<div [ngSwitch]="myvalue">
+    <div *ngSwitchCase="'aaa'">
+    ...
+  	</div>
+    <div *ngSwitchCase="'bbb'">
+    ...
+  	</div>
+    <div *ngSwitchDefault>
+    ...
+  	</div>
+</div>
 ```
 
 ## 事件
 
 Angular1里元素绑定点击事件用`ng-click`，但是Angular2里元素绑定点击事件用`(click)`，例如:
 
-```bu
+```html
 <button ng-click="vm.toggleImage()">
 <button (click)="toggleImage()">
+  
+<!-- select元素点击获取选择的值 -->
+<select (change)="onChange($event.target.value)">
+    <option *ngFor="let i of devices">{{i}}</option>
+</select>
 ```
 
 ## 网络请求
