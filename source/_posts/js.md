@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2020-11-15 16:31:00
+updated: 2021-01-07 09:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -149,21 +149,36 @@ if (!isNaN(n))
     alert("it is");
 }
 
+name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 ```
 
-#### 时间处理
+#### 时间处理moment
 
 ```javascript
 // 原生方法
-Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
+var today = Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
+today.setTime(today.getTime() - 24*60*60*1000); // 获取昨天的时间
+today.setDate(today.getDate() - 1);	// 也可以直接对年月日时分秒进行加减操作，这也是获取昨天的时间
+today.getYear();	// 21
+today.getFullYear(); // 2021
+today.getMonth() + 1; //获取月份
+today.Day() + 1;	// 获取星期几
+today.getDate();	// 获取日
+today.getHours();
+today.getMinutes();
+today.getSeconds();
+today.getMilliseconds();
+today.format('yyyy-MM-dd');	// 格式化
 
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
+moment(new Date()).subtract(2, 'hours');	// 时间相加减
 
 // 时间格式化
 moment().format(); // "2014-09-08T08:02:17-05:00"
 moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
+moment().format("YYYY-MM-DD HH:mm:ss");	// 2021-01-06 22:00:00
 moment().format("ddd, hA");                       // "Sun, 3PM"
 moment().format("[Today is] dddd");               // "Today is Sunday"
 moment('gibberish').format('YYYY MM DD');         // "Invalid date"
@@ -384,6 +399,7 @@ $('div').height(20)	// 设置元素高度
 $('select').val()	// select标签的值
 $('select option:selected').text();	// select被选中项的文本
 $('div').data('abc'); // 获取元素的data数据，例如<div data-abc="dsiahoaihgio"></div>
+$('div').removeAttr('required');	// jquery移除属性
 ```
 
 ### 编辑元素
@@ -398,6 +414,11 @@ ele.removeChild(text);
 ele.replaceChild(el1, el2);				// 替换子元素
 selection.innerHtml = '<option>a</option';	// 修改内部html内容
 parentElement.insertBefore(newElement, referenceElement);	// 插入子元素
+ele.classList.add("mystel", "secondClass");	// 给元素添加类
+ele.classList.remove('mystyle', 'secondClass');	// 给元素移除类
+ele.classList.toggle("mystle"); // 切换类，如果没有就增加该类，如果有就删除该类
+ele.classList.contains('mystyle');	// 判断当前类是否存在
+ele.classList.item(0);	// 获取第几个类
 
 // 添加元素
 html('')	// 修改内部的html内容
@@ -409,7 +430,7 @@ remove()	// 删除当前元素
 empty()		// 清空当前元素的子元素
 clone()		// 克隆/复制一个元素
 
-// 属性更改
+// jquery属性更改
 addClass('')	// 给元素添加类
 removeClass('')	// 给元素移除某个类
 $('p').css('color', 'red')			// 修改CSS属性

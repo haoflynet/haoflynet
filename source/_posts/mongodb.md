@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2018-07-21 11:33:00
+updated: 2020-01-05 17:33:00
 categories: database
 ---
 
@@ -145,8 +145,41 @@ db.collection.remove(
 ```shell
 # 备份
 mongodump -h 127.0.0.1:27017 --db DB_NAME --collection COLLECTION	# 备份某个集合
+mongodump -d DB_NAME -o ./
 
 # 恢复
 mongorestore -h 127.0.0.1:27017 --db DB_NAME <path>	# dump文件夹的路径
 ```
 
+## 其他功能
+
+### Mongodb实现自增字段
+
+- `MongoDB`没有原生的自增长功能，但是我们可以借助其原子性实现获取并设置自增字段的功能
+
+1. 首先创建一个专门用于保存自增当前索引值的集合`counters`:
+
+   ```json
+   {
+     "name": "my_table",
+     "sequence_value": 1
+   }
+   ```
+
+2. 创建一个获取并加一的函数
+
+   ````javascript
+   function getNextSequenceValue(sequenceName){
+      var sequenceDocument = db.counters.findAndModify(
+         {
+            name: "my_table",
+            update: {
+              $inc:{sequence_value:1}	// 只要读取一次就自增一
+            },
+            "new":true
+         });
+      return sequenceDocument.sequence_value;
+   }
+   ````
+
+3. 在创建`my_table`文档时只需要`id=getNextSequenceValue('my_table')`即可
