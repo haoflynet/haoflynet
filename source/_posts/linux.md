@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2020-06-19 16:03:30
+updated: 2021-01-06 23:03:30
 categories: system
 ---
 # Linux手册
@@ -892,30 +892,30 @@ $?：获取上一条命令的退出码，0表示成功，其他则是失败
 $@: 获取所有参数
 ```
 
-**日期处理**
+**日期/时间处理**
 
 ```shell
 date +"%s"	# 按照时间戳来显示
 date +"%m-%d-%y"	# mm-dd-yy格式
 date +"%T"	# 仅显示时间，比如10:44:00
+time1=$((($(date +%s ) - $(date +%s -d '20210101'))/86400)) # 日期相减，计算间隔日期
 ```
 
 **随机数**
 ​	$RANDOM	# 生成一个随机数
 
 **特殊操作**
-​	. /etc/*.conf		# 导入配置文件，这样配置文件里面的变量就可以直接使用了
 
-	find ./ -name "*.log" -mtime -1 | which read line; do tail -n 5 "$line" > ~/bak/"$line"; done # 查找，然后按行进行执行
-	while read line do 语句 done  # 一行一行地进行处理，真正的处理
+```shell
+. /etc/*.conf		# 导入配置文件，这样配置文件里面的变量就可以直接使用了
+find ./ -name "*.log" -mtime -1 | which read line; do tail -n 5 "$line" > ~/bak/"$line"; done # 查找，然后按行进行执行
+while read line do 语句 done  # 一行一行地进行处理，真正的处理
+	
+# xargs：将上一个管道的输出直接作为这个管道的输入
+ps | grep python | awk -F ' ' '\{print $1\}' | xargs kill
 
-
-​	
-​	
-​	# xargs：将上一个管道的输出直接作为这个管道的输入
-​	    ps | grep python | awk -F ' ' '\{print $1\}' | xargs kill
-​	
-​	date+\%Y-\%m-\%d   # 获取今天的日期
+date+\%Y-\%m-\%d   # 获取今天的日期
+```
 
 # TroubleShooting
 

@@ -1,7 +1,7 @@
 ---
-title: "Laravel 手册"
+ptionstitle: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2020-11-21 18:48:00
+updated: 2020-12-28 10:58:00
 categories: php
 ---
 # Laravel指南
@@ -143,16 +143,16 @@ route('post.comment.store', ['id'=> 12]) # 这样子就获取到id为12的post�
 ```php
 # 获取当前页面的地址
 URL::full();
-rl()->full();
+url()->full();
 URL::current();
 url()->current();
-Request::url();
+Request::url();	// https://haofly.net/laravel
 $request->url();
-Request::path();
+Request::path();	// laravel
 $request->path();
-Request::getRequestUri();
+Request::getRequestUri();	// /laravel
 $request->getRequestUri();
-Request::getUri();
+Request::getUri();	// https://haofly.net/laravel
 $request->getUri();
 
 # 获取当前页面的路由名称(即使带参数也没问题)
@@ -173,6 +173,7 @@ Larvel的分页主要靠Eloquent来实现，如果要获取所有的，那么直
 
 ```php
 # 动态设置页
+$request->merge(['page' => 2]);	// 最方便的
 Paginator::currentPagesolver(function () use ($currentPage) {return $currentPage}); # 动态改变paginator获取page的方式，全局搜索可以发现它就是从request参数获取的page
 $users = User::where('age', 20)->paginate(20);	// 表示每页为20条，不用去获取页面是第几页，laravel会自动在url后面添加page参数，并且paginate能自动获取，最后的结果，用json格式显示就是
 {
@@ -310,6 +311,8 @@ public function up()
       	$table->dropPrimary('users_id_primary');	// 移除主键
       	$table->dropUnique('users_email_unique');	// 移除唯一索引
       	$table->dropIndex('geo_state_index');		// 移除基本索引
+      	$table->timestamp('created_at')->useCurrent();
+      	$table->timestamp('deleted_at')->nullable();
     });
 }
 ```
@@ -589,10 +592,10 @@ User::select('name')->leftJoin('posts', function($join) {
 # has语法，不会与Post的字段相冲突
 $posts = Post::has('comments')->get();	# 获取所有有评论的posts
 $posts = Post::has('comments', '>=', 3)->get();	# 获取评论数量大于3的
-$posts = Post::has('comments.votes')->get();	# 嵌套has
-  $posts = Post::whereHas('comments', function($query) {
-    $query->where('content', 'like', 'foo%')->whereHas('user');	# 比较复杂的has语法，whereHas也可以不带第二个参数
-  });  
+$posts = Post::has('comments.votes.user')->get();	# 嵌套has
+$posts = Post::whereHas('comments', function($query) {
+  $query->where('content', 'like', 'foo%')->whereHas('user');	# 比较复杂的has语法，whereHas也可以不带第二个参数
+});  
 
 # 访问器，如果在Model里面有定义这样的方法
 public function getNameAttribute(){
@@ -1127,6 +1130,21 @@ Log::getMonolog()->pushHandler($logStreamHandler);
 #### 自定义错误处理类
 
 Laravel里面所有的异常默认都由`App\Exceptions\Handler`类处理，这个类包含`report`(用于记录异常或将其发送到外部服务)和`render`(负责将异常转换成HTTP响应发送给浏览器)方法。render是不会处理非HTTP异常的，这点要十分注意。
+
+##### 自定义未认证/未登陆的错误信息或重定向
+
+```php
+# App\Exceptions\Handler
+class Handler extends ExceptionHandler
+{
+  // 复写该方法即可
+  protected function unauthenticated($request, AuthenticationException $exception)
+  {
+    return $request->expectsJson()
+      ? response()->json(['message' => 'Unauthenticated.'], 401)
+      : redirect()->guest(route('authentication.index'));
+  }
+```
 
 #### 统一的异常处理
 

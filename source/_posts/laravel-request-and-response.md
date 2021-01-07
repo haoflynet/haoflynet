@@ -1,7 +1,7 @@
 ---
 title: "Laravel 请求与响应"
 date: 2020-09-06 22:29:00
-updated: 2020-09-07 10:32:00
+updated: 2020-12-27 10:32:00
 categories: php
 ---
 
@@ -44,6 +44,12 @@ $request->isMethod('post');// 判断请求方法
 $request->route()	# 通过request获取Route对象
 
 $request->cookie('name'); // 获取cookie，同Cookie::get('name');
+
+// 动态改变或新增request的值
+$request->merge([
+  'keyword' => $request->search,
+  'page' => 2
+])
 ```
 
 <!--more-->
