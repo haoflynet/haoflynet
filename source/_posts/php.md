@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2020-11-21 22:47:21
+updated: 2021-01-03 22:47:21
 categories: php
 ---
 # PHP
@@ -166,6 +166,9 @@ str_pad($nu, 4, "0", STR_PAD_LEFT);	// 数字前面补0
 round($num, 2);	// 四舍五入，保留两位小数
 base_convert(number,frombase,tobase);	// 进制转换
 bcsub($left, $right, 2); // 将两个高精度的数字相见，第三个参数表示结果的小数点位数
+
+3 / 2 = 1; // 除法取商
+3 % 2 = 1; // 除法取余
 ```
 
 ### 时间
@@ -680,6 +683,8 @@ ini_get('upload_max_filesize'); // 但是该属性只能获取，不能在代码
       return substr( $haystack, -$length ) === $needle;
   }
   ```
+
+- **pecl安装扩展出现Please reinstall the libzip distribution**: `apt-get install libzip-dev`
 
 - **PHP安装SOAP扩展/docker容器安装php-soap扩展**: 
 

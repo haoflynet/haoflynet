@@ -382,7 +382,7 @@ export default {
 - 用`$bus`或者`$root`应该都能实现
 - 其实是一种发布/订阅模式，谁都能订阅
 
-```vuejs
+```vue
 // 组件一
 <template>
   <div></div>
