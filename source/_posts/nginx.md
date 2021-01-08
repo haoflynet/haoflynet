@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2020-09-21 22:01:00
+updated: 2021-01-03 22:01:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -223,24 +223,48 @@ server {
 
 ### Rewrite规则
 
-是一种以正则方式重写url的语法。
+- 是一种以正则方式重写url的语法
 
-有如下几种重写类型:
-
-- **last**: 表示完成rewrite，浏览器地址栏URL不变。一般用在server和if中。不会终止匹配，新的url会重新从server匹配一遍。
-- **break**: 本条规则匹配完成后终止匹配，不再匹配后面的规则，浏览器地址栏URL不变。一般用在location中，会终止匹配，只会往下走，不会整个server重新匹配。
-- **redirect**: 返回302临时重定向，浏览器地址栏URL变成转换后的地址
-- **permanent**: 返回301永久重定向，浏览器地址栏URL变成转换后的地址
+- 有如下几种重写类型:
+  - **last**: 表示完成rewrite，浏览器地址栏URL不变。一般用在server和if中。不会终止匹配，新的url会重新从server匹配一遍。
+  - **break**: 本条规则匹配完成后终止匹配，不再匹配后面的规则，浏览器地址栏URL不变。一般用在location中，会终止匹配，只会往下走，不会整个server重新匹配。
+  - **redirect**: 返回302临时重定向，浏览器地址栏URL变成转换后的地址
+  - **permanent**: 返回301永久重定向，浏览器地址栏URL变成转换后的地址
 
 ```nginx
 # 如果用户访问/test/abc，直接重定向到/abc并且使用test这个upstream
 location /test {
 	rewrite ^/test(.*)$ $1 break;
-    proxy_pass http://test;
-    proxy_redirect off;
-    proxy_set_header Host $host;
+  proxy_pass http://test;
+  proxy_redirect off;
+  proxy_set_header Host $host;
 }
 ```
+- 如果怎么`rewrite`程序都获取不到正确的请求地址，例如CI框架，那么可能是应用程序读取的是`REQUEST_URI`而不是`proxy_pass`过去的地址，可以这样传递以改变`$request_uri`的值:
+
+  ```nginx
+  set $request_url $request_uri;
+  if ($request_uri ~ ^/admin/(.*)$ ) {
+    set $request_url /$1;
+  }
+  
+  location /admin {
+    rewrite ^/admin/(.*)$ /$1 last;
+  }
+  location / {
+    try_files $uri $uri/ /index.php;
+  }
+  
+  location ~* \.php$ {
+  	rewrite ^/admin/(.*)$ /$1 break;
+      
+    include test/fastcgi-php.conf;
+  
+  	fastcgi_param  REQUEST_URI        $request_url;
+  	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+  }
+  ```
+
 ### 配置nginx IP黑白名单
 
 新建配置文件`/etc/nginx/blockips.conf`，内容格式如下
