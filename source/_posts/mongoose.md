@@ -71,6 +71,8 @@ export default mongoose.model('User', UserSchema);
 mongoose.model('User', new Schema(), 'UserSchema');	
 ```
 
+<!--more-->
+
 ### 定义关联关系Virtuals
 
 - `virtuals`相当于外键，可以直接用它来查询关联表，类似于`Laravel`中的`belongsTo`等
