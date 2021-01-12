@@ -183,3 +183,16 @@ mongorestore -h 127.0.0.1:27017 --db DB_NAME <path>	# dump文件夹的路径
    ````
 
 3. 在创建`my_table`文档时只需要`id=getNextSequenceValue('my_table')`即可
+
+## TroubleShooting
+
+- **解决安装完mongo后无法启动的问题**: 遇到一个安装完成后无论是`mongo`还是`sudo service mongo start`还是`sudo systemctl start mongod`都不报错但是实际上却没有启动的问题，可以这样解决:
+
+  ```shell
+  cd /tmp
+  ls *.sock # mongodb-27017.sock
+  chown mongodb:mongodb mongodb-27017.sock
+  sudo systemctl start mongod
+  ```
+
+  

@@ -1,7 +1,7 @@
 ---
 title: "Django Admin 后台管理系统"
 date: 2019-06-01 00:00:00
-updated: 2020-11-21 15:32:00
+updated: 2021-01-11 15:32:00
 categories: 编程之路
 ---
 
@@ -113,7 +113,7 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
     def get_form(self, request, obj=None, **kwargs):
       """如果仅仅是某几个字段的简单修改可以直接这样写，不用定义新的Form类"""
       kwargs['widgets'] = {
-        'name': forms..TextInput(attrs={'placeholder': 'this is a example'})
+        'name': forms.TextInput(attrs={'placeholder': 'this is a example'})
       }
       return super().get_form(request, obj, **kwargs)
 ```

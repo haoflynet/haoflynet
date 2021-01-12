@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-01-07 09:18:00
+updated: 2021-01-11 22:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -157,6 +157,7 @@ name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 ```javascript
 // 原生方法
 var today = Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
+Date.parse(1234567890000);	// 时间戳直接转换为Date
 today.setTime(today.getTime() - 24*60*60*1000); // 获取昨天的时间
 today.setDate(today.getDate() - 1);	// 也可以直接对年月日时分秒进行加减操作，这也是获取昨天的时间
 today.getYear();	// 21
