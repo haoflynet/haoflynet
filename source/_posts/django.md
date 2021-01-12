@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2020-11-15 15:01:00
+updated: 2021-01-11 15:01:00
 categories: python
 ---
 # Django教程
@@ -410,6 +410,17 @@ Blog.author.through.objects.filter(author = author.id).delete()  # 删除多对�
 
 ### 数据约束
 #### ForeignKey
+
+- 如果是面向用户的数据最好别在数据库层面使用强制的外键约束，如果仅仅是在model中定义倒没啥
+
+  ```shell
+  CASCADE # 默认选项，级联删除
+  PROTECT	# 保护模式，删除时候会报错ProtectedError
+  SET_NULL # 置空，删除的时候，外键字段被设置为空
+  SET_DEFAULT	# 删除时设置为默认值
+  SET()	# 自定义一个值
+  ```
+
 例如：
 
 ```python

@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-01-06 23:03:30
+updated: 2021-01-11 23:03:30
 categories: system
 ---
 # Linux手册
@@ -1196,3 +1196,31 @@ date+\%Y-\%m-\%d   # 获取今天的日期
 - **`rm -rf`删除目录的时候报错: 目录非空**: 检查一下是否有进程在占用目录，或者目录下是否有一些隐藏的状态文件
 
 - **spawn command not found**: `spawn`命令必须在安装`except`之后，并且不能在`/bin/bash`中使用，只能在`!/usr/bin/expect`中使用
+
+- **Linux mint20安装向日葵报错`grep: /etc/upstream-release: 是一个目录 `**: 这是因为`sunlogin`没有获取到正确的系统版本，可以这样做:
+
+  ```shell
+  # 想将判断版本的几个文件做个备份
+  sudo mv /etc/os-release /etc/os-release.bak
+  sudo mv /etc/issue /etc/issue.bak
+  sudo mv /etc/upstream-release/ /etc/bak
+  
+  # vim /etc/os-release，写入如下信息
+  NAME="Linux Mint"
+  VERSION="20 (Ulyana)"
+  ID=linuxmint
+  ID_LIKE=ubuntu
+  PRETTY_NAME="Linux Mint 20"
+  VERSION_ID="20"
+  HOME_URL="https://www.linuxmint.com/"
+  SUPPORT_URL="https://forums.ubuntu.com/"
+  BUG_REPORT_URL="http://linuxmint-troubleshooting-guide.readthedocs.io/en/latest/"
+  PRIVACY_POLICY_URL="https://www.linuxmint.com/"
+  VERSION_CODENAME=ulyana
+  UBUNTU_CODENAME=foca
+  
+  # /etc/issue，写入如下信息
+  Ubuntu 18.04 LTS \n \l
+  ```
+
+  
