@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2020-06-10 18:40:00
+updated: 2021-01-12 18:40:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -329,3 +329,13 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
 - **容器内部无网络**: 首先可以使用`--net=host`使用主机的网络来检查是否是容器内部的网络问题，如果使用该参数依然无法访问网络，那么使用`ping`直接`ping`IP地址，如果IP通但是域名不通，那就是dns的问题，去查看一下容器的dns配置，一般目录是在`/etc/resolv.conf`
 
 - **exited with code 0** 容器没有任何报错就退出，日志也没有。有可能是因为该镜像的启动命令不是`daemon`方式，容器启动完成后立马就退出了，这个时候可以参照上面的`-t`或者`docker-compose`里面的`tty: true`进行设置
+
+- **启动docker出现错误Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock dial unix /var/run/docker.sock: connect: permission denied**: 可能权限有问题，可以这样修复:
+
+    ```shell
+    sudo groupadd docker
+    sudo usermod -aG docker ${USER}
+    # 然后该用户重新登录即可
+    ```
+
+    

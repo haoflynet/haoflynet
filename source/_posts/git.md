@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2020-09-20 11:21:00
+updated: 2021-01-12 11:21:00
 categories: tools
 ---
 # Git指南
@@ -30,6 +30,7 @@ git config --global --unset user.name
 git config --global --unset user.email
 git config user.email "x@xx.com"    # 在仓库里面单独设置
 git config user.name "xx"
+git config core.editor vim	# 设置git的默认编辑器，不然在某些系统里面会用nano，不会用
 
 # 生成密钥
 ssh-keygen -t rsa -C "haoflynet@gmail.com"
@@ -402,4 +403,5 @@ fi
 
 
 - **Unable to append to .git/**: 可能是因为当前目录存在当前用户无权访问的文件或文件夹，可以使用`ls -al`查看文件夹权限，然后使用`chown`改变目录所属用户
+- **git rebase后在另外一端进行pull操作每次都会弹出编辑框**: 这是因为远端的仓库超前了几个commit，但是那几个commit已经不存在了，需要进行`git reset --hard ID`将分支切换到当前最新的head
 
