@@ -1,7 +1,7 @@
 ---
 title: "Django Form 表单系统"
 date: 2020-11-08 15:00:00
-updated: 2020-11-21 22:47:00
+updated: 2021-01-12 09:47:00
 categories: python
 ---
 
@@ -52,6 +52,7 @@ class PostForm(forms.ModelForm):
               "class": "my-class custom-class"
               "placeholder": "设置placeholder"
             }),
+          	"description": forms.Textarea(attrs={"rows": 1, "cols": 20})	# 设置textarea的默认行数和列数
         }
 
     def __init__(self, *args, **kwargs):

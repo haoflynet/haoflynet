@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-01-11 22:18:00
+updated: 2021-01-12 09:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -1003,6 +1003,24 @@ _.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
        ) {
   		return false;
   	}
+  });
+  ```
+  
+- **上传图片后实时预览图片**
+
+  ```javascript
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('#file').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  
+  $("#img_preview").change(function() {
+    readURL(this);
   });
   ```
   
