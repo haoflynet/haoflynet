@@ -1,7 +1,7 @@
 ---
 title: "Django Admin 后台管理系统"
 date: 2019-06-01 00:00:00
-updated: 2021-01-11 15:32:00
+updated: 2021-01-12 15:32:00
 categories: 编程之路
 ---
 
@@ -317,13 +317,13 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
    
      ```python
      admin.site.unregister(ThirdModel)
-     
-     ```
-   # 而如果要修改第三方的管理类，可以这样做，重新注册一个新的类
+       
+     #而如果要修改第三方的管理类，可以这样做，重新注册一个新的类
      class NewThirdModel(ThirdModel):
-       pass
+     		pass
      admin.site.register(ThirdModel, NewThirdModel)
      ```
-     
-     
-     ```
+
+## 推荐阅读
+
+- [Django admin cookbook](https://books.agiliq.com/projects/django-admin-cookbook/en/latest/introduction.html)

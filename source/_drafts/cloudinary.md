@@ -39,3 +39,21 @@ g_south_east
 o_90
 
 r_max
+
+
+
+
+
+
+
+django使用
+
+```
+image = CloudinaryField(
+    "Image",
+    overwrite=True,
+    resource_type="image",
+    transformation={"quality": "auto:eco"},
+    format="jpg",
+)
+```
