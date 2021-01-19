@@ -1,11 +1,20 @@
 ---
 title: "wordpressd 插件开发手册"
 date: 2020-10-18 10:26:00
-updated: 2020-11-09 11:56:00
+updated: 2021-01-11 22:56:00
 categories: php
 ---
 
 - 在本地开发的时候，由于有很多东西依赖于`cookie`，有些插件在写入`cookie`的时候可能没有判断服务端口导致无法写入`cookie`，功能无法正常使用，所以在开发和使用过程中最好用正常的`http`端口，即`80`或`443`
+
+- 开发时最好打开调试模式:
+
+  ```shell
+  # vim wp-config.php
+  define('WP_DEBUG', true);
+  define('WP_DEBUG_LOG', true);
+  define( 'SCRIPT_DEBUG', true);
+  ```
 
 ## 插件开发基本概念
 
@@ -131,5 +140,24 @@ $headers = array('Content-Type: text/html; charset=UTF-8');
 
 - 过滤钩子，接收一个值并在可能的修改后进行返回，必须返回传入的第一个参数
 
+## 接口
 
+### 添加自定义接口
+
+```php
+<?php
+
+function customFunc() {
+  return 'this is test';
+}
+
+function customRoute() {
+  register_rest_route('test/v1', 'custom', [
+    'methods'   => 'GET',
+    'callback'  => 'customFunc'
+  ] );
+}
+
+add_action( 'rest_api_init', 'customFunc');
+```
 

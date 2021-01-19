@@ -71,7 +71,7 @@ db.col.createIndex({"content": "text"})	# 在content字段上创建全文索引
 ### 查找数据
 
 ```shell
-db.col.find(query, projection)	# 其中第二个参数，是使用投影操作符指定返回的键
+db.col.find(query, {'createdAt': -1, 'name': 1})	# 其中第二个参数，指定哪些字段返回，不返回哪些字段
 db.col.find()	# 返回所有数据
 db.col.find().pretty()	# 返回格式化后的json数据
 db.col.find().limit(10)	# limit操作

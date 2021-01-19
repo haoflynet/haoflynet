@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2020-10-05 15:11:11
+updated: 2021-01-11 15:11:11
 categories: Javascript
 ---
 
@@ -16,7 +16,7 @@ npm install --save-dev sequelize-cli	# 安装命令行工具npx
 ## 模型定义
 
 ```javascript
-const Post = app.model.define('post', {
+const Post = sequelize.define('post', {
     id: {
       autoIncrement: true,
       primaryKey: true,
@@ -37,7 +37,7 @@ const Post = app.model.define('post', {
 // 定义模型关系
 Post.associate = () => {
   Post.User = Post.belongsTo(app.model.Post, { foreignKey: 'post_id', as: 'Post' }),
-  Post.PostOwn = User.belongsTo(app.model.Post, {'foreignKey': 'id', as: 'PostOwn'})	// 古国要与当前表自身做join等操作，那么也需要定义一个与自身的关联
+  Post.PostOwn = User.belongsTo(app.model.Post, {'foreignKey': 'id', as: 'PostOwn'})	// 如果要与当前表自身做join等操作，那么也需要定义一个与自身的关联
 }
 ```
 
