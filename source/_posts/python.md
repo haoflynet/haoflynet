@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2020-11-07 10:36:30
+updated: 2021-01-12 09:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -84,6 +84,14 @@ A.T @ A			# @矩阵乘法
 [x*x for x in range(10)]	# 列表推导，得到的是一个数组
 (x*x for x in range(10))	# 列表推导，得到的是一个迭代器
 ```
+#### 元组tuple
+
+```python
+a = ('1', )
+b = '2'
+a + (b,)	# 元组中添加元素
+```
+
 #### 字符串
 
 ```python
@@ -1451,6 +1459,28 @@ conn.close()	# 关闭连接
     ```
 
 - **from Crypto.Cipher import AES报错No module named 'Crypto'**: 卸载`pycrypto`直接安装`pycryptodome`
+  
+- **安装完fabric但是执行却报错: no module named fabric.api **可以尝试这样解决:
+  
+  ```shell
+  pip uninstall fabric
+  pip install fabric3
+  ```
+  
+- **mac安装pillow**  :
+  
+  ```shell
+  xcode-select --install
+  brew install libjpeg
+  pip install Pillow
+  ```
+  
+- **ModuleNotFoundError: No module named 'pip._internal'**: 可以尝试用这种方法:
+  
+  ```shell
+  sudo pip install --upgrade pip
+  pip3 install --user --upgrade pip	# 或者
+  ```
   
 - **`Click will abort further execution because Python 3 was
     configured to use ASCII as encoding for the environment.`**: 错误原理见[click](https://click.palletsprojects.com/en/7.x/python3/)，设置一下系统的语言就好了:
