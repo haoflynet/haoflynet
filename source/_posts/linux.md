@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-01-11 23:03:30
+updated: 2021-01-29 23:03:30
 categories: system
 ---
 # Linux手册
@@ -32,6 +32,8 @@ yum groupinstall "Development Tools"	# 安装gcc等基本开发工具
 <!--more-->
 
 #### shell
+
+- 一次执行多条命令可以使用`&&`连接，但是如果要使后面的命令即使报错也执行可以使用`||`
 
 ```shell
 # shell配置文件的区别
@@ -809,6 +811,7 @@ smbget -R smb://host/path	# 如果要递归下载文件夹，可以这样子使�
 ```shell
 cd -	# 返回上一次的目录，真他妈实用
 history	# 查看历史命令，如果需要查看命令执行时间，需要先export HISTTIMEFORMAT='\%F \%T '。如果要直接执行某个序号的命令，直接!n就好了
+history -c	# 清除所有的命令历史
 tzselect	# 更改时区
 dpkg-reconfigure tzdata	# 上面那个不行的时候可以用这个
 ntpdate	# 如果连时间戳都不对，那么用这个工具来同步时间

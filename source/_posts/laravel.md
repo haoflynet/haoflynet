@@ -74,12 +74,22 @@ app()->environment()
 
 #### Restful资源控制器
 
-资源控制器可以让你快捷的创建 RESTful 控制器。通过命令`php artisan make:controller PhotoController`创建一个资源控制器，这样会在控制器`PhotoController.php`里面包含预定义的一些Restful的方法
-Route::resource('photo', 'PhotoController');
+- 资源控制器可以让你快捷的创建 RESTful 控制器
+
+- 通过命令`php artisan make:controller PhotoController --resource`创建一个资源控制器，这样会在控制器`PhotoController.php`里面包含预定义的一些Restful的方法
+  `Route::resource('photo', 'PhotoController')`;
+- 通过命令`php artisan make:controller PhotoController --resource --model=Photo`可以直接将其与Model绑定
 
 ```php
+Route::resource('photo', 'PhotoController', ['only' => ['index', 'show']]);	// 仅暴露某几个路由
+Route::resource('photo', 'PhotoController', ['except' => ['create', 'store']]); // 排除指定路由
+Route::apiResource('photo', 'PhotoController');	// API路由，和resource差不多，只是少了create和edit几个和HTML有关的路由
+Route::resource('photo', 'PhotoController', ['names' => [
+  'create' => 'photo.createa'	// 资源路由命名
+]])
+
+
 # 嵌套资源控制器
-# 例如
 Route::resource('photos.comments', 'PhotoCommentController');
 # 这样可以直接通过这样的URL进行访问photos/{photos}/comments/{comments}
 # 控制器只需要这样子定义即可

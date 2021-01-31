@@ -1,7 +1,7 @@
 ---
 title: "Laravel 请求与响应"
 date: 2020-09-06 22:29:00
-updated: 2020-12-27 10:32:00
+updated: 2021-01-22 10:32:00
 categories: php
 ---
 
@@ -41,7 +41,7 @@ $request->url();	// 不包含请求参数的完整url
 $request->method();
 $request->isMethod('post');// 判断请求方法
 
-$request->route()	# 通过request获取Route对象
+$request->route();	# 通过request获取Route对象
 
 $request->cookie('name'); // 获取cookie，同Cookie::get('name');
 
@@ -49,7 +49,11 @@ $request->cookie('name'); // 获取cookie，同Cookie::get('name');
 $request->merge([
   'keyword' => $request->search,
   'page' => 2
-])
+]);
+  
+// 判断请求类型
+request()->ajax(); // 判断请求是否是ajax请求
+request()->expectsJson(); 	// 判断客户端是否希望得到JSON响应
 ```
 
 <!--more-->

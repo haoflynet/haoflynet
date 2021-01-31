@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2020-01-05 17:33:00
+updated: 2020-01-21 10:33:00
 categories: database
 ---
 
@@ -70,6 +70,8 @@ db.col.createIndex({"content": "text"})	# 在content字段上创建全文索引
 
 ### 查找数据
 
+- 查询`_id`数据需要将字符串转换一下:`{_id: ObjectId('6008c69ecf118e2bfb1e4237')}`
+
 ```shell
 db.col.find(query, {'createdAt': -1, 'name': 1})	# 其中第二个参数，指定哪些字段返回，不返回哪些字段
 db.col.find()	# 返回所有数据
@@ -77,7 +79,7 @@ db.col.find().pretty()	# 返回格式化后的json数据
 db.col.find().limit(10)	# limit操作
 db.col.find().skip(10)	# 跳过前面10条数据
 db.col.find().sort({"age": 1})	# 按照某个字段进行排序，1表示升序，-1表示降序
-db.col.find({name:/abc/})	# 正则查找
+db.col.find({name:/.*abc.*/})	# 正则查找，LIKE查询
 db.col.find(			# or 查询
 	{
       $or: [
@@ -87,14 +89,20 @@ db.col.find(			# or 查询
 )
 db.col.find({"age": {$gt: 24}})	# 大于，响应的还有$gte大于等于，$lt小于，$lte小于等于
 db.col.find({"age": {$type: 2}})	# type操作符，找出type为字符串的数据，这个的话得去看对应关系了
-db.col.find({}, {"age": 1})	# projection中的inclusion模式，包含哪些键
-db.col.find({}, {"age": 0})	# projection中的exclusion模式，不包含哪些键
+
+
+# 查询是否存在
+db.users.find({'friends': {$exists: true}})	# 查询存在friends字段的用户
+db.users.find({'friends.0: {$exists: true}})	# 查询friends数组长度大于等于0的记录
 
 # 聚合查询
 db.col.aggregate(AGGREGATE_OPERATION)
 
 # 统计
 db.col.count({})	# 统计数量
+db.col.distinct('user_type')	# distinct操作，直接返回一个数组
+db.col.distinct('friends.user_type')	# 可以对子对象进行distinct
+db.col.distinct('friends.user_type', {gender: 'female'})	# 只distinct gender=female的friend
 ```
 
 ### 插入数据
@@ -116,8 +124,14 @@ db.collection.update(
 	}
 )
 
-# 例如
+# update + where
 db.col.update({'name': '123'}, {$set: {'title': 'Hello'}})	# 更新name=123的数据，将title更改为hello
+
+# 对结果进行特定的更新操作
+db.col.find({gender: 'male'}).forEach(function(obj){
+	obj.age = 10; 
+	db.col.save(obj)
+})
 
 # 通过传入的文档来替换已有的文档
 db.collection.save(

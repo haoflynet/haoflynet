@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2020-07-11 07:50:30
+updated: 2021-01-21 07:50:30
 categories: frontend
 ---
 # node.js教程
@@ -73,6 +73,54 @@ npm config set proxy=https://127.0.0.1:1080
 ```shell
 yarn add 包名	# 安装包
 npm install yarn@latest -g	# 升级yarn
+```
+
+## 使用Forever管理NodeJs应用
+
+- 生产环境最好使用`forever`工具管理`nodejs`进程
+- 直接使用`sudo npm install forever -g`进行安装
+
+### 配置文件
+
+- 通常会在项目目录中创建一个配置文件，例如:
+
+```javascript
+// pm2.config.js，启动时直接pm2 reload pm2.config.js --env dev
+module.exports = {
+  apps: [
+    {
+      name: 'project_name',
+      script: 'server.js',
+      instances: 1,
+      exec_mode: "cluster",
+      env: {
+        NODE_ENV: 'production',
+        logging: 'on'
+      },
+      env_staging: {
+        NODE_ENV: 'dev',
+        logging: 'on'
+      }
+    },
+  ]
+}
+```
+
+### forever常用命令
+
+```shell
+forever list	# 查看当前所有管理的服务
+forever stopall 	# 停止所有服务
+forever stop 服务ID	# 停止指定服务
+forever restartall	# 重启所有服务
+forever logs -f 服务ID	# 查看某个服务的日志
+
+# 下面这些命令一般用于非config文件启动方式
+forever server.js	# 直接启动进程
+forever start server.js	# 以daemon方式启动进程
+forever start -l /var/log/forever.log -a server.js	# 指定日志文件
+forever start -o /var/log/forever/out.log -e /var/log/forever/err.log -a server.js	# 分别指定日志和错误日志文件，-a表示追加
+forever start -w server.js	# 监听文件夹下所有文件的改动并自动重启
 ```
 
 ## TroubleShooting

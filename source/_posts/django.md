@@ -497,7 +497,7 @@ class Comment(models.Model):
 comment = MediaFile.objects.first()
 comment.content_object	# 这样可以获取该评论的目标，如果是商家则返回商家model，如果是用户则是用户model
 
-# 而如果要在评论对象那边反查，则可以在对象那边定义这样一个属性
+# 而如果要在评论对象那边反查(反向关联)，则可以在对象那边定义这样一个属性
 comments = GenericRelation(Comment)
 ```
 

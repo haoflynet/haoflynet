@@ -177,8 +177,8 @@ nextCloud是由ownCloud原班人马开发，而ownCloud目前已经进入到衰�
 
    ```mysql
    create database nextcloud; 
-   create user admin@'%' identified by 'test'; 
-   grant all privileges on nextcloud.'%' to admin@'%' identified by 'test';
+    create user nextclouduser@'%' identified by 'test';
+   grant all privileges on nextcloud.* to nextclouduser@'%' identified by 'test';
    flush privileges; 
    ```
 
