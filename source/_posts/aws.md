@@ -16,6 +16,8 @@ categories: Javascript
 
 #### 添加自定义指标
 
+<!--more-->
+
 - 需要在服务器安装aws CLI工具，不同操作系统安装方式见[Installing, updating, and uninstalling the AWS CLI version 2 on Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
 
 - 还需要编写自定以脚本，脚本如下:
