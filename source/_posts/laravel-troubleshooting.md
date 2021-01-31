@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2020-11-21 22:18:00
+updated: 2021-01-22 22:18:00
 categories: php
 ---
 
@@ -165,3 +165,6 @@ function my_asset($path, $secure = null){
 }
 ```
 
+#### oauth-private.key does not exist or is not readable
+
+重新生成一下密钥文件: `php artisan passport:keys`

@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2021-01-12 09:36:30
+updated: 2021-01-21 09:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -48,7 +48,6 @@ python3.3 get-pip.py
     print(n)
   ```
 
-- 
 
 #### 列表
 
@@ -319,6 +318,8 @@ random.getrandbits(100) # 获取100位随机数
 random.uniform(begin, end)  # 生成0到10的随机浮点数
 
 # 四舍五入
+math.ceil(10/3) = 4	# 向上取整
+math.floor(10/3)= 3	# 向下取整
 round(1.23, 1)   # 第二个参数表示保留几位小数
 format(x, '0.2f')  # 保留两位小数
 abs(-123)	# 获取绝对值
@@ -327,8 +328,6 @@ abs(-123)	# 获取绝对值
 14/3 = 4.666666666666667	# 精确除法
 14//3 = 4			# 取整，整除
 14%3 = 2  # 求余
-math.ceil(10/3) = 4	# 向上取整
-math.floor(10/3)= 3	# 向下取整
 
 # 生成一组数
 range(2)	// 生成[0, 1]
