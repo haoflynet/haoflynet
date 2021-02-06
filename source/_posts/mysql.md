@@ -1,10 +1,13 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2020-11-21 19:44:00
+updated: 2021-02-06 15:44:00
 categories: database
 ---
 ## 安装方法
+
+- `Mysql`与`MariaDB`[版本对应关系](https://mariadb.com/kb/en/system-variable-differences-between-mariadb-and-mysql/)
+
 **CentOS**：[使用包的方式安装最新MariaDB](https://mariadb.com/kb/en/library/binary-packages/)，CentOS安装client直接yum install mysql而不是client，而安装mysql则直接用`yum install -y mysql mysql-server mysql-dev mysql-devel`，CentOS7上已经用mariadb代替了mysql，这样子使用：
 
 ```shell
@@ -562,6 +565,12 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
   set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
   ```
 
+* **Syntax error or access violation: 1059 Identifier name is too long**: 原因是设置的键的名字的长度太长了，只需要将索引键的名字改短即可，laravel的migrate中这样指定
+
+  ```php
+  $table->unique(['field1', 'field2', 'field3', 'field4'], 'myfield');
+  ```
+  
 * **将逗号分割的字符串转换为Array的形式**: 
 
   ```mysql
