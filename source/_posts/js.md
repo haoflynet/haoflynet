@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-01-18 09:18:00
+updated: 2021-02-05 17:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -135,8 +135,11 @@ parseFloat(num) // 字符串转浮点数
 btoa(str);	// 字符串转换为base64
 atob(str);	// base64转换为字符串
 
-a = encodeURIComponent(uri);	// url编码
+a = encodeURI(uri);	// 会自动识别url中需要编码的地方
+b = decodeURI(uri); // url解码
+a = encodeURIComponent(uri);	// url编码，会对整个字符串编码，比如http://也会被编码
 b = decodeURIComponent(uri);	// url解码
+
 
 // 字符串格式化
 `我是${name}`;
@@ -726,6 +729,14 @@ _.flatMap([1, 2], duplicate);
 _.kebabCase('Foo Bar');	// => 'foo-bar'
 _.kebabCase('fooBar');	// => 'foo-bar'
 _.kebabCase('__FOO_BAR__');	// => 'foo-bar'
+```
+
+##### _.last
+
+- 获取数组的最后一个元素
+
+```javascript
+_.last(['a', 'b']);
 ```
 
 ##### map
