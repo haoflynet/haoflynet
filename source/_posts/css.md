@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2020-10-18 17:30:00
+updated: 2021-02-01 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -851,6 +851,21 @@ p::after {
 :-ms-input-placeholder {  
    color: brand-blue;
 }
+```
+
+#### 设置密码输入框的显示于隐藏
+
+- 通过修改`type`属性
+
+```javascript
+const password = document.querySelector('#password');
+
+$('input#password').on('click', function(e) {
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // 通过修改右边小眼睛的类来切换眼睛的展示
+    this.classList.toggle('fa-eye-slash');
+})
 ```
 
 #### 实现图片的等比例自动缩放

@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2020-12-29 16:10:00
+updated: 2021-02-01 16:10:00
 categories: frontend
 ---
 # Html
@@ -176,26 +176,26 @@ categories: frontend
 
 ## Canvas
 
-```js
-# 获取画布
+```javascript
+// 获取画布
 <canvas id="myCanvas" width="200" height="100"></canvas>
 var canvas = document.getElementById('myCanvas')
 
-# 画布属性
+// 画布属性
 canvas.width/canvas.height
 ctx.clearRect(0, 0, canvas.width, canvas.height): 清空画布
 
-# 设置图形的组合样式
-ctx.globalCompositeOperation = 'source-over';	# 默认source-over表示后画的覆盖先画的，destination-over表示后画的在下面，还有跟多的组合样式
+// 设置图形的组合样式
+ctx.globalCompositeOperation = 'source-over';	// 默认source-over表示后画的覆盖先画的，destination-over表示后画的在下面，还有跟多的组合样式
 
-# 画直线
+// 画直线
 var ctx = c.getContext('2d');
 ctx.strokeStyle = '#AAAAAA';
 ctx.moveTo(0, 0);
 ctx.lineTo(200, 100);
 ctx.stroke();
 
-# 画圆
+// 画圆
 var ctx = c.getContext('2d');
 ctx.fillStyle = 'green';
 ctx.beginPath();
@@ -203,13 +203,13 @@ ctx.arc(15, 15, 30, 0, 2 * Math.PI);
 ctx.closePath();
 ctx.fill();
 
-# 写字
+// 写字
 var ctx = c.getContext('2d');
 ctx.font = '30px Arial';
 ctx.fillText('Hello World', 10, 50);
 
-# 将canvas内容转换为图片
-var dt = canvas.toDataURL('image/png');	# 得到的值是图片的base64编码
+// 将canvas内容转换为图片
+var dt = canvas.toDataURL('image/png');	// 得到的值是图片的base64编码
 ```
 
 ## TroubleShooting
@@ -221,6 +221,8 @@ var dt = canvas.toDataURL('image/png');	# 得到的值是图片的base64编码
 * **`<a href="..." download></a> `可以直接将a标签的内容进行下载  **
 
 * `&nbsp`html中的空格
+
+* **浏览器无法显示HEIC格式的文件**: 从ios上传图片会自动转换为JPG格式，但是通过airdrop传送给mac，再通过safari从网页上传则是heic格式，浏览器默认不会展示，而是直接下载，导致无法显示HEIC格式的图片，可以在上传完成后进行格式转换，或者在input的accept属性指定哪些image格式允许
 
 * **网页视频或音频无法自动播放的问题**: 新版本的浏览器中，只有静音的网页视频可以自动播放，其他有音频的都无法自动播放(但是在微信或者qq这种应用内部自带的浏览器是允许自动播放的)。不过在[stackoverflow](https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome)上也找到一种在浏览器里有用的绕过方式(但是在手机浏览器中仍然不行): 
 
