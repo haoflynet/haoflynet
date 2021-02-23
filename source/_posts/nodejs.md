@@ -36,6 +36,8 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 #### Nvm
 
+- 可以通过`node -v > .nvmrc`将当前node版本限制在文件中，之后在当前目录只需要执行`nvm use`即可自动选择对应的版本
+
 可以通过`nvm`来同时使用多个`node`版本，mac上可以直接`brew install nvm`进行安装，安装完成后根据提示添加`sh`的`rc`文件，常用命令如下:
 
 ```shell
