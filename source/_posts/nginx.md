@@ -210,7 +210,9 @@ log_format '$remote_addr - $remote_user [$time_local] '
 
 ```nginx
 # my_format即是自己定义的日志格式别名
-log_format my_format '$http_x_forwarded_for - $remote_addr - $remote_user [$time_local] '
+# 返回真实IP
+# 记录upstream的响应时间
+log_format my_format '$http_x_forwarded_for - $remote_addr - $request_time - $upstream_response_time - $remote_user [$time_local] '
 						'"$request" $status $body_bytes_sent '
 						'"$http_referer" "$http_user_agent" "$gzip_ratio"'
 

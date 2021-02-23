@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2021-01-22 22:18:00
+updated: 2021-02-06 22:18:00
 categories: php
 ---
 
@@ -12,9 +12,11 @@ categories: php
 在`app/Http/Kernel.php`中，`$middleware`表示全局中间件，而`$routeMiddleware`表示针对某个路由的中间件，所以只需要把csrf在`$middleware`中注释掉，然后在`$routeMiddleware`中添加`'csrf' => 'App\Http\Middleware\VerifyCsrfToken'`
 如果要在某个路由上使用就这样：
 
-	Route::group(['middleware' => 'csrf'], function(){     // csrf保护的接口
-		Route::get('/', 'HomeController@index');
-	}
+```php
+Route::group(['middleware' => 'csrf'], function(){     // csrf保护的接口
+	Route::get('/', 'HomeController@index');
+}
+```
 
 ##### 针对某几个接口单独禁用csrf
 
@@ -54,7 +56,9 @@ $file->getSize();                  // 获取上传文件的大小
 
 需要给数据表设置可访问的字段，在Model里面
 
-	protected $fillable = array('字段1', '字段2');
+```php
+protected $fillable = array('字段1', '字段2');
+```
 
 #### php artisan db:seed出现`[ReflectionException] Claxx XXXTableSeeder dows not exist`错误
 这是因为新增加了文件但是composer没有感知到，需要先执行`composer dump-autoload`
@@ -168,3 +172,7 @@ function my_asset($path, $secure = null){
 #### oauth-private.key does not exist or is not readable
 
 重新生成一下密钥文件: `php artisan passport:keys`
+
+#### PackageManifest.php: Undefined index: name
+
+尝试删除`vendor`和`composer.lock`，然后重新`composer install`
