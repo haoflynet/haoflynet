@@ -79,3 +79,6 @@ db.collection("cities").where("state", "==", "CA")
     });
 ```
 
+##### TroubleShooting
+
+- **TypeError: instance.INTERNAL.registerComponent is not a function** 需要`npm install @firebase/app --save`
