@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-01-06 22:53:00
+updated: 2021-02-23 22:53:00
 categories: frontend
 ---
 ## 语法
@@ -13,6 +13,9 @@ categories: frontend
 <ul>
   <li *ngFor="let item of items; let i = index">
   	{{i}}:{{item}}
+  </li>
+    <li *ngFor="let item of map | mapToIterable">	<!--对于key value的map进行for循环遍历-->
+  	{{item.key}}:{{item.value}}
   </li>
 </ul>
 
