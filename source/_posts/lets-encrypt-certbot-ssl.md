@@ -1,7 +1,7 @@
 ---
 title: "使用certbot为Nginx一键配置Let's Encrypt SSL安全证书"
 date: 2018-06-16 21:32:00
-updated: 2021-01-22 14:00:00
+updated: 2021-02-01 14:00:00
 categories: server
 ---
 
@@ -13,17 +13,22 @@ categories: server
 
 ## Certbot配置
 
-首先，不得不说，`certbot`有几个不得不解决的依赖问题。
+~~首先，不得不说，`certbot`有几个不得不解决的依赖问题。~~
 
-1. `certbot`依赖的python2的`urllib3`库版本为1.21.1版本，如果已经安装了更高版本的`urllib3`库，那么降级吧`pip install urllib3==1.21.1`，[issue参考](https://community.letsencrypt.org/t/certbot-not-working-with-centos7-and-nginx/45646/2)
+1. ~~`certbot`依赖的python2的`urllib3`库版本为1.21.1版本，如果已经安装了更高版本的`urllib3`库，那么降级吧`pip install urllib3==1.21.1`，[issue参考](https://community.letsencrypt.org/t/certbot-not-working-with-centos7-and-nginx/45646/2)~~
 
-2. 如果python2的`requests`库版本小于2.6.0，那么自觉升级`pip install --upgrade --force-reinstall 'requests==2.6.0'`，[issue参考](如果requests<2.6.0那么强制升级。https://github.com/certbot/certbot/issues/5534)
+2. ~~如果python2的`requests`库版本小于2.6.0，那么自觉升级`pip install --upgrade --force-reinstall 'requests==2.6.0'`，[issue参考](如果requests<2.6.0那么强制升级。https://github.com/certbot/certbot/issues/5534)~~
 
 3. 接下来真正的安装过程:
 
    ```shell
+   # for ubuntu
+   add-apt-repository ppa:certbot/certbot && apt update
+   apt install certbot python3-acme python3-augeas python3-certbot python3-certbot-nginx python3-certbot-apache	# nginx和apache根据实际需要选择
+   
+   # for centos
    yum install epel-release -y && yum update -y
-   yum install python2-certbot-nginx -y
+   yum install certbot python3-acme python3-augeas python3-certbot python3-certbot-nginx python3-certbot-apache -y
    ```
 
 4. 确保你的nginx配置已经有配置域名，并且域名解析也已经指向该IP地址，域名能够通过80端口正常访问。
@@ -67,7 +72,7 @@ lrwxrwxrwx 1 root root 37 Jan 22 10:00 privkey.pem -> ../../archive/haofly.net/p
 zip letsencrypt.zip /etc/letsencrypt	# 将letsencrypt文件夹直接打包
 ```
 
-- 在新服务器傻姑娘执行以下命令
+- 在新服务器上执行以下命令
 
 ```shell
 cd /etc && unzip letsencrypt.zip	# 解压letsencrypt文件
@@ -85,7 +90,7 @@ certbot renew --dry-run	# 运行一次renew看看是否正常--dry-run表示只�
 
 ```shell
 certbot certificates	# 先查看当前有哪些域名，比如有haofly.net
-certbot --cert-name haofly.net -d haofly.net,2.haofly.net,3.haofly.net	# 需要注意的是必须把之前的给加上
+certbot --cert-name haofly.net -d haofly.net,2.haofly.net,3.haofly.net	# 需要注意的是必须把之前的给加上，如果不加某个域名也可以直接表示移除该域名
 ```
 
 ## Troubleshooting

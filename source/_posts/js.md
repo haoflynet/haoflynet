@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-02-05 17:18:00
+updated: 2021-02-23 17:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -46,6 +46,7 @@ Object.assign({}, {}); // 合并两个对象/合并两个字典
 Array.from('abc')	// 会得到['a', 'b', 'c']
 Array.from(['abc', 'def']) // 会得到['abc', 'def']
 Array.from([1, 2], x => x+ x) // 会得到[2, 4]
+Array.from({length:10},(item, index)=> index+1)	// 快速生成指定长度的数组
 
 arrA.concat(arrB)			// 合并两个数组
 arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1
@@ -509,7 +510,10 @@ $('#myModal').on('hide', function () {});
 document.cookie					// 当前cookie
 document.cookie = 'abc=123';		// 添加cookie，注意这是添加，不是设置
 document.cookie = 'abc=123; expires=' + date.toGMTString() + ';'	// 设置过期时间
-window.location.href 			// 获取当前的url
+window.location.href 			// 获取当前的url，例如 https://haofly.net/js/index.html?abc=def
+window.location.pathname	// 例如 /js/index.html
+window.location.origin	// 例如 https://haofly.net
+window.location.hostname	// 例如 haofly.net
 window.lcoation.href = 'url'	// 跳转到某个url
 document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
 location.reload()				// 刷新当前页面
