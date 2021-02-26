@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-02-23 17:18:00
+updated: 2021-02-25 11:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -60,6 +60,7 @@ arr.unshift(obj)	// 在数组头添加元素
 arr.shift(obj)		// 去除数组头部元素
 arr.slice(start, end) // 数组分片
 arr.slice(-1)[0] // 获取数组最后一个元素
+arr.sort()	// 自动对数组进行排序，可以提供一个比较函数arr.sort(function (a, b) {return a>b})
 arr instance of Array	// 判断是否是数组
 arr.filter(Boolean)	// 快速移除所有"false"类型(false、null、undefined等)的元素
 
@@ -679,7 +680,7 @@ _.camelCase('__FOO_BAR__');	// => 'fooBar'
 
 ##### every
 
-必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`
+必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`. 有个妙用就是在实现在forEach中break的功能
 
 ##### filter
 

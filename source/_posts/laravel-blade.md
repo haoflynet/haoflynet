@@ -1,7 +1,7 @@
 ---
 title: "Laravel Blade模板引擎"
 date: 2020-09-17 22:38:00
-updated: 2020-10-18 16:02:00
+updated: 2021-02-25 16:02:00
 categories: php
 ---
 
@@ -144,5 +144,11 @@ categories: php
   	@include('child')	// 引入子视图，子模板会和父模板共享变量
   	@include('child', ['data' => []])	// 可以传递额外的变量给子模板
 @endsection
+```
+
+## Vue component
+
+```vue
+<my-component :user="{{ json_encode($user->toArray) }}"></my-component>	<!--传递值到vue component去-->
 ```
 

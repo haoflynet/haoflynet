@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2021-01-12 18:40:00
+updated: 2021-02-25 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -236,7 +236,14 @@ docker run --name mysql -e MYSQL_ROOT_PASSWORD=mysql -p 3306:3306 -d mysql:5.7.2
 ```shell
 docker run --name php-apache -v /Users/haofly/workspace/share/yangqing:/var/www/html -p 80:80 --link some-mysql:mysql -d b664eb500b48 # 这是php-apache，并且连接mysql容器,如果要安装mysql扩展需要在Dockerfile里面去安装
 ```
+### 在PHP容器中安装PHP扩展
+
+```shell
+docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql	# mysql扩展
+```
+
 ### CentOS容器
+
 ```shell
 docker run -it -v /Users/haofly/workspace/dbm:/share --name dbm -d index.alauda.cn/library/centos:centos6.6 /bin/bash
 docker run -it -v /Users/haofly/workspace/share:/share --name salt_client --privileged 750109855bc0 /usr/sbin/init	# 对于7.x，如果想在容器里执行systemctl，需要添加privileged参数，并且后面应该用init
@@ -257,6 +264,12 @@ docker run -it -v /Users/haofly/workspace:/workspace -p 4000:4000 -p 4001:4001 -
 docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro  --name nginx-proxy jwilder/nginx-proxy:latest
 
 docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # 通过-e VIRTUAL_HOST指定域名，然后把该域名加到hosts里面127.0.0.1  dev.haofly.net，即可访问了，连nginx的配置都不用改
+```
+
+### Postgres容器
+
+```shell
+docker run --name postgres -e POSTGRES_PASSWORD=the_password -p 5432:5432 -d postgres
 ```
 
 ## TroubleShooting
