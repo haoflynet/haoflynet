@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-02-06 15:44:00
+updated: 2021-02-25 09:44:00
 categories: database
 ---
 ## 安装方法
@@ -249,6 +249,13 @@ UPDATE `user` SET `money` = `money` + 50 WHERE `id`=1 AND `money`=50;	# 在更�
 ```
 
 然后在更新操作执行完成后获取影响的行数，如果影响行数为0，表示更新操作不起作用，版本已经发生变化，这时候就需要用户自己去抛错或者编写重试逻辑(重试的时候会重新获取字段值即版本号)。
+
+### 存储过程/函数
+
+```mysql
+DROP PROCEDURE name;	# 删除存储过程
+DROP FUNCTION name;	# 删除函数
+```
 
 ### 事务
 
@@ -571,6 +578,12 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
   $table->unique(['field1', 'field2', 'field3', 'field4'], 'myfield');
   ```
   
+* **SQLSTATE[22007]: Invalid datetime format: 1292 Truncated incorrect DOUBLE value: ''**： 可能是把一个整数用在了`varchar`上，例如`where name = 123456`，其中`123456`没有打引号而是直接作为整数在查询
+
+* **Invalid datetime format: 1292 Incorrect datetime value: '1602554081'**: 应该是在`TIMESTAMP`类型的字段上真的传入了一个`TIMESTAMP`，应该传入例如`2020-02-22 22:22:22`这样的字符串
+
+* **mysqldump 出现 Unknown table 'COOLUMN_STATISTICS' in information_schema**: 只需在`mysqldump`添加参数`--column-statistics=0`
+
 * **将逗号分割的字符串转换为Array的形式**: 
 
   ```mysql
