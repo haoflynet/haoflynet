@@ -34,8 +34,10 @@ $request->missing('name'); // 不包含
 // 获取请求地址
 $request->path();	// 获取请求路径，例如https://domain.com/foo/bar就会返回foo/bar
 $request->is('admin/*'); // 正则匹配请求路径
-$request->fullUrl(); // 包含请求参数的完整url
-$request->url();	// 不包含请求参数的完整url
+$request->fullUrl(); // 包含请求参数的完整url，例如https://dmoain.com/foo/bar?abc=def
+$request->url();	// 不包含请求参数的完整url，例如https://dmoain.com/foo/bar
+$request->root();	// 获取域名部分，包括http，例如https://domain.com
+$request()->getHost(); // 获取纯域名部分，例如domain.com
 
 // 获取请求方法
 $request->method();

@@ -1,6 +1,7 @@
 ---
 title: "Mongoose 使用手册"
 date: 2021-01-10 14:40:00
+updated: 2021-02-26 08:01:00
 categories: Javascript
 ---
 
@@ -23,9 +24,10 @@ var UserSchema = new Schema(
         type: Date,
         default: Date.now
       },
-      friends: [	// 可以直接用.populate查出关联对象
-        Schema.Types.ObjectId
-      ],
+      friends: [{	// 可以直接用.populate查出关联对象
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }],
       father: {
         type: mongoose.Schema.Types.ObjectId,
     		ref: 'User'
@@ -40,7 +42,9 @@ var UserSchema = new Schema(
         index: true		// 定义某个字段为索引
       }
     }, {
-      collection: "自定义collection名称"
+      collection: "自定义collection名称",
+      toJSON: {virtuals: true},
+      toObject: {virtuals: true}
     }
 )
 UserSchema.index({name: 1, type: -1}); // 在最后指定索引
@@ -171,6 +175,8 @@ const UserSchama = new Schema({...}, {
 ```
 
 ## 数据库操作
+
+- **对象的ID字段是ObjectID类型，不能直接用于String的比较，可以使用user.userId.equals()方法来进行比较**，这一点有点迷，有些时候可以有些时候不行
 
 ### 查询记录
 
@@ -348,11 +354,10 @@ MySchema.pre('save', async function() {
 ```javascript
 // 在find后进行populate
 MySchema.post('find', async function(docs) {
-  for (let doc of docs) {
-    if (doc.isPublic) {
-      await doc.populate('user').execPopulate();
-    }
-  }
+	await Promise.all(docs.map(async (doc) => {
+    doc.field1 = 'value'
+    await doc.save()
+  }))
 });
 MySchema.post('findOneAndUpdate', function(doc) {})
 MySchema.post('findOneAndRemove', function (doc) {})
@@ -400,3 +405,4 @@ MySchema.post('validate', function(doc){})
 ## TroubleShooting
 
 - **mongoose create的时候怎么也拿不到返回的id**: 可能是在给`create`的参数中传入了`id=null`的值，导致程序没有从数据库获取而是直接返回的传入值null
+- **"co" is not defined**: `co`是另外一个库的东西`const co = require('co')`

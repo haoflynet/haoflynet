@@ -1,7 +1,7 @@
 ---
-ptionstitle: "Laravel 手册"
+title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2020-12-28 10:58:00
+updated: 2021-02-03 22:58:00
 categories: php
 ---
 # Laravel指南
@@ -322,6 +322,7 @@ public function up()
       	$table->dropUnique('users_email_unique');	// 移除唯一索引
       	$table->dropIndex('geo_state_index');		// 移除基本索引
       	$table->timestamp('created_at')->useCurrent();
+        $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
       	$table->timestamp('deleted_at')->nullable();
     });
 }

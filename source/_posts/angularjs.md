@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-01-06 22:53:00
+updated: 2021-02-24 22:53:00
 categories: frontend
 ---
 ## 语法
@@ -13,6 +13,9 @@ categories: frontend
 <ul>
   <li *ngFor="let item of items; let i = index">
   	{{i}}:{{item}}
+  </li>
+    <li *ngFor="let item of map | mapToIterable">	<!--对于key value的map进行for循环遍历-->
+  	{{item.key}}:{{item.value}}
   </li>
 </ul>
 
@@ -79,3 +82,16 @@ describe('test haofly"s function', () =>{
 });
 ```
 
+##### TroubleShooting
+
+- **Cannot read property 'stringify' of undefined**: 在模板中无法直接使用`JSON`等原生对象，可以在`constructor()`中传入:
+
+  ```javascript
+  public constructor() {
+    this.JSON = JSON;
+  }
+  ```
+
+- **can't bind to 'ngSwitchWhen' since it isn't a known property of 'template'**: `ngSwitchWhen`已经被`ngSwitchCase`替代了
+
+- **ng: command not found**: `npm install -g @angular/cli@latest`

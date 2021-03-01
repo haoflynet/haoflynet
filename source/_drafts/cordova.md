@@ -38,6 +38,6 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
 ## TroubleShooting
 
-
+- **应用启动一直白屏**: 网上有很多解决方法，都试过，我最后的解决方法是把系统语言切换成英文解决了
 
 pod not found
