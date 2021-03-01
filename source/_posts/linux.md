@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-01-29 23:03:30
+updated: 2021-02-23 17:03:30
 categories: system
 ---
 # Linux手册
@@ -573,6 +573,21 @@ firewall-cmd --list-all-zones	# 查看都有哪些区域，默认有下面这些
 ## work，工作区域，只能定义内部网络
 ```
 
+##### 命令行获取自己的公网IP地址
+
+```shell
+# IPv4地址
+curl ipinfo.io/ip
+curl api.ipify.org
+curl ipecho.net/plain
+
+# 获取IPv6地址
+curl -6 icanhazip.com
+curl bot.whatismyipaddress.com
+```
+
+
+
 ##### Dns设置及常用DNS
 
 ```shell
@@ -673,6 +688,9 @@ service rsyslog restart		# 重启rsyslog
 # 查看所有用户的定时任务信息
 /var/spool/cron/
 
+# 查看最近的定时任务执行列表
+systemctl list-timers
+
 20 23 * * * command >> /tmp/crontab 2>&1	# 将输出重定向
 ```
 
@@ -699,7 +717,7 @@ anonymous_enable=NO
 local_enable=YES
 chroot_local_user=YES
 service vsftpd restart
-local_root=/	# 这个选项可以修改默认的登录目录
+local_root=/	# 这个选项可以修改默认的登录目录，设置默认目录为/
 chkconfig vsftpd on 	# 开机启动
 
 # sftp修改默认登录目录，vim /etc/ssh/sshd_config
@@ -1201,6 +1219,8 @@ date+\%Y-\%m-\%d   # 获取今天的日期
 
 - **spawn command not found**: `spawn`命令必须在安装`except`之后，并且不能在`/bin/bash`中使用，只能在`!/usr/bin/expect`中使用
 
+- **vsftpd出现refusing to run with writable root inside chroot()**: 需要在`/etc/vsftpd/vsftpd.conf`设置`allow_writeable_chroot=YES`
+
 - **Linux mint20安装向日葵报错`grep: /etc/upstream-release: 是一个目录 `**: 这是因为`sunlogin`没有获取到正确的系统版本，可以这样做:
 
   ```shell
@@ -1225,6 +1245,15 @@ date+\%Y-\%m-\%d   # 获取今天的日期
   
   # /etc/issue，写入如下信息
   Ubuntu 18.04 LTS \n \l
+  ```
+
+- **linux系统变为了只读**
+
+  ```shell
+  mount	# 查看当前挂载了哪些磁盘，找到只读盘，例如/dev/sda1
+  unmount /dev/sda1
+  mount /dev/sda1 /boot
+  remouont -o rw,remount /boot
   ```
 
   
