@@ -1,7 +1,7 @@
 ---
 title: "Apache/Httpd手册"
 date: 2013-09-17 08:52:39
-updated: 2020-09-03 15:36:00
+updated: 2021-02-23 15:36:00
 categories: server
 ---
 ## Apache安装与配置
@@ -119,12 +119,13 @@ apachectl fullstatus	# 显示服务器完整的状态信息
 
 直接修改默认的配置文件`/etc/apache2/sites-available/default???`
 
-```tex
+```shell
 NamevirtualHost *:80		# 如果不加这一行，那么只有第一个会起作用
 
 <VirtualHost *:80>
 	DocumentRoot /var/www/html/test1
-	ServerName www.test1.com    
+	ServerName www.test1.com
+  Timeout 300	# Apache设置超时时间，默认是60秒，我发现在VirtualHost外面设置不起作用，这里配置才行
 </VirtualHost>
 
 <VirtualHost *:80>

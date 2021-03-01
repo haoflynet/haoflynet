@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2021-01-03 22:01:00
+updated: 2021-02-23 09:01:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -227,6 +227,24 @@ server {
 
 - 是一种以正则方式重写url的语法
 
+- 关于uri的变量
+
+  ```shell
+  $request_uri # 包含请求参数的原始uri，例如/nginx.php?id=123
+  $uri	# 不带请求参数的原始uri，例如/nginx.php
+  $document_uri	# 同上
+  $args	# 请求参数
+  $query_string	# 同上
+  $content_length
+  $content_type
+  $host
+  $http_cookie
+  $request_method
+  $scheme	# http或https
+  $server_name
+  $server_PORT
+  ```
+
 - 有如下几种重写类型:
   - **last**: 表示完成rewrite，浏览器地址栏URL不变。一般用在server和if中。不会终止匹配，新的url会重新从server匹配一遍。
   - **break**: 本条规则匹配完成后终止匹配，不再匹配后面的规则，浏览器地址栏URL不变。一般用在location中，会终止匹配，只会往下走，不会整个server重新匹配。
@@ -254,7 +272,7 @@ location /test {
     rewrite ^/admin/(.*)$ /$1 last;
   }
   location / {
-    try_files $uri $uri/ /index.php;
+    try_files $uri $uri/ /index.php;	# try_files指令回按顺序检查文件是否存在，返回第一个找到的文件或文件夹
   }
   
   location ~* \.php$ {
@@ -266,6 +284,25 @@ location /test {
   	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
   }
   ```
+
+#### 去掉uri中的一段
+
+- 例如用户访问`/abc/def.html`，我们将其重定向到`/def.html`
+
+```nginx
+# 方法一
+location ^~/abc/ {
+  proxy_pass http://abc/;	# 这里proxy_pass的结尾有/，将会把/abc/*后面的路径直接拼接到后面，实现了移除abc的效果
+}
+
+# 方法二
+location ^~/abc/ {
+  rewrite ^/abc/(.*)$ /$1 break;	# 将匹配到的路径作为第一个参数来重新匹配，下一次就不回进入location /abc了
+  proxy_pass http://abc;
+}
+```
+
+
 
 ### 配置nginx IP黑白名单
 

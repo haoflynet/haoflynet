@@ -1,16 +1,14 @@
 ---
 title: "LEMP: Linux, Nginx, MySQL, PHP环境"
 date: 2016-06-22 22:52:39
+updated: 2021-02-23 16:00:00
 categories: system
 ---
 # LEMP: Linux, Nginx, MySQL, PHP环境
 
-# 安装步骤
-
-CentOS 6.x
-
 ```shell
-yum install epel-release -y
+# 依赖安装
+yum install epel-release gcc automake autoconf libtool make gcc gcc-c++ glibc-y
 
 # MySQL
 yum install mysql-server -y
@@ -35,7 +33,18 @@ service nginx restart
 chkconfig --levels 235 mysqld on
 chkconfig --levels 235 nginx on
 chkconfig --levels 235 php-fpm on
+```
 
+### nginx配置php-fpm
 
+```nginx
+location ~ \.php$ {    
+  fastcgi_pass 127.0.0.1:9000;	# 端口方式
+  fastcgi_pass unix:/run/php/php7.0-fpm.sock;	# sodck方式
+  
+  fastcgi_index index.php;  
+  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  
+  include fastcgi_params;  
+}
 ```
 

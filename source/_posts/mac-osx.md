@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2020-09-06 22:04:00
+updated: 2021-02-18 22:04:00
 categories: system
 ---
 ## Mac自带截图功能
@@ -126,8 +126,8 @@ https://www.jianshu.com/p/ed4b1bfb57dc
    export LANG=en_US.UTF-8
    ```
 
-   
+- **autoreconf: command not found**: `brew install autoconf`
 
-   
+    
 
-   
+    

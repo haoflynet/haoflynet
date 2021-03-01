@@ -1,10 +1,40 @@
 ---
 title: "PHP http请求库Guzzle使用手册"
 date: 2018-05-14 10:32:00
+updated: 2020-02-24 11:00
 categories: php
 ---
 
-肯定是用的协程不是线程
+## Guzzle使用
+
+```php
+$client = new GuzzleHttp\Client();
+$res = $client->request('GET', 'https://api.github.com/user', [
+    'auth' => ['user', 'pass'],
+  	'query' => ['foo' => 'bar'],	// Query String
+]);
+
+// 获取响应结果
+$res->getStatusCode();	// 获取http status code
+$res->getHeader('content-type')[0];	// 获取content-type
+$res->getBody();	// 获取body，但是这里只是返回的是stream
+$res->getBody()->getContent();	// 获取String格式的返回
+json_decode($res->getBody());	// 获取JSON格式的返回
+```
+
+### Restful风格的请求
+
+```php
+$client->get('https://haofly.net/get');
+$client->delete('https://haofly.net/delete');
+$client->head('https://haofly.net/get');
+$client->options('https://haofly.net/get');
+$client->patch('https://haofly.net/patch');
+$client->post('https://haofly.net/post');
+$client->put('https://haofly.net/put');
+```
+
+
 
 
 

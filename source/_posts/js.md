@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-01-18 09:18:00
+updated: 2021-02-25 11:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -46,6 +46,7 @@ Object.assign({}, {}); // 合并两个对象/合并两个字典
 Array.from('abc')	// 会得到['a', 'b', 'c']
 Array.from(['abc', 'def']) // 会得到['abc', 'def']
 Array.from([1, 2], x => x+ x) // 会得到[2, 4]
+Array.from({length:10},(item, index)=> index+1)	// 快速生成指定长度的数组
 
 arrA.concat(arrB)			// 合并两个数组
 arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1
@@ -59,6 +60,7 @@ arr.unshift(obj)	// 在数组头添加元素
 arr.shift(obj)		// 去除数组头部元素
 arr.slice(start, end) // 数组分片
 arr.slice(-1)[0] // 获取数组最后一个元素
+arr.sort()	// 自动对数组进行排序，可以提供一个比较函数arr.sort(function (a, b) {return a>b})
 arr instance of Array	// 判断是否是数组
 arr.filter(Boolean)	// 快速移除所有"false"类型(false、null、undefined等)的元素
 
@@ -135,8 +137,11 @@ parseFloat(num) // 字符串转浮点数
 btoa(str);	// 字符串转换为base64
 atob(str);	// base64转换为字符串
 
-a = encodeURIComponent(uri);	// url编码
+a = encodeURI(uri);	// 会自动识别url中需要编码的地方
+b = decodeURI(uri); // url解码
+a = encodeURIComponent(uri);	// url编码，会对整个字符串编码，比如http://也会被编码
 b = decodeURIComponent(uri);	// url解码
+
 
 // 字符串格式化
 `我是${name}`;
@@ -506,7 +511,10 @@ $('#myModal').on('hide', function () {});
 document.cookie					// 当前cookie
 document.cookie = 'abc=123';		// 添加cookie，注意这是添加，不是设置
 document.cookie = 'abc=123; expires=' + date.toGMTString() + ';'	// 设置过期时间
-window.location.href 			// 获取当前的url
+window.location.href 			// 获取当前的url，例如 https://haofly.net/js/index.html?abc=def
+window.location.pathname	// 例如 /js/index.html
+window.location.origin	// 例如 https://haofly.net
+window.location.hostname	// 例如 haofly.net
 window.lcoation.href = 'url'	// 跳转到某个url
 document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
 location.reload()				// 刷新当前页面
@@ -672,7 +680,7 @@ _.camelCase('__FOO_BAR__');	// => 'fooBar'
 
 ##### every
 
-必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`
+必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`. 有个妙用就是在实现在forEach中break的功能
 
 ##### filter
 
@@ -726,6 +734,14 @@ _.flatMap([1, 2], duplicate);
 _.kebabCase('Foo Bar');	// => 'foo-bar'
 _.kebabCase('fooBar');	// => 'foo-bar'
 _.kebabCase('__FOO_BAR__');	// => 'foo-bar'
+```
+
+##### _.last
+
+- 获取数组的最后一个元素
+
+```javascript
+_.last(['a', 'b']);
 ```
 
 ##### map

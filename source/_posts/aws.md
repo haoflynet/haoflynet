@@ -1,6 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
+updated: 2021-02-19 08:40:00
 categories: Javascript
 ---
 
@@ -11,6 +12,14 @@ categories: Javascript
 ### 如何删除EC2实例
 
 - 先选中要删除的实例，Stop，再Terminate，这个时候虽然实例还在，但其实已经删除了，大概等个10分钟左右就没了
+
+### EC2实例扩容
+
+1. 首先先关机`Actions -> Instance State -> Stop`
+2. 进入卷管理: `Elastic Block Store -> Volumes`
+3. 选择需要更改的磁盘: `Modify Volume`，然后输入大小
+4. 重启实例，并进入终端
+5. 使用`df-h`查看当前磁盘容量
 
 ### EC2配置Cloudwatch
 
@@ -114,6 +123,16 @@ Block all public access
 
 ```
 
+## CodeDeploy/Pipeline
+
+- CodeDeploy日志位置: `/var/log/aws/codedeploy-agent/codedeploy-agent.log`
+- 部署日志位置: `/opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log`
+- `CodeDeply Agent`安装方式见https://docs.aws.amazon.com/zh_cn/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html
+
 ## 开发
 
 - [ 官方的js sdk](https://www.npmjs.com/package/aws-sdk)
+
+##### TroubleShooting
+
+- **InstanceAgent::Plugins::CodeDeployPlugin::CommandPoller: Missing credentials** : 需要重启一下agent: `sudo service codedeploy-agent restart`

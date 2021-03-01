@@ -1,11 +1,22 @@
 ---
 title: "Laravel Collection及helpers帮助方法汇总"
 date: 2020-09-05 16:00:00
-Updated: 2020-09-19 22:24:00
+Updated: 2021-02-25 22:24:00
 categories: php
 ---
 
 ## 帮助方法
+
+- Laravel中的帮助方法无法重写，如果要重写，只能自己单独写放在`app/helpers.php`里面去，还需要在`composer.json`中添加配置:
+
+  ```json
+  "autoload": {
+    ...
+    "files": [
+      "app/helpers.php"
+    ]
+  }
+  ```
 
 ### 数组和对象
 
@@ -127,6 +138,8 @@ Str::containsAll('This is my name', ['my', 'name']);// 是否包含全部
 ### 其它方法
 
 ```php
+base_path();	# 获取根目录
+
 # blank, 验证对象是否为空。filled和blank正好相反
 ## 下面是为true的情况
 blank('');

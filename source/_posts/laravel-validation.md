@@ -1,7 +1,7 @@
 ---
 title: "Laravel Validation数据校验"
 date: 2020-09-06 16:00:00
-updated: 2020-10-28 22:24:00
+updated: 2021-02-25 22:24:00
 categories: php
 ---
 
@@ -123,10 +123,12 @@ class MyRequest extends Request {
 - `bail`规则表示当遇到一个错误的时候立刻停止后面的校验
 
 
-```php
+```shell
 # 常用框架自带的认证类型
 active_url			# 该url一定能访问
+after_or_equal	# 相等或者之后，常常用于同时设置开始时间和结束时间的接口，例如after_or_equal:start_date表示当前的时间字段必须在start_date字段之后，after_or_equal:now表示与当前时间对比
 array				# 仅允许为数组
+before_or_equal	# 和after_or_equal相反
 between:min,max		# 介于最小值和最大值之间，两边都是闭区间，如果是数字，一定要先声明当前字段为integer
 boolean				# 必须是true,false,1,0,"1","0"
 date				# 必须是时间类型
