@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-02-25 11:18:00
+updated: 2021-03-01 11:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -1040,6 +1040,19 @@ _.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
   $("#img_preview").change(function() {
     readURL(this);
   });
+  ```
+  
+- **JS Input 延时触发**: 常用于autocomplete，不想每次都去查询接口，而是间隔很短时间去查询:
+
+  ```javascript
+  const timer = null;
+  
+  function onInputChange(){
+  	const value = document.getElementById("input").value;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      console.log(value);
+    }, 500);	// 做一个500毫秒的延时
   ```
   
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:

@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-01-03 22:47:21
+updated: 2021-03-01 22:47:21
 categories: php
 ---
 # PHP
@@ -151,6 +151,8 @@ list($id1, $name1) = $data[0]; // 和python有点像
 foreach ($data as [$id, $name]) {	// 循环中也能直接用
     // logic here with $id and $name
 }
+                      
+urlencode($str);	// url encode编码
 ```
 ### 数字
 ```php
