@@ -1,7 +1,7 @@
 ---
 title: "Mongoose 使用手册"
 date: 2021-01-10 14:40:00
-updated: 2021-02-26 08:01:00
+updated: 2021-03-01 15:01:00
 categories: Javascript
 ---
 
@@ -345,6 +345,8 @@ MySchema.pre('find', function() {
 
 // 保存前
 MySchema.pre('save', async function() {
+  this.isModified();	// 判断是否被更改
+  this.isModified('field'); // 判断某个字段是否被更改
   await doStuff();
 })
 ```

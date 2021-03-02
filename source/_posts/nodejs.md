@@ -132,6 +132,7 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 - **gyp: No Xcode or CLT version detected!**: 需要先安装`xcode`命令工具: `xcode-select --install`
 - **npm install结果被系统killed掉了**: 一般是内存不足，可以使用增加swap的方法，参考[Linux 手册](https://haofly.net/linux/index.html)
 - **ReferenceError: describe is not defined NodeJs**: 应该是`mocha`这个测试库报的错，安装它即可: `npm install mocha -g`
+- **wasm code commit Allocation failed - process out of memory**: 在Apple m1(apple silicon)上npm编译失败，可以尝试将`node`升级到`v15.3.0`及以上
 - **a promise was created in a handler but was not returned from it**: 通常是`bluebird`报错，函数没有正确地返回
 
 ##### 扩展阅读

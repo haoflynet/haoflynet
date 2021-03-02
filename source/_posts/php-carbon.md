@@ -1,7 +1,7 @@
 ---
 title: "PHP 使用Carbon扩展进行时间处理"
 date: 2019-05-31 18:32:00
-updated: 2021-01-06 17:47:00
+updated: 2021-02-23 17:47:00
 categories: php
 ---
 
@@ -29,6 +29,7 @@ Carbon::createFromTimeStamp(1545800000);
 $time->timestamp;	// 获取时间戳
 $time->year;
 $time->month;
+$time->format('F');	// 获取月份全称，例如February
 $time->day;
 $time->hour;
 $time->minute;
