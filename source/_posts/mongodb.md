@@ -130,7 +130,7 @@ db.col.update({'name': '123'}, {$set: {'title': 'Hello'}})	# 更新name=123的�
 # 对结果进行特定的更新操作
 db.col.find({gender: 'male'}).forEach(function(obj){
 	obj.age = 10; 
-	db.col.save(obj)
+	db.col.save(obj);
 })
 
 # 通过传入的文档来替换已有的文档
