@@ -1093,8 +1093,19 @@ _.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
       }
       return i + "th";
   }
-  ```
+```
+- **JS Input 延时触发**: 常用于autocomplete，不想每次都去查询接口，而是间隔很短时间去查询:
+
+  ```javascript
+  const timer = null;
   
+  function onInputChange(){
+  	const value = document.getElementById("input").value;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      console.log(value);
+    }, 500);	// 做一个500毫秒的延时
+  ```
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
   ```javascript

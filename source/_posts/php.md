@@ -153,6 +153,8 @@ list($id1, $name1) = $data[0]; // 和python有点像
 foreach ($data as [$id, $name]) {	// 循环中也能直接用
     // logic here with $id and $name
 }
+                      
+urlencode($str);	// url encode编码
 ```
 ### 数字
 ```php
