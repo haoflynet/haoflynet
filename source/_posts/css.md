@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-02-01 11:30:00
+updated: 2021-02-26 08:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -866,6 +866,19 @@ $('input#password').on('click', function(e) {
     // 通过修改右边小眼睛的类来切换眼睛的展示
     this.classList.toggle('fa-eye-slash');
 })
+```
+
+#### 防止元素多次点击出现蓝色边框
+
+```css
+body{
+	-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+}
+
+// 方法二：用js，需要在点击事件中return false
 ```
 
 #### 实现图片的等比例自动缩放

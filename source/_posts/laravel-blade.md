@@ -130,7 +130,7 @@ categories: php
 @extends('layout')	// 声明该模板继承自基本的layout.blade.php模板
 
 @section('title', 'Page Title')
-  
+
 @section('sidebar')
   @parent	// 可以直接使用父模版中的内容
   <p>This is appended to the master sidebar.</p>
