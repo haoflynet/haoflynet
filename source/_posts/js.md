@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-02-25 11:18:00
+updated: 2021-03-01 15:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -361,6 +361,8 @@ $('p').find('input')	// 查找input下的所有input元素
 $('p').last()		// 选择最后一个元素
 $('input:checked') 		// 查找所有checked为true的checkbox的input元素
 document.getElementById('test:abc')	// 有特殊字符的元素的查找，jquery往往无法处理过来
+
+$('select option[value="abc"]');	// 通过value获取select的option
 ```
 
 #### 同步等待元素存在可见
@@ -420,7 +422,7 @@ text = document.createTextNode('ppp');		// 创建内容
 ele.appendChild(text);					// 添加子元素
 ele.removeChild(text);
 ele.replaceChild(el1, el2);				// 替换子元素
-selection.innerHtml = '<option>a</option';	// 修改内部html内容
+selection.innerHtml = '<option>a</option>';	// 修改内部html内容
 parentElement.insertBefore(newElement, referenceElement);	// 插入子元素
 ele.classList.add("mystel", "secondClass");	// 给元素添加类
 ele.classList.remove('mystyle', 'secondClass');	// 给元素移除类
@@ -446,6 +448,7 @@ $('button').prop('disabled', true)	// 设置按钮不可点击disabled
 $('p').hide()	// 隐藏元素
 $('p').show()	// 显示元素
 $('img').attr('src', 'xxx')	// 改变元素的属性
+
 
 // video标签控制
 myVideo.play()	// 开始播放
@@ -516,6 +519,7 @@ window.location.pathname	// 例如 /js/index.html
 window.location.origin	// 例如 https://haofly.net
 window.location.hostname	// 例如 haofly.net
 window.lcoation.href = 'url'	// 跳转到某个url
+window.location.back() // 返回上一页
 document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
 location.reload()				// 刷新当前页面
 
@@ -718,6 +722,19 @@ _.flatMap([1, 2], duplicate);
 
 对数组中每一个值运用函数，但是无需返回值，只是单纯的遍历
 
+##### _.get
+
+- 获取对象内部的属性值
+
+```javascript
+_get(user, 'name', 'defaultvalue')
+_get(user, 'parent.name', 'devaultvalue')
+
+var object = { 'a': [{ 'b': { 'c': 3 } }] }
+_.get(object, 'a[0].b.c')	// 可以直接使用数组下标进行访问
+_.get(object, ['a', '0', 'b', 'c'])
+```
+
 ##### _.isMatchWith
 
 `isMatchWith(object, source, [customizer])`, 具有基本的isMatch功能，并且能添加`customizer`进行定制化的比较。判断source是否包含在object里，customizer返回true或者false。我fuck，这个函数只要source里面有key没在object，立马就返回false了，都不执行customizer的
@@ -815,6 +832,14 @@ _.toPath('a[0].b.c') // => ['a', '0', 'b', 'c']
 
 ```javascript
 _.uniq([1, 2, 2]) // 得到[1, 2]
+```
+
+##### upperFirst
+
+- 首字母大写
+
+```javascript
+_.upperFirst('abc') // Abc
 ```
 
 ##### _.xorWith
@@ -1040,6 +1065,34 @@ _.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
   $("#img_preview").change(function() {
     readURL(this);
   });
+  ```
+  
+- **select元素实现重复点击取消选择**
+
+  ```javascript
+  $('select option').on('click', function (e) {
+    this.selected = !this.selected;
+    e.preventDefault();
+  });
+  ```
+  
+- **添加英文数字索引前缀**：得到1st 2nd 3rd等
+
+  ```javascript
+  function ordinal_suffix_of(i) {
+      var j = i % 10,
+          k = i % 100;
+      if (j == 1 && k != 11) {
+          return i + "st";
+      }
+      if (j == 2 && k != 12) {
+          return i + "nd";
+      }
+      if (j == 3 && k != 13) {
+          return i + "rd";
+      }
+      return i + "th";
+  }
   ```
   
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
