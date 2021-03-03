@@ -103,7 +103,7 @@ Str::before('This is my name', 'my name'); // 'This is '
 Str::afterLast('App\Http\Controllers\Controller', '\\'); // 'Controller'
 Str::beforeLast('This is my name', 'is'); // 'This '
 
-Str::startsWith('This is my name', 'This'); // 以指定字符串开始
+Str::startsWith('This is my name', 'This'); // 以指定字符串开始，功能和其他语言的beginWith类似
 Str::endsWith('This is my name', 'name'); // 以字符串结束
 Str::is('foo*', 'foobar'); // 简单的正则匹配
 
