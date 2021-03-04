@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-11-07 22:35:00
+updated: 2021-03-02 22:35:00
 categories: js
 ---
 
@@ -244,6 +244,7 @@ document.body.clientWidth	// 获取屏幕宽度
 ### filter
 
 - 过滤器，如果直接写在组件的`script`中则是局部的
+- 在filter中无法使用上下文`this`，因为它设计来就仅仅是为了filter
 
 ```vue
 <template>

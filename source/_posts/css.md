@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-02-01 11:30:00
+updated: 2021-03-02 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -153,7 +153,7 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 
 ##### outline
 
-- 如果想要`Button`等点击后不出现蓝色的边框，可以把该属性设置为`none`
+- 如果想要`Button/Input`等点击后(获取焦点时)不出现蓝色的边框，可以把该属性设置为`none`
 
 ##### overflow
 
