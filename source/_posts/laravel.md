@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-02-03 22:58:00
+updated: 2021-03-01 08:58:00
 categories: php
 ---
 # Laravel指南
@@ -133,10 +133,9 @@ Route::group(['namespace' => 'Cron', 'middleware' => ['foo', 'bar']], function()
 });
 
 # 通过url向控制器传递参数
-这样定义url
 Route::resource('wei/{who}', 'WeixinController');
-然后在控制器里这样定义
-public function index($who)
+#然后在控制器里这样定义
+public function index($who){}
 
 # 嵌套资源控制器
 # 例如
@@ -146,6 +145,13 @@ Route::resource('photos.comments', 'PhotoCommentController');
 public function show($photoId, $commentId)
 # 如果要获取嵌套资源的url，可以这样子:
 route('post.comment.store', ['id'=> 12]) # 这样子就获取到id为12的post的comment的创建接口地址
+  
+# 通配路由
+Route::get('/{abc}', 'TestController@test');	// 会匹配所有之前路由匹配不到的路由，但是这样做可能会将nova等路由包含进来，如果想让这样的通配路由排除某些路由可以在app/Providers/RouteServiceProvider.php中添加排除
+public function boot() {
+  Route::pattern('abc', '^(?backend|nova-api|nova|nova-vendor).[a-zA-Z0-9-_\/]+$]');
+  parent::route();
+}
 ```
 
 #### 路由相关方法
@@ -297,6 +303,8 @@ class CreateApplicationsTable extends Migration
 当数据表定义完成过后，执行`php artisan migrate`即可在真的数据库建表了
 
 ```shell
+php artisan make:migration 操作名	# 生成迁移文件
+php artisan schema:dump	# 从数据库已有的表生成迁移文件
 php artisan migrate				# 建表操作，运行未提交的迁移
 php artisan migrate --path=databases/migrations/				# 运行指定目录下的迁移，这里无法指定具体文件，只能指定文件夹
 php artisan migrate:rollback 	# 回滚最后一次的迁移
@@ -310,7 +318,12 @@ php artisan migrate:refresh   	# 回滚所有迁移并重新运行所有迁移
 public function up()
 {
     Schema::table('users', function (Blueprint $table) {
-        $table->string('mobile', 20)->nullable()->after('user_face')->comment('电话号码')->change();  // 将mobile字段修改为nullable并且放在user_face字段后面，主要就是在后面加上change()方法
+        $table->string('mobile', 20)
+          ->nullable()
+          ->after('user_face')
+          ->comment('电话号码')
+          ->default('')
+          ->change();  // 将mobile字段修改为nullable并且放在user_face字段后面，主要就是在后面加上change()方法
       	$table->renameColumn('from', 'to');	// 重命名字段
       	$table->dropColumn('votes');		// 删除字段
       	$table->dropColumn(['votes', 'from']);// 删除多个字段
@@ -321,10 +334,18 @@ public function up()
       	$table->dropPrimary('users_id_primary');	// 移除主键
       	$table->dropUnique('users_email_unique');	// 移除唯一索引
       	$table->dropIndex('geo_state_index');		// 移除基本索引
-      	$table->timestamp('created_at')->useCurrent();
-        $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+      	$table->json('movies')->default(new Expression('(JSON_ARRAY())')); // 使用表达式
+      	$table->timestamp('created_at')->useCurrent();	// 使用当前时间
+        $table->timestamp('updated_at')->useCurrentOnUpdate(); // 更新时间
       	$table->timestamp('deleted_at')->nullable();
     });
+  
+  # 其他相关语法
+  Schema::hasTable('users'); // 是否存在某个表
+  Schema::hasColumn('users', 'email');	// 是否存在某个列
+  Shcema::rename($from, $to);	// 重命名表
+  Schema::drop('users');	// drop 表
+  Schema::dropIfExists('users');	// drop表
 }
 ```
 
@@ -339,8 +360,9 @@ class User extends Model{
   protected $connection = 'second';		// 设置为非默认的那个数据库连接
   protected $fillable = ['id', 'name']; // 设置可直接通过->访问或者直接提交保存的字段
   protected $table = 'my_flights';		// 自定义表明，默认的表明会以model的复数形式，需要注意的是，英语单词复数的变化有所不同，如果取错了表明活着以中文拼音作为表明，有时候就需要明确表的名称了
-  protected $appends = ['id2'];	// 有时候在转换模型到数组时，希望增加一个数据库不存在的字段，可以用这种方式增加
+  protected $appends = ['id2'];	// 有时候在转换模型到数组时，希望增加一个数据库不存在的字段，可以用这种方式增加，例如 ->toArray方法，->attributesToArray()方法，->toJson()方法
   protected $visible = ['id']; // 转换为数组的时候限制某些字段可见
+  protected $hidden = ['password'];
 }
 ```
 
@@ -651,6 +673,9 @@ DB::commit();
     
 # 复制
 $newUser = $user->replicate();$newUser->save();
+  
+# 特殊查询
+User::whereRaw('FIND_IN_SET(region_id, abc)')	# 实现FIND_IN_SET
 ```
 
 #### 查询缓存
@@ -1223,14 +1248,63 @@ public function report(Exception $e)
   php artisan test:test 
   ```
 
-- 定时任务
 
-  ```shell
-  # 如果将命令添加到定时任务中去，首先要在www用户下新建crontab
-  crontab -u www -e	# 添加如下一行
-  * * * * * php /data/www/html/furion/artisan schedule:run >> /dev/null 2>&1	# 需要注意的是laravel会将程序的错误输出重定向到/dev/null，即直接抛弃。这里的schedule:run只是所有任务的一个总的进程。它负责调度kernel.php里面定义的所有定时任务。而其他定时任务的错误输出同样会重定向到/dev/null，如果想要自定义输出可以这样做:
-  $schedule->command('test')->everyMinute()->appendOutputTo($fileCronLog);
-  ```
+#### 定时任务
+
+```php
+# 如果将命令添加到定时任务中去，首先要在www用户下新建crontab
+crontab -u www -e	# 添加如下一行
+* * * * * php /data/www/html/furion/artisan schedule:run >> /dev/null 2>&1	# 需要注意的是laravel会将程序的错误输出重定向到/dev/null，即直接抛弃。这里的schedule:run只是所有任务的一个总的进程。它负责调度kernel.php里面定义的所有定时任务。而其他定时任务的错误输出同样会重定向到/dev/null
+
+
+# 在kernel.php中定义定时任务
+class Kernel extends ConsoleKernel
+{
+    protected $commands = [
+        //
+    ];
+
+    protected function schedule(Schedule $schedule)
+    {
+      $schedule->command('test')
+        ->everyMinute()	// 每分钟执行
+        ->days([0, 3])	// 每周日和周三
+        ->days([Schedule::SUNDAY, Schedule::WEDNESDAY])	// 每周日和周三
+        ->between('7:00', '22:00')	// 仅在7:00至22:00之间执行
+        ->unlessBetween('23:00', '4:00')	// 在23:00至4:00之间执行
+        ->when(function () {return true;})	// 满足某个条件才执行
+        ->skip(function () {return true;})	// 满足某个条件就不执行
+        ->environments(['staging', 'production'])	// 传入环境变量
+        ->at('2:00')	// 在2:00执行
+        ->onOneServer()	// 仅在一台服务器执行
+        ->before(function(){})	// 任务执行前触发
+        ->after(function () {})	// 任务执行后触发
+        ->onSuccess(function () {})	// 任务成功后触发
+        ->onFailure(function () {}) // 任务失败后触发
+        ->pingBefore($url)	// 任务执行前ping指定url
+        ->thenPing($url)	// 任务执行后ping指定url
+        ->pingBeforeIf($condition, $url)
+        ->thenPingIf($condition, $url)
+        ->pingOnSuccess($url)
+        ->pingOnFailure()
+        ->emailOutputTo('haoflynet@gmail.com')	// 将输出日志传送至指定email
+        ->sendOutputTo($filePath)	// 输入日志
+        ->appendOutputTo($fileCronLog);	// append方式输出日志
+     
+      
+      // 直接定义简单的定时任务
+      $schedule->call(function () {
+        DB::table('recent_users')->delete();
+      })->daily();
+      
+
+      
+      $schedule->job(new Heartbeat)->everyFiveMinutes();	// 添加队列的定时任务
+      $shcedule->exec('node /home/forge/script.js')->daily();	// 添加命令行定时任务
+      $schedule->call('App\Http\Controllers\MyController@test')->everyMinute();	// 将控制器方法作为定时任务
+    }
+}
+```
 
 #### 缓存清理
 
@@ -1240,8 +1314,6 @@ php artisan route:clear
 php artisan config:clear
 php artisan view:clear
 ```
-
-
 
 ### 框架扩展/管理者/工厂
 

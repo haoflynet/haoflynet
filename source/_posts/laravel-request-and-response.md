@@ -1,7 +1,7 @@
 ---
 title: "Laravel 请求与响应"
 date: 2020-09-06 22:29:00
-updated: 2021-01-22 10:32:00
+updated: 2021-03-03 10:32:00
 categories: php
 ---
 
@@ -151,5 +151,19 @@ return response()->streamDownload(function () {
                 ->contents()
                 ->readme('laravel', 'laravel')['contents'];
 }, 'laravel-readme.md');
+```
+
+## Cookie
+
+- 默认在应用中获取的cookie都是解密后的cookie，返回给客户端的cookie都是加密后的，这一步是在`app/Http/Middleware/EncryptCookies.php`中做的
+
+```php
+$_COOKIE['name'];	# 获取未解密的cookie
+
+Cookie::has('name');	// 是否存在某个cookie
+Cookie::forget('name');	// 删除某个cookie
+
+// 排除指定的cookie不需要加解密，在 app/Http/Middleware/EncryptCookies.php中
+protected $except = ['key'];
 ```
 
