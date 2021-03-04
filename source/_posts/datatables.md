@@ -1,7 +1,7 @@
 ---
 title: "Js强大的表格插件Datatables配置指南"
 date: 2020-11-15 20:40:00
-updated: 2020-12-27 22:41:00
+updated: 2021-03-01 12:41:00
 categories: Javascript
 ---
 
@@ -149,7 +149,21 @@ table.on('row-reorder', function ( e, diff, edit ) {
 ## Datatables API
 
 ```javascript
-$('table').DataTable().ajax.reload();	// 手动重新请求ajax
+const datatable = $('table').DataTable();
+
+datatable.rows().data();	// 获取json格式的表格数据
+
+datatable.ajax.reload();	// 手动重新请求ajax
+datatable.clear();	// 清空表数据
+datatable.rows.add(data);	// 添加行
+datatable.draw();	// 更改表数据后重新绘制
+
+datatable.rows({search:'keyword'}).indexes(); // 搜索并返回搜索到的索引
+
+// 根据条件移除某条数据
+datatable.rows(function (index, data, node) {
+  return data[0] === 3;
+}).remove().draw();
 ```
 
 ## Datatables 服务端ajax接口

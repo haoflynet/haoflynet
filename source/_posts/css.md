@@ -868,6 +868,19 @@ $('input#password').on('click', function(e) {
 })
 ```
 
+#### 防止元素多次点击出现蓝色边框
+
+```css
+body{
+	-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+}
+
+// 方法二：用js，需要在点击事件中return false
+```
+
 #### 实现图片的等比例自动缩放
 
 ```css

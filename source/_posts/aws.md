@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-02-19 08:40:00
+updated: 2021-02-26 15:40:00
 categories: Javascript
 ---
 
@@ -56,6 +56,26 @@ crontab -e
 ```
 
 ## S3
+
+### 使用js sdk操作AWS3
+
+```javascript
+import AWS = require('aws-sdk')
+
+const config = {
+    accessKeyId: '',
+    secretAccessKey: '',
+    bucket: 'bucketName'
+}
+
+const s3Client = new AWS.S3(config)
+s3Client.getObject({
+  Bucket: config.bucket,
+  Key: 'object path'
+}).promise().then(result => {
+  console.log(result.Body)
+})
+```
 
 ### 开放S3桶的公共访问权限
 
@@ -122,6 +142,12 @@ Block all public access
 ]
 
 ```
+
+## RDS
+
+### MySQL
+
+- [开启创建存储过程的功能](https://aws.amazon.com/premiumsupport/knowledge-center/rds-mysql-functions/?nc1=h_ls)
 
 ## CodeDeploy/Pipeline
 
