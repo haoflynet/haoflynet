@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2021-02-18 22:04:00
+updated: 2021-03-02 08:04:00
 categories: system
 ---
 ## Mac自带截图功能
@@ -92,7 +92,13 @@ mackup uninstall# 将配置文件拷回原来的系统目录
 
 ## ios safari移动端真机调试
 
-https://www.jianshu.com/p/ed4b1bfb57dc
+https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-tool-43e095a735b4
+
+- 可用于调试`Cordova/Inoic/Phonegap`等hybrid项目
+
+1. ios移动端配置: `Settings -> Safari -> Advanced `, 打开`JavaScript`和`Web Inspector`
+2. mac上safari浏览器配置: `Preferences -> Advanced -> Show Develop menu in menu bar`
+3. 当连接上设备后就可以点击`Safari->Develop->iPhone`选择你的设备即可
 
 ## TroubleShooting
 
