@@ -1,7 +1,7 @@
 ---
 title: "Laravel Validation数据校验"
 date: 2020-09-06 16:00:00
-updated: 2021-02-25 22:24:00
+updated: 2021-02-26 22:24:00
 categories: php
 ---
 
@@ -144,6 +144,7 @@ json				# 必须是JSON字符串
 max:value			# 规定最大值
 min:value			# 规定最小值
 numeric				# 是数字
+nullable			# 非必填，可以为空
 required			# 必填
 required_if:anotherfield,value1,value2	# 当指定的anotherfield字段等于任何一个value时，此字段必填
 required_unless:anotherfield,value1,value2 # 当指定的anotherfield字段等于任何一个value时，此字段不用必填
