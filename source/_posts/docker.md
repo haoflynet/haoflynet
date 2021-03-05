@@ -235,6 +235,11 @@ docker run --name mysql -e MYSQL_ROOT_PASSWORD=mysql -p 3306:3306 -d mysql:5.7.2
 
 ```shell
 docker run --name php-apache -v /Users/haofly/workspace/share/yangqing:/var/www/html -p 80:80 --link some-mysql:mysql -d b664eb500b48 # 这是php-apache，并且连接mysql容器,如果要安装mysql扩展需要在Dockerfile里面去安装
+
+apt-get install libpng-dev -y && docker-php-ext-install gd	# 安装GD扩展
+apt-get install libzip-dev zlib1g-dev && docker-php-ext-install zip # 安装zip扩展
+apt-get install libxml2-dev && docker-php-ext-install xml # 安装xml扩展
+docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql	# 安装Mysql扩展
 ```
 ### 在PHP容器中安装PHP扩展
 

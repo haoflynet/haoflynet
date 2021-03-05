@@ -154,7 +154,7 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 
 ##### outline
 
-- 如果想要`Button`等点击后不出现蓝色的边框，可以把该属性设置为`none`
+- 如果想要`Button/Input`等点击后(获取焦点时)不出现蓝色的边框，可以把该属性设置为`none`
 
 ##### overflow
 

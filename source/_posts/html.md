@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2021-02-01 16:10:00
+updated: 2021-03-04 16:10:00
 categories: frontend
 ---
 # Html
@@ -67,6 +67,13 @@ categories: frontend
 
 ### form
 
+- 表单中如何设置数组:
+
+  ```html
+  <input type="text" name="users[1]['name']" />
+  <input type="text" name="users[2]['name']" />
+  ```
+  
 - 点击`submit`但是阻止`form`表单默认的`submit`行为:
 
   ```javascript

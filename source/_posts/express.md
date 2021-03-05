@@ -39,10 +39,23 @@ app.listen(3000, function () {
 ### 请求
 
 ``` javascript
-// 获取请求参数
+// 获取请求参数，比如访问的事http://192.168.1.1:6004/code?code=xxxxx
 req.query.name	// 获取get参数
 req.params.id 	// 获取路由中用冒号定义的参数
 req.body.name	// 获取POST参数
+
+req.url	// 例如：/?code=xxxxx
+req.originalUrl	// 例如：/code?code=xxxxx
+req.baseUrl	// /code
+req.path // 为什么是/，这里的path应该是指除去路由部分，比如app.use('/code')除去这部分
+req.get('host') // 192.168.1.1:6004
+```
+
+### 响应
+
+```javascript
+res.redirect(301, 'http://google.com')	// 301响应
+res.status(200).json({})	// JSON响应
 ```
 
 ## 路由
