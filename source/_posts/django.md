@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2021-01-11 15:01:00
+updated: 2021-03-04 15:01:00
 categories: python
 ---
 # Django教程
@@ -477,6 +477,12 @@ user_goods.objects.create(user=User.objects.create(), goods=Goods.objects.create
 
 #### OneToOneField
 必须是一对一，而不是多对一或一对多
+
+```python
+# 需要注意的是OneToOneField在反差的时候必须保证有数据存在，如果不存在则会报错RelatedObjectDoesNotExist，可以在使用的时候在封装一下
+def the_user(self):
+    return user if hasattr(self, 'user') else None
+```
 
 #### OneToDifferentModel(Generic relations)
 
