@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2020-11-07 22:35:00
+updated: 2021-03-04 22:35:00
 categories: js
 ---
 
@@ -40,13 +40,17 @@ categories: js
 ```
 
 <!--more-->
+
 ### 动态数据绑定
 
 ```javascript
 // 动态绑定class
-<div :class={
+<div :class="{
   'class_name': isOk ? true : false
-}></div>
+}"></div>
+
+// 动态绑定style
+<div :style="{ backgroundImage: 'url(' + image + ')'}" // 需要注意的是style名需要变成驼峰格式
 ```
 
 ### slot插槽
@@ -535,7 +539,7 @@ window.addEventListener('error', function(event) { ... })
 ## Vuex
 
 - 专为`Vue.js`应用程序开发的状态管理模式，采用集中式存储管理应用的所有组件的状态
-- 解决了多个试图依赖于同一状态，来自不同视图的行为需要变更同一个状态的情况，有了`vuex`则就集中式管理了，否则可能需要再每次切换页面将所有的状态都带上才行
+- 解决了多个视图依赖于同一状态，来自不同视图的行为需要变更同一个状态的情况，有了`vuex`则就集中式管理了，否则可能需要再每次切换页面将所有的状态都带上才行
 - 与全局变量不同，它的状态存储是响应式的。当Vue组件从store中读取状态的时候，若store中的状态发生变化，那么相应的组件也会相应地更新
 - 不能直接改变`store`中的状态，改变的唯一途径就是显式地提交(commit) mutation
 - `state`即是公共数据池

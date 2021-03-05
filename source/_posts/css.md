@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-02-26 08:30:00
+updated: 2021-03-04 08:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -123,6 +123,7 @@ a:active: a标签被点击的时候
 
 - text-align: 内容显示方式，`center`表示居中显示
 - 如果direction属性是ltr，则默认值是left；如果direction是rtl，则为right
+- `autocomplete="off"`: 关闭google浏览器等的自动填充功能
 
 ##### justify-content
 
