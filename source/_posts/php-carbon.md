@@ -1,7 +1,7 @@
 ---
 title: "PHP 使用Carbon扩展进行时间处理"
 date: 2019-05-31 18:32:00
-updated: 2021-02-23 17:47:00
+updated: 2021-03-05 17:47:00
 categories: php
 ---
 
@@ -71,3 +71,7 @@ $time->toDateTimeString();
 $time->subDays(5)->diffForHumans();	// 5天前
 $time->format('m/y') // 指定输出格式: 12/2020
 ```
+
+## Troubleshooting
+
+- **The timezone could not be found in the database**: 通常是createFromFormat第一个参数格式没有设置

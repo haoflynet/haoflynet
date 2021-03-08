@@ -1,5 +1,5 @@
 ---
-title: "Mongoose 使用手册"
+dtitle: "Mongoose 使用手册"
 date: 2021-01-10 14:40:00
 updated: 2021-03-01 15:01:00
 categories: Javascript
@@ -217,7 +217,7 @@ User.findOne({
   // 逻辑操作符
   $and: [{expression1}, {expression2}],
   $nor: [{expression1}, {expression2}],
-  $or: [{expression1}, {expression2}],
+  $or: [{expression1}, {expression2}],	// 一定要注意中括号打在哪里2，不要写成[{express1, express2}]了
   age: {
     $not: {
       $gt: 12
@@ -244,7 +244,7 @@ User.findOne({
   	path: 'friends',	// 获取关联对象
   	select: 'username',	// 仅获取关联对象的某个字段
   	select: ['username', '-email'],	// select多个字段，复数表示去掉某个字段
-  	match: {	// 在关联对象上使用where对象，注意这里如果不匹配只是会把关联对象设置为null，而不是把父级对象设置为null，相当于这是left join中的一个额外的ON条件，而不是where条件
+  	match: {	// 在关联对象上使用where对象，注意这里如果不匹配只是会把关联对象设置为null，而不是把父级对象设置为null，相当于这是left join中的一个额外的ON条件，而不是where条件。当然如果有时候我们想实现inner join，可以查询两次，一次把关联对象的id查出来，另外一次再来匹配
   		username: {
   			$regex: '.*' + keyword + '.*',	// 正则查询
         $regex: new RegExp(keyword, "i"),	// 忽略大小写查询
@@ -356,6 +356,7 @@ MySchema.pre('save', async function() {
 ```javascript
 // 在find后进行populate
 MySchema.post('find', async function(docs) {
+  console.log(this._fields)	// 获取当前查询select的字段，当然，如果没指定select，该值为{}，但是其默认选择了所有字段
 	await Promise.all(docs.map(async (doc) => {
     doc.field1 = 'value'
     await doc.save()
