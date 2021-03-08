@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-03-01 22:50:30
+updated: 2021-03-04 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -52,10 +52,12 @@ nvm alias default xxx 	# 设置默认的node版本
 ```shell
 npm init		# 将当前目录设置为一个npm库，自动生成package.json文件，如果没有package.json文件可以用这个方法生成，它也会自动把node_module下的已安装包加进来的
 npm install 包名 --save	# 安装包，并且更新到package.json中去
-npm install 报名 --save-dev	# 安装包，并且更新到package.json的开发依赖中区
+npm install 包名 --save-dev	# 安装包，并且更新到package.json的开发依赖中区
+npm install 包名@3.1.0 --save	# 安装指定版本的包
 npm list --depth=0	# 列出已安装模块
 npm list -g --depth=0 # 列出全局安装的包
 npm list --depth=0 2> /dev/null	# 忽略标准错误输出(npm ERR!这种错误将被忽略
+npm view 包名 versions	# 列出指定包的所有版本
 npm update 			# 升级当前目录下的所有模块
 npm update 包名		# 更新指定包
 npm install npm -g	# 升级npm
@@ -134,6 +136,7 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 - **ReferenceError: describe is not defined NodeJs**: 应该是`mocha`这个测试库报的错，安装它即可: `npm install mocha -g`
 - **wasm code commit Allocation failed - process out of memory**: 在Apple m1(apple silicon)上npm编译失败，可以尝试将`node`升级到`v15.3.0`及以上
 - **a promise was created in a handler but was not returned from it**: 通常是`bluebird`报错，函数没有正确地返回
+- **Node Sass does not yet support your current environment: Windows 64-bit with Unsupported runtime (88)**: `npm rebuild node-sass`
 
 ##### 扩展阅读
 

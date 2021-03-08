@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-02-23 17:03:30
+updated: 2021-03-04 17:03:30
 categories: system
 ---
 # Linux手册
@@ -286,6 +286,9 @@ ssh -i key.pem root@127.0.0.1	# 通过pem认证登录服务器
 ssh-keygen -lf ~/.ssh/id_rsa.pub	# mac下计算ssh key的指纹
 ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub	# linux上计算ssh key的指纹
 ssh-keygen -p -f ~/.ssh/id_rsa.pub		# 修改key密码
+
+# SSH使用代理
+ssh -o ProxyCommand='nc -X 5 -x 127.0.0.1:1080 %h %p' host
 
 # ssh-add命令，将专用密钥添加到ssh-agent的高速缓存中。转发ssh key，常用与跳板机
 ssh-add -L	# 列出ssh-agent的公钥

@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2020-01-21 10:33:00
+updated: 2020-03-02 10:33:00
 categories: database
 ---
 
@@ -93,7 +93,7 @@ db.col.find({"age": {$type: 2}})	# type操作符，找出type为字符串的数�
 
 # 查询是否存在
 db.users.find({'friends': {$exists: true}})	# 查询存在friends字段的用户
-db.users.find({'friends.0: {$exists: true}})	# 查询friends数组长度大于等于0的记录
+db.users.find({'friends.0': {$exists: true}})	# 查询friends数组长度大于等于0的记录
 
 # 聚合查询
 db.col.aggregate(AGGREGATE_OPERATION)
@@ -129,8 +129,11 @@ db.col.update({'name': '123'}, {$set: {'title': 'Hello'}})	# 更新name=123的�
 
 # 对结果进行特定的更新操作
 db.col.find({gender: 'male'}).forEach(function(obj){
-	obj.age = 10; 
+	print(obj.age);
+	obj.age = 10;
 	db.col.save(obj);
+	
+	db.col2.find().forEach()	# 这里还能够嵌套
 })
 
 # 通过传入的文档来替换已有的文档
