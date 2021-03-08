@@ -1,7 +1,7 @@
 ---
 title: "Laravel 请求与响应"
 date: 2020-09-06 22:29:00
-updated: 2021-03-03 10:32:00
+updated: 2021-03-04 12:32:00
 categories: php
 ---
 
@@ -56,6 +56,9 @@ $request->merge([
 // 判断请求类型
 request()->ajax(); // 判断请求是否是ajax请求
 request()->expectsJson(); 	// 判断客户端是否希望得到JSON响应
+
+// 去掉路由参数
+$request->route()->forgetParameter('param');
 ```
 
 <!--more-->
@@ -163,7 +166,12 @@ $_COOKIE['name'];	# 获取未解密的cookie
 Cookie::has('name');	// 是否存在某个cookie
 Cookie::forget('name');	// 删除某个cookie
 
+response()->withCookie(cookie('name', 'value', $minutes));	// 响应带上cookie
+
 // 排除指定的cookie不需要加解密，在 app/Http/Middleware/EncryptCookies.php中
 protected $except = ['key'];
+
+Crypt::encrypt(key);	// 对cookie进行加密 
+Crypt::decrypt(value);	// 对cookie进行解密
 ```
 

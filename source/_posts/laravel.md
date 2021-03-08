@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-03-01 08:58:00
+updated: 2021-03-04 13:58:00
 categories: php
 ---
 # Laravel指南
@@ -159,8 +159,8 @@ public function boot() {
 ```php
 # 获取当前页面的地址
 URL::full();
-url()->full();
-URL::current();
+url()->full();	// https://haofly.net/laravel?test=1
+URL::current();	// https://haofly.net/laravel
 url()->current();
 Request::url();	// https://haofly.net/laravel
 $request->url();
@@ -541,8 +541,11 @@ class UsersTableSeeder extends Seeder
 
 然后在Composer的命令行里执行填充命令
 
-	php artisan db:seed
-	php artisan migrate:refresh --seed    //回滚数据库并重新运行所有的填充
+```shell
+php artisan db:seed
+php artisan db:seed --class=UserTableSeeder	# 执行指定的seed
+php artisan migrate:refresh --seed    # 回滚数据库并重新运行所有的填充
+```
 
 #### ORM操作
 

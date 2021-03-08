@@ -1,7 +1,7 @@
 ---
-title: "LEMP: Linux, Nginx, MySQL, PHP环境"
+title: "LEMP: Linux, Nginx, MySQL, PHP-FPM环境"
 date: 2016-06-22 22:52:39
-updated: 2021-02-23 16:00:00
+updated: 2021-03-04 16:00:00
 categories: system
 ---
 # LEMP: Linux, Nginx, MySQL, PHP环境
@@ -20,6 +20,7 @@ yum install nginx -y
 /etc/init.d/nginx start
 
 # PHP
+add-apt-repository universe && apt-get install php-fpm php-mysql	# for ubuntu
 yum install php-fpm php-mysql
 vim /etc/php.ini，将cgi.fix_pathinfo=1改为cgi.fix_pathinfo=0
 vim /etc/php-fpm.d/www.conf将apache用户更改为nginx用户

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-03-01 15:18:00
+updated: 2021-03-04 14:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -16,6 +16,7 @@ TODO: 逐步用原生方法替换jQuery，参考[You-Dont-Need-jQuery](https://g
 
 - `?.`可选链`optionalChaining`，`a?.b`，表示如果a对象存在那么取`a.b`属性，否则直接返回`null`，而不会因为找不到属性报错，但是这个语法在`vue2`的`template`中无法使用
 - `??`双问号，`a ?? b`，如果左边的值为`null`或者`undefined`，那么就返回右边的值，需要注意的是左边为`false`的时候依然是左边的值
+- js也是有switch语句的
 
 ### 变量
 
@@ -109,7 +110,7 @@ str.match(/<title>(.*?)<\/title>/)	// 正则提取
 str.match(/<title>(.*?)<\/title>/g)	// 全局搜索，不加g默认只取找到的第一个嘛，但是global不支持分组，会把前后的都给返回到结果中去。这种情况，要么匹配后，循环对结果进行前后去除；要么用exec对先行获取每一个结果的match[1]
 str.match(/<title>(<abc>.*?)<\/title>/)	// 正则提取，带命名组的正则提取
 
-// 去除空格
+// 去除空格，需要注意的是js的replace如果不用正则/g，则默认只会替换第一个匹配
 str.replace(/\s+/g, "")    		// 去除所有的空格
 str.trim() / str.replace(/^\s+|\s+$/g, "");	// 去除两端的空格, trip
 str.trimLeft() / str.replace( /^\s*/, '')		// 去除左边的空格
@@ -429,6 +430,7 @@ ele.classList.remove('mystyle', 'secondClass');	// 给元素移除类
 ele.classList.toggle("mystle"); // 切换类，如果没有就增加该类，如果有就删除该类
 ele.classList.contains('mystyle');	// 判断当前类是否存在
 ele.classList.item(0);	// 获取第几个类
+document.getElementById("input").value = "test";	// 设置input元素的内容
 
 // 添加元素
 html('')	// 修改内部的html内容
@@ -851,6 +853,40 @@ _.xorWith([3], [1,2], _.isEqual)	// 得到[3,1,2]
 _.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
 ```
 
+### 常用帮助方法
+
+```javascript
+// 获取query参数
+window.getQuery = function(key) {
+  const urlParams = new URLSearchParams(window.location.search)
+  return urlParams.get(key)
+}
+
+// 设置query参数
+window.addQuery = function(key, value) {
+  var searchParams = new URLSearchParams(window.location.search)
+  searchParams.set(key, value)
+  // window.location.search = urlParams	// 直接跳转
+  return searchParams.toString()
+}
+
+// 获取cookie
+window.getCookie = function(cname) {
+  const name = cname + "="
+  const ca = document.cookie.split(';')
+  for (let i = 0; i < ca.length; i++) {
+    const c = ca[i].trim()
+    if (c.indexOf(name) === 0) return c.substring(name.length, c.length)
+  }
+  return ""
+}
+
+// 设置cookie
+window.setCookie = function(key, value) {
+  document.cookie = `${key}=${value}`
+}
+```
+
 ## 推荐阅读
 
 - [You-Dont-Need-jQuery](https://github.com/nefe/You-Dont-Need-jQuery/blob/master/README.zh-CN.md)
@@ -1093,6 +1129,7 @@ _.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
       }
       return i + "th";
   }
+  ```
 ```
 - **JS Input 延时触发**: 常用于autocomplete，不想每次都去查询接口，而是间隔很短时间去查询:
 
@@ -1105,7 +1142,7 @@ _.xorWith([3, 1], [1,2], _.isEqual)	// 得到[3, 2]
     timer = setTimeout(function () {
       console.log(value);
     }, 500);	// 做一个500毫秒的延时
-  ```
+```
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
   ```javascript
