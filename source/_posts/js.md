@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-03-04 14:18:00
+updated: 2021-03-09 14:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -101,6 +101,7 @@ num.toFixed(2);	// 保留两位小数
 ```javascript
 // 正则
 var re = new RegExp("a|b", "i");	// 通过字符串来生成正则表达式，相当于/a|b/i
+text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');	// 如果源字符串里有特殊字符需要加斜杠先转义一次
 
 // 搜索
 str.startsWith("hello");	// 类似beginWith
@@ -275,6 +276,7 @@ try {
   
 } catch (error) {
   // 错误则会执行
+  throw error; // 重新抛出错误
 } finally {
   // 无论是否成功都执行
 }
@@ -703,6 +705,16 @@ Array.from([1,2,3]).filter((item, index) => function({ // 带索引
 
 返回回调结果为`true`的第一个元素 
 
+##### _.find
+
+返回回调结果为`true`的第一个元素
+
+```javascript
+_.find(users, function (item) {item.age > 20})
+_.find(users, {'age': 20, 'active': true})	// 如果是等于操作那么可以直接这样
+_.find(users, 'active'}	// 如果是布尔值可以更简化
+```
+
 ##### findIndex
 
 返回回调结果为`true`的第一个元素的索引位置
@@ -774,6 +786,25 @@ myArr.map(Match.sqrt)
 await Promise.all(_.map(['a','b'], async (item) => {
   await ...
 }))
+```
+
+_.map
+
+```javascript
+_.map(users. 'name')	// 提取字段的某一个值作为数组
+```
+
+##### _.max
+
+```javascript
+_.max([1, 2, 3]) // 3
+_.max([])	// undefined
+```
+
+##### _.maxBy
+
+```javascript
+_.maxBy(objects, 'field')	// 这个返回的是对象，并不是最大的那个值
 ```
 
 ##### _.snakeCase
@@ -1041,7 +1072,15 @@ window.setCookie = function(key, value) {
      var text_tag = document.getElementById("text");
      text_tag.select();
      document.execCommand("Copy");
-      5 Url2.select(); // 选择对象
+     
+     // 如果要复制自定义的内容或者在hidden的input上面复制可以创建一个临时的element，来自https://stackoverflow.com/questions/31593297/using-execcommand-javascript-to-copy-hidden-text-to-clipboard
+     var tempInput = document.createElement("input");
+     tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+     tempInput.value = value;
+     document.body.appendChild(tempInput);
+     tempInput.select();
+     document.execCommand("copy");
+     document.body.removeChild(tempInput);
      ```
 
 * **打开新标签页**: `window.open(pageURL,name,parameters)  `
@@ -1130,8 +1169,8 @@ window.setCookie = function(key, value) {
       return i + "th";
   }
   ```
-```
-- **JS Input 延时触发**: 常用于autocomplete，不想每次都去查询接口，而是间隔很短时间去查询:
+
+- **JS Input 延时触发/延迟触发**: 常用于autocomplete，不想每次都去查询接口，而是间隔很短时间去查询:
 
   ```javascript
   const timer = null;
@@ -1142,7 +1181,8 @@ window.setCookie = function(key, value) {
     timer = setTimeout(function () {
       console.log(value);
     }, 500);	// 做一个500毫秒的延时
-```
+  ```
+
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
   ```javascript
@@ -1152,6 +1192,7 @@ window.setCookie = function(key, value) {
   var obj = { alert: alert.bind(window) }
   obj.alert('hello');		// 这样就能正常调用了
   ```
+
 
 ##### 扩展阅读
 

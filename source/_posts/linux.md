@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-03-04 17:03:30
+updated: 2021-03-09 17:03:30
 categories: system
 ---
 # Linux手册
@@ -407,6 +407,10 @@ ntfs-3g /dev/sda5 /mnt/test	# 将windows的分区挂载到/mnt/test目录下面�
 
 # ncdu: 统计并查看磁盘空间使用量，可以按时间以及大小排序
 yum install ncdu
+
+# 查看磁盘读写情况，iostat
+sudo apt-get install sysstat -y
+iostat
 ```
 
 #### 用户管理
@@ -806,17 +810,17 @@ tmux kill-server 删除所有会话
 
 ```shell
 # 安装与配置
-sudo apt-get update && sudo apt-get install samba
+sudo apt-get update && sudo apt-get install samba samba-commonj
 vim /etc/samba/smb.conf	# 修改配置文件，添加如下内容，其中smbashare是远程用户需要输入的路径，path是实际的目录路径
 [sambashare]
     comment = Samba on Ubuntu
     path = /home/username/sambashare
     read only = no
+    writable = yes
+    public = no
     browsable = yes
 sudo service smbd restart	# 重启smdb
 sudo smbpasswd -a username	# 添加一个用户，之后就可以用这个用户登录了
-
-
 
 smbclient //host/path	# 进入共享文件夹中
 > get filename	# 下载文件，无法递归下载

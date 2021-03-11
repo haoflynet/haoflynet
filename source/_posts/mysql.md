@@ -545,6 +545,8 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 
 * **column "c.name" must appear in the GROUP BY clause or be used in an aggregate**: 见于SQL与MySQL语法不兼容的情况，在SQL3标准以前，选择显示的字段必须出现在`GROUP BY`中。解决办法要么是将该字段加入`GROUP BY`，要么在子查询中完成聚合，在外部在获取字段。
 
+* **field isn't in GROUP BY**: 在查询前先设置`SET SQL_MODE=only_full_group_by`
+
 * **数据写入成功但是却读取不到**: 其中一种原因是使用`mysqldump`进行备份的时候，默认会给数据表加锁，此时如果写入数据，那么主库会写入成功(肯定是在从库进行dump)，但是此时从库上了锁，数据更新有延迟。解决办法是错开高并发写入的时间进行备份，另一种是使用不会锁表的备份方式
 
 * **如何实现上一篇下一篇功能**: 直接在排序好的基础上用大于小于即可，例如:

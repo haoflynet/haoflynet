@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-03-04 13:58:00
+updated: 2021-03-09 13:58:00
 categories: php
 ---
 # Laravel指南
@@ -286,6 +286,7 @@ class CreateApplicationsTable extends Migration
             $table->timestamps();
         });
         DB::statement('ALTER TABLE `'.DB::getTablePrefix().'applications` comment "这里写表的备注"');
+      DB::table('users'->insert([]));	// 可以直接在migrate的时候进行插入操作
     }
 
     /**
@@ -470,6 +471,10 @@ foreach ($user->roles as $role) {
 
 # 不过，如果中间表包含了额外的属性，在定义关系的时候需要使用withPivot显式指定，如果需要中间表自动维护时间字段需要加withTimestamps
 return $this->belongsToMany(Role::class)->withPivot('field1', 'field2')->withTimestamps();
+
+
+# 同步关联对象
+$user->posts()->sync([1, 2, 3])	# 这样可以对关联表进行同步，多的关联会进行删除，没有的关联会进行添加，这样就不用在关联表进行先删除再插入的操作了
 ```
 ##### 多态关联
 
