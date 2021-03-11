@@ -188,7 +188,6 @@ User.find(function(err, res){
     console.log(res)
 })
 
-
 User.find({}, 'age');	// 选择某个字段
 User.find({}, {age: 1});	// 同上
 User.find({}, '-age');	// 不选择某个字段
