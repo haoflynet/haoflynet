@@ -1,7 +1,7 @@
 ---
 title: "SVN 教程"
 date: 2015-06-17 11:02:30
-updated: 2021-01-22 11:08:00
+updated: 2021-03-09 11:08:00
 categories: tools
 ---
 ## 安装
@@ -40,6 +40,7 @@ svn revert -R ./	# 放弃本地所有的更改
 
 svn checkout path
 svn add file
+svn commit file1 file 2 -m "commit comment"	# 直接提交文件
 ```
 
 ### post-commit hook配置
