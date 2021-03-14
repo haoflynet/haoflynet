@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-03-09 14:18:00
+updated: 2021-03-14 14:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -643,6 +643,11 @@ $.ajax({
       console.log("Not Sent");
     }
   }
+});
+
+// 全局注册一个ajax完成的回调函数
+$(document).ajaxComplete(function() {
+ $( ".log" ).text( "Triggered ajaxComplete handler." );
 });
 ```
 
