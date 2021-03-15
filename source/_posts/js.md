@@ -646,6 +646,11 @@ $.ajax({
     }
   }
 });
+
+// 全局注册一个ajax完成的回调函数
+$(document).ajaxComplete(function() {
+ $( ".log" ).text( "Triggered ajaxComplete handler." );
+});
 ```
 
 直接发送POST请求
