@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-01-11 15:11:11
+updated: 2021-02-26 15:11:11
 categories: Javascript
 ---
 
@@ -11,6 +11,14 @@ categories: Javascript
 
 ```shell
 npm install --save-dev sequelize-cli	# 安装命令行工具npx
+```
+
+## 数据库连接
+
+```javascript
+var sequelize = new Sequelize('database', 'username', 'password', {
+  logging: false	// 默认会将sql查询都输出到console.log中，设置为false可以不用输出
+})
 ```
 
 ## 模型定义
@@ -23,7 +31,8 @@ const Post = sequelize.define('post', {
       type: INTEGER
     },
     name: {
-      type: STRING
+      type: STRING,
+      allowNull: false
     },
     data: {
       type: JSON
@@ -31,7 +40,10 @@ const Post = sequelize.define('post', {
     created_at: {
       type: DATE
     }
-  }
+  }, {
+  	timestamps: true, // 是否自动添加createdAt和updatedAt
+  	tableName: 'MyPosts'	// 自定义table name
+	}
 );
 
 // 定义模型关系
