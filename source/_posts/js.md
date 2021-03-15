@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-03-09 14:18:00
+updated: 2021-03-12 14:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -161,7 +161,9 @@ if (!isNaN(n))
 name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 ```
 
-#### 时间处理moment
+#### 时间处理moment/luxon
+
+- moment作者已经不推荐使用`moment.js`，他自己又搞了个`luxon`，但我更推荐使用`dayjs`
 
 ```javascript
 // 原生方法

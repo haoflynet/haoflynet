@@ -70,13 +70,14 @@ npm config delete name	# 删除某个配置
 npm config set proxy=http://127.0.0.1:1080
 npm config set proxy=https://127.0.0.1:1080
 ```
-#### yarn
+#### Yarn
 
 - `yarn`从`1.10x`开始会在`yarn.lock`中增加`integrity`字段，用于验证包的有效性
 
 ```shell
 yarn add 包名	# 安装包
 npm install yarn@latest -g	# 升级yarn
+yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
 ```
 
 ## 使用Forever管理NodeJs应用
@@ -135,7 +136,7 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 - **npm install结果被系统killed掉了**: 一般是内存不足，可以使用增加swap的方法，参考[Linux 手册](https://haofly.net/linux/index.html)
 - **ReferenceError: describe is not defined NodeJs**: 应该是`mocha`这个测试库报的错，安装它即可: `npm install mocha -g`
 - **wasm code commit Allocation failed - process out of memory**: 在Apple m1(apple silicon)上npm编译失败，可以尝试将`node`升级到`v15.3.0`及以上
-- **a promise was created in a handler but was not returned from it**: 通常是`bluebird`报错，函数没有正确地返回
+- **a promise was created in a handler but was not returned from it**: 通常是`bluebird`报错，函数没有正确地返回，遇到这个情况一个是验证回掉函数`then`是否有正确的返回，如果没有，那么可以添加一个`return null`语句，需要注意的是，如果`then`回掉里面只有一个语句，例如`.then(res => res + 'abc')`，这样不用单独写`return`，但如果里面的语句不只一句就得加了
 - **Node Sass does not yet support your current environment: Windows 64-bit with Unsupported runtime (88)**: `npm rebuild node-sass`
 
 ##### 扩展阅读

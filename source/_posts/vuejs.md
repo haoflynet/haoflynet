@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2021-03-04 22:35:00
+updated: 2021-03-09 22:35:00
 categories: js
 ---
 
@@ -45,9 +45,11 @@ categories: js
 
 ```javascript
 // 动态绑定class
-<div :class="{
-  'class_name': isOk ? true : false
-}"></div>
+<div 
+:class="{ 'class_name': isOk ? true : false }"
+:class="isOk ? 'class1': 'class2':
+:class="isOk && class_name"
+></div>
 
 // 动态绑定style
 <div :style="{ backgroundImage: 'url(' + image + ')'}" // 需要注意的是style名需要变成驼峰格式
@@ -243,6 +245,14 @@ watch: {
 
 ```javascript
 document.body.clientWidth	// 获取屏幕宽度
+```
+
+### props
+
+```javascript
+props: {
+  value: [Number, String, Array]	// props支持多种类型的数据
+}
 ```
 
 ### filter

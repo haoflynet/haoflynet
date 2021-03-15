@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2020-09-27 10:48:00
+updated: 2021-03-12 10:48:00
 categories: Javascript
 ---
 
@@ -82,6 +82,7 @@ this.props.location.pathname;	// 获取当前的url路径
 
   ```shell
   <div className={this.state.show ? "show-class" : "hide-class"}>动态类</div>
+  <div className={style.style1 + ' ' + style.style2}>多个类</div>
   ```
 
 ### 常用组件
