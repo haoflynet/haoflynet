@@ -1,7 +1,7 @@
 ---
 title: "wordpress安装使用与插件推荐"
 date: 2014-08-05 11:02:30
-updated: 2017-02-23 22:11:00
+updated: 2021-03-14 22:11:00
 categories: tools
 ---
 ## 安装wordpress
@@ -31,6 +31,8 @@ sudo yum install php-gd  # 如果启动不了要安装这个
 ```
 
 ## 必备插件推荐
+
+- **All-in-One WP Migration**: 一件迁移插件，能够直接打包整站所有内容，包括代码、数据库、配置等
 
 - **Crayon Syntax Highlighter**：一款在文章中插入特定格式代码的插件，找了很久才找到这么一款可自定义很多功能，并且外观也不错，而且设置还是全中文的
 
