@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-02-26 15:40:00
+updated: 2021-03-12 08:42:00
 categories: Javascript
 ---
 
@@ -143,11 +143,87 @@ Block all public access
 
 ```
 
+## ACM/AWS Certificate Manager
+
+- AWS的公有SSL/TLS证书是免费的，不过因为ACM管理私钥，所以只能在AWS上面使用。获取步骤还算简单，添加一个CNAME记录，一会儿就好了
+- 只能用于集成了ACM服务的EC2实例，例如(ElasticLoad Balancing [ELB]或Amazon CloudFront分配)
+
+## Route 53
+
+- AWS的域名管理
+- 可以为同一个域名设置多个托管区域(hosted zone)，例如针对同一个域名在测试环境和生产环境分别配置不同的DNS，只需要更改本地的名称服务器就能切换到不同的DNS上去，这样使用感觉有点复杂了
+
+## ELB/Elastic Load Balancing
+
+- ELB支持多种负载均衡器
+  - 应用负载均衡器(Application Load Balancer)：对HTTP/HTTPS请求进行负载均衡
+  - 网络负载均衡器(Network Load Balancer)：对网络/传输协议(第4层-TCP、UDP、TLS)以及极端性能/低延迟的应用程序进行负载均衡
+  - 网关负载均衡器(Gateway Load Balancer)：IP层
+  - ~~(Classic Load Balancer~~)：应用程序在EC2 Classic网络中构建而成，AWS上已经变成灰色了，看来已经放弃了
+- 可以直接在EC2管理页面创建负载均衡器，点击`Load Balancer`即可进行创建，如果需要选择ACM管理的SSL证书，可以直接在第二步选择
+- 需要注意的是，创建后需要将域名的DNS记录指向负载均衡器的DNS名称，这样才能正确到负载均衡器上
+- 负载均衡器的目标组可以只选择80端口，服务器上也可以只开启80端口，只有在负载均衡器的监听器上面需要监听443，转发到目标组就行了
+
+## API Gateway
+
+- [Creating a Serverless Contact Form on AWS](https://levelup.gitconnected.com/creating-a-serverless-contact-form-on-aws-ff339ad1fa60): 使用API Gateway + SES服务创建一个serverless API用于网页的用户表单搜集
+- [如何启用 CloudWatch Logs 以对 API Gateway REST API 或 WebSocket API 进行问题排查](https://aws.amazon.com/cn/premiumsupport/knowledge-center/api-gateway-cloudwatch-logs/): 
+
+### 映射模板语法
+
+- [文档在这里](https://docs.aws.amazon.com/appsync/latest/devguide/resolver-mapping-template-reference-programming-guide.html)
+
+```shell
+# 这是一个使用EMS发送email的模板
+Action=SendEmail&Message.Body.Text.Data=$util.urlEncode("
+#set($name = $input.path('$.name'))		# 从POST JSON中获取指定字段的数据，并分配一个变量，不要用$input.json('$.name')去获取那样字符串会默认在前后加上双引号
+#if($name && $name.length() != 0)	# if条件语句
+Name: $name
+#end
+
+#set($index = 1)
+#set($emails=$stageVariables.sendEmails.split(','))	# $stageVariables可以从阶段变量取值
+#foreach($email in $emails)
+email: $email
+#set($index = $index+1)
+#end
+")&Message.Subject.Data=Contact+form+submission&Destination.ToAddresses.member.1=haoflynet%gmail.com&Source=no_reply%40haofly.net
+```
+
+### API Gateway权限设置/Resource Policy
+
+- 有多种访问策略：AWS Account Allowlist/IP Range Denylist/Source VPC Allowlist
+- [如何排查API Gateway中的HTTP 403禁止访问错误](https://aws.amazon.com/cn/premiumsupport/knowledge-center/api-gateway-troubleshoot-403-forbidden/)
+- [如何排查与 API Gateway 私有 API 终端节点的连接问题？](https://aws.amazon.com/cn/premiumsupport/knowledge-center/api-gateway-private-endpoint-connection/)
+- [我从 VPC 连接到 API Gateway API 时，为什么会收到 HTTP 403 禁止错误？](https://aws.amazon.com/cn/premiumsupport/knowledge-center/api-gateway-vpc-connections/)
+
+##### 实现仅自己的EC2(指定的VPC)能访问接口其他地方不能访问接口
+
+1. Resource Policy添加如下策略:
+
+   ```json
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Principal": "*",
+               "Action": "execute-api:Invoke",
+               "Resource": "arn:aws:execute-api:us-west-2:账户ID:API的ID/APi的Stage/*/*"
+           }
+       ]
+   }
+   ```
+
+2. 进入我们想配置的EC2绑定的VPC的配置页面选择左侧菜单栏的`Endpoints(终端节点)`，创建一个新的终端节点。服务类别选择AWS服务，服务名称选择API Gateway的执行服务`com.amazonaws.us-west-2.execute-api`，终端节点类型为`Interface`，然后VPC就是我们需要的VPC，子网可以全选，取消选择`Enable DNS name`禁用私有DNS，其他默认。创建完成后需要等几分钟才能生效
+
 ## RDS
 
 ### MySQL
 
 - [开启创建存储过程的功能](https://aws.amazon.com/premiumsupport/knowledge-center/rds-mysql-functions/?nc1=h_ls)
+
+## SES/Simple Email Service电子邮件发送和接收服务
 
 ## CodeDeploy/Pipeline
 
