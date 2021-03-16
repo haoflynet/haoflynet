@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2021-02-26 11:21:00
+updated: 2021-03-10 11:21:00
 categories: tools
 ---
 # Git指南
@@ -405,6 +405,8 @@ fi
 - **Unable to append to .git/**: 可能是因为当前目录存在当前用户无权访问的文件或文件夹，可以使用`ls -al`查看文件夹权限，然后使用`chown`改变目录所属用户
 
 - **git rebase后在另外一端进行pull操作每次都会弹出编辑框**: 这是因为远端的仓库超前了几个commit，但是那几个commit已经不存在了，需要进行`git reset --hard ID`将分支切换到当前最新的head
+
+- **仓库可以pull，但是push的时候提示`Repository not found`**: 原因可能是仓库所有者设置了不同的读写权限，可以去github上面看看能不能在线编辑文件，如果在线都不能那么应该就真的只有读权限了
 
 - **搜索查找Git中被删除的文件**
 

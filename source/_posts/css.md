@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-03-04 08:30:00
+updated: 2021-03-12 08:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -189,6 +189,10 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 
 - 当垂直方向溢出时添加滚动条
 - scroll: 可以用这个属性给单独的两列创建单独的滚动条
+
+##### padding
+
+- 如果仅提供两个参数，第一个表示垂直方向，第二个表示水平方向，例如`padding: 20px 0`等同于`padding-top: 20px; padding-right: 0px; padding-bottom: 20px; padding-left:0px;`
 
 ##### pointer-events
 

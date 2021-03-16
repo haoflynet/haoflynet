@@ -1,7 +1,7 @@
 ---
 title: "express 教程"
 date: 2015-11-01 07:52:39
-updated: 2020-11-25 16:22:00
+updated: 2021-03-09 16:22:00
 categories: frontend
 ---
 [官网](http://expressjs.com/zh-cn/)说: "高度包容、快速而极简的Node.js Web框架"，我认为Express最大的优点是可用于API开发，而不是web开发，首先，它的路由定义简单，其次，nodejs天生的异步特性使得其性能极佳。
@@ -56,6 +56,7 @@ req.get('host') // 192.168.1.1:6004
 ```javascript
 res.redirect(301, 'http://google.com')	// 301响应
 res.status(200).json({})	// JSON响应
+res.send('<html></html>')	// 直接响应HTML内容
 ```
 
 ## 路由
