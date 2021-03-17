@@ -203,7 +203,7 @@ server{
 ```nginx
 log_format '$remote_addr - $remote_user [$time_local] '
 						'"$request" $status $body_bytes_sent '
-						'"$http_referer" "$http_user_agent" "$gzip_ratio"'
+						'"$http_referer" "$http_user_agent" "$gzip_ratio"';
 ```
 
 将真实IP记录在日志中，而不是代理的日志(需要设置`proxy_set_header`等信息，参考代理配置):
@@ -214,7 +214,7 @@ log_format '$remote_addr - $remote_user [$time_local] '
 # 记录upstream的响应时间
 log_format my_format '$http_x_forwarded_for - $remote_addr - $request_time - $upstream_response_time - $remote_user [$time_local] '
 						'"$request" $status $body_bytes_sent '
-						'"$http_referer" "$http_user_agent" "$gzip_ratio"'
+						'"$http_referer" "$http_user_agent" "$gzip_ratio"';
 
 # 定义在http区块中，然后在server区块中这样使用即可覆盖默认的日志配置
 # 需要注意的是千万别在http区块中使用，否则会重复打印多条日志

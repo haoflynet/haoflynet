@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2021-02-25 14:23:00
+updated: 2021-03-09 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -239,6 +239,7 @@ docker run --name php-apache -v /Users/haofly/workspace/share/yangqing:/var/www/
 apt-get install libpng-dev -y && docker-php-ext-install gd	# 安装GD扩展
 apt-get install libzip-dev zlib1g-dev && docker-php-ext-install zip # 安装zip扩展
 apt-get install libxml2-dev && docker-php-ext-install xml # 安装xml扩展
+apt-get install libbz2-dev && docker-php-ext-install bz2	# 安装bz2扩展
 docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql	# 安装Mysql扩展
 ```
 ### 在PHP容器中安装PHP扩展
