@@ -322,7 +322,7 @@ fi
 
   发生这个问题是因为采用的是https而不是ssh方式来push仓库，而https传输数据的大小一般是由服务器，即nginx来控制的，太大了是传不上去的，这时候只需要更改为ssh方式即可。
 
-- **修改提交作者和邮箱**: git可以通过`git filter-branch`修改已经提交了的commit的作者和邮箱。如果仅仅想修改一次的，可以直接`git commit --amend --author="haoflynet <haoflynet@gmail.com>"`。这里有一个来自[若有所思-胡磊](http://i.dotidea.cn/2015/04/git-amend-author/)的批量修改的脚本:
+- **修改提交作者和邮箱**: git可以通过`git filter-branch`修改已经提交了的commit的作者和邮箱。如果仅仅想修改一次的，可以直接`git commit --amend --author="haoflynet <haoflynet@gmail.com>"`。这里有一个来自[若有所思-胡磊](http://i.dotidea.cn/2015/04/git-amend-author/)的批量修改的脚本，完成后可以check一下，然后`git push -f`即可，亲测可用:
 
   ```shell
   #!/bin/sh

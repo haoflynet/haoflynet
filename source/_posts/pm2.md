@@ -20,7 +20,7 @@ pm2 start app.js	# 直接启动某个项目
 pm2 start app.js --name my-app	# 设置应用名称
 pm2 start app.js --no-daemon	# 以非daemon方式运行
 pm2 start app.js --max-memory_restart 20M	# 当内存超过20M时就重启应用
-pm2 start npm --name my-app -- start # npm run start方式启动
+pm2 start npm --name my-app -- run start # npm run start方式启动
 pm2 stop all	# 停止所有程序
 pm2 restart all	# 重启所有程序
 pm2 delete 0	# 删除某个进程

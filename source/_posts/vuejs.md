@@ -332,7 +332,7 @@ props: {
 
 - 下面示例列出了两种方式
 
-```vuejs
+```javascript
 // 父组件
 <template>
 	<div>
