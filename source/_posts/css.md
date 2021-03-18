@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-03-12 08:30:00
+updated: 2021-03-16 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -46,6 +46,10 @@ a:visited: 表示一个已经被点击过的a标签的属性
 a:hover: 鼠标移动到a标签上面
 
 a:active: a标签被点击的时候
+
+##### align-items
+
+- 居中对齐弹性盒子的各项<div>元素，默认值是stretch(拉伸元素以适应容器)
 
 ##### background
 
