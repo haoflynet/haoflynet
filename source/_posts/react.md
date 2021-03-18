@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2021-03-12 10:48:00
+updated: 2021-03-16 08:48:00
 categories: Javascript
 ---
 
@@ -52,21 +52,32 @@ function Example() {
 
 - 主要使用的是`React Router`，包括`react-router`，`react-router-dom`，`react-router-native`
 
-```react
-import { Switch, Route } from 'react-router-dom'
+  ```javascript
+  import { Switch, Route } from 'react-router-dom'
+  
+  const Main = () => (
+  	<main>
+      <Switch>
+      	<Route path='/roster' component={Home}/>
+      	<Route path='/schedule' component={Post}/>
+        <Route path='/about', render={() => <About something={this.something}>}/>	<!--通过这种方式绑定数据或者方法给子路由-->
+    	</Switch>
+    </main>
+  )
+  
+  this.props.location.pathname;	// 获取当前的url路径
+  ```
 
-const Main = () => (
-	<main>
-    <Switch>
-    	<Route path='/roster' component={Home}/>
-    	<Route path='/schedule' component={Post}/>
-      <Route path='/about', render={() => <About something={this.something}>}/>	<!--通过这种方式绑定数据或者方法给子路由-->
-  	</Switch>
-  </main>
-)
+- 需要注意的是，如果是`Link`链接的路由和当前路由是一样的，那么页面不会发生跳转，什么都不会做，这时候如果是弹出菜单，弹出菜单也不会自动关闭，所以这种情况可以单独处理一下，用`a`标签代替一下，然后使用window.location.href来进行跳转吧，例如:
 
-this.props.location.pathname;	// 获取当前的url路径
-```
+  ```javascript
+  function jumpToMenu(url, e) {
+  	e.preventDefault()
+    window.location.href = url
+  }
+  
+  <a href={url} onClick={(e) => jumpToMenu(url, e)}>{text}</a>	// 在onClick里面传递参数
+  ```
 
 ## 组件
 
@@ -97,6 +108,19 @@ this.props.location.pathname;	// 获取当前的url路径
 <Prompt 
   when={true}
   message={(params) => params.pathname == '/当前路径' ? true : "确认离开" } />	// 当返回文字的时候会弹出确认，而返回true的时候则不会弹出
+```
+
+### 父子组件资源共享
+
+#### 父组件将方法作为props传递给子组件
+
+```javascript
+// 父组件
+[MyState, SetMyState] = useEffect(false);
+<Child setMyState={SetMyState}>
+
+// 子组件
+props.setMyState(true);
 ```
 
 ## JSX语法

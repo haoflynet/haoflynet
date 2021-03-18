@@ -66,9 +66,8 @@ npm install -g n && n stable # 升级node.js到最新稳定版
 
 npm config delete name	# 删除某个配置
 
-# 代理设置
-npm config set proxy=http://127.0.0.1:1080
-npm config set proxy=https://127.0.0.1:1080
+#  代理设置
+npm config set proxy=http://127.0.0.1:1080 && npm config set proxy=https://127.0.0.1:1080
 ```
 #### Yarn
 

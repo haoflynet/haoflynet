@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-03-12 14:18:00
+updated: 2021-03-18 14:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -29,7 +29,7 @@ window.test = 123;	// 声明全局变量
 
 <!--more-->
 
-### 对象
+### 对象/字典
 
 ```javascript
 object instanceof constructor	// 判断某个对象是否属于某个类
@@ -39,6 +39,9 @@ Object.values(obj); // 获取对象所有的value，返回一个数组
 Object.entries(obj); // 获取对象所有的键值对，返回一个数组，例如{a:123,b:233}, 会返回['a':123], ['b': 233]
 Object.keys(obj).length == 0; // 判断对象是否为空
 Object.assign({}, {}); // 合并两个对象/合并两个字典
+
+var a = {}
+a[abc] = 'def';	// 变量作为字典名
 ```
 
 ### 数组
@@ -182,12 +185,14 @@ today.getSeconds();
 today.getMilliseconds();
 today.format('yyyy-MM-dd');	// 格式化
 
+// dayjs
+dayjs('2021-03-02T04:00:00.000Z').format('MMM D, YYYY')	// 时间解析和格式化
+
+
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
 moment(new Date()).subtract(2, 'hours');	// 时间相加减
-
-// 时间格式化
 moment().format(); // "2014-09-08T08:02:17-05:00"
 moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
 moment().format("YYYY-MM-DD HH:mm:ss");	// 2021-01-06 22:00:00
