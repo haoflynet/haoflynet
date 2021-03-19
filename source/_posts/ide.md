@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2021-02-06 14:08:00
+updated: 2021-03-01 08:26
 categories: 编程之路
 ---
 
@@ -54,6 +54,7 @@ categories: 编程之路
   - 数组内键值对对齐: `Align key-value pairs`
   - 类变量定义等号对齐并且变量也对齐: `Class field/constant groups -> Align fields in columns & Align constatns`
   - 简单的函数直接在一行: `Simple methods in one line`
+  - 简单的函数在一行: `Simple classes in one line`
   - 函数参数多行时自动对齐: `Function/constructor call arguments -> Align when multiline`
   - 函数参数多行时括号和第一个参数换行: `Function/constructor call arguments -> New line after '()'`
   - 函数参数多行时将反括号单独一行: `Function/constructor call arguments ->Place ')' on new line`
@@ -114,6 +115,8 @@ categories: 编程之路
 Align consecutive assignments
 Align key-value paris
 Serializable class without 'serialVersionUID'	# 自动生成Java类的serialVersionUID
+# 代码提示不区分大小写
+Code Completion -> 取消Match case
 ```
 
 #### IDEA推荐插件
@@ -128,6 +131,7 @@ Serializable class without 'serialVersionUID'	# 自动生成Java类的serialVers
 - **Prettier**: JS格式化工具
 - **Python**: 支持Python开发
 - **Rainbow Brackets**: 可以实现配对括号使用相同的颜色
+- **SonarLint**: 自动发现代码中的错误，支持多语言
 - **Vue.js**: 支持Vue.js开发
 
 #### JS Library

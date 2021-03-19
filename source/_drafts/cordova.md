@@ -21,6 +21,7 @@ cordova plugin search facebook	# 搜索插件
 cordova plugin ls	# 列出当前已安装的插件
 cordova plugin rm cordova-plugin-facebook4	# 移除插件
 cordova plugin add cordova-plugin-facebook4 # 添加插件
+corodva plugin add https://git.github.com/myproject#branch_name	# 从github安装指定分支的cordova插件
 ```
 
 <!--more-->
@@ -107,6 +108,64 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
       console.log(JSON.stringify(error));
     }
   );
+  ```
+
+## 插件开发Tips
+
+- 我不开发插件，但是很多很小众的插件，经常需要我们修改一下，所以还是需要学习一点插件开发的知识
+
+### IOS开发常用流程
+
+- 方法定义: 需要在`src/ios/*.h`中这样定义:
+
+  ```objective-c
+  #import <Cordova/CDV.h>
+  
+  @interface CordovaAppleMusic : CDVPlugin
+  
+  - (void) requestToken:(CDVInvokedUrlCommand*)command;
+  - (void) requestAuthorization:(CDVInvokedUrlCommand*)command;
+  
+  @end
+  ```
+
+- 方法实现，需要在`src/ios/*.m`中实现
+
+  ```objective-c
+  // 此方法来自于CordovaAppleMusic Plugin，是使用OC写的
+  - (void)requestToken:(CDVInvokedUrlCommand*)command
+  {
+      NSString* callbackId = [command callbackId];
+      NSString* developerToken = [[command arguments] objectAtIndex:0];	// 如果方法有参数可以这样获取参数
+      SKCloudServiceController *serviceController = [[SKCloudServiceController alloc] init];
+      [serviceController requestUserTokenForDeveloperToken:developerToken completionHandler:^(NSString * _Nullable userToken, NSError * _Nullable error) {
+        if (error != nil) {
+          NSLog(@"userToken_Error :%@", error);
+          // 返回正确响应
+          CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.description];
+          [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+        }
+        else{
+          // 返回错误响应
+          CDVPluginResult* result  = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:userToken];
+          [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+        }
+      }];
+}
+  ```
+
+- 最后在`www/*.js`中暴露方法给JS
+
+  ```javascript
+  var exec = require('cordova/exec');
+  module.exports = {
+    requestAuthorization: function (successCallback, errorCallback) {	// 无参数的方法
+        exec(successCallback, errorCallback, "AppleMusic", "requestAuthorization", []);
+    },
+    requestToken: function (developerToken, successCallback, errorCallback) {	// 带参数的方法
+      exec(successCallback, errorCallback, "AppleMusic", "requestToken", [developerToken]);
+    },
+  }
   ```
 
 ## TroubleShooting
