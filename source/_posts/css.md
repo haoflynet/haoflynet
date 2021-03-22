@@ -589,6 +589,21 @@ div:nth-last-child(2) {
 
 - 参考底部推荐文章
 
+```css
+.wrapper {
+  display: grid;	/* 声明一个grid容器 */
+  
+  grid-template-columns: repeat(4, 25%);	/* 声明列的宽度，表示网格宽度为4列，每列25%的宽度，repeat是为了少写几个值，也可以这样写 grid-template-columns: 25% 25% 25% 25% */
+  grid-template-columns: repeat(4, 1fr);	/* 最好使用fr单位，这样可以不用自己去计算百分比，它可以自动减去grid-column-gap的值*/
+  grid-template-columns: 250px repeat(12, 1fr);	/* fr的好处又可以体现了*/
+  
+  
+  grid-column-gap: 10px;	/* 每两列之间的间隔，*/
+  grid-column-start: 1;	/* 设置当前格占用的起始列，从1开始*/
+  grid-column-end: 3;	/* 设置当前格占用的结束列，左开右闭区间，这个表示占用了1和2两列，相当于两倍宽度*/
+}
+```
+
 ## 动画transitions
 
 - `transitions`允许我们平滑地改变属性值(而不是立马变更到某个值)
