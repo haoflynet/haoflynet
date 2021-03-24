@@ -379,7 +379,7 @@ apt-cache search 包名		# 搜索源里面是否有指定的包
 apt-cache show 包名 	   # 显示apt库里面的软件的版本号
 apt-get clean 			# 自动清理安装程序时缓存的deb包
 apt-get autoclean  		# 清理已卸载软件的无用的依赖包
-apt list --installed	# 查看已经安装的包
+apt list --installed	# 查看已经安装的包列表
 apt-get install 包名	# 安装或者更新指定的软件包
 apt-get install vim=2:7.3.547-1 # 安装指定版本的包
 apt-get upgrade	# 更新所有已安装的软件包

@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2021-03-01 08:26
+updated: 2021-03-24 08:26
 categories: 编程之路
 ---
 
@@ -122,7 +122,7 @@ Code Completion -> 取消Match case
 #### IDEA推荐插件
 
 - **Alibaba Java Coding Guidelines**: 阿里巴巴Java开发规范
-- **CodeGlance**: 类似sublime，显示在右边的代码缩略图
+- **CodeGlance**: 类似sublime，显示在右边的代码缩略图，`Ctrl + Shift + G`可以开关显示
 
 
 - **.env files support**: .env文件支持

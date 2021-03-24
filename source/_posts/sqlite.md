@@ -12,8 +12,6 @@ OSX: `brew install sqlite`。
 
 客户端: [sqlitebrowser](https://github.com/sqlitebrowser/sqlitebrowser)
 
-需要注意的是sqlite3的主键默认是这样的。
-
 ## TroubleShooting
 
 - **报错`sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in thread xxxx `**，原因是SQLite是不能多个线程同时访问的，要么直接不适用多线程，更好的做法是在连接是添加`check_same_thread`参数。
