@@ -1,14 +1,20 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2021-03-02 08:04:00
+updated: 2021-03-24 08:04:00
 categories: system
 ---
-## Mac自带截图功能
+## 常用快捷键
+
+### Mac自带截图功能
 
 - `Command + Shift + 4` 普通截图
 - `Command + Shift + 4`，然后按`空格`，对指定窗口截图
 - `Command + Shift + 3` 全屏截图
+
+### finder显示隐藏文件
+
+`Command + Shift + .`
 
 ## Mac瘦身
 
