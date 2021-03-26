@@ -21,7 +21,7 @@ cordova plugin search facebook	# 搜索插件
 cordova plugin ls	# 列出当前已安装的插件
 cordova plugin rm cordova-plugin-facebook4	# 移除插件
 cordova plugin add cordova-plugin-facebook4 # 添加插件
-corodva plugin add https://git.github.com/myproject#branch_name	# 从github安装指定分支的cordova插件
+corodva plugin add https://github.com/myproject#branch_name	# 从github安装指定分支的cordova插件
 ```
 
 <!--more-->
