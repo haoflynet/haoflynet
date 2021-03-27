@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-03-18 14:18:00
+updated: 2021-03-25 14:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -64,7 +64,7 @@ arr.unshift(obj)	// 在数组头添加元素
 arr.shift(obj)		// 去除数组头部元素
 arr.slice(start, end) // 数组分片
 arr.slice(-1)[0] // 获取数组最后一个元素
-arr.sort()	// 自动对数组进行排序，可以提供一个比较函数arr.sort(function (a, b) {return a>b})
+arr.sort()	// 自动对数组进行排序(从小到大)，可以提供一个比较函数arr.sort(function (a, b) {return a>b})
 arr instance of Array	// 判断是否是数组
 arr.filter(Boolean)	// 快速移除所有"false"类型(false、null、undefined等)的元素
 
@@ -164,7 +164,7 @@ if (!isNaN(n))
 name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 ```
 
-#### 时间处理moment/luxon
+#### 时间处理moment/luxon/dayjs
 
 - moment作者已经不推荐使用`moment.js`，他自己又搞了个`luxon`，但我更推荐使用`dayjs`
 
@@ -199,6 +199,8 @@ moment().format("YYYY-MM-DD HH:mm:ss");	// 2021-01-06 22:00:00
 moment().format("ddd, hA");                       // "Sun, 3PM"
 moment().format("[Today is] dddd");               // "Today is Sunday"
 moment('gibberish').format('YYYY MM DD');         // "Invalid date"
+moment().diff(moment[])	// 比较两个日期的间隔，默认是时间戳的比较
+moment().diff(moment[], 'days')	// 比较两个日期的间隔，第二个参数可以设置比较的是年、还是月份等
 ```
 
 #### URL Params处理
