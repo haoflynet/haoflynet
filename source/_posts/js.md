@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-03-25 14:18:00
+updated: 2021-03-27 14:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -11,6 +11,8 @@ TODO: 逐步用原生方法替换jQuery，参考[You-Dont-Need-jQuery](https://g
 - 判断是否是非数字: `isNaN(a)`
 - 生产环境直接全局屏蔽掉`console.log`的输出，只需要复写即可:`console.log=()=>{}`
 - 包含关系(超集): TypeScript > ES2016 > ES2015 > ES5
+- 常用CDN
+  - [cdnjs](https://cdnjs.com/)
 
 ## 基本语法
 
