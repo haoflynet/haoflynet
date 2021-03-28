@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-03-16 11:30:00
+updated: 2021-03-27 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -904,6 +904,8 @@ body{
 
 // 方法二：用js，需要在点击事件中return false
 ```
+
+#### [滚动时隐藏菜单栏](https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp)
 
 #### 实现图片的等比例自动缩放
 
