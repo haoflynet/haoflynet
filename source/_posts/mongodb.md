@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2020-03-02 10:33:00
+updated: 2020-03-29 10:33:00
 categories: database
 ---
 
@@ -55,6 +55,8 @@ totalIndexSize: 所有索引的大小
 indexSizes: 所有的索引以及其大小
 
 db.col.status(1024)	# 这样下面那些大小单位就是KB
+
+db.version()	# 查看数据库版本
 
 # 索引相关，注意，ensureIndex在3.0已经弃用了，dropDup参数也弃用了
 db.col.createIndex({"name": 1})	# 创建索引，1表示升序，-1表示降序
