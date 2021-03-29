@@ -1,7 +1,7 @@
 ---
 title: "使用certbot为Nginx一键配置Let's Encrypt SSL安全证书"
 date: 2018-06-16 21:32:00
-updated: 2021-03-01 14:00:00
+updated: 2021-03-29 18:40:00
 categories: server
 ---
 
@@ -28,7 +28,7 @@ categories: server
    
    # for centos
    yum install epel-release -y && yum update -y
-   yum install certbot python3-acme python3-augeas python3-certbot python3-certbot-nginx python3-certbot-apache -y
+   yum install certbot
    ```
 
 4. 确保你的nginx配置已经有配置域名，并且域名解析也已经指向该IP地址，域名能够通过80端口正常访问。
@@ -86,11 +86,12 @@ done
 certbot renew --dry-run	# 运行一次renew看看是否正常--dry-run表示只运行不用保存结果
 ```
 
-## Let's Encrypt添加新域名
+## Let's Encrypt添加/删除域名
 
 ```shell
 certbot certificates	# 先查看当前有哪些域名，比如有haofly.net
 certbot --cert-name haofly.net -d haofly.net,2.haofly.net,3.haofly.net	# 需要注意的是必须把之前的给加上，如果不加某个域名也可以直接表示移除该域名
+certbot delete # 删除所选择的证书
 ```
 
 ## 定时更新证书
@@ -102,3 +103,15 @@ certbot --cert-name haofly.net -d haofly.net,2.haofly.net,3.haofly.net	# 需要�
 ## Troubleshooting
 
 - **如果安装时出现错误: Problem binding to port 80: Could not bind to IPv4 or IPv6.**此时需要把nginx暂停一下`service nginx stop`
+
+- **cannot import name UnrewindableBodyError**: 执行以下命令重新安装`certbot`，可能是依赖和`python`本身的包依赖有冲突:
+
+  ```shell
+  sudo pip uninstall requests
+  sudo pip uninstall urllib3
+  sudo yum remove python-urllib3
+  sudo yum remove python-requests
+  sudo yum install python-urllib3 python-requests certbot -y
+  ```
+
+  

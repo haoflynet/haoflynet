@@ -404,6 +404,10 @@ MySchema.post('validate', function(doc){})
 
 - result: n表示更改的对象的条数，ok表示是否成功，nModified表示有多少次更改
 
+## Seed
+
+- 居然没有自带seed功能，最终选择的是[mongo-seeding-cli](https://www.npmjs.com/package/mongo-seeding-cli)，有点难用，但是没找到更好的，[ mongoose-data-seed](https://github.com/sharvit/mongoose-data-seed)这个也不能用，各种报错
+
 ## TroubleShooting
 
 - **mongoose create的时候怎么也拿不到返回的id**: 可能是在给`create`的参数中传入了`id=null`的值，导致程序没有从数据库获取而是直接返回的传入值null

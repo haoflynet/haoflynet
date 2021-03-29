@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-02-24 22:53:00
+updated: 2021-03-29 22:53:00
 categories: frontend
 ---
 ## 语法
@@ -43,7 +43,7 @@ Angular1里元素绑定点击事件用`ng-click`，但是Angular2里元素绑定
   
 <!-- select元素点击获取选择的值 -->
 <select (change)="onChange($event.target.value)">
-    <option *ngFor="let i of devices">{{i}}</option>
+    <option *ngFor="let item of devices | keyvalue" value="{{ item.key }}">{{ item.value }}</option>	<!--keyvalue过滤器将字典转换为key value对象的形式-->
 </select>
 ```
 

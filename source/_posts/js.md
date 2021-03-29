@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-03-27 14:18:00
+updated: 2021-03-29 14:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -44,6 +44,9 @@ Object.assign({}, {}); // 合并两个对象/合并两个字典
 
 var a = {}
 a[abc] = 'def';	// 变量作为字典名
+var a = {
+  [abc]: 'def'	// 或者这样将变量做为字典名
+}
 ```
 
 ### 数组
