@@ -1,6 +1,7 @@
 ---
 title: "Agora 声网 使用手册"
-date: 2020-01-08 11:00:00
+date: 2021-01-08 11:00:00
+updated: 2020-04-05 22:34:00
 categories: Javascript
 ---
 
@@ -33,15 +34,17 @@ categories: Javascript
 
 ### [云端录制Restful API](https://docs.agora.io/cn/cloud-recording/restfulapi/#/)
 
-- 如果一个频道超过15秒内没有主持人以及观众，那么频道会关闭，下面的接口都会提示找不到该频道
+- 如果一个频道超过30秒内没有主持人以及观众，那么频道会关闭，下面的接口都会提示找不到该频道
 - 云端录制的原理就是添加了一个观众去听
 - 目前云端录制无论是自建服务器还是使用官方接口都只支持生成`m3u8`格式的音视频文件，如果需要其他格式需要自己去转换
 - [云端录制常见错误码](https://docs.agora.io/cn/cloud-recording/common_errors?platform=RESTful)
+- 要测试云端录制，只需在控制台的APP设置页面点击`Web demo`即可开启一个demo，这个demo的channelName就是`demo`，然后调用下面这几个接口即可
 
 #### 获取云端录制资源resource ID
 
 - 后续对云端录制的几个接口都需要该`resource ID`，并且每次调用都能生成一个新的
-- ``resource ID`的时效是5分钟，必须5分钟内用它去开始云端录制，但是后续仍然可以用它来`query/stop`
+- `resource ID`的时效是5分钟，必须5分钟内用它去开始云端录制，但是后续仍然可以用它来`query/stop`
+- 如果400错误，有可能是没有开通云端录制权限，需要在控制台查看云端录制统计即可开通
 
 ```shell
 # 接口地址: /v1/apps/{appid}/cloud_recording/acquire
