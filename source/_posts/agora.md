@@ -75,7 +75,7 @@ categories: Javascript
 		"recordingConfig": {
 			"channelType": 1,
 			"streamTypes": 0,
-			"maxIdleTime": 30,
+			"maxIdleTime": 3000,	# 这个值一定要设置大一点，否则可能出现没人说话就不录制的问题，非常难排查
 			"videoStreamType": 0,
 			"unSubscribeAudioUids": [
 				"1234567890"	# 不录制指定uid的音视频，可以直接设置为录制用的那个UID	
