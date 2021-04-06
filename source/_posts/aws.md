@@ -57,6 +57,9 @@ crontab -e
 
 ## S3
 
+- 通过`Bucket`的`Metrics`可以查看桶的总容量和总的文件数量
+- 通过文件夹的`Actions->Calculate total size`可以查看指定文件夹的容量和文件数量
+
 ### 使用js sdk操作AWS3
 
 ```javascript
