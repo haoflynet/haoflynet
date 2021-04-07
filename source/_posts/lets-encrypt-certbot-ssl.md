@@ -1,7 +1,7 @@
 ---
 title: "使用certbot为Nginx一键配置Let's Encrypt SSL安全证书"
 date: 2018-06-16 21:32:00
-updated: 2021-03-29 18:40:00
+updated: 2021-03-30 18:40:00
 categories: server
 ---
 
@@ -91,6 +91,7 @@ certbot renew --dry-run	# 运行一次renew看看是否正常--dry-run表示只�
 ```shell
 certbot certificates	# 先查看当前有哪些域名，比如有haofly.net
 certbot --cert-name haofly.net -d haofly.net,2.haofly.net,3.haofly.net	# 需要注意的是必须把之前的给加上，如果不加某个域名也可以直接表示移除该域名
+cerbot --nginx	# 如果都由nginx管理，可以在添加完域名的conf后直接执行这条命令进行添加新的证书
 certbot delete # 删除所选择的证书
 ```
 

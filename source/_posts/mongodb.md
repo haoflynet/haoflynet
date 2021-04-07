@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2020-03-29 10:33:00
+updated: 2021-04-06 12:33:00
 categories: database
 ---
 
@@ -57,8 +57,15 @@ indexSizes: 所有的索引以及其大小
 db.col.status(1024)	# 这样下面那些大小单位就是KB
 
 db.version()	# 查看数据库版本
+```
 
-# 索引相关，注意，ensureIndex在3.0已经弃用了，dropDup参数也弃用了
+### 索引
+
+- 索引相关，注意，ensureIndex在3.0已经弃用了，dropDup参数也弃用了
+- 索引可以在数组字段上创建，这回给数组的每个元素都创建一个索引的
+
+```shell
+db.col.getIndexes()	# 获取当前collection的所有的索引
 db.col.createIndex({"name": 1})	# 创建索引，1表示升序，-1表示降序
 db.col.createIndex({"name": 1}, {unique: true})	# 索引规则，unique表示唯一索引，sparse对文档中不存在的字段数据不启用索引，默认是false，为true的话不会查询出不包含该索引的数据；expireAfterSeconds设定集合的生存事件；weights索引权重值；default_language设置索引的语言，默认是英语，zhs表示简体中文
 db.col.createIndex({"content": "text"})	# 在content字段上创建全文索引
@@ -109,8 +116,18 @@ db.col.distinct('friends.user_type', {gender: 'female'})	# 只distinct gender=fe
 
 ### 插入数据
 
+- `insertMany`等好多操作都是3.2版本才开始的，
+
 ```shell
 db.col.insert(document)	# 会返回一个WriteResult对象
+db.col.insertMany([document1, document2])
+
+# 3.0之前的insertMany
+var bulk = db.settings.initializeUnorderedBulkOp();
+bulk.insert({});
+bulk.insert({});
+bulk.insert({});
+bulk.execute();
 ```
 
 ### 更新数据
@@ -162,6 +179,12 @@ db.collection.remove(
 ## 备份与恢复
 
 ```shell
+# 4.0以前可以使用这条命令直接复制数据库，但是那之后就只能用mongodump了
+db.copyDatabse('old_name', 'new_name')
+# 4.0以后用下面的命令复制数据库
+mongodump --archive="mongodump-test-db" --db=test
+mongodump --archive="mongodump-test-db" --nsFrom='test.*' --nsTo='examples.*'
+
 # 备份
 mongodump -h 127.0.0.1:27017 --db DB_NAME --collection COLLECTION	# 备份某个集合
 mongodump -d DB_NAME -o ./

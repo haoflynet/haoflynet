@@ -1,8 +1,11 @@
 ---
 title: "Agora 声网 使用手册"
-date: 2020-01-08 11:00:00
+date: 2021-04-01 23:00:00
+updated: 2021-04-06 10:00:00
 categories: Javascript
 ---
+
+- 每月1万分钟的免费额度，可以说相当不错的了
 
 ## [生成token](https://docs.agora.io/cn/cloud-recording/token_server?platform=All%20Platforms)
 
@@ -72,7 +75,7 @@ categories: Javascript
 		"recordingConfig": {
 			"channelType": 1,
 			"streamTypes": 0,
-			"maxIdleTime": 30,
+			"maxIdleTime": 3000,	# 这个一定要注意设置大一点，否则可能出现超过一定时间不出声频道自动销毁的情况
 			"videoStreamType": 0,
 			"unSubscribeAudioUids": [
 				"1234567890"	# 不录制指定uid的音视频，可以直接设置为录制用的那个UID	

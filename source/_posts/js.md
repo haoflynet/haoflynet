@@ -175,6 +175,7 @@ name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 
 ```javascript
 // 原生方法
+new Date().getTime() // 获取当前时间戳，毫秒
 var today = Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
 Date.parse(1234567890000);	// 时间戳直接转换为Date
 today.setTime(today.getTime() - 24*60*60*1000); // 获取昨天的时间
@@ -192,6 +193,10 @@ today.format('yyyy-MM-dd');	// 格式化
 
 // dayjs
 dayjs('2021-03-02T04:00:00.000Z').format('MMM D, YYYY')	// 时间解析和格式化
+dayjs().format('YYYY-MM-DD')	// 获取年月日
+dayjs().add(1, 'days')	// 日期加法
+dayjs().subtract(7, 'year')	// 日期减法
+dayjs('2018-10-1').isBefore('2018-1-1')	// 日期比较
 
 
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
