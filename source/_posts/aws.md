@@ -57,6 +57,8 @@ crontab -e
 
 ## S3
 
+- S3的[生命周期管理](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#glacier-pricing-considerations)，有点绕，还没搞懂
+
 ### 使用js sdk操作AWS3
 
 ```javascript
@@ -230,6 +232,7 @@ email: $email
 - CodeDeploy日志位置: `/var/log/aws/codedeploy-agent/codedeploy-agent.log`
 - 部署日志位置: `/opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log`
 - `CodeDeply Agent`安装方式见https://docs.aws.amazon.com/zh_cn/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html
+- `CodeDeploy`拉去的源码和构建后的代码都会自动存储到S3上面去，这些文件可能占用很大的存储，我暂时还不清除其费用和自动清理的方式，网上有人说用S3的生命周期管理，可是那样不能保证至少保留N个副本
 
 ## 开发
 
