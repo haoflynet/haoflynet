@@ -58,6 +58,8 @@ crontab -e
 ## S3
 
 - S3的[生命周期管理](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#glacier-pricing-considerations)，有点绕，还没搞懂
+- 通过`Bucket`的`Metrics`可以查看桶的总容量和总的文件数量
+- 通过文件夹的`Actions->Calculate total size`可以查看指定文件夹的容量和文件数量
 
 ### 使用js sdk操作AWS3
 
