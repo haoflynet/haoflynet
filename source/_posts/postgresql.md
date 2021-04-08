@@ -1,6 +1,6 @@
 ---
 title: "PostgreSQL 使用手册"
-date: 2020-03-26 08:32:00
+date: 2021-03-30 08:32:00
 categories: Database
 ---
 
@@ -10,7 +10,7 @@ categories: Database
 
 ## 配置
 
-- 默认端口为5432
+- 默认端口为5432，默认用户名为`postgres`
 
 ### 系统表
 

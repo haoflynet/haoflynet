@@ -361,6 +361,7 @@ MySchema.post('find', async function(docs) {
     await doc.save()
   }))
 });
+MySchema.post('findOne', function(doc) {})
 MySchema.post('findOneAndUpdate', function(doc) {})
 MySchema.post('findOneAndRemove', function (doc) {})
 
