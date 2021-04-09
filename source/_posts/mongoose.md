@@ -394,7 +394,6 @@ MySchema.post('updateMany', function () {
   })
 })
 
-
 MySchema.post('init', function(doc) {})
 MySchema.post('validate', function(doc){})
 ```
@@ -413,3 +412,4 @@ MySchema.post('validate', function(doc){})
 
 - **mongoose create的时候怎么也拿不到返回的id**: 可能是在给`create`的参数中传入了`id=null`的值，导致程序没有从数据库获取而是直接返回的传入值null
 - **"co" is not defined**: `co`是另外一个库的东西`const co = require('co')`
+- **utils.populate: invalid path. Expected string. Got typeof `undefined`**：可能是在`populate`的时候传入了一个空的populate对戏那个`{}`

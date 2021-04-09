@@ -1,10 +1,50 @@
 ---
 title: "BootStrap wiki"
 date: 2015-02-20 08:30:39
-updated: 2018-07-02 21:39:00
+updated: 2021-04-08 21:39:00
 categories: frontend
 ---
 ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其中包含了许多简洁大方的css样式和实用的js插件，当然，它是移动设备优先的响应式开发方式。
+
+## Utilities
+
+### Display
+
+- 以d开头
+- 可取的值有none、inline、inline-block、block、table、table-cell、table-row、flex、inline-flex
+
+### Flex
+
+```
+.flex-row
+.flex-row-reverse
+.flex-column
+.flex-column-reverse
+.flex-sm-row
+.flex-sm-row-reverse
+.flex-sm-column
+.flex-sm-column-reverse
+.flex-md-row
+.flex-md-row-reverse
+.flex-md-column
+.flex-md-column-reverse
+.flex-lg-row
+.flex-lg-row-reverse
+.flex-lg-column
+.flex-lg-column-reverse
+.flex-xl-row
+.flex-xl-row-reverse
+.flex-xl-column
+.flex-xl-column-reverse
+```
+
+### Spacing
+
+- m表示margin，p表示padding
+- t、b、l、r分表表示top、bottom、left、right
+- x表示水平方向left和right
+- y表示垂直方向top和bottom
+- 可以加上响应式参数{property}{sides}-{breakpoint}-{size}
 
 ##  特殊功能(使用Tips)
 
