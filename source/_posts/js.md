@@ -427,6 +427,9 @@ ele.value;		// 获取元素内容
 
 // jQuery方法
 $('#check').prop('checked')	// 获取checkbox是否被check了，不用给你用attr
+$('div').prop('classList') // 获取元素类列表
+$('div').prop('classList').remove('d-none')	// 移除某个类
+$('div').prop('classList').add('d-none')	// 添加某个类
 $('div').height()	// 获取元素高度
 $('div').height(20)	// 设置元素高度
 $('select').val()	// select标签的值

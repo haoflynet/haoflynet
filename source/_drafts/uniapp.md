@@ -117,7 +117,86 @@ uni.getLocation({
 });
 ```
 
-##### 扩展阅读
+## uni-ui
+
+### uni-list
+
+```vue
+
+```
+
+## uniCloud
+
+- 需要先创建云服务空间，然后关联云服务空间
+- 但是论坛上还是大部分人持怀疑态度，毕竟长期的项目迭代，不应该绑定到一个商业平台上面来
+
+### 云函数
+
+- 自带uni-id的token，不用自己管理token了
+- 默认不需要使用url，如果云函数需要URL化(如微信回调地址)，需要在后台配置url
+
+```javascript
+uniCloud.callFunction({
+  name: 'test',
+  success: (res) => {
+    this.title = res
+  }
+})
+```
+
+### 云数据库
+
+- 是一种clientDB，客户端可以直接调用，和firestore一样，可以设置权限，如果在云函数里面进行操作那么是管理员权限
+- 云端居然有那么多的表模板，而且还有`schema2code`功能，然后直接导入hbuildx，这样在pages目录下会自动生成增删改查的vue文件，牛逼
+- 可以直接写到模版中，不用写js
+
+```vue
+<unicloud-db ref="udb" v-slog:default="{data, loading, error, options }" collection="contacts">	<!--这里的contacts就是表名-->
+  <view v-if="error">{{error.message}}</view>
+  <view v-else>
+    <uni-list>
+      <uni-list-item v-for="item in items" @longpress.native="rmItem(item._id)"></uni-list-item>
+    </uni-list>
+  </view>
+</unicloud-db>
+
+// 删除云数据，当然要设置权限
+rmItem(id) {
+	this.$refs.udb.remove(id);	<!--我靠可以直接删除云数据库里面的东西，并且还自带确认删除弹窗，当然要设置权限啦-->
+}
+
+// 添加云数据，当然要设置权限
+addItem() {
+	const db = uniCloud.database();
+	db.collection('contacts').add({}).then()
+}
+```
+
+#### 权限控制
+
+```json
+// user表的schema
+{
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": true, // 任何用户都可以读
+    "create": false, // 禁止新增数据记录（admin权限用户不受限）
+    "update": false, // 禁止更新数据（admin权限用户不受限）
+    "delete": false, // 禁止删除数据（admin权限用户不受限）
+    "count": false // 禁止查询数据条数（admin权限用户不受限），新增于HBuilderX 3.1.0
+  },
+  "properties": {
+    "_id":{},
+    "name":{},
+    "pwd": {}
+  }
+}
+```
+
+
+
+## 扩展阅读
 
 - [uni-app 全局变量的几种实现方式](https://ask.dcloud.net.cn/article/35021)
 - [完整的 uni-App+Laravel+jwt-auth 小程序权限认证](https://learnku.com/articles/43682)
