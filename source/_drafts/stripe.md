@@ -1,6 +1,4 @@
-stripe API: https://stripe.com/docs/api/balance，api是后端用的
-
-stripe js：https://stripe.com/docs/js/element/other_methods/clear这是前端用的
+- [测试卡号及账号](https://stripe.com/docs/testing)
 
 ## [stripe API](https://stripe.com/docs/api)
 

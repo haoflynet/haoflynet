@@ -531,6 +531,8 @@ $('#myModal').modal('show')  // bootstrap中modal的触发
 // 事件的订阅
 $('p').bind('click', function(){});	// 用bind进行事件的绑定，即使是之后生成的元素也能与事件绑定
 
+// modal模态框显示事件/show                            
+$('#myModal').on('shown.bs.modal', function () {});
 // modal模态框关闭事件                                           
 $('#myModal').on('hidden.bs.modal', function () {});
 $('#myModal').on('hidden', function () {});

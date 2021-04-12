@@ -278,10 +278,15 @@ flush privileges;
 # 查看用户权限
 show grants for 用户名
 
-# 打开远程登录权限，如果是CentOS7还需要打开防火墙firewall-cmd --add-port=3306/tcp
+# 打开root用户的远程登录权限，如果是CentOS7还需要打开防火墙firewall-cmd --add-port=3306/tcp
 GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "mysql";
 flush privileges;                更新权限
 select host, user from user;     查看更改
+
+# 新建用户
+CREATE USER 用户名 IDENTIFIED by '密码';
+GRANT ALL PRIVILEGES ON 数据库名.* TO 用户名@'%' IDENTIFIED BY '密码';
+FLUSH PRIVILEGES;
 
 # 查找系统常用变量
 show global variables like 'log_error'; # 查看是否开启以及日志文件路径
