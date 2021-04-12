@@ -8,10 +8,23 @@ ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 
 ## Utilities
 
+- 有几种常见样式并不存在于`utilities`里面，如`font-size/line-height/height` ，建议直接写在html的style里
+
+### Border
+
+- 需要注意的是border不支持breakpoints
+
 ### Display
 
 - 以d开头
 - 可取的值有none、inline、inline-block、block、table、table-cell、table-row、flex、inline-flex
+
+| 屏幕尺寸   | 类                          |
+| ---------- | --------------------------- |
+| 只在lg隐藏 | d-lg-none d-xl-block        |
+| 只在xl隐藏 | d-xl-none                   |
+| 只在lg显示 | d-none d-lg-block d-xl-none |
+| 只在xl显示 | d-none d-xl-block           |
 
 ### Flex
 
@@ -38,6 +51,8 @@ ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 .flex-xl-column-reverse
 ```
 
+### Font-weight
+
 ### Spacing
 
 - m表示margin，p表示padding
@@ -45,6 +60,12 @@ ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 - x表示水平方向left和right
 - y表示垂直方向top和bottom
 - 可以加上响应式参数{property}{sides}-{breakpoint}-{size}
+- size的取值有0、1、2、3、4、5、auto
+
+### Text
+
+- `text-center`没有breakpoint
+- `justify-content-center`
 
 ##  特殊功能(使用Tips)
 

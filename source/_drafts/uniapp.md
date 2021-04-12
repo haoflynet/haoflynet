@@ -194,8 +194,6 @@ addItem() {
 }
 ```
 
-
-
 ## 扩展阅读
 
 - [uni-app 全局变量的几种实现方式](https://ask.dcloud.net.cn/article/35021)
