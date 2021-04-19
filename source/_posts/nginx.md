@@ -154,7 +154,7 @@ location / {
 在server里：
 server{
     listen 80;
-    server_name haofly.net, *.haofly.net;	# 支持通配符
+    server_name haofly.net *.haofly.net;	# 支持通配符，多个域名之间一定不能用逗号，否则会出现莫名其妙的问题
     location / {
         proxy_redirect off;
         proxy_set_header Host $host;

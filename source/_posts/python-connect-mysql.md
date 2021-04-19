@@ -133,7 +133,6 @@ rows = cursor.fetchmany(size=1)
 
 * **安装mysqlclient的时候ld: library not found for -lssl**: python安装包时出现类似ssl的错误，参照[Python手册](https://haofly.net/python/index.html)，使用这种方式安装`pip install mysqlclient --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include"`
 
-   
 
 
 ##### 参考文章
