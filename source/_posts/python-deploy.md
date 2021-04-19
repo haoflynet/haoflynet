@@ -1,7 +1,7 @@
 ---
 title: "Python程序(Django/Flask)部署方式"
 date: 2018-08-04 21:32:00
-updated: 2019-09-1 16:42:00
+updated: 2019-09-01 16:42:00
 categories: python
 ---
 
@@ -75,7 +75,7 @@ categories: python
 - 将`socket`的启动参数写入到文件，这里我是直接把配置文件放到项目目录下的，方便以后启动:
 
   ```shell
-  # sudo /usr/local/bin/uwsgi --ini /data/mysite/mysite/uwsgi.ini --daemonize /var/log/uwsgi.log  启动命令
+  # /usr/local/bin/uwsgi --ini /data/mysite/mysite/uwsgi.ini --daemonize /var/log/uwsgi.log  启动命令
   
   # uwsgi.ini file
   [uwsgi]

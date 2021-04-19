@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2021-03-16 08:48:00
+updated: 2021-04-17 08:48:00
 categories: Javascript
 ---
 
@@ -368,8 +368,8 @@ onFocus
   }
   ```
 
-
-##### 扩展阅读
+## 扩展阅读
 
 - [在React中使用Redux](https://juejin.im/post/5b755537e51d45661d27cdc3)
 - [React Icons库](https://react-icons.github.io/react-icons/)
+- [在线视频播放库 react-player](https://github.com/cookpete/react-player)

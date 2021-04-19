@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-02-25 09:44:00
+updated: 2021-04-17 09:44:00
 categories: database
 ---
 ## 安装方法
@@ -287,6 +287,9 @@ select host, user from user;     查看更改
 CREATE USER 用户名 IDENTIFIED by '密码';
 GRANT ALL PRIVILEGES ON 数据库名.* TO 用户名@'%' IDENTIFIED BY '密码';
 FLUSH PRIVILEGES;
+
+# 删除用户
+DROP user 用户名@'%';
 
 # 查找系统常用变量
 show global variables like 'log_error'; # 查看是否开启以及日志文件路径

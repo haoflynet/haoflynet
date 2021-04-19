@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-04-07 14:18:00
+updated: 2021-04-17 14:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -204,11 +204,13 @@ dayjs('2018-10-1').isBefore('2018-1-1')	// 日期比较
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
 moment(new Date()).subtract(2, 'hours');	// 时间相加减
+moment().isSame('2021-04-17', 'day');	// 检查制定日期是不是今天
 moment().format(); // "2014-09-08T08:02:17-05:00"
 moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
 moment().format("YYYY-MM-DD HH:mm:ss");	// 2021-01-06 22:00:00
 moment().format("ddd, hA");                       // "Sun, 3PM"
 moment().format("[Today is] dddd");               // "Today is Sunday"
+moment().isoWeekday();	// Sunday获取星期几
 moment('gibberish').format('YYYY MM DD');         // "Invalid date"
 moment().diff(moment[])	// 比较两个日期的间隔，默认是时间戳的比较
 moment().diff(moment[], 'days')	// 比较两个日期的间隔，第二个参数可以设置比较的是年、还是月份等
@@ -945,6 +947,20 @@ window.getCookie = function(cname) {
 // 设置cookie
 window.setCookie = function(key, value) {
   document.cookie = `${key}=${value}`
+}
+
+// 数字转货币(每三位一个逗号)
+window.convertNumberToMoney = function(money){
+	if(money && money!=null){
+		money = String(money)
+		var left=money.split('.')[0],right=money.split('.')[1]
+		right = right ? (right.length>=2 ? '.'+right.substr(0,2) : '.'+right+'0') : '.00'
+		var temp = left.split('').reverse().join('').match(/(\d{1,3})/g)
+		return (Number(money)<0?"-":"") + temp.join(',').split('').reverse().join('')+right
+	} else if(money===0) {
+		return '0.00';
+	}else{
+		return "";
 }
 ```
 
