@@ -1,10 +1,13 @@
 cordova
 
-`npm install -g cordova `
-
 ## 基本命令
 
+- `npm install -g cordova `
+
 ```shell
+# 创建工程
+cordova create 目录名 com.haofly.mobile 应用名
+
 # 平台管理
 cordova platform add ios
 cordova platform add android
@@ -15,6 +18,7 @@ cordova platform rm android
 cordova build	# 编译所有平台
 cordova build android	# 仅编译指定平台，这条命令相当于cordova prepare android && codova compile android
 cordova emulate ios	# 启动模拟器
+cordova run browser	# 在指定平台运行
 
 # 插件管理
 cordova plugin search facebook	# 搜索插件
@@ -25,6 +29,29 @@ corodva plugin add https://github.com/myproject#branch_name	# 从github安装指
 ```
 
 <!--more-->
+
+## 使用Vue作前端
+
+### VUE配置步骤
+
+1. 初始化一个`vue`工程，`vue init webpack project-name`
+
+2. 在`vue/index.html`的`head`中添加内容:
+
+   ```html
+   <meta http-equiv=”Content-Security-Policy” content="default-src ‘self’ data: gap: https://ssl.gstatic.com ‘unsafe-eval’; style-src ‘self’ ‘unsafe-inline’; media-src *; img-src ‘self’ data: content:; connect-src ‘self’ ws:;">
+   
+   <script type="text/javascript" src="cordova.js"></script>
+   ```
+
+3. 修改build配置，在`config/index.js`中修改如下配置
+
+   ```javascript
+   build: {
+     index: path.resolve(__dirname, ‘../www/index.html’),	// 指向cordova的www目录
+     assetsRoot: path.resolve(__dirname, ‘../www’),
+   }
+   ```
 
 ## 依赖管理Pod
 
@@ -38,6 +65,8 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 ```
 
 ## 常用插件推荐
+
+- [cordova-plugin-device](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-device/index.html): 获取平台设备信息
 
 - [cordova-plugin-facebook-connect](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect): Facebook登陆插件，安装完成后得去`platforms/ios`目录执行一下`pod repo update && pod install`安装facebook SDK，这样使用:
 
