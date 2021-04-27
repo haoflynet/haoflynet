@@ -34,6 +34,11 @@ categories: uniapp
 - `onNavigationBarSearchInputConfirmed`: 监听原生标题栏搜索输入框搜索事件，用户点击软键盘上的“搜索”按钮时触发。
 - `onNavigationBarSearchInputClicked`: 监听原生标题栏搜索输入框点击事件
 
+### nvue
+
+- 如果不开发App，那么不需要使用nvue
+- 在app端，如果使用vue页面，则使用webview渲染；如果使用nvue(native vue)页面，则使用原生渲染，一个app可以同时使用两种
+
 ## 数据绑定
 
 - 与`vue`有相同点也有很多不同点，使用时需要注意
@@ -117,13 +122,18 @@ uni.getLocation({
 });
 ```
 
-## uni-ui
+## [组件](https://uniapp.dcloud.io/component/)
 
-### uni-list
+- `uni-app`可以使用第三方的UI组件，但是如果跨端使用最好使用自带的组件，会有一些自带的优化、适应，风格也和`uni-app`一致
+- `uni-ui`是一个跨端ui库，它是基于vue组件的、flex布局的、无dom的跨全端ui框架
+- `uni-ui`不包括基础组件，它是`uni-app`基础组件的补充
 
-```vue
+### [list/uni-list](https://ext.dcloud.net.cn/plugin?id=24)
 
-```
+- 这是app端nvue专用组件，在`nvue`下，如果是长列表，使用list组件的性能高于使用view或scroll-view的滚动，因为list在不可见部分的渲染资源回收有特殊的优化处理
+- 但是如果需要跨端，官方还是建议使用uni-ui的uni-list组件，它会自动处理webview渲染和原生渲染的情况，自动在app-nvue下使用list组件，而在其他平台使用页面滚动
+- 综上，不如直接使用uni-list就行了
+- 
 
 ## uniCloud
 

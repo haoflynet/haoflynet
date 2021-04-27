@@ -20,7 +20,7 @@ https://res.cloudinary.com/demo/image/fetch/https://upload.wikimedia.org/wikiped
 
 w_400,h_400	限制高度和宽度
 
-c_crop
+c_crop: 裁剪，https://res.cloudinary.com/demo/image/upload/w_300,h_200,c_crop/sample.jpg
 
 c_fill
 
@@ -42,7 +42,7 @@ r_max
 
 
 
-
+mp4只有声音，尝试加上c_scale,w_1280参数试试
 
 
 
