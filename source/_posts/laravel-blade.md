@@ -66,8 +66,8 @@ categories: php
   $loop->iteration	# 当前循环的指针
   $loop->remaining	# 循环剩余的指针
   $loop->count			# 循环总数量
-  $loop->first			# 第一个元素
-  $loop->last				# 最后一个元素
+  $loop->first			# 是否第一个元素
+  $loop->last				# 是否最后一个元素
   $loop->even 			# 奇数
   $loop->odd 				# 偶数
   $loop->depth 			# 多层嵌套循环的深度
