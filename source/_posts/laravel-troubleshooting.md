@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2021-02-06 22:18:00
+updated: 2021-04-29 14:18:00
 categories: php
 ---
 
@@ -171,8 +171,12 @@ function my_asset($path, $secure = null){
 
 #### oauth-private.key does not exist or is not readable
 
-重新生成一下密钥文件: `php artisan passport:keys`
+重新生成一下密钥文件: `php artisan passport:keys`，如果这种方法仍然不行，需要在`storage`目录下新建`oauth-private.key`和`oauth-public.key`文件，内容为空就行，然后执行` php artisan passport:install --force`重新生成
 
 #### PackageManifest.php: Undefined index: name
 
 尝试删除`vendor`和`composer.lock`，然后重新`composer install`
+
+#### No Application Encryption Key Has Been Specified
+
+尝试执行`php artisan key:generate`

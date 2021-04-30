@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-04-17 14:18:00
+updated: 2021-04-30 16:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -109,7 +109,7 @@ num.toFixed(2);	// 保留两位小数
 
 ```javascript
 // 正则
-var re = new RegExp("a|b", "i");	// 通过字符串来生成正则表达式，相当于/a|b/i
+var re = new RegExp("a|b", "i");	// 通过字符串来生成正则表达式，相当于/a|b/i，这种方式的好处是可以使用变量
 text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');	// 如果源字符串里有特殊字符需要加斜杠先转义一次
 
 // 搜索
@@ -184,13 +184,14 @@ today.setDate(today.getDate() - 1);	// 也可以直接对年月日时分秒进�
 today.getYear();	// 21
 today.getFullYear(); // 2021
 today.getMonth() + 1; //获取月份
+String(today.getMonth() + 1).padStart(2, '0'); // 获取月，前面补零
 today.Day() + 1;	// 获取星期几
 today.getDate();	// 获取日
+String(today.getDate()).padStart(2, '0');	// 获取天，前面补零
 today.getHours();
 today.getMinutes();
 today.getSeconds();
 today.getMilliseconds();
-today.format('yyyy-MM-dd');	// 格式化
 
 // dayjs
 dayjs('2021-03-02T04:00:00.000Z').format('MMM D, YYYY')	// 时间解析和格式化
@@ -201,6 +202,7 @@ dayjs('2018-10-1').isBefore('2018-1-1')	// 日期比较
 
 
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
+moment('2020-04-29 00:00:00');	// 直接解析，需要注意的是它不能解析时间只有一位的情况，例如'2020-04-29 0:0:0'
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
 moment(new Date()).subtract(2, 'hours');	// 时间相加减
@@ -210,10 +212,12 @@ moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010
 moment().format("YYYY-MM-DD HH:mm:ss");	// 2021-01-06 22:00:00
 moment().format("ddd, hA");                       // "Sun, 3PM"
 moment().format("[Today is] dddd");               // "Today is Sunday"
+moment().format("hh:MM A");		// "06:00 PM"
 moment().isoWeekday();	// Sunday获取星期几
 moment('gibberish').format('YYYY MM DD');         // "Invalid date"
 moment().diff(moment[])	// 比较两个日期的间隔，默认是时间戳的比较
 moment().diff(moment[], 'days')	// 比较两个日期的间隔，第二个参数可以设置比较的是年、还是月份等
+moment().unix()	// 获取时间戳
 ```
 
 #### URL Params处理
@@ -268,7 +272,7 @@ fs.readdir('目录名', 'utf-8', function (err, data) {	// 获取目录下的文
   ```javascript
   var fileInput = document.getElementById("myfileinput");
   var files =fileInput.files
-
+  
   // 遍历FileList对象
   for (var i = 0; i < files.length; i++) {
       file = files.item(i);
@@ -551,6 +555,7 @@ window.location.origin	// 例如 https://haofly.net
 window.location.hostname	// 例如 haofly.net
 window.lcoation.href = 'url'	// 跳转到某个url
 window.location.back() // 返回上一页
+window.history.pushState({"html":test.html,"pageTitle":response.pageTitle},"", urlPath);	// 不刷新页面直接修改url
 document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
 location.reload()				// 刷新当前页面
 
@@ -1111,6 +1116,8 @@ window.convertNumberToMoney = function(money){
 * **无法获取iframe里面的内容**: 一个iframe表示一个窗口，并且还对应不同的域名，默认情况，放任一个网页，脚本都默认在最上层的窗口上面，在谷歌浏览器的`审查元素`视图下的`Console`的左上角可以选择定位到哪个`iframe`，如果是爬虫或者油猴脚本，要注意对应iframe的url。
 
 * **onclick的时候将标签本身作为参数**: `onclick="dothing(this);"`
+
+* **onclick的时候直接阻止冒泡**: `<span onclick="event.stopPropagation(); alert('ok');"></span>`
 
 * **js实现点击自动复制到剪贴板**: 
 
