@@ -1,10 +1,12 @@
 ---
 title: "BootStrap wiki"
 date: 2015-02-20 08:30:39
-updated: 2021-04-08 21:39:00
+updated: 2021-04-29 21:39:00
 categories: frontend
 ---
-ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其中包含了许多简洁大方的css样式和实用的js插件，当然，它是移动设备优先的响应式开发方式。
+bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其中包含了许多简洁大方的css样式和实用的js插件，当然，它是移动设备优先的响应式开发方式。
+
+- [bootstrap的响应式breakpoints定义](https://getbootstrap.com/docs/5.0/layout/breakpoints/)
 
 ## Utilities
 
@@ -13,6 +15,23 @@ ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 ### Border
 
 - 需要注意的是border不支持breakpoints
+
+### Color
+
+- 设置字体颜色
+
+  ```shell
+  .text-primary
+  .text-secondary
+  .text-success
+  .text-danger
+  .text-warning
+  .text-info
+  .text-light
+  .text-dark	# 黑色
+  .text-muted
+  .text-white
+  ```
 
 ### Display
 
@@ -64,8 +83,40 @@ ootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 
 ### Text
 
-- `text-center`没有breakpoint
-- `justify-content-center`
+- text alignment
+
+  ```shell
+  text-left
+  text-center
+  text-right
+  
+  # 添加breakpoint
+  text-sm-left
+  text-md-left
+  ```
+
+- font weight
+
+  ```shell
+  font-weight-bold	# 700
+  font-weight-normal	# font-weight: 400
+  font-weight-light
+  font-italic	# 斜体
+  ```
+
+- wrap
+
+  ```shell
+  text-nowrap
+  text-truncate # 截断，用省略号表示
+  ```
+  
+- justify-content
+
+  ```javascript
+  justify-content-center
+  justify-content-between
+  ```
 
 ##  特殊功能(使用Tips)
 
