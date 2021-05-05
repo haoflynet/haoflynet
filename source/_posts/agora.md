@@ -18,6 +18,8 @@ categories: Javascript
 
 - 服务端的`Restful API`都有频率限制且阈值并不高，这是[官方提供的超出频率限制解决方法](https://docs.agora.io/cn/All/faq/restful_api_call_frequency)，可以参考一下，之前我以为hook能够帮助我减少很多请求，但发现并不如我的预期，主要是实效和顺序性的问题
 
+<!--more-->
+
 ### [Channel相关的服务端Restful API](https://docs.agora.io/cn/rtc/restfulapi/#/)
 
 #### 项目管理

@@ -234,7 +234,110 @@ email: $email
 - CodeDeploy日志位置: `/var/log/aws/codedeploy-agent/codedeploy-agent.log`
 - 部署日志位置: `/opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log`
 - `CodeDeply Agent`安装方式见https://docs.aws.amazon.com/zh_cn/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html
-- `CodeDeploy`拉去的源码和构建后的代码都会自动存储到S3上面去，这些文件可能占用很大的存储，我暂时还不清除其费用和自动清理的方式，网上有人说用S3的生命周期管理，可是那样不能保证至少保留N个副本
+- 服务器上保留的副本的数量设置`/etc/codedeploy-agent/conf/codedeployagent.yml`里面的`max_revisions`，默认是10，服务器总共才8G，保留不了那么多副本
+- `CodeDeploy`拉去的源码和构建后的代码都会自动存储到S3上面去，这些文件可能占用很大的存储，我暂时还不清楚其费用和自动清理的方式，网上有人说用S3的生命周期管理，可是那样不能保证至少保留N个副本
+
+需要在项目根目录添加这些文件
+
+```yml
+# buildspec.yml
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - echo Installing Web App...
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - app/**/*
+    - config/**/*
+    - lib/**/*
+    - node_modules/**/*
+    - public/**/*
+    - scripts/*
+    - views/**/*
+    - .babelrc
+    - appspec.yml
+    - buildspec.yml
+    - package.json
+    - package-lock.json
+    - pm2.config.js
+    - server.js
+  discard-paths: no
+```
+
+以及
+
+```yml
+# appspec.yml
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/myproject
+permissions:
+  - object: ./scripts/
+    pattern: "*"
+    mode: 755
+    type:
+      - file
+hooks:
+  ApplicationStop:
+    - location: ./scripts/stop_service.sh
+      mode: 755
+      runas: root
+  ApplicationStart:
+    - location: ./scripts/start_service.sh
+      mode: 755
+      runas: root
+  ValidateService:
+    - location: ./scripts/validate_service.sh
+      mode: 755
+      timeout: 30
+      runas: root
+```
+
+对应的脚本可以这样
+
+```shell
+# scripts/start_service.sh
+#!/bin/bash
+cd /home/ubuntu/myprojct
+if [ "$APPLICATION_NAME" == "MyProject-Staging-Application" ]
+then
+  pm2 reload pm2.config.js --env staging
+else
+	pm2 reload pm2.config.js --env production
+fi
+
+exit
+
+# scripts/stop_service.sh
+#!/usr/bin/env bash
+isExistApp=`pgrep node`
+if [[ -n  $isExistApp ]]; then
+sudo kill ${isExistApp}
+fi
+
+exit
+
+# scripts/validate_service.sh
+#!/bin/bash
+echo "service codedeploy-agent restart" | at -M now + 2 minute;
+```
 
 ## 开发
 
