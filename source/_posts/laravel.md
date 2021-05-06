@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-03-09 13:58:00
+updated: 2021-04-14 13:58:00
 categories: php
 ---
 # Laravel指南
@@ -475,6 +475,10 @@ return $this->belongsToMany(Role::class)->withPivot('field1', 'field2')->withTim
 
 # 同步关联对象
 $user->posts()->sync([1, 2, 3])	# 这样可以对关联表进行同步，多的关联会进行删除，没有的关联会进行添加，这样就不用在关联表进行先删除再插入的操作了
+$user->posts()->sync([	# 如果要更新关联表的pivot字段，需要传入这样的数据结构
+  1 => ['abc' => 'def'],
+  2 => ['def' => 'ghi']
+])
 ```
 ##### 多态关联
 
@@ -585,6 +589,7 @@ User::where('field', 'like', '%test%');	# 模糊搜索
 User::where('field', 'like', '%{$keyword}%');	# 直接传入变量
 User::where('field', 'regexp', 'abc');	# 正则搜索
 User::where()->limit(2);				# limit限制
+User::where()->exists();	# 查询是否存在
 User::whereIn('name', ['hao', 'fly']);	# in查询
 User::whereNull('name');			# is null
 User::whereNotNull('name');		# is not null
@@ -600,7 +605,7 @@ User::where(...)->orWhere();		# or where，需要注意的是这里是和前面�
 User::where('...')->orWhere(['a'=>1, 'b'=>2]);	# 同时添加多个
 User::where()->firstOrFail()	# 查找第一个，找不到就抛异常
 User::where('user_id', 1)->get()# 返回一个Collection对象
-User::where(...)->first()		# 只取出第一个model对象
+User::where(...)->first()		# 只取出第一个model对象，需要注意的是last方法是用于collection的，orm本身没有last方法，可以orderByDesc后再获取first即可
 User::find(1)->logs->where(...)	# 关系中的结果也能用where等字句
 User::->where('updated_at', '>=', date('Y-m-d H:i').':00')->where('updated_at', '<=', date('Y-m-d H:i').':59') 					# 按分钟数查询
 User::find(1)->sum('money')		# 求和SUM
