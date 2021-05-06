@@ -819,6 +819,8 @@ _.last(['a', 'b']);
 ```javascript
 myArr.map(Match.sqrt)
 
+myArr.map((item, index) => {})	// 获取遍历的索引
+
 // 在map中使用异步函数
 await Promise.all(_.map(['a','b'], async (item) => {
   await ...

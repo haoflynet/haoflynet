@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-03-27 11:30:00
+updated: 2021-04-30 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -46,6 +46,8 @@ a:visited: 表示一个已经被点击过的a标签的属性
 a:hover: 鼠标移动到a标签上面
 
 a:active: a标签被点击的时候
+
+- 如果`href="javascript:void(0)"`会不跳转并且保留鼠标的手势按钮
 
 ##### align-items
 
@@ -233,6 +235,10 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 
 - 设置当文本溢出包含元素时怎么做
 - clip(直接截断文本)、ellipsis(截断文本并显示省略号)
+
+##### text-transform
+
+- 控制文本的大小写，默认为none，可选capitalize(首字母大写)、uppercase(全部大写)、lowercase(全部小写)
 
 ##### top
 
@@ -655,7 +661,7 @@ div {margin:0 auto}
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: traslate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 # 方法六：让容器内部的元素垂直居中
 .parent {
