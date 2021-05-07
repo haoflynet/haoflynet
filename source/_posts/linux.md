@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-03-09 17:03:30
+updated: 2021-04-29 17:03:30
 categories: system
 ---
 # Linux手册
@@ -461,6 +461,8 @@ cat /proc/version	# 更详细的系统版本
 rpm -q centos-release|cut -d- -f3	# 查看centos是6还是7
 lspci				# 显示当前主机的所有PCI总线信息、vga/navidia表示的是显卡GPU信息
 lspci -v -s 00:0f.2	# 显示指定硬件信息的详情，例如查看GPU大小等
+who -b	# 查看最后一次系统启动时间
+who -r # 查看当前系统运行时间
 
 # 环境变量
 env	# 查看环境变量
@@ -1062,10 +1064,10 @@ date+\%Y-\%m-\%d   # 获取今天的日期
   ```shell
   # 首先使用如下命令查看可用的网卡
   ifconfig -a  # 这不仅会显示lo网卡，还会显示其它可用的网卡，如eth0，名字不固定，比如我这次是eth1
-
+  
   # 记住上面以太网卡的名字，然后执行
   sudo dhclient eth0   # 将该网卡打开
-
+  
   # 当然很有可能在网络设置里面没有该网卡，导致重启后依然无法联网的情况，我的网卡设置里就是eth0但现在应该变为eth1了，参考上面的/etc/network/interfaces文件
   ```
 
