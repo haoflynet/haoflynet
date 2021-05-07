@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2021-03-24 08:04:00
+updated: 2021-04-21 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -105,6 +105,10 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 1. ios移动端配置: `Settings -> Safari -> Advanced `, 打开`JavaScript`和`Web Inspector`
 2. mac上safari浏览器配置: `Preferences -> Advanced -> Show Develop menu in menu bar`
 3. 当连接上设备后就可以点击`Safari->Develop->iPhone`选择你的设备即可
+
+## android通过蓝牙向Mac/macbook传输文件失败
+
+- 需要在`电脑左上角apple logo -> System Preferences -> Sharing -> Bluetooth Sharing`打开并设置读写权限
 
 ## TroubleShooting
 
