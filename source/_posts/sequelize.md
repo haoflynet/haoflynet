@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-02-26 15:11:11
+updated: 2021-05-07 15:11:11
 categories: Javascript
 ---
 
@@ -219,6 +219,12 @@ await User.update({ lastName: "Doe" }, {
     lastName: null
   }
 });
+
+await User.update({
+  age: sequelize.literal('age + 1')	// 实现字段的+1操作
+}, {
+  where: {id}
+})
 ```
 
 ### 删除操作
@@ -249,6 +255,11 @@ module.exports = {
     	type: String,
     	after: "user_id"	// AFTER语法
     });
+    // 改变字段
+    queryInterface.changeColumn('表名', '字段名', {
+      type: String,
+      allowNull: false
+    })
     // 添加key
     queryInterface.addConstraint('table_name', ['fistname', 'lastname'], {
       type: 'unique',
@@ -314,5 +325,7 @@ npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data	# 取消执行指�
 npx sequelize-cli db:seed:undo:all # 取消执行所有seed
 ```
 
+## TroubleShooting
 
-
+- **Cannot read property 'length' of undefined**: 可能是因为没有执行`Model.init`方法将model初始化
+- **任何数据库操作都无响应/migrations没有执行并且都没有报错**: 可能是因为安装依赖的时候和当前使用的node版本不一致，也有可能是postgres依赖版本低造成的，可以尝试执行`npm install --save pg@latest`试试

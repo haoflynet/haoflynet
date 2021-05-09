@@ -131,7 +131,7 @@ Code Completion -> 取消Match case
 - **Prettier**: JS格式化工具
 - **Python**: 支持Python开发
 - **Rainbow Brackets**: 可以实现配对括号使用相同的颜色
-- **SonarLint**: 自动发现代码中的错误，支持多语言
+- ~~**SonarLint**: 自动发现代码中的错误，支持多语言，不推荐了，每次安装了依赖以后就它卡住~~
 - **Vue.js**: 支持Vue.js开发
 
 #### JS Library
@@ -187,5 +187,4 @@ https://github.com/psf/black/blob/master/docs/editor_integration.md
 ### PyCharm
 
 [EAP 版本下载地址](https://www.jetbrains.com/pycharm/nextversion/)
-
 

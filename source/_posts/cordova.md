@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-04-29 08:48:00
+updated: 2021-05-07 08:48:00
 categories: javascript
 ---
 
@@ -152,15 +152,63 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
   });
   ```
 
-- [cordova-plugin-qrscanner](https://github.com/haoflynet/cordova-plugin-qrscanner): `inoic`[官方推荐](https://ionicframework.com/docs/native/qr-scanner)的一个二维码扫描插件，不过也没找到更好的了，我给改了bug。它默认是全屏的，如果要更改为局部扫描，我觉得得修改源代码，不直接取`body`
+- [cordova-plugin-qrscanner](https://github.com/haoflynet/cordova-plugin-qrscanner): `inoic`[官方推荐](https://ionicframework.com/docs/native/qr-scanner)的一个二维码扫描插件，不过也没找到更好的了，我给改了bug。它默认是全屏的，如果要更改为局部扫描，我觉得得修改源代码，不直接取`body`。还有一个问题是推出扫描时，背景颜色居然没有改过来，我在js代码里改的，所以我是这样用的：
 
-- [cordova-plugin-sign-in-with-apple](https://github.com/twogate/cordova-plugin-sign-in-with-apple#readme): Apple ID登陆插件，需要在apple开发者后台给指定Bundle ID添加`Sign In with Apple`权限，使用同样非常简单:
+  ```javascript
+  mounted() {
+   	this.originalBackgroundColor = getComputedStyle(document.getElementsByTagName('body')[0])['background-color'];
+    window.QRScanner.scan(displayContents);
+    
+    function displayContents(err, text) {
+    	if (err) {
+      		console.log('displayContents, err=', err);
+      }
+      else {
+          if (new Date().getTime() - self.enterTimestamp < 3000) {	// 这里是为了延迟一下，不然扫描实在太快了
+            window.QRScanner.scan(displayContents);
+          } else {
+            console.log('text=' + text);
+            self.close(text);
+          }
+        }
+    }
+    
+    window.QRScanner.show(status => {
+        console.log('show scan camera', JSON.stringify(status));
+    });
+  }
+  
+  close(text) {
+    if (typeof text === 'object') {
+      text = '';
+    }
+    const self = this;
+    window.QRScanner.destroy(() => {
+      self.$navStack.push({name: 'Scan', query: {result: text}});
+    });
+  }
+  
+  deactivated() {
+    document.body.style.backgroundColor = this.originalBackgroundColor;	// 恢复背景色
+  },
+  
+  beforeDestroy() {
+    document.body.style.backgroundColor = this.originalBackgroundColor;	// 恢复背景色
+  },
+  
+  destroyed() {
+    document.body.style.backgroundColor = this.originalBackgroundColor;	// 恢复背景色
+  }
+  ```
+
+- [cordova-plugin-sign-in-with-apple](https://github.com/twogate/cordova-plugin-sign-in-with-apple#readme): Apple ID登陆插件，需要在apple开发者后台给指定Bundle ID添加`Sign In with Apple`权限，使用同样非常简单，如果要获取email可以使用`jwt-decode`去
 
   ```javascript
   window.cordova.plugins.SignInWithApple.signin(
     { requestedScopes: [0, 1] },
     result => {
       console.log(result);
+  		console.log(jwt_decode(result.identityToken));	// 获取email
       alert(JSON.stringify(result));
     },
     error => {

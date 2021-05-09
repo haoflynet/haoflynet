@@ -1,11 +1,59 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2021-03-09 22:35:00
+updated: 2021-04-19 22:35:00
 categories: js
 ---
 
-## 模板语法
+## 安装
+
+- `npm install -g @vue/cli && vue create my-project`
+
+- 可以在`new Vue`之前使用`window.函数名=function() {}`创建一个全局的函数方法
+
+- 在`vue`中使用`bootstrap`可以直接用`BootstrapVue`，如果要单独安装可以这样做：`npm install --save bootstrap jquery popper.js `，然后在`main.js`中加入即可
+
+  ```
+  import 'bootstrap/dist/css/bootstrap.min.css'
+  import 'bootstrap/dist/js/bootstrap.min'
+  ```
+
+### 配置
+
+#### vue.config.js
+
+- 用vue-clic3脚手架新建的项目，默认是没有vue.config.js文件的，可以手动创建，如果项目根目录里面有它，它会被@vue/clic-service
+
+```javascript
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+module.exports = {
+    outputDir: '../cordova/www',
+    publicPath: '.',
+    pluginOptions: {
+        rules: [
+            {
+                test: /\.scss$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
+        ]
+    },
+    configureWebpack: {
+        devtool: 'source-map',
+        plugins: [
+            new CopyWebpackPlugin([{
+                from: 'public'
+            }])
+        ],
+
+    }
+```
+
+## 自动加载模板语法
 
 - 模板中如果遇到这种类型的三目运算符`a ? a : b`，最好用`{a || b}`来代替
 
@@ -44,7 +92,7 @@ categories: js
 ### 动态数据绑定
 
 ```javascript
-// 动态绑定class
+// 动态绑定class，这是可以和原有class共存的
 <div 
 :class="{ 'class_name': isOk ? true : false }"
 :class="isOk ? 'class1': 'class2':
@@ -53,6 +101,9 @@ categories: js
 
 // 动态绑定style
 <div :style="{ backgroundImage: 'url(' + image + ')'}" // 需要注意的是style名需要变成驼峰格式
+
+// 设置元素的disable状态
+<button :disabled="!!abc">
 ```
 
 ### slot插槽
@@ -118,7 +169,55 @@ Vue.component('mycomponent', {
 
 - `vue router`默认在跳转新页面会保持当前页面的`scroll`，有时候我们需要在新页面手动`window.scrollTo(0, 0)`
 
+### 路由定义
+
+```javascript
+{
+    name: "index",
+    path: '/p/:id?',	// ?定义可选参数
+    component: MyComponent
+}
+```
+
+### 路由跳转
+
+```javascript
+// 方法一
+this.$router.push('/users')
+this.$router.push({ 	// push时传参
+  path:'/users',
+  query:{	// 可以通过this.$route.query.id获取参数
+    id: this.id
+  },
+  params: {	// 可以通过this.$route.params.id获取参数，但和这个必须路由里面有定义才行，例如path: '/users/:id?'，问号表示可选
+		id: this.id
+  }
+})
+
+// 方法二
+this.$router.replace('')	// 和push不同的是，replace不会向history添加新的记录，无法点击返回
+
+// 方法三
+this.$router.go(-1)	// 跳转到指定的hisotory
+
+this.$router.back() // 返回
+```
+
 ## 页面Script相关方法
+
+### 页面生命周期
+
+- beforeCreate: 这个时候还不能调用vuex的方法
+- created
+- beforeMount
+- mounted: 实例被挂载后调用，用得最多
+- beforeUpdate
+- updated
+- activated
+- deactivated
+- beforeDestroy
+- destroyed
+- errorCaptured
 
 ### 实例/组件属性
 
@@ -134,7 +233,7 @@ Vue.component('mycomponent', {
 
 - `$ref`: 可以通过`this.$refs.xxx`来访问当前组件的指定的子组件/元素常用于获取表单
 
-  ```vuejs
+  ```javascript
   <el-form :model="formData" :rules="rules" ref="testForm" @validate="validateForm" inline-message></el-form>
   <my-component ref="mine"></my-component>
   
@@ -150,7 +249,7 @@ Vue.component('mycomponent', {
 
 - `$watch`: 跟`watch`用法一样
 
-  ```vue
+  ```javascript
   this.$watch('msg', function (oldValue, newValue) {})
   ```
 
@@ -177,6 +276,9 @@ Vue.nextTick()
 
 // 例如，可以在一个组件中每次进入时候重新选然后执行某个操作
 watch: {
+  'user.name': function(val, oldValue) {
+    
+  },
   visible: {
     handler: function (value) {
       if (value) {
@@ -550,199 +652,88 @@ window.addEventListener('error', function(event) { ... })
 ## Vuex
 
 - 专为`Vue.js`应用程序开发的状态管理模式，采用集中式存储管理应用的所有组件的状态
-- 解决了多个视图依赖于同一状态，来自不同视图的行为需要变更同一个状态的情况，有了`vuex`则就集中式管理了，否则可能需要再每次切换页面将所有的状态都带上才行
-- 与全局变量不同，它的状态存储是响应式的。当Vue组件从store中读取状态的时候，若store中的状态发生变化，那么相应的组件也会相应地更新
+- 优点：
+  - 解决了多个视图依赖于同一状态，来自不同视图的行为需要变更同一个状态的情况，有了`vuex`则就集中式管理了，否则可能需要再每次切换页面将所有的状态都带上才行
+  - 也能实现父子组件的数据共享
+  - 与全局变量不同，它的状态存储是响应式的。当Vue组件从store中读取状态的时候，若store中的状态发生变化，那么相应的组件也会相应地更新
+  - 强烈建议使用`vuex-persistedstate `插件将`state` 持久化至localstorage中，以防刷新页面数据丢失，只需要定义时加入一个plugin即可`new Vuex.Store({plugins: [createPersistedState()]})`
 - 不能直接改变`store`中的状态，改变的唯一途径就是显式地提交(commit) mutation
-- `state`即是公共数据池
 - 需要遵守的响应规则:
   - 最好提前在store中初始化好所有所需属性
   - 当需要在对象上添加新属性时，应该选择下面的方法之一
     - 使用`Vue.set(obj, 'newProp', 12)`
     - 以新对象替换老对象，例如`state.obj = { ...state.obj, newProp: 123}`
+- 常见的应该放在vuex中的数据
+  - 需要在多个组件中访问的数据
+  - 系统配置项，比如应用的外观设置
+- 几种不同的类型
+  - Getter
+    - 如果要在页面中派生出一个状态通常会用到`computed`，但是如果每个页面都需要同一个状态，就可以在`store`中定义`getter`(可以认为是针对store的计算属性computed)
+    - 和`computed`一样，`getter`的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算
+  - Mutation
+    - 提交mutation是改变store状态的唯一方法
+    - 每个`mutation`都有一个字符串的事件类型(type)和一个回调函数(handler)。这个回调函数就是实际进行状态更改的地方，并且它会接受state作为第一个参数
+    - `Mutation`必须是同步函数
+    - 最好使用常量来替代``Mutation`事件类型，可以使`linter`之类的工具发挥作用
+  - Actions
+    - 类似于`mutation`，不过它提交的是``mutation`，而不是直接变更状态，并且可以包含任意异步操作
+    - 如果有异步的操作就交给`Action`，在它内部`commit(mutation)`
 
-### Getter
-
-- 如果要在页面中派生出一个状态通常会用到`computed`，但是如果每个页面都需要同一个状态，就可以在`store`中定义`getter`(可以认为是针对store的计算属性computed)
-- 和`computed`一样，`getter`的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算
+一个完整的例子：
 
 ```javascript
-// 定义方法一: 使用Store直接定义
 const store = new Vuex.Store({
-  strict: true, // 是否开启严格模式，当开启后，是无法在mutations外面直接修改数据池里面的值的。如果不开启严格模式，在使用饮用的方式来修改对象的时候可能不会触发某些对象的computed的setterc
+  strict: true, // 是否开启严格模式，当开启后，是无法在mutations外面直接修改数据池里面的值的。如果不开启严格模式，在使用饮用的方式来修改对象的时候可能不会触发某些对象的computed的setter
   state: {
+    name: '',
+    userId: localStorage.getItem('USER_ID'),	// 由于vuex中的state刷新页面后数据就不存在了，所以将某些关键的认证信息存储到localstorage中，然后这样初始化
+    
     todos: [
       { id: 1, text: '...', done: true },
       { id: 2, text: '...', done: false }
     ]
   },
+  
+  // 定义MUTATION
+  mutations: {
+    // 我们可以使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名
+    setName (state, name) {
+      state.name = name
+    }
+  },
+  
+  // 定义ACTIONS，可以在action中调用API然后commit mutation
+  actions: {
+    getData: async({ commit }, {id}) => {
+      const res = await getDataFromApi()
+      commit('setName', res.name)	// 提交mutations
+      return res
+    },
+    getUserById: async({ commit, state }, {id}=> {})	// 除了可以commit，还能获取state
+  },
+  
+  // 定义GETTER
   getters: {
     doneTodos: (state, getters) => {
       return state.todos.filter(todo => todo.done)
-    }
+    },
+    getUserId: state => state.userId,
   }
 })
-// 定义方法二: vue框架中可以直接这样定义
-// 建立一个getters.js文件
-export const foo = state => state.foo;
-// 然后在index.js中这样使用
-import * as getters from './getters';
-Vue.use(Vuex);
-export default new Vues.Store({
-  state: {foo:'bar'},
-  getters
-});
 
-// 在组件中可以这样使用它
+
+// 在组件中使用各种方法
+import { mapGetters, mapMutations } from 'vuex';
+
+methods: {
+	...mapMutations(['addCampaign']),
+	...mapGetters(['doneTodos']),
+},
 computed: {
   doneTodosCount () {
-    return this.$store.getters.doneTodosCount
+    return this.doneTodos()
   }
 }
-
-// 可以定义带参数的getter
-getters: {
-  // ...
-  getTodoById: (state) => (id) => {
-    return state.todos.find(todo => todo.id === id)
-  }
-}
-store.getters.getTodoById(2) // -> { id: 2, text: '...', done: false }
-```
-
-#### mapGetters
-
-- 可以将`store`中的`getter`映射为局部计算属性，例如
-
-```javascript
-import { mapGetters } from 'vuex'
-
-export default {
-  // ...
-  computed: {
-  // 使用对象展开运算符将 getter 混入 computed 对象中，这样可以直接当成当前组件的computed了
-    ...mapGetters([
-      'doneTodosCount',
-      'anotherGetter',
-      // ...
-    ])
-  }
-}
-```
-
-### Mutation
-
-- 提交mutation是改变store状态的唯一方法
-
-- 每个`mutation`都有一个字符串的事件类型(type)和一个回调函数(handler)。这个回调函数就是实际进行状态更改的地方，并且它会接受state作为第一个参数
-
-- `Mutation`必须是同步函数
-
-- 最好使用常量来替代``Mutation`事件类型，可以使`linter`之类的工具发挥作用。例如
-
-  ```javascript
-  export const SOME_MUTATION = 'SOME_MUTATION';
-  
-  const store = new Vuex.Store({
-    state: { ... },
-    mutations: {
-      // 我们可以使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名
-      [SOME_MUTATION] (state) {
-        // mutate state
-      }
-    }
-  })
-  ```
-
-可以这样定义`mutation`:
-
-```javascript
-const store = new Vuex.Store({
-  state: {
-    count: 1
-  },
-  mutations: {
-    increment (state) {
-      // 变更状态
-      state.count++
-    }
-    increment2 (state, payload) {
-  		// 可以在commit的时候传入额外的参数，即mutation的载荷payload
-  		state.count += n
-		}
-  }
-})
-
-// 但是不能直接使用，只能通过commit去调用，例如
-store.commit('increment')
-store.commit('increment2', 10);	// 带额外参数的commit
-store.commit({			// 对象风格的提交方式(这种方式会把整个对象作为一个payload)
-  type: 'increment', 
-  amount: 10
-})
-this.$store.commit('xxx');	// 在组件中提交Mutation
-```
-
-### Action
-
-- 类似于`mutation`，不过它提交的是``mutation`，而不是直接变更状态，并且可以包含任意异步操作
-- 如果有异步的操作就交给`Action`，在它内部`commit(mutation)`
-
-定义和使用:
-
-```javascript
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  },
-  actions: {
-    increment (context) {	// context是与store实例具有相同方法和属性的对象，可以在它上面使用store的state、getters、commit等方法，不过它并不是store实例对象本身
-      context.commit('increment')
-    },
-    increment1 ({ commit }) {	// 使用“参数结构”来简化代码
-      setTimeout(() => {
-        commit('increment')
-      }, 1000)
-    },
-    checkout ({ commit, state }, products) {	// 官方的购物车例子
-    	const savedCartItems = [...state.cart.added]	// 把当前购物车的物品备份起来
-    	commit(types.CHECKOUT_REQUEST) // 发出结账请求，然后乐观地清空购物车
-    	shop.buyProducts(	// 购物 API 接受一个成功回调和一个失败回调
-      	products,
-      	() => commit(types.CHECKOUT_SUCCESS),// 成功操作
-      	() => commit(types.CHECKOUT_FAILURE, savedCartItems)// 失败操作
-    ),
-    actionA ({ commit }) {	// 获取Action的执行结果
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          commit('someMutation')
-          resolve()
-        }, 1000)
-      })
-  	},
-    actionB ({ dispatch, commit }) {	// action的嵌套
-      return dispatch('actionA').then(() => {
-        commit('someOtherMutation')
-      })
-  	}，
-    async actionA ({ commit }) {
-    	commit('gotData', await getData())
-  	},
-  	async actionB ({ dispatch, commit }) {	// async的嵌套组合方式
-    	await dispatch('actionA') // 等待 actionA 完成
-    	commit('gotOtherData', await getOtherData())
-  	}
-  }
-})
-
-// 调用/分发Action
-store.dispatch('increment')
-this.$store.dispatch('xxx')	// 在组件中分发
-store.dispatch('actionA').then(() => {});	// 根据Action执行结果来回调
 ```
 
 ### Module
@@ -849,11 +840,12 @@ onFile (event) {
 }
 ```
 
-##### TroubleShooting
+## TroubleShooting
 
 - **更改数据页面不渲染**，可能有如下原因
   - 在给data赋值后只是简单地添加新的属性，没有用this.$set等方法，导致没有新添加的属性没有实现双向绑定，从而导致重新渲染失败。常见现象也有改变一个值，第一次改变页面渲染成功，之后再改变页面不会更新等
 - **页面跳转出错/NavigationDuplicated**: 页面跳转经常出现莫名其妙的错误，所以一般都会把异常直接忽略，例如`router.push('/next').catch(err => {})`
+- **Maximum call stack size exceeded**: 可能是引用组件的名字和当前组件的名字重复了，导致无限去import
 
 相关链接
 
@@ -870,7 +862,6 @@ onFile (event) {
 - [Vue 开发谷歌浏览器的脚手架](https://github.com/Kocal/vue-web-extension)
 - Toasts Notification Bar 库: vue-toastification
 - Table库：vue-good-table
-- 时间选择库: vue2-datepicker
-
-
-
+- 时间选择库: web端用[vue2-datepicker](https://www.npmjs.com/package/vue2-datepicker)，移动端用[vue-datetime](https://www.npmjs.com/package/vue-datetime)
+- [qrcode.vue二维码生成库](https://github.com/scopewu/qrcode.vue/blob/master/README-zh_cn.md)
+- [vue-rate](https://www.npmjs.com/package/vue-rate): 评论打分组件
