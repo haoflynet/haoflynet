@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2021-04-17 08:48:00
+updated: 2021-04-30 08:48:00
 categories: Javascript
 ---
 
@@ -162,7 +162,7 @@ return (
 render() {
   return (
   	<div>
-    	{this.state.posts.length > 0 && 
+    	{this.state.posts.length > 0 && // 注意两边是大括号
       	<p>There is some posts</p>
       }
       <p>
