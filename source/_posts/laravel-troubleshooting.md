@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2021-04-29 14:18:00
+updated: 2021-05-10 14:18:00
 categories: php
 ---
 
@@ -180,3 +180,7 @@ function my_asset($path, $secure = null){
 #### No Application Encryption Key Has Been Specified
 
 尝试执行`php artisan key:generate`
+
+#### Invalid request (Unsupported SSL request)
+
+出现这种情况是因为开启了强制HTTPS，要么取消这个限制(搜索'HTTPS'字符串即可找到位置)，要么启用HTTPS

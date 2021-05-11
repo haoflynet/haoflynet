@@ -99,8 +99,11 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
 - [cordova-plugin-facebook-connect](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect): Facebook登陆插件，安装完成后得去`platforms/ios`目录执行一下`pod repo update && pod install`安装facebook SDK，这样使用:
 
+  - 需要注意的是，如果获取不到邮箱地址，可能的原因是邮箱没有认证
+  - `test user`如果出现`There was a problem logging you in.`错误，不知道为啥，尝试换成添加真实用户为测试用户试试
+
   ```javascript
-  window.facebookConnectPlugin.login(['public_profile'], userData => {
+  window.facebookConnectPlugin.login(['public_profile', 'email'], userData => {
     const authData = {
       access_token: userData.authResponse.accessToken
     };
