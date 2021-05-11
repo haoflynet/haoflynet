@@ -725,6 +725,7 @@ sudo vim /etc/vsftpd/vsftpd.conf 修改如下几项：
 anonymous_enable=NO
 local_enable=YES
 chroot_local_user=YES
+write_enable=YES	# 可以写数据，如果没有加这个权限去写入的话会报FTP 550错误
 service vsftpd restart
 local_root=/	# 这个选项可以修改默认的登录目录，设置默认目录为/
 chkconfig vsftpd on 	# 开机启动
