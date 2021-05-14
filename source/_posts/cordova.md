@@ -27,7 +27,8 @@ cordova emulate ios	# 启动模拟器
 cordova run browser	# 在指定平台运行
 
 # 插件管理
-cordova prepare	# 安装package.json中的插件依赖
+cordova prepare	# 复制assets中的文件到平台中去
+cordova requirements # 检查依赖关系
 cordova plugin search facebook	# 搜索插件
 cordova plugin ls	# 列出当前已安装的插件
 cordova plugin rm cordova-plugin-facebook4	# 移除插件
