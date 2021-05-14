@@ -51,6 +51,10 @@ Post.associate = () => {
   Post.User = Post.belongsTo(app.model.Post, { foreignKey: 'post_id', as: 'Post' }),
   Post.PostOwn = User.belongsTo(app.model.Post, {'foreignKey': 'id', as: 'PostOwn'})	// 如果要与当前表自身做join等操作，那么也需要定义一个与自身的关联
 }
+
+User.associate = () => {
+  User.hasMany(Post, {as: 'posts', foreignKey: 'userId'})
+}
 ```
 
 ## 增删改查
@@ -143,9 +147,7 @@ User.findAll({
 });
 ```
 
-#### 复杂嵌套查询语句示例
-
-##### 关联查询
+#### 关联查询
 
  ```javascript
 return Message.findAndCountAll({

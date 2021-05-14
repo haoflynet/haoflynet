@@ -57,6 +57,7 @@ Array.from('abc')	// 会得到['a', 'b', 'c']
 Array.from(['abc', 'def']) // 会得到['abc', 'def']
 Array.from([1, 2], x => x+ x) // 会得到[2, 4]
 Array.from({length:10},(item, index)=> index+1)	// 快速生成指定长度的数组
+let myArr: number[] = []	// typescript中定义一个number数组
 
 arrA.concat(arrB)			// 合并两个数组
 arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1

@@ -24,7 +24,7 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
   .text-primary
   .text-secondary
   .text-success
-  .text-danger
+  .text-danger # 红色
   .text-warning
   .text-info
   .text-light
@@ -69,8 +69,6 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 .flex-xl-column
 .flex-xl-column-reverse
 ```
-
-### Font-weight
 
 ### Spacing
 

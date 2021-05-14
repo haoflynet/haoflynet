@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2021-04-19 22:35:00
+updated: 2021-05-13 22:35:00
 categories: js
 ---
 
@@ -865,3 +865,6 @@ onFile (event) {
 - 时间选择库: web端用[vue2-datepicker](https://www.npmjs.com/package/vue2-datepicker)，移动端用[vue-datetime](https://www.npmjs.com/package/vue-datetime)
 - [qrcode.vue二维码生成库](https://github.com/scopewu/qrcode.vue/blob/master/README-zh_cn.md)
 - [vue-rate](https://www.npmjs.com/package/vue-rate): 评论打分组件
+- [vuelidate](https://github.com/vuelidate/vuelidate): 如果不实用element的验证功能，其他的vue项目就只能用这个去验证表单了，但终归没有ele好看
+  - 可以在error的v-if上添加一个`submitting`变量控制提交表单的时候才显示错误
+- 对于简单的项目可以直接使用[bootstrap-vue](https://bootstrap-vue.org)
