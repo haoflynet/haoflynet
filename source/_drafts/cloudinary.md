@@ -57,3 +57,9 @@ image = CloudinaryField(
     format="jpg",
 )
 ```
+
+
+
+## TroubleShooting
+
+- **API上传大文件报413错误，但其实并没有超过账户的limit**: 其实是因为sdk默认的`upload`方法最大只支持100MB，如果要上传超过100MB的文件需要分片上传，使用`upload_large`方法
