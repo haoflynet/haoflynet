@@ -13,7 +13,12 @@ fetch("/myapi", {
   },
   body: JSON.stringify({})
 })
-  .then(response => response.json())	// 获取JSON格式的返回数据
+  .then(response => {
+  	if (response.status === 400) {
+        return [];	// 400错误为啥不能catch
+    }
+  	return response.json()// 获取JSON格式的返回数据
+	})	
 	.then(data => data);
 
 
