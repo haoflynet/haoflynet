@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-04-29 17:03:30
+updated: 2021-05-18 17:03:30
 categories: system
 ---
 # Linux手册
@@ -595,11 +595,11 @@ curl -6 icanhazip.com
 curl bot.whatismyipaddress.com
 ```
 
-
-
 ##### Dns设置及常用DNS
 
 ```shell
+nslookup -q=A haofly.net	# 查询域名的DNS记录
+
 # 设置DNS, vim /etc/resolv.conf
 nameserver 114.114.114.114	# 114.114.115.115
 nameserver 223.5.5.5	# 阿里的DNS，223.6.6.6

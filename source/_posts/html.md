@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2021-03-04 16:10:00
+updated: 2021-05-18 16:10:00
 categories: frontend
 ---
 # Html
@@ -55,6 +55,7 @@ categories: frontend
 ##### href=”javascript:void(0);”
 
 - 当要a标签表现为链接形式又需要用js来执行的时候可以这样写href，而不是直接将href删除
+- 如果直接`href="#position"`表示跳转到指定id的元素，俗称"喵点"
 
 ##### rel属性
 
