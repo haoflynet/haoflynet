@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-03-12 08:42:00
+updated: 2021-05-18 08:42:00
 categories: Javascript
 ---
 
@@ -155,7 +155,9 @@ Block all public access
 ## Route 53
 
 - AWS的域名管理
+- 第一次添加DNS的时候默认时间是`1h`，最好设置成`1m`，否则缓存更新太慢了
 - 可以为同一个域名设置多个托管区域(hosted zone)，例如针对同一个域名在测试环境和生产环境分别配置不同的DNS，只需要更改本地的名称服务器就能切换到不同的DNS上去，这样使用感觉有点复杂了
+- 如果要用`Route 53`去管理域名的DNS，需要新建托管区域(hosted zone)，然后在域名购买地设置NS记录指向`hosted zone`的四个`NS`记录即可
 
 ## ELB/Elastic Load Balancing
 

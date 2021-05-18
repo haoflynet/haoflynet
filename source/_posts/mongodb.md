@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2021-04-06 12:33:00
+updated: 2021-05-18 12:33:00
 categories: database
 ---
 
@@ -228,13 +228,11 @@ mongorestore -h 127.0.0.1:27017 --db DB_NAME <path>	# dump文件夹的路径
 
 ## TroubleShooting
 
-- **解决安装完mongo后无法启动的问题**: 遇到一个安装完成后无论是`mongo`还是`sudo service mongo start`还是`sudo systemctl start mongod`都不报错但是实际上却没有启动的问题，可以这样解决:
+- **解决安装完mongo后无法启动的问题**: 遇到一个安装完成后无论是`mongo`还是`sudo service mongo start`还是`sudo systemctl start mongod`都不报错但是实际上却没有启动的问题，可以这样解决，如果还是不行，可以去看`/var/log/mongo`的日志，可能是磁盘空间不足引起的:
 
   ```shell
-  cd /tmp
-  ls *.sock # mongodb-27017.sock
-  chown mongodb:mongodb mongodb-27017.sock
-  sudo systemctl start mongod
+  rm -rf /tmp/mongodb-27017.sock /var/lib/mongodb/mongod.lock
+  sudo systemctl start mongodb
+  sudo service mongodb start	# 或者用这个启动
   ```
-
   
