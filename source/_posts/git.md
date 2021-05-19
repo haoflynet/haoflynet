@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2021-04-29 11:21:00
+updated: 2021-05-18 11:21:00
 categories: tools
 ---
 # Git指南
@@ -322,7 +322,11 @@ fi
 
   发生这个问题是因为采用的是https而不是ssh方式来push仓库，而https传输数据的大小一般是由服务器，即nginx来控制的，太大了是传不上去的，这时候只需要更改为ssh方式即可。
 
-- **修改提交作者和邮箱**: git可以通过`git filter-branch`修改已经提交了的commit的作者和邮箱。如果仅仅想修改一次的，可以直接`git commit --amend --author="haoflynet <haoflynet@gmail.com>"`。这里有一个来自[若有所思-胡磊](http://i.dotidea.cn/2015/04/git-amend-author/)的批量修改的脚本，完成后可以check一下，然后`git push -f`即可，亲测可用:
+- **修改提交作者和邮箱**: git可以通过`git filter-branch`修改已经提交了的commit的作者和邮箱。
+
+  - 如果仅仅想修改最近一次的，可以直接`git commit --amend --author="haoflynet <haoflynet@gmail.com>"`
+  - 如果像修改最近几次的，可以使用`git base -i HEAD~5`(其中5表示最近的5次)，然后将要更改的提交的`pick`修改`e`，保存后，执行`git commit --amend --author="haoflynet <haoflynet@gmail.com>"`，然后一个后就执行`git rebase --continue`，如果还有需要继续执行`git commit --...` 这条命令，最后知道`continue`命令返回`Successfully rebased and updated...`为止，就可以`git push -f`了
+  - 如果像修改所有历史的，这里有一个来自[若有所思-胡磊](http://i.dotidea.cn/2015/04/git-amend-author/)的批量修改的脚本，完成后可以check一下，然后`git push -f`即可，亲测可用:
 
   ```shell
   #!/bin/sh
@@ -417,5 +421,5 @@ fi
   git checkout <SHA>^ -- <path-to-fil>	# checkout下来
   ```
 
-  
+- **强制push(git push -f)报错: remote: error: denying non-fast-forward**：这是因为远端没有开启`force push`权限，这时候只能去仓库托管方修改权限了，github应该是默认开启的，但是assembla没有
 

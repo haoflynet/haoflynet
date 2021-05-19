@@ -9,9 +9,31 @@ categories: php
 
 ```php
 $client = new GuzzleHttp\Client();
-$res = $client->request('GET', 'https://api.github.com/user', [
+$client = new GuzzleHttp\Client([
+  'base_uri' => 'http://httpbin.org',
+  'timeout' => 3.0
+]);
+
+$res = $client->request('POST', 'https://api.github.com/user', [
     'auth' => ['user', 'pass'],
   	'query' => ['foo' => 'bar'],	// Query String
+  	'form_params' => [], // 发送application/x-www-form-urlencoded请求
+  	'multipart' => [	// 发送multipart/form-data请求
+				[
+            'name'     => 'foo',
+            'contents' => 'data',
+            'headers'  => ['X-Baz' => 'bar']
+        ],
+        [
+            'name'     => 'baz',
+            'contents' => Psr7\Utils::tryFopen('/path/to/file', 'r')
+        ],
+        [
+            'name'     => 'qux',
+            'contents' => Psr7\Utils::tryFopen('/path/to/file', 'r'),
+            'filename' => 'custom_filename.txt'
+        ],
+    ]
 ]);
 
 // 获取响应结果
