@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-04-30 16:18:00
+updated: 2021-05-19 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -255,6 +255,8 @@ fs.stat(path, function(exists) {}); // 异步的方式判断文件或文件夹�
 
 fs.access(path, 权限, function(err){}); // 判断是否拥有指定文件的指定的权限，权限可以有fs.F_OK(文件是否可见，也可用来判断文件是否存在),fs.R_OK(是否可读),fs.W_OK(是否可写),fs.X_OK(是否可执行)
 
+fs.readFileSync(__dirname, "../public/index.html")	// 读取文件，最好加上__dirname，否则可能会出现找不到路径的问题
+
 fs.readdir('目录名', 'utf-8', function (err, data) {	// 获取目录下的文件
   data.forEach(function(item, index)) {	// 遍历目录
     fs.reradFile('文件名', 'utf-8', function(err, content) {	// 读取文件内容
@@ -431,6 +433,9 @@ ele.setAttribute('class', 'highlight');
 ele.hasAttribute('class');
 ele.removeAttribute('class');
 ele.value;		// 获取元素内容
+ele.style.fontSize // 获取inline样式
+getComputedStyle(ele)	// 获取元素的所有的样式，包含了所有的css属性
+getComputedStyle(ele, '::before')	// 获取指定事件的样式
 
 // jQuery方法
 $('#check').prop('checked')	// 获取checkbox是否被check了，不用给你用attr

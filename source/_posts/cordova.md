@@ -130,7 +130,7 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
   - `REVERSED_CLIENT_ID`需要在`firebase`的`Project settings`的app中获取，需要下载`GoogleService-Info.plist`，包含在里面的。安装完成后需要确保`REVERSED_CLIENT_ID`被加入到`XCode`中的`Resources/项目名-Info.plist`中的`URL types`中，其中`URL-identifier=REVERSED_CLIENT_ID`，`URL Schemes[0]=com.googleusercontent.apps.xxxxxxx` ，如果没有可以手动添加: ![](https://haofly.net/uploads/cordova_01.png)
   - `WEB_APPLICATION_CLIENT_ID`可以在`firebase`里新建一个`web app`取其ID或者直接在上面的`GoogleService-Info.plist`取`GOOGLE_APP_ID`
-  - `Android`端的`webClientId`参数则是`android app`的`google-services.json`中的`client.oauth_client.client_id`
+  - `Android`端的`webClientId`参数则是`firebase`的`android app`的`google-services.json`中的`client.oauth_client.client_id`
 
   ```javascript
   window.plugins.googleplus.isAvailable(avail => {
