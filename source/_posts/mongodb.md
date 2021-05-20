@@ -44,6 +44,10 @@ security:
 ## 系统相关指令
 
 ```shell
+db.serverStatus()	# 查询服务器状态，有几个重要的参数
+## version: 当前实例所用的版本
+## uptime: 实例运行时间，单位为妙
+
 db.col.stats() 	# 查询当前collection状态，参数如下
 ns: 集合的命名空间
 count: 集合中的文档总数
@@ -235,4 +239,3 @@ mongorestore -h 127.0.0.1:27017 --db DB_NAME <path>	# dump文件夹的路径
   sudo systemctl start mongodb
   sudo service mongodb start	# 或者用这个启动
   ```
-  

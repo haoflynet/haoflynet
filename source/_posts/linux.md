@@ -510,6 +510,7 @@ systemctl restart teamviewerd	# 重启
 systemctl stop teamviewerd	# 停止服务
 systemctl reload nginx	# 重新读取配置文件
 
+systemctl is-enabled mongodb # 验证是否开启了开机启动
 systemctl enable docker.service	# 开机启动服务
 systemctl disable docker.service	# 禁用开机启动
 
