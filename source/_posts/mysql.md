@@ -1,7 +1,7 @@
 ---
-title: "MySQL／MariaDB 教程"
+title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-04-17 09:44:00
+updated: 2021-05-19 09:44:00
 categories: database
 ---
 ## 安装方法
@@ -352,6 +352,7 @@ mysqldump -u... -p... -h... --databases data1 data2 > backup.sql
 # 导入数据
 mysql -uroot -pmysql db_name < test.sql
 bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
+sqlite3 db文件 < db.sql	# sqlite导入
 
 # 忘记密码时候'Access denied for user 'root'@'localhost'的时候，可以用这种方式修改root权限
 sudo mysqld_safe --skip-grant-tables	# 这条命令能够登录进去，然后可以执行设置密码的操作

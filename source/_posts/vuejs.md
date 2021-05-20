@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2021-05-13 22:35:00
+updated: 2021-05-19 22:35:00
 categories: js
 ---
 
@@ -68,6 +68,7 @@ module.exports = {
   
 // v-model
 <input type="text" v-model="msg"> // 等价于<input type="text" :value='msg' @input='handleInput'>
+<select v-model="selection"></select> // 如果是select那么model需要绑定到select上，可以直接获取其selected value
   
 // 遍历v-for
 <li v-for="item in items">{{item}}</li>

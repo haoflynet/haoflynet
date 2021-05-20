@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-05-07 15:11:11
+updated: 2021-05-20 15:11:11
 categories: Javascript
 ---
 
@@ -216,6 +216,12 @@ const users = await User.findall({
 ### 更新操作
 
 ```javascript
+// 查找或更新，注意这里不是findOne，也没有findOneOrCreate，所以返回值是一个列表
+await User.findOrCreate({
+  where:{},	// 比较的字段
+  defaults: {}	// 填入的字段
+})
+
 await User.update({ lastName: "Doe" }, {
   where: {
     lastName: null
