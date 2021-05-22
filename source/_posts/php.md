@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-05-10 09:47:21
+updated: 2021-05-22 09:47:21
 categories: php
 ---
 # PHP
@@ -353,6 +353,17 @@ class ChildClass extends ParentClass {
     parent::__construct();	// 调用父类的构造函数
   }
 }
+```
+
+### Type hint
+
+```php
+function foo(?Type $a, 	// 声明参数$a的类型，问号表示可以为null
+             Type|null $b // 同上
+) {}
+
+/* @var @objs Test[] */	// 这样可以声明一个数组内部元素的类型
+foreach ($objs as $obj) {}
 ```
 
 ### 发送CURL请求

@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2021-04-21 08:04:00
+updated: 2021-05-22 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -144,6 +144,4 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 
 - **autoreconf: command not found**: `brew install autoconf`
 
-    
-
-    
+- **xcrun: error: invalid active developer path, missing xcrun **: 重装xcode工具: `xcode-select --install`
