@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-04-14 13:58:00
+updated: 2021-05-22 13:58:00
 categories: php
 ---
 # Laravel指南
@@ -770,6 +770,13 @@ Model::setConnectionResolver($this->app['db']);	// 这句话用于给模型设�
 ```
 
 ### 认证相关
+
+#### 用户系统
+
+```php
+Auth::loginUsingId(123, TRUE);	// 直接通过id登陆某个用户
+Auth::login($user);	// 或者通过user实例登陆
+```
 
 #### 授权Policy
 
