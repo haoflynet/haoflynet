@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2021-04-22 14:23:00
+updated: 2021-05-22 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -319,7 +319,18 @@ docker run --name postgres -e POSTGRES_PASSWORD=the_password -p 5432:5432 -d pos
   }
   ```
 
-- **Mac下`~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux`目录占用内存过大**: 目测是一个一直没有被修复的bug，是由于镜像反复拉，容器反复删除重建，但是存储从来不释放造成的，我现在的解决方法是把想要的镜像拉下来到处到存储中去，以后要使用直接拉取，这样避免了每次pull不下来的时候重新pull导致存储不释放的问题
+- **Mac下`~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux`目录占用内存过大**: 目测是一个一直没有被修复的bug，是由于镜像反复拉，容器反复删除重建，但是存储从来不释放造成的，可以尝试下面这些方法
+
+    ```shell
+    docker run --privileged --pid=host docker/desktop-reclaim-space
+    docker system prune
+    
+    # 如果还是觉得空间大了，可以将容器导出再导入试试
+    docker images | sed '1d' | grep -v '<none>' | awk '{print "docker save " $1 ":" $2 " -o " $3 ".tar"}' | bash	# 导出
+    ls *.tar | xargs -I {} docker load -i {}	# 导入
+    
+    docker system df -v	# 查看这些容器到底怎么占用磁盘的
+    ```
 
 - **阿里源**: 一般都是jessie版本，但是有些镜像的维护者可能会修改为一个比较小众的版本，可能导致某些包没有，这时候修改版本即可。
 

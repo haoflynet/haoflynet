@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-05-19 08:18:00
+updated: 2021-05-22 22:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -448,6 +448,7 @@ $('select').val()	// select标签的值
 $('select option:selected').text();	// select被选中项的文本
 $('div').data('abc'); // 获取元素的data数据，例如<div data-abc="dsiahoaihgio"></div>
 $('div').removeAttr('required');	// jquery移除属性
+$("p").is(":visible");	// 查看元素是否可见
 ```
 
 ### 编辑元素

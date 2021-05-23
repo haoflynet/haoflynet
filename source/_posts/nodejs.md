@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-04-28 22:50:30
+updated: 2021-05-22 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -13,22 +13,45 @@ categories: frontend
 
 ```shell
 # centos用下面命令安装指定版本nodejs
-sudo curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
+sudo curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
 sudo yum install -y nodejs
 
 # ubuntu用下面命令安装指定版本nodejs
-sudo curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 docker里面没有sudo就直接
-curl -sL https://deb.nodesource.com/setup_4.x | bash -
+curl -sL https://deb.nodesource.com/setup_10.x | bash -
 apt-get install -y nodejs
 
 # 添加淘宝镜像，既然用的阿里云，那淘宝的镜像也就不介意了...
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
-测试版:
-把4换成6就行了
-
 安装package.json 直接`npm install`后面不加package.json的名字
+
+## package.json文件
+
+```json
+{
+  "scripts": {	// 指定了运行脚本命令的npm命令行缩写
+    "start": "node index.js",
+    "test": "",
+  },
+  "bin": {	// 用于指定各个内部命令对应的可执行文件的位置
+    "someTool": "./bin/someTool.js"	// 当然这也可以直接在scripts里面写成./node_modules/bin/someTool.js
+  },
+  "engines": {	// 指定了运行环境
+    "node": ">=0.10.3 <0.12",
+		"npm": "~1.0.20"
+  },
+  "dependencies": {	// 指定项目运行所依赖的模块
+    "aaa": "~1.2.2",	// 波浪号，这里表示>1.2.2(1.2.x)且<1.3.x
+    "bbb": "^1.2.2",	// 插入号，这里表示>1.2.2(1.x.x)且<2.x.x
+    "ccc": "latest", // 安装最新版本
+  },
+  "devDependencies": {	// 指定项目开发所依赖的模块
+    
+  }
+}
+```
 
 ## 常用命令
 
@@ -47,7 +70,7 @@ nvm use xxx	# 使用指定的版本
 nvm alias default xxx 	# 设置默认的node版本
 ```
 
-#### Npm
+#### npm
 
 ```shell
 npm init		# 将当前目录设置为一个npm库，自动生成package.json文件，如果没有package.json文件可以用这个方法生成，它也会自动把node_module下的已安装包加进来的
@@ -80,36 +103,9 @@ npm install yarn@latest -g	# 升级yarn
 yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
 ```
 
-## 使用Forever管理NodeJs应用
+## ~~使用Forever管理NodeJs应用~~(生产环境最好用[pm2](https://haofly.net/pm2))
 
-- 生产环境最好使用`forever`工具管理`nodejs`进程
 - 直接使用`sudo npm install forever -g`进行安装
-
-### 配置文件
-
-- 通常会在项目目录中创建一个配置文件，例如:
-
-```javascript
-// pm2.config.js，启动时直接pm2 reload pm2.config.js --env dev
-module.exports = {
-  apps: [
-    {
-      name: 'project_name',
-      script: 'server.js',
-      instances: 1,
-      exec_mode: "cluster",
-      env: {
-        NODE_ENV: 'production',
-        logging: 'on'
-      },
-      env_staging: {
-        NODE_ENV: 'dev',
-        logging: 'on'
-      }
-    },
-  ]
-}
-```
 
 ### forever常用命令
 
