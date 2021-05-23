@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2021-05-19 22:35:00
+updated: 2021-05-22 22:35:00
 categories: js
 ---
 
@@ -847,6 +847,8 @@ onFile (event) {
   - 在给data赋值后只是简单地添加新的属性，没有用this.$set等方法，导致没有新添加的属性没有实现双向绑定，从而导致重新渲染失败。常见现象也有改变一个值，第一次改变页面渲染成功，之后再改变页面不会更新等
 - **页面跳转出错/NavigationDuplicated**: 页面跳转经常出现莫名其妙的错误，所以一般都会把异常直接忽略，例如`router.push('/next').catch(err => {})`
 - **Maximum call stack size exceeded**: 可能是引用组件的名字和当前组件的名字重复了，导致无限去import
+
+- **TypeError: this.getOptions is not a function**: 原因可能是新版本`sass-loader@11.0.0`和`vue@2.6.12`不兼容导致，可以尝试降级`sass-loader`，设置为`"sass-loader": "^10"`
 
 相关链接
 
