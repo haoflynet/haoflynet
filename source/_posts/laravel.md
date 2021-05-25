@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-04-14 13:58:00
+updated: 2021-05-22 22:58:00
 categories: php
 ---
 # Laravel指南
@@ -601,7 +601,10 @@ User::whereDay('created_at', '17');
 User::whereYear('created_at', '2017');
 User::whereRaw('name="wang" and LENGT(name) > 1'); # 当有复杂点的where语句或者想直接写在mysql里面的那样的where语句，可以直接这样写
 User::whereColumn('first_field', 'second_field');	# 判断两个字段是否相等
-User::where(...)->orWhere();		# or where，需要注意的是这里是和前面所有的where相or，并且后面的不会去判断deleted_at is null了
+User::where(...)->orWhere();		# or where，需要注意的是这里是和前面所有的where相or，并且后面的不会去判断deleted_at is null了，如果要实现仅后面两个条件，可以像下面这样使用
+User::where(...)->where(function($query) {
+	$query->where(...)->orWhere(...);	// 仅or这里面的两个条件，外面的条件依然是and
+})
 User::where('...')->orWhere(['a'=>1, 'b'=>2]);	# 同时添加多个
 User::where()->firstOrFail()	# 查找第一个，找不到就抛异常
 User::where('user_id', 1)->get()# 返回一个Collection对象
@@ -770,6 +773,13 @@ Model::setConnectionResolver($this->app['db']);	// 这句话用于给模型设�
 ```
 
 ### 认证相关
+
+#### 用户系统
+
+```php
+Auth::loginUsingId(123, TRUE);	// 直接通过id登陆某个用户
+Auth::login($user);	// 或者通过user实例登陆
+```
 
 #### 授权Policy
 
@@ -1439,4 +1449,6 @@ php artisan optimize --force && php artisan config:cache && php artisan api:cach
 [Laravel项目深度优化指南](https://learnku.com/articles/35470)
 
 [如何在Laravel中使用PHP的装饰器模式](https://learnku.com/laravel/t/41757): 这篇文章中的仓库模式也是十分有用的
+
+[laravel-query-builder](https://github.com/spatie/laravel-query-builder): 一个查询构造器，可以直接从API请求中快速构建Eloquent查询，看起来简单，但是也有一定的学习成本，我还是懒得去弄
 
