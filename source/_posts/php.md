@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-05-10 09:47:21
+updated: 2021-05-21 09:47:21
 categories: php
 ---
 # PHP
@@ -695,6 +695,8 @@ ini_get('upload_max_filesize'); // 但是该属性只能获取，不能在代码
 - **pecl安装扩展出现Please reinstall the libzip distribution**: `apt-get install libzip-dev / yum install libzip-devel`
 
 - **zlib.h: no such file or directory**: 需要先安装: `apt-get install libz-dev -y`
+
+- **Could not scan for classes inside “vendor/google/apiclient/src/Google” which does not appear to be a file nor a folde**: 看起来是[googleapis/google-api-php-client](https://github.com/googleapis/google-api-php-client)库升级导致的，有这个路径的最高版本为2.7.2，2.8之后就没有src/Goolge了
 
 - **PHP安装SOAP扩展/docker容器安装php-soap扩展**: 
 

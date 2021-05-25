@@ -1,7 +1,7 @@
 ---
 title: "Laravel Validation数据校验"
 date: 2020-09-06 16:00:00
-updated: 2021-02-26 22:24:00
+updated: 2021-05-21 22:24:00
 categories: php
 ---
 
@@ -29,10 +29,15 @@ $validator = Validator::make($request->all(), [
   'body' => 'required',
 ]);
 
+// 判断请求类型，如果是ajax请求，那么返回json数据和422，如果非ajax那么重定向刷新页面
 if ($validator->fails()) {
-  return redirect('post/create')
+  if ($request->ajax()) {
+    return response()->json($validator->messages(), Response::HTTP_BAD_REQUEST);
+  } else {
+      return redirect('post/create')
     ->withErrors($validator)	// 刷新session中存储的错误信息，可用在view中
     ->withInput();
+  }
 }
 
 // 同样可以自定义错误信息

@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2021-05-10 14:18:00
+updated: 2021-05-21 14:18:00
 categories: php
 ---
 
@@ -184,3 +184,7 @@ function my_asset($path, $secure = null){
 #### Invalid request (Unsupported SSL request)
 
 出现这种情况是因为开启了强制HTTPS，要么取消这个限制(搜索'HTTPS'字符串即可找到位置)，要么启用HTTPS
+
+#### Replicating claims as headers is deprecated and will removed from v4.0. Please manually set the header if you need it replicated.
+
+具体原因不知道为啥，反正应该是`laravel/passport`和新版本的`lcobucci/jwt`有冲突，降级后者的版本可以解决: `composer require lcobucci/jwt=3.3.3`
