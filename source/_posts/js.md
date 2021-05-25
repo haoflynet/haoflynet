@@ -449,6 +449,7 @@ $('select option:selected').text();	// select被选中项的文本
 $('div').data('abc'); // 获取元素的data数据，例如<div data-abc="dsiahoaihgio"></div>
 $('div').removeAttr('required');	// jquery移除属性
 $('div').hasClass('foo');	// 判断元素是否有某个类
+$("p").is(":visible");	// 查看元素是否可见
 ```
 
 ### 编辑元素
