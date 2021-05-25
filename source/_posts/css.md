@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-04-30 11:30:00
+updated: 2021-05-24 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -600,7 +600,7 @@ div:nth-last-child(2) {
   display: grid;	/* 声明一个grid容器 */
   
   grid-template-columns: repeat(4, 25%);	/* 声明列的宽度，表示网格宽度为4列，每列25%的宽度，repeat是为了少写几个值，也可以这样写 grid-template-columns: 25% 25% 25% 25% */
-  grid-template-columns: repeat(4, 1fr);	/* 最好使用fr单位，这样可以不用自己去计算百分比，它可以自动减去grid-column-gap的值*/
+  grid-template-columns: repeat(4, 1fr);	/* 最好使用fr单位，这样可以不用自己去计算百分比，它可以自动减去grid-column-gap的值，但是有个弊端是这样做如果某个列超出宽度后会把整个wrapper的宽度都撑大，就不止25%了 */
   grid-template-columns: 250px repeat(12, 1fr);	/* fr的好处又可以体现了*/
   
   
