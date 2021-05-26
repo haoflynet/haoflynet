@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2021-05-18 16:10:00
+updated: 2021-05-21 16:10:00
 categories: frontend
 ---
 # Html
@@ -115,6 +115,22 @@ categories: frontend
     <option value="12345678">
     <option value="12999922">
   </datalist>
+  ```
+
+- 隐藏数字输入框的上下箭头:
+
+  ```css
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
   ```
 
 ### radio

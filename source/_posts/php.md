@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-05-21 09:47:21
+updated: 2021-05-25 08:47:21
 categories: php
 ---
 # PHP
@@ -521,6 +521,7 @@ hash_hmac(算法名, 明文, 盐)	# hash加密函数，可以选定加密算法�
 composer config --list	# 列出当前所有的配置
 composer show 	# 获取所有安装的包的列表
 composer require package_name --dev	# 安装包，并将其写入composer.json的require-dev中去
+composer required package_name ~1.2.0	# 指定版本
 composer remove package_name	# 移除包
 composer config -g repo.packagist composer https://packagist.phpcomposer.com	# 更换为国内的源
 composer config repositories.mypkg composer https://ppkg.haofly.net	# 增加源，并写入composer文件中的repositories字段

@@ -12,6 +12,13 @@ categories: javascript
 
 - `shopify`的搜索功能无法做更多自定义，但是他们的搜索匹配方式有点奇怪，很多时候不能搜到我们想要的东西，不用去想了，没有解决方案
 
+### 命令行工具
+
+```shell
+theme download	# 将shpify那边的主题文件同步到本地
+theme watch # 监听本地文件改动，如果有改动会自动上传上去
+```
+
 ### Liquid手册
 
 - 因为是后端渲染的，不要尝试在liquid里面获取query参数(js除外)，但是shopify的语法里有些方法可以获取到`product/variant`等参数的
@@ -131,7 +138,7 @@ categories: javascript
 {% endif %}
 ```
 
-##### FIlters
+#### Filters
 
 - 需要注意的是`paginate`和`sort`不能混合使用，但是有些对象自带了`sort`功能的，可以参考[collection](#collection)
 - `forloop.index`第一个索引是1，`forloop.index0`第一个索引是0
@@ -185,15 +192,6 @@ var content = {{ pages.page-handle.content | json }};
 // img_tag，以直接应用于product、variant、line item、collection、image对象，可以指定参数，第一个参数为alt，第二个参数为class，例如
 {{ 'smirking_gnome.gif' | asset_url | img_tag: 'Smirking Gnome', 'cssclass1 cssclass2' }} // 会输出:
 <img src="//cdn.shopify.com/s/files/1/0147/8382/t/15/assets/smirking_gnome.gif?v=1384022871" alt="Smirking Gnome" class="cssclass1 cssclass2" />
-
-
-{{ line_item | img_url: '1024x' }} 
-{{ 'logo.png' | asset_img_url: '300x' }}	// 返回assets中的图片，并且能指定大小
-{{ 'size-chart.pdf' | file_url }}
-{{ 'logo.png' | file_img_url: '1024x768' }}	// 返回files中的图片
-{{ product | img_url: '400x400', crop: 'bottom' }}
-{{ product | img_url: '400x400', scale: 2 }}	// 缩放
-{{ product | img_url: '400x400', format: 'pjpg' }}	// 设置格式
   
 // script_tag/stylesheet_tag，指定脚本和css
 {{ 'shop.js' | asset_url | script_tag }}
@@ -252,6 +250,24 @@ Dear {{ customer.name | default: "customer" }}	// 设置默认值
 <span>{{ 'products.product.sold_out' | t }}</span>	// 翻译
 {{ product.variants.first.weight | weight_with_unit }}
 {{ 'collection-1' | placeholder_svg_tag }}
+```
+
+##### URL filters
+
+###### img_url
+
+- 返回一个经过处理了的图片的URL地址，支持设置大小参数
+- 如果不提供大小参数，那么默认返回的是一张`100 x 100`的小图
+
+```javascript
+{{ product | img_url: '720x720' }}	// 返回product的首图，并且图片大小为720x720
+{{ product | img_url: 'master' }}	// 获取原图
+{{ variant.image | img_url: '240x' }} // 也可以只提供宽度
+{{ variant.image | img_url: 'x240' }} // 也可以只提供高度
+{{ variant.image.src | img_url: '240x'}}	// 同上，可以带.src也可以不用
+{{ product | img_url: '400x400', scale: 2 }}	// 设置缩放级别，不过scale的值只支持2或者3
+{{ product | img_url: '400x400', format: 'pjpg' }}	// 设置图片格式，只支持pjpg和jpg
+{{ product | img_url: '400x400', crop: 'bottom' }}	// 支持裁剪，crop值可选top、center、bottom、left、right
 ```
 
 #### Objects/常用对象
