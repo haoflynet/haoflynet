@@ -23,6 +23,13 @@ var sequelize = new Sequelize('database', 'username', 'password', {
 
 ## 模型定义
 
+- 数据类型包括：
+  - 字符串：STRING、STRING(1024)、STRING.BINARY、TEXT、TEXT('tiny')、CITEXT(仅PostgreSQL和SQLite)、TSVECTOR(仅PostgreSQL)
+  - 布尔：BOOLEAN
+  - 数字：INTEGER、INTEGER.UNSIGNED、INTEGER.ZEROFILL、INTEGER.UNSIGNED.ZEROFILL、BIGING、BIGING(11)、FLOAT、FLOAT(11)、FLOAT(11, 10)、REAL(仅PostgreSQL)、REAL(11)(PostgreSQL)、REAL(11, 10)(仅PostgreSQL)、DOUBLE、DOUBLE(11)、DOUBLE(11, 10)、DECIMAL、DECIMAL(10, 2)
+  - 日期：DATE、DATE(6)(仅MySQL)、DATEONLY
+  - UUID：可以自动为字段生成UUID，type为`UUID`，defaultValue为`UUIDV1`或者`UUIDV4`
+
 ```javascript
 const Post = sequelize.define('post', {
     id: {
@@ -32,8 +39,22 @@ const Post = sequelize.define('post', {
     },
     name: {
       type: STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 'test'
     },
+    firstName: {
+      type: STRING,
+      field: 'first_name'	// 自定义列名称,
+      comment: '列注释' // 注释仅针对MySQL、MariaDB、PostgreSQL、MSSQL
+    },
+    date: {
+      type: DATE,
+      defaultValue: NOW
+    },
+    // unique参数的值可以是不二值或者字符串，如果多格列具有相同的字符串unique，他们会组成一个复合唯一键
+    uniqueOne: { type: DataTypes.STRING,  unique: 'compositeIndex' },
+    uniqueTwo: { type: DataTypes.INTEGER, unique: 'compositeIndex' },
+
     data: {
       type: JSON
     },
@@ -41,8 +62,9 @@ const Post = sequelize.define('post', {
       type: DATE
     }
   }, {
+    indexes: [{ unique: true, fields: ['field1']}], // 也可以在最后创建索引
   	timestamps: true, // 是否自动添加createdAt和updatedAt
-  	tableName: 'MyPosts'	// 自定义table name
+  	tableName: 'MyPosts'	// 自定义table name，如果不提供，sequelize会根据模型名称自动以复数形式设置表名
 	}
 );
 
