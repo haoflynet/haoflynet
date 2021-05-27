@@ -79,6 +79,12 @@ git reset --hard HEAD^^ # 回退到上上个版本
 git reset --hard 233333 # 指定提交ID的回退
 git push -f origin master	# remote端也更新
 
+# 回退指定文件/回退单个文件
+git log 文件名	# 查询单个文件的提交记录
+git reset commitID 文件名 # 可以再次commit
+git reset --hard commitID 文件名 # 如果再次提交需要-f
+
+
 git verify-pack -v .git/objects/pack/<SHA-1-code>.idx | sort -k 3 -n | tail -n 20 # 找出git提交历史中有大文件的提交
 git rev-list --object --all | grep commit_id	# 找到某次上面列出的某次提交中提交的文件
 ```

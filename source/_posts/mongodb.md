@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2021-05-18 12:33:00
+updated: 2021-05-27 12:33:00
 categories: database
 ---
 
@@ -25,6 +25,8 @@ MongoDB是由C++语言编写的一个基于分布式文件存储的开源数据�
 ## 安装配置
 
 [官方安装文档](https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/)
+
+- Mongodb大版本之间差异比较大，最好安装最新版本，这是[Release Notes](https://docs.mongodb.com/manual/release-notes/)
 
 ```shell
 sudo service mongod start	# 安装完成后启动
@@ -61,6 +63,10 @@ indexSizes: 所有的索引以及其大小
 db.col.status(1024)	# 这样下面那些大小单位就是KB
 
 db.version()	# 查看数据库版本
+
+
+db.col.find().explain()	# 在语句后添加explain能够返回查询计划
+db.col.find().explain("executionStats")	# 能够返回具体获胜额查询计划以及执行详情
 ```
 
 ### 索引
