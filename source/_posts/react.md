@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2021-04-30 08:48:00
+updated: 2021-05-27 08:48:00
 categories: Javascript
 ---
 
@@ -35,6 +35,10 @@ function Example() {
   useEffect(() => {
     // Update the document title using the browser API
     document.title = `You clicked ${count} times`;
+    
+    // 在useEffect中可以这样使用异步方法，如果直接useEffect(async()=>{})的话会报错：useEffect function must return a cleanup function or nothing, Promises ... are not supported, but you can call an async function inside an effect.
+    async function fetchAPI() {}
+    fetchAPI();
   });
 
   return (

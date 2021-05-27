@@ -33,6 +33,10 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
   .text-white
   ```
 
+### Cursor
+
+- 只要给元素加上`role="button"`即可增加`cursor: pointer`属性
+
 ### Display
 
 - 以d开头
@@ -80,6 +84,16 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 - size的取值有0、1、2、3、4、5、auto
 
 ### Text
+
+- align item
+
+  ```shell
+  align-item-center
+  align-item-start
+  align-item-end
+  align-item-baseline
+  align-item-stretch
+  ```
 
 - text alignment
 

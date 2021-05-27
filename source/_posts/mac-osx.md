@@ -110,6 +110,21 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 
 - 需要在`电脑左上角apple logo -> System Preferences -> Sharing -> Bluetooth Sharing`打开并设置读写权限
 
+## Mac OS降级
+
+- 降级最简单的是直接从timemachine恢复，但是大多数情况下我们并没有timemachine，那么就需要U盘了
+
+- 首先需要从苹果[官方下载](https://support.apple.com/en-us/HT211683)老版本的系统
+
+- 然后执行以下命令制作系统盘，执行完成后会提示`Done.`，如果多次尝试仍然报错，那么可能需要换个更大的U盘，或者换一个U盘。(我最开始用的16G的USB2.0，后来换成32G的USB3.0就可以了)
+
+  ```shell
+  # 其中Catalina.app是下载的系统的名称，MyVolume是U盘名称
+  sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+  ```
+
+- 开机时按住Option键，然后选择U盘进入，然后用磁盘工具格式化磁盘，重装系统即可
+
 ## TroubleShooting
 
 - **磁盘空间爆了，重启后spotlight一直显示正在索引**: 原因可能是误删了索引的文件(索引文件确实有哦几个G)，修复需要执行以下几个命令：
