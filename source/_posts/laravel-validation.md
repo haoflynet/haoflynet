@@ -159,6 +159,9 @@ required_without:foo,bar,...	# 如果缺少任意一个指定的字段，则自�
 required_with_out_all:foo,bar,...	# 如果所有指定的字段你都没有值，则此字段为必填
 same:foo			# 必须和指定字段的值保持一致
 string				# 必须是字符串
+unique:表名,字段名	# 唯一性校验
+unique:表名,字段名,忽略值	# 可以忽略一个指定的值，通常用于忽略当前需要修改的值
+unique:users,email_address,xxx,id,account_id,1	# 添加更多的条件，这里表示忽略email_address为xxx的并且account_id为1的值
 url					# 必须是合法的url
 regex				# 必须符合这个正则表达式，例如regex:/^[a-z]{1}[a-z0-9-]+$/，需要注意的是，如果正则表达式中用了|符号，必须用数组的方式来写正则表达式，否则会报错，例如['required', 'regex:/[0-9]([0-9]|-(?!-))+/']
 ```
