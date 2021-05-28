@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-05-22 22:58:00
+updated: 2021-05-28 22:58:00
 categories: php
 ---
 # Laravel指南
@@ -676,6 +676,9 @@ $user->update(['name' => 'wang'])	# update会立即更新数据库
 $user->increment('age', 5)	# 如果是数字类型，可以直接相加，不带5就表示之内加1
 $user->decrement('age', 5)	# 或者减
 $user->save(['timestamps'=>false]);	# save的参数可以阻止一些默认行为，比如这里阻止更新时间戳，就可以手动更改了
+$user->replicate()	# 复制一个model实例，这会创建一个新的实例，没有id时间戳这些，但是其他字段都一样
+  ->fill(['name' => $newName])	# 可以这样修改该实例的某些属性
+  ->save()	# 调用save方法可以直接在数据库新建
     
 # 删除
 $user->delete()	# 删除，如果设置了软删除则是软删除

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-05-21 08:18:00
+updated: 2021-05-28 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -89,6 +89,7 @@ $.each($array, function(k, v){});	// 遍历数组
 $.inArray('a', $arr): 判断数组是否包含某个元素
 delete a['a']	// 删除字典元素，如果用它来删除数组中的元素，删除完以后，数组总的长度不变，元素会被换成undefined，和php一样的坑
 
+Array.isArray(arr)	// 判断是否是数组，类似于其他语言的is_array
 Array.isArray(arr) && arr.length === 0	// 判断是否是空数组
 ```
 ### 数字/布尔
@@ -566,6 +567,8 @@ window.location.back() // 返回上一页
 window.history.pushState({"html":test.html,"pageTitle":response.pageTitle},"", urlPath);	// 不刷新页面直接修改url
 document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
 location.reload()				// 刷新当前页面
+
+window.getSelection().toString();	// 获取选中的文字，但是图片不能toString
 
 // 获取url参数的方法，来自Stack Overflow
 var getUrlParameter = function getUrlParameter(sParam) {
