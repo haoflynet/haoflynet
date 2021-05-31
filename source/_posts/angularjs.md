@@ -1,10 +1,17 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-03-29 22:53:00
+updated: 2021-05-28 22:53:00
 categories: frontend
 ---
 ## 语法
+
+### 数据绑定
+
+```java
+// 动态绑定类
+[ngClass]="{'myClass': selected}"
+```
 
 ### 控制语句
 
@@ -32,6 +39,8 @@ categories: frontend
   	</div>
 </div>
 ```
+
+### 表单
 
 ## 事件
 

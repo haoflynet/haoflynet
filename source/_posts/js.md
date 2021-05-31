@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-05-21 08:18:00
+updated: 2021-05-31 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -976,6 +976,25 @@ window.convertNumberToMoney = function(money){
 		return '0.00';
 	}else{
 		return "";
+}
+  
+// 简单的retry重试方法
+function retry(fn, times, delay=3000) {
+  return new Promise(function(resolve, reject) {
+    function try() {
+      fn()
+        .then(res => resolve(res))
+        .catch(err => {
+        	if (times === 0) {
+            reject(err);
+					} else {
+            times--;
+            setTimeout(try(), delay);
+          }
+      	})
+    }
+    try();
+  })
 }
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-05-07 08:48:00
+updated: 2021-05-27 08:48:00
 categories: javascript
 ---
 
@@ -296,6 +296,8 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 - **Current working directory is not a Cordova-based project.**: 可能是`www`目录不见了
 
 - **new Date('2020-04-29 00:00:00')输出Invalid Date**: 目前我个人只在ios上复现过，vue直接运行没问题，但是真机上却是`Invalid Date`，用moment代替吧
+
+- **'GoogleService-Info.plist' was not found in your Cordova project root folder**: 如果是这样，首先检查是否有该文件，如果确实有还是报错，那么可以在`XCode`中手动添加，右键项目的`Resource->Add Files to "项目名"`选择`GoogleService-Info.plist`即可
 
   
 
