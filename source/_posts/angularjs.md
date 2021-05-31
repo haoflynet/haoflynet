@@ -11,6 +11,7 @@ categories: frontend
 ```java
 // 动态绑定类
 [ngClass]="{'myClass': selected}"
+[ngClass]="type='xxx' ? 'mt-1' : 'mt-2'"
 ```
 
 ### 控制语句
@@ -46,9 +47,13 @@ categories: frontend
 
 Angular1里元素绑定点击事件用`ng-click`，但是Angular2里元素绑定点击事件用`(click)`，例如:
 
-```html
-<button ng-click="vm.toggleImage()">
+```javascript
+// click事件
 <button (click)="toggleImage()">
+  
+// input事件是指输入的时候
+// change事件是指内容改变以后(离开焦点)
+<input (input)="onInput()" (change)="onChange()">
   
 <!-- select元素点击获取选择的值 -->
 <select (change)="onChange($event.target.value)">
@@ -104,3 +109,19 @@ describe('test haofly"s function', () =>{
 - **can't bind to 'ngSwitchWhen' since it isn't a known property of 'template'**: `ngSwitchWhen`已经被`ngSwitchCase`替代了
 
 - **ng: command not found**: `npm install -g @angular/cli@latest`
+
+- **URLSearchParams is not a constructor**: 通常是因为引用`URLSearchParams`是通过`import { URLSearchParams } from "url"`引入的，但其实它早就内置于`nodejs`中了，可以不用写import语句直接用就可以了
+
+- **相同路由改变query params页面不跳转**: 这是和很多单页框架一样的特性，这个时候可以用`window.location.search`进行页面刷新或者通过监听请求参数的变化来重新获取数据，例如:
+
+  ```javascript
+  ngOnInit() {
+  	this.route.params.subscribe(params => {
+  		this.service.get(params).then(...);
+    }
+  }
+  ```
+
+  
+
+  
