@@ -1,7 +1,7 @@
 ---
 title: "BootStrap wiki"
 date: 2015-02-20 08:30:39
-updated: 2021-05-28 21:39:00
+updated: 2021-05-31 21:39:00
 categories: frontend
 ---
 bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其中包含了许多简洁大方的css样式和实用的js插件，当然，它是移动设备优先的响应式开发方式。
@@ -15,6 +15,18 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 ### Border
 
 - 需要注意的是border不支持breakpoints
+
+- 设置`border-radius`
+
+  ```shell
+  rounded
+  rounded-top
+  rounded-right
+  rounded-bottom
+  rounded-left
+  rounded-circle	# 圆形
+  rounded-0	# 没有圆角
+  ```
 
 ### Color
 
@@ -82,6 +94,26 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 .flex-xl-column-reverse
 ```
 
+### Sizing
+
+- 宽度
+
+  ```shell
+  w-25
+  w-50
+  w-75
+  w-100	# width: 100%
+  ```
+
+- 高度
+
+  ```shell
+  h-25
+  h-50
+  h-75
+  h-100	# height: 100%
+  ```
+
 ### Spacing
 
 - m表示margin，p表示padding
@@ -118,6 +150,7 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 - font weight
 
   ```shell
+  font-weight-bolder
   font-weight-bold	# 700
   font-weight-normal	# font-weight: 400
   font-weight-light

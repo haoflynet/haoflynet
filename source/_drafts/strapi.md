@@ -45,11 +45,17 @@ npm install
 rm -rf .cache && rm -rf build/
 ```
 
-## 一些特别的features
+## 其他特性
 
 ### 定时获取外部数据
 
 - 支持定时从外部获取数据并存储到数据库中，不过我没玩儿过，可以参考[这里](https://strapi.io/documentation/developer-docs/latest/guides/external-data.html#content-type-settings)
+
+## 外部插件
+
+### [Cloudinary支持官方文档](https://strapi.io/blog/adding-cloudinary-support-to-your-strapi-application)
+
+
 
 
 

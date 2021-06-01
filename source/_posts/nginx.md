@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2021-02-23 09:01:00
+updated: 2021-06-01 09:01:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -104,10 +104,12 @@ http{
 		
 		location = /{
           # 完全匹配 =
-          # 大小写敏感 ~
-          # 忽略大小写 ~*
+      		# 前缀匹配，一般用来匹配目录 ^~
+          # 正则匹配，大小写敏感 ~
+          # 正则匹配，忽略大小写 ~*
           # ^~ 前半部分匹配，例如location ^~ /hello 等同于location /hello
           # 正则匹配，例如~* \.(.gif|jpg|png)$
+      		# 任何匹配未成功的	/
 		}
 		
 		location / {

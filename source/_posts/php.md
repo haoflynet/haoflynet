@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-05-28 08:47:21
+updated: 2021-06-01 08:47:21
 categories: php
 ---
 # PHP
@@ -38,6 +38,7 @@ categories: php
 - 7.4支持数组展开操作: `['banana', 'orange', ...$parts, 'watermelon']`，其中`$parts`为一个数组
 
 ```php
+array_fill(0, $size, NULL);	// 新建一个固定长度的数组
 array_chunk($array, $size);	// 将数组按size大小分为多个数组
 array_column($array, $column_key);	// 返回字典型数组里面指定key的那一列
 array_diff($a, $b); // 比较数组的不同，可以用来判断两个数组是否相等，需要注意的是这里返回的是在array1中但是不在array2中的值，而不是两个的交集
