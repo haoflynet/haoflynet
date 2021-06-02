@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-05-28 22:53:00
+updated: 2021-06-01 22:53:00
 categories: frontend
 ---
 ## 语法
@@ -122,6 +122,6 @@ describe('test haofly"s function', () =>{
   }
   ```
 
-  
+- **ExpressionChangedAfterItHasBeenCheckedErrord**：这是因为在子组件里面直接改变了父组件的值，通常是在`ngAfterViewInit`或者`ngOnChanges`中，因为这种改变可能会导致无限循环，所以是禁止的，但是如果确保不会发生无限循环，可以将改变的语句写到`setTimeout`中去
 
   

@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2021-06-01 09:01:00
+updated: 2021-06-02 08:28:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -304,7 +304,15 @@ location ^~/abc/ {
 }
 ```
 
+#### 重定向指定文件的访问
 
+例如，重定向favicon.ico文件
+
+```nginx
+location /favicon.ico {
+ 	alias /var/www/html/mypath/favicon.ico; 
+}
+```
 
 ### 配置nginx IP黑白名单
 

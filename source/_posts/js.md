@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-05-31 08:18:00
+updated: 2021-06-01 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -796,6 +796,19 @@ var object = { 'a': [{ 'b': { 'c': 3 } }] }
 _.get(object, 'a[0].b.c')	// 可以直接使用数组下标进行访问
 _.get(object, ['a', '0', 'b', 'c'])
 ```
+
+##### _.groupBy
+
+- 根据第二个参数的返回值来进行排序，返回的是一个key => [item]对象
+
+```javascript
+// 返回{ '4': [4.2], '6': [6.1, 6.3] }
+_.groupBy([6.1, 4.2, 6.3], function (item) {
+  return Math.floor(item);
+});
+```
+
+
 
 ##### _.isMatchWith
 

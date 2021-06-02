@@ -55,6 +55,8 @@ rm -rf .cache && rm -rf build/
 
 ### [Cloudinary支持官方文档](https://strapi.io/blog/adding-cloudinary-support-to-your-strapi-application)
 
+### [strapi-tinymce 集成tinymce](https://github.com/chiqui3d/strapi-tinymce)
+
 
 
 
