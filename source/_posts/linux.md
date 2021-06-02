@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-05-19 17:03:30
+updated: 2021-06-01 17:03:30
 categories: system
 ---
 # Linux手册
@@ -951,6 +951,10 @@ ps | grep python | awk -F ' ' '\{print $1\}' | xargs kill
 
 date+\%Y-\%m-\%d   # 获取今天的日期
 ```
+
+## 域名解析
+
+- 泛域名证书，例如`*.haofly.net`仅支持通配符当前级别的域名，不支持更高一级域名，例如`a.b.haofly.net`三级域名，如果要三级域名也通配符需要单独申请另外一个证书才行
 
 # TroubleShooting
 
