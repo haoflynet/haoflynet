@@ -45,6 +45,11 @@ npm install
 rm -rf .cache && rm -rf build/
 ```
 
+### 修改admin系统文件
+
+- 只需要参照`node_modules/strapi-admin/`中的目录结构，在根目录新建admin文件夹与其保持一致，任何想要覆盖的都可以放在这里
+- 替换logo，可以在`admin/src/assets/images`中放置
+
 ## 其他特性
 
 ### 定时获取外部数据
