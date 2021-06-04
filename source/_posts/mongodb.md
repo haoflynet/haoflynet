@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2021-05-27 12:33:00
+updated: 2021-06-02 12:33:00
 categories: database
 ---
 
@@ -80,6 +80,10 @@ db.col.createIndex({"name": 1})	# 创建索引，1表示升序，-1表示降序
 db.col.createIndex({"name": 1}, {unique: true})	# 索引规则，unique表示唯一索引，sparse对文档中不存在的字段数据不启用索引，默认是false，为true的话不会查询出不包含该索引的数据；expireAfterSeconds设定集合的生存事件；weights索引权重值；default_language设置索引的语言，默认是英语，zhs表示简体中文
 db.col.createIndex({"content": "text"})	# 在content字段上创建全文索引
 ```
+
+#### 全文索引text
+
+- 全文索引会对每一个词建立一个索引(3.2版本开始才支持中文)
 
 ## CURD
 

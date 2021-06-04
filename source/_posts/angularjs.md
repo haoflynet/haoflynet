@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-06-02 22:53:00
+updated: 2021-06-03 22:53:00
 categories: frontend
 ---
 ## 语法
@@ -52,6 +52,57 @@ get 字段名() {
 ```
 
 ### 表单
+
+```javascript
+// js/ts文件
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+export class MyComponent implements OnInit {
+  myForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder);
+  
+	ngOnInit(): void {
+    this.myForm = this.formBuilder.group({
+    	formName: ['初始值', [Validators.required, this.checkName()]],	// 第一个参数设置初始值，第二个参数是验证方法列表
+      字段2: ['', []]
+  	}, {
+      validator: this.checkAll	// 如果不是针对某个字段，而是针对整个表单，比如同时验证多个字段，那么可以在这里做
+    })
+  }
+  
+  this.checkName(): any {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      return control.value >= 0 && control.value <= 2 ? null : {nameValueError: true};	// 如果出错可以返回一个key-value
+    };
+  }
+
+  this.checkAll(formGroup: FormGroup): any {
+    return (formGroup.value.formName !== 'new') ? null : {typeEmpty: true};
+  }
+
+  onSubmit(): void {
+    this.submitting = true;
+    if (this.myForm.valid) {
+      console.log('its ok');
+    }
+  }
+}
+
+// html中这样使用
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" (input)="inputChange" formControlName="formName">
+    <p class="form-warning" *ngIf="submitting && createForm.get('formName').errors">
+      <span *ngIf="createForm.get('formName').errors.nameValueError">	// 这是上面自定义的错误
+        Name Should be 1 or 2.
+      </span>
+    </p>
+  </div>
+  <button type=submit">Submit</button>
+</form>
+```
 
 ## 事件
 
