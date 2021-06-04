@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-05-22 22:50:30
+updated: 2021-06-03 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -19,10 +19,11 @@ sudo yum install -y nodejs
 # ubuntu用下面命令安装指定版本nodejs
 sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 docker里面没有sudo就直接
-curl -sL https://deb.nodesource.com/setup_10.x | bash -
+curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 apt-get install -y nodejs
 
-# 添加淘宝镜像，既然用的阿里云，那淘宝的镜像也就不介意了...
+# 添加淘宝镜像，既然用的阿里云，那淘宝的镜像也就不介意了
+npm install -g nrm && nrm use cnpm	# 这样可以防止npm和cnpm混用导致的各种not found的错误
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 安装package.json 直接`npm install`后面不加package.json的名字
@@ -140,6 +141,7 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 - **Node Sass does not yet support your current environment: Windows 64-bit with Unsupported runtime (88)**: `npm rebuild node-sass`
 - **Error: spawn ../node_modules/optipng-bin/vendor/optipng ENOENT**: 尝试执行`npm rebuild`
 - **this._settlePromiseFromHandler is not a function**: 尝试删除`node_module`目录并重新安装
+- **gulp: command not found**: `npm install gulp-cli -g`
 
 ##### 扩展阅读
 
