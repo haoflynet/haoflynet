@@ -416,7 +416,7 @@ fi
 
 - **git rebase后在另外一端进行pull操作每次都会弹出编辑框**: 这是因为远端的仓库超前了几个commit，但是那几个commit已经不存在了，需要进行`git reset --hard ID`将分支切换到当前最新的head
 
-- **如果想用账号密码访问，但是git pull的时候提示`Repository not found`**: 可以将账号密码放到命令里面试试: `git clone git clone https://账户:密码@项目地址.git`
+- **如果想用账号密码访问，但是git pull的时候提示`Repository not found / does not exist`**: 可以将账号密码放到命令里面试试: `git clone https://账户:密码@项目地址.git`
 
 - **仓库可以pull，但是push的时候提示`Repository not found`**: 原因可能是仓库所有者设置了不同的读写权限，可以去github上面看看能不能在线编辑文件，如果在线都不能那么应该就真的只有读权限了
 

@@ -22,9 +22,12 @@ categories: server
 3. 接下来真正的安装过程:
 
    ```shell
-   # for ubuntu
+   # for ubuntu < 20
    add-apt-repository ppa:certbot/certbot && apt update
-   apt install certbot python3-acme python3-augeas python3-certbot python3-certbot-nginx python3-certbot-apache	# nginx和apache根据实际需要选择
+   apt install -y certbot python3-acme python3-augeas python3-certbot python3-certbot-nginx python3-certbot-apache	# nginx和apache根据实际需要选择
+   
+   # for ubuntu >= 20
+   apt install -y certbot python3-certbot-nginx
    
    # for centos
    yum install epel-release -y && yum update -y
@@ -80,7 +83,7 @@ cd letsencrypt/live/haofly.net
 for i in cert chain fullchain privkey ;	# 重新建立软连接，这一这里的.pem文件前缀就是旧服务器上的续期次数
 do
 rm ${i}.pem
-ln -s ../../archive/cnzhx.net/${i}3.pem ${i}.pem
+ln -s ../../archive/haofly.net/${i}3.pem ${i}.pem
 done
 
 certbot renew --dry-run	# 运行一次renew看看是否正常--dry-run表示只运行不用保存结果
