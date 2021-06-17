@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-05-24 11:30:00
+updated: 2021-06-04 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -274,7 +274,7 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 
 ##### width元素宽度 
 
-- max-width设置最大宽度，默认为none
+- max-width设置最大宽度，默认为none，可选max-content(原素内容固有的合适的宽度)、min-content(元素内容固有的最小宽度)、fit-content
 
 ##### word-wrap
 
