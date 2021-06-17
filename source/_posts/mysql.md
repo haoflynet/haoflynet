@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-05-19 09:44:00
+updated: 2021-06-11 09:44:00
 categories: database
 ---
 ## 安装方法
@@ -282,6 +282,11 @@ show grants for 用户名
 GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "mysql";
 flush privileges;                更新权限
 select host, user from user;     查看更改
+# MySQL8开启远程登录需要这样做
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+use mysql;
+update user set host = '%' where user ='root';
+flush privileges;
 
 # 新建用户
 CREATE USER 用户名 IDENTIFIED by '密码';
