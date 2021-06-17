@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-05-28 22:58:00
+updated: 2021-06-17 22:58:00
 categories: php
 ---
 # Laravel指南
@@ -889,6 +889,25 @@ public function index(Request $request)
 $cookie = Cookie::forget('test');
 return view('index')->withCookie($cookie); # 其实是将该cookie的过期时间进行了更新，成为了过去时
 ```
+
+### 中间件
+
+#### Authenticate中间件
+
+- 如果想在登陆成功后返回json数据而不是重定向到首页，需要在`Authenticate.php`中覆盖这个方法即可：
+
+  ```php
+  protected function redirectTo($request)
+  {
+    if (!$request->expectsJson()) {
+      return response()->json([
+        'foo'=>'bar'
+      ]);
+    }
+  }
+  ```
+
+  
 
 ### 任务队列Job
 

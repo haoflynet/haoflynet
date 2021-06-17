@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2021-05-23 14:23:00
+updated: 2021-06-11 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -47,7 +47,7 @@ docker tag id name:tag	# 给镜像更改名称
 --net=host				# 网络模式，host表示容器不会获得独立的Network Namspace，而是和宿主机公用一个Network Namespace。容器将不会虚拟网卡，配置自己的IP，而是使用宿主机器的IP和端口；none表示没有网络；bridge是docker默认的网络设置；container:NAME_or_ID表示container模式，指定新创建的容器和已经存在的一个容器共享一个Network Namespace，和指定的容器共享IP、端口范围等。
 --restart=no			# 容器的重启模式，no表示不自动重启，on-failure表示当容器推出码为非零的时候自动重启，always表示总是自动重启，docker重启后也会自动重启，unless-stopped表示只有在docker重启时不重启，其他时候都自动重启。这个参数可以动态更新
 docker update --restart always 容器名 # 更改已经存在的容器的重启策略
---rm					# 如果有重名的容器，则删除原有容器再新建，前提是原有容器必须是停止的状态。并且加入了这个参数以后如果docker重启或者容器exit，该容器都会被删除
+--rm					# 容器退出自动删除，很适合直接用容器泡脚本的那种。如果有重名的容器，则删除原有容器再新建，前提是原有容器必须是停止的状态。并且加入了这个参数以后如果docker重启或者容器exit，该容器都会被删除。例如docker run -it --init --rm -v "$PWD":/data my:phpimg php test.php
 -v /etc/test/:/etc/internal/test	# 将宿主机的/etc/test目录挂载到容器内部的/etc/internal/test目录
 ```
 
@@ -107,7 +107,7 @@ EXPOSE: 暴露什么端口给主机,需要注意的是,即使指定了,也得在
 WORKDIR: 切换工作目录,这样下面的CMD等就可以在新的目录执行，并且每次exec进入容器的时候默认目录也会被切换为这个
 CMD: 一般写于最后,因为它是容器启动时才执行的命令,并且无论写多少,都只执行最后那一条,一般用于容器中镜像的启动,例如`CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]`,当然,也可不加括号和引号,直接用shell的方式写一条命令.但是如果docker run 中指定了命令过后,CMD将不被执行
 ENTRYPOINT: 和CMD类似,但是如果docker run中指定了命令,它仍然会被执行
-ENV: 指定环境变量，在dockerfile里面使用export是没用的
+ENV: 指定环境变量，在dockerfile里面使用export是没用的，ENV <key> <value>或者ENV <key1>=<value1> <key2>=<value2>都可以
 ARG: 指定参数，比如ockerfile里面定义了`ARG JAVA_HOME`，那么可以在构建的时候用docker build JAVA_HOME=$JAVA_HOME对该参数进行赋值
 ONBUILD: 后面跟的是其他的普通指令，例如ONBUILDI RUN mkdir test，实际上它是创建了一个模版景象，后续根据该景象创建的子镜像不用重复写它后面的指令，就会执行该指令了
 ```
@@ -242,6 +242,7 @@ apt-get install libzip-dev zlib1g-dev && docker-php-ext-install zip # 安装zip�
 apt-get install libxml2-dev && docker-php-ext-install xml # 安装xml扩展
 apt-get install libbz2-dev && docker-php-ext-install bz2	# 安装bz2扩展
 docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql	# 安装Mysql扩展
+apt install libgmp-dev && docker-php-ext-install gmp # 安装gmp/ext-gmp扩展
 docker-php-ext-install pcntl	# 安装pcntl扩展
 docker-php-ext-install bcmath	# 安装bcmath扩展
 ```
