@@ -54,3 +54,6 @@ Important: true最好设置上
 <div class="filter-grayscale dark:filter-none"></div>
 ```
 
+
+
+免费的tailwindcss组件模版：https://wickedblocks.dev/z
