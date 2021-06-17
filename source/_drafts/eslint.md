@@ -1,3 +1,27 @@
+nodejs代码格式化
+
+主要是用以下三个工具
+
+- husky，git钩子，能够方便地在nodejs项目中配置git的hook操作
+- lint-staged，对git暂存文件进行lint检查
+- eslint，代码格式检测工具
+
+
+
+eslint可以检测出代码问题，并标红，但是并不会自动格式化，需要手动格式化，介入Prettier并配置可以进行自动格式化。但是两者可能有冲突
+
+
+
+cnpm install --save-dev  husky lint-staged eslint
+
+
+
+单独执行estlint命令
+
+eslint file.js# 仅校验
+
+eslint --fix file.js	校验并尝试修改
+
 .eslintrc.js文件
 
 ```text
@@ -6,24 +30,91 @@
 
  
 
+初始化当前项目的eslint配置，./node_modules/.bin/eslint --init，能够通过交互式生成对应的配置文件：
+
+```shell
+? How would you like to use ESLint? …
+  To check syntax only
+❯ To check syntax and find problems
+  To check syntax, find problems, and enforce code style
+  
+? What type of modules does your project use? # 项目中使用什么类型的模块
+❯ JavaScript modules (import/export)	# vue一般选这个
+  CommonJS (require/exports)
+  None of these
+  
+? Which framework does your project use? # 项目中使用什么框架
+❯ React
+  Vue.js
+  None of these
+  
+? Does your project use TypeScript? › No / Yes	# 项目是否使用TypeScript，如果是下面会安装typescript的eslint
+
+? Where does your code run? …  (Press <space> to select, <a> to toggle all, <i> to invert selection)
+✔ Browser
+✔ Node
+
+? What format do you want your config file to be in? …
+❯ JavaScript
+  YAML
+  JSON
+  
+@typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
+? Would you like to install them now with npm? › No / Yes
+```
+
+完成后会在根目录创建文件`.eslintrc.js`
+
 ```javascript
 module.exports = {
-  root: true,
-  env: {	// 想启用的环境
-    node: true,
-    es6: true
+    "env": {	// 想启用的环境
+        "es2021": true,
+        "node": true
+    },
+    "extends": [	// 从指定的插件中继承规则
+        "eslint:recommended",	// eslint:all表示使用eslint的所有规则，可参考http://eslint.cn/docs/rules/，"eslint:recommended"表示使用eslint所有规则里面打勾的规则，"standard"表示使用standard的规则(需要先npm install standard --save-dev)，参考https://standardjs.com/rules-zhcn.html#javascript-standard-style。我比较习惯standard，还有arbnb风格
+        "plugin:@typescript-eslint/recommended"	// 如果是typescript需要添加这个插件
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [	// 使用的额外的插件，例如下面的html插件和react插件
+        "@typescript-eslint",
+      	"html", // 用于html代码中的js代码校验，需安装eslint-plugin-html
+      	"react", // 用于react代码的验证，需安装eslint-plugin-react
+    ],
+    "rules": { // 这里放自定义的规则，0表示关闭规则，1表示设置为warn，2表示error
+      "@typescript-eslint/strict-boolean-expressions": 0, 	// 禁用布尔表达式中的严格类型判断，本来if(value)即使value为true或者为对象时都可以，但是如果这个规则为1，那么只能为true，必须单独处理null或者空字符串等情况，特别麻烦
+      "@typescript-eslint/explicit-module-boundary-types": [
+        "error",
+        {	// 仅仅覆盖规则的某个选项
+          "allowArgumentsExplicitlyTypedAsAny": true	// 也可以允许typescript中使用any来声明函数参数
+        }
+      ]
+      "@typescript-eslint/no-explicit-any": 0,	// 禁用它可以允许typescript中使用any来声明类型
+    }
+};
+```
+
+然后在package.json中配置husky和lint-staged
+
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
-  extends: "standard",	// 从该插件中继承规则，"eslint:all"表示使用eslint的所有规则，可参考http://eslint.cn/docs/rules/，"eslint:recommended"表示使用eslint所有规则里面打勾的规则，"standard"表示使用starard的规则(需要先npm install standard --save-dev)，参考https://standardjs.com/rules-zhcn.html#javascript-standard-style
-  plugins: [	// 使用额外的插件，如eslint-plugin-html、
-    'html',	// 用于html代码中的js代码的验证
-    'react',		// eslint-plugin-react，用于react代码的验证
-    'standard',	// 也可以不用extends，而是直接写到standard里面来
-  ],
-  rules: {
-    indent: ["error", 2],	// 自定义的规则
+  "lint-staged": {
+    "src/**": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
 ```
 
-
+ 最后git add . && git commit -m ''即可测试，这个时候代码有问题，就会报错
 
