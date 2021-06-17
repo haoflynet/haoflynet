@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-06-01 08:47:21
+updated: 2021-06-17 08:47:21
 categories: php
 ---
 # PHP
@@ -113,6 +113,7 @@ nl2br() # 将字符串中的\n转换成网页的换行符<br>
 sprintf()	# 字符串格式化，需要注意的是，它不是用\转义，而是用的%来转义
 strlen() # 求字符串长度
 strpos('abc', 'a'); 	# 在字符串中查找第一次出现位置，没找到返回false
+str_contains('abc', 'a');# 查找字符串是否出现在指定字符串中
 str_repeat('abc', n)	# 将字符串重复n次
 str_replace(搜索值，替换值，目标)	# 字符串替换，需要注意的是原字符串不会变化，返回的结果才是替换后的字符串
 str_replace_first()	# 替换第一个
@@ -176,6 +177,9 @@ bcsub($left, $right, 2); // 将两个高精度的数字相见，第三个参数�
 
 3 / 2 = 1; // 除法取商
 3 % 2 = 1; // 除法取余
+
+bin2hex("test");	// 字符串转16进制
+hex2bin('843769807'); // 16进制转字符串
 ```
 
 ### 时间
@@ -375,10 +379,9 @@ foreach ($objs as $obj) {}
 
 ```php
 $ch = curl_init();								// 初始化curl
-curl_setopt();									// 设置参数
 curl_setopt($ch, CURLOPT_URL, 'url');			// 设置URL
 curl_setop($ch, CURLOPT_POST, true);			// 发送POST请求
-curl_setop($ch, CURL_POSTFIELDS, $data);		// POST的数据
+curl_setop($ch, CURLOPT_POSTFIELDS, $data);		// POST的数据
 curl_setop($ch, CURLOPT_RETURNTRANSFER, true);	// 获取返回结果，如果不加这个，那么$result=true
 $result = curl_exec($ch);						// 执行curl请求
 curl_getinfo($ch, CURLINFO_HTTP_CODE)			// 获取http_code
@@ -711,6 +714,8 @@ ini_get('upload_max_filesize'); // 但是该属性只能获取，不能在代码
 - **zlib.h: no such file or directory**: 需要先安装: `apt-get install libz-dev -y`
 
 - **Could not scan for classes inside “vendor/google/apiclient/src/Google” which does not appear to be a file nor a folde**: 看起来是[googleapis/google-api-php-client](https://github.com/googleapis/google-api-php-client)库升级导致的，有这个路径的最高版本为2.7.2，2.8之后就没有src/Goolge了
+
+- **class not found**: 如果是自己写的某个类没找到可能是没有require进来，我们在使用namespace的时候光用namespace是不够的，namespace只是表明其名称空间，require才能把代码引入进来，之所以我们使用框架不会报错，因为我们在框架的入口之行了`require __DIR__.'/../vendor/autoload.php'`的
 
 - **PHP安装SOAP扩展/docker容器安装php-soap扩展**: 
 
