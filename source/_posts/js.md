@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-06-01 08:18:00
+updated: 2021-06-18 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -1280,6 +1280,8 @@ function retry(fn, times, delay=3000) {
       console.log(value);
     }, 500);	// 做一个500毫秒的延时
   ```
+
+- **Property 'style' does not exist on type 'Element'**: 需要强制声明其类型: `Array.from(document.getElementsByClassName('test') as HTMLCollectionOf<HTMLElement>)`
 
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 

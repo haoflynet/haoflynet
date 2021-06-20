@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2021-06-17 08:28:00
+updated: 2021-06-18 08:28:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -270,7 +270,13 @@ location /test {
     set $request_url /$1;
   }
   
+  location /v2 {
+    set $request_url $uri;	# 如果要给所有请求加一个前缀，可以这样做
+    rewrite ^/v2/(.*)$ /$1 last;
+  }
+  
   location /admin {
+    set $request_url $uri;
     rewrite ^/admin/(.*)$ /$1 last;
   }
   location / {
