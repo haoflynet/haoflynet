@@ -31,6 +31,38 @@ var sequelize = new Sequelize('database', 'username', 'password', {
   - UUID：可以自动为字段生成UUID，type为`UUID`，defaultValue为`UUIDV1`或者`UUIDV4`
 
 ```javascript
+// 定义方式一，typescript方式
+class PostModel extends Model {
+  // 定义一些值可以让其增加typescript声明
+  public id: number
+  public name: string
+  
+  // 为typescript增加获取关联对象的方法声明
+  public getUser! BelongsToGetAssociationMixin<BandModel>
+  
+  static initModel (sequelize: Sequelize): void {
+    id: {
+      autoIncrement: true,
+      primaryKey: true,
+      type: INTEGER
+    },
+    name: {
+      type: STRING,
+      allowNull: false,
+      defaultValue: 'test'
+    }
+  }
+
+ 	static relate (): void {
+    PostModel.belongsTo(UserModel, {
+    	as: 'user',
+      foreignKey: 'user_id'
+  	})
+  }
+  
+}
+
+// 定义方式二
 const Post = sequelize.define('post', {
     id: {
       autoIncrement: true,
@@ -357,5 +389,5 @@ npx sequelize-cli db:seed:undo:all # 取消执行所有seed
 
 ## TroubleShooting
 
-- **Cannot read property 'length' of undefined**: 可能是因为没有执行`Model.init`方法将model初始化
+- **Cannot read property 'length' of undefined /  Cannot convert undefined or null to object**: 可能是因为没有执行`Model.init`方法将model初始化
 - **任何数据库操作都无响应/migrations没有执行并且都没有报错**: 可能是因为安装依赖的时候和当前使用的node版本不一致，也有可能是postgres依赖版本低造成的，可以尝试执行`npm install --save pg@latest`试试

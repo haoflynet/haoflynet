@@ -1,12 +1,12 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2021-06-11 14:23:00
+updated: 2021-06-18 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
 
-##系统相关
+## 系统相关
 
 [安装方法](https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce-1)
 
@@ -210,6 +210,8 @@ docker network rm name		# 删除某个网桥
 ```
 
 ## 常用容器/镜像
+
+- 如果是Mac M1或者其他ARM的机器，可以在dockerhub的左侧筛选`Architectures=ARM 64`即可，如果要使用mysql可以用`mysql/mysql-server`
 
 ### Alpine
 
