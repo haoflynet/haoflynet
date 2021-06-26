@@ -282,6 +282,19 @@ show grants for 用户名
 GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "mysql";
 flush privileges;                更新权限
 select host, user from user;     查看更改
+# MySQL8开启远程登录需要这样做
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+use mysql;
+update user set host = '%' where user ='root';
+flush privileges;
+
+# 新建用户
+CREATE USER 用户名 IDENTIFIED by '密码';
+GRANT ALL PRIVILEGES ON 数据库名.* TO 用户名@'%' IDENTIFIED BY '密码';
+FLUSH PRIVILEGES;
+
+# 删除用户
+DROP user 用户名@'%';
 
 # 新建用户
 CREATE USER 用户名 IDENTIFIED by '密码';

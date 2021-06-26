@@ -211,6 +211,8 @@ docker network rm name		# 删除某个网桥
 
 ## 常用容器/镜像
 
+- 如果是Mac M1或者其他ARM的机器，可以在dockerhub的左侧筛选`Architectures=ARM 64`即可，如果要使用mysql可以用`mysql/mysql-server`
+
 ### Alpine
 
 是一个非常简单的镜像，本身只有几兆，包含了linux最简单的内核，并且功能十分强大。很多的基础镜像都是基于它。当然，有一点特别注意，它没有自带apt-get，也没有bash(sh代替)。不过还好，也能使用阿里的镜像源。这里有它里面的一些基本操作

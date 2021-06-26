@@ -26,6 +26,7 @@ indent_size = 2
 end_of_line = lf	# 定义换行符，可选lf、cr、crlf
 trim_trailing_whitespace = true	# 除去换行行首的任意空白字符
 insert_final_newline = true	# 在文件末尾插入空白行
+max_line_length=150	# 最大行宽
 
 [*.md]
 trim_trailing_whitespace = false

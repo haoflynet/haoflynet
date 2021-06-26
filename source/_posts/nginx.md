@@ -270,7 +270,13 @@ location /test {
     set $request_url /$1;
   }
   
+  location /v2 {
+  set $request_url $uri;	# 如果要给所有请求加一个前缀，可以这样做
+    rewrite ^/v2/(.*)$ /$1 last;
+  }
+  
   location /admin {
+  set $request_url $uri;
     rewrite ^/admin/(.*)$ /$1 last;
   }
   location / {
@@ -281,9 +287,9 @@ location /test {
   	rewrite ^/admin/(.*)$ /$1 break;
       
     include test/fastcgi-php.conf;
-  
-  	fastcgi_param  REQUEST_URI        $request_url;
-  	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+      
+    fastcgi_param  REQUEST_URI        $request_url;
+    fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
   }
   ```
 
@@ -330,7 +336,6 @@ deny all;
 然后在nginx主配置文件`/etc/nginx/nginx.conf`的`http`中导入该文件`include blockips.conf;`
 
 ### HTTPS证书配置
-
 ```shell
 server {
 	# http自动跳转到https
@@ -346,14 +351,14 @@ server {
     # 其中，.pem文件表示证书文件，.key是私钥文件，而目录则是自定义个一个nginx有读权限的目录
     ssl_certificate /etc/cert/api.haofly.net.pem;
     ssl_certificate_key /etc/cert/api.haofly.net.key;
-   
+       
     charset utf-8;
     access_log /var/log/nginx/api.haofly.net.log;
     error_log /var/log/nginx/api.haofly.net.error.log;
-
-	location / {
-		uwsgi_pass my_upstream;
-	}
+    
+    location / {
+    	uwsgi_pass my_upstream;
+    }
 }
 ```
 
@@ -393,6 +398,15 @@ server {
      }
    }
    ```
+
+### Nginx直接返回文本/Json
+
+```shell
+location ~ ^/json {
+    default_type application/json;
+    return 200 '{"status":"success","result":"nginx json"}';
+}
+```
 
 ## 查看负载均衡状态
 
