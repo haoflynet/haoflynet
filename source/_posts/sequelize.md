@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-05-20 15:11:11
+updated: 2021-06-26 15:11:11
 categories: Javascript
 ---
 
@@ -97,6 +97,8 @@ const Post = sequelize.define('post', {
     indexes: [{ unique: true, fields: ['field1']}], // 也可以在最后创建索引
   	timestamps: true, // 是否自动添加createdAt和updatedAt
   	tableName: 'MyPosts'	// 自定义table name，如果不提供，sequelize会根据模型名称自动以复数形式设置表名
+    paranoid: true,	// 定义该表为偏执表，即自带软删除，使用destroy能自动软删除
+    deletedAt: 'mydelete', // 偏执表软删除字段默认为deletedAt，这里可以指定自定义的字段名
 	}
 );
 
@@ -295,7 +297,8 @@ await User.update({
 await User.destroy({
   where: {
     firstName: "Jane"
-  }
+  },
+  force: true,	// 如果模型是偏执表，如果想要硬删除需要加上force参数
 });
 
 // 清空整张表
@@ -389,4 +392,6 @@ npx sequelize-cli db:seed:undo:all # 取消执行所有seed
 
 ## TroubleShooting
 - **Cannot read property 'length' of undefined /  Cannot convert undefined or null to object**: 可能是因为没有执行`Model.init`方法将model初始化
+- **is not associated to**: 可能是没有定义模型间的关联关系，后者没有初始化关联关系
 - **任何数据库操作都无响应/migrations没有执行并且都没有报错**: 可能是因为安装依赖的时候和当前使用的node版本不一致，也有可能是postgres依赖版本低造成的，可以尝试执行`npm install --save pg@latest`试试
+- **include关联关系时报错xxxx must appear in GROUP BY clause**: 如果是mysql8，可能需要修改`only_full_group_by`，但是postgres我目前只能将那个字段加入group by里面，不过还好是id字段
