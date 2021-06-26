@@ -138,8 +138,8 @@ between:min,max		# 介于最小值和最大值之间，两边都是闭区间，�
 boolean				# 必须是true,false,1,0,"1","0"
 date				# 必须是时间类型
 exists:table,column	# 判断字段的值是否存在于某张表的某一列里面
-exists:table,column1,column2,value	# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值为多少
-exists:table,column1,column2,!value	# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值不为多少
+exists:table,column1,column2,value	# 存在，判断字段的值是否存在于某张表的某一列里面，并且另一列的值为多少
+exists:table,column1,column2,!value	# 不存在，判断字段的值是否存在于某张表的某一列里面，并且另一列的值不为多少
 exists:table,column1,column2,{$field}# 判断字段的值是否存在于某张表的某一列里面，并且另一列的值和前面的某个字段提供的值一样
 in:value1,value2,...# 字段值必须是这些值中的一个，枚举值
 not_in:value1,value2,...	# 字段值不为这其中的任何一个

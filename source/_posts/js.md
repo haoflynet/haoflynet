@@ -1281,6 +1281,7 @@ function retry(fn, times, delay=3000) {
     }, 500);	// 做一个500毫秒的延时
   ```
 
+- **Property 'style' does not exist on type 'Element'**: 需要强制声明其类型: `Array.from(document.getElementsByClassName('test') as HTMLCollectionOf<HTMLElement>)`
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
   ```javascript
