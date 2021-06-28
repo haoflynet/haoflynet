@@ -734,6 +734,28 @@ _.camelCase('--foo-bar--');	// => 'fooBar'
 _.camelCase('__FOO_BAR__');	// => 'fooBar'
 ```
 
+##### _.chain
+
+- lodash中最重要的部件之一
+- 可以将普通的对象变为可链式执行的对象
+- `_.chain(arr)....value()`也可隐式调用`_(arr)...`就不用`.value()`
+- 这里的`.value()`是一个延迟计算操作，但是有些方法是不能加在链条中的，例如`reduce`会被立即计算
+
+```javascript
+const arr = [1,2,3,4,5]了
+_.chain(arr)
+	.filter(n => n % 2 === 0)
+	.map(n => n * n)
+	.sum()
+	.value()	// 最后要加.value()才能得到真正的结果值
+
+// .value()的延迟计算
+a = _.chain(arr).filter(n => n % 2 === 0).map(n => n * n).sum()
+a.value()	// 得到20
+arr.push(6)
+a.value()	// 得到56
+```
+
 ##### every
 
 必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`. 有个妙用就是在实现在forEach中break的功能
