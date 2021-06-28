@@ -98,6 +98,17 @@ module.exports = {
 };
 ```
 
+除了使用rules来全局忽略某些配置以外，还能在局部忽略某些配置，例如: 
+
+```javascript
+// eslint-disable-next-line no-undef // 能忽略下一行出现的未定义错误，如cordova
+cordova.plugins...
+
+/* eslint-disable import/first */	// 这样注释能忽略当前文件下面所有行的指定的错误，这里是忽略import/first错误
+```
+
+
+
 然后在package.json中配置husky和lint-staged
 
 ```json
@@ -118,3 +129,24 @@ module.exports = {
 
  最后git add . && git commit -m ''即可测试，这个时候代码有问题，就会报错
 
+
+
+
+
+某些特定规则的常见解决办法：
+
+1. # Requires Promise-like values to be handled appropriately (`no-floating-promises`)
+
+   这是没有处理promise的结果和错误，例如
+
+   ```javascript
+   (async () => {
+     ...
+   })() // 需要加上下面的then和catch才能避免错误提示，也是一种很好的编码习惯
+     .then(() => { console.log('Start Success') })
+     .catch(() => { console.log('Start Failed') })
+   ```
+
+   2.Require statement not part of import statement.
+   
+   可以把`const path = require('path')`改为`import path = require('path')`
