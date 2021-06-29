@@ -779,6 +779,14 @@ arr.push(6)
 a.value()	// 得到56
 ```
 
+##### _.chunk
+
+- 对数组按指定数量分片
+
+```javascript
+_.chunk([1,2,3,4,5], 2)	// [[1,2], [3,4], [5]]
+```
+
 ##### every
 
 必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`. 有个妙用就是在实现在forEach中break的功能
@@ -1374,6 +1382,9 @@ function retry(fn, times, delay=3000) {
   ```
 
 - **Property 'style' does not exist on type 'Element'**: 需要强制声明其类型: `Array.from(document.getElementsByClassName('test') as HTMLCollectionOf<HTMLElement>)`
+
+- **moment Not in a recognized ISO format**: 这是moment无法自动解析其他格式的时间，这时候需要制定格式，例如`moment('2021-6-28', 'YYYY-M-D')`
+
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
   ```javascript

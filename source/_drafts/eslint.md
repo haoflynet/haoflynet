@@ -156,8 +156,11 @@ cordova.plugins...
    2.Require statement not part of import statement.
    
    可以把`const path = require('path')`改为`import path = require('path')`
-## Troubleshooting
-
+Troubleshooting
 - **ESLint: iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them. Separately, loops should be avoided in favor of array iterations.(no-restricted-syntax)**: 这是`Airbnb`中的一条规则`no-restricted-syntax`会禁用一些新特性新语法，比如`for await ... in`，如果要禁用不建议在`rules`中整个禁用，直接在使用的地方加`// eslint-disable-next-line no-restricted-syntax`吧
 - **lint-staged Node.js requirement to 12.13.0**: 最新版本的`lint-staged`要求node版本>=12.13.0，或者降级`lint-staged`
 - **eslint.rc里面的excludes不起作用，tsc的时候仍然去检查了node_modeuls里面的东西**: 尝试升级`typescript`到3.9.* +
+
+2. # Parameter 'xxx' implicitly has an 'any' type
+
+   要求太严的话就修改tsconfig.json，将compilerOptions下的noImplicitAny设置为false
