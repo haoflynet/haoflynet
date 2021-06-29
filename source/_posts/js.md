@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-06-01 08:18:00
+updated: 2021-06-25 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -124,7 +124,7 @@ str.match(/<title>(<abc>.*?)<\/title>/)	// 正则提取，带命名组的正则�
 
 // 去除空格，需要注意的是js的replace如果不用正则/g，则默认只会替换第一个匹配
 str.replace(/\s+/g, "")    		// 去除所有的空格
-str.trim() / str.replace(/^\s+|\s+$/g, "");	// 去除两端的空格, trip
+str.trim() / str.replace(/^\s+|\s+$/g, "");	// 去除两端的空格, 类似于trip，strip
 str.trimLeft() / str.replace( /^\s*/, '')		// 去除左边的空格
 str.trimRight() / str.replace(/(\s*$)/g, "")		// 去除右边的空格
 str.replace(/[\r\n]/g, ' ')	// 去掉换行
@@ -175,6 +175,7 @@ name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 #### 时间处理moment/luxon/dayjs
 
 - moment作者已经不推荐使用`moment.js`，他自己又搞了个`luxon`，但我更推荐使用`dayjs`
+- 需要注意的是`moment.date(12)`等方法会更改对象本身，所以在函数之间传递的时候最好克隆一个新的对象`moment(moment())`
 
 ```javascript
 // 原生方法
@@ -208,7 +209,15 @@ moment('2020-04-29 00:00:00');	// 直接解析，需要注意的是它不能解�
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
 moment(new Date()).subtract(2, 'hours');	// 时间相加减
+moment().day()	// 当前日期是一周的第几天(0-6)
+moment().days()	// 同上
+moment().daysInMonth()	// 获取当前月的天数
+moment().date()	// 获取当天是几号
+moment().date(30)	// 设置当前是几号
+moment().month() + 1 // 获取当前月份
+moment().year()	// 获取当前年
 moment().isSame('2021-04-17', 'day');	// 检查制定日期是不是今天
+moment().isSameOrBefore();
 moment().format(); // "2014-09-08T08:02:17-05:00"
 moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
 moment().format("YYYY-MM-DD HH:mm:ss");	// 2021-01-06 22:00:00
@@ -306,7 +315,9 @@ try {
   
 } catch (error) {
   // 错误则会执行
-  throw error; // 重新抛出错误
+  console.log(error.toString()) // 只是message本身
+  console.log(error.stack)// 这是我们console.log(e)的字符串，可以用正则从中匹配到一些有用的信息
+  throw error // 重新抛出错误
 } finally {
   // 无论是否成功都执行
 }
@@ -638,7 +649,6 @@ promise.then(value => {
   console.log(value);
 });
 
-
 // mock一个Promise(比如mockfetch函数)
 mockFetch = (url) => {
     return new Promise((resolve, reject) => {
@@ -658,6 +668,19 @@ mockFetch = (url) => {
     });
   };
 mockFetch("https://api.github.com/users/haoflynet/repos");
+
+// 可以用Promise实现sleep
+await new Promise(r => setTimeout(r, 2000));
+
+// 一次性parallel执行多个异步任务
+await Promise.all(_.map(arr, async (item) => {
+  await ...
+}));
+
+// 如果需要依次调用一组Promise，不是parallel的形式，可以这样做
+for await (const item of items) {
+  await ...
+}
 ```
 
 ## Ajax
@@ -722,7 +745,7 @@ $('#mydiv').fadein().delay(1000).fadeout(); // 延迟执行
 
 ### lodash/常用帮助函数
 
-- **尽量不要在一个回调函数中使用另外一个下列的帮助函数，这样能使代码看起来更清晰更规范**
+- [Online Lodash Tester](https://codepen.io/travist/full/jrBjBz/): 在线测试lodash功能的站点
 
 ##### _camelCase
 
@@ -802,6 +825,10 @@ _.flatMap([1, 2], duplicate);
 // => [1, 1, 2, 2]
 ```
 
+##### _.flatMapDeep
+
+- 类似于`flatMap`，但是它会递归将值中的数组全部展开
+
 ##### forEach
 
 对数组中每一个值运用函数，但是无需返回值，只是单纯的遍历
@@ -821,7 +848,7 @@ _.get(object, ['a', '0', 'b', 'c'])
 
 ##### _.groupBy
 
-- 根据第二个参数的返回值来进行排序，返回的是一个key => [item]对象
+- 根据第二个参数的返回值来进行分组，返回的是一个key=> [item]对象，key为返回值，[item]为对象列表
 
 ```javascript
 // 返回{ '4': [4.2], '6': [6.1, 6.3] }
@@ -829,8 +856,6 @@ _.groupBy([6.1, 4.2, 6.3], function (item) {
   return Math.floor(item);
 });
 ```
-
-
 
 ##### _.isMatchWith
 
@@ -873,10 +898,36 @@ await Promise.all(_.map(['a','b'], async (item) => {
 }))
 ```
 
-_.map
+##### _.map
+
+- 遍历对象/字典时，callback第一个参数是value不是key
 
 ```javascript
 _.map(users. 'name')	// 提取字段的某一个值作为数组
+```
+
+##### _.mapKeys
+
+- 值不变，将每个返回值作为key，可作用于数组和对象上
+
+```javascript
+var arr = [1, 2, 3];
+_.mapKeys(arr, (item) => item.toString()) // {"1": 1, "2": 2, "3": 3}
+
+var obj = { 'a': 1, 'b': 2, 'c': 3 };
+_.mapKeys(obj, (item) => item.toString()) // {"1": 1, "2": 2, "3": 3}
+```
+
+##### _.mapValues
+
+- 和`_.mapKeys`类似，不过这个目的是修改value，而不是key
+
+```javascript
+var obj = { 'a': 1, 'b': 2, 'c': 3 };
+_.MapValues(obj, (item) => item.toString()) // {"a": "1", "b": "2", "c": "3"}
+
+var arr = [1, 2, 3]; // 作用于数组上时，item参数是数组下标
+_.mapKeys(arr, (item) => item.toString()) // {"0": "1", "1": "2", "2": "3"}
 ```
 
 ##### _.max
@@ -890,6 +941,25 @@ _.max([])	// undefined
 
 ```javascript
 _.maxBy(objects, 'field')	// 这个返回的是对象，并不是最大的那个值
+```
+
+##### _.merge
+
+- 递归合并两个对象
+
+```javascript
+var obj1 = { 'a': [{ 'b': 2 }, { 'd': 4 }] }
+var obj2 = { 'a': [{ 'c': 3 }, { 'e': 5 }] }
+_.merge(obj1, obj2) // { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
+```
+
+##### _.reduce
+
+- 能够将元素一次进行计算，第一个参数为上一次计算的结果
+
+```javascript
+var arr = [1,2,3];
+_.reduce(arr, function(result, o) {return result + o});	// 这里的result不用预先定义，但是它就是最终的结果
 ```
 
 ##### _.snakeCase

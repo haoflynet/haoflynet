@@ -92,6 +92,19 @@ pod search xxx	# 查找第三方库
 cd platforms/ios && pod repo update && pod install	# cordova项目安装第三方库依赖
 ```
 
+## 移动端常用配置
+
+### 添加App logo
+
+#### Android
+
+- 在`resources`目录中添加logo文件`resources/logo.png`
+- 只需要在`config.xml`中添加`<icon src="resources/logo.png" platform="android" width="57" height="57" density="mdpi"/>`即可(与`name`同一级)
+
+#### Ios
+
+
+
 ## 常用插件推荐
 
 - [cordova-plugin-console](https://www.npmjs.com/package/cordova-plugin-console): 只有很老的版本才需要了，现在可以直接使用`console.log`进行日志的输出，需要注意的是，必须先引入`cordova.js`才行，否则依然无法看到日志输出
@@ -125,6 +138,8 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
     reject('error authenticating with facebook' + error);
   });
   ```
+
+- [cordova-plugin-firebasex](https://github.com/dpa99c/cordova-plugin-firebasex): firebase插件，包含(cloud messaging等多个firebase的功能)，**如果对firebase的证书配置还不熟悉，可以现在其[example项目](https://github.com/dpa99c/cordova-plugin-firebasex-test)上进行测试，它的example里还有命令行工具，不过它打印的错误信息不够详细，还是用firebase-admin-node好一点，具体的使用方式和证书等配置可以在[firebase手册](https://haofly.net/firebase)中查看**
 
 - [cordova-plugin-googleplus](https://github.com/EddyVerbruggen/cordova-plugin-googleplus): Google登陆插件，只不过需要获取很多的账号相关的信息，实际的登陆只需要下面这样做即可。
 
