@@ -1,16 +1,65 @@
-firestore使用手册
+Firebase使用手册
 
 **一定要看英文文档，中文文档可能更新不及时**
 
-## [读写限制](https://firebase.google.com/docs/firestore/quotas)
+## Cloud Messaging(Push Notification/APNs)
+
+### [firebase-admin-node](https://github.com/firebase/firebase-admin-node)
+
+- 强烈建议在开发时先使用这个包进行测试，因为这个包能够返回非常详细的错误信息，特别是证书没配置对这些信息，而且这个包在使用代理的情况下工作很好，不会像移动端那样，有时候连代理不行，有时候不连代理不行
+- 其中`项目名-firebase-adminsdk-xxxxx.json`来自于`firebase console -> Project settings -> Service accounts -> Firebase Admin SDK -> Generate new private key`
+
+```javascript
+import * as admin from 'firebase-admin'
+import { HttpsProxyAgent } from 'https-proxy-agent'	// 只能以这种方式使用代理，直接在命令行使用export不行
+
+const agent = new HttpsProxyAgent('http://127.0.0.1:1080')
+admin.initializeApp({
+	credential: admin.credential.cert(path.join(__dirname, '../../项目名-firebase-adminsdk-xxxxxxxx.json'), agent),
+      httpAgent: agent
+})
+
+const payload = {
+  data: {
+    foo: 'bar',
+    notification_foreground: 'true'	// 这样能使客户端收到消息的时候app即使在前台也同样能弹出消息，否则前台就需要自己去处理了，这里的true必须是字符串
+  },
+  notification: {
+    title: 'Message title',
+    body: 'Message body'
+  }
+}
+
+admin.messaging().sendToDevice('registrationToken', payload, { timeToLive: 120})
+  .then((response) => {
+      console.log(JSON.stringify(response))
+  })
+```
+
+#### 证书配置
+
+- 证书配置在`firebase console -> Project settings -> Cloud Messaging -> ios app configuration`
+- 证书有两种，`APNs Authentication Key`和`APNs Certificates`，两者任选其一(如果两者都有默认会使用前者)，貌似现在更建议用前者，而且前者没有过期时间，但是目前我没有配置成功过前者(可以参考这里[How to Create an iOS APNs Auth Key](https://developer.clevertap.com/docs/how-to-create-an-ios-apns-auth-key))，后者的话过期时间是一年，但是好配置一点，只需要这样做：
+  1. Apple Developer后台，选择你的bundle id，然后点击里面的`Push Notification`权限的`Edit` 就能创建development和production证书了，但是创建证书需要一个Request文件，需要在你自己的电脑上创建这个文件才行
+  2. Mac -> Keychain -> 左上角菜单Keychain Access -> Certificate Assistant -> Request a Certificate From a Certificate Authority...
+  3. 创建后下载，然后上传到firebase后台即可
+- 要获取apple的team ID，需要在`Developer`后台点击`Membership`查看，参考[Locate your Team ID](https://help.apple.com/developer-account/#/dev55c3c710c)
+
+### 移动端配置
+
+- 安卓端需要`google-services.json`文件，ios端需要`GoogleService-Info.plist`文件，都通过`firebase console -> Project settings -> General`中创建`Add app`添加对应平台的APP，然后下载对应文件即可
+
+## Firestore Database
+
+### [读写限制](https://firebase.google.com/docs/firestore/quotas)
 
 - 开发前先看一下读写限制，至少在设计数据结构以及读写逻辑的时候能够少踩一些坑
 - 文档的最大持续写入速率为1次/1秒(超过会报错`Deadline Exceeded`)
 - 文档每天的免费读写次数分别为5万次，文档删除次数为2万次
 
-## 认证规则
+### 认证规则
 
-## 安全规则
+### 安全规则
 
 ```javascript
 rules_version = '2';
@@ -47,9 +96,9 @@ service cloud.firestore {
 }
 ```
 
-## 数据读写
+### 数据读写
 
-### 数据读取
+#### 数据读取
 
 - `where`支持的查询运算符有: `<`、`<=`、`==`、`>`、`>=`、`!=`、`array-contains`、`array-contains-any`、`in`(数组中最多10个元素)、`not-in`(数组中最多10个元素)
 
@@ -84,7 +133,7 @@ citiesRef.orderBy("name", "desc").limit(3);
 citiesRef.orderBy("state").orderBy("population", "desc");	// 多个字段排序
 ```
 
-#### 侦听实时更新
+##### 侦听实时更新
 
 - 在建立侦听的第一次会直接获取一份文档快照
 - PHP客户端库不支持实时监听器
@@ -105,10 +154,11 @@ db.collection("cities").where("state", "==", "CA")
     });
 ```
 
-## [在CloudFirestore中构建在线状态系统](https://firebase.google.com/docs/firestore/solutions/presence)
+### [在CloudFirestore中构建在线状态系统](https://firebase.google.com/docs/firestore/solutions/presence)
 
 - 由于得依赖Cloud Functions，所以没去实践，不过我想Cloud Functions就是一个实时运行的方法，如果只是本地服务端去代替这一块感觉有可能
 
 ##### TroubleShooting
 
 - **TypeError: instance.INTERNAL.registerComponent is not a function** 需要`npm install @firebase/app --save`
+- **firebase发送消息出现`firebae Requested entity was not found.`**: 一般是证书没配置好

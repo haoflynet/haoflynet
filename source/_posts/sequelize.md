@@ -104,13 +104,62 @@ const Post = sequelize.define('post', {
 
 // 定义模型关系
 Post.associate = () => {
-  Post.User = Post.belongsTo(app.model.Post, { foreignKey: 'post_id', as: 'Post' }),
-  Post.PostOwn = User.belongsTo(app.model.Post, {'foreignKey': 'id', as: 'PostOwn'})	// 如果要与当前表自身做join等操作，那么也需要定义一个与自身的关联
+	Post.User = Post.belongsTo(app.model.Post
 }
 
 User.associate = () => {
-  User.hasMany(Post, {as: 'posts', foreignKey: 'userId'})
+  User.hasMany(Post)
 }
+```
+
+### 关联关系定义
+
+- `sequelize`默认会给关联关系添加对应的读取方法，例如如果和user关联，那么会有`getUser`方法，而如果是一对多，或者多对多，那么会有`getUsers`方法，但是如果是`typescript`，就需要我们先将该方法声明一下
+
+  ```javascript
+  public getUsers: BelongsToManyGetAssociationsMixin<UserModel>
+  ```
+
+### One to One一对一
+
+```javascript
+Post.User = Post.belongsTo(app.model.Post, { foreignKey: 'post_id', as: 'Post' }),
+Post.PostOwn = User.belongsTo(app.model.Post, {'foreignKey': 'id', as: 'PostOwn'})	// 如果要与当前表自身做join等操作，那么也需要定义一个与自身的关联
+PostModel.belongsTo(UserModel)
+```
+
+#### One to Many 一对多
+
+##### 多态多对多
+
+- 有中间表，且使用`target_id`和`target_type`来表示关联的表的类型
+- 除了我下面这个例子，还可以参考[Sequelize中文文档](https://www.sequelize.com.cn/advanced-association-concepts/polymorphic-associations#%E9%85%8D%E7%BD%AE%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%A4%9A%E6%80%81%E5%85%B3%E8%81%94)
+
+```javascript
+// 例如一个用户有多篇文章，多辆车，一篇文章或者一辆车也能同时属于多个用户，那么就有这么几张表: Car, Post, User, UserThings关联表
+CarModel.belongsToMany(UserModel, {
+  through: {
+    model: UserThingModel,	// 中间表
+    unique: false,	// 如果unique为true，那么表示只有一个
+    scope: {
+      targetType: 'car',	// 当关联的是car时，其`target_type`字段为car
+    },
+    foreighKey: 'target_id',
+    constraints: false
+  }
+})
+
+PostModel.belongsToMany(UserModel, {
+  through: {
+    model: UserThingModel,	// 中间表
+    unique: false,	// 如果unique为true，那么表示只有一个
+    scope: {
+      targetType: 'post',	// 当关联的是post时，其`target_type`字段为post
+    },
+    foreighKey: 'target_id',
+    constraints: false
+  }
+})
 ```
 
 ## 增删改查
@@ -211,6 +260,11 @@ return Message.findAndCountAll({
     '$PostOwn.id$': null	// 如果是关联后的where条件需要写在这里
   },
   order: [ ['created_at', 'desc'] ],	// 排序
+  attributes: {
+    include: [
+      [sequelize.fn('COUNT', sequelize.col('posts.id')), 'postsCount']]	// 统计关联表的数据as 一个指定的名称 
+    ]
+  },
   include: [
     {
       association: Post.PostOwn,	// 与自身进行join操作
@@ -220,6 +274,7 @@ return Message.findAndCountAll({
       },
       attributes: ['id'],	// 取出哪些字段
       required: false	// 表示left join，如果为true那么就是inner join
+      where: {status: 1}	// include的where操作，相当于left join的where，hasMany的where
     },
     {
       association: Post.Sender,

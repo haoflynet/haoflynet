@@ -14,7 +14,7 @@ eslint可以检测出代码问题，并标红，但是并不会自动格式化�
 
 cnpm install --save-dev  husky lint-staged eslint
 
-
+eslint规则中文网站 https://cn.eslint.org/
 
 单独执行estlint命令
 
@@ -94,6 +94,12 @@ module.exports = {
         }
       ]
       "@typescript-eslint/no-explicit-any": 0,	// 禁用它可以允许typescript中使用any来声明类型
+      "max-len": [
+      	"error",
+      	{
+      		"code": 150	// 有些规则默认行宽只有80或者180，如果要更改该规则可以这样做
+   	 		}
+      ]
     }
 };
 ```
@@ -150,3 +156,8 @@ cordova.plugins...
    2.Require statement not part of import statement.
    
    可以把`const path = require('path')`改为`import path = require('path')`
+## Troubleshooting
+
+- **ESLint: iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them. Separately, loops should be avoided in favor of array iterations.(no-restricted-syntax)**: 这是`Airbnb`中的一条规则`no-restricted-syntax`会禁用一些新特性新语法，比如`for await ... in`，如果要禁用不建议在`rules`中整个禁用，直接在使用的地方加`// eslint-disable-next-line no-restricted-syntax`吧
+- **lint-staged Node.js requirement to 12.13.0**: 最新版本的`lint-staged`要求node版本>=12.13.0，或者降级`lint-staged`
+- **eslint.rc里面的excludes不起作用，tsc的时候仍然去检查了node_modeuls里面的东西**: 尝试升级`typescript`到3.9.* +
