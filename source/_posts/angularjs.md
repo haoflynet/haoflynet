@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-06-03 22:53:00
+updated: 2021-06-29 22:53:00
 categories: frontend
 ---
 ## 语法
@@ -103,6 +103,19 @@ export class MyComponent implements OnInit {
   <button type=submit">Submit</button>
 </form>
 ```
+
+## 生命周期
+
+依次是
+
+- ngOnChanges(需implements OnChanges): 当设置或重新设置数据绑定的输入属性时响应，但是当组件没有输入，或者使用它时没有提供任何输入，那么框架就不会调用`ngOnChanges()`
+- ngOnInit(需implements OnInit)
+- ngDoCheck
+- ngAfterContentInit()
+- ngAfterContentChecked()
+- ngAfterViewInit(需implements AfterViewInit): 当初始化完组件视图以及子视图或包含该指令的视图之后调用，只会调用一次
+- ngAfterViewChecked
+- ngOnDestroy
 
 ## 事件
 
