@@ -158,7 +158,8 @@ db.collection("cities").where("state", "==", "CA")
 
 - 由于得依赖Cloud Functions，所以没去实践，不过我想Cloud Functions就是一个实时运行的方法，如果只是本地服务端去代替这一块感觉有可能
 
-##### TroubleShooting
+## TroubleShooting
 
 - **TypeError: instance.INTERNAL.registerComponent is not a function** 需要`npm install @firebase/app --save`
 - **firebase发送消息出现`firebae Requested entity was not found.`**: 一般是证书没配置好
+- **MismatchSenderId**: 一边是证书选错了，可能选到了其他项目的证书，或者移动端选择了其他项目的证书

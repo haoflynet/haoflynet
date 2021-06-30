@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-06-29 08:18:00
+updated: 2021-06-30 22:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -134,6 +134,7 @@ str.replace(reg, function(s, value){})	// 替换字符串，reg可以是正则�
 str.replace('/abc(.*?)def/', function (a, b) {	// 分组正则替换
   return 'newstring';
 })
+// 需要注意的是上下两种方法的第二个参数都是指整个字符串，而不光是分组里面的串，如果要想只替换中间部分，可以将前后都用小括号进行分组，然后用$1$2来表示
 str.replace(/_(.*?)_/g, "<div>$1</div>")	// 或者直接这样分组正则替换
 str.indexOf(substring)	// 查找子字符串出现的位置，-1表示没找到
 str.includes(substring)	// 查看是否存在某个子字符串
@@ -843,6 +844,23 @@ _.flatMap([1, 2], duplicate);
 
 对数组中每一个值运用函数，但是无需返回值，只是单纯的遍历
 
+##### _.forIn
+
+- 遍历对象/遍历字典
+
+```javascript
+function Foo() {
+  this.a = 1;
+  this.b = 2;
+}
+ 
+Foo.prototype.c = 3;
+ 
+_.forIn(new Foo, function(value, key) {
+  console.log(key);
+});
+```
+
 ##### _.get
 
 - 获取对象内部的属性值
@@ -1128,9 +1146,19 @@ function retry(fn, times, delay=3000) {
 - **Ajax请求无论是GET还是POST都突然变成了OPTIONS请求**
   可能是因为把本地代码提交到服务器时，发生了跨域请求错误，url里面写的是本地的端口地址，这时候只需要修改本地的端口地址修改为相对于服务器的本地地址即可
 
-- **停止js的冒泡** 
-  `window.event? window.event.cancelBubble = true : evt.stopPropagation();`
-
+- **停止js的冒泡** 反正就三种方法，随便试
+  
+  ```javascript
+  // 方法一
+  event.stopPropagation();
+  
+  // 方法二
+  event.preventDefault();
+  
+  // 方法三
+  return false
+  ```
+  
 - **select标签disabled掉过后表单提交不上去那个字段**: 我也不知道什么原因，但是确实是这样的，可以用[stackoverflow](http://stackoverflow.com/questions/1191113/how-to-ensure-a-select-form-field-is-submitted-when-it-is-disabled)里的方法:
 
   ```html

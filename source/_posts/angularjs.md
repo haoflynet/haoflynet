@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-06-29 22:53:00
+updated: 2021-06-30 22:53:00
 categories: frontend
 ---
 ## 语法
@@ -170,7 +170,7 @@ describe('test haofly"s function', () =>{
 });
 ```
 
-##### TroubleShooting
+## TroubleShooting
 
 - **Cannot read property 'stringify' of undefined**: 在模板中无法直接使用`JSON`等原生对象，可以在`constructor()`中传入:
 
@@ -198,4 +198,19 @@ describe('test haofly"s function', () =>{
 
 - **ExpressionChangedAfterItHasBeenCheckedErrord: Expression has changed after it was checked.**：这是因为在子组件里面直接改变了父组件的值，通常是在`ngAfterViewInit`或者`ngOnChanges`中，因为这种改变可能会导致无限循环，所以是禁止的，但是如果确保不会发生无限循环，可以将改变的语句写到`setTimeout`中去
 
+- **给用代码生成的元素绑定事件**: 
+
+  ```javascript
+  ngAfterViewInit() {
+    document.querySelector('my-element').addEventListener('click', this.onClick.bind(data, this));
+  }
+  
+  onClick(data, event) {
+    
+  }
+  
+  ```
+  
+  
+  
   
