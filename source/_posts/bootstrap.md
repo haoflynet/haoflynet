@@ -114,6 +114,16 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
   h-100	# height: 100%
   ```
 
+### Positoin
+
+```javascript
+position-static
+position-relative
+position-absolute
+position-fixed
+position-sticky
+```
+
 ### Spacing
 
 - m表示margin，p表示padding

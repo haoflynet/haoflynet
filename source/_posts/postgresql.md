@@ -1,6 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
+updated: 2021-06-30 22:45:00
 categories: Database
 ---
 
@@ -92,10 +93,18 @@ COMMIT;
 - **Permission denied for relation**: 那是因为该用户没有表的访问权限，可以这样做:
 
   ```mysql
-  GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to test;	// 分配所有公共表权限
-   GRANT ALL PRIVILEGES ON TABLE table-name TO test;	// 分配指定表的权限
+  GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to test;	# 分配所有公共表权限
+   GRANT ALL PRIVILEGES ON TABLE table-name TO test;	# 分配指定表的权限
   ```
 
+- **Unique violation: 7 ERROR: duplicate key value violates unique constraint "users_pkey"**
+  尝试执行以下命令重置一下主见索引，原理见[stackoverflow](https://stackoverflow.com/questions/37970743/postgresql-unique-violation-7-error-duplicate-key-value-violates-unique-const)：
+
+  ```shell
+  SELECT setval(pg_get_serial_sequence('users', 'id'), coalesce(max(id)+1, 1), false) FROM users;
+  ```
+
+  
 
 ##### 扩展阅读
 
