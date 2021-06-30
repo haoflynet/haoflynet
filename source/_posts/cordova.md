@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-05-27 08:48:00
+updated: 2021-06-29 08:48:00
 categories: javascript
 ---
 
@@ -103,7 +103,36 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
 #### Ios
 
+- 首先需要生成各个尺寸的logo图片，否则没有的就不会展示自定义的icon，可以在[App Icon Generator](https://appicon.co/)生成对应平台的所有尺寸图片，它会生成一个针对XCode的压缩包，我们可以将所有的图片提取到`resources/ios`目录下
 
+- 在`config.xml`的ios配置中添加如下的icon属性
+
+  ```xml
+  <platform name="ios">
+      <icon src="resources/ios/180.png" width="180" height="180"/>
+      <icon src="resources/ios/20.png" width="20" height="20"/>
+      <icon src="resources/ios/60.png" width="60" height="60"/>
+      <icon src="resources/ios/120.png" width="120" height="120"/>
+      <icon src="resources/ios/76.png" width="76" height="76"/>
+      <icon src="resources/ios/152.png" width="152" height="152"/>
+      <icon src="resources/ios/40.png" width="40" height="40"/>
+      <icon src="resources/ios/80.png" width="80" height="80"/>
+      <icon src="resources/ios/57.png" width="57" height="57"/>
+      <icon src="resources/ios/114.png" width="114" height="114"/>
+      <icon src="resources/ios/72.png" width="72" height="72"/>
+      <icon src="resources/ios/144.png" width="144" height="144"/>
+      <icon src="resources/ios/167.png" width="167" height="167"/>
+      <icon src="resources/ios/29.png" width="29" height="29"/>
+      <icon src="resources/ios/58.png" width="58" height="58"/>
+      <icon src="resources/ios/87.png" width="87" height="87"/>
+      <icon src="resources/ios/50.png" width="50" height="50"/>
+      <icon src="resources/ios/100.png" width="100" height="100"/>
+      <icon src="resources/ios/167.png" width="167" height="167"/>
+      <icon src="resources/ios/1024.png" width="1024" height="1024"/>
+  </platform>
+  ```
+
+- 然后`cordova prepare`后打开Xcode，在左侧目录`项目名->Resources->Images.xcassets->AppIcon`可以看到我们所有的图标，然后选中整个AppIcon框后，右侧可以勾选对应的平台，选择了后就可以把对应的图片拖到对应尺寸的框里，如果有重复的，可以直接`Cmd + C`进行复制，不能用鼠标复制。需要保证所有的框都装了icon并且没有感叹号
 
 ## 常用插件推荐
 

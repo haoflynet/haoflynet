@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-06-25 08:18:00
+updated: 2021-06-29 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -143,7 +143,7 @@ str.split(/\s+/) // 也可以用正则分割
 str.split('...', n)	// n表示返回数组的最大长度，分割还是会分割成所有，只是返回前n个
 str.toUpperCase()	// 转换为大写
 str.toLowerCase()	// 转换为小写
-parseInt(数字)  // 将数字取整，字符串转整数
+parseInt(数字)  // 将数字取整，字符串转整数，字符串转数字
 parseInt(num, 10) // 转整数，传入基数
 parseFloat(num) // 字符串转浮点数
 
@@ -229,6 +229,8 @@ moment('gibberish').format('YYYY MM DD');         // "Invalid date"
 moment().diff(moment[])	// 比较两个日期的间隔，默认是时间戳的比较
 moment().diff(moment[], 'days')	// 比较两个日期的间隔，第二个参数可以设置比较的是年、还是月份等
 moment().unix()	// 获取时间戳
+moment.max(moment[]); // 获取多个时间里面最大的时间
+moment.min(monent[]);	// 获取多个时间里面最小的时间
 ```
 
 #### URL Params处理
