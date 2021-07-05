@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-05-18 08:42:00
+updated: 2021-07-02 08:42:00
 categories: Javascript
 ---
 
@@ -20,6 +20,14 @@ categories: Javascript
 3. 选择需要更改的磁盘: `Modify Volume`，然后输入大小
 4. 重启实例，并进入终端
 5. 使用`df-h`查看当前磁盘容量
+
+### EC2修改登录key
+
+- EC2不支持直接在console修改key，但是可以进入服务器修改
+
+1. 首先需要在EC2后台新增一个key pair，然后下载到本地，并修改为`.pem`后缀
+2. 使用命令`ssh-keygen -y -f /path_to_key_pair/my-key-pair.pem`命令获得该key的公钥
+3. 将公约放到服务器的`~/.ssh/authorized_keys`中即可
 
 ### EC2配置Cloudwatch
 

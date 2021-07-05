@@ -611,6 +611,7 @@ $(document).ready(function);	// 当DOM已经加载，并且页面已经完全呈
 var t = window.setTimeout(func, delay);	// 延迟delay毫秒后执行函数func
 var t = window.setInterval(func, delay);	// 每隔delay毫秒就执行函数func
 var t = setImmediate(func);					// 在浏览器完全结束当前运行的操作之后立即执行指定的函数
+clearTimeout(t);
 clearInterval(t)				// 清除计时器，setInterval返回的是一个定时器的id，如果不清楚定时器名称，可以直接来个for循环清理所有的Interval：for(var i = 0; i<= 2000; i++) {clearInterval(i);}
 
 debugger;						// 代码加入这一行，浏览器会自动断点进行调试，这对于自动编译的开发环境非常实用

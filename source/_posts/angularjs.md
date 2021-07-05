@@ -9,6 +9,9 @@ categories: frontend
 ### 数据绑定
 
 ```java
+// 普通数据双向绑定
+<input [(ngModel)]="link" placeholder="Link"/>
+
 // 动态绑定类
 [ngClass]="{'myClass': selected}"
 [ngClass]="type='xxx' ? 'mt-1' : 'mt-2'"
@@ -202,7 +205,7 @@ describe('test haofly"s function', () =>{
 
   ```javascript
   ngAfterViewInit() {
-    document.querySelector('my-element').addEventListener('click', this.onClick.bind(data, this));
+    document.querySelector('my-element').addEventListener('click', this.onClick.bind(this, data));
   }
   
   onClick(data, event) {
