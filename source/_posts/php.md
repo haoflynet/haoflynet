@@ -1,13 +1,14 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-06-01 08:47:21
+updated: 2021-07-02 08:34:21
 categories: php
 ---
 # PHP
 
 - 貌似基本上的语言都不会像PHP这样，每次一个HTTP请求过来都去重启初始化全部资源(重启整个框架)，要解决这个问题，`swoole`是目前最可行的解决方案
 - PHP还有一种输出内容模式是直接echo或者直接重定向，在return之前就返回，有些古老的框架是这样的，需要特别注意
+- [CentOS安装php7](https://linuxize.com/post/install-php-7-on-centos-7/)
 
 ## 基本语法
 
@@ -99,6 +100,7 @@ if (($key = array_search($del_val, $messages)) !== false) {
 ### 字符串
 
 - 7.1开始支持负数作为偏移: `"abcdefg"[-2] == 'f'`
+- php在输出换行符的时候只有使用双引号，不能使用单引号
 
 PHP里面单引号和双引号确实有些地方的用法是不同的，比如匹配换行符的时候。我们应该尽量使用单引号，因为如果是双引号，那么程序会去检测其中的变量。
 
@@ -389,6 +391,12 @@ curl_getinfo($ch, CURLINFO_HTTP_CODE)			// 获取http_code
 curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['Accept: application/json']);	// 添加HTTP头
 curl_close($ch);								// 关闭连接
 
+# 发送JSON请求
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
+
 # 如果要通过CURL 上传文件，那么需要这样对$data进行处理
 if (function_exists('curl_file_create')) { // php 5.6+
   $cFile = curl_file_create($scriptPath);
@@ -396,6 +404,9 @@ if (function_exists('curl_file_create')) { // php 5.6+
   $cFile = '@' . realpath($scriptPath);
 }
 $data = ['file' => $cFile];
+
+// 错误处理
+curl_error($ch);	// 获取错误信息
 
 # 获取curl所有参数所代表的常量值
 $arr = get_defined_constants(true);
@@ -549,6 +560,17 @@ composer global require hirak/prestissimo	# 然后安装平行安装工具，但
 composer clear-cache
 composer -vvv	# 这句话要单独执行一次
 composer update --no-dev --prefer-dist -vvv	# 加入这个看看日志
+```
+
+### 控制PHP版本
+
+需要在`composer.json`中添加如下配置
+
+```json
+ "require": {
+       "php": ">=7.4.0",
+       "laravel/framework": "5.3.*"
+ }
 ```
 
 ### composer事件脚本

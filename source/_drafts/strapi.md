@@ -1,5 +1,7 @@
 strapi
 
+认证是基于用户的， 可以现在admin后台把header头拿过来直接用
+
 ## 安装与配置
 
 ### 自定义Role及权限
@@ -62,7 +64,27 @@ rm -rf .cache && rm -rf build/
 
 ### [strapi-tinymce 集成tinymce](https://github.com/chiqui3d/strapi-tinymce)
 
+集成步骤
 
+1. `strapi generate:plugin wysiwyg`在`plugins`目录下生成新的富文本插件
+
+2. 将代码库中的`components`目录复制到`plugins/wysiwyg/admin/src/`目录下
+
+3. 如果要支持更多的html tag，例如svg，可以在`Tinymce.js`的`init`上添加如下两个参数:
+
+   ```javascript
+   extended_valid_elements: "*[*]",
+   non_empty_elements: "td,th,iframe,video,audio,object,script,pre,code,area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,source,wbr,track, svg,defs,pattern,desc,metadata,g,mask,path,line,marker,rect,circle,ellipse,polygon,polyline,linearGradient,radialGradient,stop,image,view,text,textPath,title,tspan,glyph,symbol,switch,use",
+   ```
+
+4. 在`plugins/wysiwyg/admin/src/index.js`的最后return部分改为:
+
+   ```javascript
+   strapi.registerField({ type: 'wysiwyg', Component: WysiwygWithErrors});	// 当然顶部需要先import WysiwygWithErrors from "./components/WysiwygWithErrors";
+   return strapi.registerPlugin(plugin);
+   ```
+
+4. 重新`npm run build`即可
 
 
 

@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-06-03 22:50:30
+updated: 2021-07-02 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -132,16 +132,33 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 ## TroubleShooting
 
 - **Permission Denied**问题，使用npm命令总是会出现这个问题，解决方法最简单的是把npm目录的拥有者修改为当前用户的名字` sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}`
+
 - **安装包时报错Unexpected end of JSON input while parsing near ' : '** 尝试先执行`npm cache clean --force`，然后再安装
+
 - **gyp: No Xcode or CLT version detected!**: 需要先安装`xcode`命令工具: `xcode-select --install`
+
 - **npm install结果被系统killed掉了**: 一般是内存不足，可以使用增加swap的方法，参考[Linux 手册](https://haofly.net/linux/index.html)
+
 - **ReferenceError: describe is not defined NodeJs**: 应该是`mocha`这个测试库报的错，安装它即可: `npm install mocha -g`
+
 - **wasm code commit Allocation failed - process out of memory**: 在Apple m1(apple silicon)上npm编译失败，可以尝试将`node`升级到`v15.3.0`及以上
+
 - **a promise was created in a handler but was not returned from it**: 通常是`bluebird`报错，函数没有正确地返回，遇到这个情况一个是验证回掉函数`then`是否有正确的返回，如果没有，那么可以添加一个`return null`语句，需要注意的是，如果`then`回掉里面只有一个语句，例如`.then(res => res + 'abc')`，这样不用单独写`return`，但如果里面的语句不只一句就得加了
+
 - **Node Sass does not yet support your current environment: Windows 64-bit with Unsupported runtime (88)**: `npm rebuild node-sass`
+
 - **Error: spawn ../node_modules/optipng-bin/vendor/optipng ENOENT**: 尝试执行`npm rebuild`
+
 - **this._settlePromiseFromHandler is not a function**: 尝试删除`node_module`目录并重新安装
+
 - **gulp: command not found**: `npm install gulp-cli -g`
+
+- **npm: command not found**: 尝试执行:
+
+  ```shell
+  sudo yum remove nodejs npm
+  yum -y install nodejs npm
+  ```
 
 ##### 扩展阅读
 
