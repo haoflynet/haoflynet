@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-06-29 08:48:00
+updated: 2021-07-02 08:48:00
 categories: javascript
 ---
 
@@ -136,15 +136,54 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
 ## 常用插件推荐
 
-- [cordova-plugin-console](https://www.npmjs.com/package/cordova-plugin-console): 只有很老的版本才需要了，现在可以直接使用`console.log`进行日志的输出，需要注意的是，必须先引入`cordova.js`才行，否则依然无法看到日志输出
+### [branch-cordova-sdk](https://www.npmjs.com/package/branch-cordova-sdk)
 
-- [cordova-plugin-device](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-device/index.html): 获取平台设备信息
+- [branch.io](https://branch.io/)的官方sdk，这里还有官方的[cordova文档](https://help.branch.io/developers-hub/docs/cordova-phonegap-ionic)
+- branch是做deeplink用的
+- 在ios端我还不大确定原理，但是它不是用的`scheme`来回传的，因为通过url跳转到app的时候`window.handleOpenUrl`接收不到，只能是`resume`中能收到
+- 除了cordova插件，js端还需要安装`npm install --save branch-cordova-sdk`包
+- 另外该插件和`cordova-plugin-customurlscheme`存在冲突，可以把这个去掉，因为`branch`的插件本身就会去添加scheme
+- 如果出现`User tracking is disabled and the request is not allowed`错误可以忽略，不影响deeplink功能
 
-- [cordova-plugin-facebook-connect](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect): Facebook登陆插件，安装完成后得去`platforms/ios`目录执行一下`pod repo update && pod install`安装facebook SDK，这样使用:
+app端需要这样做：
 
-  - 需要注意的是，如果获取不到邮箱地址，可能的原因是邮箱没有认证
-  - `test user`如果出现`There was a problem logging you in.`错误，不知道为啥，尝试换成添加真实用户为测试用户试试
+```javascript
+document.addEventListener('deviceready', this.onDeviceReady, false)
+document.addEventListener('resume', this.onDeviceReady, false)
 
+onDeviceReady() {
+  const self = this
+  
+  window.handleOpenURL = function (url) {
+    const params = Utils.parseQuery(url)	// 获取请求参数
+    self.handleDeeplink(params)
+  }
+  
+  Branch.disableTracking(true)
+  Branch.initSession().then(function (data) {
+        if (data['+clicked_branch_link']) {
+          self.handleDeeplink(data)
+        }
+      })
+	})
+}
+```
+
+### [cordova-plugin-console](https://www.npmjs.com/package/cordova-plugin-console)
+
+- 只有很老的版本才需要了，现在可以直接使用`console.log`进行日志的输出，需要注意的是，必须先引入`cordova.js`才行，否则依然无法看到日志输出
+
+### [cordova-plugin-device](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-device/index.html)
+
+- 获取平台设备信息
+
+### [cordova-plugin-facebook-connect](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect)
+
+- Facebook登陆插件，安装完成后得去`platforms/ios`目录执行一下`pod repo update && pod install`安装facebook SDK，这样使用:
+
+- - 需要注意的是，如果获取不到邮箱地址，可能的原因是邮箱没有认证
+- `test user`如果出现`There was a problem logging you in.`错误，不知道为啥，尝试换成添加真实用户为测试用户试试
+  
   ```javascript
   window.facebookConnectPlugin.login(['public_profile', 'email'], userData => {
     const authData = {
@@ -167,10 +206,12 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
     reject('error authenticating with facebook' + error);
   });
   ```
+  
+  [cordova-plugin-firebasex](https://github.com/dpa99c/cordova-plugin-firebasex): firebase插件，包含(cloud messaging等多个firebase的功能)，**如果对firebase的证书配置还不熟悉，可以现在其[example项目](https://github.com/dpa99c/cordova-plugin-firebasex-test)上进行测试，它的example里还有命令行工具，不过它打印的错误信息不够详细，还是用firebase-admin-node好一点，具体的使用方式和证书等配置可以在[firebase手册](https://haofly.net/firebase)中查看**
 
-- [cordova-plugin-firebasex](https://github.com/dpa99c/cordova-plugin-firebasex): firebase插件，包含(cloud messaging等多个firebase的功能)，**如果对firebase的证书配置还不熟悉，可以现在其[example项目](https://github.com/dpa99c/cordova-plugin-firebasex-test)上进行测试，它的example里还有命令行工具，不过它打印的错误信息不够详细，还是用firebase-admin-node好一点，具体的使用方式和证书等配置可以在[firebase手册](https://haofly.net/firebase)中查看**
+### [cordova-plugin-googleplus](https://github.com/EddyVerbruggen/cordova-plugin-googleplus)
 
-- [cordova-plugin-googleplus](https://github.com/EddyVerbruggen/cordova-plugin-googleplus): Google登陆插件，只不过需要获取很多的账号相关的信息，实际的登陆只需要下面这样做即可。
+- Google登陆插件，只不过需要获取很多的账号相关的信息，实际的登陆只需要下面这样做即可。
 
   - `REVERSED_CLIENT_ID`需要在`firebase`的`Project settings`的app中获取，需要下载`GoogleService-Info.plist`，包含在里面的。安装完成后需要确保`REVERSED_CLIENT_ID`被加入到`XCode`中的`Resources/项目名-Info.plist`中的`URL types`中，其中`URL-identifier=REVERSED_CLIENT_ID`，`URL Schemes[0]=com.googleusercontent.apps.xxxxxxx` ，如果没有可以手动添加: ![](https://haofly.net/uploads/cordova_01.png)
   - `WEB_APPLICATION_CLIENT_ID`可以在`firebase`里新建一个`web app`取其ID或者直接在上面的`GoogleService-Info.plist`取`GOOGLE_APP_ID`
@@ -204,71 +245,75 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
   });
   ```
 
-- [cordova-plugin-qrscanner](https://github.com/haoflynet/cordova-plugin-qrscanner): `inoic`[官方推荐](https://ionicframework.com/docs/native/qr-scanner)的一个二维码扫描插件，不过也没找到更好的了，我给改了bug。它默认是全屏的，如果要更改为局部扫描，我觉得得修改源代码，不直接取`body`。还有一个问题是推出扫描时，背景颜色居然没有改过来，我在js代码里改的，所以我是这样用的：
+### [cordova-plugin-qrscanner](https://github.com/haoflynet/cordova-plugin-qrscanner)
 
-  ```javascript
-  mounted() {
-   	this.originalBackgroundColor = getComputedStyle(document.getElementsByTagName('body')[0])['background-color'];
-    window.QRScanner.scan(displayContents);
-    
-    function displayContents(err, text) {
-    	if (err) {
-      		console.log('displayContents, err=', err);
-      }
-      else {
-          if (new Date().getTime() - self.enterTimestamp < 3000) {	// 这里是为了延迟一下，不然扫描实在太快了
-            window.QRScanner.scan(displayContents);
-          } else {
-            console.log('text=' + text);
-            self.close(text);
-          }
+-  `inoic`[官方推荐](https://ionicframework.com/docs/native/qr-scanner)的一个二维码扫描插件，不过也没找到更好的了，我给改了bug。它默认是全屏的，如果要更改为局部扫描，我觉得得修改源代码，不直接取`body`。还有一个问题是推出扫描时，背景颜色居然没有改过来，我在js代码里改的，所以我是这样用的：
+
+```javascript
+mounted() {
+ 	this.originalBackgroundColor = getComputedStyle(document.getElementsByTagName('body')[0])['background-color'];
+  window.QRScanner.scan(displayContents);
+  
+  function displayContents(err, text) {
+  	if (err) {
+    		console.log('displayContents, err=', err);
+    }
+    else {
+        if (new Date().getTime() - self.enterTimestamp < 3000) {	// 这里是为了延迟一下，不然扫描实在太快了
+          window.QRScanner.scan(displayContents);
+        } else {
+          console.log('text=' + text);
+          self.close(text);
         }
-    }
-    
-    window.QRScanner.show(status => {
-        console.log('show scan camera', JSON.stringify(status));
-    });
+      }
   }
   
-  close(text) {
-    if (typeof text === 'object') {
-      text = '';
-    }
-    const self = this;
-    window.QRScanner.destroy(() => {
-      self.$navStack.push({name: 'Scan', query: {result: text}});
-    });
-  }
-  
-  deactivated() {
-    document.body.style.backgroundColor = this.originalBackgroundColor;	// 恢复背景色
-  },
-  
-  beforeDestroy() {
-    document.body.style.backgroundColor = this.originalBackgroundColor;	// 恢复背景色
-  },
-  
-  destroyed() {
-    document.body.style.backgroundColor = this.originalBackgroundColor;	// 恢复背景色
-  }
-  ```
+  window.QRScanner.show(status => {
+      console.log('show scan camera', JSON.stringify(status));
+  });
+}
 
-- [cordova-plugin-sign-in-with-apple](https://github.com/twogate/cordova-plugin-sign-in-with-apple#readme): Apple ID登陆插件，需要在apple开发者后台给指定Bundle ID添加`Sign In with Apple`权限，使用同样非常简单，如果要获取email可以使用`jwt-decode`去
+close(text) {
+  if (typeof text === 'object') {
+    text = '';
+  }
+  const self = this;
+  window.QRScanner.destroy(() => {
+    self.$navStack.push({name: 'Scan', query: {result: text}});
+  });
+}
 
-  ```javascript
-  window.cordova.plugins.SignInWithApple.signin(
-    { requestedScopes: [0, 1] },
-    result => {
-      console.log(result);
-  		console.log(jwt_decode(result.identityToken));	// 获取email
-      alert(JSON.stringify(result));
-    },
-    error => {
-      console.error(error);
-      console.log(JSON.stringify(error));
-    }
-  );
-  ```
+deactivated() {
+  document.body.style.backgroundColor = this.originalBackgroundColor;	// 恢复背景色
+},
+
+beforeDestroy() {
+  document.body.style.backgroundColor = this.originalBackgroundColor;	// 恢复背景色
+},
+
+destroyed() {
+  document.body.style.backgroundColor = this.originalBackgroundColor;	// 恢复背景色
+}
+```
+
+### [cordova-plugin-sign-in-with-apple](https://github.com/twogate/cordova-plugin-sign-in-with-apple#readme)
+
+- Apple ID登陆插件，需要在apple开发者后台给指定Bundle ID添加`Sign In with Apple`权限，使用同样非常简单，如果要获取email可以使用`jwt-decode`去
+
+```javascript
+window.cordova.plugins.SignInWithApple.signin(
+  { requestedScopes: [0, 1] },
+  result => {
+    console.log(result);
+		console.log(jwt_decode(result.identityToken));	// 获取email
+    alert(JSON.stringify(result));
+  },
+  error => {
+    console.error(error);
+    console.log(JSON.stringify(error));
+  }
+);
+```
 
 ## 插件开发Tips
 

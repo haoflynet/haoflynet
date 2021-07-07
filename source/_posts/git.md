@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2021-05-18 11:21:00
+updated: 2021-07-06 11:21:00
 categories: tools
 ---
 # Git指南
@@ -337,7 +337,7 @@ fi
   ```shell
   #!/bin/sh
    
-  git filter-branch --env-filter '
+  git filter-branch -f --env-filter '
    
   an="$GIT_AUTHOR_NAME"
   am="$GIT_AUTHOR_EMAIL"
