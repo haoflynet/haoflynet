@@ -16,6 +16,14 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 
 - 需要注意的是border不支持breakpoints
 
+  ```shell
+  border
+  border-top
+  border-right
+  border-bottom
+  border-left
+  ```
+
 - 设置`border-radius`
 
   ```shell

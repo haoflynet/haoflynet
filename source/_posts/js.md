@@ -207,6 +207,7 @@ dayjs('2018-10-1').isBefore('2018-1-1')	// 日期比较
 
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
 moment('2020-04-29 00:00:00');	// 直接解析，需要注意的是它不能解析时间只有一位的情况，例如'2020-04-29 0:0:0'
+moment().valueOf()	// 获取时间戳
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
 moment(new Date()).subtract(2, 'hours');	// 时间相加减
@@ -221,7 +222,7 @@ moment().isSame('2021-04-17', 'day');	// 检查制定日期是不是今天
 moment().isSameOrBefore();
 moment().format(); // "2014-09-08T08:02:17-05:00"
 moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
-moment().format("YYYY-MM-DD HH:mm:ss");	// 2021-01-06 22:00:00
+moment().format("YYYY-MM-DD HH:mm:ss.SSS");	// 2021-01-06 22:00:00.233精确到毫秒
 moment().format("ddd, hA");                       // "Sun, 3PM"
 moment().format("[Today is] dddd");               // "Today is Sunday"
 moment().format("hh:MM A");		// "06:00 PM"

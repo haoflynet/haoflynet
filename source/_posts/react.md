@@ -358,6 +358,8 @@ onFocus
 
 ## TroubleShooting
 
+- **Expected server HTML to contain a matching <p> in <span>**: 注意P标签内部不能嵌套其他p标签
+
 - **React 表达式必须有一个父元素**: 常出现在`JSX`的渲染的内嵌语句中返回了错误格式的结果:
 
   ```react

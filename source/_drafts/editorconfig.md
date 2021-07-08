@@ -33,7 +33,7 @@ trim_trailing_whitespace = false
 
 
 [**.js]
-indent_size=4
+indent_size=2
 jslint_happy=false
 space_after_anon_function=false
 brace_style=collapse,preserve-inline
