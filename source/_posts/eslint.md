@@ -145,7 +145,11 @@ module.exports = {
       	{
       		"code": 150	// 有些规则默认行宽只有80或者180，如果要更改该规则可以这样做
    	 		}
-      ]
+      ],
+  		"no-use-before-define": [	// 定义在使用之后，这个一般不需要禁用，这里只是写着特殊情况的禁用方式
+  			"error", { "functions": false, "classes": true, "variables": true }
+			],
+      'import/prefer-default-export': 'off',	// 禁用import/prefer-default-export
     }
 };
 ```

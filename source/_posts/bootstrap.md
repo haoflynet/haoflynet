@@ -6,7 +6,44 @@ categories: frontend
 ---
 bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其中包含了许多简洁大方的css样式和实用的js插件，当然，它是移动设备优先的响应式开发方式。
 
+## breakpoints
+
 - [bootstrap的响应式breakpoints定义](https://getbootstrap.com/docs/5.0/layout/breakpoints/)
+- 一般我们会开发web版，所以在进行移动设备兼容时，需要将默认值修改为移动设备的(这就是为什么叫移动优先)，而为web来添加breakpoint
+- 一般都以最小宽度为breakpoint，如果要用最大宽度，一般是少0.02，例如`>=576px`修改为最大宽度就是`<=757.98px`
+- 我们开发主要就是兼容这几个: 移动设备(默认值不用加断点)、平板设备(md)，Web(lg)三个即可
+
+| Breakpoint        | Class infix | Grid Breakpoint | Dimensions | Devices                                                 |
+| ----------------- | ----------- | --------------- | ---------- | ------------------------------------------------------- |
+| X-Small           | none        | xs: 0           | <576px     | iPhone X(375), iPhone 6/7/8 Plus(414), iPhone 5/SE(320) |
+| Small             | sm          | sm: 576px       | >=576px    |                                                         |
+| Medium            | md          | md: 768px       | >=768px    | iPad(768)                                               |
+| Large             | lg          | lg: 992px       | >=992px    | iPad Pro(1024)                                          |
+| Extra large       | xl          | xl: 1200px      | >=1200px   |                                                         |
+| Extra extra large | xxl         | xxl: 1400px     | >=1440px   | Macbook Pro(1440)                                       |
+
+- bootstrap自定义了一些scss的断点
+
+|            | Bootstrap breakpoing                      | Scss Breakpoint                                      |
+| ---------- | ----------------------------------------- | ---------------------------------------------------- |
+| 最小值     | @include media-breakpoint-up(sm)          | @media (min-width: 576px)                            |
+| 最小值     | @include media-breakpoint-up(md)          | @media (min-width: 768px)                            |
+| 最小值     | @include media-breakpoint-up(lg)          | @media (min-width: 992px)                            |
+| 最小值     | @include media-breakpoint-up(xl)          | @media (min-width: 1200px)                           |
+| 最小值     | @include media-breakpoint-up(xxl)         | @media (min-width: 1400px)                           |
+| 最大值     | @include media-breakpoint-down(sm)        | @media (max-width: 575.98px)                         |
+| 最大值     | @include media-breakpoint-down(md)        | @media (max-width: 767.98px)                         |
+| 最大值     | @include media-breakpoint-down(lg)        | @media (max-width: 991.98px)                         |
+| 最大值     | @include media-breakpoint-down(xl)        | @media (max-width: 1199.98px)                        |
+| 最大值     | @include media-breakpoint-down(xxl)       | @media (max-width: 1399.98px)                        |
+| 两个段之间 | @include media-breakpoint-only(xs)        | @media (min-width: 768px) and (max-width: 991.98px)  |
+|            | @include media-breakpoint-only(sm)        |                                                      |
+|            | @include media-breakpoint-only(md)        |                                                      |
+|            | @include media-breakpoint-only(lg)        |                                                      |
+|            | @include media-breakpoint-only(xl)        |                                                      |
+|            | @include media-breakpoint-only(xxl)       |                                                      |
+| 多个段之间 | @include media-breakpoint-between(md, xl) | @media (min-width: 768px) and (max-width: 1199.98px) |
+|            |                                           |                                                      |
 
 ## Utilities
 
@@ -22,11 +59,15 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
   border-right
   border-bottom
   border-left
-  ```
-
-- 设置`border-radius`
-
-  ```shell
+  
+  # border: none
+  border-0
+  border-top-0
+  border-right-0
+  border-bottom-0
+  border-left-0
+  
+  # border-radius
   rounded
   rounded-top
   rounded-right
@@ -34,7 +75,19 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
   rounded-left
   rounded-circle	# 圆形
   rounded-0	# 没有圆角
+  
+  # border-color
+  border border-primary
+  border border-secondary
+  border border-success
+  border border-danger
+  border border-warning
+  border border-info
+  border border-light
+  border border-dark
+  border border-white
   ```
+
 
 ### Color
 

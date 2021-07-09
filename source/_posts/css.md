@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-06-04 11:30:00
+updated: 2021-07-08 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -161,6 +161,10 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### outline
 
 - 如果想要`Button/Input`等点击后(获取焦点时)不出现蓝色的边框，可以把该属性设置为`none`
+
+##### opacity
+
+- 设置元素透明度，取值范围为0.0-1.0，越低越透明
 
 ##### overflow
 
@@ -912,6 +916,10 @@ body{
 ```
 
 #### [滚动时隐藏菜单栏](https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp)
+
+#### position: absolute不起作用
+
+- 尝试把当前元素设置为`position: absolute`，父级元素设置为`position: relative`
 
 #### 实现图片的等比例自动缩放
 
