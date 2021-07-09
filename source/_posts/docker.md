@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2021-06-11 14:23:00
+updated: 2021-07-09 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -247,6 +247,8 @@ docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql	#
 apt install libgmp-dev && docker-php-ext-install gmp # 安装gmp/ext-gmp扩展
 docker-php-ext-install pcntl	# 安装pcntl扩展
 docker-php-ext-install bcmath	# 安装bcmath扩展
+docker-php-ext-install exif	# 安装exif扩展
+apt-get install libmagickwand-dev -y && pecl install imagick && docker-php-ext-enable imagick
 ```
 ### 在PHP容器中安装PHP扩展
 

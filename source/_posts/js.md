@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-06-30 22:18:00
+updated: 2021-07-08 22:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -59,7 +59,7 @@ Array.from([1, 2], x => x+ x) // 会得到[2, 4]
 Array.from({length:10},(item, index)=> index+1)	// 快速生成指定长度的数组
 let myArr: number[] = []	// typescript中定义一个number数组
 
-arrA.concat(arrB)			// 合并两个数组
+arrA.concat(arrB)			// 合并两个数组，结果是一个新的数组
 arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1
 arr.includes('元素');		// 判断数组是否包含某元素
 JSON.stringify(Array)		// 将数组转换为JSON格式的字符串
@@ -887,6 +887,16 @@ _.groupBy([6.1, 4.2, 6.3], function (item) {
 });
 ```
 
+##### _.isEqual
+
+- 对比两个数组或对象是否相同
+
+```javascript
+_.isEqual({'a': 123}, {'a': 123})	// true
+_.isEqual([1, 2], [1, 2]) // true
+_.isEqual([1, 2], [2, 1]) // false
+```
+
 ##### _.isMatchWith
 
 `isMatchWith(object, source, [customizer])`, 具有基本的isMatch功能，并且能添加`customizer`进行定制化的比较。判断source是否包含在object里，customizer返回true或者false。我fuck，这个函数只要source里面有key没在object，立马就返回false了，都不执行customizer的
@@ -975,7 +985,7 @@ _.maxBy(objects, 'field')	// 这个返回的是对象，并不是最大的那个
 
 ##### _.merge
 
-- 递归合并两个对象
+- 递归合并两个对象，**千万别用来合并数组，有意想不到的结果**
 
 ```javascript
 var obj1 = { 'a': [{ 'b': 2 }, { 'd': 4 }] }
