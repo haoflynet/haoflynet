@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-06-04 11:30:00
+updated: 2021-07-12 11:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -56,6 +56,18 @@ a:active: a标签被点击的时候
 ##### background
 
 - 可以同时设置背景图像的color、image、repeat、attachment、position属性，如`.style1{background:beige url(mypic.png) no-repeat top center}`
+
+- 设置背景颜色渐变
+
+  ```shell
+  .simple-linear {
+    background: linear-gradient(blue, pink);	 # 至少需要指定两种颜色，也可以多个颜色
+    background: linear-gradient(to right, blue, pink);	# 可以改变渐变方向，默认是从上到下
+    background: linear-gradient(to bottom right, blue, pink);	# 对角线渐变色
+    background: linear-gradient(70deg, blue, pink);	# 自定义渐变角度，to right=90deg
+    background: linear-gradient(to left, blue 30px; pink 50%);	# 声明颜色渐变到哪个位置结束
+  }
+  ```
 
 ##### background-color
 
@@ -913,6 +925,31 @@ body{
 
 #### [滚动时隐藏菜单栏](https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp)
 
+#### position: absolute不起作用
+
+- 尝试把当前元素设置为`position: absolute`，父级元素设置为`position: relative`
+
+#### 旋转background-image/旋转背景图片
+
+```javascript
+.div:before {
+  content: attr(bgImg);
+  position: absolute;
+  width: 300%;
+  height: 200%;
+  top: -480px;
+  opacity: 0.3;
+  left: 70%;
+  z-index: -1;
+  background-image: var(--bg-image);
+  background-position-x: 0;
+  background-position-y: 0;
+  background-repeat: no-repeat;
+  transform: rotate(270deg);
+  overflow: hidden;
+}
+```
+
 #### 实现图片的等比例自动缩放
 
 ```css
@@ -933,3 +970,5 @@ img{
 [最强大的 CSS 布局 —— Grid 布局](https://juejin.im/post/6854573220306255880)
 
 [CSS灵感](https://chokcoco.github.io/CSS-Inspiration/#/)：CSS的原生效果大全
+
+[animista](https://animista.net/): 非常多的原生CSSanimation效果大全

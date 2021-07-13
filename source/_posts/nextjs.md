@@ -26,7 +26,9 @@ router.locales	// 所有的locales
 router.defaultLocale	// 默认的locale
 ```
 
-## 页面组建
+## 页面组件
+
+### Head
 
 - 可以在`Head`里面插入全局的js，例如google analytics代码:
 
@@ -39,6 +41,12 @@ router.defaultLocale	// 默认的locale
     />
   </Head>
   ```
+
+### Link
+
+```javascript
+<Link href=''><a>title</a></Link>
+```
 
 ## 后端渲染SSR
 
@@ -67,7 +75,7 @@ MyComponent.getInitialProps = async () => {
   return fetch('').then(response => response.json())
 }
 
-// 官方推荐的是getServerSideProps
+// 官方推荐的是getServerSideProps，需要注意的是它不能做用于纯component，必须是page
 export async function getServerSideProps(){
   const data = await myAPI('/api/resource')
   return {
@@ -146,5 +154,6 @@ module.exports = {
 
 ## TroubleShooting
 
-- **pages with `getServerSideProps` can not be exported.d** 需要将`package.json`中的`build`命令中的`next export`去掉，它和`getServerSideProps`不兼容
+- **pages with `getServerSideProps` can not be exported.** 需要将`package.json`中的`build`命令中的`next export`去掉，它和`getServerSideProps`不兼容
+- **getServerSideProps不起作用**: 它只能做用于page，不能直接作用于component
 
