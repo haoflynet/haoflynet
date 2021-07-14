@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2021-05-27 08:48:00
+updated: 2021-07-09 08:48:00
 categories: Javascript
 ---
 
@@ -134,6 +134,10 @@ props.setMyState(true);
 ```jsx
 <div tabIndex="0">ttt</div>	// 可以使用双引号来直接指定属性值
 <img src={user.avatarUrl}</img>	// 也可以使用大括号来指定变量属性值
+
+// 传递变量到scss中
+const myStyle = `--bg-url: ${myUrl}`
+<div style={myStyle}></div>	// 可以通过这种方式将变量
 ```
 
 ### 代码片段fragments
@@ -178,6 +182,28 @@ render() {
     </div>
   )
 }
+```
+
+### map循环
+
+```jsx
+<Nav>
+  {
+  	props.menus?.map((menu, i) => {
+  		return (
+        menu?.children?.length > 0
+        ? <NavDropdown title={menu.title} key={i}>
+          {
+            menu.children?.map((subMenu, subIndex) => {
+              <NavDropdown.Item href={subMenu.url} key={`${subIndex}-${i}`}>{subMenu.title}</NavDropdown.Item>
+            })
+          }
+          </NavDropdown>
+        : <NavLink href={menu.url} title={menu.title} key={i}/>
+    	)
+		})
+	}
+</Nav>
 ```
 
 ## 必备三方组件

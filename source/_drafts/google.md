@@ -1,5 +1,13 @@
 google 服务
 
+## Cloud Tasks
+
+- 任务队列，[官方文档](https://cloud.google.com/tasks/docs/creating-http-target-tasks?hl=zh-cn)用起来非常简单实用
+
+## Logging
+
+- 谷歌的日志查询起来非常方便，就像是查询json字段一样
+
 ## Map地图服务
 
 - vue推荐使用[vue-google-autocomplete](https://github.com/olefirenko/vue-google-autocomplete)做地址的自动完成，只需要按照其`README`开通对应的API，然后在`Credentials`拿到`API KEY`即可，它主要是用的是`AutocompletionService`，该组件支持这样几个自定义搜索参数:

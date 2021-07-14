@@ -622,7 +622,7 @@ div:nth-last-child(2) {
 }
 ```
 
-## 动画transitions
+## 动画transitions/变化/变换/平滑移动
 
 - `transitions`允许我们平滑地改变属性值(而不是立马变更到某个值)
 

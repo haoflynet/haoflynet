@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-06-03 22:50:30
+updated: 2021-07-14 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -50,6 +50,41 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
   },
   "devDependencies": {	// 指定项目开发所依赖的模块
     
+  }
+}
+```
+
+## 常用语法
+
+### 类
+
+```javascript
+// 声明一个类
+class Rectangle {
+  height = 0;	// 公有字段声明
+  static displayName = "Point";	// 静态变量
+  
+  // 类的构造函数
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  
+  // Getter方法
+  get area() {
+      return this.calcArea()
+  }
+  
+  // Method方法
+  calcArea() {
+      return this.height * this.width;
+  }
+
+	// 静态方法
+ 	static distance(a, b) {
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        return Math.hypot(dx, dy);
   }
 }
 ```
