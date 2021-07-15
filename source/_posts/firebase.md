@@ -1,6 +1,10 @@
-Firebase使用手册
+---
+title: "Firebase/Firestore 使用手册"
+date: 2021-07-15 12:30:00
+categories: frontend
+---
 
-**一定要看英文文档，中文文档可能更新不及时**
+- **一定要看英文文档，中文文档可能更新不及时**
 
 ## Cloud Messaging(Push Notification/APNs)
 
@@ -37,6 +41,8 @@ admin.messaging().sendToDevice('registrationToken', payload, { timeToLive: 120})
 ```
 
 #### 证书配置
+
+<!--more-->
 
 - 证书配置在`firebase console -> Project settings -> Cloud Messaging -> ios app configuration`
 - 证书有两种，`APNs Authentication Key`和`APNs Certificates`，两者任选其一(如果两者都有默认会使用前者)，貌似现在更建议用前者，而且前者没有过期时间，但是目前我没有配置成功过前者(可以参考这里[How to Create an iOS APNs Auth Key](https://developer.clevertap.com/docs/how-to-create-an-ios-apns-auth-key))，后者的话过期时间是一年，但是好配置一点，只需要这样做：
@@ -98,6 +104,13 @@ service cloud.firestore {
 
 ### 数据读写
 
+#### 数据写入
+
+```javascript
+const doc = firestore.doc('collection_name/doc_id')
+await doc.set({name: 'test'})
+```
+
 #### 数据读取
 
 - `where`支持的查询运算符有: `<`、`<=`、`==`、`>`、`>=`、`!=`、`array-contains`、`array-contains-any`、`in`(数组中最多10个元素)、`not-in`(数组中最多10个元素)
@@ -111,6 +124,13 @@ service cloud.firestore {
 
 ```javascript
 var citiesRef = db.collection("cities");	// 定义要查询的集合
+
+// 读取集合下所有的文档
+db.collection('cities').get().then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+    console.log(JSON.stringify(doc.data()))
+  })
+})
 
 // 简单查询
 var query = citiesRef.where("state", "==", "CA")
