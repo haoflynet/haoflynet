@@ -13,6 +13,18 @@ categories: js
 next -p 3001	# 指定启动端口
 ```
 
+### next.config.js
+
+```javascript
+module.exports = {
+  env: {	// 设置环境变量，设置后可以在jsx中直接用{process.env.customKey}获取值
+    customKey: 'my-value',
+  }
+}
+```
+
+
+
 ## 路由
 
 ```javascript
@@ -41,6 +53,11 @@ router.defaultLocale	// 默认的locale
     />
   </Head>
   ```
+
+### Image
+
+- 可以设置width、height、quality、priority、responsive自动修改图片显示大小
+- 但是毕竟是后端js程序在进行转换，不如直接使用`cloudinary`这样的服务速度快功能多
 
 ### Link
 

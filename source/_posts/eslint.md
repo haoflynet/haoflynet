@@ -146,7 +146,10 @@ module.exports = {
       	{
       		"code": 150	// 有些规则默认行宽只有80或者180，如果要更改该规则可以这样做
    	 		}
-      ]
+      ],
+  		'no-use-before-define': ['error', { variables: false, classes: false, functions: false }],	// 函数或方法或类的定义在使用的后面，如果要禁用可以这样做，一般不建议这样做
+      'camelcase': 'off',	// 禁用camelcase提示，不推荐禁用
+      'no-param-reassign': 'off', // 在函数内修改参数的值，不推荐禁用
     }
 };
 ```
