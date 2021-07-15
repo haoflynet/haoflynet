@@ -12,6 +12,10 @@ https://ethereum.stackexchange.com/questions/64562/about-abi-encoder-v2
 
 
 
+keccak_256在线计算https://emn178.github.io/online-tools/keccak_256.html
+
+
+
 # replacement transaction underpriced 
 
 price设置太高了，钱不够了

@@ -1,8 +1,20 @@
 google 服务
 
+## Cloud Function
+
+- 最大超时时间只能设置为540s=9min，实在不行可以用`Cloud Tasks` 队列，或者在时间快完的时候直接再调用一下url参数组织一下
+
 ## Cloud Tasks
 
-- 任务队列，[官方文档](https://cloud.google.com/tasks/docs/creating-http-target-tasks?hl=zh-cn)用起来非常简单实用
+- 任务队列，[官方文档](https://cloud.google.com/tasks/docs/creating-http-target-tasks?hl=zh-cn)用起来非常简单实用，可用于多消费者，或者减少第三方接口的并发速率限制
+- 速率控制(队列使用令牌桶来控制任务执行速率，每个命令的队列都有一个用于存储令牌的存储分区，应用没执行一个任务，就会从桶中移除一个令牌，会按照max_dispatches_per_second速率不断向令牌桶中补充填充新令牌)
+  - Max dispatches: 每秒钟任务分配的速率，每秒将任务分配给多少个worker
+  - Max concurrent dispatches: 并发执行的数量，同时运行的任务的最大数量
+- 重试控制：
+  - MAX ATTEMPTS：任务可以尝试的最大次数，包括第一次尝试
+  - MAX INTERVAL：重试尝试之间的最短等待时间
+
+## [firebase/firestore](https://haofly.net/firebase)
 
 ## Logging
 
