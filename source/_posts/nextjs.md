@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-05-22 23:38:00
+updated: 2021-07-20 23:38:00
 categories: js
 ---
 
@@ -22,8 +22,6 @@ module.exports = {
   }
 }
 ```
-
-
 
 ## 路由
 
@@ -67,7 +65,7 @@ router.defaultLocale	// 默认的locale
 
 ## 后端渲染SSR
 
-- 在组件加载前就从接口获取数据，才能实现后端渲染，而不是前端去调用API，这就要求我们要在组件的`getInitialProps`方法中获取数据
+- 在组件加载前就从接口获取数据，才能实现后端渲染，而不是前端去调用API
 - 需要注意的是通过服务端获取的props，必须直接传递到html中去，不要用useEffect等去传递给另外一个变量，那样就不会直接渲染到HTML中去了，浏览网页源代码发现他们只是在一个变量上，对SEO十分不友好
 - `getServerSideProps`和`getInitialProps`都无法用在404页面上，如果是404页面只能在`componentDidMount`或者`useEffect(() => {}, [])`里面去请求获取数据了，[官方说明](https://nextjs.org/docs/messages/404-get-initial-props)
 
@@ -101,10 +99,20 @@ export async function getServerSideProps(){
 }
 
 // 如果是不会改变的数据可以用getStaticProps，它会在编译的时候就静态的props传入组件，所以如果接口返回的数据有变化，也只有重新编译才行
-export async function getStaticProps(){
+export async function getStaticProps() {
   const data = await myAPI('/api/resource')
   return {
     props: { data }
+  }
+}
+
+// 用于在使用动态路由时生成静态文件，他是配合getStaticProps使用的，getStaticProps根据url生成不同的页面
+export async function getStatisPaths() {
+  const res = await myAPI('/api/resource')
+  const paths = res.data.map(resource => `/resource/${resource.id}`)
+  return {
+    paths, // 有多个path就会生成多个静态页面
+    fallback: false
   }
 }
 

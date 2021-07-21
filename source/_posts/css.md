@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-07-12 11:30:00
+updated: 2021-07-19 12:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -263,6 +263,14 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### user-select
 
 - none(文本不能被选择)、text(可以选择文本)
+
+- 需要注意的是在`input`上设置`user-select: none`可能导致`safari`的输入框无法输入任何内容，然而这个属性一般又是全局设置的，可以这样做: 
+
+  ```css
+  *:not(input) {
+    user-select: none;
+  }
+  ```
 
 ##### vertical-align
 

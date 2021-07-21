@@ -62,12 +62,14 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 - 以d开头
 - 可取的值有none、inline、inline-block、block、table、table-cell、table-row、flex、inline-flex
 
-| 屏幕尺寸   | 类                          |
-| ---------- | --------------------------- |
-| 只在lg隐藏 | d-lg-none d-xl-block        |
-| 只在xl隐藏 | d-xl-none                   |
-| 只在lg显示 | d-none d-lg-block d-xl-none |
-| 只在xl显示 | d-none d-xl-block           |
+| 屏幕尺寸     | 类                           |
+| ------------ | ---------------------------- |
+| 只在lg隐藏   | d-lg-none d-xl-block         |
+| 在lg和xl隐藏 | d-lg-none d-xl-none          |
+| 只在xl隐藏   | d-xl-none                    |
+| 只在lg显示   | d-none d-lg-block d-xl-none  |
+| 在lg和xl显示 | d-none d-lg-block d-xl-block |
+| 只在xl显示   | d-none d-xl-block            |
 
 ### Flex
 
@@ -95,6 +97,8 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 ```
 
 ### Sizing
+
+- 不支持breakpoint
 
 - 宽度
 
