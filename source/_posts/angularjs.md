@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-06-30 22:53:00
+updated: 2021-07-22 08:53:00
 categories: frontend
 ---
 ## 语法
@@ -155,7 +155,33 @@ ngOnInit(): void {
     err => {'错误处理'}
   );
   this.http.get('').retry(3).subscribe(...);	// 设置重试次数
-  this.http.get(''). {responseType: 'text'}.subscribe(...); // 请求非json数据                                     
+  this.http.get(''). {responseType: 'text'}.subscribe(...); // 请求非json数据     
+                                                      
+  await this.http.get('').toPromise();	// 将网络请求转换为promise就可以用promise的await语法了
+}
+```
+
+### 文件上传
+
+```javascript
+<input #photoUpload type="file" accept="image/*">
+<button class="primaryButton" (click)="uploadImage()">Upload Image</button>
+
+export class MyComponent {
+  @ViewChild('photoUpload') adminPhotoUpload: ElementRef;
+  uploadImage(): {
+    const files = this.photoUpload.nativeElement.files;
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+
+    return this.http.post(`${apiURL}/api/storage`, formData, {
+      headers
+    });
+  }
 }
 ```
 

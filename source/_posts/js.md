@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-06-30 22:18:00
+updated: 2021-07-22 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -981,13 +981,35 @@ var obj2 = { 'a': [{ 'c': 3 }, { 'e': 5 }] }
 _.merge(obj1, obj2) // { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
 ```
 
+##### _.orderBy
+
+- 排序
+
+```javascript
+var users = [
+  { 'user': 'fred',   'age': 48 },
+  { 'user': 'barney', 'age': 34 },
+  { 'user': 'fred',   'age': 40 },
+  { 'user': 'barney', 'age': 36 }
+];
+
+_.orderBy(users, ['user', 'age'], ['asc', 'desc']);	// 先按user升序，相同的再按age降序
+```
+
 ##### _.reduce
 
 - 能够将元素一次进行计算，第一个参数为上一次计算的结果
 
 ```javascript
 var arr = [1,2,3];
-_.reduce(arr, function(result, o) {return result + o});	// 这里的result不用预先定义，但是它就是最终的结果
+_.reduce(arr, function(result, o) {return result + o});	// 这里的result其实是第一个元素，以后的每一个return的结果作为下一次的result
+
+// 如果要累加对象的某个值可以这样做
+const users = [
+  {num: 1},
+  {num: 2}
+]
+_.reduce(users, (result, user) => {result.num += user.num; return result})
 ```
 
 ##### _.snakeCase
