@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2021-03-24 08:26
+updated: 2021-07-21 08:26
 categories: 编程之路
 ---
 
@@ -131,6 +131,7 @@ Code Completion -> 取消Match case
 - **Prettier**: JS格式化工具
 - **Python**: 支持Python开发
 - **Rainbow Brackets**: 可以实现配对括号使用相同的颜色
+- **SASS Sorter**: sass/css排序
 - ~~**SonarLint**: 自动发现代码中的错误，支持多语言，不推荐了，每次安装了依赖以后就它卡住~~
 - **Vue.js**: 支持Vue.js开发
 

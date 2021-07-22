@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-07-19 12:30:00
+updated: 2021-07-22 08:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -169,6 +169,10 @@ a:active: a标签被点击的时候
 ```css
 margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ```
+
+##### opacity
+
+- 透明效果，蒙板效果
 
 ##### outline
 
@@ -955,6 +959,18 @@ body{
   background-repeat: no-repeat;
   transform: rotate(270deg);
   overflow: hidden;
+}
+```
+
+#### Selector ":global .class" is not pure (pure selectors must contain at least one local class or id)
+
+- `:global`语法必须在某个类下，不能在顶级使用
+
+```css
+.root {
+  :global(.myClass) {
+    
+  }
 }
 ```
 
