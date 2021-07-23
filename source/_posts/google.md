@@ -1,6 +1,6 @@
 ---
 title: "Google Cloud 相关服务"
-date: 2021-08-01 11:52:39
+date: 2021-07-23 07:52:39
 categories: frontend
 ---
 
@@ -20,6 +20,15 @@ categories: frontend
   - MAX ATTEMPTS：任务可以尝试的最大次数，包括第一次尝试
   - MAX INTERVAL：重试尝试之间的最短等待时间
   
+- 一些限制
+
+  - 任务大小上限：100KB(超过会报错task size too large)
+  - 队列执行速率：每个队列每秒500次任务调度
+  - 人物的最大倒计时/ETA：30天
+  - 可以批量添加的最大任务数：100个
+  - 在一项事务中可以添加的最大任务数：5个
+  - 默认的最大任务队列数：100个
+
 - 官方文档给的例子是发送一个字符串，但是如果要发送json格式的payload，可以这样做：
 
   ```javascript
@@ -46,6 +55,8 @@ categories: frontend
   ```
 
 - **The queue cannot be created because a queue with this name existed too recently**: 队列删除7天后才能创建同名的队列
+
+<!--more-->
 
 ## [firebase/firestore](https://haofly.net/firebase)
 

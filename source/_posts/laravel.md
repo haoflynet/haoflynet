@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-06-17 22:58:00
+updated: 2021-07-22 08:58:00
 categories: php
 ---
 # Laravel指南
@@ -134,6 +134,7 @@ Route::group(['namespace' => 'Cron', 'middleware' => ['foo', 'bar']], function()
 
 # 通过url向控制器传递参数
 Route::resource('wei/{who}', 'WeixinController');
+Route::resource('wei/{path?}', 'TestController')->where('path', '(.*)');	// ?表示可选，后面的path表示匹配规则，这里可以让该参数支持所有自负，包括斜杠slash
 #然后在控制器里这样定义
 public function index($who){}
 

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-07-22 08:18:00
+updated: 2021-07-23 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -22,6 +22,8 @@ TODO: 逐步用原生方法替换jQuery，参考[You-Dont-Need-jQuery](https://g
 - `if`条件语句如果有逗号，其实是按照最后一个值作为判断的: `if (a = '123', b = '234', a > b)`
 
 ### 变量
+
+- 获取变量所占用的内存大小可以使用[object-sizeof](https://www.npmjs.com/package/object-sizeof)
 
 ```javascript
 var $a;	// es6以前定义变量，if (true) {var a = 1;} console.log(a); 输出为1

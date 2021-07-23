@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-07-22 08:53:00
+updated: 2021-07-23 08:53:00
 categories: frontend
 ---
 ## 语法
@@ -116,6 +116,14 @@ export class MyComponent implements OnInit {
 - ngAfterViewInit(需implements AfterViewInit): 当初始化完组件视图以及子视图或包含该指令的视图之后调用，只会调用一次
 - ngAfterViewChecked
 - ngOnDestroy
+
+## 扩展
+
+- @angular/flex-layout: angular的flex布局组件，能够很方便地实现flex响应式布局
+
+  ```html
+  <div fxLayout="row" fxLayoutAlign="space-between"></div>
+  ```
 
 ## 事件
 
