@@ -1,7 +1,7 @@
 ---
 title: "Js代码格式化工具 - eslint的使用"
 date: 2021-06-30 22:00:00
-updated: 2021-07-14 08:30:00
+updated: 2021-07-27 08:30:00
 categories: frontend
 ---
 
@@ -150,7 +150,15 @@ module.exports = {
   		'no-use-before-define': ['error', { variables: false, classes: false, functions: false }],	// 函数或方法或类的定义在使用的后面，如果要禁用可以这样做，一般不建议这样做
       'camelcase': 'off',	// 禁用camelcase提示，不推荐禁用
       'no-param-reassign': 'off', // 在函数内修改参数的值，不推荐禁用
-    }
+    },
+    "overrides": [
+      {
+        files: ['pages/**'],	// 如果只想要某个指定的目录使用不同的规则，可以在overrides中这样定义
+      	rules: {
+          'react/prop-types': 'off'
+        }
+      }
+    ]
 };
 ```
 

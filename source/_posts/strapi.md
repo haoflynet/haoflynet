@@ -1,6 +1,7 @@
 ---
 title: "Strapi CMS 使用手册"
 date: 2021-07-14 08:30:00
+updated: 2021-07-23 10:53:00
 categories: frontend
 ---
 
@@ -162,3 +163,4 @@ rm -rf .cache && rm -rf build/
 - **如果新建的内容访问接口是404**: 一般是因为没有发布publish
 - **relationship 关联对象拖动排序无效**:  明明保存时提交的字段的顺序都是正确的，但是提交后又是原来的顺序了，目前是[还没修复](https://github.com/strapi/strapi/issues/2166)，但是可以先把所有的关联删除了，保存后再重新新建就行了
 - **无法嵌套实用components**: 网页上不行，但是直接修改`component`的json文件一般是可以的，但有时候也不能用，还是得等官方支持才行
+- **error TypeError: Cannot read property 'attributes' of undefined**: 可能是某个组件没上传导致的，如果报错行数在`./node_moduels/strapi-plugin-documentation/services/Documentation.js:592:42`直接去里面把`component`打印出来吧

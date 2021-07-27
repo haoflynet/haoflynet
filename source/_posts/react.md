@@ -208,6 +208,41 @@ render() {
 
 ## 必备三方组件
 
+### prop-types
+
+- 类似于typescript，能够有效限制与定义组件中的prop参数类型
+- 不过建议在pages页面(非component)中禁用eslint的`react/prop-types: 'off'`功能，因为页面的props可能太多，也和component中的有重复
+
+```javascript
+import PropTypes from 'prop-types';
+
+MyComponent.propTypes = {
+  optionalArray: PropTypes.array,
+  optionalBool: PropTypes.bool.isRequired,	// 布尔值，isRequired表示必填
+  optionalFunc: PropTypes.func,
+  optionalObject: PropTypes.object,
+  optionalSymbol: PropTypes.symbol,
+  requiredAny: PropTypes.any.isRequired,	// 任意类型
+  optionalEnum: PropTypes.oneOf(['News', 'Photos']),	// 枚举类型
+  optionalUnion: PropTypes.oneOfType([	// 可以是多个类型
+    PropTypes.string,	// 字符串类型
+    PropTypes.number,	// 数字类型
+    PropTypes.instanceOf(Message)
+  ]),
+  optionalArrayOf: PropTypes.arrayOf(PropTypes.number), // 指定数组元素
+  optionalObjectWithShape: PropTypes.shape({	// 定义对象的内部字段
+    color: PropTypes.string,
+    fontSize: PropTypes.number
+  }),
+   optionalObjectWithStrictShape: PropTypes.exact({	// 只允许特定的值
+    name: PropTypes.string,
+    quantity: PropTypes.number
+  }),
+}
+```
+
+
+
 ### React-Redux
 
 - 从后端的角度看，就是一个维护全局变量的东西
