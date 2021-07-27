@@ -1,5 +1,18 @@
 ## 组件
 
+### Selection
+
+```react
+<mat-form-field appearance="fill">
+  <mat-label>Icons</mat-label>
+  <mat-select [(value)]="myIds" multiple>
+    <mat-option value="0">Option1</mat-option>
+    <mat-option value="1">Option2</mat-option>
+    <mat-option value="2">Option3</mat-option>
+  </mat-select>
+</mat-form-field>
+```
+
 ### Tooltip
 
 ```javascript

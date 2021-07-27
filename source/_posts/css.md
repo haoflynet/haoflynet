@@ -37,6 +37,9 @@ categories: frontend
 
 ## 各种属性
 
+- [html清单](https://htmlreference.io/)
+- [css清单](https://cssreference.io/)
+
 ##### a链接
 
 a:link：表示一个正常的未被点击过的a标签的属性
@@ -101,7 +104,25 @@ a:active: a标签被点击的时候
 ##### box-shadow
 
 - 给框添加阴影
+
 - `box-shadow: h-shadow v-shadow blur spread color inset;`，例如`box-shadow: 10px 10px 5px #888888;`
+
+  ```css
+  /* x偏移量 | y偏移量 | 阴影颜色 */
+  box-shadow: 60px -16px teal;
+  
+  /* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影颜色 */
+  box-shadow: 10px 5px 5px black;
+  
+  /* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色 */
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  
+  /* 插页(阴影向内) | x偏移量 | y偏移量 | 阴影颜色 */
+  box-shadow: inset 5em 1em gold;
+  
+  /* 任意数量的阴影，以逗号分隔 */
+  box-shadow: 3px 3px red, -1em 0 0.4em olive;
+  ```
 
 ##### cursor
 
@@ -572,6 +593,8 @@ div:nth-last-child(2) {
 
 ## Flex布局
 
+- [flex布局清单](https://flexbox.malven.co/)
+
 - 注意flex是无法给容器设置`height`的，但是可以通过设置内部元素的`height/max-height/min-height`来间接控制其高度
 
 - 如果`flex`的宽度较长，明明有剩余空间却自动换行了可能需要这样设置(flex布局的内容超出了盒子的宽度):
@@ -617,6 +640,7 @@ div:nth-last-child(2) {
 
 ## Grid布局
 
+- [grid布局效果清单](https://grid.malven.co/): 非常直观地看到效果
 - 参考底部推荐文章
 
 ```css
