@@ -85,6 +85,25 @@ function Example() {
 
 ## 组件
 
+### 组件定义
+
+### 函数组件
+
+- 函数组件中能使用`useState`
+
+```java
+// typescript中需要这样定义，FC是TypeScript使用的一个范性，意思是FunctionComponent
+// typescript中需要定义入参类型，可以这样定义
+interface CurrentProps {
+	field1: string;
+  field2: number;
+}
+
+const MyComponent: FC<CurrentProps> = (props) => {
+  
+}
+```
+
 ### 组件属性
 
 - 动态添加元素样式`style`

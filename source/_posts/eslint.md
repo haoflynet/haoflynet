@@ -1,7 +1,7 @@
 ---
 title: "Js代码格式化工具 - eslint的使用"
 date: 2021-06-30 22:00:00
-updated: 2021-07-27 08:30:00
+updated: 2021-07-29 08:30:00
 categories: frontend
 ---
 
@@ -205,3 +205,5 @@ cordova.plugins...
 - **no-plusplus**: 禁止使用一元操作符`++`或`--`，是因为空白可能会改变源代码的语义，可以使用`+=`来代替
 
 - **consistent-return**: 原因是函数的返回值的类型不统一，可以自行修改一下
+
+- **react camel case props**: 在react中禁止非驼峰写法的props，如果实在改不了，可以给它重命名: `{first_name: firstName, last_name: lastName}`
