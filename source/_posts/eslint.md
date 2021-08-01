@@ -1,7 +1,7 @@
 ---
 title: "Js代码格式化工具 - eslint的使用"
 date: 2021-06-30 22:00:00
-updated: 2021-07-29 08:30:00
+updated: 2021-08-01 08:30:00
 categories: frontend
 ---
 
@@ -207,3 +207,13 @@ cordova.plugins...
 - **consistent-return**: 原因是函数的返回值的类型不统一，可以自行修改一下
 
 - **react camel case props**: 在react中禁止非驼峰写法的props，如果实在改不了，可以给它重命名: `{first_name: firstName, last_name: lastName}`
+
+- **使用git的UI客户端，例如sourcetree，没有触发husky/eslint**：这个一般是由于sourcetree没有找到node导致，首先我们需要去sourcetree->Preference->Advanced->Always display full console output，打开后再次commit就会发现错误日志: `Can't find npx in PATH: ...Skipping pre-commit hook`，找不到node路径直接跳过了pre-commit hook。此时只需要将node路径加入环境变量即可。一般是由于我们使用的是nvm，我们只需要将nvm路径加入husky的环境变量即可：
+
+  ```shell
+  # vim ~/.huskyrc
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  ```
+
+  
