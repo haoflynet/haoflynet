@@ -83,6 +83,11 @@ a:active: a标签被点击的时候
 - 设置背景图片，如`background-iamge: url(mypic.png)`
 - 需要注意的是背景图片并不会撑起元素的高度，如果想要这种效果，可以参考[图片做背景撑开div](https://blog.csdn.net/u013205165/article/details/99000978)或者[css背景图撑开盒子高度](https://blog.csdn.net/qq_34812257/article/details/84867616)还有[响应式背景图片]([http://www.topcss.org/tag/%E5%93%8D%E5%BA%94%E5%BC%8F%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/](http://www.topcss.org/tag/响应式背景图片/))
 
+##### background-position
+
+- 可以分成`background-position-x`和`background-position-y`
+- 可以直接`center`表示居中
+
 ##### background-repeat
 
 - 设置是否及如何重复背景图像
