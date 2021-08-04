@@ -179,6 +179,7 @@ name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 
 - moment作者已经不推荐使用`moment.js`，他自己又搞了个`luxon`，但我更推荐使用`dayjs`
 - 需要注意的是`moment.date(12)`等方法会更改对象本身，所以在函数之间传递的时候最好克隆一个新的对象`moment(moment())`
+- [moment在线测试](http://jsfiddle.net/brandonscript/rLjQx/)
 
 ```javascript
 // 原生方法

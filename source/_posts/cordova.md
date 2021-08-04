@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-07-21 08:48:00
+updated: 2021-07-29 08:48:00
 categories: javascript
 ---
 
@@ -150,7 +150,7 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
 获取平台设备信息
 
-### [cordova-plugin-facebook-connect](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect):
+### [cordova-plugin-facebook-connect](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect)
 
 - Facebook登陆插件，安装完成后得去`platforms/ios`目录执行一下`pod repo update && pod install`安装facebook SDK，这样使用:
 
@@ -183,6 +183,22 @@ error => {
 ### [cordova-plugin-firebasex](https://github.com/dpa99c/cordova-plugin-firebasex)
 
 firebase插件，包含(cloud messaging等多个firebase的功能)，**如果对firebase的证书配置还不熟悉，可以现在其[example项目](https://github.com/dpa99c/cordova-plugin-firebasex-test)上进行测试，它的example里还有命令行工具，不过它打印的错误信息不够详细，还是用firebase-admin-node好一点，具体的使用方式和证书等配置可以在[firebase手册](https://haofly.net/firebase)中查看**
+
+### [cordova-plugin-geolocation](https://github.com/apache/cordova-plugin-geolocation)
+
+- 如果xcode里面有warning: `No NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription key is defined in the Info.plist file.`表示没有正确配置`NSLocationWhenInUseUsageDescription`选项
+
+- 下面是两种获取地理信息的声明，需要选择一种在`config.xml`中添加，添加完后记得重新编译(可能需要remove ios再添加才行):
+
+  ```xml
+  <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+      <string>need location access to find things nearby</string>
+  </edit-config>
+  
+  <edit-config target="NSLocationAlwaysAndWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+      <string>need location access to find things nearby</string>
+  </edit-config>
+  ```
 
 ### [cordova-plugin-googleplus](https://github.com/EddyVerbruggen/cordova-plugin-googleplus)
 

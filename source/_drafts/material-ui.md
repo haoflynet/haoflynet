@@ -48,12 +48,13 @@ categories: Javascript
   </Box>
   ```
 
-- 所有的属性列表(不能实现的常用样式有background-image)
+- 所有的属性列表(不能实现的常用样式有background-image/background-position)
 
 ```jsx
 <Box 
   // Borders边框
   border={1}
+  borderRadius={"50%"}	// border-radius
   
   // Color/Palette 颜色
   bgcolor="primary.main"
@@ -70,6 +71,8 @@ categories: Javascript
   flexWrap="nowrap"
   justifyContent="center"
   justifyContent="space-between"
+  alignContent="flex-start"
+  alignContent="flex-end"
   
   // Sizing 大小
   width={1/4}
@@ -82,6 +85,15 @@ categories: Javascript
   pt={3}
   px={1}
   py={4}
+  
+  // Typography 文字，对于Typography如果改不了内部的样式，那么直接把标签去掉，直接<Bod>文字</Box>
+  textAlign="left"	// text-align，可选left、center、right
+  fontWeight="fontWeightLight" // font-weight，可选fontWeightLight、fontWeightRegular、fontWeightMedium、fontWeightBold或者直接数字{500}
+  fontSize="fontSize"	// font-size，可选fontSize，其他元素的size：h6.fontSize，或者直接数字{16}
+  fontStyle="normal" // font-style，可选normal、italic、poblique
+  fontFamily="fontFamily" // font-family
+  letterSpacing={6} // letter-space
+  lineHeight={10}	// line-height
   
   minWidth="10"
   maxWidth="80"
