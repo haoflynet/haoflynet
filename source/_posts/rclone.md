@@ -26,6 +26,9 @@ categories: tools
 假设上一步添加配置时候取的名字叫`google`，`google drive`里面有目录叫`test`
 
 ```shell
+# 通用参数
+-P 打印进度
+
 rclone ls google:test	       			# 列出远程目录下的所有文件，斜杠/表示列出所有文件
 rclone lsd google:/	# 列出远端所有文件夹
 rclone copy -P google:Google相册 相册	 将远程目录下的所有文件同步到本地

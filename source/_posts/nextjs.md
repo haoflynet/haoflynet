@@ -15,9 +15,11 @@ next -p 3001	# 指定启动端口
 
 ### next.config.js
 
+- 每次修改必须重启应用
+
 ```javascript
 module.exports = {
-  env: {	// 设置环境变量，设置后可以在jsx中直接用{process.env.customKey}获取值
+  env: {	// 设置环境变量，设置后可以在jsx中直接用{process.env.customKey}获取值，环境变量还能设置在.env中，但似乎必须以NEXT_PUBLIC_开头，且必须重启应用
     customKey: 'my-value',
   }
 }
@@ -121,7 +123,25 @@ export default MyComponent
 
 ## Hook
 
-### 一个获取window size的hook
+### 路由router
+
+```javascript
+import { useRouter } from 'next/router';
+
+const router = useRouter();
+router.push('/signin');	// 路由跳转
+router.replace('/signin');	// 路由跳转
+router.push({pathname: '/post/[pid]', query: {pid: post.id}})	// 指定参数
+router.pathname;	// 获取当前的pathname，例如/signin
+router.back();	// 返回上一页，即window.history.back()
+router.reload();	// 刷新页面，即window.location.reload()
+```
+
+#### 路由事件event
+
+- 包括：routeChangeStart、routeChangeComplete、routeChangeError、beforeHistoryChange、hashChangeStart、hashChangeComplete
+
+### 获取window size
 
 ```javascript
 // hooks/useWindowResize.js

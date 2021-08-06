@@ -18,6 +18,22 @@ categories: Javascript
 
 <!--more-->
 
+- props.children，类似于`vue`种的槽，只要组件内部有元素，那么它就是props.children，内部可以直接拿来用，例如:
+
+  ```react
+  <MyComponent>
+  	<div>test</div>
+  </MyComponent>
+  
+  function MyComponent(props) {
+    return (
+    	<div>
+      	{props.children}
+      </div>
+    )
+  } 
+  ```
+
 ### Effect Hook
 
 - 副作用：数据获取、设置订阅、手动更改DOM

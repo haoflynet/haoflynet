@@ -1,7 +1,7 @@
 ---
 title: "Js代码格式化工具 - eslint的使用"
 date: 2021-06-30 22:00:00
-updated: 2021-08-01 08:30:00
+updated: 2021-08-05 08:30:00
 categories: frontend
 ---
 
@@ -55,27 +55,26 @@ categories: frontend
 ```json
 {
   "scripts": {
-    "prepare": "./node_modules/.bin/husky install prototype/app/pro/.husky"	// 这样安装以后能够自动安装husky到.git的hook中
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "prepare": "./node_modules/.bin/husky install prototype/app/pro/.husky",	// 这样安装以后能够自动安装husky到.git的hook中，如果不是独立项目而是整个项目统一用，那么可以不用这一步
+    "prepare": "husky install",	// 如果是整个项目统一用，那么只需要这样即可
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "src/**": [		// 可以以目录形式指定目标
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "*.{js,vue}": [	// 也可以以文件后缀的形式指定目标
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   }
 }
 ```
 
-4. 执行`npm prepare`会在根目录创建`.husky`文件夹，并将hook应用到当前git仓库中，如果想要修改执行命令可以修改`.husky/pre-commit`例如
+4. 执行`npm prepare`会在根目录创建`.husky`文件夹，并将hook应用到当前git仓库中
+
+5. 添加`pre-commit` hook，执行命令`./node_modules/.bin/husky add .husky/pre-commit "npm run lint-staged" && git add .husky/pre-commit`
+
+   如果想要修改执行命令可以修改`.husky/pre-commit`例如
 
    ```shell
    #!/bin/sh
@@ -211,9 +210,11 @@ cordova.plugins...
 - **使用git的UI客户端，例如sourcetree，没有触发husky/eslint**：这个一般是由于sourcetree没有找到node导致，首先我们需要去sourcetree->Preference->Advanced->Always display full console output，打开后再次commit就会发现错误日志: `Can't find npx in PATH: ...Skipping pre-commit hook`，找不到node路径直接跳过了pre-commit hook。此时只需要将node路径加入环境变量即可。一般是由于我们使用的是nvm，我们只需要将nvm路径加入husky的环境变量即可：
 
   ```shell
-  # vim ~/.huskyrc
+  # vim ~/.huskyrc，这个文件就是用于加载这些环境变量的，注意这是home目录不是项目目录
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  
+  export PATH="/Users/haofly/.nvm/versions/node/v15.3.0/bin:$PATH"	# 上面的配置还是不行那直接加到PATH吧
   ```
-
+  
   
