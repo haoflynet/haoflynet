@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-07-14 22:50:30
+updated: 2021-08-06 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -35,6 +35,7 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
   "scripts": {	// 指定了运行脚本命令的npm命令行缩写
     "start": "node index.js",
     "test": "",
+    "deploy": "next build & next export & copyfiles _redirects out/"	// 可以使用copyfiles工具来复制文件，npm install copyfiles --save-dev
   },
   "bin": {	// 用于指定各个内部命令对应的可执行文件的位置
     "someTool": "./bin/someTool.js"	// 当然这也可以直接在scripts里面写成./node_modules/bin/someTool.js

@@ -156,10 +156,34 @@ categories: Javascript
   />
   ```
 
+#### Tooltip 提示
+
+- 遇到一个很奇怪的问题，所有的tooltip都只固定在页面的左上角，而不是元素的上方，结果发现是有程序员给所有div添加了`width: 100%;height:100%`的属性，我去
+
+```react
+<Tooltip
+  leaveDelay={200000}	// 显示时长，调试的时候可以把这个增大
+  placement={"top"}
+  title={	// 自定义弹出框内容
+    <React.Fragment>
+      <Typography color="inherit">Tooltip with HTML</Typography>
+      <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
+      {"It's very engaging. Right?"}
+    </React.Fragment>
+  }
+  >
+  <Button>
+    <Avatar src={avatar} />
+  </Button>
+</Tooltip>
+```
+
 #### Typography 文字
 
 ```react
-<Typography variant="h4" color="inherit" align="center" paragraph>
+<Typography 
+  component="h4" // 使用component能让他直接变成h4元素
+  color="inherit" align="center" paragraph>
   Content
 </Typography>
 ```
@@ -167,4 +191,20 @@ categories: Javascript
 ## 样式
 
 - css-in-js
+
+```react
+const useStyles = makeStyles({
+  root: {
+    color: 'red',
+    '& p': {
+      color: 'green',
+      '& span': {
+        color: 'blue'
+      }
+    }
+  },
+});
+```
+
+
 
