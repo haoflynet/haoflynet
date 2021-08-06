@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-07-20 23:38:00
+updated: 2021-08-06 23:38:00
 categories: js
 ---
 
@@ -21,6 +21,32 @@ next -p 3001	# 指定启动端口
 module.exports = {
   env: {	// 设置环境变量，设置后可以在jsx中直接用{process.env.customKey}获取值，环境变量还能设置在.env中，但似乎必须以NEXT_PUBLIC_开头，且必须重启应用
     customKey: 'my-value',
+  },
+  async rewrites() {	// 设置rewrites规则，但是该规则不适用于导出为纯静态的站点
+    return [{
+        source: '/',
+        source: '/old-blog/:slug',	// 也可以匹配参数
+        source: '/blog/:slug*',	// 也可以模糊匹配
+        source: '/post/:slug(\\d{1,})',	// 正则匹配
+        destination: '/signin',
+        permanent: true, // 重定向是否是permanent
+        has: [{
+          type: 'header',	// 可以匹配header中是否有某个key
+          key: 'x-redirect-me'
+        }, {
+          type: 'query',	// 可以匹配query参数
+          key: 'page',
+          value: 'home'
+        }, {
+          type: 'cookie',	// 匹配cookie
+          key: 'authorized',
+          value: 'true'
+        }, {
+           type: 'header',
+           key: 'x-authorized',
+           value: '(?<authorized>yes|true)', // 可以提取value作为destination的值destination: '/home?authorized=:authorized',
+        }]
+      }]
   }
 }
 ```
