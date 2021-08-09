@@ -5,13 +5,42 @@ categories: frontend
 ---
 
 - **一定要看英文文档，中文文档可能更新不及时**
+- [官方各个模块的JS的API文档](https://firebase.google.com/docs/reference/js)
 
-## Cloud Messaging(Push Notification/APNs)
+## 集成
 
-### [firebase-admin-node](https://github.com/firebase/firebase-admin-node)
+### 前端集成
 
-- 强烈建议在开发时先使用这个包进行测试，因为这个包能够返回非常详细的错误信息，特别是证书没配置对这些信息，而且这个包在使用代理的情况下工作很好，不会像移动端那样，有时候连代理不行，有时候不连代理不行
-- 其中`项目名-firebase-adminsdk-xxxxx.json`来自于`firebase console -> Project settings -> Service accounts -> Firebase Admin SDK -> Generate new private key`
+#### Web端
+
+- 官网在新建web app的时候会给一个example，引入两个script即可。如果是npm进行管理可以直接`npm install --save firebased`
+- 对于私有数据，我们需要创建规则来限制前端的访问，[通过后端生成的令牌来进行验证signInWithCustomToken](https://firebase.google.com/docs/auth/web/custom-auth?hl=zh-cn)
+
+```javascript
+import firebase from "firebase/app";	// 使用时这样引入，这句话必须有
+
+import "firebase/firestore";	// 如果只想使用其中的一个模块，可以import其中某一个。而且要注意这里不要写成firebase/database
+
+const app = firebase.initializeApp({
+  apiKey: '<your-api-key>',
+  authDomain: '<your-auth-domain>',
+  databaseURL: '<your-database-url>',
+  projectId: '<your-cloud-firestore-project>',
+  storageBucket: '<your-storage-bucket>',
+  messagingSenderId: '<your-sender-id>',
+  appId: '<your-app-id>'
+});
+
+const db = app.firestore();
+```
+
+### 后端集成
+
+- 如果前端需要读取私有数据，那么后端需要为前端[创建自定义令牌createCustomToken](https://firebase.google.com/docs/auth/admin/create-custom-tokens?hl=zh-cn)
+
+- 下面的认证文件`项目名-firebase-adminsdk-xxxxx.json`来自于`firebase console -> Project settings -> Service accounts -> Firebase Admin SDK -> Generate new private key`，是所有SDK都需要的
+
+- 后端只需要`npm install --save firebase-admin`即可
 
 ```javascript
 import * as admin from 'firebase-admin'
@@ -22,7 +51,43 @@ admin.initializeApp({
 	credential: admin.credential.cert(path.join(__dirname, '../../项目名-firebase-adminsdk-xxxxxxxx.json'), agent),
       httpAgent: agent
 })
+```
 
+#### PHP集成
+
+- [php firestore 文档](https://googleapis.github.io/google-cloud-php/#/docs/cloud-firestore/v1.19.3/firestore/readme)
+
+- 安装方式(需要ext-grpc扩展)
+
+  ```shell
+  # 如果仅仅使用firestore可以只安装某个组件
+  composer require google/cloud-firestore --with-all-dependencies	# 加这个参数防止guzzlehttp/psr7版本错误
+  
+  # 一次安装所有
+  composer require google/cloud --with-all-dependencies
+  ```
+
+- 使用方式
+
+  ```php
+  # export GOOGLE_APPLICATION_CREDENTIALS=认证文件路径
+  $firestore = new FirestoreClient();
+  $document = $firestore->document('users/123');
+  $document->set([
+    'name' => 'test'
+  ]);
+  ```
+
+## Cloud Messaging(Push Notification/APNs)
+
+### [firebase-admin-node](https://github.com/firebase/firebase-admin-node)
+
+- 强烈建议在开发时先使用这个包进行测试，因为这个包能够返回非常详细的错误信息，特别是证书没配置对这些信息，而且这个包在使用代理的情况下工作很好，不会像移动端那样，有时候连代理不行，有时候不连代理不行
+
+```javascript
+import * as admin from 'firebase-admin'
+
+// 参照上面的后端集成步骤，初始化admin
 const payload = {
   data: {
     foo: 'bar',
@@ -56,6 +121,21 @@ admin.messaging().sendToDevice('registrationToken', payload, { timeToLive: 120})
 - 安卓端需要`google-services.json`文件，ios端需要`GoogleService-Info.plist`文件，都通过`firebase console -> Project settings -> General`中创建`Add app`添加对应平台的APP，然后下载对应文件即可
 
 ## Firestore Database
+
+### 结构设计
+
+- 尽量像GraphQL那样按照前端需要的来设计结构而不是直接把后端的db结构搬上去
+
+- 可以使用嵌套的collection设计，例如，前端需要读取当前用户的notifications列表，可以这样设计:
+
+  ```shell
+  users集合
+  	- username字段
+  	- avatar字段
+  	- notifications集合	# 嵌套集合，这样能够将notifications限制到当前user中去，而不用单独在最外层建一个collection，查询的时候还得多一个条件；另一方面，相比于直接在user里面添加一个array字段，它又能用到collection的一些语法，例如我们监听collection但是不能监听指定的字段，如果是一个子字段每次user中的任何字段变动都得返回所有东西；这样即使前端只监听user，并不会响应其notifications的事件。减少了读写次数且减少了数据里那个，而且好查询一点，前端只需要"users/{id}/notifications"即可。互相不会干扰
+  		- read字段
+  		- time字段
+  ```
 
 ### [读写限制](https://firebase.google.com/docs/firestore/quotas)
 
@@ -107,7 +187,7 @@ service cloud.firestore {
 #### 数据写入
 
 ```javascript
-const doc = firestore.doc('collection_name/doc_id')
+const doc = db.doc('collection_name/doc_id')
 await doc.set({name: 'test'})
 ```
 

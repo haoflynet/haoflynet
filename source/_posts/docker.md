@@ -247,6 +247,7 @@ docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql	#
 apt install libgmp-dev && docker-php-ext-install gmp # 安装gmp/ext-gmp扩展
 docker-php-ext-install pcntl	# 安装pcntl扩展
 docker-php-ext-install bcmath	# 安装bcmath扩展
+pecl install grpc && docker-php-ext-enable grpc # 安装grpc扩展
 ```
 ### 在PHP容器中安装PHP扩展
 
