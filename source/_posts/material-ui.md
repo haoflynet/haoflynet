@@ -1,6 +1,6 @@
 ---
 title: "Material UI 手册"
-date: 2019-09-05 14:40:00
+date: 2021-08-10 08:40:00
 categories: Javascript
 ---
 
@@ -89,6 +89,8 @@ categories: Javascript
   ></Box>
   ```
 
+<!--more-->
+
 #### Container 容器
 
 - 简单的页面主要内容的wapper，自带居中、padding-x和maxWidth等实用的属性
@@ -96,15 +98,32 @@ categories: Javascript
 #### Grid 栅格
 
 - 响应式布局
+- 默认情况flex元素的默认属性值为`min-width: auto`，当子元素设置`white-space: nowrap`的时候会超出元素，这时候可以给容器加上`zeroMinWidth` 属性，即`Grid item xs zeroMinWidth`
 
 ```jsx
 <Grid 
   container	// 加了container就是flex布局
   alignItems={"center"}
-></Grid>
+  direction="row"
+  justifyContent="center"
+  spacing={1}	// item之间的间距=spacing * 8px
+>
+	<Grid item xs={12} sm={6}></Grid>
+  <Grid item xs={12} sm={6}></Grid>
+</Grid>
+
+// 自适应布局，可以让子项平均地利用空间，可以显示设置一个子项的宽度，而使其他项的大小根据其宽度自动进行调整
+<Grid container>
+	<grid item xs></grid>
+  <grid item xs={6}></grid>
+  <grid item xs></grid>
+</Grid>
+<Grid container>
+	<grid item></grid>
+  <grid item xs={12} sm container>	// 子项也可以是container
+  </grid>
+</Grid>
 ```
-
-
 
 ### Navigation 导航栏
 
@@ -164,6 +183,7 @@ categories: Javascript
 <Tooltip
   leaveDelay={200000}	// 显示时长，调试的时候可以把这个增大
   placement={"top"}
+  interactive // 交互式，当鼠标移动到弹出框上时不会因为leaveDelay时间到了而关闭，如果没有它，弹出框将不能被点击，鼠标的点击事件都是下层元素的
   title={	// 自定义弹出框内容
     <React.Fragment>
       <Typography color="inherit">Tooltip with HTML</Typography>
@@ -179,6 +199,8 @@ categories: Javascript
 ```
 
 #### Typography 文字
+
+- fontWeight/fontSize这些都不能直接设置，只能外面套一层Box
 
 ```react
 <Typography 

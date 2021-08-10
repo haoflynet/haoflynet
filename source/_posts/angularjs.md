@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-07-23 08:53:00
+updated: 2021-08-10 08:03:00
 categories: frontend
 ---
 ## 语法
@@ -9,6 +9,9 @@ categories: frontend
 ### 数据绑定
 
 ```java
+// 变量字符串连接
+<img src="https://haofly.net/{{ image.url }}" />
+
 // 动态绑定类
 [ngClass]="{'myClass': selected}"
 [ngClass]="type='xxx' ? 'mt-1' : 'mt-2'"
@@ -145,12 +148,14 @@ Angular1里元素绑定点击事件用`ng-click`，但是Angular2里元素绑定
 
 ## 网络请求
 
-angularjs的网络操作由`HttpClient`服务提供，在4.3.x开始使用`HttpClient`代替`Http`
+- angularjs的网络操作由`HttpClient`服务提供，在4.3.x开始使用`HttpClient`代替`Http`
+- angular的http请求返回的是一个Observable(可观察对象)，在被消费者subscribe(订阅)之前，不会被执行。subscribe函数返回一个subscription对象，里面有一个unsubscribe函数，可以随时拒绝消息的接收
 
 ```javascript
 constructor(private http: HttpClient) {}
 ngOnInit(): void {
   // 必须使用subscribe才会真的去发送请求。每次调用subscribe可以发送一次请求，也就算是说要发送多个请求，直接在最后那subscribe就可以了。
+  
   this.http.get('/').subscribe(data => {
     // Read the result field from the JSON response.
     this.results = data['results'];
@@ -166,6 +171,13 @@ ngOnInit(): void {
   this.http.get(''). {responseType: 'text'}.subscribe(...); // 请求非json数据     
                                                       
   await this.http.get('').toPromise();	// 将网络请求转换为promise就可以用promise的await语法了
+
+	// 如果一个函数需要返回一个Observable对象，但是又根据条件来进行http请求，条件满足直接返回结果可以用of来封装一下
+	if ([condition]) {
+  	return of('result');    
+  } else {
+    return this.http.get('');
+  }
 }
 ```
 
