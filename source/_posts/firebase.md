@@ -1,6 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
+updated: 2021-08-10 07:55:00
 categories: frontend
 ---
 
@@ -21,17 +22,22 @@ import firebase from "firebase/app";	// 使用时这样引入，这句话必须�
 
 import "firebase/firestore";	// 如果只想使用其中的一个模块，可以import其中某一个。而且要注意这里不要写成firebase/database
 
-const app = firebase.initializeApp({
-  apiKey: '<your-api-key>',
-  authDomain: '<your-auth-domain>',
-  databaseURL: '<your-database-url>',
-  projectId: '<your-cloud-firestore-project>',
-  storageBucket: '<your-storage-bucket>',
-  messagingSenderId: '<your-sender-id>',
-  appId: '<your-app-id>'
-});
+// firebase是一个全局的变量，这样可以防止多次初始化出现错误Firebase App named '[DEFAULT]' already exists (app/duplicate-app) [duplicate]
+if (!firebase.apps.length) {
+  firebase.initializeApp({
+    apiKey: '<your-api-key>',
+    authDomain: '<your-auth-domain>',
+    databaseURL: '<your-database-url>',
+    projectId: '<your-cloud-firestore-project>',
+    storageBucket: '<your-storage-bucket>',
+    messagingSenderId: '<your-sender-id>',
+    appId: '<your-app-id>'
+  })
+} else {
+  firebase.app()
+}
 
-const db = app.firestore();
+const db = firebase.firestore();
 ```
 
 ### 后端集成
