@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-07-29 08:48:00
+updated: 2021-08-12 08:48:00
 categories: javascript
 ---
 
@@ -134,6 +134,26 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
 - 然后`cordova prepare`后打开Xcode，在左侧目录`项目名->Resources->Images.xcassets->AppIcon`可以看到我们所有的图标，然后选中整个AppIcon框后，右侧可以勾选对应的平台，选择了后就可以把对应的图片拖到对应尺寸的框里，如果有重复的，可以直接`Cmd + C`进行复制，不能用鼠标复制。需要保证所有的框都装了icon并且没有感叹号
 
+### 异形屏处理
+
+- 现在流行水滴屏、刘海屏、曲面屏、瀑布屏或者其他的异形屏，可能会造成屏幕上下左右出现不规则的区域(或者多出来一块、white bar)
+
+- 我们需要在`App.vue`中添加一个全局的padding使我们的内容全都在中间，目前有四个参数来分别代表上下左右四个地方的安全区域距离边界的距离
+
+  ```javascript
+  // 首先需要修改index.html中的viewport，添加vieport-fit=cover
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
+    
+  // 然后需要将app的样式修改一下，将页面主体限定在安全区域内
+  #app {
+      height:100vh;
+      width:100vw;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  ```
+
+- 如果有`position:absolute; bottom:0`这样的absolute/fixed组件，建议在不同屏幕上看一下，可能需要改为`bottom:env(safe-area-inset-bototm)`，否则可能仍然会跑到异形的地方去(注意背景色的不同)
+
 ## 常用插件推荐
 
 ### [branch-cordova-sdk](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking-attribution)
@@ -141,6 +161,7 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 - deeplink插件
 - [官方集成文档](https://help.branch.io/developers-hub/docs/cordova-phonegap-ionic)
 - 如果配置成功后依然不work，可能需要重新`cordova build ios`一下
+- 默认情况下，在桌面打开分享地址会是发送SMS的页面，可以在branch后台设置里面的Desktop Redirects中修改的，一种是`Branch-hosted SMS Landing Page`(发送SMS，但是这个发送SMS必须发邮件给他们才会给你开通，否则会报错This app is blocked from sending SMS messages)，一种是`Custom Landing Page`
 
 ### [cordova-plugin-console](https://www.npmjs.com/package/cordova-plugin-console)
 

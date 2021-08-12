@@ -1,7 +1,7 @@
 ---
 title: "GraphQL 简介"
 date: 2018-08-13 22:52:39
-updated: 2020-03-10 16:53:00
+updated: 2020-08-12 16:53:00
 categories: python
 ---
 
@@ -109,4 +109,4 @@ query Hero($episode: Episode, $withFriends: Boolean!) {
 
 [GraphQL + Space Cloud 简化你的API设计](https://mp.weixin.qq.com/s/zPW1kZ32usMxt6UFlD7O2Q)
 
- 
+ [Graphql-request](https://github.com/prisma-labs/graphql-request): Nodejs的graphql请求库，但是不推荐，感觉用的人不多而且不大好用，如果要实现timeout还得[这样做](https://github.com/prisma-labs/graphql-request/issues/229)

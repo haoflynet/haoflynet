@@ -1,7 +1,7 @@
 ---
 title: "Js代码格式化工具 - eslint的使用"
 date: 2021-06-30 22:00:00
-updated: 2021-08-05 08:30:00
+updated: 2021-08-12 08:30:00
 categories: frontend
 ---
 
@@ -57,7 +57,7 @@ categories: frontend
 ```json
 {
   "scripts": {
-    "prepare": "./node_modules/.bin/husky install prototype/app/pro/.husky",	// 这样安装以后能够自动安装husky到.git的hook中，如果不是独立项目而是整个项目统一用，那么可以不用这一步
+
     "prepare": "husky install",	// 如果是整个项目统一用，那么只需要这样即可
     "lint-staged": "lint-staged"
   },
@@ -72,9 +72,38 @@ categories: frontend
 }
 ```
 
-4. 执行`npm prepare`会在根目录创建`.husky`文件夹，并将hook应用到当前git仓库中
+4. 如果有多个子目录需要不同的规则可以这样做
 
-5. 添加`pre-commit` hook，执行命令`./node_modules/.bin/husky add .husky/pre-commit "npm run lint-staged" && git add .husky/pre-commit`
+   ```shell
+   # 首先，package.json中的prepare script需要这样改。虽然不同子目录不同的规则，但是.git是一个，所以hook也只能有一个，可以在项目根目录创建和安装.husky
+   "prepare": "./node_modules/.bin/husky install .husky",
+   
+   # 然后，在pre-commit脚本中添加逻辑，进入不同的子目录运行不同的eslint程序
+   #!/bin/sh
+   . "$(dirname "$0")/_/husky.sh"
+   
+   cd frontend
+   echo 'Check frontend code'
+   
+   if [ -f "node_modules/.bin/lint-staged" ]; then
+     ./node_modules/.bin/lint-staged
+   else
+     lint-staged
+   fi
+   
+   cd ../backend
+   echo 'Check Backend code'
+   
+   if [ -f "node_modules/.bin/lint-staged" ]; then
+     ./node_modules/.bin/lint-staged
+   else
+     lint-staged
+   fi
+   ```
+
+5. 执行`npm prepare`会在根目录创建`.husky`文件夹，并将hook应用到当前git仓库中
+
+6. 添加`pre-commit` hook，执行命令`./node_modules/.bin/husky add .husky/pre-commit "npm run lint-staged" && git add .husky/pre-commit`
 
    如果想要修改执行命令可以修改`.husky/pre-commit`例如
 
