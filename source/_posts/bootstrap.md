@@ -19,9 +19,15 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 
 - 需要注意的是border不支持breakpoints
 
-- 设置`border-radius`
-
   ```shell
+  border
+  border-top
+  border-right
+  border-bottom
+  border-left
+  border-bottom-0
+  
+  # border-radius
   rounded
   rounded-top
   rounded-right
@@ -29,7 +35,19 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
   rounded-left
   rounded-circle	# 圆形
   rounded-0	# 没有圆角
+  
+  # border-color
+  border-primary
+  border-secondary
+  border-success
+  border-danger
+  border-warning
+  border-info
+  border-light
+  border-dark
+  border-white
   ```
+
 
 ### Color
 
@@ -76,11 +94,14 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 
 ### Flex
 
-```
-.flex-row
-.flex-row-reverse
-.flex-column
-.flex-column-reverse
+```shell
+d-flex	# flex布局
+
+# 排列方向
+flex-row
+flex-row-reverse
+flex-column
+flex-column-reverse
 .flex-sm-row
 .flex-sm-row-reverse
 .flex-sm-column
@@ -97,6 +118,13 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 .flex-xl-row-reverse
 .flex-xl-column
 .flex-xl-column-reverse
+
+# 内容布局
+justify-content-start
+justify-content-end
+justify-content-center
+justify-content-between
+justify-content-around
 ```
 
 ### Sizing
