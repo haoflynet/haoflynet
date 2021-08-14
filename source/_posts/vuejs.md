@@ -652,12 +652,12 @@ window.addEventListener('error', function(event) { ... })
 
 ## Vuex
 
-- 专为`Vue.js`应用程序开发的状态管理模式，采用集中式存储管理应用的所有组件的状态
+- 专为`Vue.js`应用程序开发的状态管理模式，采用集中式存储管理应用的所有组件的状态v
 - 优点：
   - 解决了多个视图依赖于同一状态，来自不同视图的行为需要变更同一个状态的情况，有了`vuex`则就集中式管理了，否则可能需要再每次切换页面将所有的状态都带上才行
   - 也能实现父子组件的数据共享
   - 与全局变量不同，它的状态存储是响应式的。当Vue组件从store中读取状态的时候，若store中的状态发生变化，那么相应的组件也会相应地更新
-  - 强烈建议使用`vuex-persistedstate `插件将`state` 持久化至localstorage/cookie中，以防刷新页面数据丢失，只需要定义时加入一个plugin即可`new Vuex.Store({plugins: [createPersistedState()]})`
+  - vuex是存在于内存中的，刷新页面会丢失数据。强烈建议使用`vuex-persistedstate `插件将`state` 持久化至localstorage/cookie中，以防刷新页面数据丢失，只需要定义时加入一个plugin即可`new Vuex.Store({plugins: [createPersistedState()]})`
 - 不能直接改变`store`中的状态，改变的唯一途径就是显式地提交(commit) mutation
 - 需要遵守的响应规则:
   - 最好提前在store中初始化好所有所需属性
