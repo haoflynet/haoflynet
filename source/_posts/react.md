@@ -276,18 +276,15 @@ MyComponent.propTypes = {
 }
 ```
 
-
-
 ### React-Redux
 
 - 从后端的角度看，就是一个维护全局变量的东西
-
-- `Action`定义了要发生什么，并且携带着数据，`reducer`用来定义发生该事情后需要做什么，`selector`可以理解是从`state`获取数据的API。
+- `Action`定义了要发生什么，并且携带着数据(可以在`action`里面调用API，将结果进行`dispatch`，类似于vuex中的action将结果进行mutation)，`reducer`用来定义发生该事情后需要做什么(类似于vuex中的mutation)，`selector`可以理解是从`state`获取数据的API。
 - `Redux`可以通过`connect`方法，将`store`的`dispatch`方法保存到组件的`props`中
 - `state`与`props`的对应通常需要使用`mapStateToProps`这个函数进行定义。它默认会订阅`Store`，每当`state`更新的时候，就会自动执行，重新计算UI组件的参数
-- 下面的方法在跟组件外面包了一层`Provider`，这样所有的子组件默认都能拿到`store`了
+- 下面的方法在根组件外面包了一层`Provider`，这样所有的子组件默认都能拿到`store`了
 
-```rearct
+```react
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rerducer from './reducers'
@@ -303,6 +300,39 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+
+// actions
+export function getUser(token: string) {
+  return async (dispatch) => {
+    const { data } = await fetcher.post(...)
+    dispatch({
+      type: 'SET_USER',
+      payload: data.user,
+    });
+  };
+}
+
+// reducer类似于vuex中的mutation
+const reducer: Reducer<AppState, AppActionTypes> = (
+  state = initialState,
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER':
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem('USER_KEY', JSON.stringify(action.payload));
+      }
+      return {
+        ...state,
+        user: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const store = useSelector<State, AppState>((state) => state.app);
+const isAuth = !!store.token && !!store.user && !!store.user.name;
 ```
 - 可以用`connect`将组件与`store`进行连接，它可以接收四个参数: 
   - `mapStateToProps(state, ownProps) : stateProps`，第一个参数就是Redus的`store`，这个方法的返回值就会作为组件的`props`
@@ -360,7 +390,7 @@ ReactDOM.render(
 
 ### Redux-actions
 
-将`redux-actions`和`react-sage`配合使用可以简化大量的重复代码。在之前我们要创建一个`action`需要线这样子定义:
+将`redux-actions`和`react-saga`配合使用可以简化大量的重复代码。在之前我们要创建一个`action`需要线这样子定义:
 
 ```javascript
 // 在使用redux-actions之前，需要这样创建一个action并使用
