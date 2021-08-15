@@ -40,6 +40,8 @@ categories: Javascript
 
   ```react
   <Box 
+    component="span"	// box默认是一个div元素，也可以通过这个属性置顶其为特定的元素
+    
     // Borders边框
     border={1}
     borderRadius={"50%"}	// border-radius
