@@ -230,5 +230,17 @@ const useStyles = makeStyles({
 });
 ```
 
+## 服务端渲染SSR
 
+- `material-ui`通常会与`next.js`配合作为服务端渲染工程
+
+- 当使用`useMediaQuery`去判断屏幕宽度的时候，`mui`会将当前组件渲染两次。第一次什么也不渲染，第二次则会与子组件一起渲染。这个双向渲染有个缺点就是UI会有闪烁。当然，如果不进行服务器端渲染，可以将其`options`参数的`noSSR`设置为`true`
+
+  ```javascript
+  const isWeb = useMediaQuery(theme.breakpoints.up("sm"), {
+    defaultMatches: true,	// 默认值为false，因为在服务器端无法获取服务器宽度，默认会渲染一个空的组件，但是设置为true后当获取不到宽度的时候就会仍然会返回true，默认会返回一个渲染了的页面
+  })
+  ```
+
+- 除了上面会render两次以外，我发现`next.js`的配置中只要有`rewrites`，就会又多渲染一次，无论访问的是不是`rewrites`里面的路由。可以参考`https://github.com/vercel/next.js/discussions/27985`
 

@@ -328,6 +328,10 @@ window.cordova.plugins.SignInWithApple.signin(
 );
 ```
 
+### [cordova-plugin-splashscreen](https://github.com/apache/cordova-plugin-splashscreen)
+
+启动屏配置插件
+
 ## 插件开发Tips
 
 - 我不开发插件，但是很多很小众的插件，经常需要我们修改一下，所以还是需要学习一点插件开发的知识
