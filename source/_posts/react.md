@@ -173,6 +173,8 @@ props.setMyState(true);
 // 传递变量到scss中
 const myStyle = `--bg-url: ${myUrl}`
 <div style={myStyle}></div>	// 可以通过这种方式将变量
+  
+{/ 注释 /}
 ```
 
 ### 代码片段fragments
