@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-08-12 08:48:00
+updated: 2021-08-13 08:48:00
 categories: javascript
 ---
 
@@ -84,6 +84,7 @@ corodva plugin add https://github.com/myproject#branch_name	# 从github安装指
 ## 依赖管理Pod
 
 - 转为iOS工程提供的第三方库的依赖管理工具
+- **如果发现执行这些命令后仍然缺少依赖，可以去看看fetch.json文件里面有没有缺失那个包，如果缺失了尝试删除fetch.json文件再次安装npm包和pod包试试**
 
 ```shell
 sudo sudo	# 安装pod管理工具

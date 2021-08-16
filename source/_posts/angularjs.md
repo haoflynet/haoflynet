@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-08-10 08:03:00
+updated: 2021-08-13 08:03:00
 categories: frontend
 ---
 ## 语法
@@ -257,6 +257,7 @@ describe('test haofly"s function', () =>{
   
   ```
   
-  
-  
-  
+
+## 扩展
+
+- [ngx-emoji-picker](https://www.npmjs.com/package/ngx-emoji-picker): emoji选择扩展
