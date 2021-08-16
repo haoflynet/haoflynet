@@ -1,7 +1,7 @@
 ---
 title: "Xcode / iOS开发手册"
 date: 2018-06-05 21:32:00
-updated: 2018-06-17 09:36
+updated: 2021-08-13 09:36
 categories: Mac
 ---
 
@@ -26,3 +26,5 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
 - **上传archive最后提示Missing private key**
 - **Run on device突然报错Errors were encountered while preparing your device for development. Please check the Devices and Simulators Window.**: 重启手机试试吧
 - **"XXXX" has 2 Apple Distribution certificates but their private keys are not installed. Contact the creator of one of these certificates to get a copy of the private key**: 可能是key过期了，去apple developer重新生成一个证书吧，下载下来安装上，但是得重启一下`xcode`
+- **push app 到appstore一直在processing**: 这个时候确实可以再push一个新版本，可能会更快
+- **ios模拟弱网环境**: 设置->开发者选项-> Network LINK CONDITIONER

@@ -675,7 +675,7 @@ mockFetch = (url) => {
   };
 mockFetch("https://api.github.com/users/haoflynet/repos");
 
-// 可以用Promise实现sleep
+// 可以用Promise实现sleep，模拟超时，模拟延迟
 await new Promise(r => setTimeout(r, 2000));
 
 // 一次性parallel执行多个异步任务
@@ -886,6 +886,13 @@ _.get(object, ['a', '0', 'b', 'c'])
 _.groupBy([6.1, 4.2, 6.3], function (item) {
   return Math.floor(item);
 });
+```
+
+##### _.isEqual
+
+```javascript
+_.isEqual(_.sortBy(a), _.sortBy(b)) // 比较两个数组是否相等(不按顺序)
+_.isEqual(a.sort(), b.sort())	// 同上
 ```
 
 ##### _.isMatchWith

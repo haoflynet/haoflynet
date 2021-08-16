@@ -1,7 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
-updated: 2021-08-10 07:55:00
+updated: 2021-08-13 07:55:00
 categories: frontend
 ---
 
@@ -237,6 +237,17 @@ citiesRef.where("state", "==", "CA").where("population", "<", 1000000)
 citiesRef.orderBy("name").limit(3);
 citiesRef.orderBy("name", "desc").limit(3);
 citiesRef.orderBy("state").orderBy("population", "desc");	// 多个字段排序
+
+// PHP查询单个文档
+$docRef = $db->collection('cities')->document('SF');
+$snapshot = $docRef->snapshot();
+if ($snapshot->exists()) {
+    print_r($snapshot->data());
+}
+// php查询多个文档
+$citiesRef = $db->collection('cities');
+$query = $citiesRef->where('capital', '=', true);
+$docs = $query->documents();
 ```
 
 ##### 侦听实时更新
