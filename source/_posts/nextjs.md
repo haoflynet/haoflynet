@@ -6,6 +6,7 @@ categories: js
 ---
 
 - `React`的`SSR`框架
+- 需要注意的是如果页面中有用js控制的部分(例如条件渲染)，在SSR的时候不会直接渲染成DOM元素，虽然也能导出成静态HTML，但是仍然是前端js来控制的
 
 ## 基础配置
 
@@ -227,4 +228,5 @@ module.exports = {
 
 - **pages with `getServerSideProps` can not be exported.** 需要将`package.json`中的`build`命令中的`next export`去掉，它和`getServerSideProps`不兼容
 - **getServerSideProps不起作用**: 它只能做用于page，不能直接作用于component
+- **rewrites会render两次**: 我也不清楚原因，目前正在论坛上问https://github.com/vercel/next.js/discussions/27985
 

@@ -1,5 +1,9 @@
 ## 组件
 
+### Dialog
+
+- 默认情况`dialog`组件会自动focus第一个可以focus的元素(如果第一个元素在最下面，可能会造成打开就滑动到了最下面的问题)，可以修改其`autoFocus`从参数
+
 ### Selection
 
 ```react

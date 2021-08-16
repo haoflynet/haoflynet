@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-07-22 08:58:00
+updated: 2021-08-13 08:58:00
 categories: php
 ---
 # Laravel指南
@@ -1359,6 +1359,13 @@ php artisan cache:clear
 php artisan route:clear
 php artisan config:clear
 php artisan view:clear
+```
+
+#### 单元测试
+
+```shell
+php artisan make:test OrderTest --unit
+./vender/bin/phpunit tests/unit
 ```
 
 ### 框架扩展/管理者/工厂
