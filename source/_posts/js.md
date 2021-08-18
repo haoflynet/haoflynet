@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-07-23 08:18:00
+updated: 2021-08-17 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -30,6 +30,7 @@ var $a;	// es6以前定义变量，if (true) {var a = 1;} console.log(a); 输出
 let $b;	// es6用于定义跨级作用域本地变量，if (true) {let b = 1;} console.log(b);输出为undefined
 const $c;	// 定义常量
 window.test = 123;	// 声明全局变量
+a = {...b}	// 变量克隆
 ```
 
 <!--more-->

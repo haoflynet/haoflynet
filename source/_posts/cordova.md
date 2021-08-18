@@ -163,6 +163,7 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 - [官方集成文档](https://help.branch.io/developers-hub/docs/cordova-phonegap-ionic)
 - 如果配置成功后依然不work，可能需要重新`cordova build ios`一下
 - 默认情况下，在桌面打开分享地址会是发送SMS的页面，可以在branch后台设置里面的Desktop Redirects中修改的，一种是`Branch-hosted SMS Landing Page`(发送SMS，但是这个发送SMS必须发邮件给他们才会给你开通，否则会报错This app is blocked from sending SMS messages)，一种是`Custom Landing Page`
+- 如果`+clicked_branch_link`一直为`false`，可能是因为该link没有在后端创建，正常情况下，deeplink需要在后端创建，但是如果我们不需要对该link做什么运营相关的事情，可以直接在后台手动创建`Quick Links`右上角直接`Create`一个即可，这样改link打开才会是`+clicked_branch_link=true`
 
 ### [cordova-plugin-console](https://www.npmjs.com/package/cordova-plugin-console)
 
