@@ -149,6 +149,15 @@ justify-content-around
   h-100	# height: 100%
   ```
 
+### Overflow
+
+```shell
+overflow-auto
+overflow-hidden
+overflow-visible
+overflow-scroll
+```
+
 ### Positoin
 
 ```javascript
