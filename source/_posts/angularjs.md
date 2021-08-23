@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-08-13 08:03:00
+updated: 2021-08-18 08:03:00
 categories: frontend
 ---
 ## 语法
@@ -15,6 +15,9 @@ categories: frontend
 // 动态绑定类
 [ngClass]="{'myClass': selected}"
 [ngClass]="type='xxx' ? 'mt-1' : 'mt-2'"
+  
+// 动态绑定样式
+[ngStyle]="{'pointer-events': ok ? 'none' : 'auto'}"
 ```
 
 ### 控制语句

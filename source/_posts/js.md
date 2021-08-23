@@ -963,7 +963,7 @@ _.mapKeys(obj, (item) => item.toString()) // {"1": 1, "2": 2, "3": 3}
 
 ```javascript
 var obj = { 'a': 1, 'b': 2, 'c': 3 };
-_.MapValues(obj, (item) => item.toString()) // {"a": "1", "b": "2", "c": "3"}
+_.MapValues(obj, (value) => item.toString()) // {"a": "1", "b": "2", "c": "3"}
 
 var arr = [1, 2, 3]; // 作用于数组上时，item参数是数组下标
 _.mapKeys(arr, (item) => item.toString()) // {"0": "1", "1": "2", "2": "3"}
@@ -1064,6 +1064,14 @@ compiled({ 'user': 'pebbles' });
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 var compiled = _.template('hello {{ user }}!');
 compiled({ 'user': 'mustache' });
+```
+
+##### _.take
+
+- 取前n个元素组成一个新的数组
+
+```javascript
+_.tak([1, 2, 3], 2) // [1,2]
 ```
 
 ##### _.toPath

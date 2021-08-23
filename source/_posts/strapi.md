@@ -1,9 +1,11 @@
 ---
 title: "Strapi CMS 使用手册"
 date: 2021-07-14 08:30:00
-updated: 2021-07-23 10:53:00
+updated: 2021-08-16 10:53:00
 categories: frontend
 ---
+
+- [Roadmap](https://portal.productboard.com/strapi/1-roadmap/tabs/2-under-consideration): 真的有好多还没开发完成的实用功能
 
 ## 安装与配置
 
@@ -151,6 +153,41 @@ rm -rf .cache && rm -rf build/
    extended_valid_elements: "*[*]",
    non_empty_elements: "td,th,iframe,video,audio,object,script,pre,code,area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,source,wbr,track, svg,defs,pattern,desc,metadata,g,mask,path,line,marker,rect,circle,ellipse,polygon,polyline,linearGradient,radialGradient,stop,image,view,text,textPath,title,tspan,glyph,symbol,switch,use",
    ```
+
+### 实现/集成color picker功能
+
+- 仓库见[Strapi_ColorPicker_Plugin](https://github.com/paulgaumer/Strapi_ColorPicker_Plugin)，他还写了个[文档](https://www.paulgaumer.com/blog/how-to-create-a-color-picker-plugin-for-strapi-cms)
+
+- 由于原本的代码不能直接用，所以这里记录下具体集成步骤:
+
+  1. 将上面仓库代码中的`api/plugins/colorPicker`复制到我们项目的`plugins/`目录下
+
+  2. 修改`plugins/colorpicker/admin/src/components/colorPicker/index.js`的如下代码:
+
+     ```javascript
+     const Title = styled.h5`
+       margin-bottom: 1rem;
+       color: #333740;
+       text-transform: capitalize;	// title增加首字母大写样式
+     `;
+     
+     const updateColorValue = (colorValue) => {
+       props.onChange({ target: { name: props.name, value: colorValue } });	// 名字修改为属性本来的名字，这样用于组件的时候也不会有bug
+     };
+     
+     <Title>{props.name.split('.').slice(-1)[0]}</Title>	// title也用本来的名字，只是首字母大写而已
+     ```
+
+  3. 最重要的，一定要`npm run build`一下
+
+  4. 由于strapi对自定义字段还未支持完成，所以现在新加的字段不会在UI上面显示，如果要将某个字段修改为colorpicker类型，需要手动在components下面的scheme中进行修改:
+
+     ```javascript
+     "color": {
+     	"type": "colorpicker",
+     	"columnType": "string"
+     }
+     ```
 
 ### 实现网页菜单配置
 
