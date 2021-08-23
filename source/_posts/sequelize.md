@@ -174,6 +174,11 @@ const captains = await Captain.bulkCreate([
   { name: 'Jack Sparrow' },
   { name: 'Davy Jones' }
 ]);
+
+await User.findOrCreate({
+  where:{},	// 比较的字段
+  defaults: {}	// 填入的字段
+})
 ```
 
 <!--more-->
@@ -363,6 +368,8 @@ await User.destroy({
 ```
 
 ## Migrate
+
+- **生成数据库千万不要用sync方法，官方都不建议将该方法用于生产环境，因为要改之前的数据表，它只能删除后再重建，非常危险的操作，而且现在没有一个很好的工具从models生成migrations(每个工具都不好用)，所以最好一开始就别用该方法**
 
 ### migrate语法
 

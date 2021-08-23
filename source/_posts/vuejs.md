@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2021-05-22 22:35:00
+updated: 2021-08-17 22:35:00
 categories: js
 ---
 
@@ -479,7 +479,7 @@ export default {
    props: {
      value: {
        type: Number,
-       default: 10
+       default: 10	// 默认值
      },
      changeValue: {
        type: Function,
@@ -658,6 +658,7 @@ window.addEventListener('error', function(event) { ... })
   - 也能实现父子组件的数据共享
   - 与全局变量不同，它的状态存储是响应式的。当Vue组件从store中读取状态的时候，若store中的状态发生变化，那么相应的组件也会相应地更新
   - vuex是存在于内存中的，刷新页面会丢失数据。强烈建议使用`vuex-persistedstate `插件将`state` 持久化至localstorage/cookie中，以防刷新页面数据丢失，只需要定义时加入一个plugin即可`new Vuex.Store({plugins: [createPersistedState()]})`
+  - 从列表到详情页面无需等待接口去重新请求可以直接先拿列表中已经存在的数据渲染，在路由跳转前获取详情数据，但无需等待
 - 不能直接改变`store`中的状态，改变的唯一途径就是显式地提交(commit) mutation
 - 需要遵守的响应规则:
   - 最好提前在store中初始化好所有所需属性
@@ -816,6 +817,10 @@ axios({
 });
 ```
 
+## 过渡动画
+
+- 需要利用`transition`，并且需要写`css`，参考[这里](https://cn.vuejs.org/v2/guide/transitions.html)，这里有[4个Vue路由过渡动效](https://juejin.cn/post/6963205355702583303)
+
 ##  文件上传处理
 
 ```javascript
@@ -848,8 +853,9 @@ onFile (event) {
   - 在给data赋值后只是简单地添加新的属性，没有用this.$set等方法，导致没有新添加的属性没有实现双向绑定，从而导致重新渲染失败。常见现象也有改变一个值，第一次改变页面渲染成功，之后再改变页面不会更新等
 - **页面跳转出错/NavigationDuplicated**: 页面跳转经常出现莫名其妙的错误，所以一般都会把异常直接忽略，例如`router.push('/next').catch(err => {})`
 - **Maximum call stack size exceeded**: 可能是引用组件的名字和当前组件的名字重复了，导致无限去import
-
 - **TypeError: this.getOptions is not a function**: 原因可能是新版本`sass-loader@11.0.0`和`vue@2.6.12`不兼容导致，可以尝试降级`sass-loader`，设置为`"sass-loader": "^10"`
+- **路由切换白屏**: 可能有如下原因:
+  - template中在空变量上获取其属性值导致报错，例如`{ user.name }`，如果`user`的初始值为null，那么如果刚进入页面`user`在赋值前会报错，导致出现短暂的白屏
 
 相关链接
 
