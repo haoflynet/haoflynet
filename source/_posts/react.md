@@ -68,6 +68,19 @@ function Example() {
 }
 ```
 
+### Context API
+
+- 和`Redux`类似，也有一个`Provider`在最外面
+- 还是觉得`Redux`方便好理解一点，而且功能强大一点，`Redux`才是做了一个完整的状态管理功能，`context`主要就是存储一个全局的数据，当然使用了context数据的的UI组件在context数据变化时也会刷新，是整个UI树的更新，用户体验和性能都会有问题
+
+```javascript
+const WebContext: Context<boolean> = createContext<boolean>(true);
+
+<WebContext.Provider value={isWeb}>
+  <ReduxProvider store={store}></ReduxProvider>
+</WebContext.Provider>
+```
+
 ## 路由
 
 - 主要使用的是`React Router`，包括`react-router`，`react-router-dom`，`react-router-native`
@@ -280,8 +293,8 @@ MyComponent.propTypes = {
 
 ### React-Redux
 
-- 从后端的角度看，就是一个维护全局变量的东西
-- `Action`定义了要发生什么，并且携带着数据(可以在`action`里面调用API，将结果进行`dispatch`，类似于vuex中的action将结果进行mutation)，`reducer`用来定义发生该事情后需要做什么(类似于vuex中的mutation)，`selector`可以理解是从`state`获取数据的API。
+- 从后端的角度看，就是一个维护全局变量的东西(也有同一个页面不同组件使用相同的东西，比如当前用户的用户名用户头像啥的)
+- `Action`定义了要发生什么，并且携带着数据(可以在`action`里面调用API，将结果进行`dispatch`，类似于vuex中的`action`将结果进行`mutation`)，`reducer`用来定义发生该事情后需要做什么(类似于vuex中的mutation)，`selector`可以理解是从`state`获取数据的API。
 - `Redux`可以通过`connect`方法，将`store`的`dispatch`方法保存到组件的`props`中
 - `state`与`props`的对应通常需要使用`mapStateToProps`这个函数进行定义。它默认会订阅`Store`，每当`state`更新的时候，就会自动执行，重新计算UI组件的参数
 - 下面的方法在根组件外面包了一层`Provider`，这样所有的子组件默认都能拿到`store`了
@@ -296,6 +309,8 @@ const store = createStore(
   reducer
 );
 
+store.subscribe(subscribe)	// 设置监听函数，一旦State发生变化，就自动执行这个函数
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
@@ -303,10 +318,11 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// actions
+// actions，和vuex中的actions类似
 export function getUser(token: string) {
   return async (dispatch) => {
     const { data } = await fetcher.post(...)
+    // dispatch的调用方法和vuex中的mutation类似
     dispatch({
       type: 'SET_USER',
       payload: data.user,

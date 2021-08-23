@@ -667,6 +667,7 @@ window.addEventListener('error', function(event) { ... })
 - 常见的应该放在vuex中的数据
   - 需要在多个组件中访问的数据
   - 系统配置项，比如应用的外观设置
+  - 用户基本信息，可能在不同的组件如header、content或者bottom都可能同时展示
 - 几种不同的类型
   - Getter
     - 如果要在页面中派生出一个状态通常会用到`computed`，但是如果每个页面都需要同一个状态，就可以在`store`中定义`getter`(可以认为是针对store的计算属性computed)
