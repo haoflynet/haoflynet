@@ -108,7 +108,7 @@ Math.abs(-1);		// 取绝对值
 var a = 100;
 a.toString();	// 数字转字符串
 num.toString(8);	// 把数字转换为指定进制的字符串
-num.toFixed(2);	// 保留两位小数
+num.toFixed(2);	// 保留两位小数，我去会变成字符串
 ```
 ### 字符串
 

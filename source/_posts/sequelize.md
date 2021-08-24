@@ -369,7 +369,7 @@ await User.destroy({
 
 ## Migrate
 
-- **生成数据库千万不要用sync方法，官方都不建议将该方法用于生产环境，因为要改之前的数据表，它只能删除后再重建，非常危险的操作，而且现在没有一个很好的工具从models生成migrations(每个工具都不好用)，所以最好一开始就别用该方法**
+- **生成数据库千万不要用sync方法，官方都不建议将该方法用于生产环境，因为要改之前的数据表，它只能删除后再重建，非常危险的操作，而且现在没有一个很好的工具从models生成migrations(每个工具都不好用)，所以最好一开始就别用该方法。如果用了该也不是很难，把model复制过来，加上createdAt,updatedAt,deletedAt等然后表名换另一个，生成后对比一下就行了，一张表大概5分钟**
 
 ### migrate语法
 
@@ -403,10 +403,18 @@ module.exports = {
         type: INTEGER
       },
       user_name: {
-        type: String
+        type: String	// STRING类型默认长度是255
       }
-      created_at: DATE,
-      updated_at: DATE
+      created_at: {
+        type: DATE,	// DATE就是DATETIME，没有DATETIME类型
+      	allowNull: false,
+        defaultValue: literal('CURRENT_TIMESTAMP')
+      },
+      updated_at: {
+        type: DATE,
+        allowNull: false,
+        defaultValue: literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+      }
     }, {
       uniqueKeys: {
         user_name_unique: {
