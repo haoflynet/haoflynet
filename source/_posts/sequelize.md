@@ -49,7 +49,51 @@ class PostModel extends Model {
     name: {
       type: STRING,
       allowNull: false,
-      defaultValue: 'test'
+      defaultValue: 'test',
+      validate: {	// 数据校验
+        is: /^[a-z]+$/i,	// 满足某个正则
+        is: ["^[a-z]+$",'i'],	// 同上，只是正则用数组来写
+        not: /^[a-z]+$/i,
+        not: ["^[a-z]+$",'i'],
+        isEmail: true,
+        isUrl: true,
+        isIP: true,
+        isIPv4: true,
+        isIPv6: true,
+        isAlpha: true,
+        isAlphanumeric: true,
+        isNumeric: true,
+        isInt: true,
+        isFloat: true,
+        isDecimal: true,
+        isLowercase: true,
+        isUppercase: true,
+        notNull: true,
+        isNull: true,	// 只允许null
+        notEmpty: true,	// 不能是空字符串
+        equals: 'specific value',
+        contains: 'foo',
+        notIn: [['foo', 'bar']],
+        isIn: [['foo', 'bar']],
+        notContains: 'bar',
+        len: [2,10],
+        isUUID: 4,
+        isDate: true,
+        isAfter: "2011-11-05",
+        isBefore: "2011-11-05",
+        max: 23,
+        min: 23,
+        isCreditCard: true,	// 是否是信用卡数字
+        isEven(value) {	// 自定义校验
+          if (parseInt(value) % 2 !== 0) {
+            throw new Error('Only even values are allowed!');
+          }
+        }
+      },
+      isIn: {
+        args: [['en', 'zh']],
+        msg: "Must be English or Chinese"	// 上面的校验方式都能够自定义，但是min和max不知道为啥不行，如果是min或者max就改成用len吧
+      }
     }
   }
 
@@ -99,6 +143,13 @@ const Post = sequelize.define('post', {
   	tableName: 'MyPosts'	// 自定义table name，如果不提供，sequelize会根据模型名称自动以复数形式设置表名
     paranoid: true,	// 定义该表为偏执表，即自带软删除，使用destroy能自动软删除
     deletedAt: 'mydelete', // 偏执表软删除字段默认为deletedAt，这里可以指定自定义的字段名
+  	validate: {	// 基于model的校验，可以同时校验多个字段
+			bothCoordsOrNone() {
+        if ((this.latitude === null) !== (this.longitude === null)) {
+          throw new Error('Either both latitude and longitude, or neither!');
+        }
+      }
+		}
 	}
 );
 
@@ -126,9 +177,51 @@ User.associate = () => {
 Post.User = Post.belongsTo(app.model.Post, { foreignKey: 'post_id', as: 'Post' }),
 Post.PostOwn = User.belongsTo(app.model.Post, {'foreignKey': 'id', as: 'PostOwn'})	// 如果要与当前表自身做join等操作，那么也需要定义一个与自身的关联
 PostModel.belongsTo(UserModel)
+
+// hasOne自动添加的方法
+fooInstance.getBar()
+fooInstance.setBar()
+fooInstance.createBar()
 ```
 
-#### One to Many 一对多
+### One to Many 一对多
+
+```java
+const Foo = sequelize.define('foo', { name: DataTypes.STRING });
+const Bar = sequelize.define('bar', { status: DataTypes.STRING });
+Foo.hasMany(Bar, {
+  scope: {	// 可以通过scope限制某个关联表的字段
+    status: 'open'
+  },
+  as: 'openBars'
+});
+
+// hasMany自动添加的方法
+fooInstance.getBars()
+fooInstance.countBars()
+fooInstance.hasBar()
+fooInstance.hasBars()
+fooInstance.setBars()
+fooInstance.addBar()
+fooInstance.addBars()
+fooInstance.removeBar()
+fooInstance.removeBars()
+fooInstance.createBar()
+  
+// belongsToMany自动添加的方法
+fooInstance.getBars()
+fooInstance.countBars()
+fooInstance.hasBar()
+fooInstance.hasBars()
+fooInstance.setBars()
+fooInstance.addBar()
+fooInstance.addBars()
+fooInstance.removeBar()
+fooInstance.removeBars()
+fooInstance.createBar()
+```
+
+### Many to Many 多对多
 
 ##### 多态多对多
 
@@ -259,10 +352,12 @@ User.findAll({
 
 #### 关联查询
 
+- 如果怎么加条件都不能出现在正确的地方，可以尝试给查询加上`subQuery: false`选项试试，这样不仅`sql`能大量简化，可能也能得到正确的结果
+
  ```javascript
 return Message.findAndCountAll({
 	where: {
-    '$PostOwn.id$': null	// 如果是关联后的where条件需要写在这里
+    '$PostOwn.id$': null	// 如果是关联后的where条件需要写在这里，如果有Unknown column错误，首先检查一下是否正确，不行的话加上subQuery: false选项试试
   },
   order: [ ['created_at', 'desc'] ],	// 排序
   attributes: {

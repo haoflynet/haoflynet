@@ -23,7 +23,14 @@ module.exports = {
   env: {	// 设置环境变量，设置后可以在jsx中直接用{process.env.customKey}获取值，环境变量还能设置在.env中，但似乎必须以NEXT_PUBLIC_开头，且必须重启应用
     customKey: 'my-value',
   },
-  async rewrites() {	// 设置rewrites规则，但是该规则不适用于导出为纯静态的站点
+  async redirects() {	// 设置重定向规则
+    return [{
+      source: '/home',
+      destination: '/',
+      permanent: true	// true表示永久重定向302，false表示暂时的，301
+    }]
+  },
+  async rewrites() {	// 设置rewrites规则，将原来的路径进行重写以此来屏蔽实际的路径，浏览器url不会变化，但是该规则不适用于导出为纯静态的站点，如果是纯静态站点可能需要nginx等来配合
     return [{
         source: '/',
         source: '/old-blog/:slug',	// 也可以匹配参数
