@@ -390,10 +390,10 @@ console.log(xmlHttp.responseText);
 // 异步方式
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.onload = function(e) {
-  
+  console.log(xmlHttp.status, xmlHttp.responseText);	// 这里处理响应结果
 }
 xmlHttp.onreadystatechange = function() {
-    console.log(xmlHttp.responseText);
+  console.log(xmlHttp.readyState)	// 0请求未初始化，1服务器连接已建立，2请求已接受，3请求处理中，4请求已完成，且响应已就绪
 };
 xmlHttp.open("GET", 'https://haofly.net', true);
 xmlHttp.send();
@@ -424,6 +424,7 @@ document.getElementByTagName('p');
 ele.parentElement;	// 获取父元素
 ele.parentNode;		// 获取父节点
 ele.children		// 获取子节点
+ele.closet('td')	// 查找最近的某个
 ele.getElementsByTagName('td');	// 查询子元素
 ele.getElementsByClassName('myclass');	// 查询子元素
 ele.firstElementChild;
@@ -501,6 +502,7 @@ ele.hasAttribute('class');
 ele.removeAttribute('class');
 ele.value;		// 获取元素内容
 ele.style.fontSize // 获取inline样式
+ele.innerText	// 获取元素文字
 getComputedStyle(ele)	// 获取元素的所有的样式，包含了所有的css属性
 getComputedStyle(ele, '::before')	// 获取指定事件的样式
 
@@ -536,7 +538,9 @@ ele.classList.remove('mystyle', 'secondClass');	// 给元素移除类
 ele.classList.toggle("mystle"); // 切换类，如果没有就增加该类，如果有就删除该类
 ele.classList.contains('mystyle');	// 判断当前类是否存在
 ele.classList.item(0);	// 获取第几个类
+ele.style.color = '#fff';	// 直接修改style
 document.getElementById("input").value = "test";	// 设置input元素的内容
+ele.disabled = true;	// 禁用元素，禁用button
 
 // 添加元素
 html('')	// 修改内部的html内容
@@ -578,7 +582,7 @@ $("#<form_id>").trigger("reset"); // jQuery清空表单字段
 // js原生事件
 ele.onchange = function () {};
 ele.onchange = funciton () {};
-ele.addEventListener('click', func () {});
+ele.addEventListener('click', func (e) {});	// 原生click事件，注意这里如果用箭头函数，那么获取当前元素不应该用this而是用e.targetsf
 ele.removeEventListener('change', func () {});
 
 // 页面事件

@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-07-09 08:44:00
+updated: 2021-08-27 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -287,6 +287,8 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 use mysql;
 update user set host = '%' where user ='root';
 flush privileges;
+# 修改MySQL的监听地址，要远程登录，必须监听0.0.0.0才行，vim /etc/my.cnf，在[mysqld]中增加下面配置然后重启即可
+bind-address=0.0.0.0
 
 # 新建用户
 CREATE USER 用户名 IDENTIFIED by '密码';
@@ -345,6 +347,10 @@ select * from information_schema.innodb_trx;	# 查找当前所有的锁
 select curtime();
 select now();
 show variables like "%time_zone%"
+
+# 查看每个数据库所占用空间的大小
+use information_schema;
+SELECT table_schema, SUM(data_length)/1024/1024 FROM tables GROUP BY table_schema;	# 单位是M
 ```
 ### 数据库维护
 
@@ -368,7 +374,7 @@ bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
 sqlite3 db文件 < db.sql	# sqlite导入
 zcat /path/to/test.sql.gz | mysql -uroot -pmysql db_name	# 导入.gz的压缩包
 
-# 忘记密码时候'Access denied for user 'root'@'localhost'的时候，可以用这种方式修改root权限
+# 忘记密码时候'Access denied for user 'root'@'localhost'的时候，可以用这种方式修改root权限，需要先stop之前的实例
 sudo mysqld_safe --skip-grant-tables	# 这条命令能够登录进去，然后可以执行设置密码的操作
 ```
 

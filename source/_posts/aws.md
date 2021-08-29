@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-05-18 08:42:00
+updated: 2021-08-25 08:42:00
 categories: Javascript
 ---
 
@@ -13,13 +13,70 @@ categories: Javascript
 
 - 先选中要删除的实例，Stop，再Terminate，这个时候虽然实例还在，但其实已经删除了，大概等个10分钟左右就没了
 
+### EC2实例升级/修改实例类型
+
+- IP会变更，请注意是否启用弹性IP或者负载均衡器
+
+- 关机，需要接近一分钟
+- `操作->实例设置->更改实例类型`
+
 ### EC2实例扩容
 
-1. 首先先关机`Actions -> Instance State -> Stop`
-2. 进入卷管理: `Elastic Block Store -> Volumes`
-3. 选择需要更改的磁盘: `Modify Volume`，然后输入大小
-4. 重启实例，并进入终端
-5. 使用`df-h`查看当前磁盘容量
+#### 关机扩容
+
+1. 关机扩容很简单，但是IP会变更，请注意是否启用弹性IP或者负载均衡器
+2. 首先关机`Actions -> Instance State -> Stop`
+3. 进入卷管理: `Elastic Block Store -> Volumes`
+4. 选择需要更改的磁盘: `Modify Volume`，然后输入大小
+5. 重启实例，并进入终端
+6. 使用`df -h`查看当前磁盘容量
+
+#### 不关机扩容
+
+1. 在实例详里面找到root volumn，进入volumn详情
+
+2. `Actions -> Modify Volume`，输入扩容后的大小点击确定
+
+3. 进入实例，此时用`df -h`查看依然是原来的大小，使用`lsblk`命令可以查看有新的大小，该命令用于查看是否具有必须扩展的分区，例如:
+
+   ```shell
+   xvda    202:0    0   30G  0 disk
+   └─xvda1 202:1    0   20G  0 part /	# df -h只能看到这个分区
+   ```
+
+4. 执行扩容命令
+
+   ```shell
+   sudo growpart /dev/xvda 1
+   lsblk	# 验证xvda1的大小是否已经变化，不过此时用df -h依然看不出变化
+   
+   sudo resize2fs /dev/xvda1	# 此时用df -h就能看到变化了，扩容过程也完成了
+   ```
+
+### EC2增加磁盘
+
+- 步骤
+
+  1. 创建卷
+
+  2. `操作->连接卷`，默认会挂载到`/dev/sdf`
+
+  3. 进入实例，执行`lsblk`可以看到附加的卷(磁盘)
+
+  4. 新卷默认是没有文件系统的，可以这样确定:
+
+     ```shell
+     sudo file -s /dev/xvdf # 如果输出是/dev/xvdf: data表示没有文件系统
+     sudo mkfs -t xfs /dev/xvdf	# 创建文件系统，如果找不到mkfs命令，可以安装xfsprogs
+     ```
+
+  5. 挂在
+
+     ```shell
+     sudo mkdir /data	# 创建挂载点
+     sudo mount /dev/xvdf /data	# 挂载
+     df -h	# 确认是否挂载成功
+     ```
 
 ### EC2配置Cloudwatch
 
@@ -169,6 +226,7 @@ Block all public access
 - 可以直接在EC2管理页面创建负载均衡器，点击`Load Balancer`即可进行创建，如果需要选择ACM管理的SSL证书，可以直接在第二步选择
 - 需要注意的是，创建后需要将域名的DNS记录指向负载均衡器的DNS名称，这样才能正确到负载均衡器上
 - 负载均衡器的目标组可以只选择80端口，服务器上也可以只开启80端口，只有在负载均衡器的监听器上面需要监听443，转发到目标组就行了
+- 如果是非`Route 53`管理的域名需要指向`elb`需要设置的是CNAME记录
 
 ## API Gateway
 
