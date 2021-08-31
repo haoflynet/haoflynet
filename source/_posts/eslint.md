@@ -57,7 +57,6 @@ categories: frontend
 ```json
 {
   "scripts": {
-
     "prepare": "husky install",	// 如果是整个项目统一用，那么只需要这样即可
     "lint-staged": "lint-staged"
   },
