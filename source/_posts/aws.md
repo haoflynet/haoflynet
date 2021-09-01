@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-08-25 08:42:00
+updated: 2021-09-02 08:42:00
 categories: Javascript
 ---
 
@@ -284,6 +284,17 @@ email: $email
 ## Lambda
 
 - 通过`process.env.MY_ENV`获取环境变量
+
+- 如果需要安装依赖，要么创建`层`，要么就将`node_modules`一起压缩为`.zip`文件然后上传，可以使用`adm-zip`等方式压缩
+
+  ```javascript
+  import AdmZip from 'adm-zip';
+  
+  const zip = new AdmZip();
+  
+  zip.addLocalFolder('./dist');
+  zip.writeZip('./lambda.zip');
+  ```
 
 ## RDS
 

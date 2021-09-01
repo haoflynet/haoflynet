@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-08-31 08:44:00
+updated: 2021-09-01 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -105,6 +105,7 @@ CREATE TABLE IF NOT EXISTS products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREME
 ##### 查询
 
 - 在程序中遇到要拼接`SQL`语句的，可以在条件里面加一个`where 1=1`能有效简化代码
+- 特别注意可以为`NULL`的字段，如果`where field != 'false'`，那么为`NULL`的不会被查询出来，必须加上`or field IS NULL`，注意`In(NULL)`也是不允许的
 
 ```mysql
 # 普通查询
@@ -190,6 +191,11 @@ WHERE id in (1,2,3);
 UPDATE `table`
 LEFT JOIN ... ON ...
 SET ...
+
+# 有子查询的更新操作
+UPDATE `table1` as t1, (SELECT * ...) as t2
+SET t1.`field1` = t2.`field1`
+WHERE t1.`id` = t2.`id`
 ```
 
 ##### 删除
