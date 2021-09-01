@@ -2,6 +2,8 @@
 
 ## MySQL
 
+- [Bitnami管理MySQL文档](https://docs.bitnami.com/aws/infrastructure/mysql/)
+
 - 卸载MySQL
 
   ```shell

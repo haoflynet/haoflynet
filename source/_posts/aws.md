@@ -281,6 +281,10 @@ email: $email
 
 2. 进入我们想配置的EC2绑定的VPC的配置页面选择左侧菜单栏的`Endpoints(终端节点)`，创建一个新的终端节点。服务类别选择AWS服务，服务名称选择API Gateway的执行服务`com.amazonaws.us-west-2.execute-api`，终端节点类型为`Interface`，然后VPC就是我们需要的VPC，子网可以全选，取消选择`Enable DNS name`禁用私有DNS，其他默认。创建完成后需要等几分钟才能生效
 
+## Lambda
+
+- 通过`process.env.MY_ENV`获取环境变量
+
 ## RDS
 
 ### MySQL
@@ -402,6 +406,89 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
 ## 开发
 
 - [ 官方的js sdk](https://www.npmjs.com/package/aws-sdk)
+
+- 权限验证方式
+
+  -  设置环境变量`export AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=xxx`
+  - Lambda，参考下一条tips
+
+- 如果是在aws lambda中运行，可以不需要`access key`和`access id`，只需要在`lambda`的配置中给角色`role`分配权限即可，默认就有一个`CloudWatch`的权限，有一点需要注意的是在`lambda`中需要提前`new instance`然后将函数转换为`promise`的方式，否则函数不会被执行，很奇怪的问题
+
+  ```javascript
+  const AWS = require('aws-sdk');
+  const ec2 = new AWS.EC2({apiVersion: '2016-11-15'});
+  
+  exports.handler = async () => {
+   	const re = await ec2.describeInstances({DryRun: false}).promise();
+  }
+  ```
+
+### APIs
+
+```javascript
+// 获取实例列表
+ec2.describeInstances({
+  InstanceIds: ['xxxx']	// 可传入instance id筛选
+})
+
+// 获取snapshots列表，包含了所有的snapshots，甚至包括公有的，所以这个接口返回相当大，最好加上筛选参数
+ec2.describeSnapshots({
+  OwnerIds: ['xxx'],	// 筛选OwnerId，可以找一个自己的snapshots搭上tag，然后筛选tag来找到OwnerId，因为文档说这里可以设置self，但是我就是不行
+  Filters: [{
+    Name: 'status',
+    Values: ['completed']
+  }, {
+    Name: 'progress',
+    Values: ['100%']
+  }, {
+    Name: 'tag:Name',	// 筛选tag的时候Name=tag:名
+    Values: ['myinstance']
+  }]
+})
+
+// 获取volumes列表
+ec2.describeVolumes({
+  VolumeIds: ['xxx']	// 可以筛选指定id
+})
+
+// 创建卷，创建完成返回的State为creating，等它变成available状态就能用了
+ec2.createVolume({
+  AvailabilityZone: 'us-east-1a', // 可用区
+  SnapshotId: 'xxx',	// 如果是从快照创建卷需要提供这个参数
+  TagSpecifications: [{
+    ResourceType: 'volume',
+    Tags: [{
+      Key: 'Name',	// 设置卷名称
+      Value: 'myCustomName'
+    }]
+  }]
+})
+
+// 连接卷到实例
+ec2.attachVolume({
+  InstanceId: '',
+  VolumeId: '',
+  Device: '/dev/xvdf'	// 这也是必填的，并且必须遵循命名规则https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html
+})
+
+ssm.describeInstanceInformation(params)	// 获取ssm管理的设备列表
+
+// 发送命令到服务器执行
+ssm.sendCommand({
+  DocumentName: 'AWS-RunnShellScript',
+  Parameters: {
+    commands: [	// command应该是并行执行，前一个出错不会影响后面的，所以如果有需要并行的任务最好写成一条用&&连接
+      'systemctl stop mysql && touch /abc'
+    ]
+  }
+})
+
+// 获取sendCommand的执行结果
+ssm.listCommandInvocations({
+  CommandId: 'xxx',
+  Details: true	// 这能返回输出结果
+})
+```
 
 ##### TroubleShooting
 
