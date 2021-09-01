@@ -366,6 +366,7 @@ return Message.findAndCountAll({
     ]
   },
   include: [
+    'user',	// 如果没有其他的条件，可以直接这样做
     {
       association: Post.PostOwn,	// 与自身进行join操作
       on: {	// 可以自定义ON关联，如果不指定则是associate中的默认查询条件

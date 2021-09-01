@@ -1172,6 +1172,14 @@ _.toPath('a[0].b.c') // => ['a', '0', 'b', 'c']
 _.uniq([1, 2, 2]) // 得到[1, 2]
 ```
 
+##### _.uniqBy
+
+- 根据指定方法去重
+
+```javascript
+_.uniqBy([{}, {}], (item) => item.field)
+```
+
 ##### upperFirst
 
 - 首字母大写
