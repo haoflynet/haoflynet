@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-08-31 08:18:00
+updated: 2021-09-01 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -80,7 +80,7 @@ arr.unshift(obj)	// 在数组头添加元素
 arr.shift(obj)		// 去除数组头部元素
 arr.slice(start, end) // 数组分片
 arr.slice(-1)[0] // 获取数组最后一个元素
-arr.sort()	// 自动对数组进行排序(从小到大)，可以提供一个比较函数arr.sort(function (a, b) {return a>b})
+arr.sort()	// 自动对数组进行排序(从小到大)，可以提供一个比较函数arr.sort(function (a, b) {return a > b ? 1 : -1})，特别需要注意的是这里只能返回1,-1和0，不能返回布尔值，否则会有意料之外的结果
 arr instance of Array	// 判断是否是数组
 arr.filter(Boolean)	// 快速移除所有"false"类型(false、null、undefined等)的元素
 
@@ -413,6 +413,8 @@ p.execSync("ls abc");	// 同步方式执行SHELL命令
 ## DOM操作
 
 ### 元素查找
+
+- 一般`getElements**`方法返回的是一个列表，但是不能用`forEach`来遍历，只能用for循环遍历，因为它是一个`HTMLCollection`对象
 
 ```javascript
 // 原生元素选择

@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-08-06 23:38:00
+updated: 2021-09-01 23:38:00
 categories: js
 ---
 
@@ -85,6 +85,10 @@ router.defaultLocale	// 默认的locale
       	__html: `[google analytics tracking code here]`
       }}
     />
+  	<link
+    	href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
+  		rel="stylesheet"
+  	/> // 字体优化，能够在编译阶段就优化字体，这样在打开页面不会因为要获取字体文件而闪一下
   </Head>
   ```
 
