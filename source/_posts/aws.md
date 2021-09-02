@@ -285,7 +285,7 @@ email: $email
 
 - 通过`process.env.MY_ENV`获取环境变量
 
-- 如果需要安装依赖，要么创建`层`，要么就将`node_modules`一起压缩为`.zip`文件然后上传，可以使用`adm-zip`等方式压缩
+- 如果需要安装依赖，要么创建`层`，要么就将`node_modules`一起压缩为`.zip`文件然后上传，可以使用`adm-zip`等方式压缩，但是这样会因为程序包太大而无法使用在线的内联编辑器
 
   ```javascript
   import AdmZip from 'adm-zip';
@@ -295,6 +295,14 @@ email: $email
   zip.addLocalFolder('./dist');
   zip.writeZip('./lambda.zip');
   ```
+
+实例
+
+```javascript
+exports.handler = async (event) => {
+  // 这里的event就是测试时间中的key1 value1这些，相当于一个入参
+}
+```
 
 ## RDS
 
