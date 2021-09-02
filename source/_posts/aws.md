@@ -28,8 +28,7 @@ categories: Javascript
 <!--more-->
 
 - 需要在服务器安装aws CLI工具，不同操作系统安装方式见[Installing, updating, and uninstalling the AWS CLI version 2 on Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
-
-- 还需要编写自定以脚本，脚本如下:
+- 还需要编写自定一个脚本实现自定义的监控，例如服务健康状态检测，脚本如下:
 
 ```shell
 #!/bin/bash
@@ -48,7 +47,8 @@ ssl_expire_day=$(sudo certbot certificates|grep Expiry|awk  '{print $6}')	# 监�
 /usr/local/bin/aws cloudwatch put-metric-data --metric-name ssl_expire_day --dimensions Instance=$INSTANCE  --namespace "Custom" --value $ssl_expire_day
 ```
 
-编写完自定义脚本后添加可执行权限`chmod +x watch.sh`，然后可以手动执行一下看看能不能成功，执行完一次过后cloudwatch后台在创建指标的时候就能选择这些指标了。我们可以定时执行这个脚本:
+- 编写完自定义脚本后添加可执行权限`chmod +x watch.sh`，然后可以手动执行一下看看能不能成功，执行完一次过后cloudwatch后台在创建指标的时候就能选择这些指标了。如果执行过程中提示需要`cloudwatch:putMetricData`权限，那么需要去`AWS IAM`里面去分配`cloudwatch`相关的策略，错误信息里面有指定哪个`IAM`用户
+- 我们可以定时执行这个脚本:
 
 ```shell
 crontab -e
@@ -348,3 +348,9 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
 ##### TroubleShooting
 
 - **InstanceAgent::Plugins::CodeDeployPlugin::CommandPoller: Missing credentials** : 需要重启一下agent: `sudo service codedeploy-agent restart`
+
+
+
+
+
+我的安全凭证，但是只能创建两个访问密钥，lambda函数不需要创建凭据https://docs.aws.amazon.com/zh_cn/sdk-for-javascript/v3/developer-guide/loading-node-credentials-lambda.html
