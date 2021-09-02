@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-05-18 08:42:00
+updated: 2021-09-02 08:42:00
 categories: Javascript
 ---
 
@@ -13,13 +13,70 @@ categories: Javascript
 
 - 先选中要删除的实例，Stop，再Terminate，这个时候虽然实例还在，但其实已经删除了，大概等个10分钟左右就没了
 
+### EC2实例升级/修改实例类型
+
+- IP会变更，请注意是否启用弹性IP或者负载均衡器
+
+- 关机，需要接近一分钟
+- `操作->实例设置->更改实例类型`
+
 ### EC2实例扩容
 
-1. 首先先关机`Actions -> Instance State -> Stop`
-2. 进入卷管理: `Elastic Block Store -> Volumes`
-3. 选择需要更改的磁盘: `Modify Volume`，然后输入大小
-4. 重启实例，并进入终端
-5. 使用`df-h`查看当前磁盘容量
+#### 关机扩容
+
+1. 关机扩容很简单，但是IP会变更，请注意是否启用弹性IP或者负载均衡器
+2. 首先关机`Actions -> Instance State -> Stop`
+3. 进入卷管理: `Elastic Block Store -> Volumes`
+4. 选择需要更改的磁盘: `Modify Volume`，然后输入大小
+5. 重启实例，并进入终端
+6. 使用`df -h`查看当前磁盘容量
+
+#### 不关机扩容
+
+1. 在实例详里面找到root volumn，进入volumn详情
+
+2. `Actions -> Modify Volume`，输入扩容后的大小点击确定
+
+3. 进入实例，此时用`df -h`查看依然是原来的大小，使用`lsblk`命令可以查看有新的大小，该命令用于查看是否具有必须扩展的分区，例如:
+
+   ```shell
+   xvda    202:0    0   30G  0 disk
+   └─xvda1 202:1    0   20G  0 part /	# df -h只能看到这个分区
+   ```
+
+4. 执行扩容命令
+
+   ```shell
+   sudo growpart /dev/xvda 1
+   lsblk	# 验证xvda1的大小是否已经变化，不过此时用df -h依然看不出变化
+   
+   sudo resize2fs /dev/xvda1	# 此时用df -h就能看到变化了，扩容过程也完成了
+   ```
+
+### EC2增加磁盘
+
+- 步骤
+
+  1. 创建卷
+
+  2. `操作->连接卷`，默认会挂载到`/dev/sdf`
+
+  3. 进入实例，执行`lsblk`可以看到附加的卷(磁盘)
+
+  4. 新卷默认是没有文件系统的，可以这样确定:
+
+     ```shell
+     sudo file -s /dev/xvdf # 如果输出是/dev/xvdf: data表示没有文件系统
+     sudo mkfs -t xfs /dev/xvdf	# 创建文件系统，如果找不到mkfs命令，可以安装xfsprogs
+     ```
+
+  5. 挂在
+
+     ```shell
+     sudo mkdir /data	# 创建挂载点
+     sudo mount /dev/xvdf /data	# 挂载
+     df -h	# 确认是否挂载成功
+     ```
 
 ### EC2配置Cloudwatch
 
@@ -169,6 +226,7 @@ Block all public access
 - 可以直接在EC2管理页面创建负载均衡器，点击`Load Balancer`即可进行创建，如果需要选择ACM管理的SSL证书，可以直接在第二步选择
 - 需要注意的是，创建后需要将域名的DNS记录指向负载均衡器的DNS名称，这样才能正确到负载均衡器上
 - 负载均衡器的目标组可以只选择80端口，服务器上也可以只开启80端口，只有在负载均衡器的监听器上面需要监听443，转发到目标组就行了
+- 如果是非`Route 53`管理的域名需要指向`elb`需要设置的是CNAME记录
 
 ## API Gateway
 
@@ -223,6 +281,21 @@ email: $email
 
 2. 进入我们想配置的EC2绑定的VPC的配置页面选择左侧菜单栏的`Endpoints(终端节点)`，创建一个新的终端节点。服务类别选择AWS服务，服务名称选择API Gateway的执行服务`com.amazonaws.us-west-2.execute-api`，终端节点类型为`Interface`，然后VPC就是我们需要的VPC，子网可以全选，取消选择`Enable DNS name`禁用私有DNS，其他默认。创建完成后需要等几分钟才能生效
 
+## Lambda
+
+- 通过`process.env.MY_ENV`获取环境变量
+
+- 如果需要安装依赖，要么创建`层`，要么就将`node_modules`一起压缩为`.zip`文件然后上传，可以使用`adm-zip`等方式压缩
+
+  ```javascript
+  import AdmZip from 'adm-zip';
+  
+  const zip = new AdmZip();
+  
+  zip.addLocalFolder('./dist');
+  zip.writeZip('./lambda.zip');
+  ```
+
 ## RDS
 
 ### MySQL
@@ -237,7 +310,7 @@ email: $email
 - 部署日志位置: `/opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log`
 - `CodeDeply Agent`安装方式见https://docs.aws.amazon.com/zh_cn/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html
 - 服务器上保留的副本的数量设置`/etc/codedeploy-agent/conf/codedeployagent.yml`里面的`max_revisions`，默认是10，服务器总共才8G，保留不了那么多副本
-- `CodeDeploy`拉去的源码和构建后的代码都会自动存储到S3上面去，这些文件可能占用很大的存储，我暂时还不清楚其费用和自动清理的方式，网上有人说用S3的生命周期管理，可是那样不能保证至少保留N个副本
+- `CodeDeploy`拉取的源码和构建后的代码都会自动存储到S3上面去，这些文件可能占用很大的存储，我暂时还不清楚其费用和自动清理的方式，网上有人说用S3的生命周期管理，可是那样不能保证至少保留N个副本
 
 需要在项目根目录添加这些文件
 
@@ -344,6 +417,89 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
 ## 开发
 
 - [ 官方的js sdk](https://www.npmjs.com/package/aws-sdk)
+
+- 权限验证方式
+
+  -  设置环境变量`export AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=xxx`
+  - Lambda，参考下一条tips
+
+- 如果是在aws lambda中运行，可以不需要`access key`和`access id`，只需要在`lambda`的配置中给角色`role`分配权限即可，默认就有一个`CloudWatch`的权限，有一点需要注意的是在`lambda`中需要提前`new instance`然后将函数转换为`promise`的方式，否则函数不会被执行，很奇怪的问题
+
+  ```javascript
+  const AWS = require('aws-sdk');
+  const ec2 = new AWS.EC2({apiVersion: '2016-11-15'});
+  
+  exports.handler = async () => {
+   	const re = await ec2.describeInstances({DryRun: false}).promise();
+  }
+  ```
+
+### APIs
+
+```javascript
+// 获取实例列表
+ec2.describeInstances({
+  InstanceIds: ['xxxx']	// 可传入instance id筛选
+})
+
+// 获取snapshots列表，包含了所有的snapshots，甚至包括公有的，所以这个接口返回相当大，最好加上筛选参数
+ec2.describeSnapshots({
+  OwnerIds: ['xxx'],	// 筛选OwnerId，可以找一个自己的snapshots搭上tag，然后筛选tag来找到OwnerId，因为文档说这里可以设置self，但是我就是不行
+  Filters: [{
+    Name: 'status',
+    Values: ['completed']
+  }, {
+    Name: 'progress',
+    Values: ['100%']
+  }, {
+    Name: 'tag:Name',	// 筛选tag的时候Name=tag:名
+    Values: ['myinstance']
+  }]
+})
+
+// 获取volumes列表
+ec2.describeVolumes({
+  VolumeIds: ['xxx']	// 可以筛选指定id
+})
+
+// 创建卷，创建完成返回的State为creating，等它变成available状态就能用了
+ec2.createVolume({
+  AvailabilityZone: 'us-east-1a', // 可用区
+  SnapshotId: 'xxx',	// 如果是从快照创建卷需要提供这个参数
+  TagSpecifications: [{
+    ResourceType: 'volume',
+    Tags: [{
+      Key: 'Name',	// 设置卷名称
+      Value: 'myCustomName'
+    }]
+  }]
+})
+
+// 连接卷到实例
+ec2.attachVolume({
+  InstanceId: '',
+  VolumeId: '',
+  Device: '/dev/xvdf'	// 这也是必填的，并且必须遵循命名规则https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html
+})
+
+ssm.describeInstanceInformation(params)	// 获取ssm管理的设备列表
+
+// 发送命令到服务器执行
+ssm.sendCommand({
+  DocumentName: 'AWS-RunnShellScript',
+  Parameters: {
+    commands: [	// command应该是并行执行，前一个出错不会影响后面的，所以如果有需要并行的任务最好写成一条用&&连接
+      'systemctl stop mysql && touch /abc'
+    ]
+  }
+})
+
+// 获取sendCommand的执行结果
+ssm.listCommandInvocations({
+  CommandId: 'xxx',
+  Details: true	// 这能返回输出结果
+})
+```
 
 ##### TroubleShooting
 

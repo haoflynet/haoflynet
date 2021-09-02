@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-08-06 22:50:30
+updated: 2021-08-25 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -89,6 +89,29 @@ class Rectangle {
   }
 }
 ```
+
+### ECSMAScript/es6
+
+- `export`和`import`是`es6`之后才支持的
+
+- es的重要版本
+
+  ```shell
+  ES6 ES2015 # 2015年6月发布, 之后每年6月出一个新版本
+  ES7 ES2016
+  ES8 ES2017
+  ES9 ES2018
+  ES10 ES2019
+  ES11 ES2020
+  ```
+
+- 一些比较使用的新的语法
+
+  ```javascript
+  // 解构赋值
+  const [a, b, c] = [value1, value2, value3]
+  const {name, age} = obj
+  ```
 
 ## 常用命令
 

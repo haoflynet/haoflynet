@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-06-02 17:03:30
+updated: 2021-08-30 17:03:30
 categories: system
 ---
 # Linux手册
@@ -248,8 +248,13 @@ file 文件名	# 查看文件基本类型
 stat 文件名	# 查看文件的属性，例如最近访问时间、最近更改时间、最近改动时间等
 
 # 建立链接，最好都用绝对路径
+## 软连接，就是快捷方式
 软连接：ln -s 源 目的地
-软连接可以给目录创建，如果删除了对源文件不会有影响
+软连接可以给目录创建
+对源文件修改能影响目的文件，目的文件的修改也会影响源文件
+如果删除了目的地文件对源文件不会有影响，但是如果删除源文件，两边都会删除
+如果是目录，那么删除了目的地的一个子文件，这边也会删除的
+## 硬连接
 硬连接：ln -d 源 目的地
 硬连接不能给目录创建，对连接做的更改会影响源文件，只能在同一文件系统中创建
 为了弥补软硬连接的不足，可以使用mount --bind命令进行挂载
@@ -394,6 +399,7 @@ sudo mkfs -t ext4 /dev/sdb   # 将硬盘格式化为ext4文件系统
 sudo df -lh   # 显示硬盘挂载情况
 sudo mount -t ext4 /dev/sdb /mydata  # 挂载某个分区文件为ext4
 sudo mount -t tmpfs -o size=12m tmpfs storage/framework/cache	# tmpfs允许将文件作为一个目录存储在RAM中，这样既能用文件保存，又能因为是内存中得到性能的提升
+sudo umount /dev/sdb	# 卸载磁盘
 
 # vim /etc/fstab中添加，特别注意，修改完该文件后需要执行mount -a测试一下语法是否有错误，以免无法启动
 UUID=硬盘的UUID  /挂载位置   ext4 defaults 0  0   # 在系统启动时自动挂载硬盘blkid /dev/sda1  查看硬盘UUID用sudo blkid
@@ -1269,9 +1275,16 @@ date+\%Y-\%m-\%d   # 获取今天的日期
 
   ```shell
   mount	# 查看当前挂载了哪些磁盘，找到只读盘，例如/dev/sda1
-  unmount /dev/sda1
+  umount /dev/sda1
   mount /dev/sda1 /boot
   remouont -o rw,remount /boot
+  ```
+
+- **卸载磁盘`umount target is busy`**: 可以这样来卸载busy中的磁盘
+
+  ```shel
+  umount -l /dev/sda1
+  umount -f /dev/sda1
   ```
 
   

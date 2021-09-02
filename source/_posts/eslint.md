@@ -1,7 +1,7 @@
 ---
 title: "Js代码格式化工具 - eslint的使用"
 date: 2021-06-30 22:00:00
-updated: 2021-08-12 08:30:00
+updated: 2021-08-24 08:30:00
 categories: frontend
 ---
 
@@ -57,7 +57,6 @@ categories: frontend
 ```json
 {
   "scripts": {
-
     "prepare": "husky install",	// 如果是整个项目统一用，那么只需要这样即可
     "lint-staged": "lint-staged"
   },
@@ -248,4 +247,4 @@ cordova.plugins...
   export PATH="/Users/haofly/.nvm/versions/node/v15.3.0/bin:$PATH"	# 上面的配置还是不行那直接加到PATH吧
   ```
   
-  
+- **`No files matching the pattern "" were found`**: 找不到符合条件的文件就找不到嘛，非要抱个错出来，可以给`eslint`命令加上`--no-error-on-unmatched-pattern`
