@@ -143,4 +143,6 @@ categories: Javascript
 | 4         | The M3U8 playlist file is generated. M3U8文件生成            | 可以在这时候获取到`m3u8`文件的文件名                         |
 | 11        | The cloud recording service has ended its tasks and exited. 云端录制退出 | 退出的时候可以尝试从`m3u8`文件中解析出云端录制的总时长       |
 | 33        | 录制文件上传到第三方云存储的进度                             | 个人感觉没多大用，每个分片都会进行上传并回调，再加上retry，这个事件相当多 |
+| 42        | 同步录制文件信息                                             |                                                              |
+| 43        | 音频流状态变化                                               |                                                              |
 

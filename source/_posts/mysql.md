@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-07-09 08:44:00
+updated: 2021-09-01 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -105,6 +105,7 @@ CREATE TABLE IF NOT EXISTS products(id INTEGER NOT NULL PRIMARY KEY AUTO_INCREME
 ##### 查询
 
 - 在程序中遇到要拼接`SQL`语句的，可以在条件里面加一个`where 1=1`能有效简化代码
+- 特别注意可以为`NULL`的字段，如果`where field != 'false'`，那么为`NULL`的不会被查询出来，必须加上`or field IS NULL`，注意`In(NULL)`也是不允许的
 
 ```mysql
 # 普通查询
@@ -190,6 +191,11 @@ WHERE id in (1,2,3);
 UPDATE `table`
 LEFT JOIN ... ON ...
 SET ...
+
+# 有子查询的更新操作
+UPDATE `table1` as t1, (SELECT * ...) as t2
+SET t1.`field1` = t2.`field1`
+WHERE t1.`id` = t2.`id`
 ```
 
 ##### 删除
@@ -287,6 +293,8 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 use mysql;
 update user set host = '%' where user ='root';
 flush privileges;
+# 修改MySQL的监听地址，要远程登录，必须监听0.0.0.0才行，vim /etc/my.cnf，在[mysqld]中增加下面配置然后重启即可
+bind-address=0.0.0.0
 
 # 新建用户
 CREATE USER 用户名 IDENTIFIED by '密码';
@@ -345,6 +353,10 @@ select * from information_schema.innodb_trx;	# 查找当前所有的锁
 select curtime();
 select now();
 show variables like "%time_zone%"
+
+# 查看每个数据库所占用空间的大小
+use information_schema;
+SELECT table_schema, SUM(data_length)/1024/1024 FROM tables GROUP BY table_schema;	# 单位是M
 ```
 ### 数据库维护
 
@@ -368,7 +380,7 @@ bunzip2 < db_filename.sql.bz2 | mysql -uroot -pmysql db_name
 sqlite3 db文件 < db.sql	# sqlite导入
 zcat /path/to/test.sql.gz | mysql -uroot -pmysql db_name	# 导入.gz的压缩包
 
-# 忘记密码时候'Access denied for user 'root'@'localhost'的时候，可以用这种方式修改root权限
+# 忘记密码时候'Access denied for user 'root'@'localhost'的时候，可以用这种方式修改root权限，需要先stop之前的实例
 sudo mysqld_safe --skip-grant-tables	# 这条命令能够登录进去，然后可以执行设置密码的操作
 ```
 
@@ -618,6 +630,8 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
       AS JSON
     );
   ```
+
+- **Different lower_case_table_names settings for server ('0') and data dictionary ('1')**: 这是因为Mysql8开始新增了`data dictionary`的概念，数据初始化时会使用`lower-case-table-names=0`，数据库启动时则会读取`my.cnf`文件中的值，如果两者不一致就会报错，这时候可以直接修改`my.cnf`中的`[mysqld]`下添加`lower_case_table_names = 1`
 
 ##### 扩展阅读
 

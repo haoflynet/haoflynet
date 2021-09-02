@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-08-17 08:18:00
+updated: 2021-09-01 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -31,6 +31,8 @@ let $b;	// es6用于定义跨级作用域本地变量，if (true) {let b = 1;} c
 const $c;	// 定义常量
 window.test = 123;	// 声明全局变量
 a = {...b}	// 变量克隆
+
+const [a, ...b]	= [1, 2, 3, 4]	// a=1, b=4	解构赋值
 ```
 
 <!--more-->
@@ -61,6 +63,9 @@ Array.from(['abc', 'def']) // 会得到['abc', 'def']
 Array.from([1, 2], x => x+ x) // 会得到[2, 4]
 Array.from({length:10},(item, index)=> index+1)	// 快速生成指定长度的数组
 let myArr: number[] = []	// typescript中定义一个number数组
+arr = [...arr1]	// 克隆/复制数组
+arr = [...arr1, arr2]	// 合并数组
+arr = [...'hello']	// 把字符串作为数组
 
 arrA.concat(arrB)			// 合并两个数组
 arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1
@@ -69,12 +74,13 @@ JSON.stringify(Array)		// 将数组转换为JSON格式的字符串
 arr.toString(): 数组转字符串，中间会自动加上逗号
 arr.join(''): 数组转字符串，分隔符可自定义
 arr.push(obj)		// 在数组尾部添加元素
+arr.push(...arr2)	// 合并两个数组，追加到数组尾部
 arr.pop(obj)		// 去除数组尾部元素
 arr.unshift(obj)	// 在数组头添加元素
 arr.shift(obj)		// 去除数组头部元素
 arr.slice(start, end) // 数组分片
 arr.slice(-1)[0] // 获取数组最后一个元素
-arr.sort()	// 自动对数组进行排序(从小到大)，可以提供一个比较函数arr.sort(function (a, b) {return a>b})
+arr.sort()	// 自动对数组进行排序(从小到大)，可以提供一个比较函数arr.sort(function (a, b) {return a > b ? 1 : -1})，特别需要注意的是这里只能返回1,-1和0，不能返回布尔值，否则会有意料之外的结果
 arr instance of Array	// 判断是否是数组
 arr.filter(Boolean)	// 快速移除所有"false"类型(false、null、undefined等)的元素
 
@@ -104,11 +110,13 @@ Math.floor(0.2);	// 向下取整
 Math.floor(0.2);	// 四舍五入
 Math.ceil(0.2);		// 向上取整
 Math.abs(-1);		// 取绝对值
+Math.trunc()	// 去掉小数部分
+Math.sign（）	// 判断一个数字是正数、负数还是0
 
 var a = 100;
 a.toString();	// 数字转字符串
 num.toString(8);	// 把数字转换为指定进制的字符串
-num.toFixed(2);	// 保留两位小数
+num.toFixed(2);	// 保留两位小数，我去会变成字符串
 ```
 ### 字符串
 
@@ -124,6 +132,7 @@ a.toUpperCase() === b.toUpperCase()	// 验证字符串是否相等大小写不�
 str.match(/<title>(.*?)<\/title>/)	// 正则提取
 str.match(/<title>(.*?)<\/title>/g)	// 全局搜索，不加g默认只取找到的第一个嘛，但是global不支持分组，会把前后的都给返回到结果中去。这种情况，要么匹配后，循环对结果进行前后去除；要么用exec对先行获取每一个结果的match[1]
 str.match(/<title>(<abc>.*?)<\/title>/)	// 正则提取，带命名组的正则提取
+str.matchAll()	// 直接全局搜索，ES2019+
 
 // 去除空格，需要注意的是js的replace如果不用正则/g，则默认只会替换第一个匹配
 str.replace(/\s+/g, "")    		// 去除所有的空格
@@ -141,6 +150,7 @@ str.replace('/abc(.*?)def/', function (a, b) {	// 分组正则替换
 str.replace(/_(.*?)_/g, "<div>$1</div>")	// 或者直接这样分组正则替换
 str.indexOf(substring)	// 查找子字符串出现的位置，-1表示没找到
 str.includes(substring)	// 查看是否存在某个子字符串
+str.repeat(n)	// 将字符串重复n次
 string.slice(start, end);	// 字符串分片
 str.split('#')	// 字符串分割，返回分割后的列表
 str.split(/\s+/) // 也可以用正则分割
@@ -154,11 +164,13 @@ parseFloat(num) // 字符串转浮点数
 btoa(str);	// 字符串转换为base64
 atob(str);	// base64转换为字符串
 
+str.padStart(3, '0')	// 在字符串前面补0,ES8
+str.padEnd(3, '0')	// 在字符串后面补0,ES8
+
 a = encodeURI(uri);	// 会自动识别url中需要编码的地方
 b = decodeURI(uri); // url解码
 a = encodeURIComponent(uri);	// url编码，会对整个字符串编码，比如http://也会被编码
 b = decodeURIComponent(uri);	// url解码
-
 
 // 字符串格式化
 `我是${name}`;
@@ -211,16 +223,21 @@ dayjs('2018-10-1').isBefore('2018-1-1')	// 日期比较
 
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
 moment('2020-04-29 00:00:00');	// 直接解析，需要注意的是它不能解析时间只有一位的情况，例如'2020-04-29 0:0:0'
+moment('20200429', 'YYYYMMDD')	// 解析非标准格式的时间需要指定格式
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
 moment(new Date()).subtract(2, 'hours');	// 时间相加减
-moment().day()	// 当前日期是一周的第几天(0-6)
-moment().days()	// 同上
+moment().day()	// 当前日期是一周的第几天(0-6)，星期天是0，星期六是6
+moment().weekday()	// 获取当前是星期几
+moment().day(10)	// 如果指定的数字超过6，则会冒泡到其他星期
+moment().days()	// 星期几0-6
+moment().iosWeekday()	// 1-7分别代表星期一到星期天
 moment().daysInMonth()	// 获取当前月的天数
-moment().date()	// 获取当天是几号
+moment().date()	// 获取当天是几号1-31
 moment().date(30)	// 设置当前是几号
 moment().month() + 1 // 获取当前月份
 moment().year()	// 获取当前年
+moment().dayOfYear()	// 1-366
 moment().isSame('2021-04-17', 'day');	// 检查制定日期是不是今天
 moment().isSameOrBefore();
 moment().format(); // "2014-09-08T08:02:17-05:00"
@@ -236,6 +253,8 @@ moment().diff(moment[], 'days')	// 比较两个日期的间隔，第二个参数
 moment().unix()	// 获取时间戳
 moment.max(moment[]); // 获取多个时间里面最大的时间
 moment.min(monent[]);	// 获取多个时间里面最小的时间
+moment().startOf('weeks')	// 获取一天的开始时间，获取一周的开始时间，获取一个月的开始时间，获取一个季度的开始时间
+moment().endOf('weeks') // 获取一天的结束时间，获取一周的结束时间，获取一个月的结束时间，获取一个季度的结束时间
 ```
 
 #### URL Params处理
@@ -258,6 +277,35 @@ builder.toString()	// 生成URL查询字符串
 // 不定参数，会把needles当作一个数组，没有值也是空数组
 function containsAll(haystack, ...needles) {
 	console.log(haystack, needles);
+}
+
+function fn() {
+  console.log(arguments)	// 获取参数
+}
+
+// 箭头函数
+const fn = function () {}
+const fn = () => {}
+const fn = name => {}	// 如果只有一个参数可以这样简写
+const fn = num => num * num	// 如果只有一个返回语句可以这样简写
+const fn = name => ({name})	// 如果返回的是一个对象可以这样简写
+```
+
+### 类
+
+```javascript
+class Person {
+  name = 'test';
+
+	// getter方法
+	get fullName () {
+    return this.name
+  }
+
+	// setter方法
+	set fullName (name) {
+    this.name = name
+  }
 }
 ```
 
@@ -342,10 +390,10 @@ console.log(xmlHttp.responseText);
 // 异步方式
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.onload = function(e) {
-  
+  console.log(xmlHttp.status, xmlHttp.responseText);	// 这里处理响应结果
 }
 xmlHttp.onreadystatechange = function() {
-    console.log(xmlHttp.responseText);
+  console.log(xmlHttp.readyState)	// 0请求未初始化，1服务器连接已建立，2请求已接受，3请求处理中，4请求已完成，且响应已就绪
 };
 xmlHttp.open("GET", 'https://haofly.net', true);
 xmlHttp.send();
@@ -366,6 +414,8 @@ p.execSync("ls abc");	// 同步方式执行SHELL命令
 
 ### 元素查找
 
+- 一般`getElements**`方法返回的是一个列表，但是不能用`forEach`来遍历，只能用for循环遍历，因为它是一个`HTMLCollection`对象
+
 ```javascript
 // 原生元素选择
 document.querySelector(".myclass");	// 也可以用jQuery的选择起
@@ -376,6 +426,7 @@ document.getElementByTagName('p');
 ele.parentElement;	// 获取父元素
 ele.parentNode;		// 获取父节点
 ele.children		// 获取子节点
+ele.closet('td')	// 查找最近的某个
 ele.getElementsByTagName('td');	// 查询子元素
 ele.getElementsByClassName('myclass');	// 查询子元素
 ele.firstElementChild;
@@ -453,6 +504,7 @@ ele.hasAttribute('class');
 ele.removeAttribute('class');
 ele.value;		// 获取元素内容
 ele.style.fontSize // 获取inline样式
+ele.innerText	// 获取元素文字
 getComputedStyle(ele)	// 获取元素的所有的样式，包含了所有的css属性
 getComputedStyle(ele, '::before')	// 获取指定事件的样式
 
@@ -488,7 +540,9 @@ ele.classList.remove('mystyle', 'secondClass');	// 给元素移除类
 ele.classList.toggle("mystle"); // 切换类，如果没有就增加该类，如果有就删除该类
 ele.classList.contains('mystyle');	// 判断当前类是否存在
 ele.classList.item(0);	// 获取第几个类
+ele.style.color = '#fff';	// 直接修改style
 document.getElementById("input").value = "test";	// 设置input元素的内容
+ele.disabled = true;	// 禁用元素，禁用button
 
 // 添加元素
 html('')	// 修改内部的html内容
@@ -530,7 +584,7 @@ $("#<form_id>").trigger("reset"); // jQuery清空表单字段
 // js原生事件
 ele.onchange = function () {};
 ele.onchange = funciton () {};
-ele.addEventListener('click', func () {});
+ele.addEventListener('click', func (e) {});	// 原生click事件，注意这里如果用箭头函数，那么获取当前元素不应该用this而是用e.targetsf
 ele.removeEventListener('change', func () {});
 
 // 页面事件
@@ -606,7 +660,10 @@ var getUrlParameter = function getUrlParameter(sParam) {
 getUrlParameter('page')
 
 // ready()方法
-$(document).ready(function);	// 当DOM已经加载，并且页面已经完全呈现时，会发生ready事件。
+$(document).ready(function);	// 当DOM已经加载，并且页面已经完全呈现时，会发生ready事件
+(function() {
+  // 原生的ready方法
+})();
 ```
 ### 特殊函数
 
@@ -786,6 +843,12 @@ arr.push(6)
 a.value()	// 得到56
 ```
 
+##### _.countBy
+
+```javascript
+_.countBy([6.1, 4.2, 6.3], Math.floor)	// {'4': 1, '6': 2}
+```
+
 ##### _.chunk
 
 - 对数组按指定数量分片
@@ -844,6 +907,16 @@ _.flatMap([1, 2], duplicate);
 
 - 类似于`flatMap`，但是它会递归将值中的数组全部展开
 
+##### _.floor(number, [precision=0])
+
+- 四舍五入，可以指定保留几位小数，且小数位不足时不会补0，比toFixed好用
+
+```javascript
+_.floor(4.006) // 4
+_.floor(0.046, 2) // 0.04
+_.floor(4) // 4
+```
+
 ##### forEach
 
 对数组中每一个值运用函数，但是无需返回值，只是单纯的遍历
@@ -867,7 +940,7 @@ _.forIn(new Foo, function(value, key) {
 
 ##### _.get
 
-- 获取对象内部的属性值
+- 获取对象内部的属性值，一个非常非常实用的方法
 
 ```javascript
 _get(user, 'name', 'defaultvalue')
@@ -887,6 +960,14 @@ _.get(object, ['a', '0', 'b', 'c'])
 _.groupBy([6.1, 4.2, 6.3], function (item) {
   return Math.floor(item);
 });
+```
+
+##### _.intersection
+
+- 计算几个数组的交集
+
+```javascript
+_.intersection([2, 1], [4, 2], [1, 2])	// [2]
 ```
 
 ##### _.isEqual
@@ -963,7 +1044,7 @@ _.mapKeys(obj, (item) => item.toString()) // {"1": 1, "2": 2, "3": 3}
 
 ```javascript
 var obj = { 'a': 1, 'b': 2, 'c': 3 };
-_.MapValues(obj, (item) => item.toString()) // {"a": "1", "b": "2", "c": "3"}
+_.MapValues(obj, (value) => item.toString()) // {"a": "1", "b": "2", "c": "3"}
 
 var arr = [1, 2, 3]; // 作用于数组上时，item参数是数组下标
 _.mapKeys(arr, (item) => item.toString()) // {"0": "1", "1": "2", "2": "3"}
@@ -1066,6 +1147,14 @@ var compiled = _.template('hello {{ user }}!');
 compiled({ 'user': 'mustache' });
 ```
 
+##### _.take
+
+- 取前n个元素组成一个新的数组
+
+```javascript
+_.tak([1, 2, 3], 2) // [1,2]
+```
+
 ##### _.toPath
 
 转化value为属性路径的数组
@@ -1081,6 +1170,14 @@ _.toPath('a[0].b.c') // => ['a', '0', 'b', 'c']
 
 ```javascript
 _.uniq([1, 2, 2]) // 得到[1, 2]
+```
+
+##### _.uniqBy
+
+- 根据指定方法去重
+
+```javascript
+_.uniqBy([{}, {}], (item) => item.field)
 ```
 
 ##### upperFirst

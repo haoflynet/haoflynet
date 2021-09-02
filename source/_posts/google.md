@@ -1,12 +1,17 @@
 ---
 title: "Google Cloud 相关服务"
 date: 2021-07-23 07:52:39
+updated: 2021-09-01 08:40:00
 categories: frontend
 ---
 
 ## Cloud Function
 
 - 最大超时时间只能设置为540s=9min，实在不行可以用`Cloud Tasks` 队列，或者在时间快完的时候直接再调用一下url参数组织一下
+
+```javascript
+req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['fastly-client-ip']	// 可以通过这种方式获取客户端IP地址
+```
 
 ## Cloud Tasks
 

@@ -429,3 +429,15 @@ fi
 
 - **强制push(git push -f)报错: remote: error: denying non-fast-forward**：这是因为远端没有开启`force push`权限，这时候只能去仓库托管方修改权限了，github应该是默认开启的，但是assembla没有
 
+- **使用sourcetree等工具的时候Can't find node in PATH, trying to find a node binary on your system**: 
+
+  ```shell
+  # vim ~/.huskyrc，这个文件就是用于加载这些环境变量的，注意这是home目录不是项目目录
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  
+  export PATH="/Users/haofly/.nvm/versions/node/v15.3.0/bin:$PATH"	# 上面的配置还是不行那直接加到PATH吧
+  ```
+
+  
+
