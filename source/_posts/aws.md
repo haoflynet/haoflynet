@@ -85,6 +85,7 @@ categories: Javascript
 <!--more-->
 
 - 需要在服务器安装aws CLI工具，不同操作系统安装方式见[Installing, updating, and uninstalling the AWS CLI version 2 on Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
+- 对于服务的监控，ELB自带了监控指标的，不需要使用下面脚本中的`http_status_code`，可以在创建监控的时候搜索`5xx`即可看到
 - 还需要编写自定一个脚本实现自定义的监控，例如服务健康状态检测，脚本如下:
 
 ```shell
@@ -93,13 +94,13 @@ set -x
 USEDMEMORY=$(free -m | awk 'NR==2{printf "%.2f\t", $3*100/$2 }')	# 内存监控
 DISK_USAGE=$(df -h |grep '/dev/xvda1' |  awk '{ print $5 }' | tr -cd [:digit:])	# 磁盘监控
 INSTANCE='i-xxxxxxxx'	# 设置当前instance的id
-http_status_code=$(curl --write-out %{http_code} --silent --output /dev/null https://haofly.net)	# HTTP状态监控
+#http_status_code=$(curl --write-out %{http_code} --silent --output /dev/null https://haofly.net)	# HTTP状态监控
 mongo_connections_available=$(mongo --eval "printjson(db.serverStatus().connections.available)" | tail -1)	# 监控mongo状态
 ssl_expire_day=$(sudo certbot certificates|grep Expiry|awk  '{print $6}')	# 监控let's encrypt ssl证书过期时间
 
 /usr/local/bin/aws cloudwatch put-metric-data --metric-name memory_usage --dimensions Instance=$INSTANCE  --namespace "Custom" --value $USEDMEMORY
 /usr/local/bin/aws cloudwatch put-metric-data --metric-name disk_usage --dimensions Instance=$INSTANCE  --namespace "Custom" --value $DISK_USAGE
-/usr/local/bin/aws cloudwatch put-metric-data --metric-name staging_500 --dimensions Instance=$INSTANCE  --namespace "Custom" --value $http_status_code
+#/usr/local/bin/aws cloudwatch put-metric-data --metric-name staging_500 --dimensions Instance=$INSTANCE  --namespace "Custom" --value $http_status_code
 /usr/local/bin/aws cloudwatch put-metric-data --metric-name mongo_available --dimensions Instance=$INSTANCE  --namespace "Custom" --value $mongo_connections_available
 /usr/local/bin/aws cloudwatch put-metric-data --metric-name ssl_expire_day --dimensions Instance=$INSTANCE  --namespace "Custom" --value $ssl_expire_day
 ```
@@ -299,8 +300,10 @@ email: $email
 实例
 
 ```javascript
-exports.handler = async (event) => {
-  // 这里的event就是测试时间中的key1 value1这些，相当于一个入参
+exports.handler = async (event, context) => {
+  // event: 就是测试时间中的key1 value1这些，相当于调用者传入的入参
+  // context: 包含有关调用、函数和执行环境的信息，例如logStream,functionVersion,memoryLimitInMB,awsRequestId, logGroupName, logStreamName等
+	console.log('xxx') // 可以直接用标准输出输出日志
 }
 ```
 

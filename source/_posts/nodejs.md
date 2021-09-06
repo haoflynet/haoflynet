@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-08-25 22:50:30
+updated: 2021-09-02 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -103,6 +103,7 @@ class Rectangle {
   ES9 ES2018
   ES10 ES2019
   ES11 ES2020
+  ES12 ES2021
   ```
 
 - 一些比较使用的新的语法
@@ -162,6 +163,14 @@ yarn add 包名	# 安装包
 npm install yarn@latest -g	# 升级yarn
 yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
 ```
+
+## TypeScript
+
+- 给js引入type，使开发更加严谨
+- 引入步骤：
+  1. `npm install --save-dev typescript @types/node`
+  2. 初始化`./node_modules/.bin/tsc --init`
+  3. 最后使用`tsc`命令进行编译，将它放入`package.json`的`scripts`里面即可
 
 ## ~~使用Forever管理NodeJs应用~~(生产环境最好用[pm2](https://haofly.net/pm2))
 

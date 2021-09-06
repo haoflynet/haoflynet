@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-09-01 08:18:00
+updated: 2021-09-03 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -136,6 +136,7 @@ str.matchAll()	// 直接全局搜索，ES2019+
 
 // 去除空格，需要注意的是js的replace如果不用正则/g，则默认只会替换第一个匹配
 str.replace(/\s+/g, "")    		// 去除所有的空格
+str.replaceAll('abc', 'd')	// 替换所有，es2021+，对于npm run build的代码如果es版本选择较低也会报错
 str.trim() / str.replace(/^\s+|\s+$/g, "");	// 去除两端的空格, 类似于trip，strip
 str.trimLeft() / str.replace( /^\s*/, '')		// 去除左边的空格
 str.trimRight() / str.replace(/(\s*$)/g, "")		// 去除右边的空格
@@ -734,7 +735,7 @@ mockFetch = (url) => {
 mockFetch("https://api.github.com/users/haoflynet/repos");
 
 // 可以用Promise实现sleep，模拟超时，模拟延迟
-await new Promise(r => setTimeout(r, 2000));
+await new Promise(r => setTimeout(r, 1000));
 
 // 一次性parallel执行多个异步任务
 await Promise.all(_.map(arr, async (item) => {
