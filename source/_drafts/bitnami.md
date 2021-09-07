@@ -1,5 +1,13 @@
 还不清楚这是个啥，反正很麻烦就是了
 
+## 管理命令
+
+```shell
+sudo /opt/bitnami/ctlscript.sh status	# 查看状体啊
+sudo /opt/bitnami/ctlscript.sh restart # 重启自身服务
+sudo /opt/bitnami/ctlscript.sh restart apache	# 重启指定服务
+```
+
 ## MySQL
 
 - [Bitnami管理MySQL文档](https://docs.bitnami.com/aws/infrastructure/mysql/)

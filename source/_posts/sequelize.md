@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-06-26 15:11:11
+updated: 2021-09-02 15:11:11
 categories: Javascript
 ---
 
@@ -161,6 +161,12 @@ Post.associate = () => {
 User.associate = () => {
   User.hasMany(Post)
 }
+  
+// 定义模型类方法
+Post.customQuery = () => {}
+
+// 定义模型实例方法
+Post.prototype.customQuery = () => {}
 ```
 
 ### 关联关系定义

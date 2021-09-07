@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-08-13 08:48:00
+updated: 2021-09-07 08:48:00
 categories: javascript
 ---
 
@@ -230,6 +230,9 @@ Google登陆插件，只不过需要获取很多的账号相关的信息，实�
 - `REVERSED_CLIENT_ID`需要在`firebase`的`Project settings`的app中获取，需要下载`GoogleService-Info.plist`，包含在里面的。安装完成后需要确保`REVERSED_CLIENT_ID`被加入到`XCode`中的`Resources/项目名-Info.plist`中的`URL types`中，其中`URL-identifier=REVERSED_CLIENT_ID`，`URL Schemes[0]=com.googleusercontent.apps.xxxxxxx` ，如果没有可以手动添加: ![](https://haofly.net/uploads/cordova_01.png)
 - `WEB_APPLICATION_CLIENT_ID`可以在`firebase`里新建一个`web app`取其ID或者直接在上面的`GoogleService-Info.plist`取`GOOGLE_APP_ID`
 - `Android`端的`webClientId`参数则是`firebase`的`android app`的`google-services.json`中的`client.oauth_client.client_id`
+- `Android`端现在可以不用`google-service.json`文件了，但是需要这样做
+  1. 本地生成一个SHA1的key: `keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore -list -v`，这里的`~/.android/debug.keystore`是`keytool`的地址，安装了`Android Studio`就自动有的
+  2. 在`Firebase -> Project Overview -> Project settings -> General`新建`Android apps`，并将上一步生成的SHA1添入到该APP下的`SHA certificate fingerprints`中
 
 ```javascript
 window.plugins.googleplus.isAvailable(avail => {
