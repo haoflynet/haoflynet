@@ -493,6 +493,12 @@ ec2.attachVolume({
   Device: '/dev/xvdf'	// 这也是必填的，并且必须遵循命名规则https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html
 })
 
+ec2.createTags({
+  Resources: ['vol-xxxx'],
+})
+
+cron(*/10 * * * * *)
+
 ssm.describeInstanceInformation(params)	// 获取ssm管理的设备列表
 
 // 发送命令到服务器执行
