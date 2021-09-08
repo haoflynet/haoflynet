@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-09-02 08:42:00
+updated: 2021-09-07 08:42:00
 categories: Javascript
 ---
 
@@ -314,6 +314,11 @@ exports.handler = async (event, context) => {
 - [开启创建存储过程的功能](https://aws.amazon.com/premiumsupport/knowledge-center/rds-mysql-functions/?nc1=h_ls)
 
 ## SES/Simple Email Service电子邮件发送和接收服务
+
+## AWS Systems Manager(SSM)
+
+- 管理ec2系统内部的东西，例如通过api或cli向服务器发送命令并执行
+- **SSM未发现管理的ec2实例**: 可能是因为`ssm agent`在实例内部未安装或者未安装成功(即使在运行中也可能没有安装成功，还是得看其日志)，[ssm agent安装文档](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-manual-agent-install.html)
 
 ## CodeDeploy/Pipeline
 

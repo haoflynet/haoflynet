@@ -1,9 +1,15 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2018-11-13 14:37:00
+updated: 2021-09-08 14:37:00
 categories: system
 ---
+## Android Studio 的使用
+
+- 生成APK文件: `Build -> Build BUndles/APK(s) -> Build APK(s)`
+
+
+
 本文搜集了一些自己经常用到的Android方面的奇淫技巧：
 
 *   调试：打印日志的方式
@@ -192,15 +198,15 @@ public class SampleActivity extends Activity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-​    super.onCreate(savedInstanceState);
+     ​    super.onCreate(savedInstanceState);
 
     // Post a message and delay its execution for 10 minutes.
     mHandler.postDelayed(sRunnable, 60 * 10 * 1000);
-    
+  
     // Go back to the previous Activity.
     finish();
   }
-}
+     }
 
 来源： <http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1106/1922.html>
 
