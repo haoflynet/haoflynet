@@ -1098,6 +1098,22 @@ var users = [
 _.orderBy(users, ['user', 'age'], ['asc', 'desc']);	// 先按user升序，相同的再按age降序
 ```
 
+##### _.pick
+
+- 最实用函数之一，从对象中获取指定级别的值
+
+```javascript
+const obj = {'a': 1, 'b': 2, 'c': 3}
+_.pick(obj, ['a', 'c'])	// {'a': 1, 'c': 3}
+```
+
+##### _.pickBy
+
+```javascript
+const obj = {'a': 1, 'b': '2', 'c': 3}
+_.pickBy(obj, _.isNumber)	// {'a': 1, 'c': 3}
+```
+
 ##### _.reduce
 
 - 能够将元素一次进行计算，第一个参数为上一次计算的结果

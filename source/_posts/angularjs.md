@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-08-18 08:03:00
+updated: 2021-09-08 08:03:00
 categories: frontend
 ---
 ## 语法
@@ -141,7 +141,9 @@ Angular1里元素绑定点击事件用`ng-click`，但是Angular2里元素绑定
   
 // input事件是指输入的时候
 // change事件是指内容改变以后(离开焦点)
-<input (input)="onInput()" (change)="onChange()">
+<input (input)="onInput()" (change)="onChange()" 
+	(keyup)="onKeyUp(event)"	// 键盘输入事件，event.target.value可以获取input的value
+>
   
 <!-- select元素点击获取选择的值 -->
 <select (change)="onChange($event.target.value)">

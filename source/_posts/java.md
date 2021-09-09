@@ -1,13 +1,16 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2020-05-22 11:56:00
+updated: 2021-09-08 11:56:00
 categories: java
 ---
 
 ### 安装方法
 
 参考[How To Install Java with Apt-Get on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04)
+
+- JDK是Java开发的一个工具包，其他的工具包还有J2SE、JAVA SE
+- JDK8和JDK1.8是两种新旧的命名方式，其实是一个东西
 
 ### 数据类型
 

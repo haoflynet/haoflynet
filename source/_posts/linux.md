@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-09-02 17:03:30
+updated: 2021-09-08 17:03:30
 categories: system
 ---
 # Linux手册
@@ -68,6 +68,9 @@ echo $$	# Shell本身的PID
 /usr/bin/my-process-3 --args3 &
 wait
 echo all processes complete
+
+# 忽略上一句的错误
+mkdir /abc/def || echo 'hello'
 ```
 
 #### 进程及端口
