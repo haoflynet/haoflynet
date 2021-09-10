@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-09-08 08:20:00
+updated: 2021-09-09 08:20:00
 categories: javascript
 ---
 
@@ -408,6 +408,8 @@ window.cordova.plugins.SignInWithApple.signin(
 - **new Date('2020-04-29 00:00:00')输出Invalid Date**: 目前我个人只在ios上复现过，vue直接运行没问题，但是真机上却是`Invalid Date`，用moment代替吧
 
 - **'GoogleService-Info.plist' was not found in your Cordova project root folder**: 如果是这样，首先检查是否有该文件，如果确实有还是报错，那么可以在`XCode`中手动添加，右键项目的`Resource->Add Files to "项目名"`选择`GoogleService-Info.plist`即可
+
+- **开启应用显示The connection to the server was unsuccessful**: 可以在`config.xml`中添加`<preference name="loadUrlTimeoutValue" value="60000" />`具体原因不知道为啥，至少能用
 
   
 

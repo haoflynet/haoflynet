@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-09-07 08:42:00
+updated: 2021-09-09 08:42:00
 categories: Javascript
 ---
 
@@ -297,6 +297,8 @@ email: $email
   zip.writeZip('./lambda.zip');
   ```
 
+- 使用`cloudwatch`触发`lambda`，需要在`CloudWatch`控制台创建规则`Events -> Create rule`，`Event Source`可以定时或者选择警告，目标`target`则选择我们创建的`Lambda`函数
+
 实例
 
 ```javascript
@@ -318,7 +320,7 @@ exports.handler = async (event, context) => {
 ## AWS Systems Manager(SSM)
 
 - 管理ec2系统内部的东西，例如通过api或cli向服务器发送命令并执行
-- **SSM未发现管理的ec2实例**: 可能是因为`ssm agent`在实例内部未安装或者未安装成功(即使在运行中也可能没有安装成功，还是得看其日志)，[ssm agent安装文档](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-manual-agent-install.html)
+- **SSM未发现管理的ec2实例**: 可能是因为`ssm agent`在实例内部未安装或者未安装成功(即使在运行中也可能没有安装成功，还是得看其日志/var/log/amazon/ssm下)，[ssm agent安装文档](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-manual-agent-install.html)，当然`ssm agent`默认是安装了的，可以通过这些命令[查看ssm运行状态](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent-status-and-restart.html)
 
 ## CodeDeploy/Pipeline
 

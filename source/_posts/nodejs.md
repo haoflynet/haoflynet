@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-09-02 22:50:30
+updated: 2021-09-09 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -90,7 +90,30 @@ class Rectangle {
 }
 ```
 
-### ECSMAScript/es6
+### nodejs原生http请求
+
+- 无需安装任何package
+
+```javascript
+const https = require('https')
+
+const req = https.request('https://haofly.net', res => {
+  res.on('data', (chunk) => (body += chunk.toString()));
+  res.on('error', () => reject(res))
+  res.on('end', () => {
+    if (res.statusCode >= 200 && res.statusCode <= 299) {
+      resolve({statusCode: res.statusCode, headers: res.headers, body: body});
+    } else {
+      reject('Request failed. status: ' + res.statusCode + ', body: ' + body);
+    }
+  })
+})
+req.on('error', () => reject)
+req.write(body, 'binary')
+req.end()
+```
+
+### ECSMAScript/es6概念
 
 - `export`和`import`是`es6`之后才支持的
 

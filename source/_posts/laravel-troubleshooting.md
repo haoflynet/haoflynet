@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2021-05-21 14:18:00
+updated: 2021-09-08 14:18:00
 categories: php
 ---
 
@@ -188,3 +188,19 @@ function my_asset($path, $secure = null){
 #### Replicating claims as headers is deprecated and will removed from v4.0. Please manually set the header if you need it replicated.
 
 具体原因不知道为啥，反正应该是`laravel/passport`和新版本的`lcobucci/jwt`有冲突，降级后者的版本可以解决: `composer require lcobucci/jwt=3.3.3`
+
+#### 从url保存文件到文件系统
+
+- 只能先下载下来
+
+```php
+$info = pathinfo($request->get('url'));
+$url = explode('/', $request->get('url'));
+$url[count($url) - 1] = urlencode($url[count($url) - 1]);	// 可能需要对url后面文件部分做一下urlencode
+$contents = file_get_contents(implode('/', $url));
+$file = '/tmp/' . $info['basename'];
+file_put_contents($file, $contents);
+$uploaded_file = new UploadedFile($file, $info['basename']);
+$path = $uploaded_file->storeAs('mypath', $info['basename']);
+```
+
