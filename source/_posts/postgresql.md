@@ -104,7 +104,9 @@ COMMIT;
   SELECT setval(pg_get_serial_sequence('users', 'id'), coalesce(max(id)+1, 1), false) FROM users;
   ```
 
-  
+- **must appear in the GROUP BY clause or be used in an aggregate function(列必须出现在group by子句中或聚合函数中)**: postgresql一个非常常见的问题，常常在使用聚合函数的时候出现，例如count。没有啥一劳永逸的解决方法，反正遇到这种问题，它让你加哪个列到group by里面就加进去吧，一定要看看sql的输出结果，看看是不是自己想要的。(这个才是sql的标准，mysql没有完全执行。。。)
+
+- 
 
 ##### 扩展阅读
 
