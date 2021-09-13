@@ -73,7 +73,7 @@ module.exports = {
 // 遍历v-for
 <li v-for="item in items">{{item}}</li>
 <li v-for="(item, index) in items">{{item}}的索引是{{index}}</li>
-<li v-for="(value, name, index) in items">遍历key=>value格式的数组，顺便还有索引</li>
+<li v-for="(value, name, index) in items">遍历key=>value格式的数组，遍历字典，顺便还有索引</li>
 <li v-for="(item,index) in items"><span v-if="index !== items.length-1">判断是否是列表最后一个元素，目前没找到更好的方法</span></li>
 
 // v-on
