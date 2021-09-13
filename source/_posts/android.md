@@ -10,6 +10,10 @@ categories: system
 
 
 
+
+
+
+
 本文搜集了一些自己经常用到的Android方面的奇淫技巧：
 
 *   调试：打印日志的方式
@@ -269,6 +273,7 @@ import android.util.Log;
 - **configurations中没有module可以配置**: 选择`File->Sync Project with Gradle Fiels`，然后重新构建，选择
 - **gradle build running一直卡住**: 网上有很多的原因，但是我的原因是代理设置错误(我并不知道什么时候设置过代理了)，在mac上，`vim ~/.gradle/gradle.properties`修改代理配置即可
 - **org.gradle.api.UncheckedIOException: Failed to capture snapshot of input**: 在`Settings->Build, Execution, Deployment->Gradle->Android Studio`勾选`Enable embedded Maven repository`
+- **Field to find 'JAVA_HOME' environment variable. Try setting it manully**: 需要下载对应的[jdk](https://www.azul.com/downloads/?package=jdk)，这个网站下载的jdk非常好安装且非常好卸载，直接下载dmg格式的即可，且有直接的apple m1/silicon版本
 
 ##### 扩展阅读
 
