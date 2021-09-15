@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2021-06-30 22:45:00
+updated: 2021-09-15 08:45:00
 categories: Database
 ---
 
@@ -26,6 +26,12 @@ categories: Database
 ### 索引
 
 - Redshift不能像PostgreSQL那样创建索引，但是提供了一个类似的功能`sort key`，该功能可以和传统数据库一样能够优化存储与查询方面的性能
+
+### 系统管理
+
+```shell
+SELECT version();	# 获取数据库版本
+```
 
 ## 增删该查
 

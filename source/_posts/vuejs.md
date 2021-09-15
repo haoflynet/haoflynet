@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2021-08-17 22:35:00
+updated: 2021-09-15 08:35:00
 categories: js
 ---
 
@@ -853,9 +853,11 @@ onFile (event) {
   - 在给data赋值后只是简单地添加新的属性，没有用this.$set等方法，导致没有新添加的属性没有实现双向绑定，从而导致重新渲染失败。常见现象也有改变一个值，第一次改变页面渲染成功，之后再改变页面不会更新等
 - **页面跳转出错/NavigationDuplicated**: 页面跳转经常出现莫名其妙的错误，所以一般都会把异常直接忽略，例如`router.push('/next').catch(err => {})`
 - **Maximum call stack size exceeded**: 可能是引用组件的名字和当前组件的名字重复了，导致无限去import
+- **Error: Cannot resolve module 'sass-loader'**: 要是用sass/scss，需要先安装依赖`npm install -D sass-loader node-sass`
 - **TypeError: this.getOptions is not a function**: 原因可能是新版本`sass-loader@11.0.0`和`vue@2.6.12`不兼容导致，可以尝试降级`sass-loader`，设置为`"sass-loader": "^10"`
 - **路由切换白屏**: 可能有如下原因:
   - template中在空变量上获取其属性值导致报错，例如`{ user.name }`，如果`user`的初始值为null，那么如果刚进入页面`user`在赋值前会报错，导致出现短暂的白屏
+- **You are using the runtime-only build of Vue where the template compiler is not available**: 需要在`vue.config.js`中加上配置: `runtimeCompiler: true`
 
 相关链接
 

@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-09-02 15:11:11
+updated: 2021-09-14 15:11:11
 categories: Javascript
 ---
 
@@ -388,7 +388,12 @@ return Message.findAndCountAll({
       attributes: ['id', 'type', 'email'],	// 多级关联
         include: [{
           association: User.Professional,
-          attributes: ['first_name', 'last_name', 'avatar']
+          attributes: ['first_name', 'last_name', 'avatar'],
+          where: {	// 嵌套关联查询，如果有针对子孙的where条件，可以用literal来写，我也没找到其他写法
+            [Op.and]: [
+              sequelize.literal('"post->user"."id" = "user"."id"')
+            ]
+          }
       }, {
             association: User.Company,
             attributes: ['name', 'logo']
