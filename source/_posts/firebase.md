@@ -194,7 +194,8 @@ service cloud.firestore {
 
 ```javascript
 const doc = db.doc('collection_name/doc_id')
-await doc.set({name: 'test'})
+await doc.set({name: 'test'})	// 不存在则新建，存在则会覆盖
+await doc.set({name: 'test'}, { merge: true })	// 不存在则新建，存在则会合并
 ```
 
 #### 数据读取
@@ -210,6 +211,9 @@ await doc.set({name: 'test'})
 
 ```javascript
 var citiesRef = db.collection("cities");	// 定义要查询的集合
+
+const doc = await db.doc(`${collectionName}/${docId}`).get()
+doc.exists	// 是否存在
 
 // 读取集合下所有的文档
 db.collection('cities').get().then((querySnapshot) => {
