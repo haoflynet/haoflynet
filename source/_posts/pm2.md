@@ -47,6 +47,7 @@ pm2 logs appname	# 查看指定app的日志输出
 pm2 flush # 晴空日志文件
 
 pm2 logrotate -u user	# 设置日志自动轮转，这条命令会写入一条轮转配置到/etc/logrotate.d/pm2-user
+pm2 install pm2-logrotate	# 另一种方式实现日志轮转，默认10M
 ```
 
 ### 设置开机启动

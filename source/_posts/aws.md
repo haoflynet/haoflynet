@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-09-09 08:42:00
+updated: 2021-09-16 08:42:00
 categories: Javascript
 ---
 
@@ -430,6 +430,18 @@ exit
 # scripts/validate_service.sh
 #!/bin/bash
 echo "service codedeploy-agent restart" | at -M now + 2 minute;
+```
+
+## Cron表达式
+
+- 很多地方都会用到cron表达式，比如cloudwatch、ebs生命周期管理器(lifecycle)
+- 和我们常规的linux的用法有点不一样，没有隔几天执行的方法，如果要实现只能在日期那里把一个月的写上
+- 使用的是UTC时间
+- 对于EBS的生命周期管理，最小精度只能是小时，第一位没有用，且可能发生在那个小时里面的任意一分钟
+
+```shell
+分钟 小时 日期 月 星期几 年份
+0 12 * * ? *	# 每天上午12:00(UTC)运行，相当于我们这边的下午8点
 ```
 
 ## 开发

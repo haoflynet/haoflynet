@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-09-08 17:03:30
+updated: 2021-09-16 18:03:30
 categories: system
 ---
 # Linux手册
@@ -1286,9 +1286,8 @@ date+\%Y-\%m-\%d   # 获取今天的日期
 
 - **卸载磁盘`umount target is busy`**: 可以这样来卸载busy中的磁盘
 
-  ```shel
-  umount -l /dev/sda1
-  umount -f /dev/sda1
+  ```shell
+  umount -lf /dev/sda1	# f指force，l指lazy
   ```
-
   
+- **AWS mount磁盘报错: Filesystem xvdg has duplicate UUID - can't mount**: 可以忽略uuid: `mount -o nouuid /dev/xvdg /data`
