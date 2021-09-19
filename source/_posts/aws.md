@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-09-16 08:42:00
+updated: 2021-09-18 08:42:00
 categories: Javascript
 ---
 
@@ -11,7 +11,7 @@ categories: Javascript
 
 ### 如何删除EC2实例
 
-- 先选中要删除的实例，Stop，再Terminate，这个时候虽然实例还在，但其实已经删除了，大概等个10分钟左右就没了
+- 先选中要删除的实例，Stop，再Terminate(终止实例)，这个时候虽然实例还在，但其实已经删除了，大概等个10分钟左右就没了
 
 ### EC2实例升级/修改实例类型
 
@@ -77,6 +77,12 @@ categories: Javascript
      sudo mount /dev/xvdf /data	# 挂载
      df -h	# 确认是否挂载成功
      ```
+
+### Ec2绑定Elastic IP弹性IP
+
+- 弹性IP只要是绑定在运行中的ec2实例上就是免费的，所以如果仅仅是要一个不会随着机器状态变化的IP那么推荐用弹性IP而不是用负载均衡器
+
+- 当一个新建的弹性IP被关联到一个实例上的时候，该实例的公有IP地址也会变成一样的，不过之后如果实例重启公有IP会改变，弹性IP则不会了
 
 ### EC2配置Cloudwatch
 
@@ -217,7 +223,7 @@ Block all public access
 - 可以为同一个域名设置多个托管区域(hosted zone)，例如针对同一个域名在测试环境和生产环境分别配置不同的DNS，只需要更改本地的名称服务器就能切换到不同的DNS上去，这样使用感觉有点复杂了
 - 如果要用`Route 53`去管理域名的DNS，需要新建托管区域(hosted zone)，然后在域名购买地设置NS记录指向`hosted zone`的四个`NS`记录即可
 
-## ELB/Elastic Load Balancing
+## ELB/Elastic Load Balancing负载均衡器
 
 - ELB支持多种负载均衡器
   - 应用负载均衡器(Application Load Balancer)：对HTTP/HTTPS请求进行负载均衡
@@ -228,6 +234,7 @@ Block all public access
 - 需要注意的是，创建后需要将域名的DNS记录指向负载均衡器的DNS名称，这样才能正确到负载均衡器上
 - 负载均衡器的目标组可以只选择80端口，服务器上也可以只开启80端口，只有在负载均衡器的监听器上面需要监听443，转发到目标组就行了
 - 如果是非`Route 53`管理的域名需要指向`elb`需要设置的是CNAME记录
+- [价格表](https://aws.amazon.com/cn/elasticloadbalancing/pricing/): 0.0225美元/小时，差不多3.5元/天，简单的还是用弹性IP吧，毕竟是免费的
 
 ## API Gateway
 
