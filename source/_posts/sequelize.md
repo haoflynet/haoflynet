@@ -155,7 +155,7 @@ const Post = sequelize.define('post', {
 
 // 定义模型关系
 Post.associate = () => {
-	Post.User = Post.belongsTo(app.model.Post
+	Post.User = Post.belongsTo(app.model.Post)
 }
 
 User.associate = () => {

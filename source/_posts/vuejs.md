@@ -182,6 +182,8 @@ Vue.component('mycomponent', {
 
 ### 路由跳转
 
+- 需要注意的是，如果跳转到相同的路由，页面不会重新渲染(mounted等这些不会重新执行，即使query/params参数不一样也不会)，如果要实现相同路由能够刷新，可以在template下最外层的元素上面加入一个`:key="routeParams"`
+
 ```javascript
 // 方法一
 this.$router.push('/users')
@@ -733,7 +735,10 @@ methods: {
 	...mapGetters(['doneTodos']),
 },
 computed: {
-  doneTodosCount () {
+  ...mapGetters([	// 可以直接在这里引入，不用在methods里面mapGetters了
+    'doneTodos'
+  ]),
+  doneTodosCount () {	// 如果要变个名字可以这样做
     return this.doneTodos()
   }
 }
@@ -853,7 +858,7 @@ onFile (event) {
   - 在给data赋值后只是简单地添加新的属性，没有用this.$set等方法，导致没有新添加的属性没有实现双向绑定，从而导致重新渲染失败。常见现象也有改变一个值，第一次改变页面渲染成功，之后再改变页面不会更新等
 - **页面跳转出错/NavigationDuplicated**: 页面跳转经常出现莫名其妙的错误，所以一般都会把异常直接忽略，例如`router.push('/next').catch(err => {})`
 - **Maximum call stack size exceeded**: 可能是引用组件的名字和当前组件的名字重复了，导致无限去import
-- **Error: Cannot resolve module 'sass-loader'**: 要是用sass/scss，需要先安装依赖`npm install -D sass-loader node-sass`
+- **Error: Cannot resolve module 'sass-loader'**: 要使用sass/scss，需要先安装依赖`npm install -D sass-loader node-sass`
 - **TypeError: this.getOptions is not a function**: 原因可能是新版本`sass-loader@11.0.0`和`vue@2.6.12`不兼容导致，可以尝试降级`sass-loader`，设置为`"sass-loader": "^10"`
 - **路由切换白屏**: 可能有如下原因:
   - template中在空变量上获取其属性值导致报错，例如`{ user.name }`，如果`user`的初始值为null，那么如果刚进入页面`user`在赋值前会报错，导致出现短暂的白屏

@@ -2,7 +2,7 @@
 title: "pm2 手册"
 date: 2020-02-18 08:50:00
 updated: 2021-03-09 16:00:00
-categories: nodes
+categories: nodejs
 ---
 
 ## 安装

@@ -17,7 +17,7 @@ sudo curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash 
 sudo yum install -y nodejs
 
 # ubuntu用下面命令安装指定版本nodejs
-sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 docker里面没有sudo就直接
 curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 apt-get install -y nodejs
