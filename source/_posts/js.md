@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-09-03 08:18:00
+updated: 2021-09-22 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -228,6 +228,7 @@ moment('20200429', 'YYYYMMDD')	// 解析非标准格式的时间需要指定格�
 moment(new Date()).add(1, 'days'); // 计算明天的时间
 moment(new Date()).add(-1, 'days'); // 计算昨天的时间
 moment(new Date()).subtract(2, 'hours');	// 时间相加减
+moment().set('hour', 13)	// 设置当前的时间
 moment().day()	// 当前日期是一周的第几天(0-6)，星期天是0，星期六是6
 moment().weekday()	// 获取当前是星期几
 moment().day(10)	// 如果指定的数字超过6，则会冒泡到其他星期
