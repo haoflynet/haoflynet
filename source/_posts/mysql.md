@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-09-01 08:44:00
+updated: 2021-09-22 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -20,8 +20,13 @@ systemctl enable mariadb.service	# 开机启动
 Ubuntu: 
 
 ```shell
-# 安装最新版本，需要先导入对应的镜像库https://downloads.mariadb.org/mariadb/repositories
+# 安装最新版本mariadb，需要先导入对应的镜像库https://downloads.mariadb.org/mariadb/repositories
 sudo apt-get install mariadb-server mariadb-client libmariadbd-dev
+
+## 安装mysql，可以使用https://dev.mysql.com/downloads/repo/apt/的方式
+wget https://dev.mysql.com/downloads/repo/apt/mysql-apt-config_0.8.15-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb	# 会进入版本选择界面，选择正确的版本，然后ok
+sudo apt-get update && sudo apt-get install mysql-server即可
 
 # 如果是开发，还需要安装
 sudo apt-get install libmariadb-client-lgpl-dev
