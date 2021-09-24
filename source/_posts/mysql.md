@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-09-22 08:44:00
+updated: 2021-09-24 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -37,6 +37,25 @@ sudo mysql -u root
 ```
 
 <!--more-->
+
+### 修改mysql数据目录
+
+- 通过软链接更改目录:
+
+  ```shell
+  systemctl stop mysql
+  mv /var/lib/mysql /mnt/data	# 先将原来的数据目录移动到新地址
+  ln -s /mnt/data/mysql /var/lib	# 再做软链接
+  systemctl start mysql	# 重启mysql即可
+  ```
+
+- 直接更改目录，如果无法启动，可以查看`/var/log/mysql`里面的错误日志，可能是apparmor有问题，如果是这个问题，可以这样修改:
+
+  ```shell
+  # vim /etc/apparmor.d/usr.sbin.mysqld，会看到下面的配置，修改为新的目录即可
+  /var/lib/mysql/ r,
+  /var/lib/mysql/** rwk,
+  ```
 
 ## 常用命令
 

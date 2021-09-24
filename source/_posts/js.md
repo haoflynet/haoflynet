@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-09-22 08:18:00
+updated: 2021-09-24 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -107,7 +107,6 @@ Array.isArray(arr) && arr.length === 0	// 判断是否是空数组
 
 ```javascript
 Math.floor(0.2);	// 向下取整
-Math.floor(0.2);	// 四舍五入
 Math.ceil(0.2);		// 向上取整
 Math.abs(-1);		// 取绝对值
 Math.trunc()	// 去掉小数部分
@@ -116,7 +115,7 @@ Math.sign（）	// 判断一个数字是正数、负数还是0
 var a = 100;
 a.toString();	// 数字转字符串
 num.toString(8);	// 把数字转换为指定进制的字符串
-num.toFixed(2);	// 保留两位小数，我去会变成字符串
+num.toFixed(2);	// 保留两位小数，我去会变成字符串，这个才是四舍五入，但是最好用lodash.floor
 ```
 ### 字符串
 
