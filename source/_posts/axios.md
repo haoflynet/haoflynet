@@ -1,6 +1,7 @@
 ---
 title: "axios网络请求"
 date: 2021-09-23 18:32:00
+updated: 2021-09-24 08:34:00
 categories: javascript
 ---
 
@@ -23,6 +24,11 @@ axios({
     return status >= 200 && status < 500	// 定义哪些http状态不会抛错
   }
 })
+  .then((rersponse: AxiosResponse) => {})
+	.catch((error: AxiosError) => {
+  	console.log(error.response.status)	// 获取返回状态码
+  	console.log(error.message)	// 获取错误信息
+	})
 ```
 
 ## Axios跨域请求

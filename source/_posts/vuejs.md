@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2021-09-22 08:35:00
+updated: 2021-09-24 08:35:00
 categories: js
 ---
 
@@ -879,7 +879,7 @@ onFile (event) {
 - [Vue 开发谷歌浏览器的脚手架](https://github.com/Kocal/vue-web-extension)
 - Toasts Notification Bar 库: vue-toastification
 - Table库：vue-good-table
-- 时间选择库: web端用[vue2-datepicker](https://www.npmjs.com/package/vue2-datepicker)，移动端用[vue-datetime](https://www.npmjs.com/package/vue-datetime)，在使用datetime相关的组件的时候如果日期和时间在页面上是分开让用户选择的，他们一定要model到同一个变量上，否则可能会选择到之前的时间，另外，vue-datetime需要设置`value-zone=local`，这样用户前端才能看到自己本地的时间
+- 时间选择库: web端用[vue2-datepicker](https://www.npmjs.com/package/vue2-datepicker)，移动端用[vue-datetime](https://www.npmjs.com/package/vue-datetime)，在使用datetime相关的组件的时候如果日期和时间在页面上是分开让用户选择的，他们一定要model到同一个变量上，否则可能会选择到之前的时间，另外，vue-datetime需要设置`value-zone=local`，这样用户前端才能看到自己本地的时间。**顺便说一个逻辑问题，如果一个事件需要给不同时区的人看到，后端最好直接存储一个不包括时区的时间，在展示的时候只展示目的地的时间而不是当前用户的时区，这是比较合理的，比如国外有个电影就直接写国外什么时间而不是转换为国内的时间，否则不仅很累，用户还很疑惑**
 - [qrcode.vue二维码生成库](https://github.com/scopewu/qrcode.vue/blob/master/README-zh_cn.md)
 - [vue-rate](https://www.npmjs.com/package/vue-rate): 评论打分组件
 - [vuelidate](https://github.com/vuelidate/vuelidate): 如果不实用element的验证功能，其他的vue项目就只能用这个去验证表单了，但终归没有ele好看

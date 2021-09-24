@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-09-22 15:11:11
+updated: 2021-09-24 15:11:11
 categories: Javascript
 ---
 
@@ -125,8 +125,8 @@ const Post = sequelize.define('post', {
     },
   	fullName: {
       type: VIRTUAL,	// 定义virtual字段，即实际不存在数据库中的字段
-      get: function () {
-        return this.firstName + this.get('name')
+      get: function (this: UserModel) {
+        return this.firstName + this.name
       },
       set: function (val) {
        	this.setDataValue('name', val)
