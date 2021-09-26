@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-09-22 18:03:30
+updated: 2021-09-26 18:03:30
 categories: system
 ---
 # Linux手册
@@ -158,6 +158,7 @@ grep [0-9] 文件名  # 在文件中查找包含数字的行
 grep 字符串 -r 目录 # 在特定目录及其子目录中的文件查找str，-d参数能进行删除操作，保留一个副本
 grep xxx -b10		# 查找指定字符串并且把它前面的10行一起显示出来
 grep xxx --color=auto	# 高亮显示查找到的字符串
+grep --exclude-dir=node_modules	# grep的时候忽略指定目录/忽略目录
 ```
 
 ##### sed

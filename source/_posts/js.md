@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-09-24 08:18:00
+updated: 2021-09-26 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -398,6 +398,12 @@ xmlHttp.onreadystatechange = function() {
 };
 xmlHttp.open("GET", 'https://haofly.net', true);
 xmlHttp.send();
+
+// 如果是POST form数据，需要这样做
+const params = 'foo=test&foo1=test1'
+xmlHttp.open('POST', url, true);
+xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xmlHttp.send(params);
 ```
 
 ### 进程/线程/Shell命令执行
