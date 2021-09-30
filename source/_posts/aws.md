@@ -214,7 +214,7 @@ Block all public access
 ## ACM/AWS Certificate Manager
 
 - AWS的公有SSL/TLS证书是免费的，不过因为ACM管理私钥，所以只能在AWS上面使用。获取步骤还算简单，添加一个CNAME记录，一会儿就好了
-- 只能用于集成了ACM服务的EC2实例，例如(ElasticLoad Balancing [ELB]或Amazon CloudFront分配)
+- 只能用于集成了ACM服务的EC2实例，例如(ElasticLoad Balancing [ELB]或Amazon CloudFront分配)，也只有满足这些条件才能自动续订
 
 ## Route 53
 

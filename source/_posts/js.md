@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-09-26 08:18:00
+updated: 2021-09-28 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -270,6 +270,12 @@ let builder = new URLSearchParams()
 builder.set('field1', 'value')
 builder.set('feild2', JSON.stringify(myObj))
 builder.toString()	// 生成URL查询字符串
+```
+
+## Buffer
+
+```javascript
+Buffer.from('abc', 'utf8') // 从字符串创建Buffer
 ```
 
 ### 函数

@@ -31,7 +31,7 @@ categories: server
    
    # for centos
    yum install epel-release -y && yum update -y
-   yum install certbot
+   yum install certbot certbot-nginx
    ```
 
 4. 确保你的nginx配置已经有配置域名，并且域名解析也已经指向该IP地址，域名能够通过80端口正常访问。
