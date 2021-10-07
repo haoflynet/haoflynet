@@ -134,6 +134,20 @@ NamevirtualHost *:80		# 如果不加这一行，那么只有第一个会起作�
 </VirtualHost>
 ```
 
+## .htaccess文件
+
+```shell
+RewriteEngine on
+
+# RewriteCond第一个参数是一个测试字符串，第二个参数是条件，第三个参数不写默认是AND。它其实就是if语句，如果符合某个或某几个条件则执行RewriteCond下面最近的RewriteRule语句。两句相邻的RewriteCond默认是AND，也可以自己写OR
+RewriteCond %{TIME_YEAR}%{TIME_MON}%{TIME_DAY}%{TIME_HOUR} <202110010000
+RewriteCond %{REQUEST_FILENAME} !-f	# 请求的是否是文件
+RewriteCond %{REQUEST_FILENAME} !-d	# 请求的是否是目录
+
+# RewriteRule，第二个参数为替换的参数，第三个参数有R(redirect，强制重定向)，F(forbidden，禁止访问)，L(last，最后)
+RewriteRule . index.php
+```
+
 ### TroubleShooting
 
 - **apache设置子目录**: 今天在配置apache服务器时，想通过ip/zentao来访问ip/zentaopms/www/地址，但是这并不是虚拟服务器的功能，解决方法就是直接给目录创建软链接，没错，软链接也是可以给目录创建的，如：
