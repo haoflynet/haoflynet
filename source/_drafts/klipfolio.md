@@ -15,7 +15,19 @@
   xmlHttp.send('di=&dsid=' + data source的id); // 这里加上di表示直接等待它完成，如果不加则是把它放入了刷新队列里面去
   ```
 
-  
+
+## klip UI设计
+
+### Functions
+
+```shell
+CONCAT("Test - ", @Column)	# 字符串连接/连接字符串
+
+REPLACE(@Column, "查找值", "替换值")	# 这居然是完全匹配
+SUBSTITUTE_REGEX(@Column, "查找值", "替换值")	# 这个才和js中的replace类似，且支持正则
+
+SWITCH(data, case1, field, case2, field2, _default_, "默认值")	// 右边条件和结果两个两个成对
+```
 
 
 

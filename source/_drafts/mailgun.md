@@ -20,3 +20,18 @@ https://handlebarsjs.com/zh/guide/expressions.html#%E5%8A%A9%E6%89%8B%E4%BB%A3%E
 {{/if}}
 ```
 
+## 发送语法
+
+```javascript
+const data = {
+  from: `Haofly <test@haofly.net>`,
+  to: 'xxx@haofly.net',
+  subject: 'Subject',
+  template: 'template_name',
+  'h:X-Mailgun-Variables': JSON.stringify({ test: 'test' }),	// 发送json格式的data，但是不能超过16kb
+  attachment: Buffer.from(csvStr, 'utf8'),	// 如果发送attachment可以直接发送Buffer
+};
+
+await mailgunSender.messages().send(data, (error, body) => {});
+```
+
