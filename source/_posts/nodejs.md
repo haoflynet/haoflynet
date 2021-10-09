@@ -190,10 +190,19 @@ yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
 ## TypeScript
 
 - 给js引入type，使开发更加严谨
+
 - 引入步骤：
   1. `npm install --save-dev typescript @types/node`
   2. 初始化`./node_modules/.bin/tsc --init`
   3. 最后使用`tsc`命令进行编译，将它放入`package.json`的`scripts`里面即可
+  
+- 自定义类型:
+
+  ```javascript
+  interface MyType {
+    name: string;
+  }
+  ```
 
 ## ~~使用Forever管理NodeJs应用~~(生产环境最好用[pm2](https://haofly.net/pm2))
 

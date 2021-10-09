@@ -308,6 +308,7 @@ Model.findAll({			// 查询指定字段
               ],
   order: [
     ['title', 'DESC'], // 排序
+    ['name', 'ASC'],
     sequelize.fn('max', seque)
   ],
   group: 'name',	// GROUP BY name,

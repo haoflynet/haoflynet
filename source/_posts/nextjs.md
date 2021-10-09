@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-09-01 23:38:00
+updated: 2021-10-08 23:38:00
 categories: js
 ---
 
@@ -11,6 +11,9 @@ categories: js
 ## 基础配置
 
 ```shell
+npx create-next-app@latest	# 初始化项目
+npx create-next-app@latest --typescript	# 使用typescript初始化
+npx create-next-app@latest --typescript	-e with-tailwindcss # 再集成tailwindcss
 next -p 3001	# 指定启动端口
 ```
 
@@ -96,6 +99,18 @@ router.defaultLocale	// 默认的locale
 
 - 可以设置width、height、quality、priority、responsive自动修改图片显示大小
 - 但是毕竟是后端js程序在进行转换，不如直接使用`cloudinary`这样的服务速度快功能多
+
+```javascript
+import Image from 'next/image'
+
+<Image
+  loader={myLoader}
+  src="me.png"	// 要么是本地静态文件，要么用绝对路径，不能用//开头的路径
+  alt="Picture of the author"
+  width={500}
+  height={500}
+/>
+```
 
 ### Link
 
