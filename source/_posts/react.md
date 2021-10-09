@@ -141,7 +141,7 @@ const MyComponent: FC<CurrentProps> = (props) => {
   <div style={{display: this.state.show ? "block" : "none"}}>动态样式</div>
   ```
 
-- 动态添加类`class`
+- 动态添加类/条件渲染类`class`
 
   ```shell
   <div className={this.state.show ? "show-class" : "hide-class"}>动态类</div>

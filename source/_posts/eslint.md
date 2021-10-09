@@ -151,6 +151,7 @@ module.exports = {
         "eslint:recommended",	// eslint:all表示使用eslint的所有规则，可参考http://eslint.cn/docs/rules/，"eslint:recommended"表示使用eslint所有规则里面打勾的规则，"standard"表示使用standard的规则(需要先npm install standard --save-dev)，参考https://standardjs.com/rules-zhcn.html#javascript-standard-style。除了standard，还有Airbnb风格，但我比较习惯standard
         "plugin:@typescript-eslint/recommended"	// 如果是typescript需要添加这个插件
     ],
+		"extends": ["standard-with-typescript"],	// 如果是standard with typescript，可以参考https://github.com/standard/eslint-config-standard-with-typescript进行安装，有一连串的package需要安装，但一键可以装上
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 12,
