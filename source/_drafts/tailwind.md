@@ -1,7 +1,45 @@
 ## 安装配置
 
+## 基础
+
+### 配置文件tailwind.config.js
+
+```javascript
+module.exports = {
+  prefix: 'tw-',	// 添加一个前缀，如果项目之前已经有大量的存在的css，为了防止冲突可以使用这个方式去防止覆盖
+  purge: [	// 指定需要从哪些文件中查找我们需要使用的class(这样可以只编译出我们有使用的class)
+    '../views/site/*.php'
+  ],
+  darkMode: false, // or 'media' or 'class'，默认选项
+  theme: {
+    extend: {	// 可以添加一些自定义的样式，或者覆盖之前的样式，在官方文档每一个样式页面下面多有个性化的说明
+      boxShadow: {
+      	'md-all': '4px 4px 6px -1px rgba(0, 0, 0, 0.1), -2px 2px 4px -1px rgba(0, 0, 0, 0.06)'	// 四周阴影
+      }
+    },
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+  corePlugins: {
+    preflight: false,	// 添加这个配置可以让tailwind不覆盖默认的基础元素的样式，例如html、body、h1等https://tailwindcss.com/docs/preflight
+  }
+}
+```
+
+### 响应式
+
 ```shell
-npx create-next-app --typescript -e with-tailwindcss my-project	# 集成进nextjs
+# 断点
+sm	# @media (min-width: 640px) { ... }, mobile
+md	# @media (min-width: 768px) { ... }, iPad
+lg	# @media (min-width: 1024px) { ... }, 小屏Web
+xl	# @media (min-width: 1280px) { ... }, 正常Web
+2xl # @media (min-width: 1536px) { ... }, 大屏Web
+
+# 使用时只需加前缀即可，例如
+md:w-full
 ```
 
 ## 语法
@@ -12,8 +50,33 @@ npx create-next-app --typescript -e with-tailwindcss my-project	# 集成进nextj
 
 - 常用于页面最外层布局
 
-```javascript
+```shell
+# container
 class="container mx-auto py-5"
+
+# display
+block
+inline-block
+inline
+flex
+inline-flex
+table
+grid
+hidden
+
+# Position
+static
+fixed
+absolute
+relative
+sticky
+
+# Top / Right /Bottom /Left
+top-0
+-top-0	# 负数
+
+# Z-Index
+z-0	# z-10 20 30 40 50 auto
 ```
 
 ### Flexbox & Grid
@@ -30,6 +93,20 @@ flex-row
 flex-row-reverse
 flex-col
 flex-col-reverse
+
+# flex grow
+flex-grow-0	# flex-grow: 0
+flex-grow	# flex-grow: 1
+
+# flex shrink
+flex-shrink-0	# flex-shrink: 0
+flex-shrink	# flex-shrink: 1
+
+# justify content
+justify-center	# justify-content: center，可选start、end、center、between、around、evenly
+
+# align items
+items-center	# align-items: center，可选start、end、center、baseline、stretch
 ```
 
 ### Spacing
@@ -48,7 +125,8 @@ p-1 # padding: 0.25rem，1/2/3/4/5/6/7/8/9/10/11/12/14/16/20/24/28/32/36/40/44/4
 w-0	# 0px
 w-px # 1px
 w-1 # 0.25rem
-w-3	# 0.75rem
+w-full # 100%
+w-screen # 100vw
 
 # height
 h-1/2	# height: 50%
@@ -66,6 +144,9 @@ text-base
 text-lg
 text-xl
 text-2xl # 一直到text-9xl
+
+# line height
+leading-3	# line-height: .75rem, leading-3/4/5/6/7/8/9/10
 
 # text color
 text-white
@@ -87,6 +168,25 @@ align-middle	# vertical-align: middle
 bg-white
 bg-gray-50
 bg-blue-100
+
+# background position
+bg-bottom
+bg-center
+bg-left
+bg-left-bottom
+bg-left-top
+bg-right
+bg-right-bottom
+bg-right-top
+bg-top
+
+# background repeat
+bg-repeat
+bg-no-repeat
+bg-repeat-x
+bg-repeat-y
+bg-repeat-round
+bg-repeat-space
 ```
 
 ### Borders
@@ -99,6 +199,40 @@ rounded-lg	# border-radius: 0.5rem
 rounded-2xl	# border-radius: 1.5rem
 rounded-3xl
 rounded-full	# border-radius: 9999px，圆形
+
+# border width
+border	# border-width: 1px
+border-0	# 可选0、2、4、8
+border-t-0	# 可指定方向
+
+# border color
+border-transparent
+border-current
+border-black
+border-white
+border-gray-50	# 所有颜色都可
+```
+
+### Effects
+
+```shell
+# box shadow
+shadow
+shadow-sm	# 可选sm、md、lg、xl、2xl、inner、none
+
+# opacity 透明度
+opacity-0	# 可选0、5、10、20、25、30、40、50、60、70、75、80、90、95、100
+```
+
+### Transitions & animation
+
+- `transition-{properities}`可以实现指定属性的动画过渡效果效果
+
+```shell
+transition-top
+
+# transition duration
+duration-75	# 可选75、100、150、200、300、500、700、1000，单位为毫秒
 ```
 
 ### Interactivity
