@@ -75,7 +75,7 @@ categories: frontend
 
    ```shell
    # 首先，package.json中的prepare script需要这样改。虽然不同子目录不同的规则，但是.git是一个，所以hook也只能有一个，可以在项目根目录创建和安装.husky
-   "prepare": "./node_modules/.bin/husky install .husky",
+   "prepare": "husky install .husky",
    
    # 然后，在pre-commit脚本中添加逻辑，进入不同的子目录运行不同的eslint程序
    #!/bin/sh
@@ -151,7 +151,7 @@ module.exports = {
         "eslint:recommended",	// eslint:all表示使用eslint的所有规则，可参考http://eslint.cn/docs/rules/，"eslint:recommended"表示使用eslint所有规则里面打勾的规则，"standard"表示使用standard的规则(需要先npm install standard --save-dev)，参考https://standardjs.com/rules-zhcn.html#javascript-standard-style。除了standard，还有Airbnb风格，但我比较习惯standard
         "plugin:@typescript-eslint/recommended"	// 如果是typescript需要添加这个插件
     ],
-		"extends": ["standard-with-typescript"],	// 如果是standard with typescript，可以参考https://github.com/standard/eslint-config-standard-with-typescript进行安装，有一连串的package需要安装，但一键可以装上
+		"extends": ["standard-with-typescript"],	// 如果是standard with typescript，依赖直接执行 npm install --save-dev eslint-config-standard-with-typescript，npm<7需要参考https://github.com/standard/eslint-config-standard-with-typescript
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 12,
@@ -230,7 +230,7 @@ cordova.plugins...
 
 - **Parameter 'xxx' implicitly has an 'any' type**: 要求太严的话就修改tsconfig.json，将compilerOptions下的noImplicitAny设置为false
 
-- **"parserOptions.project" has been set for @typescript-eslint/parser**: 可以把`.eslintrc.js`文件加入`.eslintignore`中
+- **"parserOptions.project" has been set for @typescript-eslint/parser**: 可以把`.eslintrc.js`文件加入`.eslintignore`中，或者把`.eslintrc.js`改成json后缀和格式，居然就可以了
 
 - **no-plusplus**: 禁止使用一元操作符`++`或`--`，是因为空白可能会改变源代码的语义，可以使用`+=`来代替
 

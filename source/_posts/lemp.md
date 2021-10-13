@@ -21,16 +21,21 @@ yum install nginx -y
 
 # PHP
 add-apt-repository universe && apt-get install php-fpm php-mysql	# for ubuntu
-yum install php-fpm php-mysql
+yum install php-fpm php-mysql	# for centos
 vim /etc/php.ini，将cgi.fix_pathinfo=1改为cgi.fix_pathinfo=0
 vim /etc/php-fpm.d/www.conf将apache用户更改为nginx用户
 user = nginx
 group = nginx
 
-service php-fpm restart
+service php-fpm restart	# 如果php-fpm: unrecognized service，可以在/usr/lib/systemd/system/目录下看具体的服务名
 service nginx restart
 
 # 开机启动
+systemctl enable mysqld
+systemctl enable php-fpm
+systemctl enable nginx
+
+# 老版本使用这个命令
 chkconfig --levels 235 mysqld on
 chkconfig --levels 235 nginx on
 chkconfig --levels 235 php-fpm on
