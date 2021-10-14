@@ -273,6 +273,10 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 
 - text-indent: 段落缩进设置
 
+##### text-align
+
+- `text-align: center`只能让`inline`元素剧中，而不能让`block`元素居中，而`text-align: -webkit-center`可以让其中的`block`元素也居中
+
 ##### text-overflow
 
 - 设置当文本溢出包含元素时怎么做

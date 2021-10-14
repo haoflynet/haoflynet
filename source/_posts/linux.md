@@ -505,6 +505,8 @@ sudo service lightdm start	# Linux Mint关闭GUI，重启gui
 
 #### systemctl/service
 
+- service定义在`/etc/systemd/system/`或者`/usr/lib/systemd/system/`下的
+
 ```shell
 systemctl list-unit-files --type=service	# 查看系统所有安装的服务项，enabled的表示设置为了开机自启动
 systemctl list-units --type=service	# 查看系统所有运行的服务项(如果某个服务显示为红色表示有问题)
@@ -1124,7 +1126,7 @@ date+\%Y-\%m-\%d   # 获取今天的日期
   ```
 
 - **CentOS7 无法使用命令netstat，nmap**
-  原因是CentOS7抛弃了这几个老旧的命令，使用新的命令进行[替代](https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat)了，如果要使用那几条命令，可以`yum install net-tools`
+  原因是CentOS7抛弃了这几个老旧的命令，使用新的命令进行[替代](https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat)了，如果要使用那几条命令，可以`yum install net-tools / apt install net-tools`
 
 - **CentOS出现:"cannot find a valid baseurl for repo"** 
   CentOS minimal默认是没有开启网卡的，需要将`vim /etc/sysconfig/network-scripts/ifcfg-eth0
