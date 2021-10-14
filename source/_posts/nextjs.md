@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-10-08 23:38:00
+updated: 2021-10-11 23:38:00
 categories: js
 ---
 
@@ -13,7 +13,12 @@ categories: js
 ```shell
 npx create-next-app@latest	# 初始化项目
 npx create-next-app@latest --typescript	# 使用typescript初始化
-npx create-next-app@latest --typescript	-e with-tailwindcss # 再集成tailwindcss
+
+# 如果要使用tailwindcss，不推荐tailwindcss官方的脚手架，-e with-tailwindcss安装完成后typescript和eslint都没有，还是自己集成吧，也挺简单的。
+npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+npx tailwindcss init -p
+# 根据文档https://tailwindcss.com/docs/guides/nextjs，替换tailwindcss中的purge和globals.css
+
 next -p 3001	# 指定启动端口
 ```
 
@@ -115,7 +120,13 @@ import Image from 'next/image'
 ### Link
 
 ```javascript
-<Link href=''><a>title</a></Link>
+<Link href=''>
+  <a>title</a>
+</Link>
+
+<Link href=''>
+  <a><Image ... /></a> // 如果link下需要包含image，不能直接image，外面得加一层a标签
+</Link>
 ```
 
 ## 后端渲染SSR

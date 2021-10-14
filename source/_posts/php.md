@@ -8,6 +8,7 @@ categories: php
 
 - 貌似基本上的语言都不会像PHP这样，每次一个HTTP请求过来都去重启初始化全部资源(重启整个框架)，要解决这个问题，`swoole`是目前最可行的解决方案
 - PHP还有一种输出内容模式是直接echo或者直接重定向，在return之前就返回，有些古老的框架是这样的，需要特别注意
+- [LEMP(Linux + Nginx + MySQL + PHP)环境安装](https://haofly.net/lemp)
 
 ## 基本语法
 

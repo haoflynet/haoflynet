@@ -569,7 +569,7 @@ clone()		// 克隆/复制一个元素
 
 // jquery属性更改
 addClass('')	// 给元素添加类
-removeClass('')	// 给元素移除某个类
+removeClass('class1 class2')	// 给元素移除某个类
 $('p').css('color', 'red')			// 修改CSS属性
 $('button').prop('disabled', true)	// 设置按钮不可点击disabled
 $('p').hide()	// 隐藏元素
