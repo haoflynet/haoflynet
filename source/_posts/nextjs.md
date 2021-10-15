@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-10-11 23:38:00
+updated: 2021-10-14 23:38:00
 categories: js
 ---
 
@@ -104,6 +104,7 @@ router.defaultLocale	// 默认的locale
 
 - 可以设置width、height、quality、priority、responsive自动修改图片显示大小
 - 但是毕竟是后端js程序在进行转换，不如直接使用`cloudinary`这样的服务速度快功能多
+- width和height必填，除非`layout=fill`
 
 ```javascript
 import Image from 'next/image'
