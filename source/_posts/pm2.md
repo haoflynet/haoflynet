@@ -29,7 +29,7 @@ pm2 delete all	# 删除所有进程
 pm2 list	# 列出所有使用pm2管理的程序
 pm2 prettylist	# 用json格式输出
 
-pm2 describe 0	# 查看程序详情，比如日志文件位置，nodejs版本，开始时间，堆栈使用情况，延迟时间
+pm2 describe 0	# 查看程序详情，比如启动命令，日志文件位置，nodejs版本，开始时间，堆栈使用情况，延迟时间
 pm2 show 0	# 同上
 pm2 monit	# 实时监听所有进程，和describe的输出差不多，不过这个是实时的，而且可以看到日志
 pm2 monitor appname	# 查看pm2管理的所有进城的详细状态

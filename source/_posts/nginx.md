@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2021-06-02 08:28:00
+updated: 2021-10-14 08:28:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -407,6 +407,23 @@ location ~ ^/json {
     return 200 '{"status":"success","result":"nginx json"}';
 }
 ```
+
+### Nginx根据日期转发/Nginx获取日期
+
+```shell
+location = / {
+  if ($time_iso8601 ~ ^\d+-0[1-9]-\d+) {	# 1-9月转发到path1，其他时间转发到path2
+    rewrite ^/$ /path1 redirect;
+  }
+  rewrite ^/$ /path2 redirect;
+}
+```
+
+### Nginx编写.htaccess
+
+- 其实不算是`.htaccess`就是一个配置文件而已
+- 需要在项目目录下新建`.htaccess`，语法需要是`nginx`的语法，而不是`apache`的
+- 然后在`nginx`该`server`配置中`include`该文件即可
 
 ## 查看负载均衡状态
 

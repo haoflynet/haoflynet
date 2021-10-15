@@ -16,6 +16,20 @@ module.exports = {
       boxShadow: {
       	'md-all': '4px 4px 6px -1px rgba(0, 0, 0, 0.1), -2px 2px 4px -1px rgba(0, 0, 0, 0.06)'	// 四周阴影
       }
+      height: {
+      	'full-vw': '100vw'
+    	},
+    	minWidth: {
+        '36': '9rem'
+      },
+      spacing: {
+        '120': '30rem',
+        '192': '48rem',
+        '232': '58rem',
+        '240': '60rem',
+        '320': '80rem',
+      },
+
     },
   },
   variants: {
@@ -34,8 +48,8 @@ module.exports = {
 # 断点
 sm	# @media (min-width: 640px) { ... }, mobile
 md	# @media (min-width: 768px) { ... }, iPad
-lg	# @media (min-width: 1024px) { ... }, 小屏Web
-xl	# @media (min-width: 1280px) { ... }, 正常Web
+lg	# @media (min-width: 1024px) { ... }, 小屏Web, iPad Pro
+xl	# @media (min-width: 1280px) { ... }, 正常Web, Macbook
 2xl # @media (min-width: 1536px) { ... }, 大屏Web
 
 # 使用时只需加前缀即可，例如
@@ -63,6 +77,10 @@ inline-flex
 table
 grid
 hidden
+
+# Overflow
+overflow-hidden	# 可选auto、hidden、visible、scroll
+overflow-x-scroll	# 可设置水平和垂直方向
 
 # Position
 static
@@ -115,7 +133,7 @@ items-center	# align-items: center，可选start、end、center、baseline、str
 p-0	# padding: 0px
 p-px # padding: 1px
 p-0.5 # padding: 0.125rem
-p-1 # padding: 0.25rem，1/2/3/4/5/6/7/8/9/10/11/12/14/16/20/24/28/32/36/40/44/48/52/56/60/64/72/80/96
+p-1 # padding: 0.25rem，1/2/3/4/5/6/7/8/9/10/11/12/14/16/20(5rem)/24/28/32/36/40(10rem)/44/48/52/56/60/64/72/80(20rem)/96(24rem	)
 ```
 
 ### Sizing
@@ -124,9 +142,13 @@ p-1 # padding: 0.25rem，1/2/3/4/5/6/7/8/9/10/11/12/14/16/20/24/28/32/36/40/44/4
 # width
 w-0	# 0px
 w-px # 1px
-w-1 # 0.25rem
+w-1 # 0.25rem，可选、1、1.5、2、2.5、3、3.5、4到12、14、16、20、24、28、32、36、40、44、48、52、56、60、64、72、80
+96
 w-full # 100%
 w-screen # 100vw
+
+# min width
+min-w-full	# 可选min-w-0、min-w-full、min-w-min、min-w-max，但是没有上面width那么多数字，如果要用到需要自己来定义
 
 # height
 h-1/2	# height: 50%
@@ -211,6 +233,21 @@ border-current
 border-black
 border-white
 border-gray-50	# 所有颜色都可
+
+# border style
+border-solid	# border-style: solid, 可选solid、dashed、dotted、double、none
+
+# ring是tailwind预先定义的一种border类型，就是一圈
+# ring width
+ring
+ring-0	# 可选0、1、2、4、8、inset
+
+# ring color
+ring-transparent
+ring-current
+ring-black
+ring-white
+ring-gray-50	# 可选所有颜色
 ```
 
 ### Effects
@@ -238,13 +275,11 @@ duration-75	# 可选75、100、150、200、300、500、700、1000，单位为毫
 ### Interactivity
 
 ```shell
-cursor-default
-cursor-pointer
-cursor-wait
-cursor-text
-cursor-move
-cursor-help
-cursor-not-allowed
+# cursor
+cursor-pointer	# 可选default、pointer、wait、text、move、help、not-allowed
+
+# user select
+select-none	# user-select:none，可选none、text、all、auto
 ```
 
 
