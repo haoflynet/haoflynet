@@ -24,6 +24,7 @@ module.exports = {
       },
       spacing: {
         '120': '30rem',
+        '144': '36rem'
         '192': '48rem',
         '232': '58rem',
         '240': '60rem',
@@ -133,7 +134,7 @@ items-center	# align-items: center，可选start、end、center、baseline、str
 p-0	# padding: 0px
 p-px # padding: 1px
 p-0.5 # padding: 0.125rem
-p-1 # padding: 0.25rem，1/2/3/4/5/6/7/8/9/10/11/12/14/16/20(5rem)/24/28/32/36/40(10rem)/44/48/52/56/60/64/72/80(20rem)/96(24rem	)
+p-1 # padding: 0.25rem，1/2/3/4/5/6(1.5rem)/7/8/9/10/11/12/14/16/20(5rem)/24/28/32/36/40(10rem)/44/48/52/56/60/64/72/80(20rem)/96(24rem)
 ```
 
 ### Sizing
@@ -142,7 +143,7 @@ p-1 # padding: 0.25rem，1/2/3/4/5/6/7/8/9/10/11/12/14/16/20(5rem)/24/28/32/36/4
 # width
 w-0	# 0px
 w-px # 1px
-w-1 # 0.25rem，可选、1、1.5、2、2.5、3、3.5、4到12、14、16、20、24、28、32、36、40、44、48、52、56、60、64、72、80
+w-1 # 0.25rem，可选、1、1.5、2、2.5、3、3.5、4、5、6、7、8(2rem)、9(2.25rem)、10(2.5rem)、1112、14、16、20、24、28、32、36、40、44、48、52、56、60、64、72、80
 96
 w-full # 100%
 w-screen # 100vw
@@ -165,7 +166,10 @@ text-sm
 text-base
 text-lg
 text-xl
-text-2xl # 一直到text-9xl
+text-2xl # 可选2xl(1.5rem)、3xl、4xl(2.25rem)、5xl(3rem)、6xl、7xl、8xl、9xl
+
+# font weight
+font-thin # font-weight，可选thin、extralight、light、normal、medium、semibold、bold(700)、extrabold、black(900)
 
 # line height
 leading-3	# line-height: .75rem, leading-3/4/5/6/7/8/9/10

@@ -8,7 +8,7 @@ categories: javascript
 
 - 配置是否需要用户登陆`Settings->Checkout ->Customer accounts`，如果用户登陆是可选的，那么可以做一个[Continue as Guest](https://shopify.github.io/liquid-code-examples/example/customer-login)按钮
 
-## Shopify开发
+## Shopify前端开发
 
 - `shopify`的搜索功能无法做更多自定义，但是他们的搜索匹配方式有点奇怪，很多时候不能搜到我们想要的东西，不用去想了，没有解决方案
 
@@ -515,5 +515,75 @@ product.template_suffix	// 返回产品的模板文件前缀，例如如果该�
   </form>
   ```
 
-  
 
+## Shopify API开发
+
+- 要想调用API，首先要先在store里面创建一个APP，创建的时候需要选择相应的权限(`Access Scope`)，后面可以添加的。创建完成就能有API Key和Password了
+- 每个APP每分钟最多1000个请求，每秒最多50个请求，reset api每秒才2个，各个API的[频率限制](https://shopify.dev/api/usage/rate-limits，但是计算就有点迷了，特别是graphql有自查询的时候
+
+### [shopify grapnel api](https://shopify.dev/api/admin-graphql#top)
+
+- 上面文档页面有所有的endpoint
+
+```javascript
+// api官方文档给的那个Shopify.Utils.loadCurrentSession(req, res)例子是针对web app的，我们完全可以自己用脚本来写
+const {Shopify, ApiVersion} = require("@shopify/shopify-api");
+
+Shopify.Context.initialize({
+  API_KEY: 'xxxxx',
+  API_SECRET_KEY: 'xxxxx',
+  SCOPES: ['read_product_listings', 'write_product_listings', 'read_products', 'write_products'],
+  HOST_NAME: 'xxxxxx.myshopify.com',
+  API_VERSION: ApiVersion.July21	// 这里的版本选最新的吧
+})
+
+// 发送graphql query请求
+client.query({
+  data: queryString,
+}).then((res) => {
+  console.log(JSON.stringify(res.body));
+});
+
+// 获取产品信息query
+products (first: 3) {
+  edges {
+    node {
+      id
+      title
+      metafields (first: 100) {	// 查询metafields，太麻烦了，而且这玩意儿还会让query cost变得很大
+          edges {
+            node {
+              namespace
+              key
+              value
+            }
+          }
+        }
+    }
+  }
+}
+
+// 创建产品，shopify node api graphql添加参数
+client.query({
+  data: {
+    query: `
+			mutation ProductCreate($input: ProductInput!) { // 注意这里的类型一定要和文档里面一样，该加感叹号就加感叹号，否则会报Nullability mismatch on variable $input and argument input (ProductInput / ProductInput!)错误
+				productCreate(input: $input) {
+					product {
+						id
+					}
+				}
+			}
+		`,
+    variables: {
+      input: {
+        title: 'abc'
+      }
+    }
+  }
+})
+```
+
+## 常用插件
+
+- [Advanced Custom Fields](https://apps.shopify.com/advanced-custom-field?surface_detail=custom+field&surface_inter_position=1&surface_intra_position=1&surface_type=search): 扩展字段，免费里面好像这个还可以，基本能满足要求。不过我没搞懂它的custom fields和metafields有什么区别，不都差不多吗，不过推荐使用custom fields，因为可以在这个插件里面统一配置`Configuration->Advanced Custom Fields -> Products`，在这里面添加的字段会应用于所有对象上面。另外，无论哪种字段，都能够在API里面直接通过metafields获取

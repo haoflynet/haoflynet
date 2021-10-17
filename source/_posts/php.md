@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-09-07 08:47:21
+updated: 2021-10-15 08:47:21
 categories: php
 ---
 # PHP
@@ -81,7 +81,7 @@ sort($arr, function($item1, $item2){return $item1 > $item2});
 
 # 数组遍历
 foreach($array as $value); //数组遍历
-foreach($array as $key => $value); // 数组(字典)遍历
+foreach($array as $key => $value); // 数组(字典)遍历，如果是数组，$key表示索引
   
 # 数组用于函数
 func(*list); // 将数组作为函数的输入

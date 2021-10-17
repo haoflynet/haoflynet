@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-09-09 22:50:30
+updated: 2021-10-15 22:50:30
 categories: frontend
 ---
 # node.js教程
@@ -201,6 +201,8 @@ yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
   ```javascript
   interface MyType {
     name: string;
+    children: MyType2[];	// 定义数组
+    [index: number]: { id: number; label: string; key: any };
   }
   ```
 
@@ -242,6 +244,7 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 - **Error: spawn ../node_modules/optipng-bin/vendor/optipng ENOENT**: 尝试执行`npm rebuild`
 - **this._settlePromiseFromHandler is not a function**: 尝试删除`node_module`目录并重新安装
 - **gulp: command not found**: `npm install gulp-cli -g`
+- **SyntaxError: Unexpected token export**: 尝试使用`module.exports = XXX`来到处模块或方法
 
 ##### 扩展阅读
 

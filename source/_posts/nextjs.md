@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-10-14 23:38:00
+updated: 2021-10-15 23:38:00
 categories: js
 ---
 
@@ -25,11 +25,15 @@ next -p 3001	# 指定启动端口
 ### next.config.js
 
 - 每次修改必须重启应用
+- 在`.env`中设置的环境变量默认不会在后端渲染中被前端看到，但是如果以`NEXT_PUBLIC_`开头的环境变量，是能看到也能被前端直接使用的
 
 ```javascript
 module.exports = {
-  env: {	// 设置环境变量，设置后可以在jsx中直接用{process.env.customKey}获取值，环境变量还能设置在.env中，但似乎必须以NEXT_PUBLIC_开头，且必须重启应用
+  env: {	// 设置环境变量，设置后可以在jsx中直接用{process.env.customKey}获取值，环境变量还能设置在.env中
     customKey: 'my-value',
+  },
+  images: {
+    domains: ['example.com']	// 定义哪些image允许展示
   },
   async redirects() {	// 设置重定向规则
     return [{
@@ -82,6 +86,88 @@ router.defaultLocale	// 默认的locale
 
 ## 页面组件
 
+### [Layouts](https://nextjs.org/docs/basic-features/layouts)
+
+- 全局定义页面的layout
+
+- 所有页面都相同的layout可以这样做
+
+  ```javascript
+  // pages/_app.js
+  import Layout from '../components/layout'
+  
+  export default function MyApp({ Component, pageProps }) {
+    return (
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    )
+  }
+  ```
+
+- 如果不是所有页面的layout都相同，可以在单独的page里面这样做
+
+  ```javascript
+  // pages/_app.js，在_app.js中声明使用getLayout方法来获取Layout
+  export default function MyApp({ Component, pageProps }) {
+    // Use the layout defined at the page level, if available
+    const getLayout = Component.getLayout || ((page) => page)
+    return getLayout(<Component {...pageProps} />)
+  }
+  
+  // pages/_app.tsx，如果是typescript需要这样声明
+  type NextPageWithLayout = NextPage & {
+    getLayout?: (page: ReactElement) => ReactNode
+  }
+  type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout
+  }
+  export default function MyApp ({ Component, pageProps }: AppPropsWithLayout): ReactNode {
+    // 我这里和官网不一样，如果有getLayout就用getLayout，否则就用全局的
+    if (Component.getLayout) {
+      return Component.getLayout(<Component {...pageProps} />)
+    }
+    return (<Layout><Component {...pageProps} /></Layout>)
+  }
+  
+  // components/layout.js，自定义一个layout
+  import Navbar from './navbar'
+  import Footer from './footer'
+  export default function CustomLayout({ children }) {
+    return (
+      <>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </>
+    )
+  }
+  // components/layout.tsx, typescript版本
+  import React, { ReactElement } from 'react'
+  interface LayoutProps {
+    children: ReactElement
+  }
+  export default function Layout (props: LayoutProps): JSX.Element {
+    return (
+      <>
+        <div>header</div>
+        <main>{props.children}</main>
+      </>
+    )
+  }
+  
+  
+  
+  // pages/index.js
+  import Layout from '../components/layout'
+  import NestedLayout from '../components/nested-layout'
+  
+  export default function Page() {}
+  
+  // 通过getLayout方法来定义
+  Page.getLayout = CustomLayout
+  ```
+
 ### Head
 
 - 可以在`Head`里面插入全局的js，例如google analytics代码:
@@ -102,6 +188,7 @@ router.defaultLocale	// 默认的locale
 
 ### Image
 
+- 需要在`next.config.js`中配置图片域名`images.domains`
 - 可以设置width、height、quality、priority、responsive自动修改图片显示大小
 - 但是毕竟是后端js程序在进行转换，不如直接使用`cloudinary`这样的服务速度快功能多
 - width和height必填，除非`layout=fill`
@@ -117,6 +204,27 @@ import Image from 'next/image'
   height={500}
 />
 ```
+
+#### 使用svg作为component
+
+- 和其他框架一样，都是用`npm install @svgr/webpack --save-dev`
+- 需要做如下配置:
+
+```javascript
+// next.config.js 添加如下配置
+module.exports = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"]
+    });
+
+    return config;
+  }
+};
+```
+
+
 
 ### Link
 

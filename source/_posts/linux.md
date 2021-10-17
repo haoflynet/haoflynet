@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-09-26 18:03:30
+updated: 2021-10-15 08:03:30
 categories: system
 ---
 # Linux手册
@@ -284,6 +284,12 @@ ls -l # 列出文件详细信息
 ls -ld # 列出文件夹详细信息
 
 \cp -rf file1 file2	# cp命令不弹出确认Y/N的解决方法是在前面加上斜杠
+
+# 更改文件或文件夹权限
+chmod g+x filename	# 给group增加可执行权限
+chmod g+xw filename
+chmod o+w filename	# 给其他用户增加可写权限
+chmod g-x filename	# 给group移除可执行权限
 ```
 
 #### ssh

@@ -8,6 +8,7 @@ categories: frontend
 ## Cloud Function
 
 - 最大超时时间只能设置为540s=9min，实在不行可以用`Cloud Tasks` 队列，或者在时间快完的时候直接再调用一下url参数组织一下
+- [其他限制](https://cloud.google.com/functions/quotas): 常用的会有未压缩HTTP请求或响应的大小为10 MB
 
 ```javascript
 req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['fastly-client-ip']	// 可以通过这种方式获取客户端IP地址
@@ -74,6 +75,10 @@ req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['f
   ```shell
   jsonPayload.message =~ "regular expression pattern"	# 模糊查询
   jsonPayload.message !~ "regular expression pattern"	# 模糊查询，不等于
+  
+  # 如果某个字段可能存在也可能不存在，可以这样查询
+  operation.id:* # 如果该字段存在
+  NOT operation.id:* # 如果该字段不存在
   ```
 
 ## Map地图服务

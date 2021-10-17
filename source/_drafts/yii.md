@@ -7,12 +7,14 @@ yii cache 	# li
 yii cache/flush-schema db	# 清除db缓存
 ```
 
-### 数据库配置
-
-在`common/config/main-local.php`中进行配置
+### 常用配置
 
 ```php
-'db' => [
+# index.php
+defined('YII_DEBUG') or define('YII_DEBUG', true);	# 打开debug模式
+
+# common/config/main-local.php
+'db' => [	# 数据库配置
   'class' => 'yii\db\Connection',
   'dsn' => 'mysql:host=localhost;dbname=password',
   'username' => 'username',
@@ -21,6 +23,15 @@ yii cache/flush-schema db	# 清除db缓存
   'enableSchemaCache' => true,
   'schemaCacheDuration' => 86400,
   'schemaCache' => 'cache',
+]
+  
+// backend/config/main-local.php
+$config = [
+  'components' => [
+    'request' => [
+      'enableCsrfValidation' => false,	// 可以全局关闭csrf验证
+    ]
+  ]
 ]
 ```
 
@@ -31,6 +42,25 @@ yii cache/flush-schema db	# 清除db缓存
 ## 控制器与路由
 
 - 路由和某难用的框架一样是在`controller`下定义，且开头为`actionXXX`表示`/XXX`路径
+
+```php
+// 控制器的behaviors方法能够控制访问权限
+public function behaviors() {
+  return [
+    'class' => AccessControl::className(),
+    'rules' => [
+      [
+        'actions' => ['login', 'error'],
+        'allow' => true,
+      ],
+      [
+        'allow' => true,
+        'roles' => ['@']	// 表示任何角色都能访问
+      ]
+    ]
+  ]
+}
+```
 
 ## 帮助方法
 
