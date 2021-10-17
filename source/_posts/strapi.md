@@ -15,6 +15,56 @@ categories: frontend
 export PORT=3000 && npm run develop	# 更改启动端口
 ```
 
+### 配置文件
+
+```javascript
+// config/server.js, Server相关配置
+module.exports = ({ env }) => ({
+  host: env('HOST', process.env.HOST),
+  port: env.int('PORT', process.env.PORT),
+  admin: {
+    url: 'admin',	// 可以修改默认的后台路径，但是不能设置为/ root路径，关注https://github.com/strapi/strapi/issues/9302
+    auth: {
+      secret: env('ADMIN_JWT_SECRET', process.env.ADMIN_JWT_SECRET),
+    },
+  },
+});
+
+// config/api.js, API相关配置
+module.exports = ({ env }) => ({
+  responses: {
+    privateAttributes: ['_v', 'id', 'created_at'],
+  },
+  rest: {
+    defaultLimit: 100,
+    maxLimit: 250,
+  },
+});
+
+// config/plugins.js, 插件相关配置
+module.exports = {
+  graphql: {	// graphql插件相关配置
+    endpoint: '/graphql',
+    shadowCRUD: true,
+    playgroundAlways: false,
+    depthLimit: 7,
+    amountLimit: 100,
+    apolloServer: {
+      tracing: false,
+    }
+  }
+}
+
+// extensions/users-permissions/config/security.json, 修改jwt token的配置
+{
+  "jwt": {
+    "expiresIn": "1d"
+  }
+}
+
+// .env, 有几个默认的Strapi相关的配置，例如是否开启更新提示等，默认都是关闭了的
+```
+
 ### 自定义Role及权限
 
 - 免费版不能在web端直接进行配置，不过可以修改数据库，看一下数据库的表结构就能很好修改了，但问题是每次修改了types结构以后需要重新分配role的权限，否则权限会丢失，可以使用以下代码在重新启动应用时自动更新权限，但还是有个问题，如果应用不完全重启，仍然不会更新，因为应用没有完全重启的话`admin`的也不会更新的:
@@ -65,11 +115,40 @@ rm -rf .cache && rm -rf build/
 
 ## 其他特性
 
-### 定时获取外部数据
+<!--more-->
+
+### Hooks
+
+### Middlewares
+
+- 有一些自带的中间件: favicon、public、session、logger、parser、gzip、responseTime、poweredBy，安全相关的有csp、p3p、hsts、xframe、xss、cors、ip(可以设置黑白名单)
+
+### Functions
+
+- `./config/functions`目录下，这里面的函数可以用`trapi.config.functions['fileName']()`来调用
+- `bootstrap.js`每启动都会执行
+
+#### 定时获取外部数据
 
 - 支持定时从外部获取数据并存储到数据库中，不过我没玩儿过，可以参考[这里](https://strapi.io/documentation/developer-docs/latest/guides/external-data.html#content-type-settings)
 
-<!--more-->
+## API集成
+
+- [这里](https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/integrations.html)列举了各个前端如何使用API的方法
+- 调用API如果开启了认证，那么就得用一个user来用接口登录获取jwt token，并且这里的user和登录用户不一样，需要重新注册才行，并且默认都可以注册，注册了一个后可以在`USERS & PERMISSIONS PLUGIN -> Advanced Settings`去关闭注册功能
+
+### graphql
+
+- 服务端需要先安装`strapi install graphql`，客户端也需要安装`npm install @apollo/client graphql` 
+
+```javascript
+// 登录获取jwt token
+mutation {
+  login(input: { identifier: "email", password: "password" }) {
+    jwt
+  }
+}
+```
 
 ## 外部插件
 
@@ -197,7 +276,34 @@ rm -rf .cache && rm -rf build/
 ## TroubleShooting
 
 - **The file is too big**: 这一般是nginx的限制，上传的文件太大了，需要修改nginx的配置`client_max_body_size 10m`
+
 - **如果新建的内容访问接口是404**: 一般是因为没有发布publish
+
 - **relationship 关联对象拖动排序无效**:  明明保存时提交的字段的顺序都是正确的，但是提交后又是原来的顺序了，目前是[还没修复](https://github.com/strapi/strapi/issues/2166)，但是可以先把所有的关联删除了，保存后再重新新建就行了
-- **无法嵌套实用components**: 网页上不行，但是直接修改`component`的json文件一般是可以的，但有时候也不能用，还是得等官方支持才行
+
+- **无法多级嵌套使用components**: 网页上不行，但是直接修改`component`的json文件一般是可以的，但有时候也不能用，还是得等官方支持才行:
+
+  ```json
+  // 例如如果网页上不能选择某个component，那么可以直接修改其json文件，在attributes里面添加字段
+  {
+    "collectionName": "components_common_main_menus",
+    "info": {
+      "name": "MainMenu",
+      "icon": "braille",
+      "description": ""
+    },
+    "options": {},
+    "attributes": {
+      "text": {
+        "type": "string"
+      },
+      "dropdownMenus": {
+        "type": "component",
+        "repeatable": true,
+        "component": "common.dropdown-menu"
+      }
+    }
+  }
+  ```
+
 - **error TypeError: Cannot read property 'attributes' of undefined**: 可能是某个组件没上传导致的，如果报错行数在`./node_moduels/strapi-plugin-documentation/services/Documentation.js:592:42`直接去里面把`component`打印出来吧

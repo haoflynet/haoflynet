@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-09-28 08:18:00
+updated: 2021-10-15 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -477,6 +477,8 @@ $('p').last()		// 选择最后一个元素
 $('input:checked') 		// 查找所有checked为true的checkbox的input元素
 document.getElementById('test:abc')	// 有特殊字符的元素的查找，jquery往往无法处理过来
 
+$('img').index($(myImg)) // 可以查找某个元素在一个jquery数组中的索引
+
 $('select option[value="abc"]');	// 通过value获取select的option
 ```
 
@@ -534,6 +536,7 @@ $('div').data('abc'); // 获取元素的data数据，例如<div data-abc="dsiaho
 $('div').removeAttr('required');	// jquery移除属性
 $('div').hasClass('foo');	// 判断元素是否有某个类
 $("p").is(":visible");	// 查看元素是否可见
+$('div').prop('tagName'); // 获取元素的tag名称
 ```
 
 ### 编辑元素
@@ -577,7 +580,7 @@ $('p').show()	// 显示元素
 $('img').attr('src', 'xxx')	// 改变元素的属性
 
 
-// video标签控制
+// video标签控制(原生js)
 myVideo.play()	// 开始播放
 myVideo.pause()	// 暂停播放
 
@@ -1597,3 +1600,4 @@ function retry(fn, times, delay=3000) {
 ##### 扩展阅读
 
 - [一大波JS开发工具函数](https://zhuanlan.zhihu.com/p/113385396?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [blowup.js](https://github.com/paulkr/blowup.js): 一个比较简单好用的类似淘宝图片放大的jQuery插件

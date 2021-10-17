@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-09-24 15:11:11
+updated: 2021-10-15 08:11:11
 categories: Javascript
 ---
 
@@ -17,8 +17,12 @@ npm install --save-dev sequelize-cli	# 安装命令行工具npx
 
 ```javascript
 var sequelize = new Sequelize('database', 'username', 'password', {
+  dialect: 'mysql',	// 如果不指定这个参数，可能会报错Dialect needs to be explicitly supplied as of v4.0.0
   logging: false	// 默认会将sql查询都输出到console.log中，设置为false可以不用输出
 })
+
+// 直接执行SQL row命令
+const records = await sequelize.query("SELECT * FROM `users`", { type: QueryTypes.SELECT });
 ```
 
 ## 模型定义
@@ -585,3 +589,4 @@ npx sequelize-cli db:seed:undo:all # 取消执行所有seed
   - 如果是mysql8，可能需要修改`only_full_group_by`，
   - 如果是postgres我目前只能将那个字段加入group by里面，不过还好是id字段
   - 如果是postgres且只是单纯地想把关联的对象全部取出来(例如`hasMany`关系)，如果只是单纯地把关联对象的id加入`group`，那么得到的结果是没有聚合的，而是一条关联对象一个结果，例如user has many posts，如果有两个用户，每个用户2篇文章，那么查询出来是4条数据，这时候可以把`constraints`添加到include参数中，就可以user.posts来获取了，结果是2条数据
+- **ERROR: Please install mysql2 package manully**: 安装就行: `npm install --save mysql2`
