@@ -1,7 +1,7 @@
 ---
 title: "使用certbot为Nginx一键配置Let's Encrypt SSL安全证书"
 date: 2018-06-16 21:32:00
-updated: 2021-03-30 18:40:00
+updated: 2021-10-18 18:40:00
 categories: server
 ---
 
@@ -32,6 +32,9 @@ categories: server
    # for centos
    yum install epel-release -y && yum update -y
    yum install certbot certbot-nginx
+   
+   # 如果各种安装方式都不行，比如一些无法解决的依赖问题no module named openssl, no module named cryptography，那么尝试安装一个独立的python3版本
+   pip3 install certbot certbot-nginx
    ```
 
 4. 确保你的nginx配置已经有配置域名，并且域名解析也已经指向该IP地址，域名能够通过80端口正常访问。

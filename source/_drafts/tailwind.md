@@ -24,7 +24,8 @@ module.exports = {
       },
       spacing: {
         '120': '30rem',
-        '144': '36rem'
+        '144': '36rem',
+        '160': '40rem',
         '192': '48rem',
         '232': '58rem',
         '240': '60rem',
@@ -143,8 +144,7 @@ p-1 # padding: 0.25rem，1/2/3/4/5/6(1.5rem)/7/8/9/10/11/12/14/16/20(5rem)/24/28
 # width
 w-0	# 0px
 w-px # 1px
-w-1 # 0.25rem，可选、1、1.5、2、2.5、3、3.5、4、5、6、7、8(2rem)、9(2.25rem)、10(2.5rem)、1112、14、16、20、24、28、32、36、40、44、48、52、56、60、64、72、80
-96
+w-1 # 0.25rem，可选、1、1.5、2、2.5、3、3.5、4、5、6、7、8(2rem)、9(2.25rem)、10(2.5rem)、1112、14、16、20、24、28、32、36、40、44、48、52、56、60、64、72、80、96(24rem)
 w-full # 100%
 w-screen # 100vw
 
@@ -213,6 +213,9 @@ bg-repeat-x
 bg-repeat-y
 bg-repeat-round
 bg-repeat-space
+
+# background size
+bg-auto	# 可选auto、cover、contain
 ```
 
 ### Borders
@@ -265,9 +268,10 @@ shadow-sm	# 可选sm、md、lg、xl、2xl、inner、none
 opacity-0	# 可选0、5、10、20、25、30、40、50、60、70、75、80、90、95、100
 ```
 
-### Transitions & animation
+### [Transitions & animation](https://tailwindcss.com/docs/transition-property)
 
 - `transition-{properities}`可以实现指定属性的动画过渡效果效果
+- 例如按钮hover放大]
 
 ```shell
 transition-top

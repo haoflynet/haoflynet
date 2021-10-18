@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2021-01-21 09:36:30
+updated: 2021-10-18 09:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -1481,6 +1481,8 @@ conn.close()	# 关闭连接
   pip3 install --user --upgrade pip	# 或者
   ```
   
+- **pip requires Rust>1.41**: 升级pip试试: `pip3 install "pip>=20"`
+    
 - **`Click will abort further execution because Python 3 was
     configured to use ASCII as encoding for the environment.`**: 错误原理见[click](https://click.palletsprojects.com/en/7.x/python3/)，设置一下系统的语言就好了:
 

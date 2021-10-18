@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-10-15 08:18:00
+updated: 2021-10-18 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -524,6 +524,7 @@ getComputedStyle(ele)	// 获取元素的所有的样式，包含了所有的css�
 getComputedStyle(ele, '::before')	// 获取指定事件的样式
 
 // jQuery方法
+$('[id=xxx]');	// 如果有重复的id的元素可以这样获取所有的元素
 $('#check').prop('checked')	// 获取checkbox是否被check了，不用给你用attr
 $('div').prop('classList') // 获取元素类列表
 $('div').prop('classList').remove('d-none')	// 移除某个类

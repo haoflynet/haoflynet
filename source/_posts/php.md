@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-10-15 08:47:21
+updated: 2021-10-18 08:47:21
 categories: php
 ---
 # PHP
@@ -719,6 +719,8 @@ ini_get('upload_max_filesize'); // 但是该属性只能获取，不能在代码
 - **class not found**: 如果是自己写的某个类没找到可能是没有require进来，我们在使用namespace的时候光用namespace是不够的，namespace只是表明其名称空间，require才能把代码引入进来，之所以我们使用框架不会报错，因为我们在框架的入口之行了`require __DIR__.'/../vendor/autoload.php'`的
 
 - **file_get_contents报错505 HTTP Version Not Supported error**: 把请求的url打印出来，多半是`url``没有`encode`
+
+- **Call to undefined function curl_init()**: 需要安装`php_curl`扩展: `apt install php-curl -y`
 
 - **PHP安装SOAP扩展/docker容器安装php-soap扩展**: 
 
