@@ -222,6 +222,7 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
   .hide-scrollbar{
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none;
+    scrollbar-width: none;	// 火狐需要添加这个
   
     &::-webkit-scrollbar {
       width: 0 !important

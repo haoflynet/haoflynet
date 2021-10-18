@@ -26,7 +26,13 @@ CONCAT("Test - ", @Column)	# 字符串连接/连接字符串
 REPLACE(@Column, "查找值", "替换值")	# 这居然是完全匹配
 SUBSTITUTE_REGEX(@Column, "查找值", "替换值")	# 这个才和js中的replace类似，且支持正则
 
-SWITCH(data, case1, field, case2, field2, _default_, "默认值")	// 右边条件和结果两个两个成对
+SWITCH(data, case1, field, case2, field2, _default_, "默认值")	# 右边条件和结果两个两个成对
+
+LOOKUP(
+	CONCAT(@Table1_Column1, @Table1_Column2),
+	CONCAT(@Table2_Column1, @Table2_Column2),
+	CONCAT(@Table2_Column3)
+)	# 相当于链表查询了，两张表join，然后取最后那个字段的值
 ```
 
 
