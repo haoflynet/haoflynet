@@ -43,10 +43,12 @@ chkconfig --levels 235 php-fpm on
 
 ### nginx配置php-fpm
 
+- **如果发现9000端口没有启动那么php-fpm应该是以socket的方式启动的**
+
 ```nginx
 location ~ \.php$ {    
   fastcgi_pass 127.0.0.1:9000;	# 端口方式
-  fastcgi_pass unix:/run/php/php7.0-fpm.sock;	# sodck方式
+  fastcgi_pass unix:/run/php/php7.0-fpm.sock;	# socket方式
   
   fastcgi_index index.php;  
   fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  

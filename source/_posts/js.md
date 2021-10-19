@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-10-18 08:18:00
+updated: 2021-10-19 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -579,7 +579,8 @@ $('button').prop('disabled', true)	// 设置按钮不可点击disabled
 $('p').hide()	// 隐藏元素
 $('p').show()	// 显示元素
 $('img').attr('src', 'xxx')	// 改变元素的属性
-
+$('div')[0].scrollIntoView()	// 将页面滚动到某个元素
+$('div').animate({scrollTop: $('div').offset().top - 10})	// 将元素滚动到某个位置
 
 // video标签控制(原生js)
 myVideo.play()	// 开始播放
