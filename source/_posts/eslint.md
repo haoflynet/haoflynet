@@ -164,6 +164,7 @@ module.exports = {
     ],
     "rules": { // 这里放自定义的规则，0表示关闭规则，1表示设置为warn，2表示error
       "@typescript-eslint/strict-boolean-expressions": 0, 	// 禁用布尔表达式中的严格类型判断，本来if(value)即使value为true或者为对象时都可以，但是如果这个规则为1，那么只能为true，必须单独处理null或者空字符串等情况，特别麻烦
+      "@typescript-eslint/restrict-template-expressions": 0,	// 模板语法不验证类型，`${abc.def}`
       "@typescript-eslint/explicit-module-boundary-types": [
         "error",
         {	// 仅仅覆盖规则的某个选项

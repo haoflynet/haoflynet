@@ -13,6 +13,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'，默认选项
   theme: {
     extend: {	// 可以添加一些自定义的样式，或者覆盖之前的样式，在官方文档每一个样式页面下面多有个性化的说明
+      backgroundImage: {
+        	'my-bg': "url('/')"	// 甚至可以这样定义一个背景图片类
+      },
       boxShadow: {
       	'md-all': '4px 4px 6px -1px rgba(0, 0, 0, 0.1), -2px 2px 4px -1px rgba(0, 0, 0, 0.06)'	// 四周阴影
       }
@@ -23,7 +26,9 @@ module.exports = {
         '36': '9rem'
       },
       spacing: {
+        '38': '9.5rem',
         '120': '30rem',
+        '128': '32rem',
         '144': '36rem',
         '160': '40rem',
         '192': '48rem',
@@ -35,7 +40,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      borderRadius: ['hover']	// 给rounded添加hover效果
+    },
   },
   plugins: [],
   corePlugins: {
@@ -94,6 +101,7 @@ sticky
 # Top / Right /Bottom /Left
 top-0
 -top-0	# 负数
+left-1/2	# 可选1/2、1/3、2/3、1/4、2/4、3/4，没有12分的
 
 # Z-Index
 z-0	# z-10 20 30 40 50 auto
@@ -127,6 +135,9 @@ justify-center	# justify-content: center，可选start、end、center、between�
 
 # align items
 items-center	# align-items: center，可选start、end、center、baseline、stretch
+
+# grid auto flow
+grid-flow-row	# grid-auto-flow，可选row、column、row dense、column dense
 ```
 
 ### Spacing
@@ -147,6 +158,8 @@ w-px # 1px
 w-1 # 0.25rem，可选、1、1.5、2、2.5、3、3.5、4、5、6、7、8(2rem)、9(2.25rem)、10(2.5rem)、1112、14、16、20、24、28、32、36、40、44、48、52、56、60、64、72、80、96(24rem)
 w-full # 100%
 w-screen # 100vw
+w-min	# min-content
+w-max	# max-content
 
 # min width
 min-w-full	# 可选min-w-0、min-w-full、min-w-min、min-w-max，但是没有上面width那么多数字，如果要用到需要自己来定义
@@ -157,7 +170,7 @@ h-3/4	# height: 75%
 h-5/12	# height: 41.666%
 ```
 
-### Text/Typography
+### Text/Typography/Font
 
 ```shell
 # font size
@@ -221,7 +234,7 @@ bg-auto	# 可选auto、cover、contain
 ### Borders
 
 ```shell
-# border radius
+# border radius，默认不支持hover，可以自定义
 rounded-none	# border-radius: 0px
 rounded-sm	# border-radius: 0.125rem
 rounded-lg	# border-radius: 0.5rem

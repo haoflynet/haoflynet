@@ -86,6 +86,8 @@ router.defaultLocale	// 默认的locale
 
 ## 页面组件
 
+- 通过变量渲染html，需要用`<div dangerouslySetInnerHTML={{__html = '<div></div>'}}`
+
 ### [Layouts](https://nextjs.org/docs/basic-features/layouts)
 
 - 全局定义页面的layout
@@ -223,8 +225,6 @@ module.exports = {
   }
 };
 ```
-
-
 
 ### Link
 
