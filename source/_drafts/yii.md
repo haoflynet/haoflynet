@@ -3,6 +3,8 @@
 ### 常用命令
 
 ```shell
+yii serve 0.0.0.0 --port=8888	# 指定端口，指定host
+
 yii cache 	# li
 yii cache/flush-schema db	# 清除db缓存
 ```
@@ -62,6 +64,17 @@ public function behaviors() {
 }
 ```
 
+## View
+
+```php
+<?php
+  use Yii;
+
+	$this->registerJsFile('/js/xxx.js');	// 单个页面引入js和css文件，注意yii2不能用Yii::app()来引入了
+  $this->registerCssFile('/css/xxx.css');
+?>
+```
+
 ## 帮助方法
 
 ```php
@@ -76,3 +89,6 @@ Html::tag('p', Html::encode($user->name), ['class' => 'username']);	// <p class=
 Html::img('@web/images/logo.png', ['alt' => 'My logo', 'class' => 'myclass1 myclass2']);	# <img src="http://example.com/images/logo.png" alt="My logo" />
 ```
 
+## 实用插件
+
+- [yii2-lock-form](https://github.com/lichunqiang/yii2-lock-form): 禁止页面中的按钮重复点击

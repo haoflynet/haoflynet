@@ -19,6 +19,15 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
    3. 选择`Distribute App`，然后选择`App Store Connect`，再`Upload`，一直下一步应该就可以了。(如果打包能成功，但是上传却说认证失败，可能是网络问题)
    4.  上传完成后可以在`App Store Connect`后台的`TestFlight`看到刚才的build了，这时候可以去添加测试用户，点击左侧菜单`App Store Connect User`进行添加，添加方式见页面提示即可，很简单，添加完成后会发送邮件给用户，里面有个兑换码，在ios的testflightapp上点击redeem输入兑换码即可下载，如果下载时提示`the app couldn't be installed because testflight isn't available`，那就等大概五分钟试试
 
+## App 迁移transfer
+
+- 迁移的条件: https://help.apple.com/app-store-connect/#/devaf27784ff，特别注意必须上架过一个版本才能够直接transfer
+- 迁移APP的时候bundle id能一并迁移过去，还是方便
+
+## 删除APP
+
+- 如果删除为提交过的app，那么它仍然会出现在列表中，非常烦，只能等半年后她自己清理了
+
 ## TroubleShooting
 
 - **Signing for "xxx" requires a development team. Select a development team in the project editor.**解决方法: 点击项目名->targets->General->Signing，选择自己的Team，选择后重新构建，如果仍然出现该错误，那么可以重启一下xcode或者更新一下xcode多次尝试。

@@ -167,8 +167,26 @@ a:active: a标签被点击的时候
 ##### input
 
 - text-align: 内容显示方式，`center`表示居中显示
+
 - 如果direction属性是ltr，则默认值是left；如果direction是rtl，则为right
+
 - `autocomplete="off"`: 关闭google浏览器等的自动填充功能
+
+- 如果是number类型的input想要隐藏选择箭头可以这样做:
+
+  ```css
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+  ```
 
 ##### justify-content
 
