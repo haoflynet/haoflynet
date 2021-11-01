@@ -1,7 +1,7 @@
 ---
 title: "axios网络请求"
 date: 2021-09-23 18:32:00
-updated: 2021-09-24 08:34:00
+updated: 2021-10-22 08:34:00
 categories: javascript
 ---
 
@@ -28,7 +28,14 @@ axios({
 	.catch((error: AxiosError) => {
   	console.log(error.response.status)	// 获取返回状态码
   	console.log(error.message)	// 获取错误信息
+    console.log(JSON.parse(error.request.response).message)	// 另外一种错误相应的格式
 	})
+
+// 创建一个可复用的client
+const client = axios.create({
+  baseURL: '',
+  headers: {}
+})
 ```
 
 ## Axios跨域请求

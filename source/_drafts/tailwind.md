@@ -31,12 +31,18 @@ module.exports = {
         '128': '32rem',
         '144': '36rem',
         '160': '40rem',
+        172: 44rem,
         '192': '48rem',
         '232': '58rem',
-        '240': '60rem',
+        240: '60rem',
+        272: '68rem',
+        280: '70rem',
+        288: '72rem',
         '320': '80rem',
       },
-
+			width: {
+        232: '58rem'
+      }
     },
   },
   variants: {
@@ -86,6 +92,7 @@ inline-flex
 table
 grid
 hidden
+table-cell
 
 # Overflow
 overflow-hidden	# 可选auto、hidden、visible、scroll
@@ -136,8 +143,14 @@ justify-center	# justify-content: center，可选start、end、center、between�
 # align items
 items-center	# align-items: center，可选start、end、center、baseline、stretch
 
+# grid template columns
+grid-cols-3	# 定义有多少列，可选1、2、3、4、5、6、7、8、9、10、11、12、none
+
 # grid auto flow
 grid-flow-row	# grid-auto-flow，可选row、column、row dense、column dense
+
+# gap
+gap-0	# 可选0、0.5、1、1.5、2、2.5、3、3.5、4、5、6、7、8、9、10、11、12、14、16等，并且可以按上下左右来区分
 ```
 
 ### Spacing
@@ -146,7 +159,7 @@ grid-flow-row	# grid-auto-flow，可选row、column、row dense、column dense
 p-0	# padding: 0px
 p-px # padding: 1px
 p-0.5 # padding: 0.125rem
-p-1 # padding: 0.25rem，1/2/3/4/5/6(1.5rem)/7/8/9/10/11/12/14/16/20(5rem)/24/28/32/36/40(10rem)/44/48/52/56/60/64/72/80(20rem)/96(24rem)
+p-1 # padding: 0.25rem，1/2/3/4/5/6(1.5rem)/7/8/9/10/11/12(3rem)/14(3.5rem)/16(4rem)/20(5rem)/24/28/32(8rem)/36/40(10rem)/44/48/52/56/60/64/72/80(20rem)/96(24rem)
 ```
 
 ### Sizing
@@ -162,7 +175,7 @@ w-min	# min-content
 w-max	# max-content
 
 # min width
-min-w-full	# 可选min-w-0、min-w-full、min-w-min、min-w-max，但是没有上面width那么多数字，如果要用到需要自己来定义
+min-w-full	# 可选min-w-0、min-w-full、min-w-min、min-w-max，但是没有上面width那么多数字，如果要用到需要自己来定义，注意extend minWidth而不是width
 
 # height
 h-1/2	# height: 50%
@@ -196,8 +209,21 @@ text-transparent
 # text align
 text-center # text-align: center
 
+# text decoration
+underline	# text-decoration: underline，可选underline(下横线)、line-through(删除线)、no-underline
+
+# text overflow
+truncate	# overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+overflow-ellipsis
+overflow-clip
+
 # vertical align
 align-middle	# vertical-align: middle
+
+# word break
+break-normal	# overflow-wrap: normal; word-break: normal
+break-words # overflow-wrap: break-word
+break-all	# word-break: break-all
 ```
 
 ### Backgrounds
@@ -209,15 +235,7 @@ bg-gray-50
 bg-blue-100
 
 # background position
-bg-bottom
-bg-center
-bg-left
-bg-left-bottom
-bg-left-top
-bg-right
-bg-right-bottom
-bg-right-top
-bg-top
+bg-bottom # 可选bottom、center、left、left-bottom、left-top、right、right-bottom、right-top、top
 
 # background repeat
 bg-repeat
@@ -296,6 +314,9 @@ duration-75	# 可选75、100、150、200、300、500、700、1000，单位为毫
 ### Interactivity
 
 ```shell
+# Appearance
+appearance-none		# 隐藏input或者select的选择按钮等，但是我用起来没效果，还是得自己写css，参考https://haofly.net/css
+
 # cursor
 cursor-pointer	# 可选default、pointer、wait、text、move、help、not-allowed
 
