@@ -105,6 +105,11 @@ const payload = {
   }
 }
 
+admin.initializeApp({
+  credential: admin.credential.cert(path.join(__dirname, '../../xxxxxx-firebase-admin-xxxxx-xxxxxx.json'), agent),
+      httpAgent: agent
+})
+
 admin.messaging().sendToDevice('registrationToken', payload, { timeToLive: 120})
   .then((response) => {
       console.log(JSON.stringify(response))
@@ -116,7 +121,7 @@ admin.messaging().sendToDevice('registrationToken', payload, { timeToLive: 120})
 <!--more-->
 
 - 证书配置在`firebase console -> Project settings -> Cloud Messaging -> ios app configuration`
-- 证书有两种，`APNs Authentication Key`和`APNs Certificates`，两者任选其一(如果两者都有默认会使用前者)，貌似现在更建议用前者，而且前者没有过期时间，但是目前我没有配置成功过前者(可以参考这里[How to Create an iOS APNs Auth Key](https://developer.clevertap.com/docs/how-to-create-an-ios-apns-auth-key))，后者的话过期时间是一年，但是好配置一点，只需要这样做：
+- 证书有两种，`APNs Authentication Key`和`APNs Certificates`，两者任选其一(如果两者都有默认会使用前者)，貌似现在更建议用前者，而且前者没有过期时间，可以参考这里[How to Create an iOS APNs Auth Key](https://developer.clevertap.com/docs/how-to-create-an-ios-apns-auth-key)，也是相当简单的，创建一个Apns的key，然后下载p8证书，然后上传到firebase后台即可，后者的话过期时间是一年。需要这样做：
   1. Apple Developer后台，选择你的bundle id，然后点击里面的`Push Notification`权限的`Edit` 就能创建development和production证书了，但是创建证书需要一个Request文件，需要在你自己的电脑上创建这个文件才行
   2. Mac -> Keychain -> 左上角菜单Keychain Access -> Certificate Assistant -> Request a Certificate From a Certificate Authority...
   3. 创建后下载，然后上传到firebase后台即可
