@@ -227,7 +227,7 @@ cordova.plugins...
 
 - **lint-staged Node.js requirement to 12.13.0**: 最新版本的`lint-staged`要求node版本>=12.13.0(21年的)，或者降级`lint-staged`
 
-- **eslint.rc里面的excludes不起作用，tsc的时候仍然去检查了node_modeuls里面的东西**: 尝试升级`typescript`到3.9.*及以上
+- **eslint.rc里面的excludes不起作用，tsc的时候仍然去检查了node_modules里面的东西**: 尝试升级`typescript`到3.9.*及以上
 
 - **Parameter 'xxx' implicitly has an 'any' type**: 要求太严的话就修改tsconfig.json，将compilerOptions下的noImplicitAny设置为false
 

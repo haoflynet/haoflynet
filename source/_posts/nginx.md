@@ -67,10 +67,10 @@ http{
 	error_log /var/log/nginx/error.log;  
 
 	##  
-	# Gzip Settings Gzip压缩功能，可减少网络传输  
+	# Gzip Settings Gzip压缩功能，可减少网络传输
+  # 注意一定要加上gzip_types否则不成功，不知道为啥，另外可以通过检查response header看是否成功，以及调试工具最下面的transferred和resources的大小对比就知道了
 	##
 	gzip on;  
-	gzip_disable "msie6";
 	gzip_types text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;	# 设置需要压缩的类型，默认有些类型比如json并没有开启
 
 	# gzip_vary on;  
