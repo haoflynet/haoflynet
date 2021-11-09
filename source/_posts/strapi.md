@@ -148,6 +148,10 @@ mutation {
     jwt
   }
 }
+
+{
+  products (where: {slug: ""}, publicationState:LIVE, limit: 1})	// 如果是findone不支持除id以外的参数拿来查询，findall可以
+}
 ```
 
 ## 外部插件

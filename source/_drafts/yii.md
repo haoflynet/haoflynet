@@ -5,6 +5,7 @@
 ```shell
 yii serve 0.0.0.0 --port=8888	# 指定端口，指定host
 
+# 缓存，缓存的文件在frontend/runtime/cache下面
 yii cache 	# li
 yii cache/flush-schema db	# 清除db缓存
 ```
@@ -64,11 +65,18 @@ public function behaviors() {
 }
 ```
 
-## View
+## View视图
 
 ```php
+public function viewIndex() {
+  $this->view->title = 'abc';	// 这样可以动态设置title
+  return render('viewname', ['key1' => 'value1'])
+}
+
 <?php
   use Yii;
+
+	$this->title = 'xxx';	# 可以设置title
 
 	$this->registerJsFile('/js/xxx.js');	// 单个页面引入js和css文件，注意yii2不能用Yii::app()来引入了
   $this->registerCssFile('/css/xxx.css');

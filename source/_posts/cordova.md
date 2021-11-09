@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-09-16 08:20:00
+updated: 2021-11-08 08:20:00
 categories: javascript
 ---
 
@@ -237,6 +237,7 @@ Google登陆插件，只不过需要获取很多的账号相关的信息，实�
 - `Android`端现在可以不用`google-service.json`文件了(如果有用到firebase还是需要的，否则会出现错误:**No matching client found for package name**)，但是需要这样做
   1. 本地生成一个SHA1的key: `keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore -list -v`，这里的`~/.android/debug.keystore`是`keytool`的地址，安装了`Android Studio`就自动有的
   2. 在`Firebase -> Project Overview -> Project settings -> General`新建`Android apps`，并将上一步生成的SHA1添入到该APP下的`SHA certificate fingerprints`中
+  2. 如果是要发布到`play store`，会在上传`bundle`的时候给App重新签名，我们需要在`google play console -> Setup -> App integrity`中的`SHA-1 certificate fingerprint`上传到上一步的`firebase`后台中，否则本地测试ok，但是传上去点击登录的时候却没有反应
 
 ```javascript
 window.plugins.googleplus.isAvailable(avail => {
