@@ -4,9 +4,11 @@
 
 ### 配置文件tailwind.config.js
 
+- 如果项目之前已经有大量的存在的css，为了防止冲突可以使用`prefix`去防止覆盖，对于负数的属性，`prefix`仍然需要写在最前面，例如`tw--mt-10`
+
 ```javascript
 module.exports = {
-  prefix: 'tw-',	// 添加一个前缀，如果项目之前已经有大量的存在的css，为了防止冲突可以使用这个方式去防止覆盖
+  prefix: 'tw-',	// 添加一个前缀，
   purge: [	// 指定需要从哪些文件中查找我们需要使用的class(这样可以只编译出我们有使用的class)
     '../views/site/*.php'
   ],
@@ -42,6 +44,9 @@ module.exports = {
       },
 			width: {
         232: '58rem'
+      },
+    	zIndex: {
+        '-10': '-10',
       }
     },
   },

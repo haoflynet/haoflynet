@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-10-15 22:50:30
+updated: 2021-11-01 08:50:30
 categories: frontend
 ---
 # node.js教程
@@ -145,7 +145,7 @@ req.end()
 
 - 可以通过`node -v > .nvmrc`将当前node版本限制在文件中，之后在当前目录只需要执行`nvm use`即可自动选择对应的版本
 
-可以通过`nvm`来同时使用多个`node`版本，mac上可以直接`brew install nvm`进行安装，安装完成后根据提示添加`sh`的`rc`文件，常用命令如下:
+可以通过`nvm`来同时使用多个`node`版本，mac上可以直接`brew install nvm`进行安装(其他平台直接[官网安装方法](https://github.com/nvm-sh/nvm))，安装完成后根据提示添加`sh`的`rc`文件，常用命令如下:
 
 ```shell
 nvm ls-remote	# 查看所有可用的node版本
@@ -205,6 +205,10 @@ yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
     [index: number]: { id: number; label: string; key: any };
   }
   ```
+
+- 常见错误
+  - **Object is of type 'unknown' typescript generics**: 如果程序无法判断准确的类型，那么我们需要强制声明一下类型，例如`(error as Error).message`
+  - **Property 'classList' does not exist on type 'Never'**: 对于react的ref需要这样定义: `const myEl = useRef<HTMLDivElement>(null);`
 
 ## ~~使用Forever管理NodeJs应用~~(生产环境最好用[pm2](https://haofly.net/pm2))
 

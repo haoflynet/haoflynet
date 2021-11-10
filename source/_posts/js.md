@@ -16,7 +16,7 @@ TODO: 逐步用原生方法替换jQuery，参考[You-Dont-Need-jQuery](https://g
 
 ## 基本语法
 
-- `?.`可选链`optionalChaining`，`a?.b`，表示如果a对象存在那么取`a.b`属性，否则直接返回`null`，而不会因为找不到属性报错，但是这个语法在`vue2`的`template`中无法使用
+- `?.`可选链`optionalChaining`，`a?.b`，表示如果a对象存在那么取`a.b`属性，否则直接返回`null`，而不会因为找不到属性报错，但是这个语法在`vue2`的`template`中无法使用。这居然是14.x才开始能用的
 - `??`双问号，`a ?? b`，如果左边的值为`null`或者`undefined`，那么就返回右边的值，需要注意的是左边为`false`的时候依然是左边的值
 - js也是有switch语句的
 - `if`条件语句如果有逗号，其实是按照最后一个值作为判断的: `if (a = '123', b = '234', a > b)`

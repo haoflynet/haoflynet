@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-10-18 08:47:21
+updated: 2021-10-20 08:50:21
 categories: php
 ---
 # PHP
@@ -550,6 +550,9 @@ composer global require hirak/prestissimo	# 然后安装平行安装工具，但
 composer clear-cache
 composer -vvv	# 这句话要单独执行一次
 composer update --no-dev --prefer-dist -vvv	# 加入这个看看日志
+
+# 对于需要使用git拉取私有composer包的，可以这样设置github access token，访问https://github.com/settings/tokens生成一个
+composer config -g github-oauth.github.com XXXXX
 ```
 
 ### composer事件脚本
@@ -721,6 +724,8 @@ ini_get('upload_max_filesize'); // 但是该属性只能获取，不能在代码
 - **file_get_contents报错505 HTTP Version Not Supported error**: 把请求的url打印出来，多半是`url``没有`encode`
 
 - **Call to undefined function curl_init()**: 需要安装`php_curl`扩展: `apt install php-curl -y`
+
+- **No valid bower.json was found in any branch or tag of**: 尝试给composer添加github access token，上文有提到
 
 - **PHP安装SOAP扩展/docker容器安装php-soap扩展**: 
 
