@@ -1,7 +1,7 @@
 ---
 title: "Google Cloud 相关服务"
 date: 2021-07-23 07:52:39
-updated: 2021-11-05 08:40:00
+updated: 2021-11-10 08:40:00
 categories: frontend
 ---
 
@@ -75,6 +75,8 @@ req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['f
   ```shell
   jsonPayload.message =~ "regular expression pattern"	# 模糊查询
   jsonPayload.message !~ "regular expression pattern"	# 模糊查询，不等于
+  
+  (jsonPayload.message = "abc" OR jsonPayload.message = "dd")	# 或者or查询
   
   m = NULL_VALUE	# 某个字段是否为null需要用这个特殊值，而不能直接用null
   
