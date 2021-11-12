@@ -1,11 +1,13 @@
 ---
-title: "Material UI 手册"
+title: "Material UI / MUI手册"
 date: 2021-08-10 08:40:00
+updated: 2021-10-21 08:48:00
 categories: Javascript
 ---
 
 - 样式使用css-in-js风格，得单独学一套
 - [官方中文文档](https://material-ui.com/zh/)
+- 从5.x开始`material-ui`更名为`mui`了，网上搜到不要奇怪
 
 ## 组件
 
@@ -21,6 +23,124 @@ categories: Javascript
   return <MyComponent />	// 调用的时候必须大写
   ```
 
+### Inputs
+
+### Data Display 数据展示
+
+#### Icons 图标
+
+- 我们可以用`SvgIcon`来封装自己的图标，如果有自己的图标并且数量多且用的地方多，最好用这个来封装每一个svg，就能让他们统一起来
+
+- 还有种借助webpack的svgr进行封装的方式可以让svg仍然以svg的形式存在，但是没有试过，先就不写了
+
+- 封装只需要这样做即可:
+
+  ```react
+  function HomeIcon(props) {
+    return (
+      <SvgIcon {...props} 
+        aria-label="home"	<!--语意话-->
+        viewBox="0 0 36.997 35.901"<!--通常我们从设计得到的svg不是统一24的尺寸，通常有自己的尺寸，需要将该viewBox写到这里，否则可能会缺少一部分-->
+      >	
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />	<!--这一块是svg的内容(svg tag的内容部分)-->
+      </SvgIcon>
+    );
+  }
+  ```
+
+- 实用起来就方便得多了
+
+  - 注意如果svg的color修改不成功，可能是因为svg中某些样式直接写在了path的`fill`属性中，可以直接在`path`元素上面加上`fill={props.color || "white"}`
+
+  ```react
+  <HomeIcon
+  	fontSize={"large"}	// fontSize=2.1875rem/35px，还可选small
+    style={{ fontSize: 40 }}
+    
+    color="paimary"	// paimary, secondary, action, disabled
+    style={{ color: green[500] }}
+    
+  />
+  ```
+
+#### Tooltip 提示
+
+- 遇到一个很奇怪的问题，所有的tooltip都只固定在页面的左上角，而不是元素的上方，结果发现是有程序员给所有div添加了`width: 100%;height:100%`的属性，我去
+
+```react
+<Tooltip
+  leaveDelay={200000}	// 显示时长，调试的时候可以把这个增大
+  placement={"top"}
+  interactive // 交互式，当鼠标移动到弹出框上时不会因为leaveDelay时间到了而关闭，如果没有它，弹出框将不能被点击，鼠标的点击事件都是下层元素的
+  title={	// 自定义弹出框内容
+    <React.Fragment>
+      <Typography color="inherit">Tooltip with HTML</Typography>
+      <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
+      {"It's very engaging. Right?"}
+    </React.Fragment>
+  }
+  >
+  <Button>
+    <Avatar src={avatar} />
+  </Button>
+</Tooltip>
+```
+
+#### Typography 文字
+
+- fontWeight/fontSize这些都不能直接设置，只能外面套一层Box
+
+```react
+<Typography 
+  component="h4" // 使用component能让他直接变成h4元素
+  color="inherit" align="center" paragraph>
+  Content
+</Typography>
+```
+
+### Feedback
+
+### Surfaces
+
+#### [Accordion/Expand手风琴](https://mui.com/components/accordion/)
+
+- 可以伸缩展开的手风琴效果
+
+```javascript
+const [expanded, setExpanded] = useState(false)
+
+<Accordion
+	defaultExpanded={false}	// 默认是否展开
+  onChange={() => setExpanded(!expanded)}
+  elevation={0}>	// evevation参数可以不显示子元素外层的border
+  <AccordionSummary
+    expandIcon={expanded ? <FaMinus /> : <FaPlus />}	// 可以通过事件来使用不同的icon
+    aria-controls="panel1a-content"
+    id="panel1a-header"
+    >
+    <Typography>Accordion 1</Typography>
+  </AccordionSummary>
+  <AccordionDetails>
+    <Typography>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+      malesuada lacus ex, sit amet blandit leo lobortis eget.
+    </Typography>
+  </AccordionDetails>
+</Accordion>
+```
+
+### Navigation 导航栏
+
+#### Bottom Navigation 底部导航栏
+
+#### Link链接
+
+```react
+<Link component="button" color="inherit" underline="always">
+  This is a button
+</Link>
+```
+
 ### Layout 布局
 
 #### Box 分组
@@ -31,6 +151,7 @@ categories: Javascript
 
   ```react
   // 这样在实际生成的DOM元素中就不会有一个多的Box层了，而是直接将样式附加到了子元素上
+  // 当clone不work的时候，可以尝试调换Box组件和被clone的组件的引入顺序
   <Box color="text.primary" clone>
     <Button />
   </Box>
@@ -127,90 +248,9 @@ categories: Javascript
 </Grid>
 ```
 
-### Navigation 导航栏
 
-### Bottom Navigation 底部导航栏
 
-#### Link链接
 
-```react
-<Link component="button" color="inherit" underline="always">
-  This is a button
-</Link>
-```
-
-### Data Display 数据展示
-
-#### Icons 图标
-
-- 我们可以用`SvgIcon`来封装自己的图标，如果有自己的图标并且数量多且用的地方多，最好用这个来封装每一个svg，就能让他们统一起来
-
-- 还有种借助webpack的svgr进行封装的方式可以让svg仍然以svg的形式存在，但是没有试过，先就不写了
-
-- 封装只需要这样做即可:
-
-  ```react
-  function HomeIcon(props) {
-    return (
-      <SvgIcon {...props} 
-        aria-label="home"	<!--语意话-->
-        viewBox="0 0 36.997 35.901"<!--通常我们从设计得到的svg不是统一24的尺寸，通常有自己的尺寸，需要将该viewBox写到这里，否则可能会缺少一部分-->
-      >	
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />	<!--这一块是svg的内容(svg tag的内容部分)-->
-      </SvgIcon>
-    );
-  }
-  ```
-
-- 实用起来就方便得多了
-
-  - 注意如果svg的color修改不成功，可能是因为svg中某些样式直接写在了path的`fill`属性中，可以直接在`path`元素上面加上`fill={props.color || "white"}`
-
-  ```react
-  <HomeIcon
-  	fontSize={"large"}	// fontSize=2.1875rem/35px，还可选small
-    style={{ fontSize: 40 }}
-    
-    color="paimary"	// paimary, secondary, action, disabled
-    style={{ color: green[500] }}
-    
-  />
-  ```
-
-#### Tooltip 提示
-
-- 遇到一个很奇怪的问题，所有的tooltip都只固定在页面的左上角，而不是元素的上方，结果发现是有程序员给所有div添加了`width: 100%;height:100%`的属性，我去
-
-```react
-<Tooltip
-  leaveDelay={200000}	// 显示时长，调试的时候可以把这个增大
-  placement={"top"}
-  interactive // 交互式，当鼠标移动到弹出框上时不会因为leaveDelay时间到了而关闭，如果没有它，弹出框将不能被点击，鼠标的点击事件都是下层元素的
-  title={	// 自定义弹出框内容
-    <React.Fragment>
-      <Typography color="inherit">Tooltip with HTML</Typography>
-      <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
-      {"It's very engaging. Right?"}
-    </React.Fragment>
-  }
-  >
-  <Button>
-    <Avatar src={avatar} />
-  </Button>
-</Tooltip>
-```
-
-#### Typography 文字
-
-- fontWeight/fontSize这些都不能直接设置，只能外面套一层Box
-
-```react
-<Typography 
-  component="h4" // 使用component能让他直接变成h4元素
-  color="inherit" align="center" paragraph>
-  Content
-</Typography>
-```
 
 ## 样式
 

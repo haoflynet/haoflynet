@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-10-15 23:38:00
+updated: 2021-10-20 08:37:00
 categories: js
 ---
 
@@ -19,6 +19,8 @@ npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 npx tailwindcss init -p
 # 根据文档https://tailwindcss.com/docs/guides/nextjs，替换tailwindcss中的purge和globals.css
 
+npm install sass	# 增加对sass、scss的支持
+
 next -p 3001	# 指定启动端口
 ```
 
@@ -34,6 +36,8 @@ module.exports = {
   },
   images: {
     domains: ['example.com']	// 定义哪些image允许展示
+    loader: 'imgix',	// 如果图片存储在第三方，需要加这个设置
+    path: '',	// 如果图片存储在第三方且使用相对路径需要添加域名在这里，但是如果是绝对路径，留空字符串即可
   },
   async redirects() {	// 设置重定向规则
     return [{
@@ -73,16 +77,48 @@ module.exports = {
 
 ## 路由
 
-```javascript
-import { useRouter } from 'next/router'
+### 路由定义
 
-const router = useRouter()	// 等同于window.location
-router.pathname	// 获取路由路径
+- 路由定义默认是根据pages文件夹下的文件名来的
+
+```javascript
+pages/blog/first-post.js → /blog/first-post
+pages/dashboard/settings/username.js → /dashboard/settings/username
+
+pages/blog/[slug].js → /blog/:slug (/blog/hello-world)
+pages/[username]/settings.js → /:username/settings (/foo/settings)
+pages/post/[...all].js → /post/* (/post/2020/id/title)
+
+// 可以通过context获取路由参数
+export async function getServerSideProps (context: NextPageContext): Promise<any> {
+  console.log(context.query.all)	// all得到的是一个数组，按每一级来
+  return {
+    props: {}
+  }
+}
+```
+
+### 路由常用方法
+
+```javascript
+import { useRouter } from 'next/router';
+
+const router = useRouter()		// 等同于window.location
 router.query.search	// 获取query参数
+router.push('/signin');	// 路由跳转
+router.replace('/signin');	// 路由跳转
+router.push({pathname: '/post/[pid]', query: {pid: post.id}})	// 指定参数
+router.pathname;	// 获取当前的pathname，例如/signin
+router.back();	// 返回上一页，即window.history.back()
+router.reload();	// 刷新页面，即window.location.reload()
 router.locale	// 当前的locale
 router.locales	// 所有的locales
 router.defaultLocale	// 默认的locale
 ```
+
+### 路由事件
+
+包括：routeChangeStart、routeChangeComplete、routeChangeError、beforeHistoryChange、hashChangeStart、hashChangeComplete
 
 ## 页面组件
 
@@ -193,6 +229,7 @@ router.defaultLocale	// 默认的locale
 - 需要在`next.config.js`中配置图片域名`images.domains`
 - 可以设置width、height、quality、priority、responsive自动修改图片显示大小
 - 但是毕竟是后端js程序在进行转换，不如直接使用`cloudinary`这样的服务速度快功能多
+- 如果图片存储在第三方需要添加配置`images: loader: 'imgix'`
 - width和height必填，除非`layout=fill`
 
 ```javascript
@@ -296,24 +333,6 @@ export default MyComponent
 
 ## Hook
 
-### 路由router
-
-```javascript
-import { useRouter } from 'next/router';
-
-const router = useRouter();
-router.push('/signin');	// 路由跳转
-router.replace('/signin');	// 路由跳转
-router.push({pathname: '/post/[pid]', query: {pid: post.id}})	// 指定参数
-router.pathname;	// 获取当前的pathname，例如/signin
-router.back();	// 返回上一页，即window.history.back()
-router.reload();	// 刷新页面，即window.location.reload()
-```
-
-#### 路由事件event
-
-- 包括：routeChangeStart、routeChangeComplete、routeChangeError、beforeHistoryChange、hashChangeStart、hashChangeComplete
-
 ### 获取window size
 
 ```javascript
@@ -341,7 +360,17 @@ export default function useWindowResize() {
 const [windowWidth, windowHeight] = useWindowResize();
 ```
 
-## 国际化i18N
+## 其他特性
+
+### 动态引入模块
+
+```javascript
+const DynamicComponent = dynamic(() => import('../components/hello'))
+
+<DynamicComponent />
+```
+
+### 国际化i18N
 
 - nextjs的国际化支持很棒，只要设定好需要哪些语言，就只要在切换语言的时候指定语言，而不需要更改页面中其他的地方
 - 支持通过域名来切换语言，或者通过path前缀来切换语言
@@ -374,5 +403,6 @@ module.exports = {
 
 - **pages with `getServerSideProps` can not be exported.** 需要将`package.json`中的`build`命令中的`next export`去掉，它和`getServerSideProps`不兼容
 - **getServerSideProps不起作用**: 它只能做用于page，不能直接作用于component
+- **初始进入admin太慢**: 是因为js太大，尝试给nginx加上gzip试试
 - **rewrites会render两次**: 我也不清楚原因，目前正在论坛上问https://github.com/vercel/next.js/discussions/27985
 

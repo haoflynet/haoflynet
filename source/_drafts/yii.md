@@ -100,3 +100,5 @@ Html::img('@web/images/logo.png', ['alt' => 'My logo', 'class' => 'myclass1 mycl
 ## 实用插件
 
 - [yii2-lock-form](https://github.com/lichunqiang/yii2-lock-form): 禁止页面中的按钮重复点击
+- [~~yii2-cronjob~~](https://www.yiiframework.com/extension/yii2-cronjob): 定时任务插件，但是我`migrate`执行的是这个命令`./yii migrate --migrationPath=@vendor/fedemotta/yii2-cronjob/migrations`，还有其他坑，如果一个任务出错了，数据库居然更新不了
+- [yii2-cron](https://www.yiiframework.com/extension/vasadibt/yii2-cron): 定时任务插件，`migrate`命令为`./yii migrate --migrationPath=@vendor/vasadibt/cron/migrations`
