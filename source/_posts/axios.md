@@ -29,6 +29,7 @@ axios({
   	console.log(error.response.status)	// 获取返回状态码
   	console.log(error.message)	// 获取错误信息
     console.log(JSON.parse(error.request.response).message)	// 另外一种错误相应的格式
+  	console.log(`${error.config.baseURL}${error.config.url}`) // 获取请求的URL
 	})
 
 // 创建一个可复用的client
