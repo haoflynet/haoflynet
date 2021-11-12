@@ -117,6 +117,13 @@ rm -rf .cache && rm -rf build/
 
 <!--more-->
 
+### Controllers
+
+```javascript
+return ctx.badRequest({ error: 'Parameter is empty' }) // 返回400错误
+return ctx.notFound('Product not found')	// 返回404错误
+```
+
 ### Hooks
 
 ### Middlewares
