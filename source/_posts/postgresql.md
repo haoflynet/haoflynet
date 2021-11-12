@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2021-09-15 08:45:00
+updated: 2021-11-08 08:45:00
 categories: Database
 ---
 
@@ -31,6 +31,8 @@ categories: Database
 
 ```shell
 SELECT version();	# 获取数据库版本
+
+psql -U postgres -h xxx -w	# 使用命令行登录postgres数据库
 ```
 
 ## 增删该查
