@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-09-18 08:42:00
+updated: 2021-11-24 08:42:00
 categories: Javascript
 ---
 
@@ -47,6 +47,8 @@ categories: Javascript
 4. 执行扩容命令
 
    ```shell
+   # 有时候lsblk看到的磁盘名称和df -h显示的磁盘名称不一致，没关系，下面的命令按照lsblk的来就行
+   
    sudo growpart /dev/xvda 1
    lsblk	# 验证xvda1的大小是否已经变化，不过此时用df -h依然看不出变化
    
@@ -547,6 +549,10 @@ ssm.listCommandInvocations({
 ##### TroubleShooting
 
 - **InstanceAgent::Plugins::CodeDeployPlugin::CommandPoller: Missing credentials** : 需要重启一下agent: `sudo service codedeploy-agent restart`
+- **connect EHOSTUNREACH 169.254.169.254:80**: 可能的原因:
+  - 网络问题
+  - 没有设置`AWS_ACCESS_KEY_ID`和`AWS_SECRET_ACCESS_KEY`环境变量
+
 
 
 

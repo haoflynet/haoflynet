@@ -1,7 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
-updated: 2021-08-13 07:55:00
+updated: 2021-12-06 07:55:00
 categories: frontend
 ---
 
@@ -201,6 +201,7 @@ service cloud.firestore {
 const doc = db.doc('collection_name/doc_id')
 await doc.set({name: 'test'})	// 不存在则新建，存在则会覆盖
 await doc.set({name: 'test'}, { merge: true })	// 不存在则新建，存在则会合并
+await doc.delete()	// 删除数据
 ```
 
 #### 数据读取

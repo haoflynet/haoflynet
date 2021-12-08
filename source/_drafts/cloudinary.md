@@ -38,7 +38,7 @@ g_south_east
 
 o_90
 
-r_max
+r_max: r_圆角，max表示直接把图片裁剪成圆形，r_50,r_20等
 
 
 

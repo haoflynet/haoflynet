@@ -12,6 +12,10 @@ https://handlebarsjs.com/zh/guide/expressions.html#%E5%8A%A9%E6%89%8B%E4%BB%A3%E
 	{{ name }}	// 直接取user.name
 {{/each}}
 
+{{#each myArr}}
+	{{ myArr.[0] }}	// 直接取user.name
+{{/each}}
+
 // 判断
 {{#if test}}
 	{{ name }}
