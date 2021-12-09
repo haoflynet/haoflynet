@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2021-05-18 11:21:00
+updated: 2021-11-19 18:21:00
 categories: tools
 ---
 # Git指南
@@ -96,6 +96,7 @@ git blame filename   # 查看某文件的改动历史
 git diff + 分支名/commit_id   # 比较当前分支和目标分支的不同
 git diff master
 git diff 分支名 -- filename	# 比较不同分支的指定文件的不同
+git diff origin/master HEAD	# 和远程分支对比
 
 git reset HEAD filename		# 把已经commit了的文件取消暂存
 git checkout -- filename	# 放弃指定文件的更改
@@ -439,5 +440,5 @@ fi
   export PATH="/Users/haofly/.nvm/versions/node/v15.3.0/bin:$PATH"	# 上面的配置还是不行那直接加到PATH吧
   ```
 
-  
+- **Large files detected, ... recommended maximum file size of 50 MB**: github不允许超过50M的文件上传，只能存储在其他地方，但是已经`commit`倒本地的需要移出来，`git rm --cached 文件名 git commit --amend -CHEAD`
 

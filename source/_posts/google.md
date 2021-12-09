@@ -1,7 +1,7 @@
 ---
 title: "Google Cloud 相关服务"
 date: 2021-07-23 07:52:39
-updated: 2021-11-10 08:40:00
+updated: 2021-11-16 08:40:00
 categories: frontend
 ---
 
@@ -101,3 +101,6 @@ req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['f
 - 有了它就不用每次添加一个新的服务(tag)都去修改代码了，因此服务添加多了也不会影响网站的首次加载速度
 - 在新建了账号后，就可以选择`Tags->New`，例如可以添加`Google Analytics 4`
 
+## TroubleShooting
+
+- **Error: Cannot find module './middleware/cloudevent_to_background_event'**: 给我的感觉就是新版的sdk发布后老的只要是重新安装的就不能用，必须升级到最新版才可以

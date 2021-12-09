@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-11-08 08:18:00
+updated: 2021-11-19 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -864,6 +864,7 @@ const arr = [1,2,3,4,5]了
 _.chain(arr)
 	.filter(n => n % 2 === 0)
 	.map(n => n * n)
+	.uniq()
 	.sum()
 	.value()	// 最后要加.value()才能得到真正的结果值
 
@@ -967,6 +968,10 @@ Foo.prototype.c = 3;
 _.forIn(new Foo, function(value, key) {
   console.log(key);
 });
+
+_.forIn('string', function(value, index) {	// 遍历字符串
+  
+})
 ```
 
 ##### _.get
