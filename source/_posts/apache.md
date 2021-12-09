@@ -1,7 +1,7 @@
 ---
 title: "Apache/Httpd手册"
 date: 2013-09-17 08:52:39
-updated: 2021-02-23 15:36:00
+updated: 2021-12-01 15:36:00
 categories: server
 ---
 ## Apache安装与配置
@@ -42,6 +42,17 @@ apachectl fullstatus	# 显示服务器完整的状态信息
        BrowserMatch ^Mozilla/4 gzip-only-text/html
        BrowserMatch ^Mozilla/4.0[678] no-gzip
        BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+   </IfModule>
+   
+   # 如果需要json请求启用gzip，可以这样做
+   <IfModule mod_deflate.c>
+      <IfModule mod_filter.c>
+          AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+          AddOutputFilterByType DEFLATE application/x-javascript application/javascript application/ecmascript
+          AddOutputFilterByType DEFLATE application/rss+xml
+          AddOutputFilterByType DEFLATE application/xml
+          AddOutputFilterByType DEFLATE application/json
+      </IfModule>
    </IfModule>
    ```
 
