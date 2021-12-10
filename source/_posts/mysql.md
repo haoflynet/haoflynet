@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-09-24 08:44:00
+updated: 2021-12-09 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -322,15 +322,7 @@ bind-address=0.0.0.0
 
 # 新建用户
 CREATE USER 用户名 IDENTIFIED by '密码';
-GRANT ALL PRIVILEGES ON 数据库名.* TO 用户名@'%' IDENTIFIED BY '密码';
-FLUSH PRIVILEGES;
-
-# 删除用户
-DROP user 用户名@'%';
-
-# 新建用户
-CREATE USER 用户名 IDENTIFIED by '密码';
-GRANT ALL PRIVILEGES ON 数据库名.* TO 用户名@'%' IDENTIFIED BY '密码';
+GRANT ALL PRIVILEGES ON 数据库名.* TO 用户名@'%'';
 FLUSH PRIVILEGES;
 
 # 删除用户

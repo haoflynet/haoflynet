@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-10-20 08:37:00
+updated: 2021-11-16 08:37:00
 categories: js
 ---
 
@@ -405,4 +405,5 @@ module.exports = {
 - **getServerSideProps不起作用**: 它只能做用于page，不能直接作用于component
 - **初始进入admin太慢**: 是因为js太大，尝试给nginx加上gzip试试
 - **rewrites会render两次**: 我也不清楚原因，目前正在论坛上问https://github.com/vercel/next.js/discussions/27985
+- **生成的静态页面会有__next_data__字段存储着所有的props信息**：这样页面上其实就有两份数据了，但是看作者的意思是所有的后端渲染都会这样做的，无法去掉https://github.com/vercel/next.js/discussions/13418，所以最好用graphql等或者其他方式只保留需要的字段
 

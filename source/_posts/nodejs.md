@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-11-01 08:50:30
+updated: 2021-11-17 08:50:30
 categories: frontend
 ---
 # node.js教程
@@ -195,6 +195,13 @@ yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
   1. `npm install --save-dev typescript @types/node`
   2. 初始化`./node_modules/.bin/tsc --init`
   3. 最后使用`tsc`命令进行编译，将它放入`package.json`的`scripts`里面即可
+  
+- 函数定义
+
+  ```javascript
+  // 可变参数
+  function test(field1: string, ...fields: string)
+  ```
   
 - 自定义类型:
 
