@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2021-10-14 08:28:00
+updated: 2021-12-01 08:28:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -68,7 +68,7 @@ http{
 
 	##  
 	# Gzip Settings Gzip压缩功能，可减少网络传输
-  # 注意一定要加上gzip_types否则不成功，不知道为啥，另外可以通过检查response header看是否成功，以及调试工具最下面的transferred和resources的大小对比就知道了
+  # 注意一定要加上gzip_types否则不成功，不知道为啥，另外可以通过检查response header(Content-Encoding)看是否成功，以及调试工具最下面的transferred和resources的大小对比就知道了
 	##
 	gzip on;  
 	gzip_types text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;	# 设置需要压缩的类型，默认有些类型比如json并没有开启

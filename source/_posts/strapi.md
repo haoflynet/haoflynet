@@ -58,7 +58,7 @@ module.exports = {
 // extensions/users-permissions/config/security.json, 修改jwt token的配置
 {
   "jwt": {
-    "expiresIn": "1d"
+    "expiresIn": "3650d"
   }
 }
 
@@ -122,6 +122,12 @@ rm -rf .cache && rm -rf build/
 ```javascript
 return ctx.badRequest({ error: 'Parameter is empty' }) // 返回400错误
 return ctx.notFound('Product not found')	// 返回404错误
+```
+
+### Services
+
+```javascript
+await strapi.query('user', 'users-permissions').findOne({id:13})	// 查询用户
 ```
 
 ### Hooks
