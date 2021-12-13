@@ -1,7 +1,7 @@
 ---
 title: "Postman 高级用法"
 date: 2018-09-09 20:32:00
-updated: 2019-08-19 18:40:00
+updated: 2021-12-06 18:40:00
 categories: tools
 ---
 
@@ -24,6 +24,10 @@ Postman，一款功能强大的HTTP调试软件(以前只是谷歌浏览器的�
 ![接口转换为代码](https://haofly.net/uploads/postman_0.png)
 
 点击上图中的`Code`，可以选择导出成HTTP、C(LibCurl)、cURL、C#(RestSharp)、Go、Java、JavaScript、NodeJS、Objective-C、Ocaml、PHP、Python、Ruby、Shell、Swift等多种语言的代码实现。
+
+### 路由变量Path Variables
+
+- 只需要在url上面这样定义`/test/:id`，在Params下面会自动出现`Path Variables`的，可以设置值以及注释
 
 ### 环境变量
 
