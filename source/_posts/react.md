@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2021-10-29 08:48:00
+updated: 2021-11-16 18:48:00
 categories: Javascript
 ---
 
@@ -37,8 +37,15 @@ categories: Javascript
 ### Effect Hook
 
 - 副作用：数据获取、设置订阅、手动更改DOM
+
 - 可以把`useEffect Hook`看作`componentDidMount、componentDidUpdate、componentWillUnmount`这三个函数的组合
-- 默认`useEffect`在第一次渲染之后和每次更新之后都会执行
+
+- 默认`useEffect`只会执行一次，props改变不会重新触发，可以传入第二个参数，当第二个参数改变的时候会重新触发一次:
+
+  ```javascript
+  useEffect(() => {}, [props.user])	// 这样当props.user改变的时候能够重新执行一次函数
+  ```
+
 - 在函数组件中执行副作用操作，可以直接使用`state`，不用编写class
 
 ```react
@@ -525,6 +532,7 @@ onInput((e) => setValue(e.target.value))
 // 焦点事件
 onBlur
 onFocus
+onKeyPress // 当键盘按下，function(e) => {e.charCode === 13}， charCode等与13的时候表示回车
 ```
 
 ## TroubleShooting

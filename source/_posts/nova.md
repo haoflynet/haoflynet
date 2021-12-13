@@ -1,6 +1,7 @@
 ---
 title: "Laravel Nova 使用手册"
 date: 2021-04-27 20:00:00
+updated: 2021-12-10 20:20:00
 categories: php
 ---
 
@@ -68,6 +69,9 @@ Select::make('Status')->options([
   0 => 'Deactivated',
   1 => 'Active',
 ])->displayUsingLabels()	// 表示展示的时候展示label而不是原值
+  
+# Text字段
+Text::make('name');	// text 这个input字段只占宽度的1/2，改不了，可以用textarea->rows(1)代替
   
 # Textarea字段
 Textarea::make('Description')->alwaysShow()->rows(3);
@@ -137,7 +141,7 @@ HasMany::make('Photos', 'Photos', UserPhoto::class)	# 第三个参数为关联�
   # app/Observers/PostObserver
   class PostObserver {
   	public function creating(Post $post) {
-  		$post->field = request->input('abc');
+  		$post->field = request()->input('abc');
   		unset($post->field);
   	}
   }

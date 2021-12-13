@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-10-15 08:03:30
+updated: 2021-12-10 08:03:30
 categories: system
 ---
 # Linux手册
@@ -272,6 +272,7 @@ mkdir -v a+wt path	# 创建一个粘滞模式的文件，其他用户可以修�
 
 # 找不同
 diff 文件1 文件2   # 找出两个文件的不同
+diff -x '*log' ...	# -x 参数排除指定文件
 sdiff 文件1 文件2  # 以对比的方式找文件的不同
 
 # 批量转换文件编码
@@ -1300,3 +1301,5 @@ date+\%Y-\%m-\%d   # 获取今天的日期
   ```
   
 - **AWS mount磁盘报错: Filesystem xvdg has duplicate UUID - can't mount**: 可以忽略uuid: `mount -o nouuid /dev/xvdg /data`
+
+- **Failed to fetch xxx 404 Not Found [IP: ]**: 可能需要更一下包列表`apt-get update`
