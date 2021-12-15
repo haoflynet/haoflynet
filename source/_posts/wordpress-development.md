@@ -13,7 +13,7 @@ categories: php
   # vim wp-config.php
   define('WP_DEBUG', true);
   define('WP_DEBUG_LOG', true);
-  define( 'SCRIPT_DEBUG', true);
+  define('SCRIPT_DEBUG', true);
   ```
 
 ## 插件开发基本概念

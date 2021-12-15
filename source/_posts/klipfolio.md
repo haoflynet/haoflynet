@@ -1,6 +1,7 @@
 ---
 title: "Klipfolio 手册"
 date: 2021-10-20 08:02:30
+updated: 2021-12-09 15:47:00
 categories: system
 ---
 - 这是一个不怎么好用的工具
@@ -38,6 +39,7 @@ categories: system
 
 ```shell
 CONCAT("Test - ", @Column)	# 字符串连接/连接字符串
+CONCAT(@Column, "|", "https://google.com/id/")	# 给内容加上一个链接
 
 REPLACE(@Column, "查找值", "替换值")	# 这居然是完全匹配
 SUBSTITUTE_REGEX(@Column, "查找值", "替换值")	# 这个才和js中的replace类似，且支持正则
@@ -48,5 +50,5 @@ LOOKUP(
 	CONCAT(@Table1_Column1, @Table1_Column2),
 	CONCAT(@Table2_Column1, @Table2_Column2),
 	CONCAT(@Table2_Column3)
-)	# 相当于链表查询了，两张表join，然后取最后那个字段的值，这里的CONCAT就相当于多个ON条件了
+)	# 相当于连表查询了，两张表join，然后取最后那个字段的值，这里的CONCAT就相当于多个ON条件了
 ```

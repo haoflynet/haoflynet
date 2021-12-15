@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-12-10 08:50:21
+updated: 2021-12-13 08:50:21
 categories: php
 ---
 # PHP
@@ -51,7 +51,7 @@ array_flip($array);	// 反转数组的key和value，value作为key，key作为va
 array_key_exists("key",$a);  # 查看key是否存在于某个字典
 array_intersect($array1, $array2[,$array $...]);	# 返回一个数组，该数组包含了所有在array1同时也出现在其他参数数组中的值
 array_map($callback, $array);	// 为数组中每一个元素应用回调函数，如果是类的静态方法，可以这样调用：array_map('myclass::myMethod' , $value);或者array_map( array('myclass','myMethod') , $value);
-array_merge();			# 合并数组，相同的key直接覆盖(前面的被后面的覆盖)
+array_merge((array)arr1, (array)arr2);			# 合并数组，相同的key直接覆盖(前面的被后面的覆盖)，需要特别注意的是如果其中有一个数组为null那么结果就为null，所以最好加上array强制转换一下
 array_merge_recursive();	# 合并数组，相同的key不覆盖
 ['a' => 1] + ['b' => 2]; # 合并数组，数组能够直接相加
 array_push($source, "red", "gree");	# 给数组添加元素
@@ -622,9 +622,12 @@ composer在执行的时候会在时间点上都会抛出相应的事件，可以
 
 php的扩展大多可以通过`pecl install packagename`直接进行安装(有些库还是需要先安装源文件，再用pecl进行链接)，可以使用`yum install php-pear`命令安装`pecl`工具
 
-```php
+```shell
 var_dump(extension_loaded('curl'));		// 查看是否安装某个模块
 var_dump(get_loaded_extensions());		// 查看安装了哪些模块
+
+apt-get install php7.4-mbstring	# 安装ext-mbstring扩展
+apt-get install php7.4-xmlprc php7.4-xmo 	# 安装ext-dom扩展
 ```
 
 ## 线程/协程/进程
