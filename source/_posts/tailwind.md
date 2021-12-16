@@ -1,3 +1,11 @@
+---
+title: "Tailwind 开发手册"
+date: 2021-11-16 00:00:00
+updated: 2021-11-16 18:00:00
+categories: nodejs
+---
+- 基本上是我现在开发新旧项目的必备工具了
+
 ## 安装配置
 
 ## 基础
@@ -8,15 +16,24 @@
 
 ```javascript
 module.exports = {
+  important: false,	// 是否在所有生成的样式加上!important，不推荐这么做
   prefix: 'tw-',	// 添加一个前缀，
   purge: [	// 指定需要从哪些文件中查找我们需要使用的class(这样可以只编译出我们有使用的class)
     '../views/site/*.php'
   ],
   darkMode: false, // or 'media' or 'class'，默认选项
   theme: {
+    fontFamily: {	// 直接替换默认字体
+      'sans': 'Roboto, sans-serif',
+      'serif': 'Roboto, sans-serif',
+      'mono': 'Roboto, sans-serif',
+      'display': 'Roboto, sans-serif',
+      'body': 'Roboto, sans-serif'
+    },
     extend: {	// 可以添加一些自定义的样式，或者覆盖之前的样式，在官方文档每一个样式页面下面多有个性化的说明
       backgroundImage: {
-        	'my-bg': "url('/')"	// 甚至可以这样定义一个背景图片类
+        'my-bg': "url('/')"	// 甚至可以这样定义一个背景图片类
+        main: 'linear-gradient(225deg, #BD7AE3 0%, #8461C9 100%)'
       },
       boxShadow: {
       	'md-all': '4px 4px 6px -1px rgba(0, 0, 0, 0.1), -2px 2px 4px -1px rgba(0, 0, 0, 0.06)'	// 四周阴影
@@ -28,6 +45,7 @@ module.exports = {
         '36': '9rem'
       },
       spacing: {
+        80: '20rem',
         '38': '9.5rem',
         '120': '30rem',
         '128': '32rem',
@@ -62,19 +80,35 @@ module.exports = {
 }
 ```
 
+<!--more-->
+
 ### 响应式
 
 ```shell
 # 断点
 sm	# @media (min-width: 640px) { ... }, mobile
-md	# @media (min-width: 768px) { ... }, iPad
-lg	# @media (min-width: 1024px) { ... }, 小屏Web, iPad Pro
+md	# @media (min-width: 768px) { ... }, iPad, iPad Mini
+lg	# @media (min-width: 1024px) { ... }, 小屏Web, iPad Pro, Next Hub
 xl	# @media (min-width: 1280px) { ... }, 正常Web, Macbook
 2xl # @media (min-width: 1536px) { ... }, 大屏Web
 
 # 使用时只需加前缀即可，例如
 md:w-full
 ```
+
+### JIT(Just-in-Time模式)
+
+- 2.1开始才有，虽然是下一代的标准，但仍然是一个`Preview feature`
+- 就非常方便了，以前可能需要写`extend`的样式，现在直接开搞
+
+### 样式!important
+
+给样式添加!important有几种方法:
+
+- 在配置里面添加`important: true`，会在所有生成的样式前加上`!important`
+
+- 在配置里面添加`important: '#app'`，会给所有`#app`前缀的样式下添加`!importnat`
+- 使用JIT(Just-In-Time)，目前还只是测试版
 
 ## 语法
 
@@ -129,10 +163,10 @@ flex-initial	# flex: 0 1 auto;
 flex-none	# flex: none
 
 # flex-direction
-flex-row
-flex-row-reverse
-flex-col
-flex-col-reverse
+flex-row / flex-row-reverse / flex-col / flex-col-reverse
+
+# flex wrap
+flex-wrap	/ flex-wrap-reverse	/ flex-nowrap
 
 # flex grow
 flex-grow-0	# flex-grow: 0
@@ -164,7 +198,7 @@ gap-0	# 可选0、0.5、1、1.5、2、2.5、3、3.5、4、5、6、7、8、9、10
 p-0	# padding: 0px
 p-px # padding: 1px
 p-0.5 # padding: 0.125rem
-p-1 # padding: 0.25rem，1/2/3/4/5/6(1.5rem)/7/8/9/10/11/12(3rem)/14(3.5rem)/16(4rem)/20(5rem)/24/28/32(8rem)/36/40(10rem)/44/48/52/56/60/64/72/80(20rem)/96(24rem)
+p-1 # padding: 0.25rem，1/2/3/4/5/6(1.5rem)/7/8/9/10/11/12(3rem=30px)/14(3.5rem)/16(4rem)/20(5rem)/24/28/32(8rem)/36/40(10rem)/44/48/52/56/60/64/72/80(20rem)/96(24rem)
 ```
 
 ### Sizing
@@ -192,18 +226,13 @@ h-5/12	# height: 41.666%
 
 ```shell
 # font size
-text-xs
-text-sm
-text-base
-text-lg
-text-xl
-text-2xl # 可选2xl(1.5rem)、3xl、4xl(2.25rem)、5xl(3rem)、6xl、7xl、8xl、9xl
+text-2xl # 可选xs(0.75rem=12px)、sm(0.875rem=14px)、base(1rem=16px)、lg(1.125rem=18px)、xl(1.25rem=20px)、2xl(1.5rem=24px)、3xl、4xl(2.25rem=36px)、5xl(3rem=48px)、6xl、7xl、8xl、9xl
 
 # font weight
-font-thin # font-weight，可选thin、extralight、light、normal、medium、semibold、bold(700)、extrabold、black(900)
+font-thin # font-weight，可选thin(100)、extralight(200)、light(300)、normal(400)、medium(500)、semibold(600)、bold(700)、extrabold(800)、black(900)
 
 # line height
-leading-3	# line-height: .75rem, leading-3/4/5/6/7/8/9/10
+leading-3	# line-height: .75rem, 可选3(0.75rem=12px)/4/5、6(1.5rem=24px)、7、8(2rem=32px)、9/10
 
 # text color
 text-white
@@ -235,7 +264,7 @@ break-all	# word-break: break-all
 
 ```shell
 # background color
-bg-white
+bg-white	# 可选gray、red、yellow、green、blue、indigo、purple紫色、pink
 bg-gray-50
 bg-blue-100
 
@@ -329,38 +358,7 @@ cursor-pointer	# 可选default、pointer、wait、text、move、help、not-allow
 select-none	# user-select:none，可选none、text、all、auto
 ```
 
+## 扩展
 
-
-
-
-laravel转tailwind的工具https://github.com/awssat/tailwindo，不大好用
-
-
-
-Important: true最好设置上
-
-
-
-添加自定义的类
-
-```css
-@layer utilities {
-  .filter-grayscale {
-    filter: grayscale(100%);
-  }
-  
-  @variants dark {
-    .filter-none {
-      filter: none;
-    }
-		.filter-grayscale(100%);
-  }
-}
-
-可以这样使用
-<div class="filter-grayscale dark:filter-none"></div>
-```
-
-
-
-免费的tailwindcss组件模版：https://wickedblocks.dev/z
+- [tailwindo](https://github.com/awssat/tailwindo): Laravel的blade模板转tailwind的工具，不大好用，但也将就了
+- [wickedblocks](https://wickedblocks.dev/): 免费的tailwindcss组件模板
