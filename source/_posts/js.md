@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-11-19 08:18:00
+updated: 2021-12-17 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -1190,6 +1190,12 @@ _.snakeCase('--FOO-BAR--');	// => 'foo_bar'
 
 ```javascript
 Arrays.from([12, 22, 33]).some(item => item > 30)
+```
+
+##### _.sortBy
+
+```javascript
+_.sortBy([{a: 123}, {a:222}], ['a'])
 ```
 
 ##### _.startCase
