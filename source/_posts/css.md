@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-10-19 08:30:00
+updated: 2021-12-22 16:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -141,6 +141,10 @@ a:active: a标签被点击的时候
 - 规定元素应该生成的显示框的类型
 - none(不显示)、block(块级元素，前后会带有换行符)、inline(默认，内联元素，前后没有换行符)、inline-block(行内块元素)、list-item(会作为列表显示)、inherit(继承父元素display属性)
 - 值为`flex`表示弹性布局
+
+##### font-family
+
+- 如果是内联样式inline-style，可以用单引号代替双引号，否则可能不会生效 
 
 ##### font-weight
 
@@ -296,6 +300,10 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### text-align
 
 - `text-align: center`只能让`inline`元素剧中，而不能让`block`元素居中，而`text-align: -webkit-center`可以让其中的`block`元素也居中
+
+##### text-decoration
+
+- `text-decoration: underline`添加下划线、下横线
 
 ##### text-overflow
 

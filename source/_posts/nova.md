@@ -1,7 +1,7 @@
 ---
 title: "Laravel Nova 使用手册"
 date: 2021-04-27 20:00:00
-updated: 2021-12-13 20:20:00
+updated: 2021-12-21 20:20:00
 categories: php
 ---
 
@@ -17,6 +17,13 @@ categories: php
 - `php artisan nova:resource Post`生成资源管理类，一般和`Model`名一样即可
 
 <!--more-->
+
+```php
+class Projects {
+  // 如果要关闭全局搜索需要在资源上设置globallySearchable变量为false，如果要不显示全局搜索框，需要将所有资源都为false才行
+  public static $globallySearchable = false;
+}
+```
 
 ## 字段
 
@@ -181,6 +188,7 @@ HasMany::make('Photos', 'Photos', UserPhoto::class)	# 第三个参数为关联�
 - [搜索关联表字段](https://novapackages.com/packages/titasgailius/search-relations)
 - [Cloudinary字段](https://novapackages.com/packages/silvanite/nova-field-cloudinary)
 - [dependent-filter](https://github.com/awesome-nova/dependent-filter): 依赖filter，联动filter，一个filter的select options根据另外一个filter来决定，例如国家城市的联动选择，需要注意的是需要联动的那个字段类不需要定义`public $component = 'select-filter';`，否则不能生效，对他也不需要`apply`，它的`apply`发生在`$dependentOf`的字段里面。然后两边的`options`都包含`name/value`两个字段
+- [Nova Button](https://github.com/dillingham/nova-button): 提供一个独立的按钮在列表里面，可以自定义很多样式，和form上面的不同，这个button是没有label的。不过有个缺点是不支持直接调用action，如果需要在点击它的时候触发某些操作，需要去监听它所触发的事件event，监听需要用到nova的listener
 - [Nova Import](https://novapackages.com/packages/anaseqal/nova-import): Nova excel/csv导入插件，不过作者说了nova 3.10.0+以后可以不用这个库就能实现了，可以直接参考[这里](https://github.com/anaseqal/nova-import/issues/26)，非常简单
 - [Nova NestedSet Tree Attach Many Field](https://novapackages.com/packages/phoenix-lib/nova-nested-tree-attach-many): 非常好用的数据库树状结构字段，但是我使用的时候在detail页面有点样式问题，修改了一下，可以参考[我的PR](https://github.com/phoenix-lib/nova-nested-tree-attach-many/pull/14)
 - [Nova AJAX Field](https://novapackages.com/packages/razorcreations/ajax-field): 可以做到通过ajax进行关联查询，虽然代码写得有点死，但是够用了

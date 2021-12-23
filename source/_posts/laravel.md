@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-08-13 08:58:00
+updated: 2021-12-21 09:58:00
 categories: php
 ---
 # Laravel指南
@@ -12,6 +12,7 @@ categories: php
 ### 配置
 
 - `.env`文件中，如果有空格，那么值需要用双引号包围，并且里面如果用`\n`，那么必须转义`\\n`
+- 如果`.env`不起作用，可以尝试清理缓存`php artisan cache:clear`
 - laravel可以根据不同的系统环境自动选择不同的配置文件，例如，如果`APP_ENV=testing`，那么会自动选择读取`.env.testing`中的配置，如果有`.env`则会被覆盖，特别是单元测试和`artisan`命令中
 
 Laravel的主配置文件将经常用到的文件集中到了根目录下的`.env`目录下，这样更高效更安全。其内容如下：
@@ -949,6 +950,7 @@ php artisan queue:flush		# 移除所有错误jobs
 #### 队列消费
 
 - `queue:work`: 最推荐使用这种方式，它比`queue:listen`占用的资源少得多，不需要每次启动框架。但是代码如果更新就需要用`queue:restart`来重启
+- 如果要使用`crontab`来管理队列，可以`php artisan queue:work --stop-when-empty`可以设置每分钟执行一次，只要队列为空就能停掉，当然，这个目测并不会导致进程太多的情况，因为进程多消费就快了，我反而觉得这是动态增减消费者数量的好方法
 
 需要注意的是  
 
