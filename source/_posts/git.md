@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2021-11-19 18:21:00
+updated: 2021-12-22 18:21:00
 categories: tools
 ---
 # Git指南
@@ -305,7 +305,7 @@ fi
 - **git checkout -b dev origin/dev出现错误fatal: cannot update paths and switch to branch 'origin/dev'** 
   原因是未在远程创建dev分支，或者未在本地更新分支信息
 
-- **git remote add origin git@github.com:haoflynet/test，出现错误fatal: remote origin already exists** 
+- **git remote add origin git@gitb.com:haoflynet/test，出现错误fatal: remote origin already exists** 
   原因是克隆别人的库下来修改后push到自己的库可能会出现这种错误，要先执行git remote rm origin  
 
 - **.gitignore无效，该忽略的依然没有被忽略**
@@ -441,4 +441,6 @@ fi
   ```
 
 - **Large files detected, ... recommended maximum file size of 50 MB**: github不允许超过50M的文件上传，只能存储在其他地方，但是已经`commit`倒本地的需要移出来，`git rm --cached 文件名 git commit --amend -CHEAD`
+
+- **修改sourcetree保存的仓库密码**: 需要在macos的keychain中进行删除
 
