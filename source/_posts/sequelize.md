@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-10-15 08:11:11
+updated: 2021-12-23 08:11:11
 categories: Javascript
 ---
 
@@ -35,6 +35,8 @@ const records = await sequelize.query("SELECT * FROM `users`", { type: QueryType
   - UUID：可以自动为字段生成UUID，type为`UUID`，defaultValue为`UUIDV1`或者`UUIDV4`
 
 ```javascript
+// 定义方式零，纯typescript的方式可以使用https://github.com/RobinBuschmann/sequelize-typescript
+
 // 定义方式一，typescript方式
 class PostModel extends Model {
   // 定义一些值可以让其增加typescript声明

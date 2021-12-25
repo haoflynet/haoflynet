@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-12-13 08:50:21
+updated: 2021-12-23 08:50:21
 categories: php
 ---
 # PHP
@@ -136,7 +136,7 @@ parse_str('name=wang&age=18'): 从查询字符串中解析到变量，可以得�
 parse_url($url): 解析url成数组，与http_build_query()功能相反
 preg_replace('/user_id=\d+&name=/', 'user_id=' . 1048 . '&name=', $code); // 正则替换
 preg_replace('/user_id=(\d+)', '/user_id=${1}', $code);	// 获取分组，${1}、${2}...
-preg_replace_callback('//', function($matches){return strtolower($matchs[0])}: 执行一个正则表达式搜索并且使用一个回调函数进行替换
+preg_replace_callback('//', function($matches){return strtolower($matchs[0])}, $text); 执行一个正则表达式搜索并且使用一个回调函数进行替换
 preg_split('/a/', $subject); // 通过一个正则表达式分隔给定字符串
 preg_match('/Chongqing(?<right>.*)/', $string, $matches): 正则匹配，pattern参数前后必须加斜杠，匹配成功返回1，匹配结果在$matches中，匹配失败，返回0
 sprintf("sahgoiahg%s", $a): 格式化输出
@@ -196,7 +196,7 @@ hex2bin('843769807'); // 16进制转字符串
 ```php
 time(): 获取当前时间戳，秒，10位数
 microtime(); # 获取毫秒时间
-strtotime(''): 字符串转换为时间戳
+strtotime('2021-12-16 00:00:00'): 字符串转换为时间戳
 gmdate("Y-m-d\TH:i:s\Z"): 获取GMT时区的时间
 
 $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y')):获取今天开始时的时间戳
@@ -765,6 +765,8 @@ ini_get('upload_max_filesize'); // 但是该属性只能获取，不能在代码
   composer init	# 初始化一个composer.json出来
   composer show --installed	# 将列出来的包以及版本一个一个粘贴回去
   ```
+
+- **SMTP connect() failed**: 可能是端口不对，现在大部分邮件都只支持ssl协议了，端口号一般是465
 
 - **Call to undefined function imagetypes()**: 没有安装gd扩展: `apt-get install libpng-dev && php7.4-gd -y`
 

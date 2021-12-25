@@ -87,7 +87,7 @@ cursor.executemany(stmt, data)
 # 看了源码发现，fetchone/fatchmany/fetchall实现居然是一样的：https://github.com/PyMySQL/mysqlclient-python/blob/7d289b21728ab1a94bb1f0210a26367c6714d881/MySQLdb/cursors.py，结果都是一次取出保存，这三个方法就是在结果列表里面切片而已
 
 # fetchone
-cursor.execute('select * FROM user")
+cursor.execute('select * FROM user')
 row = cursor.fetchone()
 while row is not None:
     print(row)

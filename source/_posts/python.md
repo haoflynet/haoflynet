@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2021-10-18 09:36:30
+updated: 2021-12-22 09:36:30
 categories: python
 ---
 [Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
@@ -1482,7 +1482,7 @@ conn.close()	# 关闭连接
   ```
   
 - **pip requires Rust>1.41**: 升级pip试试: `pip3 install "pip>=20"`
-    
+  
 - **`Click will abort further execution because Python 3 was
     configured to use ASCII as encoding for the environment.`**: 错误原理见[click](https://click.palletsprojects.com/en/7.x/python3/)，设置一下系统的语言就好了:
 
@@ -1491,6 +1491,8 @@ conn.close()	# 关闭连接
     export LC_ALL=en_US.utf8
     export ALL=en_US.utf8
     ```
+
+- **psycopg2安装失败**: 可以尝试`export ARCHFLAGS="-arch x86_64" pip install psycopg2 --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include`
 
 ## 推荐阅读
 

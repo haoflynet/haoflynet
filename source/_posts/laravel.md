@@ -1146,9 +1146,17 @@ $route->parameters()	# 获取路由上的参数，即不是GET和POST之外的�
 - `to`: 邮件接收人，`cc`: 抄送对象，`bcc`: 暗抄送对象
 
 ```php
+# 方法一，直接发送
 Mail::to($email)
     ->cc(['admin@haofly.net','admin1@haofly.net'])
     ->send('document');
+
+# 方法二，继承一个邮件类，不过这种方法如果是使用sendgrid，是无法指定模板的
+class MyEmailSender extends Mailable () {}
+$sender = new MyEmailSender();
+foreach($emails as $email) {
+  Mail::to($email)->queue($sender); // 使用queue
+}
 ```
 
 ### [Laravel helpers帮助方法以及Collection集合](https://haofly.net/laravel-helpers)
