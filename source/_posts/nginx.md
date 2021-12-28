@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2021-12-22 08:28:00
+updated: 2021-12-27 08:28:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -21,6 +21,13 @@ name=nginx repo
 baseurl=https://nginx.org/packages/centos/7/$basearch/
 gpgcheck=0
 enabled=1
+```
+
+## Web项目目录的常用权限
+
+```shell
+find /A -type d -exec chmod 0755 {} \;
+find /A -type f -exec chmod 0644 {} \;
 ```
 
 ## 配置文件详解
@@ -513,4 +520,9 @@ location /nginx {
   fastcgi_buffer_size 32k;
   ```
 
+- **wordpress无限重定向**: 可能是在aws的elb中只发了http请求到后端，但是url访问的却是https，导致wordpress搞不清楚了，可以在nginx这边加上一个fastcgi配置:
+
+  ```shell
+  fastcgi_param HTTPS on;
+  ```
   

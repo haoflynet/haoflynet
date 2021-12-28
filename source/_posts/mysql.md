@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2021-12-09 08:44:00
+updated: 2021-12-27 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -73,6 +73,9 @@ mysql -uroot -pmysql --default-character-set=gbk  jpkc_db < jpkc_db.sql # 这里
 CREATE DATABASE 库名 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 TRUNCATE tablename	# 清空数据表
 DROP DATABASE database_name	# 删除数据库
+
+CREATE TABLE targetTable LIKE sourceTable;	# 复制表结构
+INSERT INTO targetTable SELECT * FROM sourceTable;	# 复制表数据
 ```
 
 ### 数据表操作
