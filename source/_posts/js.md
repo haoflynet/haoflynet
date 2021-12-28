@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-12-17 08:18:00
+updated: 2021-12-23 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -1621,6 +1621,13 @@ function retry(fn, times, delay=3000) {
 
 - **moment Not in a recognized ISO format**: 这是moment无法自动解析其他格式的时间，这时候需要制定格式，例如`moment('2021-6-28', 'YYYY-M-D')`
 
+- **input输入框仅允许输入数字，去掉字符串中的非数字字符**: 
+
+  ```javascript
+  $('input').on('keyup', function() {
+    $(this).val($(this).val().repalce(/[^0-9]/g, ''))
+  })
+  
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
   ```javascript

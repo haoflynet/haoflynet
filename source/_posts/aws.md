@@ -550,9 +550,16 @@ ssm.listCommandInvocations({
 ##### TroubleShooting
 
 - **InstanceAgent::Plugins::CodeDeployPlugin::CommandPoller: Missing credentials** : 需要重启一下agent: `sudo service codedeploy-agent restart`
+
 - **connect EHOSTUNREACH 169.254.169.254:80**: 可能的原因:
   - 网络问题
   - 没有设置`AWS_ACCESS_KEY_ID`和`AWS_SECRET_ACCESS_KEY`环境变量
+  
+- **wordpress无限重定向**: 可能是在aws的elb中只发了http请求到后端，但是url访问的却是https，导致wordpress搞不清楚了，可以在nginx这边加上一个fastcgi配置:
+  
+  ```shell
+  fastcgi_param HTTPS on;
+  ```
 
 
 
