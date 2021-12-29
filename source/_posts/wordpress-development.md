@@ -1,7 +1,7 @@
 ---
 title: "wordpressd 插件开发手册"
 date: 2020-10-18 10:26:00
-updated: 2021-01-11 22:56:00
+updated: 2021-12-27 22:56:00
 categories: php
 ---
 
@@ -84,14 +84,55 @@ $user_query = new WP_User_Query( $args );
 
 ### 文章相关函数
 
-#### get_permalink
+```php
+# get_permalink, 获取永久链接
 
-- 获取永久链接
+# get_post_permalink, 获取文章的永久链接
+get_post_permalink( *int|WP_Post* $id, *bool* $leavename = false, *bool* $sample = false );
 
-#### get_post_permalink
+# query_posts, 查询文章列表
+query_posts([
+  'post_type' => 'post',	// 搜索指定类型的post
+  'posts_per_page' => 100,	// 每页的数量
+  'paged' => 2,	// 当前页码，可以自行从query中解析
+  'order' => 'ASC',	// 升序、降序
+  'orderby' => 'title ID',	// 排序字段
+  'meta_query' => [	// 居然可以直接查询postmeta里面的字段
+    [
+      'key' => 'my_custom_field',
+      'value' => 'abc',
+      'compare' => '!='	// 支持很多数据库的比较操作，比如=、!=、>、>=、<、<=、LIKE、NOT LIKE
+    ]
+  ]
+]);
+$count = 1; 
+while (have_posts()) {	// 遍历其结果
+  the_post();
+  $count += 1;	// 如果要在循环posts里面拿到索引，可以用这个方法
+}
+```
 
-- 获取文章的永久链接
-- `get_post_permalink( *int|WP_Post* $id, *bool* $leavename = false, *bool* $sample = false )`
+### 对象相关函数
+
+#### get_the_ID()
+
+- 获取当前遍历的对象的ID
+
+#### get_the_title()
+
+- 获取当前遍历的对象的title
+
+### 全局类
+
+```php
+# Wp类
+global $wp;
+home_url($wp->request); // 获取当前访问的完整路由url
+
+# Rewrite类
+global $wp_rewrite;	// 要调用该类的方法需要先声明一下
+$wp_rewrite->wp_rewrite_rules(); // 获取所有的rewrite规则
+```
 
 ### 数据库相关函数
 
@@ -100,6 +141,8 @@ $user_query = new WP_User_Query( $args );
 ```php
 global $wpdb;
 $results = $wpdb->get_results( $sql );	// 执行原生SQL
+
+$GLOBALS['wp_query']->request;	// 打印当前文件执行的sql语句
 ```
 
 ### 插件管理相关函数
@@ -139,6 +182,19 @@ $headers = array('Content-Type: text/html; charset=UTF-8');
 ### Filter Hooks
 
 - 过滤钩子，接收一个值并在可能的修改后进行返回，必须返回传入的第一个参数
+
+#### pre_get_posts 搜索文章/获取文件列表前
+
+```php
+// 这个函数可以放到functions.php里面或者其他能够记载的地方
+function my_custom_search_posts( $query) {
+    if ( $query->is_search() && $query->is_main_query() && ! is_admin() ) {
+        $query->set( 'posts_per_page', '50' );	// 可以设置搜索文章每一页的数量，这个可以覆盖后台的Settings > Reading设置，那个是全局的
+        $query->set( 'post_type', 'post');	// 限制搜索的类型只能为post
+    }
+}
+add_filter( 'pre_get_posts', 'my_custom_search_posts' );
+```
 
 ## 接口
 

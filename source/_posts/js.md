@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-12-23 08:18:00
+updated: 2021-12-28 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -428,7 +428,7 @@ p.execSync("ls abc");	// 同步方式执行SHELL命令
 
 ### 元素查找
 
-- 一般`getElements**`方法返回的是一个列表，但是不能用`forEach`来遍历，只能用for循环遍历，因为它是一个`HTMLCollection`对象
+- 一般`getElements**`方法返回的是一个NodeList，并不是普通的列表对象但是不能用`forEach`来遍历，只能用for循环遍历，因为它是一个`HTMLCollection`对象，也可以转换为列表对象`Array.from(nodeList)`
 
 ```javascript
 // 原生元素选择

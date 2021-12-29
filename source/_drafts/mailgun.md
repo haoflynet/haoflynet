@@ -10,6 +10,9 @@ https://handlebarsjs.com/zh/guide/expressions.html#%E5%8A%A9%E6%89%8B%E4%BB%A3%E
 // 循环
 {{#each users}}
 	{{ name }}	// 直接取user.name
+	{{#if @last}}xxx{{/if}}	// 判断是否是最后一个元素
+	{{#if @first}}xxx{{/if}} // 判断是否是第一个元素
+	{{@index}}	// 循环索引，从0开始的
 {{/each}}
 
 {{#each myArr}}
