@@ -69,6 +69,8 @@ sudo yum install php-gd  # 如果启动不了要安装这个
   }
   ```
 
+- **wordpress无限重定向**: 可能是在aws的elb中只发了http请求到后端，但是url访问的却是https，导致wordpress搞不清楚了，可以在nginx这边加上一个fastcgi配置:
 
-
-
+  ```shell
+  fastcgi_param HTTPS on;
+  ```

@@ -38,8 +38,15 @@ categories: system
 ### Functions
 
 ```shell
+Array("All", @Column)	# 给数组增加一个元素
+
 CONCAT("Test - ", @Column)	# 字符串连接/连接字符串
 CONCAT(@Column, "|", "https://google.com/id/")	# 给内容加上一个链接
+
+IF(@Country="Canada",@Company Name, BLANK())	# 没匹配上的也会有值
+
+SELECT(@Product, $customVariable=@Name)	# 这个没匹配上的就没有值了
+
 
 REPLACE(@Column, "查找值", "替换值")	# 这居然是完全匹配
 SUBSTITUTE_REGEX(@Column, "查找值", "替换值")	# 这个才和js中的replace类似，且支持正则
@@ -50,5 +57,5 @@ LOOKUP(
 	CONCAT(@Table1_Column1, @Table1_Column2),
 	CONCAT(@Table2_Column1, @Table2_Column2),
 	CONCAT(@Table2_Column3)
-)	# 相当于连表查询了，两张表join，然后取最后那个字段的值，这里的CONCAT就相当于多个ON条件了
+)	# 相当于连表查询了，两张表join，然后取最后那个字段的值，这里的CONCAT就相当于多个ON条件了，没匹配上的也会有值
 ```
