@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-12-10 08:03:30
+updated: 2021-12-29 08:03:30
 categories: system
 ---
 # Linux手册
@@ -795,6 +795,17 @@ mput ./*		# 同时上传多个文件
 ```shell
 nmap -Pn 8.8.8.8			# 扫描一个禁ping的机器
 nmap -Pn 8.8.8.8 -p 2333	# 指定扫描某个端口
+```
+
+#### Rsync文件/文件夹同步工具
+
+```shell
+# -a 表示递归同步，且同元信息(修改时间、权限等)
+# -n/--dry-run，不会实际同步，只是模拟执行看看哪些文件会被同步
+# --exclude="*.txt" 忽略文件，如果多个需要写多个--exclude
+rsync -avp root@server:/path ./ # 从服务器下载文件 
+
+rsync -avp --rsync-path="sudo rsync"	...	# 如果服务器上需要sudo权限可以这样执行
 ```
 
 #### Tmux
