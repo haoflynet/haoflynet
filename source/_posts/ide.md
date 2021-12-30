@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2021-07-21 08:26
+updated: 2021-12-29 08:26
 categories: 编程之路
 ---
 
@@ -115,8 +115,13 @@ categories: 编程之路
 Align consecutive assignments
 Align key-value paris
 Serializable class without 'serialVersionUID'	# 自动生成Java类的serialVersionUID
+
 # 代码提示不区分大小写
 Code Completion -> 取消Match case
+
+# 不提示No data sources configured，禁用下面两项
+Inspections -> SQL -> No data sources configured
+Inspections -> SQL -> SQL dialect detection
 ```
 
 #### IDEA推荐插件

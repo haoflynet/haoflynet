@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-11-08 08:20:00
+updated: 2021-12-29 08:20:00
 categories: javascript
 ---
 
@@ -157,6 +157,14 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
 ## 常用插件推荐
 
+- 很多插件的官方文档都不写插件在使用的时候的命名空间在哪里，可以尝试一下方法找一下:
+
+  ```javascript
+  console.log(Object.keys(window.plugins))
+  console.log(Object.keys(window.cordova.plugins))
+  console.log(Object.keys(window))
+  ```
+
 ### [branch-cordova-sdk](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking-attribution)
 
 - deeplink插件
@@ -226,6 +234,13 @@ firebase插件，包含(cloud messaging等多个firebase的功能)，**如果对
       <string>need location access to find things nearby</string>
   </edit-config>
   ```
+
+### [cordova-plugin-purchase](https://github.com/j3k0/cordova-plugin-purchase)
+
+- 内购插件
+- apple这边的设置参考[Setup for iOS and macOS](https://github.com/j3k0/cordova-plugin-purchase/wiki/Setup-for-iOS-and-macOS#create-ios-sandbox-users)，包括创建bundle id，在apple store创建产品，以及创建沙盒账户
+- 需要注意的是在你的device上面必须在app store里面退出当前的账户，但是不用登录沙盒账户，在购买的时候会提示你登录。另外，必须先填写[Tax Forms and Contacts](https://appstoreconnect.apple.com/agreements/#/)，否则你的产品一直处于`invalid`的状态
+- 使用文档可以参考[Ionic In App Purchase 2](https://ionicframework.com/docs/native/in-app-purchase-2)，注意cordova这边直接用是这样`window.store`
 
 ### [cordova-plugin-googleplus](https://github.com/EddyVerbruggen/cordova-plugin-googleplus)
 
