@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-12-28 08:18:00
+updated: 2021-12-30 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -476,6 +476,7 @@ $(this).nextAll('cl')	// 获取指定元素的所有指定的同级元素
 $('p').find('input')	// 查找input下的所有input元素
 $('p').last()		// 选择最后一个元素
 $('input:checked') 		// 查找所有checked为true的checkbox的input元素
+$('div:visiable')
 document.getElementById('test:abc')	// 有特殊字符的元素的查找，jquery往往无法处理过来
 
 $('img').index($(myImg)) // 可以查找某个元素在一个jquery数组中的索引
@@ -1628,6 +1629,8 @@ function retry(fn, times, delay=3000) {
     $(this).val($(this).val().repalce(/[^0-9]/g, ''))
   })
   
+- **dayjs_1.default is not a function**: 可以尝试在tsconfig中添加配置`esModuleInterop: true`
+
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
   ```javascript
