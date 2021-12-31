@@ -56,6 +56,37 @@ pm.environment.set("timestamp", timestamp);
 pm.environment.set("auth_sign", sign);
 ```
 
+#### 在json请求体中写注释
+
+```javascript
+// 需要在Pre-request Script中这样写，去除掉注释
+if (pm?.request?.body?.options?.raw?.language === 'json') {
+    const rawData = pm.request.body.toString();
+    const strippedData = rawData.replace(
+        /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
+        (m, g) => g ? "" : m
+    );
+    pm.request.body.update(JSON.stringify(JSON.parse(strippedData)));
+}
+
+// 这样就能在json请求体重写注释了
+{
+  "username": "abc" // required，这里的注释在请求的时候会自动去除掉
+}
+```
+
+### Tests(相当于after request)
+
+#### 请求完成后自动获取并设置token
+
+```javascript
+// 常用于登录注册接口，登录完成后，从response中获取token，并设置到变量中去
+var jsonData = JSON.parse(responseBody);
+
+pm.environment.set("REQUEST_TOKEN", jsonData.result.request_token);
+pm.environment.set("USER_ID", jsonData.result.user_id);
+```
+
 ### 自动进行认证
 
 `Postman`自带了多种认证方式，可以让你在请求前自动去进行认证。另外，如果自带的几种认证方式无法满足，可以编写`Pre-request Script`来进行个性化的脚本。

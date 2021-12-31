@@ -19,6 +19,8 @@ def hello():
         return "POST"
     return "Hello World!"
 
+  
+  
 # 带参数的路由
 @app.route('/<username>')
 def func(username)
@@ -39,6 +41,7 @@ request.form.get('begin', '')
 
 # 获取POST数据
 request.json
+request.json.get('username')
 
 # 获取GET参数
 request.args.get('q', '')
@@ -60,6 +63,7 @@ else:
 ```python
 # 返回指定状态码
 return make_response(jsonify({'a': 'b'}), 201)
+return jsonify({'a': 'b'}), 201	# 也可以简单点这样做
 
 # 返回JSON数据
 from flask import jsonify
@@ -73,6 +77,7 @@ def after_request(response):
   response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
   response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
   return response
+
 ## 如果仅针对单独的接口，可以添加装饰器，当然，该接口必须允许OPTIONS请求，才能直接返回请求
 def allow_cross_domain(fun):
     @wraps(fun)
@@ -88,6 +93,35 @@ def allow_cross_domain(fun):
 
 ## 数据库
 使用`flask-sqlalchemy`操作数据库，具体文档可以参考[SQLAlchemy手册](https://haofly.net/sqlalchemy)。`flask-sqlalchemy`帮我们做了很多我们其实不用关心的操作，例如自动新建和关闭`session`，但是需要注意的是，`flask-sqlalchemy`默认会在每次使用session的时候开启一个事务，每次请求完成自动结束事务，所以千万不要用它来运行长任务，否则事务一直不关闭，会导致表级锁，无法对表进行操作
+
+## 常用扩展
+
+#### flask-jwt-extended
+
+- jwt扩展
+
+```python
+token = create_access_token(identity={'id': 1, 'role': 'admin'})
+
+@app.route(...)
+@jwt_required()	# 必须在路由上加上这个装饰器
+def test():
+  user = get_jwt_identity()	# 直接获取identity的数据
+  
+# 顺便可以写个验证中间件
+def admin_only(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        user = get_jwt_identity()
+        if user.get('role') != 'admin':
+            return jsonify({'error': 'Admin only operation'}), 401
+        return func(*args, **kwargs)
+    return wrapper
+```
+
+#### flask-bcrypt
+
+- bcrypt扩展，加密密码用
 
 ## TroubleShooting
 

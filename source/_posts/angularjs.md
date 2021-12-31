@@ -1,9 +1,15 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-09-08 08:03:00
+updated: 2021-12-30 18:03:00
 categories: frontend
 ---
+## 安装与配置
+
+```shell
+ng serve --host 0.0.0.0 --port 3000	# 启动，指定host，指定port
+```
+
 ## 语法
 
 ### 数据绑定
@@ -22,7 +28,7 @@ categories: frontend
 
 ### 控制语句
 
-```html
+```javascript
 // for 循环
 <ul>
   <li *ngFor="let item of items; let i = index">
@@ -45,6 +51,9 @@ categories: frontend
     ...
   	</div>
 </div>
+
+// ngShow和ngHide在angular 2+已经不支持了，可以直接这样做
+[hidden]="myVar"
 ```
 
 ### get方法/computed方法
@@ -99,7 +108,7 @@ export class MyComponent implements OnInit {
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label>Name</label>
-    <input type="text" class="form-control" (input)="inputChange" formControlName="formName">
+    <input type="text" class="form-control" (input)="inputChange" formControlName="formName" [(ngModel)]="user.name">
     <p class="form-warning" *ngIf="submitting && createForm.get('formName').errors">
       <span *ngIf="createForm.get('formName').errors.nameValueError">	// 这是上面自定义的错误
         Name Should be 1 or 2.
@@ -108,6 +117,12 @@ export class MyComponent implements OnInit {
   </div>
   <button type=submit">Submit</button>
 </form>
+```
+
+### filter过滤器
+
+```javascript
+{{ timestamp * 1000 | date: 'yyyy-MM-dd'}} // 时间格式化
 ```
 
 ## 生命周期
@@ -161,10 +176,10 @@ constructor(private http: HttpClient) {}
 ngOnInit(): void {
   // 必须使用subscribe才会真的去发送请求。每次调用subscribe可以发送一次请求，也就算是说要发送多个请求，直接在最后那subscribe就可以了。
   
-  this.http.get('/').subscribe(data => {
-    // Read the result field from the JSON response.
-    this.results = data['results'];
-  });
+  this.http.get('/').subscribe(
+    data => {},
+    error => {}	// catch error
+  );
   this.http.post('', body, {}, {params: new HttpParams().set('id', 3')});	// 添加url参数
   this.http.post('', body).subscribe(...);	// post请求
   this.http.post('', body, {headers: new HttpHeaders().set('Authorization', 'my-auth-token')});    // 设置请求头                               
@@ -185,6 +200,47 @@ ngOnInit(): void {
   }
 }
 ```
+
+#### httpclient全局error handler
+
+```javascript
+// 新建一个http-interceptor.ts文件，或者其他名字都可
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { _throw } from 'rxjs/observable/throw';
+import 'rxjs/add/operator/catch';
+
+@Injectable()
+export class ErrorInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(req)
+      .catch(errorResponse => {
+        if (errorResponse.error && errorResponse.error.msg) {
+        	...
+        }
+
+        throw errorResponse;
+      });
+  }
+}
+
+export const ErrorInterceptorProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: ErrorInterceptor,
+  multi: true,
+};
+
+// 然后在app.module.ts中声明这个provider即可
+@NgModule({
+  providers: [
+    ErrorInterceptor
+  ]
+})
+
+```
+
+
 
 ### 文件上传
 
