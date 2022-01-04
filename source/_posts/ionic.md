@@ -173,7 +173,5 @@ import { HttpClientModule } from "@angular/common/http";
   },100);
   ```
 
-  ​
-
-- ​
+- **Cannot find module '@awesome-cordova-plugins/core' or its corresponding type declarations**: 很多ionic的插件会包装一层`awesome`，此时需要将该包给撞上`npm install @awesome-cordova-plugins/core --save`
 

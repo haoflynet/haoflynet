@@ -137,7 +137,7 @@ cURL能做到一切你想要的，有了cURL就可以方便地写爬虫代码了
 
 - 浏览器一些常量设置
 - **allow-insecure-localhost**: 表示是否将本地https标记为安全
-- **unsafely-treat-insecure-origin-as-secure**: 将不安全的http标记为安全，需要将对应的http地址填入才行，能够解决http页面无法获取某些浏览器权限的问题
+- **unsafely-treat-insecure-origin-as-secure**: 将不安全的http标记为安全，需要将对应的http地址填入才行，能够解决http页面无法获取某些浏览器权限的问题，添加完了需要available才行
 
 ## 浏览器管理
 
