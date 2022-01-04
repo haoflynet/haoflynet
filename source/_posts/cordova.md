@@ -183,7 +183,7 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
 ### [cordova-plugin-device](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-device/index.html)
 
-获取平台设备信息
+获取平台设备信息，`ionic`不需要使用插件，直接`import { Platform } from "ionic-angular"`
 
 ### [cordova-plugin-facebook-connect](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect)
 
@@ -335,7 +335,10 @@ destroyed() {
 
 ### [cordova-plugin-sign-in-with-apple](https://github.com/twogate/cordova-plugin-sign-in-with-apple#readme)
 
-Apple ID登陆插件，需要在apple开发者后台给指定Bundle ID添加`Sign In with Apple`权限，使用同样非常简单，如果要获取email可以使用`jwt-decode`去
+Apple ID登陆插件
+
+- 需要在apple开发者后台给指定Bundle ID添加`Sign In with Apple`权限，使用同样非常简单，如果要获取email可以使用`jwt-decode`去
+- 需要注意的是对于`ionic 4.x`版本，不能用官方的方式来安装，需要安装的是`ionic cordova plugin add cordova-plugin-sign-in-with-apple && npm install @ionic-native/sign-in-with-apple`，然后不需要去`providers`中声明，也不需要用`this.signInWithApple`，直接用`cordova.plugins.SignInWithApple.signin`即可，调用方法也得按下面这种
 
 ```javascript
 window.cordova.plugins.SignInWithApple.signin(

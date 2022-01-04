@@ -1,13 +1,21 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2021-12-30 18:03:00
+updated: 2022-01-04 18:03:00
 categories: frontend
 ---
 ## 安装与配置
 
 ```shell
 ng serve --host 0.0.0.0 --port 3000	# 启动，指定host，指定port
+
+ng build --aot --optimization	--build-optimizer # 编译项目
+	--aot	# 默认为false，是否用提前编译进行构建
+	--optimization # 默认为false，使用构建输出优化
+	--build-optimizer # 默认为false，使用aot进行优化，推荐加上这个参数
+	--extract-css	# 默认为false，从全局样式中提取css到css文件而不是放在js文件
+	--source-map	# 默认为true，输出source-map文件
+	--vendor-chunk	# 默认为true，将第三方包单独放到一个vendor文件中
 ```
 
 ## 语法

@@ -161,6 +161,8 @@ import { HttpClientModule } from "@angular/common/http";
 })
 ```
 
+## [常用插件推荐](https://haofly.net/cordova)
+
 ## TroubleShooting
 
 - **ion-tabs 不显示，显示空白或者黑色，或者ion-tabs empty blank**:默认的`ion-tab`的 `[root]`属性必须填写，而且不能设置为`null`
