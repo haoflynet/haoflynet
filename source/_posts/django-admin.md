@@ -1,7 +1,7 @@
 ---
 title: "Django Admin 后台管理系统"
 date: 2019-06-01 00:00:00
-updated: 2021-01-12 15:32:00
+updated: 2021-12-31 15:32:00
 categories: 编程之路
 ---
 
@@ -121,6 +121,10 @@ class UserAdmin(BaseUserAdmin):	# 用户管理需要继承单独的Admin
 #### admin中字段动态hide与show
 
 - 目前没有找到更好的方法，不过可以直接用`class Media: js=()`来自定义js文件，通过jQuery来实现
+
+#### 自定义字段的样式及js逻辑
+
+- 如果要发送`ajax`请求，获取`csrf_token`放在header里，可以通过`$('input[name=csrf_token]').val()`获取
 
 ### Django-CKeditor富文本编辑使用
 
