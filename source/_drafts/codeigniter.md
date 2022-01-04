@@ -5,6 +5,8 @@
 ### 增删改查
 
 ```php
+$db->getLastQuery()->getQuery;	// 获取上一次查询的SQL语句
+
 # 查询操作
 $user = $userModel->from('table')->find($id);	// 通过id查询单条记录
 $user = $userModel->from('table')->get()->row();	// 获取一条记录
