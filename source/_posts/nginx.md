@@ -525,4 +525,3 @@ location /nginx {
   ```shell
   fastcgi_param HTTPS on;
   ```
-  

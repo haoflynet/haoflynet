@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-01-04 18:03:00
+updated: 2022-01-05 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -18,7 +18,59 @@ ng build --aot --optimization	--build-optimizer # 编译项目
 	--vendor-chunk	# 默认为true，将第三方包单独放到一个vendor文件中
 ```
 
-## 语法
+## Module
+
+```javascript
+@NgModule({
+  declarations: [
+    UserComponent
+  ],
+  imports: [
+    
+  ],
+  entryComponents: [
+  	DialogComponent, // 对于动态调用的组件，没有在html中调用，而是用js来调用的组件需要在这里声明，例如一些弹框，不声明的话，在动态编译的时候可能发现模板没有引用就不去加载了，但是我发现在lazy loading的时候，如果在child module中声明entryComponents不起作用，只能在app.module中声明才行
+  ]
+})
+```
+
+### Lazy loading延迟加载
+
+- 延迟加载是基于页面路由的，每个路由都可以单独作为一个延迟加载，在进入页面的时候加载该页面所需要的组件
+- 如果实现了延迟加载我们在进入对应的页面后会发现新请求一个`1.xxxx.js`的文件，开头是一个数字。这就是当前页面的一些组件，同时我们会发现当前页面的组件在`main.js`中没有了
+- 如果我们的页面都是单纯的component而不是module的话需要做这些改造
+
+```javascript
+// 在页面组件新建路由文件，例如dashboard.route.ts
+export const routes: Routes = [
+  {path: '', component: DashboardComponent}
+]
+
+// 在页面组件新建module文件，例如dashboard.module.ts
+import {routes} from './dashboard.route';
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes)	// 注意这里是forChild不是forRoot
+  ],
+  declarations: [
+    DashboardComponent,
+  ]
+})
+export class DashboardComponent { }
+
+// app-routing.module.ts修改路由方式
+const routes: :Routes = [
+  {
+    path: 'dashboard',
+   	loadChildren: () => import('./dashhboard/dashboard.module').then(m => m.DashboardModule)	// 注意这里是Module不是Component
+  }
+]
+
+// 最后在app.module.ts中，移除DashboardCompoent依赖即可
+```
+
+## 模板语法
 
 ### 数据绑定
 

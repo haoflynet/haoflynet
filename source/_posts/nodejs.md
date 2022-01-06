@@ -1,10 +1,10 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2021-11-17 08:50:30
+updated: 2022-01-04 08:50:30
 categories: frontend
 ---
-# node.js教程
+- [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
 
 ## 安装
 需要注意的是，关于npm的所有命令，最好都不要用root用户执行，否则会出现各种不可预料甚至连官方文档都说不清的问题
