@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2021-12-21 09:58:00
+updated: 2022-01-04 09:58:00
 categories: php
 ---
 # Laravel指南
@@ -1363,6 +1363,8 @@ class Kernel extends ConsoleKernel
 ```
 
 #### 缓存清理
+
+- 常用于修改了env文件不生效的问题
 
 ```shell
 php artisan cache:clear

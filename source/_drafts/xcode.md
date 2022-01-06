@@ -16,6 +16,7 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
 1. 注册开发者账号
 2. 在[App Store Connect](https://appstoreconnect.apple.com/)新建一个APP
 3. 从Xcode上传APP至App Store Connect
+   1. 下载P12文件(申请发布(Distribution)证书)
    1. 导入P12文件(我操作的时候是别人直接发给我的，所以这里就没记录步骤了，应该可以[参考这里](https://ask.dcloud.net.cn/article/152))，有一点需要注意的时候，双击P12文件安装成功后，还需要在keychain里点击其`private key`，修改`Access Control`，需要修改配置`Allow all applications to access this item`，否则下面在上传的时候会提示`missing private key`或者让你无限输入电脑用户名密码的问题
    2. 点击`Product->Archive`，完成后会自动弹出一个对话框(当然，这个对话框也可以通过`Window->Organizer`打开，要选择对应的APP)
    3. 选择`Distribute App`，然后选择`App Store Connect`，再`Upload`，一直下一步应该就可以了。(如果打包能成功，但是上传却说认证失败，可能是网络问题)
@@ -39,3 +40,4 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
 - **"XXXX" has 2 Apple Distribution certificates but their private keys are not installed. Contact the creator of one of these certificates to get a copy of the private key**: 可能是key过期了，去apple developer重新生成一个证书吧，下载下来安装上，但是得重启一下`xcode`
 - **push app 到appstore一直在processing**: 这个时候确实可以再push一个新版本，可能会更快
 - **ios模拟弱网环境**: 设置->开发者选项-> Network LINK CONDITIONER
+- **set the code signing identity value to apple development in the build settings editor**: 在`TARGETS -> Build Settings -> All`中搜索`signing` 即可，修改对应的值为`apple development`即可
