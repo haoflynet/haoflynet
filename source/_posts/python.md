@@ -1,10 +1,10 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2021-12-22 09:36:30
+updated: 2021-12-29 09:36:30
 categories: python
 ---
-[Python Developer’s Guide](http://cpython-devguide.readthedocs.io/en/latest/#python-developer-s-guide)
+[Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
 
 ##  安装方法
 
@@ -121,6 +121,7 @@ li = {
 if 'a' in dict		# 判断key是否存在
 if dict.get('a', {}).get('b', {}).get('c')	# 一下判断多个层级，这样不用每层都是一个if条件了
 dict.get('a', 'b')	# 如果不存在那么给一个默认值
+dict['abc'] = 'xxx'	# 添加新key
 dict.keys()			# 获取所有的key，这里返回的是一个dict_keys，一个迭代器
 list(dict)			# 如果仅仅想获得key的数组，可以这样子
 
@@ -1365,8 +1366,6 @@ pipenv uninstall --all	# 删除所有的安装包
 - 使用vprof，可视化
 - line_profiler，精确到行
 
-#### Python设计模式
-
 ## SQLite数据库
 
 Python语言内置了`SQLite`轻量级数据库。
@@ -1378,6 +1377,7 @@ cursor = conn.cursor()
 cursor.execute('正常的sql语句')
 cursor.execute('select * from user where id=?', ('1', ))	# 查询语句
 cursor.fetchall()	# 获取查询结果
+cursor.lastrowid	# 获取刚才插入的行的id
 cursor.rowcount	# 获取插入的行数
 cursor.close()	# 关闭cursor
 conn.commit()	# 提交事务
