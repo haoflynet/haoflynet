@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2019-08-12 14:44:00
+updated: 2021-12-27 14:44:00
 categories: js
 ---
 
@@ -23,14 +23,19 @@ categories: js
 
 ### 环境搭建
 
-命令行工具: `npm install -g react-native-cli`
-
 ```shell
-react-native init testProject	# 新建项目目录，并初始化项目
-react-native init testProject --version 0.1.2	# 创建指定版本的项目
+# 初始化项目
+npm uninstall -g react-native-cli	# 官方说不要用这个来初始化了，并且得卸载了，否则可能出现奇怪的问题
+npx react-native init testProject	--verbose # 新建项目目录，并初始化项目。命令会执行很久，且--verbose像没用似的，像卡死了一样
+npx react-native init testProject --version 0.1.2 --verbose	# 创建指定版本的项目
+npx react-native init aegis_app --template react-native-template-typescript --verbose	# 创建一个typescript的项目
+
+
+## 运行项目
 cd testProject
-react-native run-ios	# 第一次启动会很慢。等模拟器运行起来后可以直接Cmd+R刷新应用，Cmd+D打开调试菜单
-react-native run-android	# 安卓开发最好安装上android studio，这不仅会帮你安装java、jdk，而且还能直接管理安卓模拟器，把android studio配置好了以后，android的开发环境也好了
+npx react-native start
+npx react-native run-ios	# 第一次启动会很慢。等模拟器运行起来后可以直接Cmd+R刷新应用，Cmd+D打开调试菜单
+npx react-native run-android	# 安卓开发最好安装上android studio，这不仅会帮你安装java、jdk，而且还能直接管理安卓模拟器，把android studio配置好了以后，android的开发环境也好了
 
 npm install --save react-native@X.Y	# 直接指定版本号的更新升级，手动升级更爽。我不喜欢用react-native-git-upgrade来升级，需要注意的是，升级以后一定要顺便升级一下命令行工具react-native-cli，否则会可能会出现不预期的错误
 ```

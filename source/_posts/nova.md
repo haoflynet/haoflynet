@@ -1,7 +1,7 @@
 ---
 title: "Laravel Nova 使用手册"
 date: 2021-04-27 20:00:00
-updated: 2021-12-21 20:20:00
+updated: 2022-01-04 20:20:00
 categories: php
 ---
 
@@ -82,6 +82,9 @@ Text::make('name');	// text 这个input字段只占宽度的1/2，改不了，�
   
 # Textarea字段
 Textarea::make('Description')->alwaysShow()->rows(3);
+
+# 文件字段
+File::make('photo')->disk('public');	// 除了图片不能预览以外其他还是可以
 ```
 
 ### 其他字段
@@ -109,6 +112,8 @@ BelongsTo::make('User')->display(function($user) {
 # HasMany
 HasMany::make('Photos', 'Photos', UserPhoto::class)	# 第三个参数为关联表的Nova类信息
 ```
+
+
 
 ## Filter
 
@@ -163,6 +168,8 @@ HasMany::make('Photos', 'Photos', UserPhoto::class)	# 第三个参数为关联�
   ```
 
 ## 扩展字段开发
+
+- 可以参考[文档](https://learnku.com/docs/nova/1.0/field/2211)
 
 - `resources/js/components/FormField.vue`是编辑资源的时候用的
 
