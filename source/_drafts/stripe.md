@@ -116,7 +116,7 @@ charge = await stripe.charges.refund(charge.id, {
 - 控制台居然还能设置关联账户的提现方式Payout，是自动按周期提现还是通过API提现还是在控制台手动提现，可以用`accounts.update`接口来设置其payouts的方式
 
 - 表示一个`stripe`账户，你当前登陆的就是一个`account`
-- 要创建`Account`的话，必须在`Connected accounts`里面启用才行d
+- 要创建`Account`的话，必须在`Connected accounts`里面启用才行
 - 需要注意使用API创建了用户，还有一些详细信息必须填入(这个可以在控制填写)，但是最后有一个`terms of service`必须使用API来`update`
 
 ```javascript
