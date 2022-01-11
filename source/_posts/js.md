@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2021-12-31 08:18:00
+updated: 2022-01-07 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -111,6 +111,7 @@ Math.ceil(0.2);		// 向上取整
 Math.abs(-1);		// 取绝对值
 Math.trunc()	// 去掉小数部分
 Math.sign（）	// 判断一个数字是正数、负数还是0
+Math.random()	// 产生0-1之间的随机数
 
 var a = 100;
 a.toString();	// 数字转字符串

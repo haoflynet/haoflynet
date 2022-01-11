@@ -42,6 +42,30 @@ export class TestModule {}
 
 - 使用`nest g resource`能够直接生成一个资源对应的文件Module、Controller等，当然数据库model不会自动生成
 
+### Dto
+
+- 用于前后端交互数据类型的定义，可以这样子将entity(model)转换为dto
+
+```javascript
+class MyDto {
+  name: string
+  
+  static fromModel (model: MyModel): MyDto {
+    const myDto = new MyDto()
+    myDto.name = model.name
+    return myDto
+  }
+
+	static fromModels (models: MyModel[]): MyDto[] {
+    return models.map((model) => MyDto.fromModel(model))
+  }
+}
+```
+
+### Entity
+
+- 我们的model可以作为entity来用，以`*.entity.ts`结尾
+
 ## 路由与控制器
 
 ```javascript

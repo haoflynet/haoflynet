@@ -162,6 +162,7 @@ npm install 包名 --save	# 安装包，并且更新到package.json中去
 npm install 包名 --save-dev	# 安装包，并且更新到package.json的开发依赖中区
 npm install 包名@3.1.0 --save	# 安装指定版本的包
 npm install git+https://github.com/haoflynet/example.git	# 从Github仓库安装模块
+npm install git://github.com/haoflynet/example.git
 npm list --depth=0	# 列出已安装模块
 npm list -g --depth=0 # 列出全局安装的包
 npm list --depth=0 2> /dev/null	# 忽略标准错误输出(npm ERR!这种错误将被忽略
