@@ -1,7 +1,7 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
-updated: 2019-07-12 17:43:00
+updated: 2021-01-07 17:43:00
 categories: python
 ---
 
@@ -122,6 +122,12 @@ def admin_only(func):
 #### flask-bcrypt
 
 - bcrypt扩展，加密密码用
+
+#### flas-socketio
+
+```python
+socketio = SocketIO(app, cors_allowed_origins='*')	# 允许跨域cors
+```
 
 ## TroubleShooting
 
