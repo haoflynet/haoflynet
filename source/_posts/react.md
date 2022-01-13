@@ -325,6 +325,7 @@ MyComponent.propTypes = {
 - `Redux`可以通过`connect`方法，将`store`的`dispatch`方法保存到组件的`props`中
 - `state`与`props`的对应通常需要使用`mapStateToProps`这个函数进行定义。它默认会订阅`Store`，每当`state`更新的时候，就会自动执行，重新计算UI组件的参数
 - 下面的方法在根组件外面包了一层`Provider`，这样所有的子组件默认都能拿到`store`了
+- 注意如果使用useselect等在第一次没有值，页面第二次渲染才有值，可能是因为没有将这些状态持久化造成的
 
 ```react
 import { Provider } from 'react-redux'

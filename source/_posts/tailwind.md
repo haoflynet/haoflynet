@@ -1,7 +1,7 @@
 ---
 title: "Tailwind 开发手册"
 date: 2021-11-16 00:00:00
-updated: 2021-11-16 18:00:00
+updated: 2021-12-30 18:00:00
 categories: nodejs
 ---
 - 基本上是我现在开发新旧项目的必备工具了
@@ -181,6 +181,9 @@ justify-center	# justify-content: center，可选start、end、center、between�
 
 # align items
 items-center	# align-items: center，可选start、end、center、baseline、stretch
+
+# align self
+self-center	# align-self: center; 可选auto、start、end、center、stetch、baseline
 
 # grid template columns
 grid-cols-3	# 定义有多少列，可选1、2、3、4、5、6、7、8、9、10、11、12、none
