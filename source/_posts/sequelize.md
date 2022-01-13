@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2021-12-23 08:11:11
+updated: 2022-01-04 08:11:11
 categories: Javascript
 ---
 
@@ -18,7 +18,7 @@ npm install --save-dev sequelize-cli	# 安装命令行工具npx
 ```javascript
 var sequelize = new Sequelize('database', 'username', 'password', {
   dialect: 'mysql',	// 如果不指定这个参数，可能会报错Dialect needs to be explicitly supplied as of v4.0.0
-  logging: false	// 默认会将sql查询都输出到console.log中，设置为false可以不用输出
+  logging: false	// 默认会将sql查询都输出到console.log中，设置为false可以不用输出，不输出sql语句
 })
 
 // 直接执行SQL row命令
