@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2021-12-27 14:44:00
+updated: 2022-01-11 14:44:00
 categories: js
 ---
 
@@ -34,6 +34,7 @@ npx react-native init aegis_app --template react-native-template-typescript --ve
 ## 运行项目
 cd testProject
 npx react-native start
+npx pod-install
 npx react-native run-ios	# 第一次启动会很慢。等模拟器运行起来后可以直接Cmd+R刷新应用，Cmd+D打开调试菜单
 npx react-native run-android	# 安卓开发最好安装上android studio，这不仅会帮你安装java、jdk，而且还能直接管理安卓模拟器，把android studio配置好了以后，android的开发环境也好了
 
@@ -380,6 +381,62 @@ import axios from 'axios';
 axios.get('...').then((response)=>(console.log(response.data))); // 得到响应结果，不用像fetch那样responseJson了
 ```
 
+## 常用插件推荐
+
+### [customauth-react-native-sdk](https://github.com/torusresearch/customauth-react-native-sdk)
+
+- torus sdk
+
+- 如果运行不起来可以试试它项目里面的example，虽然文档少了，但是那个example还是更新的挺及时的，照着看有没有遗漏的，我在1.0.1版本上发现有这些需要额外配置:
+
+  ```javascript
+  // ios/Podfile，具体行数参考example中的配置
+  use_modular_headers
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec', :modular_headers => false
+      installer.pods_project.build_configurations.each do |config|
+  #       config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+      end
+  
+      installer.pods_project.targets.each do |target|
+        if target.name == "web3.swift"
+  target.build_configurations.each do |config|
+    config.build_settings["SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]"] = "$(inherited) $(PODS_CONFIGURATION_BUILD_DIR)/BigInt $(PODS_CONFIGURATION_BUILD_DIR)/GenericJSON $(PODS_TARGET_SRCROOT)/web3swift/lib/**"
+  config.build_settings["SWIFT_INCLUDE_PATHS[sdk=iphoneos*]"] = "$(inherited) $(PODS_CONFIGURATION_BUILD_DIR)/BigInt $(PODS_CONFIGURATION_BUILD_DIR)/GenericJSON $(PODS_TARGET_SRCROOT)/web3swift/lib/**"
+  end
+  end
+  end
+  
+  // AppDelegate.m，我最开始就是点了登录后没反应，后来发现是它根本没有监听openURL
+  - (BOOL)application:(UIApplication *)app
+              openURL:(NSURL *)url
+              options:(NSDictionary<NSString *, id> *)options {
+  
+    NSString *myString = url.absoluteString;
+  
+    NSLog(@"String to handle : %@ ", myString);
+    if (@available(iOS 10.0, *)) {
+      [RNCustomAuthSdk handle:myString];
+    } else {
+      // Fallback on earlier versions
+    }
+  
+    // Your additional URL handling (if any) goes here.
+    return NO;
+  }
+  
+  
+  // ios/xxx/Info.plist，添加url scheme
+  		<dict>
+              <key>CFBundleTypeRole</key>
+              <string>Editor</string>
+  			<key>CFBundleURLSchemes</key>
+  			<array>
+  				<string>torusapp</string>
+  			</array>
+  		</dict>
+  
+  ```
+
 ## 开发原生相关问题
 
 #### 在真实设备上调试以及打包到真实设备
@@ -437,6 +494,8 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 - **com.android.builder.testing.api.DeviceException: No connected devices! **得去android studio把安卓模拟器打开
 
 - **`react-native run-android`命令提示`Android project not found. Maybe run react-native android first`，但是执行`react-native android`却说命令没找到**: 首先看当前目录有没有`android`文件夹，如果没有，那么使用`react-native eject`命令生成，如果有，那么就用`android studio`来运行一次，看看是不是有哪些基础环境没有安装
+
+- **Invalid YGDirection 'row' should be one of: (inherit, ltr, rtl)**: 需要将`<Flex direction="row"`修改为`<Flex flexDirection="row"`
 
 - **`Print: Entry, ":CFBundleIdentifier", Does Not Exist`** [解决方法如下](https://stackoverflow.com/questions/37461703/print-entry-cfbundleidentifier-does-not-exist)
 

@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2021-12-29 08:26
+updated: 2022-01-13 08:26
 categories: 编程之路
 ---
 
@@ -146,7 +146,7 @@ Inspections -> SQL -> SQL dialect detection
 
 #### 集成Python代码格式化工具black
 
-https://github.com/psf/black/blob/master/docs/editor_integration.md
+https://black.readthedocs.io/en/stable/integrations/editors.html
 
 #### Prettier配置
 

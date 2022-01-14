@@ -1,7 +1,7 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
-updated: 2021-01-07 17:43:00
+updated: 2021-01-12 17:43:00
 categories: python
 ---
 
@@ -123,7 +123,9 @@ def admin_only(func):
 
 - bcrypt扩展，加密密码用
 
-#### flas-socketio
+#### flask-socketio
+
+- 需要注意的是必须安装`eventlet`依赖才能使用websocket协议，否则是通过http协议来实现的，还是会没几秒发送轮训请求
 
 ```python
 socketio = SocketIO(app, cors_allowed_origins='*')	# 允许跨域cors
