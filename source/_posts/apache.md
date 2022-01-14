@@ -1,7 +1,7 @@
 ---
 title: "Apache/Httpd手册"
 date: 2013-09-17 08:52:39
-updated: 2021-12-16 15:36:00
+updated: 2022-01-13 08:36:00
 categories: server
 ---
 ## Apache安装与配置
@@ -172,3 +172,13 @@ RewriteRule . index.php
 - **The requested URL /index/login was not found on this server**: 一般是`.htaccess`文件没找到或者`apache`没有开启`rewrite`模式，后者可以使用`a2enmod rewrite`命令进行开启
 
 - **Timeout指令不起作用**: 看看会不会是aws的负载均衡器设置了超时时间的
+
+- **Symbolic link not allowed or link target not accessible**: 可以在虚拟目录添加这个配置:
+
+  ```shell
+  <Directory /var/www/xxxx>
+  	Options +FollowSymLinks
+  </Directory>
+  ```
+
+  
