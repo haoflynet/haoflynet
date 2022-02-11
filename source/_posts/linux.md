@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2021-12-29 08:03:30
+updated: 2022-01-14 08:03:30
 categories: system
 ---
 # Linux手册
@@ -434,6 +434,8 @@ iostat
 #### 用户管理
 
 ```shell
+w # 查看当前登录的所有的用户
+
 sudo -i # 切换为root用户
 
 # 添加用户

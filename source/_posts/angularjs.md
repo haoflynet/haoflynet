@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-01-07 18:03:00
+updated: 2022-01-20 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -16,6 +16,8 @@ ng build --aot --optimization	--build-optimizer # 编译项目
 	--extract-css	# 默认为false，从全局样式中提取css到css文件而不是放在js文件
 	--source-map	# 默认为true，输出source-map文件
 	--vendor-chunk	# 默认为true，将第三方包单独放到一个vendor文件中
+	
+ng build --deploy-url /app/ --deploy-url /app/	# 如果想要app运行在一个子路由路径下可以这样做
 ```
 
 ## Module
@@ -342,7 +344,7 @@ describe('test haofly"s function', () =>{
 ### ngx-socket-io
 
 - Socket-io扩展
-- 有一个问题是该第三方包现在是支持`extraHeaders`的(支持自定义header传入后端)，但是却没有发布到npm仓库，参考这个[issue](https://github.com/rodgc/ngx-socket-io/issues/119)，下面有人提出解决办法，参考[这里](https://github.com/ThomasOliver545/real-time-chat-nestjs-angular/blob/main/frontend/src/app/private/sockets/custom-socket.ts)
+- 有一个问题是该第三方包现在是支持`extraHeaders`的(支持自定义header传入后端)，但是却没有发布到npm仓库，参考这个[issue](https://github.com/rodgc/ngx-socket-io/issues/119)，下面有人提出解决办法，参考[这里](https://github.com/ThomasOliver545/real-time-chat-nestjs-angular/blob/main/frontend/src/app/private/sockets/custom-socket.ts)，但是登录的时候还没有token，所以最好是在组件的init里面自己new一个Socket对象吧
 
 ## TroubleShooting
 

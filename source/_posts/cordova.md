@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2021-12-29 08:20:00
+updated: 2022-01-26 08:20:00
 categories: javascript
 ---
 
@@ -433,6 +433,10 @@ window.cordova.plugins.SignInWithApple.signin(
 - **'GoogleService-Info.plist' was not found in your Cordova project root folder**: 如果是这样，首先检查是否有该文件，如果确实有还是报错，那么可以在`XCode`中手动添加，右键项目的`Resource->Add Files to "项目名"`选择`GoogleService-Info.plist`即可
 
 - **开启应用显示The connection to the server was unsuccessful**: 可以在`config.xml`中添加`<preference name="loadUrlTimeoutValue" value="60000" />`具体原因不知道为啥，至少能用
+
+- **File google-services.json is missing**: 从`firebase`下载`google-services.json`文件，然后复制到`platforms/android/app`下面去
+
+- **package IInAppBillingService does not exist**: [AlexDisler/cordova-plugin-inapppurchase](https://github.com/AlexDisler/cordova-plugin-inapppurchase/issues/239)插件报的错，这个插件已经被`archived`了，不建议使用，修复可以尝试`mkdir -p platforms/android/app/src/main/aidl/com/android/vending/billing && cp platforms/android/src/com/android/vending/billing/IInAppBillingService.aidl platforms/android/app/src/main/aidl/com/android/vending/billing/`
 
   
 
