@@ -1,7 +1,7 @@
 ---
 title: "pm2 手册"
 date: 2020-02-18 08:50:00
-updated: 2021-03-09 16:00:00
+updated: 2022-01-14 08:47:00
 categories: nodejs
 ---
 
@@ -21,6 +21,10 @@ pm2 start app.js --name my-app	# 设置应用名称
 pm2 start app.js --no-daemon	# 以非daemon方式运行
 pm2 start app.js --max-memory_restart 20M	# 当内存超过20M时就重启应用
 pm2 start npm --name my-app -- run start # npm run start方式启动
+pm2 start myscript.sh	# 如果是可执行的，那么直接start就可以了
+pm2 start myscript.py --interpreter=/usr/bin/python3	# 启动任意解释器的脚本
+pm2 start xxx -o ./out.log -e ./err.log	# 这样可以改变当前进程的日志输出地址，目前没找到全局修改的地方，另外-l参数是将标准输出和错误输出都输出到目标，但是同时也会输出到之前的标准输出和错误输出
+
 pm2 stop all	# 停止所有程序
 pm2 restart all	# 重启所有程序
 pm2 delete 0	# 删除某个进程
@@ -90,4 +94,5 @@ module.exports = {
 ## Troubleshooting
 
 - **没有错误日志无限重启**: 可能原因是运行脚本有问题，例如配置的`npm run dev`，但是程序里面的`dev`脚本依赖的却是另外一个命令，但是那个命令却没有全局安装
+- **Current process list running is not in sync with saved list. npm differs. Type 'pm2 save' to synchronize**: 这不是什么错误，而是提醒你讲进程保存到磁盘，这样下次服务器重启能够找到有哪些进程
 

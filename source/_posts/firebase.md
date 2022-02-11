@@ -285,6 +285,8 @@ db.collection("cities").where("state", "==", "CA")
 
 - 由于得依赖Cloud Functions，所以没去实践，不过我想Cloud Functions就是一个实时运行的方法，如果只是本地服务端去代替这一块感觉有可能
 
+### [Nhost: 开源的firebase替代品](https://blog.graphqleditor.com/nhost?continueFlag=5434b3101edf4c6102e182af7801175f)
+
 ## TroubleShooting
 
 - **TypeError: instance.INTERNAL.registerComponent is not a function** 需要`npm install @firebase/app --save`
