@@ -1,7 +1,7 @@
 ---
 title: "Chrome教程，谷歌浏览器插件推荐"
 date: 2013-01-01 08:22:39
-updated: 2021-06-03 15:59:00
+updated: 2022-02-08 15:59:00
 categories: tools
 ---
 作为一个谷歌的"中毒"用户，用五年的使用经验告诉大家，谷歌浏览器真的是世界上最好的浏览器。该有的插件都有，该有 的调试功能都有，开源的不开源的也都有。至于很多人吐槽谷歌的唯一缺点: 内存占用大的问题，当我切换到Mac上以后就不再关心这个问题了，因为在mac上，内存占用越大，基本上可以保证程序运行越快，谷歌有理由占用大内存。 用过这么多年的谷歌浏览器，已经向多人安利了它，使得他们纷纷放弃原来的浏览器，毕竟，每次他们问我问题的时候，我基本上用谷歌都能快速地调试出来。谷歌浏览器也一次又一次地让我有互联网的未来入口都在浏览器的错觉，直到后来，微信出现了。。。
@@ -129,15 +129,19 @@ cURL能做到一切你想要的，有了cURL就可以方便地写爬虫代码了
 
 ## 高端操作
 
-#### chrome://net-internals
-
-查看浏览器的网络相关设置，例如Proxy，DNS、Sockets、HTTPS证书等，在这里可以查看谷歌加载的nameservers，以及域名解析的缓存，可以在这里清除host缓存、清楚HTTPS缓存(Delete domain security policies)。
-
 #### chrome://flags
 
 - 浏览器一些常量设置
 - **allow-insecure-localhost**: 表示是否将本地https标记为安全
 - **unsafely-treat-insecure-origin-as-secure**: 将不安全的http标记为安全，需要将对应的http地址填入才行，能够解决http页面无法获取某些浏览器权限的问题，添加完了需要available才行
+
+#### chrome://net-internals
+
+查看浏览器的网络相关设置，例如Proxy，DNS、Sockets、HTTPS证书等，在这里可以查看谷歌加载的nameservers，以及域名解析的缓存，可以在这里清除host缓存、清楚HTTPS缓存(Delete domain security policies)。
+
+#### chrome://webrtc-internals
+
+查看webrtc/socket/udp等的流量
 
 ## 浏览器管理
 
@@ -152,8 +156,6 @@ cURL能做到一切你想要的，有了cURL就可以方便地写爬虫代码了
   方法一：取消开机自动登录 
   方法二：在终端输入seahorse(如果未安装就安装)，打开该软件后，点击菜单栏的视图——根据密钥环——默认密钥点右键，然后把该密码设置为空。seahorse是一个GNOME程序，用于管理加密密钥，主要功能有创建和管理PGP keys、SSH keys，在密钥服务器发布及获取密钥，缓存密钥密码(这个功能使得我们在使用浏览器登陆某些网站时不用每次都输入密码)、备份密钥及密钥环
 - **Network里面有请求出现`block content mixed`**: 原因是当前域名既有https又有http，自己处理吧。
-
-
 
 **扩展阅读**
 

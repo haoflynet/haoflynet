@@ -1,7 +1,7 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
-updated: 2021-01-12 17:43:00
+updated: 2021-02-09 17:43:00
 categories: python
 ---
 
@@ -91,7 +91,20 @@ def allow_cross_domain(fun):
     return wrapper_fun
 ```
 
+### 中间件
+
+```python
+@app.before_request
+def before(request):
+	pass
+
+@app.after_request
+def after(response):
+  return response
+```
+
 ## 数据库
+
 使用`flask-sqlalchemy`操作数据库，具体文档可以参考[SQLAlchemy手册](https://haofly.net/sqlalchemy)。`flask-sqlalchemy`帮我们做了很多我们其实不用关心的操作，例如自动新建和关闭`session`，但是需要注意的是，`flask-sqlalchemy`默认会在每次使用session的时候开启一个事务，每次请求完成自动结束事务，所以千万不要用它来运行长任务，否则事务一直不关闭，会导致表级锁，无法对表进行操作
 
 ## 常用扩展
