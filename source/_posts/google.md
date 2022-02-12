@@ -82,6 +82,8 @@ req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['f
   
   # 查询数组内的字段，例如m=[{abc: 123}]，可以直接当对象来查
   m.abc=123
+  # 普通的数组，可以直接查询，例如m=["abc" , "def"]
+  m = "abc"
   
   # 如果某个字段可能存在也可能不存在，可以这样查询
   operation.id:* # 如果该字段存在

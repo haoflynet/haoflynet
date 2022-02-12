@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2022-01-26 08:20:00
+updated: 2022-02-11 18:20:00
 categories: javascript
 ---
 
@@ -338,6 +338,7 @@ destroyed() {
 Apple ID登陆插件
 
 - 需要在apple开发者后台给指定Bundle ID添加`Sign In with Apple`权限，使用同样非常简单，如果要获取email可以使用`jwt-decode`去
+- 如果是Angular项目，需要将`SignInWithApple`加入到`app.module.ts`中去，否则可能出现`NullInjectorError: No provider for Sign in with Apple`错误
 - 需要注意的是对于`ionic 4.x`版本，不能用官方的方式来安装，需要安装的是`ionic cordova plugin add cordova-plugin-sign-in-with-apple && npm install @ionic-native/sign-in-with-apple`，然后不需要去`providers`中声明，也不需要用`this.signInWithApple`，直接用`cordova.plugins.SignInWithApple.signin`即可，调用方法也得按下面这种
 
 ```javascript
@@ -437,6 +438,8 @@ window.cordova.plugins.SignInWithApple.signin(
 - **File google-services.json is missing**: 从`firebase`下载`google-services.json`文件，然后复制到`platforms/android/app`下面去
 
 - **package IInAppBillingService does not exist**: [AlexDisler/cordova-plugin-inapppurchase](https://github.com/AlexDisler/cordova-plugin-inapppurchase/issues/239)插件报的错，这个插件已经被`archived`了，不建议使用，修复可以尝试`mkdir -p platforms/android/app/src/main/aidl/com/android/vending/billing && cp platforms/android/src/com/android/vending/billing/IInAppBillingService.aidl platforms/android/app/src/main/aidl/com/android/vending/billing/`
+
+- **编译安卓的时候报错Cannot read property 'version' of null**: 尝试删除重新生成目录`cordova platform rm android && cordova platform add android`
 
   
 
