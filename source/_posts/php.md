@@ -628,6 +628,7 @@ var_dump(get_loaded_extensions());		// 查看安装了哪些模块
 
 apt-get install php7.4-mbstring	# 安装ext-mbstring扩展
 apt-get install php7.4-xmlprc php7.4-xmo 	# 安装ext-dom扩展
+apt-get install php-bcmeth # 安装bcmath扩展
 ```
 
 ## 线程/协程/进程

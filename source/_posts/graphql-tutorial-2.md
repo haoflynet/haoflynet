@@ -9,7 +9,7 @@ GraphQL发展至今，已有Github、Facebook、Airbnb等大厂在大量地使�
 
 [Apollo-Client](https://github.com/apollographql/apollo-client): 算是最知名的GraphQL客户端了，因为它是Javascript的客户端。功能丰富，可用于不同的服务端及前端。
 
-[GraphiQL](https://github.com/graphql/graphiql): 一款运行于浏览器的GraphQL IDE，几乎所有的服务端库都会提供这么一个经典的web页面。该页面是一个单页面应用，可以直接在其上运行查询语句，自带代码补全和校错功能，直接查看GraphQL所有的文档(定义好的Schema)，比如[Github API的在线文档](https://developer.github.com/v4/explorer/)，登录后就能在线发送真实的请求获取到我们想要的数据。由于我们之后要进行实践教程，所以这里有今后用于实践的真实的Web端，访问地址为: https://project.haofly.net/graphql。
+[GraphiQL](https://github.com/graphql/graphiql): 一款运行于浏览器的GraphQL IDE，几乎所有的服务端库都会提供这么一个经典的web页面。该页面是一个单页面应用，可以直接在其上运行查询语句，自带代码补全和校错功能，直接查看GraphQL所有的文档(定义好的Schema)，比如[Github API的在线文档](https://developer.github.com/v4/explorer/)，登录后就能在线发送真实的请求获取到我们想要的数据。由于我们之后要进行实践教程，所以这里有今后用于实践的真实的Web端，[访问地址](https://project.haofly.net/graphql)
 
 ![](https://haofly.net/uploads/graphql-tutorial-2_01.png)
 

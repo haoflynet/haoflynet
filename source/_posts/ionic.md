@@ -1,7 +1,7 @@
 ---
 title: "ionic 教程"
 date: 2017-10-17 22:22:39
-updated: 2017-10-26 12:34:39
+updated: 2022-01-26 12:34:39
 categories: frontend
 ---
 基于AngularJS进行的封装，性能中等。
@@ -177,3 +177,4 @@ import { HttpClientModule } from "@angular/common/http";
 
 - **Cannot find module '@awesome-cordova-plugins/core' or its corresponding type declarations**: 很多ionic的插件会包装一层`awesome`，此时需要将该包给撞上`npm install @awesome-cordova-plugins/core --save`
 
+- **No installed build tools found. Install the Android build tools version 19.1.0 or higher.**: 尝试`export ANDROID_HOME=~/Library/Android/sdk && export PATH=${PATH}:${ANDROID_HOME}/tools && export PATH=${PATH}:${ANDROID_HOME}/platform-tools && export ANDROID_SDK_ROOT=~/Library/Android/sdk`，但是我遇到了另外一个奇怪的问题，无论我怎么设置环境变量，代码里面得到的`ANDROID_HOME`都是`/opt/homebrew/Caskroom/android-platform-tools`下的，所以我直接在`cordova.gradle`文件里面的`getAndroidSdkDir`写死了`envVar`的值
