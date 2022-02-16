@@ -1,7 +1,7 @@
 ---
 title: "Python3 使用MySQL Connector操作数据库"
 date: 2015-11-04 17:48:41
-updated: 2018-10-13 18:45:22
+updated: 2021-02-07 18:45:22
 categories: 编程之路
 ---
 ## 安装方法
@@ -10,7 +10,7 @@ categories: 编程之路
 
 ```shell
 # ubuntu
-sudo apt-get install python3-dev libmysqlclient-dev
+sudo apt-get install python3-dev gcc libmysqlclient-dev
 pip install mysqlclient
 
 # CentOS
