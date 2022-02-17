@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-01-07 08:18:00
+updated: 2022-02-12 18:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -108,6 +108,7 @@ Array.isArray(arr) && arr.length === 0	// 判断是否是空数组
 ```javascript
 Math.floor(0.2);	// 向下取整
 Math.ceil(0.2);		// 向上取整
+Math.round(0.2);	// 四舍五入
 Math.abs(-1);		// 取绝对值
 Math.trunc()	// 去掉小数部分
 Math.sign（）	// 判断一个数字是正数、负数还是0
@@ -588,6 +589,8 @@ $('div').animate({scrollTop: $('div').offset().top - 10})	// 将元素滚动到�
 // video标签控制(原生js)
 myVideo.play()	// 开始播放
 myVideo.pause()	// 暂停播放
+myVideo.videoHeight / myVideo.videoWidth	// 原视频的分辨率，注意这里并不是视频组件的长宽
+myVideo.clientHeight / myVideo.clientWidth	// 视频组件的长款
 
 // 创建元素
 var a_tag = document.createElement('a');	// 首先创建一个空元素
@@ -608,6 +611,7 @@ ele.onchange = function () {};
 ele.onchange = funciton () {};
 ele.addEventListener('click', func (e) {});	// 原生click事件，注意这里如果用箭头函数，那么获取当前元素不应该用this而是用e.targetsf
 ele.removeEventListener('change', func () {});
+videoEle.addEventListener('resize', () => {});	// video元素的长宽或者分辨率变化
 
 // 页面事件
 window.onload = function () {};	// 页面加载完成后触发
@@ -1258,6 +1262,7 @@ _.uniq([1, 2, 2]) // 得到[1, 2]
 
 ```javascript
 _.uniqBy([{}, {}], (item) => item.field)
+_.uniqBy([{}, {}], 'field1')	// 根据指定字段去重可以这样简写
 ```
 
 ##### upperFirst
@@ -1634,6 +1639,14 @@ function retry(fn, times, delay=3000) {
   
 - **dayjs_1.default is not a function**: 可以尝试在tsconfig中添加配置`esModuleInterop: true`
 
+- **显示精确的实时时间，精确到秒**: 我发现angular的get方法并不能在date变化的时候实时更新，这样还不如直接用interval:
+
+  ```javascript
+  setInterval(() => {
+    this.now = new Date();
+  });
+  ```
+  
 - **Uncaught TypeError: Illegal invocation**: 发生于使用多层调用内置函数的情况，例如:
 
   ```javascript

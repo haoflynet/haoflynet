@@ -1,7 +1,7 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
-updated: 2021-02-09 17:43:00
+updated: 2021-02-15 17:43:00
 categories: python
 ---
 
@@ -19,8 +19,6 @@ def hello():
         return "POST"
     return "Hello World!"
 
-  
-  
 # 带参数的路由
 @app.route('/<username>')
 def func(username)
@@ -57,6 +55,11 @@ if request.headers.getlist('X-Forwarded-For'):
 	ip = request.headers.getlist('X-Forwarded-For')[0]
 else:
 	ip = request.remote_addr
+  
+# 获取并保存上传的文件
+obj = request.files.get('field1')
+print(obj.filename)
+obj.save('/path/filename.jpg')
 ```
 ### resposne
 
