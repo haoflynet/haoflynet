@@ -122,4 +122,6 @@ certbot delete # 删除所选择的证书
   sudo yum install python-urllib3 python-requests certbot -y
   ```
 
-  
+- **设置了定时任务但是没有自动续费成功**: 最好把日志输出到一个自己知道的日志文件里面去，例如`/tmp/certbot.log`，这样方便排查，我遇到的是下面的问题:
+
+  - **Failed to renew certificate xxx with error: The nginx plugin is not working; there may be problems with your existing configuration. The error was: NoInstallationError("Could not find a usable 'nginx' binary. Ensure nginx exists, the binary is executable, and your PATH is set correctly."**

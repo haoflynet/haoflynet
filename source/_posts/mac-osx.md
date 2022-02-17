@@ -18,7 +18,7 @@ categories: system
 
 ## Mac瘦身
 
-- `~/Library/Application Support/Code/User/workspaceStorage`: VS COde的工作区文件夹唉，但是所有的扩展都会重建这个文件夹，把年代久远的删除了
+- `~/Library/Application Support/Code/User/workspaceStorage`: VS Code的工作区文件夹唉，但是所有的扩展都会重建这个文件夹，把年代久远的删除了
 
 ## Shell配置使用
 
