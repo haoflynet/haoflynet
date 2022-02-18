@@ -1,7 +1,7 @@
 ---
 title: "Vue.js教程"
 date: 2020-06-12 22:09:39
-updated: 2021-09-24 08:35:00
+updated: 2022-02-12 08:35:00
 categories: js
 ---
 
@@ -177,6 +177,12 @@ Vue.component('mycomponent', {
     name: "index",
     path: '/p/:id?',	// ?定义可选参数
     component: MyComponent
+}
+
+{
+	name: '',
+  path: '',
+  component: () => import('../views/Home.vue')	// 路由懒加载
 }
 ```
 
