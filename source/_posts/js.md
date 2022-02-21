@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-02-12 18:18:00
+updated: 2022-02-18 18:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -527,6 +527,12 @@ ele.innerText	// 获取元素文字
 getComputedStyle(ele)	// 获取元素的所有的样式，包含了所有的css属性
 getComputedStyle(ele, '::before')	// 获取指定事件的样式
 
+videoEle.videoHeight / myVideo.videoWidth	// 原视频的分辨率，注意这里并不是视频组件的长宽
+videoEle.clientHeight / myVideo.clientWidth	// 视频组件的长款
+videoEle.currentTime	// 当前播放到什么时间了
+videoEle.ended // video是否播放完毕
+videoEle.paused // video是否暂停
+
 // jQuery方法
 $('[id=xxx]');	// 如果有重复的id的元素可以这样获取所有的元素
 $('#check').prop('checked')	// 获取checkbox是否被check了，不用给你用attr
@@ -589,8 +595,6 @@ $('div').animate({scrollTop: $('div').offset().top - 10})	// 将元素滚动到�
 // video标签控制(原生js)
 myVideo.play()	// 开始播放
 myVideo.pause()	// 暂停播放
-myVideo.videoHeight / myVideo.videoWidth	// 原视频的分辨率，注意这里并不是视频组件的长宽
-myVideo.clientHeight / myVideo.clientWidth	// 视频组件的长款
 
 // 创建元素
 var a_tag = document.createElement('a');	// 首先创建一个空元素

@@ -98,6 +98,13 @@ categories: frontend
 
 - accept(当为文件上传时，指定上传文件的类型)、alt(当为图片上传时，定义图像输入的替代文本)、autocomplete(是否开启自动完成)、autofocus(页面加载时是否自动获得焦点)、checked(是否被选中)、disabled(是否禁用)、form(规定输入字段所属的一个或多个表单)、formaction(覆盖表单的action属性)、formencrypt(覆盖表单的enctype属性)、formmethod(覆盖表单的method属性)、formnovalidate(覆盖表单的novalidate属性，提交表单时不需要验证)、formtarget(覆盖表单的target属性)、width/height(当为图片上传时定义input字段的高度)、max(规定输入字段的最大值)、maxlength(规定输入字段的字符的最大长度)、min(规定输入字段的最小值)、multiple(可选择多个文件)、pattern(规定输入字段的格式，例如pattern="[0-9]")、readonly、required、size(输入字段的宽度)、src(定义以提交按钮形式显示的图像的URL)
 
+- accept属性
+
+  ```html
+  <input type="file" accept=".zip,.rzr" />	<!--限制文件后缀-->
+  <input type="file" accept="image/*" />	<!--只允许图片上传-->
+  ```
+
 - type=number数字输入框
 
   ```html

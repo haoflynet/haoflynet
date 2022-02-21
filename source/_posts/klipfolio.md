@@ -1,7 +1,7 @@
 ---
 title: "Klipfolio 手册"
 date: 2021-10-20 08:02:30
-updated: 2021-12-09 15:47:00
+updated: 2022-02-17 15:47:00
 categories: system
 ---
 - 这是一个不怎么好用的工具
@@ -30,6 +30,10 @@ categories: system
 ## klip UI设计
 
 ### Component
+
+#### Table
+
+- 如果想要table中的某个列可以作为group用(多层级)，可以在table的`Dril Down`来进行`Group By`
 
 #### HTML Component
 

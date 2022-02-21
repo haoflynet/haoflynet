@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2021-12-22 16:30:00
+updated: 2022-02-12 16:30:00
 categories: frontend
 ---
 ## 浏览器兼容
@@ -218,6 +218,10 @@ a:active: a标签被点击的时候
 ```css
 margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ```
+
+##### object-fit
+
+- `object-fit: fill`可以让video在像素长款不够的情况依然拉大到整个组件那么大
 
 ##### opacity
 
