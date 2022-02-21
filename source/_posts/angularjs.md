@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-01-20 18:03:00
+updated: 2022-02-14 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -226,6 +226,9 @@ Angular1里元素绑定点击事件用`ng-click`，但是Angular2里元素绑定
 <select (change)="onChange($event.target.value)">
     <option *ngFor="let item of devices | keyvalue" value="{{ item.key }}">{{ item.value }}</option>	<!--keyvalue过滤器将字典转换为key value对象的形式-->
 </select>
+
+// keydown事件指定键，例如按下回车
+<input (keydown.enter)="" />
 ```
 
 ## 网络请求
@@ -302,16 +305,15 @@ export const ErrorInterceptorProvider = {
 
 ```
 
-
-
 ### 文件上传
 
 ```javascript
-<input #photoUpload type="file" accept="image/*">
+<input #photoUpload type="file" accept="image/*" (change)="onInput($event)">
 <button class="primaryButton" (click)="uploadImage()">Upload Image</button>
 
 export class MyComponent {
   @ViewChild('photoUpload') adminPhotoUpload: ElementRef;
+  
   uploadImage(): {
     const files = this.photoUpload.nativeElement.files;
     const formData: FormData = new FormData();
@@ -324,6 +326,11 @@ export class MyComponent {
     return this.http.post(`${apiURL}/api/storage`, formData, {
       headers
     });
+  }
+
+  // 或者这样做
+  onInput(event): {
+    this.file = event.target.files[0];
   }
 }
 ```
@@ -376,7 +383,7 @@ describe('test haofly"s function', () =>{
 
 - **ExpressionChangedAfterItHasBeenCheckedErrord: Expression has changed after it was checked.**：这是因为在子组件里面直接改变了父组件的值，通常是在`ngAfterViewInit`或者`ngOnChanges`中，因为这种改变可能会导致无限循环，所以是禁止的，但是如果确保不会发生无限循环，可以将改变的语句写到`setTimeout`中去
 
-- **给用代码生成的元素绑定事件**: 
+- **给用代码生成的元素绑定事件/addEventListener需要使用.bind方法才能在回调函数内部使用this**: 
 
   ```javascript
   ngAfterViewInit() {
@@ -386,7 +393,6 @@ describe('test haofly"s function', () =>{
   onClick(data, event) {
     
   }
-  
   ```
   
 
