@@ -13,7 +13,9 @@ ftp = ftplib.FTP_TLS(timeout=300)	# 连接FTPS
 ftp.connect(host, port)	# 连接目标服务器
 ftp.login(username, password)	# 登陆目标服务器
 ftp.mkd('/abc')	# 创建远程目录
-ftp.dir()	# 显示当前目录下的文件及目录
+ftp.dir()	# 显示当前目录下的文件及目录，会直接打印到标准输出
+ftp.nlst()	# 返回当前目录下的文件及目录
+ftp.cwd('')	# 切换目录
 ftp.pwd()	# 返回当前所在目录
 ftp.rmd(dirname)	# 删除远程目录
 ftp.delete(filename)	# 删除远程文件
