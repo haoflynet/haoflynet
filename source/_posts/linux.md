@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-01-14 08:03:30
+updated: 2022-02-16 18:28:30
 categories: system
 ---
 # Linux手册
@@ -540,6 +540,8 @@ systemctl disable docker.service	# 禁用开机启动
 
 service httpd status	# 检查服务状态
 systemctl list-units --type=service	# 显示所有已启动的服务
+
+journalctl --follow _SYSTEM_UNIT=myown.service 	# 查看某个系统服务的日志
 ```
 
 如果要将自己的程序变成系统的一项服务，那么可以在`/etc/systemd/system/`下新建一个以`.service`后缀 的文件，内容格式如下，新建完成执行`systemctl daemon-reload`:
@@ -745,22 +747,26 @@ vsftpd: ftp服务器，支持ftp协议，不支持sftp协议
 
 ```shell
 # 安装方法
-sudo yum install vsftpd
-sudo vim /etc/vsftpd/vsftpd.conf 修改如下几项：
+yum install vsftpd	# centos
+apt install vsftpd	# ubuntu
+# sudo vim /etc/vsftpd/vsftpd.conf，ubuntu在/etc/vsftpd.conf 修改如下几项：
 anonymous_enable=NO
 local_enable=YES
 chroot_local_user=YES
 write_enable=YES	# 可以写数据，如果没有加这个权限去写入的话会报FTP 550错误
+local_root=/	# 这个选项可以修改默认的登录目录，设置默认目录为/，该选项默认没在配置文件里
+allow_writeable_chroot=YES	# 是否允许在local_root目录进行写操作
+
 service vsftpd restart
-local_root=/	# 这个选项可以修改默认的登录目录，设置默认目录为/
 chkconfig vsftpd on 	# 开机启动
 
 # sftp修改默认登录目录，vim /etc/ssh/sshd_config
 
-
 # 创建用户
-sudo adduser ftpuser
-sudo passwd ftpuser
+adduser ftpuser	# ubuntu需要用命令useradd -m testuser
+passwd ftpuser
+usermod -d /path/to/location ftpuser	# 将该用户的登录目录设置为指定的目录，如果设置了local_root当然就不行了
+usermod -s /usr/sbin/nologin ftpuser && echo "/usr/sbin/nologin" >> /etc/shells	# 禁止该用户登录shell但允许登录ftp，有人说有安全问题，但么有其他方法，也没人说具体啥安全问题，就这样吧
 
 # 常用命令
 ftp domain/ip	# 连接目标ftp服务器
@@ -808,6 +814,7 @@ nmap -Pn 8.8.8.8 -p 2333	# 指定扫描某个端口
 rsync -avp root@server:/path ./ # 从服务器下载文件 
 
 rsync -avp --rsync-path="sudo rsync"	...	# 如果服务器上需要sudo权限可以这样执行
+rsync -avp --exclude "*.png" --exclude filename # 排除某些文件
 ```
 
 #### Tmux
@@ -877,6 +884,7 @@ cd -	# 返回上一次的目录，真他妈实用
 history	# 查看历史命令，如果需要查看命令执行时间，需要先export HISTTIMEFORMAT='\%F \%T '。如果要直接执行某个序号的命令，直接!n就好了
 history -c	# 清除所有的命令历史
 tzselect	# 更改时区
+timedatectl | grep "Time zone"	# 获取时区地区
 dpkg-reconfigure tzdata	# 上面那个不行的时候可以用这个
 ntpdate	# 如果连时间戳都不对，那么用这个工具来同步时间
 
@@ -911,6 +919,8 @@ length=$(#array[@]}或者length=$(#array[*]} # 获取数组长度
 **流程控制**
 
 ```shell
+command A && command B || command C	# 这才是最简单的if else语句
+
 if语句：
 	-z：为空
 	-n：不为空
@@ -948,7 +958,6 @@ if [ ! `which vim` ]; then yum install vim; fi
 # -a 与
 # -o 或
 # ！非
-
 ```
 
 **特殊符号**
@@ -1316,3 +1325,5 @@ date+\%Y-\%m-\%d   # 获取今天的日期
 - **AWS mount磁盘报错: Filesystem xvdg has duplicate UUID - can't mount**: 可以忽略uuid: `mount -o nouuid /dev/xvdg /data`
 
 - **Failed to fetch xxx 404 Not Found [IP: ]**: 可能需要更一下包列表`apt-get update`
+
+- `chmod和chown不起作用`，发生在挂载的磁盘上面的问题，试试重新挂载的时候设置umask为000，如果不行的话，就用`mount`命令看看那个磁盘的格式，如果是windows的格式，例如vfat、ntfs，那么可能不支持，那么办法了

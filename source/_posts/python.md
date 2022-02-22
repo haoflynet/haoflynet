@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2021-12-29 09:36:30
+updated: 2022-02-18 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -275,6 +275,7 @@ class MyList(list, metaclass=ListMetaclass):	# 指定该类在创建的时候用
 
 ```python
 a:int=123	# 直接定义变量的类型
+b: typing.Optional[int] = None
 
 # 类型检查
 def func(a: int) -> int	# 这表示该函数的参数a要求是整型，返回值是整型号
@@ -507,7 +508,7 @@ class BadRequestException(BaseException):
 # 执行系统命令
 # python3开始，call/check_call/check_output全部用run(..., check=True)代替# stdout=subprocess.PIPE表示将输出重定向到管道，这样主程序就没有实时输出，如果不指定，默认子程序会实时输出的。不过这种情况，我们必须正确处理管道的输出，否则如果任由子程序一直输出，可能会造成死锁。
 # shell=True/False表示命令是否通过shell来执行。
-# Popen与这些run的区别是Popen不会阻塞，而且可以于子线程进行交流(获取其运行状态)
+# Popen与这些run的区别是Popen不会阻塞，不用等待结果，而且可以与子线程进行交流(获取其运行状态)，和js里面的Promise类似
 import subprocess
 command = '...'
 result = subprocess.check_output(command, shell=True, encoding='utf-8')# 不能实时看到shell的输出，输出会以返回值返回，程序出错抛出异常。等价于run(..., check=True, stdout=PIPE).stdout
@@ -650,7 +651,7 @@ main(['install', 'requests'])	# 安装包
 
 #### 输入输出
 
-- Python默认会有输出缓冲区，所以有时候`print`没有输出不用担心，可能是缓冲区没有刷新，可以在运行程序的命令加上`-u`参数，例如`python -u main.py`，或者直接添加一个环境变量`PYTHONUNBUFFERED=1`
+- Python默认会有输出缓冲区，所以有时候`print`没有输出不用担心(systemd journal看不到print输出)，可能是缓冲区没有刷新，可以在运行程序的命令加上`-u`参数，例如`python -u main.py`，或者直接添加一个环境变量`PYTHONUNBUFFERED=1`
 
 ```python
 print('string', file=sys.stderr)	# 直接输出到文件

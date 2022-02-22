@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2022-01-04 09:58:00
+updated: 2022-02-21 09:58:00
 categories: php
 ---
 # Laravel指南
@@ -778,6 +778,10 @@ Model::setConnectionResolver($this->app['db']);	// 这句话用于给模型设�
 ```
 
 ### 认证相关
+
+- 认证相关路由直接用`Auth:routes()`就注册了所有的路由了
+- 可以通过`php artisan route:list`查看到系统自带的跟auth认证有关的一些路由
+- 可以在`AppServiceProvider.php -> boot`中使用`ResetPassword::toMailUsing(function($notifiable, $token) {})`来修改发送重置密码邮件的逻辑
 
 #### 用户系统
 
