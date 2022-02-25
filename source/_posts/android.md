@@ -268,12 +268,22 @@ import android.util.Log;
 ## TroubleShooting
 
 - **构建成功，但是运行按钮仍然是灰色**: 没有项目的运行配置`Run->edit configurations`中选择配置module
+
 - **configurations中没有module可以配置**: 选择`File->Sync Project with Gradle Fiels`，然后重新构建，选择
+
 - **gradle build running一直卡住**: 网上有很多的原因，但是我的原因是代理设置错误(我并不知道什么时候设置过代理了)，在mac上，`vim ~/.gradle/gradle.properties`修改代理配置即可
+
 - **org.gradle.api.UncheckedIOException: Failed to capture snapshot of input**: 在`Settings->Build, Execution, Deployment->Gradle->Android Studio`勾选`Enable embedded Maven repository`
+
 - **Field to find 'JAVA_HOME' environment variable. Try setting it manully**: 需要下载对应的[jdk](https://www.azul.com/downloads/?package=jdk)，这个网站下载的jdk非常好安装且非常好卸载，直接下载dmg格式的即可，且有直接的apple m1/silicon版本
+
 - **Duplicate class问题**: 如果错误中是googleservice的问题，可以尝试更新`*-build.gradle`中的google-service版本到最新的`classpath 'com.google.gms:google-services:4.3.10'`，android studio会提示你升级到最新的
-- **cannot find symbol android.suppport.v4.app.ActivityCompat**：直接替换即可，将`import android.support.v4.app.ActivityCompat`替换为`import androidx.core.app.ActivityCompat`即可，这种到androidx的替换，出现一个替换一个就行，没其他问题
+
+- **cannot find symbol android.suppport.v4.app.ActivityCompat**：直接替换即可，将`import android.support.v4.app.ActivityCompat`替换为`import androidx.core.app.ActivityCompat`即可，这种到androidx的替换，出现一个替换一个就行，没其他问题，我遇到的还有:
+
+  ```shell
+  android.support.v4.app.NotificationCompat -> import androidx.core.app.NotificationCompat; 
+  ```
 
 ##### 扩展阅读
 
