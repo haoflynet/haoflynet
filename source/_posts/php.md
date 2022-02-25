@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2021-12-23 08:50:21
+updated: 2022-02-23 08:50:21
 categories: php
 ---
 # PHP
@@ -321,7 +321,7 @@ unserialize()
   
 # 一些自省(反射)方法
 func_get_args()					# 获取当前方法所有的参数
-get_class(className)			# 取得当前语句所在的类名
+get_class($object)			# 取得实例的类名
 get_class_methods(className)	# 取得相应class所包含的所有的方法名
 get_class_vars(clasName)		# 取得相应class所包含的所有的变量名
 get_object_vars($object)		# 获取类或者对象的属性，返回数组

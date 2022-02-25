@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-02-18 18:18:00
+updated: 2022-02-24 18:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -192,6 +192,8 @@ name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 
 #### 时间处理moment/luxon/dayjs
 
+- [时区列表](https://jp.cybozu.help/general/zh/admin/list_systemadmin/list_localization/timezone.html)
+
 - moment作者已经不推荐使用`moment.js`，他自己又搞了个`luxon`，但我更推荐使用`dayjs`
 - 需要注意的是`moment.date(12)`等方法会更改对象本身，所以在函数之间传递的时候最好克隆一个新的对象`moment(moment())`
 - [moment在线测试](http://jsfiddle.net/brandonscript/rLjQx/)
@@ -199,6 +201,16 @@ name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 ```javascript
 // 原生方法
 new Date().getTime() // 获取当前时间戳，毫秒
+new Date().toLoczaleTimeString('en-US', {
+  timeZone: 'Eurrpo/American',
+  hourCycle: 'h23',	// 以24小时制显示hour
+  year: 'numeric',
+  month: '2-digit',	// 几位数字，比如01，02等
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit'
+})	// 转换为指定时区的时间
 var today = Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
 Date.parse(1234567890000);	// 时间戳直接转换为Date
 today.setTime(today.getTime() - 24*60*60*1000); // 获取昨天的时间
@@ -374,6 +386,8 @@ fs.readdir('目录名', 'utf-8', function (err, data) {	// 获取目录下的文
   ```
 
 ### 错误处理
+
+- 有时候dom的一些操作无法用try catch到错误，原因是它可能是异步的，需要在方法后用`.catch`来捕获异常
 
 ```javascript
 try {

@@ -124,6 +124,7 @@ export class PostController {
         database: 'test',
         models: [],
       }),
+      forwardRef(() => AbcModule),	// 如果两个module之间互相依赖，可以使用forwardRef来解决循环依赖的问题, can't resolve dependencies of the ...
     ],
   })
   
@@ -142,7 +143,9 @@ export class PostController {
   
   // 定义完成后需要在users.module.ts中引入该model
   @Module({
-    imports: [SequelizeModule.forFeature([UserModel])],
+    imports: [
+      SequelizeModule.forFeature([UserModel])
+    ],
     controllers: [UsersController],
     providers: [UsersService],
     exports: [SequelizeModule]

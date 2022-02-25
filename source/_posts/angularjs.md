@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-02-14 18:03:00
+updated: 2022-02-22 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -185,6 +185,15 @@ export class MyComponent implements OnInit {
 
 ```javascript
 {{ timestamp * 1000 | date: 'yyyy-MM-dd'}} // 时间格式化
+```
+
+###  样式
+
+```javascript
+// 如果要覆盖第三方组件的样式，可以用::ng-deep，并且为了防止把其他组件也覆盖了，可以加:host前缀将样式覆盖限制在当前的宿主元素上面去
+:host ::ng-deep .xxx {
+  
+}
 ```
 
 ## 生命周期
