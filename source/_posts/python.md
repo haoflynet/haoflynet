@@ -510,8 +510,14 @@ class BadRequestException(BaseException):
 # shell=True/False表示命令是否通过shell来执行。
 # Popen与这些run的区别是Popen不会阻塞，不用等待结果，而且可以与子线程进行交流(获取其运行状态)，和js里面的Promise类似
 import subprocess
-command = '...'
 result = subprocess.check_output(command, shell=True, encoding='utf-8')# 不能实时看到shell的输出，输出会以返回值返回，程序出错抛出异常。等价于run(..., check=True, stdout=PIPE).stdout
+subprocess.check_output(command, shell=True, stdin=subprocess.PIPE)	# 这样就是异步了
+try:
+  subprocess.check_output(command, shell=True, stderr=subprocess.PIPE)
+except subprocess.CalledProcessError as e:	# 获取正确的错误输出
+    print('exit code: {}'.format(e.returncode))
+    print('stdout: {}'.format(e.output.decode(sys.getfilesystemencoding())))
+    print('stderr: {}'.format(e.stderr.decode(sys.getfilesystemencoding())))
 result = subprocess.check_call(command, shell=True)	# 可以直接看到输出结果，程序出错会抛出异常，程序成功返回0。等价于run(..., check=True)
 result = subprocess.call(command, shell=True)	# 跟check_call返回结果一样。等价于run(...).returncode
 # 注意1: subprocess是不能实现ssh输入密码登录的。OpenSSH并不是使用STDOUT/STDIN与进程进行通信的，而是直接与终端进行通信。所以要实现用程序去与ssh进行交互，最好的方法是使用pexpect模块(pty模块)，它们会建立一个伪终端。另外，如果直接安装了linux的ssh扩展程序sshpass，则可以直接在命令行输入密码了。
