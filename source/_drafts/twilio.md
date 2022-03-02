@@ -1,0 +1,1 @@
+美国的号码不能简单的用正则来判断，最好用twilio提供的接口https://www.twilio.com/docs/lookup/api

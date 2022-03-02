@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-02-22 18:03:00
+updated: 2022-03-01 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -141,8 +141,14 @@ export class MyComponent implements OnInit {
   
 	ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-    	formName: ['初始值', [Validators.required, this.checkName()]],	// 第一个参数设置初始值，第二个参数是验证方法列表
-      字段2: ['', []]
+    	formFieldName: ['初始值', [Validators.required, this.checkName()]],	// 第一个参数设置初始值，第二个参数是验证方法列表
+      字段2: ['', []],
+      字段3: new FormControl('', {
+        validators: [
+          this.aaaaaa.bind(this)	// 自定义验证方法
+        ],
+        updateOn: 'blur'	// 失去焦点的时候进行验证
+      })
   	}, {
       validator: this.checkAll	// 如果不是针对某个字段，而是针对整个表单，比如同时验证多个字段，那么可以在这里做
     })
@@ -170,7 +176,7 @@ export class MyComponent implements OnInit {
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label>Name</label>
-    <input type="text" class="form-control" (input)="inputChange" formControlName="formName" [(ngModel)]="user.name">
+    <input type="text" class="form-control" (input)="inputChange" formControlName="formFieldName" [(ngModel)]="user.name">
     <p class="form-warning" *ngIf="submitting && createForm.get('formName').errors">
       <span *ngIf="createForm.get('formName').errors.nameValueError">	// 这是上面自定义的错误
         Name Should be 1 or 2.
@@ -252,7 +258,9 @@ ngOnInit(): void {
   
   this.http.get('/').subscribe(
     data => {},
-    error => {}	// catch error
+    error => {
+      error.json	// 获取json格式的错误相应
+    }	// catch error
   );
   this.http.post('', body, {}, {params: new HttpParams().set('id', 3')});	// 添加url参数
   this.http.post('', body).subscribe(...);	// post请求

@@ -1,7 +1,7 @@
 ---
-title: "Linux 手册"
+dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-02-16 18:28:30
+updated: 2022-02-24 18:28:30
 categories: system
 ---
 # Linux手册
@@ -435,6 +435,7 @@ iostat
 
 ```shell
 w # 查看当前登录的所有的用户
+who # 查看当前登录的用户及启动的进程
 
 sudo -i # 切换为root用户
 
@@ -908,18 +909,26 @@ echo $RANDOM % 28 | bc
 ```
 
 ## Shell Script
-**数据结构**
+
+- 最好用`/bin/bash`来执行，不要直接用`/bin/sh`来执行，bash会有很多高级点的功能，且也经常用到
+
+#### 变量
 
 ```shell
+a=$(command)	# 将命令的结果赋给变量
+echo "abdc$a"	# 双引号内部的语句可以直接引用变量，但是变量名后面不能有多的字符
+echo "abc"$a"def"	# 可以这样字符串和变量直接相加
+
 VAR2=${VAR:-haofly}	# 如果变量VAR不存在，后面就是它的默认值
 VAR2=${VAR/.tar.gz}	# 如果VAR的值为haofly.tar.gz，那么VAR2=haofly，一种替换
 length=$(#array[@]}或者length=$(#array[*]} # 获取数组长度
 ```
 
-**流程控制**
+#### 流程控制
 
 ```shell
 command A && command B || command C	# 这才是最简单的if else语句
+command A || (command C) && command D # 注意，如果打了括号，那么该语句会
 
 if语句：
 	-z：为空
@@ -936,6 +945,12 @@ fi
 # 判断文件是否为空
 if [[ ! -s filename ]]; then
 echo 'a'
+fi
+
+# 判断当前是否有sudo权限
+if [[ $UID != 0 ]]; then
+    echo "Please run this script with sudo: sudo $0 $*"
+    exit 1
 fi
 
 # 多个if判断
@@ -960,16 +975,16 @@ if [ ! `which vim` ]; then yum install vim; fi
 # ！非
 ```
 
-**特殊符号**
+#### 特殊符号
 
 ```shell
 [[]]：双中括号，之间的字符不会发生文件名扩展或者单词分割
 (())：双小括号，整数扩展，其中的变量可以不适用$符号前缀
-$?：获取上一条命令的退出码，0表示成功，其他则是失败
+$?：获取上一条命令的退出码，0表示成功，其他则是失败 exit code
 $@: 获取所有参数
 ```
 
-**日期/时间处理**
+#### 日期/时间处理
 
 ```shell
 date +"%s"	# 按照时间戳来显示
@@ -978,10 +993,10 @@ date +"%T"	# 仅显示时间，比如10:44:00
 time1=$((($(date +%s ) - $(date +%s -d '20210101'))/86400)) # 日期相减，计算间隔日期
 ```
 
-**随机数**
+#### 随机数
 ​	$RANDOM	# 生成一个随机数
 
-**特殊操作**
+#### 特殊操作
 
 ```shell
 . /etc/*.conf		# 导入配置文件，这样配置文件里面的变量就可以直接使用了
@@ -992,6 +1007,10 @@ while read line do 语句 done  # 一行一行地进行处理，真正的处理
 ps | grep python | awk -F ' ' '\{print $1\}' | xargs kill
 
 date+\%Y-\%m-\%d   # 获取今天的日期
+
+/sbin/ifconfig eth0 | grep 'inet ' | cut -d: -f2 | awk '{ print $2 }	# 获取网卡的IP地址
+
+echo -e '\035\nquit' | telnet 192.168.1.1 23 && echo "success" || echo "failed"	# shell判断telnet端口是否能够访问，并能自动退出
 ```
 
 ## 域名解析
