@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-02-24 18:18:00
+updated: 2022-03-09 18:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -616,6 +616,8 @@ parent_tag.after(a_tag);	// 然后将元素放到指定的位置
 a_tag.outerHTML = '<a class="..." name="">ok</a>'; // 最后将元素html替换成我们想要的
 
 $("#<form_id>").trigger("reset"); // jQuery清空表单字段
+
+canvasEle.getContext("2d").strokeRect(20, 20, 150, 100)	// 在元素上绘制矩形
 ```
 
 ### 元素事件listen event

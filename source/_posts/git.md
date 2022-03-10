@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2021-12-22 18:21:00
+updated: 2022-03-08 18:21:00
 categories: tools
 ---
 # Git指南
@@ -126,6 +126,7 @@ git branch -D dev				# 删除本地分支
 git checkout -b new-branch 		# 在本地新建分支并切换到新分支
 git checkout -b dev origin/dev	# 拉取远程分支到本地并命名为dev分支
 git push origin :serverfix		# 直接删除远程分支
+git merge xxx # 将制定分支合并到当前分支
 
 ## 强制覆盖本地分支
 git fetch --all
