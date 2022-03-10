@@ -1,10 +1,13 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-03-01 18:03:00
+updated: 2022-03-09 18:03:00
 categories: frontend
 ---
 ## 安装与配置
+
+- angular不同的版本对typescript的版本要求是不同的，可以参考[这里](https://stackoverflow.com/questions/57216110/the-angular-compiler-requires-typescript-3-4-0-and-3-5-0-but-3-5-3-was-found)
+- angular升级是非常简单的，只要参考[官方升级文档](https://update.angular.io/?v=8.0-10.0)一步一步升即可
 
 ```shell
 ng serve --host 0.0.0.0 --port 3000	# 启动，指定host，指定port
@@ -199,6 +202,97 @@ export class MyComponent implements OnInit {
 // 如果要覆盖第三方组件的样式，可以用::ng-deep，并且为了防止把其他组件也覆盖了，可以加:host前缀将样式覆盖限制在当前的宿主元素上面去
 :host ::ng-deep .xxx {
   
+}
+```
+
+## 组件通信
+
+### 父组件至子组件通信
+
+- 直接用`@Input`
+
+```javascript
+<app-child [field]="value"></app-child>
+
+export class ChildComponent {
+  @Input() field: any;
+}
+```
+
+### 子组件至父组件通信
+
+- 用`@Output EventEmitter`
+
+```javascript
+<app-child (field)="onChildClick($event)"></app-child>
+
+export class ParentComponent {
+  onChildClick(field) {
+    console.log(field);
+  }
+}
+
+export class ChildComponent {
+  @Output() field = new EventEmitter<String>();
+  
+  onClick() {
+  	this.field.emit('click');
+  }
+}
+```
+
+- 用`@ViewChild`不仅能获取子组件的字段，还能直接使用子组件的方法
+
+ ```javascript
+ <app-child></app-child>
+ 
+ export class ParentComponent {
+ 	@ViewChild(ChildComponent)
+   private childComponent: ChildComponent
+ 	
+   onTest () {
+     this.childComponent.onTest1();
+   }
+ }
+ 
+ export class ChildComponent {
+   onTest1 () {}
+ }
+ ```
+
+## 不相关的组件通信
+
+- 创建service来通信，复杂的应用场景这个还是用得比较多
+
+```javascript
+// 需要先找个地方新建一个service
+@Injectable()
+export class MyFieldService {
+  private myField: Subject<string> = new Subject<string>();
+
+	setMessage(value: string) {
+    this.myField.next(value)
+  }
+
+	getMessage() {
+    return this.myField.asObservable()
+  }
+}
+
+export class Component1 {
+  constructor(private myFieldService: MyFieldService)
+  
+  onFieldChange() {
+    this.myFieldService.setMessage('new value');
+  }
+}
+
+export class Component2 {
+  constructor(private myFieldService: MyFieldService) {
+    this.myFieldService.getMessage().subscribe((value) => {
+      ...
+    }
+  }
 }
 ```
 

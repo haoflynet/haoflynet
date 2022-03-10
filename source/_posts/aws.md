@@ -72,7 +72,7 @@ categories: Javascript
      sudo mkfs -t xfs /dev/xvdf	# 创建文件系统，如果找不到mkfs命令，可以安装xfsprogs
      ```
 
-  5. 挂在
+  5. 挂载
 
      ```shell
      sudo mkdir /data	# 创建挂载点
@@ -324,6 +324,16 @@ exports.handler = async (event, context) => {
 ### MySQL
 
 - [开启创建存储过程的功能](https://aws.amazon.com/premiumsupport/knowledge-center/rds-mysql-functions/?nc1=h_ls)
+
+## DocumentDB (MongoDB)
+
+- 默认启用了tls安全登录设置的，必须下载他们的pem文件才能进行连接，可以在`Amazon DocumentDB -> 参数组`中新建参数组，因为default开头的参数组无法修改，然后在新建的参数组里面将tls给disabled掉，然后再修改集群的参数组即可
+- 它是创建在VPC之上的，目前居然不支持公网访问，不同的region之间要访问得给VPC创建对等连接，并且还不支持us-west-1 region，所以最简单的方法是在另外的region创建ec2和documentdb
+- 居然不支持`Capped Collections`，可能之后会支持，其他不支持的可以参考[这里](https://docs.aws.amazon.com/documentdb/latest/developerguide/mongo-apis.html)
+
+## Amazon MemoryDB for Redis
+
+- 
 
 ## SES/Simple Email Service电子邮件发送和接收服务
 

@@ -6,7 +6,7 @@ categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
 
-##系统相关
+## 系统相关
 
 [安装方法](https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce-1)
 
