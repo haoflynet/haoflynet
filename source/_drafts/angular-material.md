@@ -18,8 +18,6 @@ emailFormControl = new FormControl('', [
 </mat-error>
 ```
 
-
-
 ### Selection
 
 ```react
@@ -49,3 +47,36 @@ ngOnInit() {
 ### [tree](https://material.angular.io/components/tree/examples)
 
 - 这是我见过最难用最难看的`tree`组件了
+
+## 第三方扩展
+
+### 按钮增加loading状态
+
+可以直接自己弄，注意按钮必须`position: relative`
+
+```javascript
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .8s linear infinite;
+}
+
+<div style="text-align:center">
+  <button color="primary" [class.spinner]="loading" [disabled]="loading" (click)="save()">Save</button>
+</div>
+```
+
