@@ -542,7 +542,7 @@ systemctl disable docker.service	# 禁用开机启动
 service httpd status	# 检查服务状态
 systemctl list-units --type=service	# 显示所有已启动的服务
 
-journalctl --follow _SYSTEM_UNIT=myown.service 	# 查看某个系统服务的日志
+journalctl --follow -u myown.service 	# 查看某个系统服务的日志
 ```
 
 如果要将自己的程序变成系统的一项服务，那么可以在`/etc/systemd/system/`下新建一个以`.service`后缀 的文件，内容格式如下，新建完成执行`systemctl daemon-reload`:

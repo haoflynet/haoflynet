@@ -63,7 +63,9 @@ indexSizes: 所有的索引以及其大小
 db.col.status(1024)	# 这样下面那些大小单位就是KB
 
 db.version()	# 查看数据库版本
-
+show dbs	# 查看数据库列表
+use xxx # 进入某个数据库
+db.dropDatabase()	# 删除当前数据库
 
 db.col.find().explain()	# 在语句后添加explain能够返回查询计划
 db.col.find().explain("executionStats")	# 能够返回具体获胜额查询计划以及执行详情
