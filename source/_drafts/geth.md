@@ -17,13 +17,15 @@ sudo apt-get install -y ethereum
 
 ## 常用命令
 
+- 创建的账号会生成一个json文件存储在`data/keystore`下
+
 ```shell
 geth --datadir ./data account list	# 列出当前所有的account
 geth --datadir ./data console	# 进入console
 
 # console控制台命令
 personal.newAccount()	# 创建账号
-personal.unlockAccount()	# 解锁账号
+personal.unlockAccount('0x111')	# 解锁账号d
 
 eth.accounts	# 获取当前节点所有的账户信息
 eth.getBalance(eth.accounts[0])		# 获取某个账户的balance
@@ -46,6 +48,7 @@ miner.start(1)	# 执行挖矿操作，参数是线程数
 ```shell
 personal.unlockAccount('0x111111')	# 转账钱需要先解锁账号
 eth.sendTransaction({from: '0x1111111', to: '0x2222222', value: web3.toWei(2, "ether")})	# 此时暂时看不到余额变化，因为此时交易还没有上链
+eth.sendTransaction({from: eth.accounts[0], to: eth.accounts[1], value: web3.toWei(1, "ether")})
 
 miner.start(1)	# 需要执行一次挖矿操作
 miner.stop()	# 就能发现余额发生变化了
