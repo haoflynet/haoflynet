@@ -1,5 +1,7 @@
 ## Go Ethereum
 
+- 对于RPC端口，如果实在得暴露到公网，其实也没啥，注意不要在network里面创建账户，即使有也要把私钥放到其他地方物理隔离，当然换端口以及防火墙也是基本操作。当然也可以在nginx层添加一个HTTP basic Auth认证
+
 ## 安装配置
 
 ```shell
@@ -24,7 +26,7 @@ geth --datadir ./data account list	# 列出当前所有的account
 geth --datadir ./data console	# 进入console
 
 # console控制台命令
-personal.newAccount()	# 创建账号
+personal.newAccount('password')	# 创建账号
 personal.unlockAccount('0x111')	# 解锁账号d
 
 eth.accounts	# 获取当前节点所有的账户信息
@@ -36,21 +38,21 @@ admin.peers	# 获取peer节点信息
 net.peerCount	# 获取节点数量
 eth.blockNumber	# 查看当前区块数量
 eth.getTransaction()
+eth.coinbase	# 获取当前的矿工
 
 miner.setEtherbase(base)
 miner.start(1)	# 执行挖矿操作，参数是线程数
 ```
 
-### 转账
+### 转账操作
 
 - Wei是以太坊中的最小货币面额单位，1 ether = 10^18 Wei
 
 ```shell
-personal.unlockAccount('0x111111')	# 转账钱需要先解锁账号
+personal.unlockAccount('0x111111')	# 转账前需要先解锁账号
 eth.sendTransaction({from: '0x1111111', to: '0x2222222', value: web3.toWei(2, "ether")})	# 此时暂时看不到余额变化，因为此时交易还没有上链
-eth.sendTransaction({from: eth.accounts[0], to: eth.accounts[1], value: web3.toWei(1, "ether")})
 
-miner.start(1)	# 需要执行一次挖矿操作
+miner.start(1)	# 需要执行一次挖矿操作，让矿工来打包确认
 miner.stop()	# 就能发现余额发生变化了
 ```
 
@@ -75,23 +77,26 @@ miner.stop()	# 就能发现余额发生变化了
    // vim ~/config/genesis.json
    {
        "nonce": "0x0000000000000042",
-       "timestamp": "0x0",
-       "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-       "extraData": "0x00",
-       "gasLimit": "0x8000000",	// 执行智能合约的最大值
-       "difficulty": "0x1",	// 挖矿的复杂度，越低挖得越快
+       "timestamp": "0x0",	// 设置创世块的时间戳
+       "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",	// 上一个区块的hash，创世块的话就为0
+       "extraData": "0x00",	// 附加信息，随便写就行了
+       "gasLimit": "0x8000000",	// 设置对GAS的消耗总量限制，用来限制区块能包含的交易信息总和，执行智能合约的最大值
+       "difficulty": "0x0",	// 挖矿的复杂度，越低挖得越快，不过经过我的测试，在aws的
        "mixhash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-       "coinbase": "0x3333333333333333333333333333333333333333",
-     	"extradata": "0x00000000000000000000000000000000000000000000000000000000000000007df9a875a174b3bc565e6424a0050ebc1b2d1d820000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",	// 将中间的地址替换为first singer的public address即可，这个好像可以随便填
+       "coinbase": "0x3333333333333333333333333333333333333333",	// 矿工的账号，随便填
        "alloc": {	// 预先分配balance到特定的地址，默认留空就可以了，当然也可以给某个address直接制定
          "7df9a875a174b3bc565e6424a0050ebc1b2d1d82": {"balance": "10000"}
        },
        "config": {
-         "chainId": 15,	// 当前私有区块链的唯一id，如果是私有倒无所谓，如果要上公链必须唯一，可以去https://chainlist.org 确认
+         "chainId": 202203101600,	// 当前私有区块链的唯一id，如果是私有倒无所谓，如果要上公链必须唯一，可以去https://chainlist.org 确认
          "homesteadBlock": 0,	// 第一次发布时的区块，默认为0就行
          "eip150Block": 0,
          "eip155Block": 0,	// eip表示Ethereum Improvement Proposals，私有链的话默认为0即可
-         "eip158Block": 0 // 私有链默认为0即可
+         "eip158Block": 0, // 私有链默认为0即可
+         "byzantiumBlock": 0,
+         "constantinopleBlock": 0,
+         "petersburgBlock": 0,
+         "istanbulBlock": 0
        }
    }
    ```
@@ -103,17 +108,19 @@ miner.stop()	# 就能发现余额发生变化了
    
    # 如果已经初始化了，可以执行下面命令来启动
    geth --datadir data --networkid 15
-   
-   rm -rf data/geth data/history ~/.ethash
    ```
-
+   
 5. 启动以太坊私有测试链
 
    - 这里需要用到服务器的公网IP地址，并且需要将服务器的防火墙允许UDP和TCP的30303端口
+   - 如果开启了RPC服务，那么每个人都能够访问你的节点，最好还是关闭了。虽然有unlockAccount的存在，但是如果输入密码短时间内不会再次要求输入密码，黑客会不断尝试转账交易。目前能做的主要有更换端口，设置访问墙，nginx http basic auth。
+   -  API支持HTTP-RPC，WS-RPC，GraphQL(基于HTTP-RPC)
+   - 如果开启了graphql可以直接访问`http://ip:8545/graphql/ui`，但是实际看感觉graphql的api不全呀，就只能查一些区块的东西，contract的基本不支持，这应该是目前的支持列表[EIP-1767](https://eips.ethereum.org/EIPS/eip-1767)
 
    ```shell
-   geth --identity "FirstNode" --datadir data --networkid 15 --nat extip:172.16.254.4 console	# 这里的console能够直接进入控制台
-   # 其他参数
+   geth --identity "FirstNode" --nodiscover --datadir data --allow-insecure-unlock --http --http.addr "0.0.0.0" --http.corsdomain '*' --http.api "db,eth,net,web3,personal" --graphql --graphql.corsdomain '*' --nat extip:172.168.254.4 --networkid 202203101600 console	# 这里的console能够直接进入控制台
+   # 参数列表，注意网上很多教程的rpc现在已经被http替代了
+   --nat extip:172.16.254.4	# 将当前节点暴露到公网
    --maxpeers 0: 节点数最大值
    --nodiscover: 使节点不可发现，可以防止使用相同network id和创世块的节点连接到你的区块链网络中，只能手动添加节点
    
@@ -136,3 +143,7 @@ miner.stop()	# 就能发现余额发生变化了
    ```
 
    
+
+## TroubleShooting
+
+- **客户端报错the method xxx does not exist/is not available**: 需要将要使用的api添加到`--http.api`参数中，例如`--http.api "eth,web3,personal,miner"`
