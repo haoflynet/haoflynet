@@ -56,7 +56,7 @@
   - signature: 发送者的标识符
   - value: 交易的ETH的金额，以WEI为单位
   - data: 可包括任意数据的可选字段
-  - gasLimit: 交易可以消耗的Gas的最大数量，Gas单位代表了计算步骤
+  - gasLimit: 交易可以消耗的Gas的最大数量，Gas单位代表了计算步骤，一个单独交易的上限，最终的消耗不会多于`gas price * gas limit`
   - maxPriorityFeePerGas: 作为矿工消费包含的最大gas数量
   - maxFeePerGas: 愿意为交易支付的最大gas数量，包括baseFeePerGas和amxPriorityFeePerGas
 
@@ -268,7 +268,7 @@ contract Token {
 
 ## Infura
 
-- 作用是不用启节点就能连接RPC服务，如果不能直接连接对方的network rpc服务，那么只有自己启一个节点才能连接RPC服务，infura就是代替你启动节点，你可以直接使用API
+- 作用是不用启节点就能连接RPC服务，如果不能直接连接对方的network rpc服务，那么只有自己启一个节点才能连接RPC服务，infura就是代替你启动节点，你可以直接使用API。同步节点并存储区块链数据可能需要好几天
 
 
 

@@ -1,6 +1,12 @@
+---
+title: "Geth 搭建私链 private blockchain"
+date: 2022-03-18 18:00:00
+categories: eth
+---
+
 ## Go Ethereum
 
-- 对于RPC端口，如果实在得暴露到公网，其实也没啥，注意不要在network里面创建账户，即使有也要把私钥放到其他地方物理隔离，当然换端口以及防火墙也是基本操作。当然也可以在nginx层添加一个HTTP basic Auth认证
+- 对于RPC端口，如果实在得暴露到公网，其实也没啥，注意不要在network里面创建账户，即使有也要把私钥放到其他地方物理隔离，当然换端口以及防火墙也是基本操作。也可以在nginx层添加一个HTTP basic Auth认证。网上很多黑客一直在扫30303和8545端口
 
 ## 安装配置
 
@@ -19,7 +25,7 @@ sudo apt-get install -y ethereum
 
 ## 常用命令
 
-- 创建的账号会生成一个json文件存储在`data/keystore`下
+- 直接在节点上创建的账号会生成一个json文件存储在`data/keystore`下
 
 ```shell
 geth --datadir ./data account list	# 列出当前所有的account
@@ -43,6 +49,8 @@ eth.coinbase	# 获取当前的矿工
 miner.setEtherbase(base)
 miner.start(1)	# 执行挖矿操作，参数是线程数
 ```
+
+<!--more-->
 
 ### 转账操作
 
@@ -128,7 +136,7 @@ miner.stop()	# 就能发现余额发生变化了
    geth attach data/geth.ipc --exec admin.nodeInfo.enr
    ```
 
-6. 创建另外的节点
+6. 创建另外的节点(member节点)
 
    - 注意必须使用相同的创世块配置
    - 如果是同一个机器上，需要创建不同的data目录
@@ -142,7 +150,6 @@ miner.stop()	# 就能发现余额发生变化了
    geth attach data2/geth.ipc --exec admin.peers
    ```
 
-   
 
 ## TroubleShooting
 
