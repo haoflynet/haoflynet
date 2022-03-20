@@ -1,4 +1,10 @@
-- 能够非常方便地编写、测试并部署智能合约到以太坊
+---
+title: "使用hardhat部署智能合约"
+date: 2022-03-21 18:00:00
+categories: eth
+---
+
+- - 能够非常方便地编写、测试并部署智能合约到以太坊
 - 内置了Hardhat Network，不用部署到真是的以太坊网络也能进行测试
 
 ## 安装配置
@@ -10,6 +16,8 @@ npm install --save-dev @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-waffl
 
 npx hardhat	# 初始化hardhat项目，会生成一个hardhat.config.js配置文件
 ```
+
+<!--more-->
 
 ### 配置文件hardhat.config.js
 
@@ -54,8 +62,11 @@ npx hardhat	# 初始化hardhat项目，会生成一个hardhat.config.js配置文
 
 ### 常用命令
 
+- 编译目录artifacts中的信息与大多数的合约编译工具的输出是兼容的，例如`Truffle`
+
 ```shell
-npx hardhat compile	# 编译合约
+npx hardhat compile	# 编译合约，编译会编译到artifacts目录。默认只会编译更改后的
+npx hardhat compile --force 	# 强制重新编译所有合约
 
 npx hardhat test	# 运行测试
 ```
@@ -112,6 +123,21 @@ main()
 ```shell
 npx hardhat run scripts/deploy.js	# 默认部署到hardhat本地的测试网络，当然成功后就没了
 npx hardhat run scripts/deploy.js --network networkName	# 部署到指定的网络，这里的networkName是在hardhat.config.js中定义的
+```
+
+## 调用合约
+
+- 根据我的使用，`artifacts`目录下的东西是编译后的东西，感觉有必要放到git repo中去，这样就不用存储abi到数据库了，而且代码也方便调用。每次部署相同的合约会得到一个不同地址，但编译后的合约肯定是一样的
+- 最好存储一下abi信息到数据库，这样后面即使不用hardhat也能比较方便地调用合约方法
+
+```javascript
+const hre = require("hardhat");	// 以代码来执行deploy或者使用都是这个前缀
+
+await hre.artifacts.getArtifactPaths()	// 获取工件文件的路径
+await hre.artifacts.readArtifacts("contracts/Auction.sol:Auction")	// 获取指定合约的工件的内容
+
+deployedContract = await hre.ethers.getContractAt("Auction", '0xaaaaaaa')	// 直接通过地址获取到部署的智能合约
+deployedContract.customFunc()	// 直接调用合约的方法
 ```
 
 ## 参考文章
