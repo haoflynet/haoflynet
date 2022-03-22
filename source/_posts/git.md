@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2022-03-08 18:21:00
+updated: 2022-03-17 18:21:00
 categories: tools
 ---
 # Git指南
@@ -100,6 +100,7 @@ git diff origin/master HEAD	# 和远程分支对比
 
 git reset HEAD filename		# 把已经commit了的文件取消暂存
 git checkout -- filename	# 放弃指定文件的更改
+git checkout <commit hash> -- filename 	# 将文件恢复到指定提交
 git commit --amend			# 撤销上一次提交，并将暂存区文件重新提交。当然如果没有git add，直接执行这条命令就相当于修改message
 
 git stash					# 暂存，常用于要切换分支，但是当前分支上面的更改并不想现在提交，需要先把当前分支的状态暂存起来。暂存起来后就可以自由切换到其他分支了。
@@ -444,4 +445,6 @@ fi
 - **Large files detected, ... recommended maximum file size of 50 MB**: github不允许超过50M的文件上传，只能存储在其他地方，但是已经`commit`倒本地的需要移出来，`git rm --cached 文件名 git commit --amend -CHEAD`
 
 - **修改sourcetree保存的仓库密码**: 需要在macos的keychain中进行删除
+
+- **The unauthenticated git protocol on port 9418 is no longer supported**: 将`git://github.com/xxx`修改为`https://github.com/xxx`
 

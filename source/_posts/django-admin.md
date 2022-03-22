@@ -1,7 +1,7 @@
 ---
 title: "Django Admin 后台管理系统"
 date: 2019-06-01 00:00:00
-updated: 2021-12-31 15:32:00
+updated: 2022-03-17 15:32:00
 categories: 编程之路
 ---
 
@@ -98,7 +98,7 @@ class MyModelCreationForm(forms.ModelForm):
     class Meta:
         model = MyModel
         fields = ('email', 'field2')
-        exclude = ('created_at', )	# 排除某些字段不用在后台管理
+        exclude = ('created_at', )	# 排除某些字段不用在后台管理，隐藏字段
 
 class MyModelChangeForm(forms.ModelForm):
     """自定义修改表单"""
