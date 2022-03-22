@@ -39,6 +39,15 @@ npx hardhat	# 初始化hardhat项目，会生成一个hardhat.config.js配置文
       url: 'http://127.0.0.1:8545',
       accounts: ['0x111111111']
       }
+    },
+    path: {
+      sources: './contracts',
+      tests: './test',
+      cache: './cache',
+      artifacts: './artifacts',
+    },
+    mocha: {
+      timeout: 20000
     }
   };
 }

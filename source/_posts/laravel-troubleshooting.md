@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2021-09-08 14:18:00
+updated: 2022-03-11 14:18:00
 categories: php
 ---
 
@@ -202,5 +202,24 @@ $file = '/tmp/' . $info['basename'];
 file_put_contents($file, $contents);
 $uploaded_file = new UploadedFile($file, $info['basename']);
 $path = $uploaded_file->storeAs('mypath', $info['basename']);
+```
+
+#### throttle的设置在passport /oauth/token不起作用
+
+原因是throttle如果在`kernel.php`中设置的，那他只作用于自己写的API，对于passport中的api不起作用，可以在`AuthServiceProvider.php -> boot` 注册Passport的时候覆盖其设置:
+
+```php
+public function boot()
+{
+  ...
+    Passport::routes(function ($router) {
+      $router->all();
+      Route::post('/token', [
+        'uses' => 'AccessTokenController@issueToken',
+        'as' => 'passport.token',
+        'middleware' => 'throttle:3000,1'
+      ]);
+    });
+}
 ```
 
