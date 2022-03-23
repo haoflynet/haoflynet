@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2021-12-30 08:04:00
+updated: 2022-03-18 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -162,3 +162,5 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 - **xcrun: error: invalid active developer path, missing xcrun **: 重装xcode工具: `xcode-select --install`
 
 - **macOS Big Sur无法使用VPN**: 系统限制没办法，得修改VPN服务器的配置，参考苹果的[官方说明](https://support.apple.com/zh-cn/HT211840)
+
+- **telnet: command not found**: `brew install telnet`

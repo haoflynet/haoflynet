@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2022-02-16 08:44:00
+updated: 2022-03-17 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -417,7 +417,7 @@ sudo mysqld_safe --skip-grant-tables	# 这条命令能够登录进去，然后�
 ```shell
 FORCE INDEX 	# 强制指定索引
 IGNORE INDEX 	# 忽略指定索引
-SQL_NO_CACHE 	# 关闭查询缓存，SELECT SQL_NO_CACHE FROM table
+SQL_NO_CACHE 	# 关闭查询缓存，SELECT SQL_NO_CACHE id, name FROM table; 查看查询缓存的配置: SHOW VARIABLES LIKE 'query%';
 SQL_CACHE 		# 强制查询缓存
 HIGH_PRIORITY	# 优先操作
 LOW_PRIORITY	# 滞后操作
@@ -657,4 +657,3 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 
 - [记一次神奇的Mysql死锁排查](https://juejin.im/post/5c774114f265da2d993d9908): 一种非常隐蔽的发生死锁的情况。
 - [软删除之痛](https://blog.wolfogre.com/posts/trap-of-soft-delete/): 软删除很好用，但还是具体场景具体分析，不要一味地用，需要考虑数据是否有软删的必要，和如何解决软删的副作用
-- [最完整的Explain总结，SQL优化不再困难](https://juejin.im/post/6863832433062739981)

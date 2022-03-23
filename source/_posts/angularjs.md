@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-03-09 18:03:00
+updated: 2022-03-18 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -289,6 +289,7 @@ export class Component1 {
 
 export class Component2 {
   constructor(private myFieldService: MyFieldService) {
+    // 需要特别注意的是，如果回调函数报错了，之后就不会监听了，造成了只能监听一次的假象
     this.myFieldService.getMessage().subscribe((value) => {
       ...
     }

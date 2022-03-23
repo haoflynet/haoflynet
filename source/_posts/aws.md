@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2021-11-24 08:42:00
+updated: 2022-03-22 08:42:00
 categories: Javascript
 ---
 
@@ -142,9 +142,13 @@ const s3Client = new AWS.S3(config)
 s3Client.getObject({
   Bucket: config.bucket,
   Key: 'object path'
-}).promise().then(result => {
-  console.log(result.Body)
-})
+}).promise().then(result => { console.log(result.Body) })
+
+s3Client.putObject({
+  Bucket: 'test',
+  Key: 'abc/test1.png',
+  Body: fs.readFileSync('./testimg/test.png'),
+}).promise().then(result => { console.log(result) })
 ```
 
 ### 开放S3桶的公共访问权限
@@ -227,7 +231,7 @@ Block all public access
 
 ## ELB/Elastic Load Balancing负载均衡器
 
-- ELB支持多种负载均衡器
+- ELB支持多种负载均衡器([ELB产品比较](https://aws.amazon.com/cn/elasticloadbalancing/features/))
   - 应用负载均衡器(Application Load Balancer)：对HTTP/HTTPS请求进行负载均衡
   - 网络负载均衡器(Network Load Balancer)：对网络/传输协议(第4层-TCP、UDP、TLS)以及极端性能/低延迟的应用程序进行负载均衡
   - 网关负载均衡器(Gateway Load Balancer)：IP层
@@ -238,6 +242,11 @@ Block all public access
 - 负载均衡器的目标组可以只选择80端口，服务器上也可以只开启80端口，只有在负载均衡器的监听器上面需要监听443，转发到目标组就行了
 - 如果是非`Route 53`管理的域名需要指向`elb`需要设置的是CNAME记录
 - [价格表](https://aws.amazon.com/cn/elasticloadbalancing/pricing/): 0.0225美元/小时，差不多3.5元/天，简单的还是用弹性IP吧，毕竟是免费的
+- ELB -> ALB(Application Load Balancer)是原生支持websocket的，无论是`ws`还是`wss`协议，做法如下
+  - 创建新的目标群组，端口为websocket的端口，协议选择`HTTP`(不过需要注意的是，健康检查一直都不会通过)，创建成功后将`属性->粘性`选项打开
+  - 在之前监听了80、443端口的ALB上添加新的侦听器，协议选择`HTTPS`，证书用之前的证书，转发到上面的目标群组即可
+  - 一定要检查下安全组看是否允许websocket端口的TCP协议，另外需要增加ELB的空闲超时时间
+
 
 ## API Gateway
 
@@ -324,6 +333,13 @@ exports.handler = async (event, context) => {
 ### MySQL
 
 - [开启创建存储过程的功能](https://aws.amazon.com/premiumsupport/knowledge-center/rds-mysql-functions/?nc1=h_ls)
+
+## IAM
+
+- 用户权限凭证管理
+- 如果要为aws sdk的api调用创建新的access key、access secret的话最好这样做:
+  - 最好单独创建一个用户: `IAM -> 用户 -> 添加用户`，在创建的时候不要选择任何的策略权限
+  - 创建完成后`添加内联策略`，然后选择需要的服务、操作、资源即可
 
 ## DocumentDB (MongoDB)
 
