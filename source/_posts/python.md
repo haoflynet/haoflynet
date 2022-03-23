@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2022-02-18 09:36:30
+updated: 2022-03-09 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -514,6 +514,10 @@ result = subprocess.check_output(command, shell=True, encoding='utf-8')# 不能�
 subprocess.check_output(command, shell=True, stdin=subprocess.PIPE)	# 这样就是异步了
 try:
   subprocess.check_output(command, shell=True, stderr=subprocess.PIPE)
+  
+  # 如果程序正常退出，但是却有stderr，那么可以这样获取标准错误输出
+  output = subprocess.run(command, shell=True, check=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+  print(output.stderr, output.stdout)
 except subprocess.CalledProcessError as e:	# 获取正确的错误输出
     print('exit code: {}'.format(e.returncode))
     print('stdout: {}'.format(e.output.decode(sys.getfilesystemencoding())))

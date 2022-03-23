@@ -4,17 +4,19 @@ date: 2022-03-21 18:00:00
 categories: eth
 ---
 
-- - 能够非常方便地编写、测试并部署智能合约到以太坊
+- 能够非常方便地编写、测试并部署智能合约到以太坊
 - 内置了Hardhat Network，不用部署到真是的以太坊网络也能进行测试
 
 ## 安装配置
 
 ```shell
-npm init --yes	# 如果当前目录还不是一个nodejs项目，先初始化
+npm install -g hardhat
+npx hardhat	# 直接初始化项目，会生成一个hardhat.config.js配置文件，选最长的那个最全面了
+
+# 也可以在现有项目中初始化
 npm install --save-dev hardhat
 npm install --save-dev @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-waffle ethereum-waffle chai	# 安装一些测试需要用到的依赖
-
-npx hardhat	# 初始化hardhat项目，会生成一个hardhat.config.js配置文件
+npx hardhat	# 初始化hardhat项目，可以选择只生成配置文件
 ```
 
 <!--more-->
@@ -93,7 +95,7 @@ describe("Token contract", function() {
 
     const Token = await ethers.getContractFactory("Token");	// ContractFactory就是一个部署智能合约的工厂方法，这里并没有实际部署
 
-    const myContract = await Token.deploy();	// 部署智能合约到hardhat本地的测试网络
+    const myContract = await Token.deploy(60, "abc");	// 部署智能合约到hardhat本地的测试网络，可以将参数传递给构造函数
 
     const ownerBalance = await myContract.balanceOf(owner.address);
     expect(await myContract.totalSupply()).to.equal(ownerBalance);
