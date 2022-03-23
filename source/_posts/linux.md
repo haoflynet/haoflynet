@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-02-24 18:28:30
+updated: 2022-03-18 18:28:30
 categories: system
 ---
 # Linux手册
@@ -131,6 +131,8 @@ cat filename|tr -s '\n'	# cat命令不输出空行
 free -h | sed -n '2p' | awk '{print $2}'		# 获取服务器内存大小
 df -h | sed -n '2p' | awk '{print $2}'			# 获取服务器磁盘大小
 sort filename | uniq -c	# 去除文件中重复的行
+
+cat file.json | jq -r '.user.name'	# 命令行直接解析json可以使用sudo apt-get install jq -y
 ```
 
 ##### awk
@@ -812,10 +814,10 @@ nmap -Pn 8.8.8.8 -p 2333	# 指定扫描某个端口
 # -a 表示递归同步，且同元信息(修改时间、权限等)
 # -n/--dry-run，不会实际同步，只是模拟执行看看哪些文件会被同步
 # --exclude="*.txt" 忽略文件，如果多个需要写多个--exclude
-rsync -avp root@server:/path ./ # 从服务器下载文件 
+rsync -avpP root@server:/path ./ # 从服务器下载文件 
 
-rsync -avp --rsync-path="sudo rsync"	...	# 如果服务器上需要sudo权限可以这样执行
-rsync -avp --exclude "*.png" --exclude filename # 排除某些文件
+rsync -avpP --rsync-path="sudo rsync"	...	# 如果服务器上需要sudo权限可以这样执行
+rsync -avpP --exclude "*.png" --exclude filename # 排除某些文件
 ```
 
 #### Tmux
@@ -934,6 +936,9 @@ if语句：
 	-z：为空
 	-n：不为空
 	-gt：大于
+	-lt: 小于
+	-le: 小于等于
+	-ge: 大于等于
 	-eq: 等于，仅针对数字
 	==: 等于，针对字符串
 	
@@ -1011,6 +1016,8 @@ date+\%Y-\%m-\%d   # 获取今天的日期
 /sbin/ifconfig eth0 | grep 'inet ' | cut -d: -f2 | awk '{ print $2 }	# 获取网卡的IP地址
 
 echo -e '\035\nquit' | telnet 192.168.1.1 23 && echo "success" || echo "failed"	# shell判断telnet端口是否能够访问，并能自动退出
+
+if [ "$(stat -c '%a' /usr/local/src)" == "777" ]	# 判断文件夹权限
 ```
 
 ## 域名解析
