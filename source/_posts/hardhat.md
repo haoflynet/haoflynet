@@ -1,6 +1,7 @@
 ---
 title: "使用hardhat部署智能合约"
 date: 2022-03-21 18:00:00
+updated: 2022-03-23 22:40:00
 categories: eth
 ---
 
@@ -85,6 +86,7 @@ npx hardhat test	# 运行测试
 ### 测试
 
 - 一个测试用例`./test/token.js`
+- 智能合约的工具都互相兼容，如果是`truffle`语法写的测试用例，仍然可以用`npx hardhat test`来测试，需要先安装插件`npm install --save-dev @nomiclabs/hardhat-truffle5 @nomiclabs/hardhat-web3 web3`，并在`hardhat.config.js`中引入`require("@nomiclabs/hardhat-truffle5");`
 
 ```javascript
 const { expect } = require("chai");
