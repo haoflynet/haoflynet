@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-03-18 18:03:00
+updated: 2022-03-25 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -151,7 +151,8 @@ export class MyComponent implements OnInit {
           this.aaaaaa.bind(this)	// 自定义验证方法
         ],
         updateOn: 'blur'	// 失去焦点的时候进行验证
-      })
+      }),
+      字段4: [{value: '初始值', disabled: true}]	// 如果要让某个字段disabled需要在这里做，直接在html上面disable可能不生效
   	}, {
       validator: this.checkAll	// 如果不是针对某个字段，而是针对整个表单，比如同时验证多个字段，那么可以在这里做
     })
@@ -365,7 +366,15 @@ ngOnInit(): void {
     err => {'错误处理'}
   );
   this.http.get('').retry(3).subscribe(...);	// 设置重试次数
-  this.http.get(''). {responseType: 'text'}.subscribe(...); // 请求非json数据     
+  this.http.get(''). {responseType: 'text'}.subscribe(...); // 请求非json数据
+                    
+  // 设置自定义的超时时间
+  import { timeout, catchError } from 'rxjs/operators';
+	import { of } from 'rxjs/observable/of';
+
+  this.http.get('').pipe(timeout(2000), catchError(e => {
+    return of(null);
+  }))
                                                       
   await this.http.get('').toPromise();	// 将网络请求转换为promise就可以用promise的await语法了
 

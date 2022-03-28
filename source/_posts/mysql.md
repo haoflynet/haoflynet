@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2022-03-17 08:44:00
+updated: 2022-03-25 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -177,6 +177,9 @@ SELECT * FROM table1 WHERE id IN (SELECT MAX(ID) FROM table1 GROUP BY field1);	#
 SELECT field1 FROM table1
 UNION
 SELECT field1 FROM table2
+
+# 按年、月、日分组
+SELECT DATE_FORMAT(date, '%Y-%m') as date, COUNT(*) FROM `user` GROUP BY `date`;
 ```
 **LIKE查询的特殊转义**
 
