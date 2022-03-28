@@ -46,6 +46,8 @@ security:
 ## 系统相关指令
 
 ```shell
+mongo	# 进入命令行
+
 db.serverStatus()	# 查询服务器状态，有几个重要的参数
 ## version: 当前实例所用的版本
 ## uptime: 实例运行时间，单位为妙
@@ -122,6 +124,7 @@ db.users.find({'friends.0': {$exists: true}})	# 查询friends数组长度大于�
 
 # 聚合查询
 db.col.aggregate(AGGREGATE_OPERATION)
+db.col.aggregate({$lookup: {from:"users", "localField": "user_id", "foreignField": "_id", as: "user"}})
 
 # 统计
 db.col.count({})	# 统计数量
