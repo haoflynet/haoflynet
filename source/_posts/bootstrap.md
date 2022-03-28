@@ -11,6 +11,15 @@ bootstrap是由Twitter退出的一个用于前端开发的开发工具包，其�
 - [bootstrap的响应式breakpoints定义](https://getbootstrap.com/docs/5.0/layout/breakpoints/)
 - 首先是移动设备有限，所以默认情况的样式是针对移动设备的，往上主要就是两个断点： md(>=768px iPad)、lg(>=992px正常的Web尺寸)
 
+##  栅格系统
+
+```html
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-1"></div>
+</div>
+```
+
 ## Utilities
 
 - 从`4.x`才开始的

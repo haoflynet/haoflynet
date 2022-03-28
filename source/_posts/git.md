@@ -8,6 +8,17 @@ categories: tools
 
 这里所列举的通用配置无论是在Windows还是Linux，都要用到。
 
+- **一定一定要设置好nginx或者apache的权限，保护好.git目录，防止被黑客获取到，因为这个目录下的文件包含了所有的文件内容**，例如:
+
+  ```python
+  import zlib
+  import requests
+  
+  url = "https://domain/.git/objects/9d/6d1ae673f15900b8efd9ad875364b3a651cc0e"
+  re = requests.get(url)
+  content = zlib.decompress(re.content)	# 这就是文件内容
+  ```
+
 ## 安装与配置
 
 ### 安装Git软件

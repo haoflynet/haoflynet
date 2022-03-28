@@ -1,7 +1,7 @@
 ---
 title: "Apache/Httpd手册"
 date: 2013-09-17 08:52:39
-updated: 2022-01-13 08:36:00
+updated: 2022-03-24 18:36:00
 categories: server
 ---
 ## Apache安装与配置
@@ -19,6 +19,16 @@ apachectl graceful # 不中断当前连接重启服务器，类似于nginx -s re
 apachectl configtest # 验证配置文件语法是否正确，类似于nginx -t
 apachectl fullstatus	# 显示服务器完整的状态信息
 ```
+## 配置指令
+
+```shell
+# Options指令
+Options All	# 默认开启所有的服务器特性
+Options None	# 不启用任何的服务器特性
+Options FollowSymLinks	# 允许在此目录中使用符号链接
+Options Indexes	# 如果输入的是一个目录，而且目录中没有DirectoryIndex指令，那么服务器会返回目录列表，这是非常危险的
+```
+
 ## 添加Gzip压缩
 
 1. 首先，开启相关模块:
@@ -152,11 +162,21 @@ RewriteEngine on
 
 # RewriteCond第一个参数是一个测试字符串，第二个参数是条件，第三个参数不写默认是AND。它其实就是if语句，如果符合某个或某几个条件则执行RewriteCond下面最近的RewriteRule语句。两句相邻的RewriteCond默认是AND，也可以自己写OR
 RewriteCond %{TIME_YEAR}%{TIME_MON}%{TIME_DAY}%{TIME_HOUR} <202110010000
-RewriteCond %{REQUEST_FILENAME} !-f	# 请求的是否是文件
-RewriteCond %{REQUEST_FILENAME} !-d	# 请求的是否是目录
+RewriteCond %{REQUEST_FILENAME} !-f	# 请求的不是文件或文件不存在
+RewriteCond %{REQUEST_FILENAME} !-d	# 请求的不是目录或目录不存在
 
 # RewriteRule，第二个参数为替换的参数，第三个参数有R(redirect，强制重定向)，F(forbidden，禁止访问)，L(last，最后)
 RewriteRule . index.php
+RewriteRule !^(public/|index\.php) [NC,F]	# 设置只允许访问指定目录和指定的文件，访问其他文件都为404，防止别人来抓你项目目录里的其他文件，例如.git下的文件内容等
+```
+
+## 日志打印真实IP而不是内网IP
+
+```shell
+# vim /etc/apache2/apache2.conf
+LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
+# 将上面这一行修改为下面这样
+LogFormat "%h %{X-Forwarded-For}i %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined	
 ```
 
 ### TroubleShooting
