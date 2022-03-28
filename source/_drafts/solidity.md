@@ -10,10 +10,19 @@ contract ERC20Token is ERC20 {	// 支持继承
     constructor(uint256 totalSupply, string memory name, string memory symbol) ERC20(name, symbol) {
         _mint(msg.sender, totalSupply);
     }
+    
+    // 获取当前的sender
+    function getMsgSender() public view returns(address) {
+        return msg.sender;
+    }
+    
+    function func1(unit amount) {
+    	require(isAllowed[msg.sender], 'Caller not allowed to mint');	// 类似于断言
+    }
 }
 ```
 
-## 智能合约仓库
+## 智能合约代码库
 
 ### [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)
 
@@ -38,3 +47,7 @@ contract ERC20Token is ERC20 {
 ### [Solidity by Example](https://solidity-by-example.org/)
 
 - 也比较多的，但和上面那个比较来就比较逊色了
+
+## TroubleShooting
+
+- **Type literal_string "WALLET_ADDRESS" is not implicity convertiable to expected type address**: 我这边是将`balances["0x..."]`改为了`balances[0x...]`就可以了 
