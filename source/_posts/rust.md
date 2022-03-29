@@ -45,13 +45,28 @@ dotenv = "0.15.0"
 - 数据类型
   - bool、u8、u16、u32、u64、u128、usize、i8、i16、i32、i64、i128、isize、f32、f64、char
   - Tuple、Array
+- Option: 一种可能为空的值，本质上也是枚举，None表示空，Some代表又值。(好处是能够在编译阶段就能阻止可能发生的错误)，拿它的值最好的方法就是`if let`。代码量和我们平时写的`if (val !== null)`一样，只是这相当于是强制的了
+- Result: 结果，本质也是枚举，Ok表示正常返回值和Err表示异常
+- `?`: 如果一个函数内部有多个可能会抛出异常的地方，可以直接在结尾使用`?`表示只要抛错，那么函数返回值就是Err，而不用使用unwrap或者if let了
 
 ```rust
 println!("{} days", day); // 打印变量的值
 
+// Option
 obj.field.is_some()	// 判断某个option的字段是否有值
+let val: Option<u16> = get_val()	// 获取一个可能为空的u16的值
+if let Some(var1) = val {
+  println!("val is: {}", var1)
+} else {
+  println!("val is None")
+}
+let var1: u16 = val.unwrap() // 如果不想写if let，那么可以直接这样取值，但是如果值为空，会直接报错panic
 
-result.is_ok()	// 该结果是否是ok的，常用语函数返回Ok(result)，可以这样判断
+
+// Result
+let res: Result<u16, &str> = Ok(233)	// 这里定义res是一个Result类型，正常返回u16，如果报错则是一个字符串
+let val: u16 = res.unwrap()	// 和Option的unwrap一样，直接取正常返回值，错误直接panic报错
+res.is_ok()	// 该结果是否是ok的，常用语函数返回Ok(result)，可以这样判断
 ```
 
 ### 基本变量
@@ -71,7 +86,7 @@ if x {}
 // 字符串, str是String的切片类型，是String的一部分或全部
 let s = "abc"	// s的类型为&str
 let s = String::from("abc")	// String类型
-let s = "abc".to_string()
+let s = "abc".to_string()	// 转换为String类型
 s.push("a")	// push追加单个字符
 s.push_str("abc")	// 追加一个字符串
 
@@ -96,7 +111,7 @@ let s1 = &arr[..];	// 取所有元素
 my_int.to_string();	// int转字符串
 my_str.as_bytes();	// 字符串转bytecode
 my_str.parse::<i32>().unwrap();	// 字符串转int
-Optional::from();	// 将指定的变量转换为Option<T>的形式
+Optional::from();	// 将指定的s变量转换为Option<T>的形式
 
 // JSON格式字符串
 use serde_json::Value;	// serde_json = "1.0.57"
@@ -187,6 +202,12 @@ impl Playble for Audio {	// 对，用结构体来实现
     self.duration
   }
 }
+
+// Iterator迭代器
+.map(|x| x + 1)	// 这就和js中的map类似了
+.next()	// 取下一个元素，一定是一个Option<T>的类型
+.collect() // 将迭代器的元素收集到指定的类型中
+let val2: Vec<_> = val1.iter().collect();	// 这里的<_>表示不指定类型，因为编译器能自动推导
 ```
 
 ### 流程控制

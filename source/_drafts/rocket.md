@@ -37,7 +37,10 @@ impl<'a, 'r> FromRequest<'a, 'r> for ApiKey {
     type Error = ApiKeyError;
 
     fn from_request(request: &'a Request<'r>) -> request::Outcome<Self, Self::Error> {
-        let keys: Vec<_> = request.headers().get("x-api-key").collect();
+        let keys: Vec<_> = request
+      		.headers()	// rocket::http::HeaderMap对象，常用方法有.contains("key")、.get("key")是一个迭代器、.get_one("key")
+      		.get("x-api-key")
+      		.collect();
         match keys.len() {
             0 => Outcome::Failure((Status::BadRequest, ApiKeyError::Missing)),
             1 => Outcome::Failure((Status::BadRequest, ApiKeyError::Invalid)),
@@ -52,6 +55,8 @@ impl<'a, 'r> FromRequest<'a, 'r> for ApiKey {
                 .and_then(|cookie| cookie.value().parse().ok())
                 .and_then(|id| db.get_user(id).ok())
         });
+      	// 异步的request local cache
+      	let user_result = request.local_cache_async(async {})
 
     }
 }
