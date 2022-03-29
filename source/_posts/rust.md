@@ -1,7 +1,7 @@
 ---
 title: "Rust 手册"
 date: 2022-03-24 08:50:00
-updated: 2022-03-24 18:21:00
+updated: 2022-03-29 22:55:00
 categories: rust
 ---
 
@@ -25,6 +25,8 @@ cargo run	#
 rustup install nightly
 cargo +nightly run ...
 cargo +nightly install ...
+rustup install nightly-2022-03-22	# 安装指定版本的nightly
+cargo +nightly-2022-03-22 run ...	# 使用指定版本的nightly
 ```
 
 - `Cargo.toml`：类似于`package.json`文件
@@ -264,9 +266,8 @@ mod tests {
 }
 ```
 
-
-
 ## TroubleShooting
 
 - **failed to run custom build command for `openssl-sys v0.9.66`**: 执行`sudo apt install libssl-dev pkg-config -y`
 - **type ascription is experimental **: 在使用某些实验方法的时候可能会有这个错误，此时只需要将`#![feature(type_ascription)]`放到整个项目入口文件的开头即可`main.rs`或者`lib.rs`
+- **error: no rules expected the token `aarch64_apple`**: 目前我仅在2022-03-22后的几个版本遇到过这个问题，安装`rustup install nightly-2022-03-22`版本可以解决(注意使用的时候也需要指定版本`cargo +nightly-2022-03-22`)，当然如果最新的修复了，可以尝试一下最新的版本
