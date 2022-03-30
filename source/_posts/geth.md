@@ -1,6 +1,7 @@
 ---
 title: "Geth 搭建私链 private blockchain"
 date: 2022-03-18 18:00:00
+updated: 2022-03-24 18:34:00
 categories: eth
 ---
 
@@ -21,6 +22,7 @@ sudo apt-get install software-properties-common
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt-get update
 sudo apt-get install -y ethereum
+curl -LSs https://raw.githubusercontent.com/gochain/web3/master/install.sh | sh	# 安装web3 CLI
 ```
 
 ## 常用命令
@@ -48,6 +50,8 @@ eth.coinbase	# 获取当前的矿工
 
 miner.setEtherbase(base)
 miner.start(1)	# 执行挖矿操作，参数是线程数
+
+web3 account extract --keyfile data/keystore/UTC--2022-03-16T02-29-14.506737237Z--XXXXXXXX --password XXXXXXXX # 获取在当前网络上创建的账户的私钥
 ```
 
 <!--more-->
@@ -128,9 +132,15 @@ miner.stop()	# 就能发现余额发生变化了
    ```shell
    geth --identity "FirstNode" --nodiscover --datadir data --allow-insecure-unlock --http --http.addr "0.0.0.0" --http.corsdomain '*' --http.api "db,eth,net,web3,personal" --graphql --graphql.corsdomain '*' --nat extip:172.168.254.4 --networkid 202203101600 console	# 这里的console能够直接进入控制台
    # 参数列表，注意网上很多教程的rpc现在已经被http替代了
+   --identity "First"	# 自定义节点名称
+   --networkid 123	# 设置network的id
    --nat extip:172.16.254.4	# 将当前节点暴露到公网
    --maxpeers 0: 节点数最大值
    --nodiscover: 使节点不可发现，可以防止使用相同network id和创世块的节点连接到你的区块链网络中，只能手动添加节点
+   --nousb: 关闭USB硬件钱包
+   --allow-insecure-unlock	# 允许通过HTTP-RPC来解锁account，是一个比较危险的操作，建议不开启，只有测试的时候可以开启一下
+   --http.api	admin.debug,web3,eth,txpool,personal,ethash,miner,net	# 支持哪些http api
+   --http.corsdomain '*'	# 允许哪些域名能够跨于连接
    
    # 然后需要另启一个终端，执行下面命令获取引导节点bootstrap node
    geth attach data/geth.ipc --exec admin.nodeInfo.enr

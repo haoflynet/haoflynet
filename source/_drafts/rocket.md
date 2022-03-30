@@ -58,6 +58,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for ApiKey {
       	// 异步的request local cache
       	let user_result = request.local_cache_async(async {})
 
+      	Outcome::Success(val)	// 返回正确的对象
     }
 }
 
