@@ -63,10 +63,14 @@ if let Some(var1) = val {
 let var1: u16 = val.unwrap() // 如果不想写if let，那么可以直接这样取值，但是如果值为空，会直接报错panic
 
 
-// Result
+// Result，实现了FromIter的，可以使用一些迭代器的方法
 let res: Result<u16, &str> = Ok(233)	// 这里定义res是一个Result类型，正常返回u16，如果报错则是一个字符串
+if let Ok(var) = res {}
 let val: u16 = res.unwrap()	// 和Option的unwrap一样，直接取正常返回值，错误直接panic报错
 res.is_ok()	// 该结果是否是ok的，常用语函数返回Ok(result)，可以这样判断
+res.map_err(|err| err.to_string())	// 处理错误
+res.map_err(|_| println!("error"))	// 如果不关心具体某个错误就用_
+res.filter_map(|r| r.parse::<i32>().ok())	// 过滤结果
 ```
 
 ### 基本变量
@@ -117,12 +121,14 @@ Optional::from();	// 将指定的s变量转换为Option<T>的形式
 use serde_json::Value;	// serde_json = "1.0.57"
 let my_json: Value = serde_json::from_str("")?;
 let field_value = my_json["field"}.as_str();
+Ok(json!(res))	// 将结果转换为json格式
 ```
 
 ### 扩展变量
 
+#### Vec向量
+
 ```rust
-// vec向量
 let mut v1 = Vec::new();
 let mut v1 = Vec::with_capacity(10);	// 指定容量
 let v2 = vec![1,2,3]
@@ -143,7 +149,10 @@ v.truncate(2)	// 截断，保留n个与阿奴
 v.retain(|x| *x > 20) // 只保留满足条件的元素，相当于filter
 v.drain(1..=3)	// 删除并返回指定范围的元素
 v.split_off(2); // 删除并返回前n个元素
+```
+#### Struct结构体(类)
 
+```
 // Struct结构体(有点像类)
 #[derive(Debug)]	// 加上这一行才能正确地用println打印，println("{:?}", user)或者println("{:#?}", user)
 struct User {
@@ -173,8 +182,9 @@ impl User {
   }
 }
 user1.func1()	// 这样就能直接调用了，有点儿像类了
-
-// enum枚举
+```
+#### Enum枚举
+```
 enum Gender {
   Male,
   Female
@@ -186,8 +196,9 @@ impl Gender {
 }
 let a: Gender = Gender::Male;
 let b = Gender::Female as i32;	// 1
-
-// Trait(有点像抽象类)
+```
+#### Trait(抽象类)
+```rust
 triat Playable {
   fn play(&self);
   fn pause(&self) {
@@ -202,12 +213,23 @@ impl Playble for Audio {	// 对，用结构体来实现
     self.duration
   }
 }
-
-// Iterator迭代器
+```
+#### Iterator迭代器
+```rust
 .map(|x| x + 1)	// 这就和js中的map类似了
 .next()	// 取下一个元素，一定是一个Option<T>的类型
 .collect() // 将迭代器的元素收集到指定的类型中
 let val2: Vec<_> = val1.iter().collect();	// 这里的<_>表示不指定类型，因为编译器能自动推导
+.collect::<Vec<Document>>()	// 转换为指定的类型
+```
+
+#### BSON序列化和反序列化
+
+- 很多类型的变量都能表示为BSON值
+
+```rust
+bson::from_bson()	// 序列化
+bson::from_document()	// 反序列化
 ```
 
 ### 流程控制

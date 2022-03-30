@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2022-03-09 09:36:30
+updated: 2022-03-29 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -123,7 +123,9 @@ if dict.get('a', {}).get('b', {}).get('c')	# 一下判断多个层级，这样�
 dict.get('a', 'b')	# 如果不存在那么给一个默认值
 dict['abc'] = 'xxx'	# 添加新key
 dict.keys()			# 获取所有的key，这里返回的是一个dict_keys，一个迭代器
-list(dict)			# 如果仅仅想获得key的数组，可以这样子
+dict.values()	# 获取所有的value
+list(dict)			# 如果仅仅想获得key的数组
+list(dict.values())	# 获取value的数组
 
 # 表达式解析
 a = {'x': 1, 'y': 2}
@@ -274,6 +276,9 @@ class MyList(list, metaclass=ListMetaclass):	# 指定该类在创建的时候用
 从3.5开始，Python提供了类型检查功能，当然类型检查仅仅用于检查，并不会对程序的执行有任何的影响，但是配合IDE有代码提示过后，一切都变得方便了起来
 
 ```python
+type('string') is str	# 获取变量类型
+isinstance('string', str)	# 判断变量类型
+
 a:int=123	# 直接定义变量的类型
 b: typing.Optional[int] = None
 
@@ -1504,6 +1509,8 @@ conn.close()	# 关闭连接
     ```
 
 - **psycopg2安装失败**: 可以尝试`export ARCHFLAGS="-arch x86_64" pip install psycopg2 --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include`
+
+- **#error architecture not supported**: 安装某些包的时候会出现这个，可以尝试`ARCHFLAGS="-arch x86_64" pip install nltk`
 
 ## 推荐阅读
 

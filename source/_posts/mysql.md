@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2022-03-25 08:44:00
+updated: 2022-03-29 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -77,6 +77,9 @@ DROP DATABASE database_name	# 删除数据库
 CREATE TABLE targetTable LIKE sourceTable;	# 复制表结构
 INSERT INTO targetTable SELECT * FROM sourceTable;	# 复制表数据
 INSERT INTO targetTable (field1, field2) SELECT field1, field2 FROM sourceTable; # 指定字段复制表
+
+use information_schema;
+select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data  from TABLES;	# 查看所有库的大小
 ```
 
 ### 数据表操作
