@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2021-11-16 18:48:00
+updated: 2022-03-30 18:48:00
 categories: Javascript
 ---
 
@@ -216,6 +216,7 @@ props.setMyState(true);
 ```jsx
 <div tabIndex="0">ttt</div>	// 可以使用双引号来直接指定属性值
 <img src={user.avatarUrl}</img>	// 也可以使用大括号来指定变量属性值
+<input value={user.name} />	// 设置input的默认值
 
 // 传递变量到scss中
 const myStyle = `--bg-url: ${myUrl}`
