@@ -38,12 +38,25 @@ categories: Javascript
 
 - 副作用：数据获取、设置订阅、手动更改DOM
 
-- 可以把`useEffect Hook`看作`componentDidMount、componentDidUpdate、componentWillUnmount`这三个函数的组合
+- 可以把`useEffect Hook`看作`componentDidMount、componentDidUpdate、componentWillUnmount`这三个函数的组合，组件渲染完成后执行某些操作
+
+- 官方建议一个组件中不同的功能最好分开写`useEffect`
 
 - 默认`useEffect`只会执行一次，props改变不会重新触发，可以传入第二个参数，当第二个参数改变的时候会重新触发一次:
 
   ```javascript
   useEffect(() => {}, [props.user])	// 这样当props.user改变的时候能够重新执行一次函数
+  ```
+
+- 副作用清除机制，在useEffect中返回一个函数，能够有效防止内存溢出等异常:
+
+  ```javascript
+  useEffect(() => {
+    Client.subscribe(args, callBackFunc());	// 如果我们需要在渲染完成后进行订阅
+    return function cleanup () {	// 如果需要在组件卸载的时候退出订阅就能这样做
+      Client.unsubscribe();
+    }
+  })
   ```
 
 - 在函数组件中执行副作用操作，可以直接使用`state`，不用编写class
