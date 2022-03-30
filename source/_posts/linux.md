@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-03-18 18:28:30
+updated: 2022-03-28 18:28:30
 categories: system
 ---
 # Linux手册
@@ -772,9 +772,12 @@ usermod -d /path/to/location ftpuser	# 将该用户的登录目录设置为指�
 usermod -s /usr/sbin/nologin ftpuser && echo "/usr/sbin/nologin" >> /etc/shells	# 禁止该用户登录shell但允许登录ftp，有人说有安全问题，但么有其他方法，也没人说具体啥安全问题，就这样吧
 
 # 常用命令
-ftp domain/ip	# 连接目标ftp服务器
+ftp domain ip	# 连接目标ftp服务器
 put a.txt		# 上传当前目录的一个文件
 mput ./*		# 同时上传多个文件
+dir	# 列出当前目录下的文件
+mkdir test	# 创建目录
+rmdir test	# 删除目录
 ```
 
 #### logrotate日志轮转
@@ -886,6 +889,9 @@ smbget -R smb://host/path	# 如果要递归下载文件夹，可以这样子使�
 cd -	# 返回上一次的目录，真他妈实用
 history	# 查看历史命令，如果需要查看命令执行时间，需要先export HISTTIMEFORMAT='\%F \%T '。如果要直接执行某个序号的命令，直接!n就好了
 history -c	# 清除所有的命令历史
+history -d 123	# 删除某一条命令的执行记录
+!233	# 根据history的序号执行指定的命令
+
 tzselect	# 更改时区
 timedatectl | grep "Time zone"	# 获取时区地区
 dpkg-reconfigure tzdata	# 上面那个不行的时候可以用这个
@@ -1018,6 +1024,18 @@ date+\%Y-\%m-\%d   # 获取今天的日期
 echo -e '\035\nquit' | telnet 192.168.1.1 23 && echo "success" || echo "failed"	# shell判断telnet端口是否能够访问，并能自动退出
 
 if [ "$(stat -c '%a' /usr/local/src)" == "777" ]	# 判断文件夹权限
+
+# 使用shell来判断ftp server是否能够连接，是否有权限
+ftp -n $ftp_host $ftp_port << EOF
+quote USER ${ftp_user}
+quote pass ${ftp_pass}
+mkdir test
+rmdir test
+EOF
+if [[ "${PIPESTATUS[2]}" != 1 ]]; then
+  echo "Error"
+  exit 1
+fi
 ```
 
 ## 域名解析

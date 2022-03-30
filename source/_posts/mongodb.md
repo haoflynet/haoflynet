@@ -52,6 +52,18 @@ db.serverStatus()	# 查询服务器状态，有几个重要的参数
 ## version: 当前实例所用的版本
 ## uptime: 实例运行时间，单位为妙
 
+db.version()	# 查看数据库版本
+show dbs	# 查看数据库列表
+use xxx # 进入某个数据库
+db.dropDatabase()	# 删除当前数据库
+
+db.col.find().explain()	# 在语句后添加explain能够返回查询计划
+db.col.find().explain("executionStats")	# 能够返回具体获胜额查询计划以及执行详情
+```
+
+### 集合命令
+
+```shell
 db.col.stats() 	# 查询当前collection状态，参数如下
 ns: 集合的命名空间
 count: 集合中的文档总数
@@ -64,13 +76,7 @@ indexSizes: 所有的索引以及其大小
 
 db.col.status(1024)	# 这样下面那些大小单位就是KB
 
-db.version()	# 查看数据库版本
-show dbs	# 查看数据库列表
-use xxx # 进入某个数据库
-db.dropDatabase()	# 删除当前数据库
-
-db.col.find().explain()	# 在语句后添加explain能够返回查询计划
-db.col.find().explain("executionStats")	# 能够返回具体获胜额查询计划以及执行详情
+db.users.update({}, {$unset:{'name': ''}}, false, true)	# 删除集合中的某个字段
 ```
 
 ### 索引
