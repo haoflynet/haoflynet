@@ -27,8 +27,9 @@ web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl || '', { headers }));
 ### web3.eth
 
 ```javascript
-eth.getTransactionCount('0x...')	// 获取用户的transaction数量
-eth.getBalance('0x...')	// 获取指定用户的balance
+web3.eth.getTransactionCount('0x...')	// 获取用户的transaction数量
+web3.eth.getBalance('0x...')	// 获取指定用户的balance
+web3.eth.getTransactionReceipt(hash)	// 获取指定hash的结果
 ```
 
 #### web3.eth.contract
@@ -63,10 +64,3 @@ const res = await eth.sendSignedTransaction(signedTx.rawTransaction);	// 发送t
 ```javascript
 web3.eth.net.isListening()	// 代替低版本的isConnected()
 ```
-
-
-
-
-
-
-
