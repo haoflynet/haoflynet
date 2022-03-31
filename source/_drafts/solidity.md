@@ -1,3 +1,14 @@
+## 安装配置
+
+- 如果是使用`hardhat`，那么就不用单独安装了，它会安装指定的版本的`solc`的
+
+```shell
+brew update
+brew upgrade
+brew tap ethereum/ethereum
+brew install solidity
+```
+
 ## 语法
 
 ```solidity

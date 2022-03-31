@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-03-28 18:28:30
+updated: 2022-03-31 18:28:30
 categories: system
 ---
 # Linux手册
@@ -414,6 +414,7 @@ sudo df -lh   # 显示硬盘挂载情况
 sudo mount -t ext4 /dev/sdb /mydata  # 挂载某个分区文件为ext4
 sudo mount -t tmpfs -o size=12m tmpfs storage/framework/cache	# tmpfs允许将文件作为一个目录存储在RAM中，这样既能用文件保存，又能因为是内存中得到性能的提升
 sudo umount /dev/sdb	# 卸载磁盘
+sudo mount -o remount,rw /mydata	# 重新按照指定的读写权限挂载磁盘
 
 # vim /etc/fstab中添加，特别注意，修改完该文件后需要执行mount -a测试一下语法是否有错误，以免无法启动
 UUID=硬盘的UUID  /挂载位置   ext4 defaults 0  0   # 在系统启动时自动挂载硬盘blkid /dev/sda1  查看硬盘UUID用sudo blkid
@@ -610,6 +611,10 @@ firewall-cmd --list-all-zones	# 查看都有哪些区域，默认有下面这些
 ## public，公共区域，只接受那些被选中的连接，默认只允许ssh和dhcpv6-client，默认的区域
 ## trusted，信任区域，允许所有网络通信通过
 ## work，工作区域，只能定义内部网络
+
+# 扫描无线网络
+ifconfig wlan0 up
+iwlist wlan0 scanning
 ```
 
 ##### 命令行获取自己的公网IP地址
