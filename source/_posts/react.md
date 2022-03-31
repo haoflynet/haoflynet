@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2022-03-30 18:48:00
+updated: 2022-03-30 22:48:00
 categories: Javascript
 ---
 
@@ -100,17 +100,33 @@ const scroll = (offset) => {
 return (<div ref={ref} onClick={() => scroll(20)}></div>)
 ```
 
-### Context API
+### Context
 
 - 和`Redux`类似，也有一个`Provider`在最外面
+- Context更适合存储全局的一些属性，例如用户选择的语言、地区偏好、UI主题等
 - 还是觉得`Redux`方便好理解一点，而且功能强大一点，`Redux`才是做了一个完整的状态管理功能，`context`主要就是存储一个全局的数据，当然使用了context数据的的UI组件在context数据变化时也会刷新，是整个UI树的更新，用户体验和性能都会有问题
+- 使用Context不用从最父级的组件一层一层往下传递了
 
 ```javascript
 const WebContext: Context<boolean> = createContext<boolean>(true);
+const ThemeContext = React.createContext('light');
 
 <WebContext.Provider value={isWeb}>
-  <ReduxProvider store={store}></ReduxProvider>
+  <ThemeContext.Provider value="dark">
+  	<ReduxProvider store={store}></ReduxProvider>
+	</ThemeContext.Provider>
 </WebContext.Provider>
+
+// 其他组件
+class ThemedButton extends React.Component {
+  // 指定 contextType 读取当前的 theme context。
+  // React 会往上找到最近的 theme Provider，然后使用它的值。
+  // 在这个例子中，当前的 theme 值为 “dark”。
+  static contextType = ThemeContext;
+  render() {
+    return <Button theme={this.context} />;
+  }
+}
 ```
 
 ## 路由

@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2021-11-16 08:37:00
+updated: 2022-03-30 22:37:00
 categories: js
 ---
 
@@ -280,6 +280,7 @@ module.exports = {
 - 在组件加载前就从接口获取数据，才能实现后端渲染，而不是前端去调用API
 - 需要注意的是通过服务端获取的props，必须直接传递到html中去，不要用useEffect等去传递给另外一个变量，那样就不会直接渲染到HTML中去了，浏览网页源代码发现他们只是在一个变量上，对SEO十分不友好
 - `getServerSideProps`和`getInitialProps`都无法用在404页面上，如果是404页面只能在`componentDidMount`或者`useEffect(() => {}, [])`里面去请求获取数据了，[官方说明](https://nextjs.org/docs/messages/404-get-initial-props)
+- 判断当前是否是后端渲染有一个简单的办法，那就是`typeof window === undefined`
 
 <!--more-->
 
