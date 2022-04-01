@@ -11,12 +11,20 @@ brew install solidity
 
 ## 语法
 
+- 函数修饰符
+  - view: 可是使用合约中的变量，只是在本地执行，不会消耗gas，不会修改合约状态(例如修改变量、触发事件等)
+  - pure: 只能使用局部的变量，入参或者方法内部的变量，既不读取状态，也不改变状态，同样是本地执行，不会消耗gas
+  - payable: 表示一个函数能够附加以太币调用
+
 ```solidity
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract ERC20Token is ERC20 {	// 支持继承
+		address public constant MY_ADDRESS = 0x.....;	// 产量可以消耗更低的gas
+
+
 		// 继承的时候可以写新的构造函数，并且可以将新的构造函数中的参数传递给父类进行初始化
     constructor(uint256 totalSupply, string memory name, string memory symbol) ERC20(name, symbol) {
         _mint(msg.sender, totalSupply);
@@ -62,3 +70,4 @@ contract ERC20Token is ERC20 {
 ## TroubleShooting
 
 - **Type literal_string "WALLET_ADDRESS" is not implicity convertiable to expected type address**: 我这边是将`balances["0x..."]`改为了`balances[0x...]`就可以了 
+- **Please pass numbers as strings or BN objects to avoid precision errors**: 在solidity中，一般的数字都会要求使用字符串或者大数对象BN来表示，防止精度问题`web3.utils.toWei(String(123), 'ether')`

@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2022-03-29 09:36:30
+updated: 2022-03-31 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -445,7 +445,11 @@ fp.close()
 w: 只读
 r: 只写
 r+: 可用于读写，但是如果打开不读，直接就写，可能会覆盖，因为一打开的时候文件指针是在文件开头的
-
+        
+# 验证文件或者文件夹的可读可写
+os.access(path, os.W_OK)
+os.access(path, os.R_OK)
+        
 # 读取文件
 fp.readline()  # 从文件读取一行数据
 for each_line in fp:   # 可迭代获取每一行数据
@@ -480,6 +484,7 @@ import traceback
 try:
   raise RuntimeError('错误原因')
 except (SystemErrork, SyncError) as e:		# 同时catch多个错误
+  traceback.print_exc()	# 直接打印异常Exception的堆栈信息
   print(traceback.format_exc())	# 以字符串的形式打印栈信息
   raise RuntimeError('')
 except Exception as e:
