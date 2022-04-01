@@ -1,7 +1,7 @@
 ---
 title: "Geth 搭建私链 private blockchain"
 date: 2022-03-18 18:00:00
-updated: 2022-03-24 18:34:00
+updated: 2022-04-01 18:34:00
 categories: eth
 ---
 
@@ -164,3 +164,12 @@ miner.stop()	# 就能发现余额发生变化了
 ## TroubleShooting
 
 - **客户端报错the method xxx does not exist/is not available**: 需要将要使用的api添加到`--http.api`参数中，例如`--http.api "eth,web3,personal,miner"`
+
+- **Error: invalid opcode: SHR**: 需要在创世块配置里面加上
+
+  ```
+  "byzantiumBlock": 0,
+  "constantinopleBlock": 0
+  ```
+
+  

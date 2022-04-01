@@ -1,7 +1,7 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
-updated: 2021-02-15 17:43:00
+updated: 2021-03-31 12:43:00
 categories: python
 ---
 
@@ -104,6 +104,12 @@ def before(request):
 @app.after_request
 def after(response):
   return response
+
+# 全局错误处理
+@app.errorhandler(Exception)
+def handle_exception(e: Exception):
+    traceback.print_exc()
+    return jsonify({'error': str(e)}), 500
 ```
 
 ## 数据库

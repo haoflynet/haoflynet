@@ -87,7 +87,7 @@ npx hardhat test	# 运行测试
 
 - 一个测试用例`./test/token.js`
 - 智能合约的工具都互相兼容，如果是`truffle`语法写的测试用例，仍然可以用`npx hardhat test`来测试，需要先安装插件`npm install --save-dev @nomiclabs/hardhat-truffle5 @nomiclabs/hardhat-web3 web3`，并在`hardhat.config.js`中引入`require("@nomiclabs/hardhat-truffle5");`
-- 测试的各种操作默认都是`owner`，如果要切换为其他的用户，可以使用connect方法`contract.connect(address).getBalance()`
+- 测试的各种操作默认都是`owner`，如果要切换为其他的用户，可以使用connect方法`contract.connect(address).getBalance()`，当然，得是`getSigners`里面的用户才可以，不然没有私钥基本上也操作不了
 
 ```javascript
 const { expect } = require("chai");
