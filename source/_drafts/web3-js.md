@@ -64,3 +64,7 @@ const res = await eth.sendSignedTransaction(signedTx.rawTransaction);	// 发送t
 ```javascript
 web3.eth.net.isListening()	// 代替低版本的isConnected()
 ```
+
+## Troubleshooting
+
+- **replacement transaction underpriced**: 我遇到的问题是提交transaction的时候nonce设置为了一样的，并且gas fee也一样，所以会报错，要么nonce不一样，如果真的要在之前的操作确认前进行覆盖，必须提高gas fee人家才愿意先挖你这个

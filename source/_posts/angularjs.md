@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-03-25 18:03:00
+updated: 2022-03-31 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -170,6 +170,7 @@ export class MyComponent implements OnInit {
 
   onSubmit(): void {
     this.submitting = true;
+    this.myForm.get('field1').setValue(value);	// 手动设置form表单字段的额值
     if (this.myForm.valid) {
       console.log('its ok');
     }
@@ -468,6 +469,10 @@ describe('test haofly"s function', () =>{
 ```
 
 ## 推荐扩展包
+
+### ngx-dropzone
+
+- 拖拽上传文件组件
 
 ### ngx-socket-io
 
