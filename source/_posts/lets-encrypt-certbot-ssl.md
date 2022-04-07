@@ -1,7 +1,7 @@
 ---
 title: "使用certbot为Nginx一键配置Let's Encrypt SSL安全证书"
 date: 2018-06-16 21:32:00
-updated: 2021-10-18 18:40:00
+updated: 2022-04-02 18:40:00
 categories: server
 ---
 
@@ -124,4 +124,4 @@ certbot delete # 删除所选择的证书
 
 - **设置了定时任务但是没有自动续费成功**: 最好把日志输出到一个自己知道的日志文件里面去，例如`/tmp/certbot.log`，这样方便排查，我遇到的是下面的问题:
 
-  - **Failed to renew certificate xxx with error: The nginx plugin is not working; there may be problems with your existing configuration. The error was: NoInstallationError("Could not find a usable 'nginx' binary. Ensure nginx exists, the binary is executable, and your PATH is set correctly."**
+  - **Failed to renew certificate xxx with error: The nginx plugin is not working; there may be problems with your existing configuration. The error was: NoInstallationError("Could not find a usable 'nginx' binary. Ensure nginx exists, the binary is executable, and your PATH is set correctly."**: 需要正确安装certbot的nginx插件，例如`apt-get install python3-certbot-nginx -y`
