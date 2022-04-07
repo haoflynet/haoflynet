@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2022-03-11 14:18:00
+updated: 2022-04-02 14:18:00
 categories: php
 ---
 
@@ -46,6 +46,23 @@ $file->getRealPath();              // 获取缓存文件的绝对路径
 $file->getClientOriginalExtension();// 获取上传文件的后缀
 $file->getMimeType();              // 获取上传文件的MIME类型
 $file->getSize();                  // 获取上传文件的大小
+```
+
+#### 存储base64图片
+
+```php
+$format = '.png';
+if (Str::startsWith($base64, 'data:image/jpeg')) {
+  $format = '.jpg';
+} else if (Str::startsWith($base64, 'data:image/x-icon')) {
+  $format = '.ico';
+} else if (Str::startsWith($base64, 'data:image/gif')) {
+  $format = '.gif';
+}
+
+$safeName = Str::random(10) . '_' . time() . $format;
+Storage::disk($disk)->put($path . $safeName, base64_decode(explode(',', $base64)[1]));
+$url = Storage::disk('s3-public')->url($path . $safeName);
 ```
 
 #### 手动清理配置缓存 

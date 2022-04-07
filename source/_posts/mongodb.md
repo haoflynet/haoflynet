@@ -1,7 +1,7 @@
 ---
 title: "MongoDB 使用手册"
 date: 2018-01-04 21:32:00
-updated: 2021-06-02 12:33:00
+updated: 2022-04-04 12:33:00
 categories: database
 ---
 
@@ -210,7 +210,7 @@ db.copyDatabse('old_name', 'new_name')
 mongodump --archive="mongodump-test-db" --db=test
 mongodump --archive="mongodump-test-db" --nsFrom='test.*' --nsTo='examples.*'
 
-# 备份
+# 备份/导出/export
 mongodump -h 127.0.0.1:27017 --db DB_NAME --collection COLLECTION	# 备份某个集合
 mongodump -d DB_NAME -o ./
 
