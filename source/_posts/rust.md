@@ -102,7 +102,7 @@ n.0
 n.1
 let (name, age): ($str, i32) = ("abc", 123);	// 居然还能类型推导
 
-// Array
+// Array，长度是固定的，不能动态增减，向量才可以做到
 let arr1 = [11, 22, 33];
 let arr1: [&str; 3] = ["aa", "bb", "cc"]	// 指定数组的长度
 arr1.len()	// 获取数组长度
@@ -143,6 +143,7 @@ v.len()	// 获取长度
 v.is_empty()	// 是否为空
 v.push(1)	// 在向量尾部增加元素
 v.pop()	// 从尾部去掉元素
+v.contains(&"abc")	// 是否包含
 v.insert(1, 222)	// 在位置1插入元素
 v.remove(1)	// 删除置顶位置的元素
 v.clear()	// 晴空
@@ -151,10 +152,14 @@ v.truncate(2)	// 截断，保留n个与阿奴
 v.retain(|x| *x > 20) // 只保留满足条件的元素，相当于filter
 v.drain(1..=3)	// 删除并返回指定范围的元素
 v.split_off(2); // 删除并返回前n个元素
+
+if !v1.is_empty() {
+  let first = v1[0] // 获取第一个元素
+}
 ```
 #### Struct结构体(类)
 
-```
+```rust
 // Struct结构体(有点像类)
 #[derive(Debug)]	// 加上这一行才能正确地用println打印，println("{:?}", user)或者println("{:#?}", user)
 struct User {
@@ -186,7 +191,7 @@ impl User {
 user1.func1()	// 这样就能直接调用了，有点儿像类了
 ```
 #### Enum枚举
-```
+```rust
 enum Gender {
   Male,
   Female

@@ -64,3 +64,13 @@ const res = await eth.sendSignedTransaction(signedTx.rawTransaction);	// 发送t
 ```javascript
 web3.eth.net.isListening()	// 代替低版本的isConnected()
 ```
+
+## BN大数类型
+
+-  很多web3相关的库都会用到BN大数类型这个库(BigNumber.js)
+
+```javascript
+var num = BigNumber.clone()
+num(1).div(3).toNumber()	// 将大数类型直接转换为数字
+```
+
