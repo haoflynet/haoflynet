@@ -2,7 +2,26 @@
 
 ### Dialog
 
-- 默认情况`dialog`组件会自动focus第一个可以focus的元素(如果第一个元素在最下面，可能会造成打开就滑动到了最下面的问题)，可以修改其`autoFocus`从参数
+- 默认情况`dialog`组件会自动focus第一个可以focus的元素(如果第一个元素在最下面，可能会造成打开就滑动到了最下面的问题)，可以修改其`autoFocus`参数
+
+```javascript
+this.dialog.open(MyComponent, {
+  width: '50%',
+  height: '50%',
+  position: {	// 指定位置
+    top: '80px',
+  }
+})
+
+@Component({/* ... */})
+export class YourDialog {
+  constructor(public dialogRef: MatDialogRef<YourDialog>) { }
+
+  closeDialog() {
+    this.dialogRef.close('Pizza!');	// Dialog关闭自己
+  }
+}
+```
 
 ### Input
 
