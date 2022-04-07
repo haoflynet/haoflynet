@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-03-31 18:28:30
+updated: 2022-04-01 21:52:30
 categories: system
 ---
 # Linux手册
@@ -182,6 +182,7 @@ sed '/^$/d' file > outputfile	# 去除文件中的空白行
 sed '5s/^.*$/xxxxx/'  file		#　替换一整行
 sed '5s/^.*$/xxxxx/' filename	# 替换某个文件的第五行，并输出结果，不写入
 sed -i 's/^abc$/xxxxx/g' filename 	# 替换某个文件的abc字符串，并写入指定文件
+sed -i "s/localhost:8000/127.0.0.1:8000/g" `grep localhost:8000 -rl ./`	# 批量替换一个文件夹下所有文件的内容
 ```
 ##### xargs
 

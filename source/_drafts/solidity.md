@@ -15,6 +15,9 @@ brew install solidity
   - view: 可是使用合约中的变量，只是在本地执行，不会消耗gas，不会修改合约状态(例如修改变量、触发事件等)
   - pure: 只能使用局部的变量，入参或者方法内部的变量，既不读取状态，也不改变状态，同样是本地执行，不会消耗gas
   - payable: 表示一个函数能够附加以太币调用
+- 函数入参修饰符
+  - memory: 表示这里是值传递
+  - storage: 表示是指针传递
 
 ```solidity
 pragma solidity ^0.8.4;
