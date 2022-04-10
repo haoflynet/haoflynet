@@ -96,6 +96,7 @@ let s = "abc".to_string()	// 转换为String类型
 s.push("a")	// push追加单个字符
 s.push_str("abc")	// 追加一个字符串
 
+
 // Tuple
 let n = (1, 2, 3)
 n.0
@@ -117,6 +118,7 @@ let s1 = &arr[..];	// 取所有元素
 my_int.to_string();	// int转字符串
 my_str.as_bytes();	// 字符串转bytecode
 my_str.parse::<i32>().unwrap();	// 字符串转int
+let a: i32 = my_str.parse().unwrap()	// 字符串转数字
 Optional::from();	// 将指定的s变量转换为Option<T>的形式
 
 // JSON格式字符串
@@ -159,9 +161,11 @@ if !v1.is_empty() {
 ```
 #### Struct结构体(类)
 
+- 加上Debug这个trait就能轻松打印了
+
 ```rust
 // Struct结构体(有点像类)
-#[derive(Debug)]	// 加上这一行才能正确地用println打印，println("{:?}", user)或者println("{:#?}", user)
+#[derive(Debug)]	// 只要加上这一行就能直接用println打印，println("{:?}", user)或者println("{:#?}", user)
 struct User {
   name: String,
   age: u32,
@@ -189,6 +193,13 @@ impl User {
   }
 }
 user1.func1()	// 这样就能直接调用了，有点儿像类了
+
+// fmt::Debug的输出不够自观，可以自己实现fmt::Display来打印更加直观的数据
+impl fmt::Display for MyStructure {
+  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    write!(f, "{}", self.0)
+  }
+}
 ```
 #### Enum枚举
 ```rust
@@ -298,3 +309,4 @@ mod tests {
 - **failed to run custom build command for `openssl-sys v0.9.66`**: 执行`sudo apt install libssl-dev pkg-config -y`
 - **type ascription is experimental **: 在使用某些实验方法的时候可能会有这个错误，此时只需要将`#![feature(type_ascription)]`放到整个项目入口文件的开头即可`main.rs`或者`lib.rs`
 - **error: no rules expected the token `aarch64_apple`**: 目前我仅在2022-03-22后的几个版本遇到过这个问题，安装`rustup install nightly-2022-03-22`版本可以解决(注意使用的时候也需要指定版本`cargo +nightly-2022-03-22`)，当然如果最新的修复了，可以尝试一下最新的版本
+- **use of moved value**: 通常是因为值饮用造成的，我们需要直接用指针来使用`&var`

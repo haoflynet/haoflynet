@@ -18,6 +18,10 @@ brew install solidity
 - 函数入参修饰符
   - memory: 表示这里是值传递
   - storage: 表示是指针传递
+- 全局变量
+  - block.number(uint): 当前区块号
+  - block.timestamp(uint): 当前区块的时间戳，等同于now
+  - Msg.sender(address): 消息发送者
 
 ```solidity
 pragma solidity ^0.8.4;
@@ -39,7 +43,8 @@ contract ERC20Token is ERC20 {	// 支持继承
     }
     
     function func1(unit amount) {
-    	require(isAllowed[msg.sender], 'Caller not allowed to mint');	// 类似于断言
+    	require(isAllowed[msg.sender], 'Caller not allowed to mint');	// 类似于断言，只有满足前面的条件才行，否则会报错
+    	assert(amount > 123);	// 也是断言，但是没有报错信息
     }
 }
 ```
