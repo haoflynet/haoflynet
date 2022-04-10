@@ -16,7 +16,10 @@ let collection: Collection = database.collection("col1")
 ```rust
 // 查询
 // 单个查询，返回的是Result<Option<T>
-let doc = collection.find_one(doc! {"_id": &id}, None).await
+let doc = collection.find_one(doc! {"_id": &id}, None).await;
+
+// nightly中可以map_err和ok_or_else直接抛出错误
+let doc = collection.find_one(doc! {"_id": &id}, None).await.map_err(|e| {...})?.ok_or_else(|| Error::Notfound)?;
 
 // 批量查询，返回的是Result<Cursor<T>>
 let cursor = collection.find(doc! {"name": "abc"}, None).await?;
