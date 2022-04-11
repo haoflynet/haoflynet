@@ -15,6 +15,25 @@ routes::mount(rocket)
 	.unwrap();
 ```
 
+## Route路由
+
+```rust
+#[derive(Validate, Serialize, Deserialize, Debug)]
+pub struct Data {
+    status: bool,
+    #[validate(length(min = 1, max = 128))]	// 可以在控制器里面调用validate进行验证
+    pub text: Option<String>,
+ 		data1: Data1	// 如果入参是多层级的json，可以这样定义嵌套的结构体
+}
+
+#[put("/space/<target>/posts/<post>", data = "<info>")]
+pub async fn req(user: User, target: Ref, post: Ref, info: Json<Data>) -> Result<Value> {
+    let info = info.into_inner();
+    info.validate()	// 可以直接使用Validate进行认证
+        .map_err(|error| Error::FailedValidation { error })?;
+}
+```
+
 ## Request
 
 ### Request Guards
