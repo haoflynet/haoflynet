@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2022-03-30 22:48:00
+updated: 2022-04-11 22:48:00
 categories: Javascript
 ---
 
@@ -572,6 +572,8 @@ onKeyPress // 当键盘按下，function(e) => {e.charCode === 13}， charCode�
 ```
 
 ## TroubleShooting
+
+- **引入json格式的文件**: 可以直接`import data from 'path/to/my.json'`
 
 - **React 表达式必须有一个父元素**: 常出现在`JSX`的渲染的内嵌语句中返回了错误格式的结果:
 

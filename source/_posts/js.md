@@ -193,9 +193,9 @@ name.charAt(0).toUpperCase() + name.slice(1); // 原生js让首字母大写
 #### 时间处理moment/luxon/dayjs
 
 - [时区列表](https://jp.cybozu.help/general/zh/admin/list_systemadmin/list_localization/timezone.html)
-
 - moment作者已经不推荐使用`moment.js`，他自己又搞了个`luxon`，但我更推荐使用`dayjs`
 - 需要注意的是`moment.date(12)`等方法会更改对象本身，所以在函数之间传递的时候最好克隆一个新的对象`moment(moment())`
+- [format格式](https://day.js.org/docs/en/display/format)
 - [moment在线测试](http://jsfiddle.net/brandonscript/rLjQx/)
 
 ```javascript
@@ -228,12 +228,21 @@ today.getSeconds();
 today.getMilliseconds();
 
 // dayjs
+dayjs.unix(1318781876)	// 从时间戳解析时间
 dayjs('2021-03-02T04:00:00.000Z').format('MMM D, YYYY')	// 时间解析和格式化
 dayjs().format('YYYY-MM-DD')	// 获取年月日
 dayjs().add(1, 'days')	// 日期加法
 dayjs().subtract(7, 'year')	// 日期减法
 dayjs('2018-10-1').isBefore('2018-1-1')	// 日期比较
-
+dayjs.extend(utc)
+dayjs.extend(timezone)	// 设置timezone需要extend这两个
+dayjs("").tz("America/New_York"))
+dayjs.extend(duration)
+dayjs.extend(relativeTime)	// 设置humanize需要extend这两个
+dayjs.duration(1, "minutes").humanize(); // a minute, 目前没有找到当1的时候为阿拉伯数字
+dayjs.duration(24, "hours").humanize(); // a day
+dayjs.duration(1, "minutes").huminize(true);	// in a minute
+dayjs.duration(-1, "minutes").huminize(true);	// a minute ago
 
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
 moment('2020-04-29 00:00:00');	// 直接解析，需要注意的是它不能解析时间只有一位的情况，例如'2020-04-29 0:0:0'

@@ -73,8 +73,16 @@ expect({foo: 'bar'}).to.include.keys('foo')
 // 类型判断
 expect(obj).to.be.an.instanceOf(Obj)
 
-// 错误判断
+// 错误判断，但是这种只能用于同步的函数
 expect(fn).to.throw(Error)
+// 异步的错误判断就只能这样了
+let err
+try {
+  await fn()
+} catch (error) {
+  err = error
+}
+except(err).to.be.an(Error.name)
 ```
 
 
