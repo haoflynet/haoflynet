@@ -1,7 +1,7 @@
 ---
 title: "Geth 搭建私链 private blockchain"
 date: 2022-03-18 18:00:00
-updated: 2022-04-01 18:34:00
+updated: 2022-04-11 18:34:00
 categories: eth
 ---
 
@@ -46,12 +46,15 @@ admin.peers	# 获取peer节点信息
 net.peerCount	# 获取节点数量
 eth.blockNumber	# 查看当前区块数量
 eth.getTransaction()
+eth.pendingTransactions	# 获取当前所有pending的transaction
 eth.coinbase	# 获取当前的矿工
 
 miner.setEtherbase(base)
 miner.start(1)	# 执行挖矿操作，参数是线程数
 
 web3 account extract --keyfile data/keystore/UTC--2022-03-16T02-29-14.506737237Z--XXXXXXXX --password XXXXXXXX # 获取在当前网络上创建的账户的私钥
+
+txpool.status # 查看当前pending和queued的transaction的状态
 ```
 
 <!--more-->
@@ -172,4 +175,4 @@ miner.stop()	# 就能发现余额发生变化了
   "constantinopleBlock": 0
   ```
 
-  
+- **移除所有pending的transaction**: 删除`data/geth/transactions.rlp`，然后重启geth服务端，注意queued的transaction不会清除，nonce从0开始，导致queud队列中的一直执行不了，此时只需要把中间空白的nonce值补齐就行(创建transaction)
