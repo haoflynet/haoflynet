@@ -16,6 +16,16 @@ Cloudflare 企业版（Enterprise） 客户可以代理通配符记录。要了�
 
 
 
+
+
+指定nodejs版本需要将版本放到.nvmrc中，https://developers.cloudflare.com/pages/platform/build-configuration/
+
+对pages主域名添加access policy，需要进入子域名编辑页面put一次域名
+
+
+
+
+
 ## Error 524: a timeout occurred
 
 超时限制，免费账户100秒即超时
