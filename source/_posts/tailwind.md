@@ -1,7 +1,7 @@
 ---
 title: "Tailwind 开发手册"
 date: 2021-11-16 00:00:00
-updated: 2021-12-30 18:00:00
+updated: 2022-04-11 18:00:00
 categories: nodejs
 ---
 - 基本上是我现在开发新旧项目的必备工具了
@@ -248,6 +248,9 @@ text-center # text-align: center
 
 # text decoration
 underline	# text-decoration: underline，可选underline(下横线)、line-through(删除线)、no-underline
+
+# text transform
+uppercase	# text-transform: uppercase，可选uppercase、lowercase、capitalize、normal-case
 
 # text overflow
 truncate	# overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
