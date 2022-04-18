@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2022-03-22 08:42:00
+updated: 2022-04-17 08:42:00
 categories: Javascript
 ---
 
@@ -333,6 +333,7 @@ exports.handler = async (event, context) => {
 ### MySQL
 
 - [开启创建存储过程的功能](https://aws.amazon.com/premiumsupport/knowledge-center/rds-mysql-functions/?nc1=h_ls)
+- [RDS MySQL中各种日志事件的详解](https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Tuning.wait-events.html)
 
 ## IAM
 
