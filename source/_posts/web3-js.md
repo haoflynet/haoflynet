@@ -1,3 +1,9 @@
+---
+title: "web3js 使用手册"
+date: 2022-04-14 18:02:30
+categories: eth
+---
+
 ## 安装和使用
 
 ```shell
@@ -21,6 +27,8 @@ import {HttpHeader} from "web3-core-helpers";
 const headers: HttpHeader[] = [{ name: 'token', value: token }];
 web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl || '', { headers }));
 ```
+
+<!--more-->
 
 ## API
 
@@ -72,6 +80,16 @@ const res = await eth.sendSignedTransaction(signedTx.rawTransaction);	// 发送t
 web3.eth.net.isListening()	// 代替低版本的isConnected()
 ```
 
+### events事件监听
+
+```javascript
+// 这里的eventName就是在solidity中定义的事件的名称
+contract.events.eventName({
+  filter: {},
+  fromBlock: 0
+}, (error, event) => {})
+```
+
 ## BN大数类型
 
 -  很多web3相关的库都会用到BN大数类型这个库(BigNumber.js)
@@ -86,3 +104,30 @@ num(1).div(3).toNumber()	// 将大数类型直接转换为数字
 - **replacement transaction underpriced**: 我遇到两种情况：
   一是提交transaction的时候nonce设置为了一样的，并且gas fee也一样，所以会报错，要么nonce不一样，如果真的要在之前的操作确认前进行覆盖，必须提高gas fee人家才愿意先挖你这个。
   二是无论怎样提高gas price，transaction依然在queued队列中(注意不是pending)，原因是nonce没有连续(可能是由于在geth中清空了transaction导致的或者乱修改nonce导致的)，queued中的nonce和`getTransactionCount`的nonce值中间有空的，这个时候尝试调用其他的transaction，直到nonce连续为止就能执行了
+  
+- **在前端集成的时候出现proces is not devined的问题**: 我是在vite框架中遇到的，解决办法如下:
+
+  ```javascript
+  // 在index.html中添加
+  <script type="module">
+    window.global = window;
+    import process from "process";
+    import { Buffer } from "buffer";
+  
+    window.process = process;
+    window.Buffer = Buffer;
+  </script>
+  
+  // 在vite.config.ts中添加npm install agent-base process
+  resolve: {
+    alias: {
+      process: 'process/browser',
+      util: 'util',
+      https: 'agent-base',
+      http: 'agent-base',
+      zlib: 'browserify-zlib'
+    }
+  },
+  ```
+
+  

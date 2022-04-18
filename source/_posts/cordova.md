@@ -238,7 +238,7 @@ firebase插件，包含(cloud messaging等多个firebase的功能)，**如果对
 ### [cordova-plugin-purchase](https://github.com/j3k0/cordova-plugin-purchase)
 
 - 内购插件
-- apple这边的设置参考[Setup for iOS and macOS](https://github.com/j3k0/cordova-plugin-purchase/wiki/Setup-for-iOS-and-macOS#create-ios-sandbox-users)，包括创建bundle id，在apple store创建产品，以及创建沙盒账户
+- apple这边的设置参考[Setup for iOS and macOS](https://github.com/j3k0/cordova-plugin-purchase/wiki/Setup-for-iOS-and-macOS#create-ios-sandbox-users)，包括创建bundle id，在apple store创建产品，以及创建沙盒账户。注意，sandbox账户必须退出机器本身的apple id，但又不能直接在机器本身apple id那里进行登录，只能在app里面点击支付弹出登录框的时候进行登录
 - 需要注意的是在你的device上面必须在app store里面退出当前的账户，但是不用登录沙盒账户，在购买的时候会提示你登录。另外，必须先填写[Tax Forms and Contacts](https://appstoreconnect.apple.com/agreements/#/)，否则你的产品一直处于`invalid`的状态
 - 使用文档可以参考[Ionic In App Purchase 2](https://ionicframework.com/docs/native/in-app-purchase-2)，注意cordova这边直接用是这样`window.store`
 

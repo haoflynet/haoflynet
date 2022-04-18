@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-01-11 14:44:00
+updated: 2022-04-18 14:44:00
 categories: js
 ---
 
@@ -11,7 +11,6 @@ categories: js
 
 - `React-Native`是基于`React`实现的，更多语法可以参考[React 开发手册](https://haofly.net/react)
 - 如果是自己开发新产品，那么希望每次都把各个基础组件升级到最新稳定版。
-- 初学者不要用网上的一些`generator`生成程序框架，好多组件用不到，而且版本不对基本上也运行不起来
 
 `React Native`开发的优点
 
@@ -504,6 +503,13 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
   cd node_modules/react-native/third-party/glog-{X}.{X}.{X}/
   ./configure
   # 然后重新打开xcdoe即可
+  ```
+
+- **Text strings must be rendered within a <Text> component**: 首先最基本的，文字必须在text组件里面，但这还是比较容易排查，而不好排查的情况一般是我们在做判断的时候没有使用布尔值，例如
+
+  ```javascript
+  {icon && {icon}} // 这样会报错
+  {!!icon && {icon}} // 将对象转换为布尔值即可
   ```
 
 ##### 扩展阅读
