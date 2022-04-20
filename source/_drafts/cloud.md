@@ -6,6 +6,23 @@ categories: 编程之路
 
 ### 阿里云
 
+## 弹性计算
+
+### 云服务器ECS
+
+- [价格清单](https://cn.aliyun.com/price/product#/ecs/detail/vm)，系统盘40G需要20元/月，1M带宽23元，所以最便宜的就是最低的突发性能实例17+20+23=60元/月
+- 突发性能实例不适用于长时间超过性能“基线”或企业稳定计算性能需求场景
+
+### 轻量应用服务器(Simple Application Server/SAS)
+
+- 相当于给程序一个运行环境，不是一个完整的服务器
+- 别个都说了，适用于轻量级且访问量较低的应用场景
+- 可以选择不同的镜像: 
+  - 应用镜像: WordPress、Docker、LAMP、LNMP、Node.js、ECShop、phpwind、ASP/.NET、BT-Panel、Drupal、Tomcat、NextCloud、Typecho、DevStudio
+  - 系统镜像(搞不懂为啥也能系统镜像): CentOS、Ubuntu
+- 2核1G内存40G系统盘，每月400G流量，峰值带宽3Mbps，60元/月
+- 没有不限流量的套餐，只支持挂载一个数据盘，且数据盘只能在创建轻量应用服务器时挂载，不支持弹性伸缩
+
 ### 百度统计
 
 - 网站统计
