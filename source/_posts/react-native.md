@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-04-18 14:44:00
+updated: 2022-04-18 22:24:00
 categories: js
 ---
 
@@ -511,6 +511,19 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
   {icon && {icon}} // 这样会报错
   {!!icon && {icon}} // 将对象转换为布尔值即可
   ```
+
+- **输入框键盘挡住了部分视图**: 这时候需要使用`KeyboardAvoidingView`来包装一下`view`，该组件可以自动根据键盘的高度，调整自身的height或底部的padding来避免遮挡，有时候也需要再配合`ScrollView`来使用
+
+  ```javascript
+  <KeyboardAvoidingView
+  behavior={Platform.OS == "ios" ? "padding" : "height"}
+  style={styles.container}
+  >
+    ...
+  </KeyboardAvoidingView>
+  ```
+
+- **ARCHS[@]: unbound variable in Xcode 12或者YogaKit.modulemap not found**: 需要把`Build Settings -> Architectures -> Excluded Architecture`设置成这样(来自[Stackoverflow](https://stackoverflow.com/questions/64474801/archs-unbound-variable-in-xcode-12)): ![](https://i.stack.imgur.com/4RFTI.png)
 
 ##### 扩展阅读
 

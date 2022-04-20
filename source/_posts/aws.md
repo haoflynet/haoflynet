@@ -333,6 +333,7 @@ exports.handler = async (event, context) => {
 ### MySQL
 
 - [开启创建存储过程的功能](https://aws.amazon.com/premiumsupport/knowledge-center/rds-mysql-functions/?nc1=h_ls)
+- [RDS MySQL中各种日志事件的详解](https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Tuning.wait-events.html)
 
 ## IAM
 

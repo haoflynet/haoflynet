@@ -1,7 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
-updated: 2021-12-06 07:55:00
+updated: 2022-04-17 07:55:00
 categories: frontend
 ---
 
@@ -130,6 +130,23 @@ admin.messaging().sendToDevice('registrationToken', payload, { timeToLive: 120})
 ### 移动端配置
 
 - 安卓端需要`google-services.json`文件，ios端需要`GoogleService-Info.plist`文件，都通过`firebase console -> Project settings -> General`中创建`Add app`添加对应平台的APP，然后下载对应文件即可
+
+## Firebase Auth管理用户
+
+- 可以直接使用firebase的用户系统
+- 需要注意的是用户相关的几个action的邮箱模版是不能改变的，例如注册等，如果要自定义，只能自己写个后端，[生成电子邮件操作链接](https://firebase.google.com/docs/auth/admin/email-action-links)
+
+```javascript
+firebase.auth().createUserWithEmailAndPassword(email, password)	// 创建用户
+firebase.auth().onAuthStateChanged((user) => {})	// 获取当前登陆的用户
+const user = firebase.auth().currentUser	// 获取当前用户
+const {displayName, email, photoURL, emailVerified,uid} = user 	// 获取用户信息
+user.sendEmailVerification()	// 发送认证邮件
+user.updateProfile({displayName: 'aabb'})	// 更新用户信息
+user.updateEmail('')	// 更新用户邮件
+user.updatePassword('') // 更新用户密码
+user.sendPasswordResetEmail(email)	// 发送重置密码邮箱
+```
 
 ## Firestore Database
 
