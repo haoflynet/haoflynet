@@ -1,5 +1,7 @@
 ## 安装配置
 
+- 开发IDE: 我一般就直接用idea了，有solidity插件，但是以太坊有一个官方的IDE: [remix](https://remix.ethereum.org/)
+
 - 如果是使用`hardhat`，那么就不用单独安装了，它会安装指定的版本的`solc`的
 
 ```shell
@@ -48,6 +50,8 @@ contract ERC20Token is ERC20 {	// 支持继承
     }
 }
 ```
+
+<!--more-->
 
 ## 智能合约代码库
 
