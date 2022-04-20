@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2022-03-22 08:42:00
+updated: 2022-04-14 08:42:00
 categories: Javascript
 ---
 
@@ -86,13 +86,13 @@ categories: Javascript
 
 - 当一个新建的弹性IP被关联到一个实例上的时候，该实例的公有IP地址也会变成一样的，不过之后如果实例重启公有IP会改变，弹性IP则不会了
 
-### EC2配置Cloudwatch
+### EC2配置Cloudwatch监控
 
 #### 添加自定义指标
 
 <!--more-->
 
-- 需要在服务器安装aws CLI工具，不同操作系统安装方式见[Installing, updating, and uninstalling the AWS CLI version 2 on Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
+- 需要在服务器安装aws CLI工具，不同操作系统安装方式见[Installing, updating, and uninstalling the AWS CLI version 2 on Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)，在创建用户权限的时候选择Cloudwatch下的`PutMetricData`
 - 对于服务的监控，ELB自带了监控指标的，不需要使用下面脚本中的`http_status_code`，可以在创建监控的时候搜索`5xx`即可看到
 - 还需要编写自定一个脚本实现自定义的监控，例如服务健康状态检测，脚本如下:
 
@@ -100,9 +100,9 @@ categories: Javascript
 #!/bin/bash
 set -x
 USEDMEMORY=$(free -m | awk 'NR==2{printf "%.2f\t", $3*100/$2 }')	# 内存监控
-DISK_USAGE=$(df -h |grep '/dev/xvda1' |  awk '{ print $5 }' | tr -cd [:digit:])	# 磁盘监控
+DISK_USAGE=$(df -h |grep '/dev/xvda1' |  awk '{ print $5 }' | tr -cd [:digit:])	# 磁盘监控，这里的磁盘需要修改为你自己的磁盘符
 INSTANCE='i-xxxxxxxx'	# 设置当前instance的id
-#http_status_code=$(curl --write-out %{http_code} --silent --output /dev/null https://haofly.net)	# HTTP状态监控
+#http_status_code=$(curl --write-out %{http_code} --silent --output /dev/null https://haofly.net)	# HTTP状态监控，如果有用elb可以直接在cloudwatch选择elb的相关的metric
 mongo_connections_available=$(mongo --eval "printjson(db.serverStatus().connections.available)" | tail -1)	# 监控mongo状态
 ssl_expire_day=$(sudo certbot certificates|grep Expiry|awk  '{print $6}')	# 监控let's encrypt ssl证书过期时间
 

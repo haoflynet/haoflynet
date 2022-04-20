@@ -5,19 +5,30 @@
 - 默认情况`dialog`组件会自动focus第一个可以focus的元素(如果第一个元素在最下面，可能会造成打开就滑动到了最下面的问题)，可以修改其`autoFocus`参数
 
 ```javascript
-this.dialog.open(MyComponent, {
+const dialog = this.dialog.open(MyComponent, {
   width: '50%',
   height: '50%',
   position: {	// 指定位置
     top: '80px',
+  },
+  data: {	// 可以传递data给dialog
+    abc: '123'
   }
 })
 
+// 监听关闭事件
+dialog.afterClosed().subscribe(result => {
+  console.log('dialog closed with data: ', result)
+});
+
 @Component({/* ... */})
 export class YourDialog {
-  constructor(public dialogRef: MatDialogRef<YourDialog>) { }
-
-  closeDialog() {
+  constructor(
+  	public dialogRef: MatDialogRef<YourDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any,	// 可以获取打开的时候传入的data
+    ) { }
+  
+  ngOnDestroy() {
     this.dialogRef.close('Pizza!');	// Dialog关闭自己
   }
 }
