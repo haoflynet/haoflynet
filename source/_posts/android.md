@@ -279,6 +279,12 @@ import android.util.Log;
 
 - **Duplicate class问题**: 如果错误中是googleservice的问题，可以尝试更新`*-build.gradle`中的google-service版本到最新的`classpath 'com.google.gms:google-services:4.3.10'`，android studio会提示你升级到最新的
 
+- **Could not resolve all dependencies for configuration ':app:debugRuntimeClasspath'.**: 可能是ide没有找到node环境，尝试从命令行启动: ` open -a /Applications/Android\ Studio.app`
+
+- **Failed to find platform sdk with path: platforms;android-31或者dependency's AAR metadata (META-INF/com/android/build/gradle/aar-metadata.properties)**需要下载compileSdkVersion中指定的sdk版本
+
+- **Android Studio的sdk manager没有显示未下载的sdk**: 重启android studio试试
+
 - **cannot find symbol android.suppport.v4.app.ActivityCompat**：直接替换即可，将`import android.support.v4.app.ActivityCompat`替换为`import androidx.core.app.ActivityCompat`即可，这种到androidx的替换，出现一个替换一个就行，没其他问题，我遇到的还有:
 
   ```shell

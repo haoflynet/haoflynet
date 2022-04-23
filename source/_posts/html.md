@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2021-10-15 08:10:00
+updated: 2022-04-14 08:10:00
 categories: frontend
 ---
 # Html
@@ -149,7 +149,11 @@ categories: frontend
 - 支持的html属性: rows(文本区域可见的高度)、cols(文本区域可见的宽度)、autofocus(页面加载时是否自动获得焦点)、maxlength(规定文本区域允许的最大字符数)、raadonly(规定文本区域为只读)、required(规定文本区域是否为必填)
 
 ```html
-<textarea rows="10" cols="30">内容</textarea>
+<textarea
+          rows="10" 
+          cols="30"
+          placeholder="first line&#10;second line"	# textarea的placeholder同样支持换行
+          >内容</textarea>
 ```
 
 ## 常用控件
