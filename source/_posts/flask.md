@@ -1,7 +1,7 @@
 ---
 title: "flask 教程"
 date: 2015-11-07 05:02:39
-updated: 2021-03-31 12:43:00
+updated: 2022-04-14 12:43:00
 categories: python
 ---
 
@@ -46,6 +46,7 @@ request.args.get('q', '')
 
 # 处理get请求
 data = request.get_json(silent=False)
+request.query_string	# 获取字符串形式的query string
 
 # 获取header头
 request.headers.get('Auth-Token')

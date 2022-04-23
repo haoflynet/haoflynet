@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-03-09 18:18:00
+updated: 2022-04-19 18:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -47,11 +47,13 @@ Object.values(obj); // 获取对象所有的value，返回一个数组
 Object.entries(obj); // 获取对象所有的键值对，返回一个数组，例如{a:123,b:233}, 会返回['a':123], ['b': 233]
 Object.keys(obj).length == 0; // 判断对象是否为空
 Object.assign({}, {}); // 合并两个对象/合并两个字典
+"key" in obj	// 判断对象是否包含某个key
 
 var a = {}
 a[abc] = 'def';	// 变量作为字典名
 var a = {
-  [abc]: 'def'	// 或者这样将变量做为字典名
+  [abc]: 'def',	// 或者这样将变量做为字典名，变量作为key
+  [`${a}`]: 'def',
 }
 ```
 
@@ -641,6 +643,7 @@ ele.onchange = funciton () {};
 ele.addEventListener('click', func (e) {});	// 原生click事件，注意这里如果用箭头函数，那么获取当前元素不应该用this而是用e.targetsf
 ele.removeEventListener('change', func () {});
 videoEle.addEventListener('resize', () => {});	// video元素的长宽或者分辨率变化
+ele.addEventListener('DOMNodeInserted', func (){});	// 当插入新DOM元素时触发
 
 // 页面事件
 window.onload = function () {};	// 页面加载完成后触发
@@ -650,7 +653,6 @@ window.addEventListener("unhandledrejection", event => {
   console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`);
 });
 window.addEventListener('error', function(event) { ... })
-
 
 // jQuery事件列表
 change()	// 当元素发生改变时触发，常用于input、select
