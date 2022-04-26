@@ -1,6 +1,7 @@
 ---
 title: "Python 连接FTP/FTPS"
 date: 2020-11-07 22:33:39
+updated: 2022-04-26 08:49:00
 categories: python
 ---
 
@@ -21,6 +22,7 @@ ftp.rmd(dirname)	# 删除远程目录
 ftp.delete(filename)	# 删除远程文件
 ftp.rename(fromname, toname)	# 给远程文件重命名
 ftp.close()	# 关闭连接
+ftp.voidcmd('NOOP')	# 判断连接是否存活
 
 ## 上传文件
 local_file_handler = open('test.txt', 'rb')

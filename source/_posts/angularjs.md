@@ -217,7 +217,7 @@ export class MyComponent implements OnInit {
 <app-child [field]="value"></app-child>
 
 export class ChildComponent {
-  @Input() field: any;
+  @Input() field: any;	// 根据我的测试，子组件可能无法在contructor或者onInit中获取到这个值，因为这个值可能是动态的，所以最好在子组件创建一个get XXX()方法来获取变化后的值
 }
 ```
 

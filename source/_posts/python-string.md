@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2020-11-18 13:03:00
+updated: 2022-04-14 13:03:00
 categories: python
 ---
 
@@ -234,12 +234,18 @@ interval.days # 相差多少天，对应的.seconds表示相差多少秒，小�
   urllib.unquote(str)	# urldecode
   ```
 
-- **bytes to string**
+- **bytes to string/字节转字符串**
 
   ```pythohn
   b"abcde".decode('utf-8')
   ```
 
+- **string to bytes/字符串转字节**
+
+  ```python
+  str.encode("abcfc")
+  ```
+  
 - **将字符串输出为16进制字节**:
 
   ```python
