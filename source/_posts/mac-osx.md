@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2022-03-18 08:04:00
+updated: 2022-04-19 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -109,6 +109,11 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 ## android通过蓝牙向Mac/macbook传输文件失败
 
 - 需要在`电脑左上角apple logo -> System Preferences -> Sharing -> Bluetooth Sharing`打开并设置读写权限
+
+## iPad或者iPhone投屏到Mac
+
+1. iPad数据线连接Mac
+2. Mac上打开QuickTime Player，然后选择`File -> New Movie Recording`，在中间录像按钮边上点开的下拉菜单选择你的设备
 
 ## Mac OS降级
 
