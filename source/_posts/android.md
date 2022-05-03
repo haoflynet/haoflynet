@@ -6,7 +6,27 @@ categories: system
 ---
 ## Android Studio 的使用
 
-- 生成APK文件: `Build -> Build BUndles/APK(s) -> Build APK(s)`
+- 生成APK文件: `Build -> Build Bundles/APK(s) -> Build APK(s)`
+
+- 生成能上传到google playstore的签名了的bundle文件(.abb格式)
+
+  -  `Build -> Generate Signed Bundle/APK`
+
+  - 如果是第一次上传，可以点击`Create new`生成一个新的keystore文件(一般会以.keystore或者.jks结尾)
+
+  - 一个keystore可能包含多个alias的key，可以多次点击`Create new`来生成即可
+
+  - 如果之前已经上传了upload key到google play console里面，那么必须用之前的来生成才行，否则上传会提示SHA-1指纹不一致。可以在后台查看`Setup -> App Integrity -> Upload key certificate`看是否有了，注意这里的`Download certificate`只是下载公钥，没啥用的。
+
+  - 如果已经有上传证书并且丢失了的话，只能联系google重新生成一个了，[这里提交](https://support.google.com/googleplay/android-developer/contact/key)，下面有问题，选择完后会直接提示你重新生成一个keystore文件，并且导出为pem格式:
+
+    ```shell
+    keytool -genkeypair -alias upload -keyalg RSA -keysize 2048 -validity 9125 -keystore keystore.jks # 这条命令其实就是在Android studio里面Create new的功能
+    keytool -export -rfc -alias upload -file upload_certificate.pem -keystore keystore.jks
+    ```
+
+    
+
 
 
 

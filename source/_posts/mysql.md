@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2022-03-29 08:44:00
+updated: 2022-04-27 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -658,6 +658,7 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
   ```
 
 - **Different lower_case_table_names settings for server ('0') and data dictionary ('1')**: 这是因为Mysql8开始新增了`data dictionary`的概念，数据初始化时会使用`lower-case-table-names=0`，数据库启动时则会读取`my.cnf`文件中的值，如果两者不一致就会报错，这时候可以直接修改`my.cnf`中的`[mysqld]`下添加`lower_case_table_names = 1`
+- **ERROR: Specified key was too long; max key length is 3072 bytes**: 一般是因为要做索引的字段长度太长了，但是有时候看起来并不长，仍然报错，那么可以在配置文件的`[mysqld]`下添加`innodb_large_prefix=1`，然后重启mysql即可
 
 ##### 扩展阅读
 

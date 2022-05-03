@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-04-14 21:52:30
+updated: 2022-04-28 21:52:30
 categories: system
 ---
 # Linux手册
@@ -786,6 +786,8 @@ mput ./*		# 同时上传多个文件
 dir	# 列出当前目录下的文件
 mkdir test	# 创建目录
 rmdir test	# 删除目录
+# 如果要在ftp server删除非空的目录，可以这样做，安装lftp
+#lftp user,password server登录服务器，然后直接执行rm -rf directory即可
 ```
 
 #### logrotate日志轮转
