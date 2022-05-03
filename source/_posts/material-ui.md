@@ -1,7 +1,7 @@
 ---
 title: "Material UI / MUI手册"
 date: 2021-08-10 08:40:00
-updated: 2021-10-21 08:48:00
+updated: 2022-04-14 08:48:00
 categories: Javascript
 ---
 
@@ -127,6 +127,10 @@ const [expanded, setExpanded] = useState(false)
     </Typography>
   </AccordionDetails>
 </Accordion>
+
+accordionSummary: {
+  flexDirection: 'row-reverse'	// 添加这个css类可以让icon显示在左侧
+}
 ```
 
 ### Navigation 导航栏
