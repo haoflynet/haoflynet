@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2022-01-04 08:11:11
+updated: 2022-04-27 08:11:11
 categories: Javascript
 ---
 
@@ -11,6 +11,37 @@ categories: Javascript
 
 ```shell
 npm install --save-dev sequelize-cli	# 安装命令行工具npx
+npx sequelize-cli init	# 初始化，会创建config/migrations/seeders/models目录
+```
+
+注意上一步创建的config目录默认是json格式的，我们一般会想从.env文件中读取配置，通常要将它改成`config.js`文件，例如:
+
+```javascript
+require('dotenv').config()
+
+module.exports = {
+  development: {
+    username: process.env.DB_USERNAME,
+    password: null,
+    database: 'database_development',
+    host: '127.0.0.1',
+    dialect: 'mysql',
+  },
+  test: {
+    username: 'root',
+    password: null,
+    database: 'database_test',
+    host: '127.0.0.1',
+    dialect: 'mysql',
+  },
+  production: {
+    username: 'root',
+    password: null,
+    database: 'database_production',
+    host: '127.0.0.1',
+    dialect: 'mysql',
+  },
+};
 ```
 
 ## 数据库连接
@@ -510,6 +541,11 @@ module.exports = {
       type: String,
       allowNull: false
     })
+    // 添加索引
+    await queryInterface.addIndex('users', ['account_id'], {
+      name: 'account_id_index',
+      unique: false,
+    });
     // 添加key
     queryInterface.addConstraint('table_name', ['fistname', 'lastname'], {
       type: 'unique',
@@ -526,10 +562,13 @@ module.exports = {
         type: INTEGER
       },
       user_name: {
-        type: String	// STRING类型默认长度是255
-      }
+        type: STRING	// STRING类型默认长度是255
+      },
+      user_name1: {
+        type: STRING(32),	// 指定长度
+			},
       created_at: {
-        type: DATE,	// DATE就是DATETIME，没有DATETIME类型
+        type: DATE,	// DATE就是DATETIME，没有TIMESTAMP类型，不过反正也一样
       	allowNull: false,
         defaultValue: literal('CURRENT_TIMESTAMP')
       },

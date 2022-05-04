@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-04-18 22:24:00
+updated: 2022-04-25 22:24:00
 categories: js
 ---
 
@@ -28,7 +28,6 @@ npm uninstall -g react-native-cli	# 官方说不要用这个来初始化了，�
 npx react-native init testProject	--verbose # 新建项目目录，并初始化项目。命令会执行很久，且--verbose像没用似的，像卡死了一样
 npx react-native init testProject --version 0.1.2 --verbose	# 创建指定版本的项目
 npx react-native init aegis_app --template react-native-template-typescript --verbose	# 创建一个typescript的项目
-
 
 ## 运行项目
 cd testProject
@@ -524,6 +523,15 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
   ```
 
 - **ARCHS[@]: unbound variable in Xcode 12或者YogaKit.modulemap not found**: 需要把`Build Settings -> Architectures -> Excluded Architecture`设置成这样(来自[Stackoverflow](https://stackoverflow.com/questions/64474801/archs-unbound-variable-in-xcode-12)): ![](https://i.stack.imgur.com/4RFTI.png)
+
+- **You must have a keystore.properties file in the <rn-root-folder>/android/ folder or set the environments variables**: Android目录下新建文件`keystore.properities`，内容如下即可:
+
+  ```shell
+  STORE_FILE=app.keystore
+  KEY_ALIAS=app_alias
+  STORE_PASSWORD=your_password
+  KEY_PASSWORD=your_password
+  ```
 
 ##### 扩展阅读
 

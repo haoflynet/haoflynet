@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2022-03-31 09:36:30
+updated: 2022-04-29 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -588,6 +588,8 @@ header, html = data.split(b'\r\n\r\n', 1)
 
 # 通过主机名获取IP地址，由于该函数调用的是系统函数，所以可能出现无法及时更新host的情况，这种问题，socket并没有提供好的方法来刷新缓存，最好的解析DNS的方法是使用DNSPython库
 socket.gethostbyname('haofly.net')
+
+socket.connect_ex((host, port)) == 0	# 类似于telnet验证目标端口是否开放
 ```
 
 ##### socket网络编程服务器端
@@ -1516,6 +1518,8 @@ conn.close()	# 关闭连接
 - **psycopg2安装失败**: 可以尝试`export ARCHFLAGS="-arch x86_64" pip install psycopg2 --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include`
 
 - **#error architecture not supported**: 安装某些包的时候会出现这个，可以尝试`ARCHFLAGS="-arch x86_64" pip install nltk`
+
+- **No such file or directory: 'c++': 'c++'**: `apt install build-essential`
 
 ## 推荐阅读
 
