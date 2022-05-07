@@ -67,11 +67,13 @@ shift + i 执行编辑操作，这时候只会在一行上编辑
 
 ## 配置文件/etc/vim/vimrc
 
-    # 可添加如下这些选项
-    set autoindent      ; 自动缩进
-    set number          ; 显示行号
-    set nonumber		; 取消显示行号
-    set smartindent     ; 智能对齐
-    set tabstop=4       ; tab键设置为4个空格宽度
-    set background=dark ; 如果感觉太暗可以使用这个(比如deepin默认的那个主题)
-    添加自动缩进： set autoindent
+```shell
+# 可添加如下这些选项
+set autoindent      ; 自动缩进
+set number          ; 显示行号
+set nonumber		; 取消显示行号
+set smartindent     ; 智能对齐
+set tabstop=4       ; tab键设置为4个空格宽度
+set background=dark ; 如果感觉太暗可以使用这个(比如deepin默认的那个主题)
+添加自动缩进： set autoindent
+```

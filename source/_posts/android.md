@@ -25,7 +25,7 @@ categories: system
     keytool -export -rfc -alias upload -file upload_certificate.pem -keystore keystore.jks
     ```
 
-    
+  - 获取keystore的sha-1指纹: `keytool -list -v -keystore {keystore_name} -alias {alias_name}`
 
 
 
