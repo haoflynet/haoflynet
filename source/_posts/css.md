@@ -724,6 +724,13 @@ div:nth-last-child(2) {
 
 - transition-timing-function变更方式默认为linear表示匀速(cubiz-bezier(0,0,1,1))，ease表示中间快两头慢(cubiz-bezier(0.25,0.1,0.25,1))，ease-in表示先慢后快(0.42, 0, 1, 1)，ease-out表示先快后慢(0, 0, 0.58, 1)，ease-in-out表示中间慢两头快(0.42, 0, 0.58, 1)，cubiz-bezier(n, n, n, n)自定义快慢
 
+## 内核前缀
+
+- -ms: ie内核识别码
+- -moz: 火狐内核识别码
+- -webkit: chrome/safari内核识别码
+- -o: opera内核识别码
+
 ## TroubleShooting
 
 #### 元素居中方法

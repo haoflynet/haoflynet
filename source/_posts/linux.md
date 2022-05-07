@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-04-28 21:52:30
+updated: 2022-05-05 21:52:30
 categories: system
 ---
 # Linux手册
@@ -739,6 +739,8 @@ service rsyslog restart		# 重启rsyslog
 systemctl list-timers
 
 20 23 * * * command >> /tmp/crontab 2>&1	# 将输出重定向
+
+select-editor # 重新选择crontab等应用的默认编辑器为vim
 ```
 
 #### CURL

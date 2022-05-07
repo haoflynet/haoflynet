@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-03-31 18:03:00
+updated: 2022-05-05 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -374,8 +374,8 @@ ngOnInit(): void {
 	import { of } from 'rxjs/observable/of';
 
   this.http.get('').pipe(timeout(2000), catchError(e => {
-    return of(null);
-  }))
+    return of(null);	// 需要注意的是，这里的of的参数会传递给subscribe的res作为返回值
+  })).subscribe((res) => {});
                                                       
   await this.http.get('').toPromise();	// 将网络请求转换为promise就可以用promise的await语法了
 
