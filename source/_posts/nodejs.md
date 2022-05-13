@@ -241,6 +241,8 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 
 ## 常用包推荐
 
+- [bcrypt](https://www.npmjs.com/package/bcrypt): 非常推荐的安全的密码/密码hash库，不用自己维护盐值 
+
 - [uuid](): uuid首选version 4，每秒生成10亿个，大约需要85年才会重复
 
 ## TroubleShooting

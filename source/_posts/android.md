@@ -27,6 +27,15 @@ categories: system
 
   - 获取keystore的sha-1指纹: `keytool -list -v -keystore {keystore_name} -alias {alias_name}`
 
+## Google Play Console的使用
+
+- **即使google play console审核通过了，且也被邀请加入测试了，也要等很久才能在app store里面搜索得到并且下载，可以直接搜索的**
+- 在`Activity log`中可以查看最近的操作日志
+
+## Android开发常见需求
+
+### [In-App Purchase，app内购](https://haofly.net/react-native)
+
 
 
 
