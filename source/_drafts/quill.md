@@ -25,9 +25,45 @@ api居然这么简单https://quilljs.com/docs/api/#deletetext，连getContents�
 
 
 
+## 初始化
 
+```javascript
+import Quill from 'quill';
+import ImageResize from 'quill-image-resize-module';	// image resize功能
 
-toolbar的选项
+const BaseImageFormat = Quill.import('formats/image');
+const ImageFormatAttributesList = ['alt', 'height', 'width', 'style'];	// 允许image的某些dom属性，如果没有添加，会造成image resize后的一些style丢失
+
+class ImageFormat extends BaseImageFormat {
+  domNode: any;
+
+  static formats(domNode): any {
+    return ImageFormatAttributesList.reduce((formats, attribute) => {
+      if (domNode.hasAttribute(attribute)) {
+        formats[attribute] = domNode.getAttribute(attribute);
+      }
+      return formats;
+    }, {});
+  }
+
+  format(name, value): void {
+    if (ImageFormatAttributesList.indexOf(name) > -1) {
+      if (value) {
+        this.domNode.setAttribute(name, value);
+      } else {
+        this.domNode.removeAttribute(name);
+      }
+    } else {
+      super.format(name, value);
+    }
+  }
+}
+
+Quill.register(ImageFormat, true);
+Quill.register('modules/imageResize', ImageResize);
+```
+
+## 配置
 
 ```javascript
 const modules = {
@@ -56,3 +92,6 @@ const modules = {
 };
 ```
 
+## Troubleshooting
+
+- **image inline style丢失**: 在保存的时候可以，但是重新展示的时候又没有了，默认quill不会展示inline style，如果需要，可以参考上面的`ImageFormatAttributesList`

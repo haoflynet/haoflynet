@@ -435,6 +435,16 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
   
   ```
 
+### [react-native-iap](https://github.com/dooboolab/react-native-iap)
+
+- 用于google play和apple store的内购组件
+- **Android平台能够通过getProducts获取产品列表，但是购买的时候却报错That item is unavailable**: 具体原因还未知，在github提交了[discussion](https://github.com/dooboolab/react-native-iap/discussions/1378)，但目前没有回复。最后不知道怎么就解决了，尝试过这些方法:
+  1. 上传一个signed release到internal testing和closed testing，但是第一次上传审核时间有点久，且审核通过后可能也要等几小时才可以
+  2. Google Play Console -> Setup -> API access: 打开了`Play Android Developer API`，应该和这个无关
+  3. License testing得添加设备登录的google账号
+  4. `App -> Setup -> Advanced settings -> App availability`设置为`Published`
+  5. `App ->  Setup -> Advanced settings -> Managed Google Play`设置为`Turn on`下面的留空就行
+
 ## 开发原生相关问题
 
 #### 在真实设备上调试以及打包到真实设备

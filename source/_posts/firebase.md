@@ -1,7 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
-updated: 2022-04-17 07:55:00
+updated: 2022-05-09 07:55:00
 categories: frontend
 ---
 
@@ -309,3 +309,4 @@ db.collection("cities").where("state", "==", "CA")
 - **TypeError: instance.INTERNAL.registerComponent is not a function** 需要`npm install @firebase/app --save`
 - **firebase发送消息出现`firebae Requested entity was not found.`**: 一般是证书没配置好
 - **MismatchSenderId**: 一般是证书选错了，可能选到了其他项目的证书，或者移动端选择了其他项目的证书
+- **Android更换google-services.json文件不生效**: 如果是android studio，需要`Buidl -> Rebuild Project`一下
