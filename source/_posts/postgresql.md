@@ -32,12 +32,24 @@ categories: Database
 ```shell
 SELECT version();	# 获取数据库版本
 
-psql -U postgres -h xxx -w	# 使用命令行登录postgres数据库
+psql -U postgres -h xxx -w --password	# 使用命令行登录postgres数据库
 ```
 
 ## 增删该查
 
 ### 数据库操作
+
+```shell
+# postgres shell中执行
+\list	# 列出当前的数据库
+\c 数据库名 # 切换数据库
+\dt	# 列出当前的表
+
+# 如果是sql语句，必须加分号，且关键字必须大写
+CREATE DATABASE 数据库名;	# 创建数据库，那些
+CREATE USER 用户名 WITH ENCRYPTED PASSWORD '密码';	# 创建用户
+GRANT ALL PRIVILEGES ON DATABASE 数据库名 TO 用户名;	# 给用户分配某个数据库的权限
+```
 
 ### 数据表操作
 
