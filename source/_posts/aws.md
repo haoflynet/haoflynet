@@ -9,6 +9,8 @@ categories: Javascript
 
 ## EC2
 
+- ubuntu系统默认用户为ubuntu，amazon系统默认的用户名为ec2-user
+
 ### 如何删除EC2实例
 
 - 先选中要删除的实例，Stop，再Terminate(终止实例)，这个时候虽然实例还在，但其实已经删除了，大概等个10分钟左右就没了
@@ -359,6 +361,23 @@ exports.handler = async (event, context) => {
 
 - 管理ec2系统内部的东西，例如通过api或cli向服务器发送命令并执行
 - **SSM未发现管理的ec2实例**: 可能是因为`ssm agent`在实例内部未安装或者未安装成功(即使在运行中也可能没有安装成功，还是得看其日志/var/log/amazon/ssm下)，[ssm agent安装文档](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-manual-agent-install.html)，当然`ssm agent`默认是安装了的，可以通过这些命令[查看ssm运行状态](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent-status-and-restart.html)
+
+## SNS
+
+- 通知系统，可以用于发送邮件
+- 注意新添加的邮件必须要Confirm才行，并且Confirm后可能还要等5分钟左右才能收到邮件
+
+### 使用js sdk发送sns
+
+```javascript
+AWS.config.update({ region: config.oneRoster.awsRegion });
+const params = {
+  Message: body,
+  Subject: 'Email Subject',
+  TopicArn: 'arn:aws:sns:us-east-2:xxxxx:xxxxxxxxxx',	// 发送到指定的topic
+};
+const res = await new AWS.SNS({ apiVersion: '2010-03-31' }).publish(params).promise();
+```
 
 ## CodeDeploy/Pipeline
 
