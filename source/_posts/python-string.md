@@ -1,7 +1,7 @@
 ---
 title: "Python字符串与时间处理"
 date: 2016-08-07 11:06:30
-updated: 2022-04-14 13:03:00
+updated: 2022-05-23 13:03:00
 categories: python
 ---
 
@@ -25,6 +25,7 @@ string.isspace()	# 是否都是空白字符
 "{1} {0} {1}".format("hello", "world")	# 可以指定位置
 f'my name is {变量名}'	# Python3.6里面新增的特性，可用这种方式直接格式化字符串
 f'{name=}'	# python3.8开始直接这样可以输出name=value形式的字符串
+f'{{}}'	# 直接插入大括号
 my_dict = {'name': '...', 'addr': '...'}
 'my name is {name} at {}'.format(**my_dict)	# 直接解析字典的参数
 my_list = {'name', 'addr'}
