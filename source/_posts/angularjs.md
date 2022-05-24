@@ -1,7 +1,7 @@
 ---
 title: "AngularJS"
 date: 2016-12-07 09:00:39
-updated: 2022-05-05 18:03:00
+updated: 2022-05-23 18:03:00
 categories: frontend
 ---
 ## 安装与配置
@@ -89,6 +89,12 @@ const routes: :Routes = [
   
 // 动态绑定样式
 [ngStyle]="{'pointer-events': ok ? 'none' : 'auto'}"
+  
+<div [innerHTML]="string"></div>	// 直接渲染html变量，默认会去掉元素内部的inline styling等属性
+<div [innerHTML]="var"></div>
+constructor(protected _sanitizer: DomSanitizer) {
+  this.var = this._sanitizer.bypassSecurityTrustHTML('string') // 直接渲染html变量，和上面的innerHTML不同的是，这样做，元素内部的inline styling等不会被去掉
+}
 ```
 
 ### 控制语句

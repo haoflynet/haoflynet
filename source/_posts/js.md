@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-04-19 18:18:00
+updated: 2022-05-23 18:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -364,6 +364,9 @@ fs.readdir('目录名', 'utf-8', function (err, data) {	// 获取目录下的文
   	});
   }
 });
+
+const path = require('path')
+path.resolve('../.env')	// 根据相对路径获取绝对路径
 ```
 
 #### FileList
@@ -620,6 +623,7 @@ $('div').animate({scrollTop: $('div').offset().top - 10})	// 将元素滚动到�
 // video标签控制(原生js)
 myVideo.play()	// 开始播放
 myVideo.pause()	// 暂停播放
+myVideo.load()	// 重新加载视频
 
 // 创建元素
 var a_tag = document.createElement('a');	// 首先创建一个空元素
