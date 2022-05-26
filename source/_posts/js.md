@@ -213,6 +213,7 @@ new Date().toLoczaleTimeString('en-US', {
   minute: '2-digit',
   second: '2-digit'
 })	// 转换为指定时区的时间
+date.toISOString()	// 输出2022-05-24T14:18:13.046Z的格式
 var today = Date.parse(new Date());	// 获取时间戳timestamp，单位为毫秒
 Date.parse(1234567890000);	// 时间戳直接转换为Date
 today.setTime(today.getTime() - 24*60*60*1000); // 获取昨天的时间
