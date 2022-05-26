@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2022-01-06 08:50:30
+updated: 2022-05-24 08:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -240,6 +240,27 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 ```
 
 ## 常用包推荐
+
+- [adm-zip](https://github.com/cthackers/adm-zip): 制作zip包工具，很多lambda函数都需要将仓库打包成zip文件，这个库就很有用:
+
+  ```javascript
+  const AdmZip = require('adm-zip');
+  
+  const zip = new AdmZip();
+  
+  zip.addLocalFolder('../repo', './', (path) => {
+      if (path.includes('node_modules') ||	// 忽略特定的文件夹
+          path.includes('build/') ||
+          path.includes('dist/') ||
+          path.includes('.zip') ||
+          path.includes('logs/')
+      ) {
+          return false;
+      }
+      return true;
+  });
+  zip.writeZip('./repo.zip');
+  ```
 
 - [bcrypt](https://www.npmjs.com/package/bcrypt): 非常推荐的安全的密码/密码hash库，不用自己维护盐值 
 

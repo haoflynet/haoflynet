@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-05-05 21:52:30
+updated: 2022-05-25 21:52:30
 categories: system
 ---
 # Linux手册
@@ -1383,3 +1383,13 @@ fi
 - **Failed to fetch xxx 404 Not Found [IP: ]**: 可能需要更一下包列表`apt-get update`
 
 - `chmod和chown不起作用`，发生在挂载的磁盘上面的问题，试试重新挂载的时候设置umask为000，如果不行的话，就用`mount`命令看看那个磁盘的格式，如果是windows的格式，例如vfat、ntfs，那么可能不支持，那么办法了
+
+- **查看linux服务器莫名其妙重启/关机的原因**: 主要还是查看`/var/log/syslog`，可以使用下面的命令:
+
+  ```shell
+  sudo grep -iv ': starting\|kernel: .*: Power Button\|watching system buttons\|Stopped Cleaning Up\|Started Crash recovery kernel' \
+    /var/log/messages /var/log/syslog /var/log/apcupsd* \
+    | grep -iw 'recover[a-z]*\|power[a-z]*\|shut[a-z ]*down\|rsyslogd\|ups'
+  ```
+
+  

@@ -132,7 +132,7 @@ crontab -e
 ### 使用js sdk操作AWS3
 
 ```javascript
-import AWS = require('aws-sdk')
+const AWS = require('aws-sdk')
 
 const config = {
     accessKeyId: '',
