@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-04-25 22:24:00
+updated: 2022-05-29 22:24:00
 categories: js
 ---
 
@@ -318,6 +318,19 @@ TextInput默认宽度与父节点相同。如果想要其在没有文字的时�
 #### TouchableWithoutFeedback
 
 不带反馈效果的。
+
+## API
+
+### Share分享功能
+
+```javascript
+import { Share } from 'react-native';
+Share.share({	// 官方文档说android用message、ios用url，但经过我的测试最好都用url，因为分享到不同的app，获取的字段并不相同
+	title: url,
+  message: url,
+  url: url,
+})
+```
 
 ## Animated动画
 
