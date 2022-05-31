@@ -1,7 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
-updated: 2022-05-09 07:55:00
+updated: 2022-05-30 07:55:00
 categories: frontend
 ---
 
@@ -303,6 +303,66 @@ db.collection("cities").where("state", "==", "CA")
 - 由于得依赖Cloud Functions，所以没去实践，不过我想Cloud Functions就是一个实时运行的方法，如果只是本地服务端去代替这一块感觉有可能
 
 ### [Nhost: 开源的firebase替代品](https://blog.graphqleditor.com/nhost?continueFlag=5434b3101edf4c6102e182af7801175f)
+
+## Firebase Function
+
+- 类似于Google cloud function或者lambda
+
+- 常用命令：
+
+  ```shell
+  # 部署到云端
+  firebase deploy 
+    --only functions	# 部署所有的函数
+  	--only functions:sendEmailVerificationEmail 	# 仅部署指定函数
+  	--project=myproject	# 指定项目
+  ```
+
+- 函数有多种调用方式
+
+```javascript
+// 直接以http的方式访问函数
+exports.date = functions.https.onRequest((req, res) => {
+  // ...
+});
+
+// 在代码内以函数方式直接进行调用
+exports.addMessage = functions.https.onCall((data, context) => {
+  // ...
+});
+import { getFunctions, httpsCallable } from "firebase/functions";
+const functions = getFunctions();
+const addMessage = httpsCallable(functions, 'addMessage');
+addMessage({ text: messageText }).then((result) => {});	// 代码里面这样调用即可
+
+// 下面是react-native-firebase的调用方式
+import functions from '@react-native-firebase/functions';
+const res =  await functions().httpsCallable('addMessage', {});
+
+
+// 定时执行
+exports.scheduledFunction = functions.pubsub.schedule('every 5 minutes').onRun((context) => {
+  console.log('This will be run every 5 minutes!');
+  return null;
+});
+
+// 当firestore触发某个事件的时候
+// 事件包括：onCreate、onUpdate、onDelete、onWrite
+exports.myFunction = functions.firestore.document('my-collection/id1').onWrite((change, context) => { }); // 指定特定的文档
+exports.myFunction = functions.firestore.document('my-collection/{docId}').onWrite((change, context) => {  context.params.docId });	// 通配符指定文档
+
+// 身份验证触发器
+// 事件包括onCreate、onDelete
+exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
+  // ...
+});
+
+// 不常用的还包括实时数据库触发器、远程配置触发器、Analytics触发器、Cloud Storage触发器、Pub/Sub触发器、Test Lab触发器
+
+// 如果要返回base64格式的pdf内容，可以这样做，注意，pdfStr是不带data:application/pdf;base64,前缀的
+res.setHeader('Content-type', 'application/pdf');
+res.end(Buffer.from(pdfStr, 'base64'));
+```
 
 ## TroubleShooting
 
