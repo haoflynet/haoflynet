@@ -18,4 +18,8 @@
 ```
 等待DOM
 await page.waitForFunction(() => !document.querySelector('#nprogress'));
+
+
+
+ProtocolError: Could not load body for this request. This might happen if the request is a preflight request可能只是path 请求
 ```
