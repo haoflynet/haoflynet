@@ -22,6 +22,8 @@ conn.login('username@domain.com', `${password}${securityToken}`, function(err, r
 ```javascript
 // 查询
 await conn.query('SELECT Id, Name FROM Account') // query语句能够实现简单的SQL(SOQL)查询
+// find方法单次默认只能查询200条记录，可以修改offset，但是最大的offset值也才2000
+await conn.sobject("Contact").count()	// 获取所有的记录数
 conn.sobject("Contact")	// 类似ORM的查询方式
   .find(
     // conditions in JSON object，查询条件
