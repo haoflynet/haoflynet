@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-05-25 21:52:30
+updated: 2022-06-05 21:52:30
 categories: system
 ---
 # Linux手册
@@ -1240,6 +1240,8 @@ fi
 - **ssh 出现"Too many authentication for "root""**
   连接的时候加一个参数:`ssh -o PubkeyAuthentication=no root@...`
 
+- **ssh 出现“SSH Too Many Authentication Failures”**: 如果自己确实没有太多的认证失败，那么可能是因为.ssh下的认证文件太多，登陆的时候全都尝试了一遍，可以添加一个参数`ssh -o IdentitiesOnly=yes root@...`来表明只使用identity文件来尝试登陆
+  
 - **在server上面安装Teamviewer的时候提示`framebuffer not available,Please make sure that /dev/fb0 is accessible and it is configured to 32-bit depth.`相关问题**：需要安装相关的显示依赖:
 
   ```shell
@@ -1392,4 +1394,4 @@ fi
     | grep -iw 'recover[a-z]*\|power[a-z]*\|shut[a-z ]*down\|rsyslogd\|ups'
   ```
 
-  
+- **ssh输入密码后就挂起了无法登陆**：可能是路由器的问题，可以加一个参数试试: `ssh -o IPQoS=0x00 ubuntu@...`

@@ -1,7 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
-updated: 2022-05-30 07:55:00
+updated: 2022-06-05 07:55:00
 categories: frontend
 ---
 
@@ -9,6 +9,12 @@ categories: frontend
 - [官方各个模块的JS的API文档](https://firebase.google.com/docs/reference/js)
 
 ## 集成
+
+### 命令行
+
+```shell
+sudo npm install -g firebase-tools
+```
 
 ### 前端集成
 

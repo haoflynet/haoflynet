@@ -1,7 +1,7 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2021-09-08 14:37:00
+updated: 2022-06-05 14:37:00
 categories: system
 ---
 ## Android Studio 的使用
@@ -319,6 +319,8 @@ import android.util.Log;
   ```shell
   android.support.v4.app.NotificationCompat -> import androidx.core.app.NotificationCompat; 
   ```
+
+- **MacOs安装指定版本的jdk: ** https://www.azul.com/downloads/?package=jdk
 
 ##### 扩展阅读
 

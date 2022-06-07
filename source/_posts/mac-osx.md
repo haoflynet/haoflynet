@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2022-04-19 08:04:00
+updated: 2022-06-05 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -169,3 +169,7 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 - **macOS Big Sur无法使用VPN**: 系统限制没办法，得修改VPN服务器的配置，参考苹果的[官方说明](https://support.apple.com/zh-cn/HT211840)
 
 - **telnet: command not found**: `brew install telnet`
+
+- **Safari不能审查元素，没有审查元素按钮**：得手动打开开发者菜单: `Preferences -> Advanced -> Show Develop menu in menu bar`
+
+- **MacOs安装指定的java版本**: https://www.azul.com/downloads/?package=jdk

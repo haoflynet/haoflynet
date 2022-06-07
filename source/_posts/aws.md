@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2022-05-05 08:42:00
+updated: 2022-06-06 08:42:00
 categories: Javascript
 ---
 
@@ -344,6 +344,7 @@ exports.handler = async (event, context) => {
 - 如果要为aws sdk的api调用创建新的access key、access secret的话最好这样做:
   - 最好单独创建一个用户: `IAM -> 用户 -> 添加用户`，在创建的时候不要选择任何的策略权限
   - 创建完成后`添加内联策略`，然后选择需要的服务、操作、资源即可
+- 可以将创建好的Role直接绑定到EC2，这样在EC2里面的某些服务就不需要提供key和secret即可直接访问指定服务接口
 
 ## DocumentDB (MongoDB)
 
@@ -488,6 +489,28 @@ exit
 #!/bin/bash
 echo "service codedeploy-agent restart" | at -M now + 2 minute;
 ```
+
+## ASM(AWS Systems Manager)
+
+### Parameter Store
+
+- 可以用于存储一些密码等环境变量，只有高级参数才收费，标准参数免费的，调用量极高才会收费
+
+- 如果要指定Role访问指定前缀的变量，可以这样设置Role的inline policy:
+
+  ```json
+  {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Sid": "VisualEditor0",
+              "Effect": "Allow",
+              "Action": "ssm:GetParameters",
+              "Resource": "arn:aws:ssm:*:xxxxxxxxx:parameter/PRODUCTION_*"
+          }
+      ]
+  }
+  ```
 
 ## Cron表达式
 
