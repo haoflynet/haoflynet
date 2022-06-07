@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2021-11-08 08:45:00
+updated: 2022-06-05 08:45:00
 categories: Database
 ---
 
@@ -32,7 +32,11 @@ categories: Database
 ```shell
 SELECT version();	# 获取数据库版本
 
+
+# sudo apt-get install postgresql-client，命令行得先安装客户端，但是客户端的版本必须和服务端的版本一致，这就很麻烦了
 psql -U postgres -h xxx -w --password	# 使用命令行登录postgres数据库
+
+pg_dump -U username your_database > db_dump.bak	# 备份数据库
 ```
 
 ## 增删该查

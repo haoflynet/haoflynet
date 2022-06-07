@@ -1,3 +1,12 @@
+## salesforce后台配置
+
+- Lightning Experience就是新版的系统，classic就是老版本，新功能以后都只会出现在Lightning Experience中
+
+### Sandbox
+
+- Sandbox的[价格表](https://www.salesforce.com/editions-pricing/platform/environments/)，没错，是按照原是数据的价格来按百分比收费的，怪不得很多用户都只是partial copy，得自己想办法去将生产数据同步到sandbox中去。
+- 如果不用salesforce自己的Refresh方式，那么想要同步production到sandbox，要么借助第三方的收费工具，要么就自己去同步了，自己同步是个体力活，你必须得找到不同对象之间的关系，新插入的数据和之前的ID肯定是不一样的，整个migration程序都得维护这些ID的映射，相当麻烦
+
 ## [jsforce sdk](https://jsforce.github.io/)
 
 ### 配置连接

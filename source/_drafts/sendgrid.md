@@ -42,8 +42,11 @@ sgMail.send(msg).then(() => {})
 
 ### 邮件模板[handlebars](https://docs.sendgrid.com/for-developers/sending-email/using-handlebars)
 
+- 需要注意的是如果是url等包含特殊字符的变量，需要用`{{{}}}`
+
 ```javascript
 {{ username }}	// 变量
+{{{ url }}}	// 包含特殊字符的变量
 
 // if else 语法
 {{#if user.profile.male}}

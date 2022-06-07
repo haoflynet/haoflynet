@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2022-04-27 08:44:00
+updated: 2022-06-05 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -319,7 +319,7 @@ flush privileges;
 show grants for 用户名
 
 # 打开root用户的远程登录权限，如果是CentOS7还需要打开防火墙firewall-cmd --add-port=3306/tcp
-GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "mysql";
+GRANT ALL PRIVILEGES ON *.* TO root@"%";
 flush privileges;                更新权限
 select host, user from user;     查看更改
 # MySQL8开启远程登录需要这样做
