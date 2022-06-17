@@ -617,7 +617,7 @@ ssm.listCommandInvocations({
 })
 ```
 
-##### TroubleShooting
+## TroubleShooting
 
 - **InstanceAgent::Plugins::CodeDeployPlugin::CommandPoller: Missing credentials** : 需要重启一下agent: `sudo service codedeploy-agent restart`
 
@@ -631,7 +631,7 @@ ssm.listCommandInvocations({
   fastcgi_param HTTPS on;
   ```
 
-
+- **The authorization mechanism you have provided is not supported. Please use AWS4-HMAC-SHA256**: 要么手动设置access_key_id和secret_access_key两个环境变量，要么参考上文创建Role然后绑定到Ec2
 
 
 

@@ -34,6 +34,7 @@ realm = svnhome（注意）
 
 ```shell
 svn status	# 查看当前目录下的改动信息
+svn info	# 查看当前的版本信息
 svn diff # 对比当前目录下的更改
 svn revert file	# 放弃某个文件的更改
 svn revert -R ./	# 放弃本地所有的更改

@@ -2,10 +2,20 @@
 
 - Lightning Experience就是新版的系统，classic就是老版本，新功能以后都只会出现在Lightning Experience中
 
+### 常用需求操作方式
+
+#### 导出数据
+
+- `Setup -> Data -> Data Export -> Export Now -> Start Export`，大概等个5到10分钟就能在页面下载了
+
 ### Sandbox
 
 - Sandbox的[价格表](https://www.salesforce.com/editions-pricing/platform/environments/)，没错，是按照原是数据的价格来按百分比收费的，怪不得很多用户都只是partial copy，得自己想办法去将生产数据同步到sandbox中去。
 - 如果不用salesforce自己的Refresh方式，那么想要同步production到sandbox，要么借助第三方的收费工具，要么就自己去同步了，自己同步是个体力活，你必须得找到不同对象之间的关系，新插入的数据和之前的ID肯定是不一样的，整个migration程序都得维护这些ID的映射，相当麻烦
+
+### Apps
+
+- `New Connected App` 菜单在`Apps -> App Manager`里面，而不是在`Apps -> App Manager -> Connected Apps -> Manage Connected Apps`里面
 
 ## [jsforce sdk](https://jsforce.github.io/)
 
@@ -26,6 +36,12 @@ conn.login('username@domain.com', `${password}${securityToken}`, function(err, r
 });
 ```
 
+### 数据库操作
+
+```javascript
+conn.describeSObject('Account');	// 获取对象object的数据结构
+```
+
 ### 增删改查
 
 ```javascript
@@ -33,6 +49,7 @@ conn.login('username@domain.com', `${password}${securityToken}`, function(err, r
 await conn.query('SELECT Id, Name FROM Account') // query语句能够实现简单的SQL(SOQL)查询
 // find方法单次默认只能查询200条记录，可以修改offset，但是最大的offset值也才2000
 await conn.sobject("Contact").count()	// 获取所有的记录数
+conn.sobject('Contact').count({})	// 统计指定条件的记录数，注意这里不是find再count，而是直接把条件放到count里面
 conn.sobject("Contact")	// 类似ORM的查询方式
   .find(
     // conditions in JSON object，查询条件
@@ -130,3 +147,6 @@ await conn.sobject("Account").destroy('0017000000hOMChAAO');
 conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删除多条
 ```
 
+## Troubleshooting
+
+- **The requested resource no longer exists**: 可能是使用的rest api的版本太低了导致的，可以通过这个方式获取当前支持的API版本列表: [List Available REST API Versions](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_versions.htm)
