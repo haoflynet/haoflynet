@@ -15,7 +15,7 @@ vlc input.mp4 -vvv --loop --sout "#rtp{sdp=rtsp://192.168.9.80:10086/stream}" 	#
 那么创建一个sdp文件，例如 test.sdp，内容如下
 
 ```
-c=IN IP4 10.5.110.117
+c=IN IP4 192.168.9.80	# 这是输出的IP地址
 m=video 5004 RTP/AVP 96 
 a=rtpmap:96 H264/90000
 ```

@@ -1,7 +1,7 @@
 ---
 title: "Laravel 相关故障解决"
 date: 2020-08-15 16:02:39
-updated: 2022-04-02 14:18:00
+updated: 2022-06-10 14:18:00
 categories: php
 ---
 
@@ -240,3 +240,6 @@ public function boot()
 }
 ```
 
+#### Illegal operator and value combination
+
+一般是因为在where条件中比较时间字段的时候传入了一个null值

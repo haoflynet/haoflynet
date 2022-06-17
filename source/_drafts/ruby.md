@@ -14,6 +14,7 @@ curl -sSL https://get.rvm.io | bash -s stable	# 安装rvm
 rvm pkg install openssl	# 有些时候需要提前装这个，不然会出现莫名其妙的错误
 rvm install 2.7.2 -C --with-openssl-dir=$HOME/.rvm/usr
 rvm install ruby	# 安装ruby
+rvm implode # 卸载rvm
 
 # 还有一个工具叫rbenv
 sudo apt install rbenv -y

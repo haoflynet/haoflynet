@@ -14,7 +14,7 @@ npm i -g @nestjs/cli
 nest new project-name
 ```
 
-### .env配置文件支持
+### .env/dotenv配置文件支持
 
 ```javascript
 npm i --save @nestjs/config
@@ -94,6 +94,7 @@ export class AppController {
 	@Post()	// Post方法，应该是不支持一个方法同时有多个HTTP methods的
 	test (
     @Query() query: any // @Query指定请求query参数
+    @Query('type') type: string // 只取某一个参数
     @Body() body: any	// @Body指定请求body
   	@Headers() headers: any // @Headers获取header头
   ): string {

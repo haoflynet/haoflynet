@@ -21,6 +21,15 @@ const browser = await puppeteer.launch({
 ```javascript
 // 页面等待
 await page.waitForFunction(() => !document.querySelector('#nprogress'));
+
+// 刷新页面
+await page.evaluate(() => { location.reload(true) })
+
+// 截屏/截图
+await page.screenshot({
+  path: '/tmp/screenshot.png',
+  fullPage: true
+})
 ```
 
 ## 事件监听
@@ -29,6 +38,7 @@ await page.waitForFunction(() => !document.querySelector('#nprogress'));
 page
   .on('console', message => {
         console.log(`${message.type().substr(0, 3).toUpperCase()} ${message.text()}`))
+        message.type() === 'error' // 是否为错误日志
 	})
   .on('pageerror', ({ message }) => {
   	console.log(message)

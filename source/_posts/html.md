@@ -1,7 +1,7 @@
 ---
 title: "HTML 教程"
 date: 2014-12-02 22:52:39
-updated: 2022-05-23 08:10:00
+updated: 2022-06-08 08:10:00
 categories: frontend
 ---
 # Html
@@ -185,6 +185,7 @@ categories: frontend
         controls <!--是否展示控制工具栏，播放按钮，播放进度条-->
 				loop <!--是否循环播放-->
 				muted <!--是否禁止声音-->
+				poster="images.jpg"	<!--视频封面-->
         preload="metadata">	<!--preload="metadata"能使预先抓取一张图片，这里是0.5秒处的图片作为缩略图--->
 		<source src="https://xxx.mp4#t=0.5" type="video/mp4">
   </video>

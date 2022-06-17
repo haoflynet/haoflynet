@@ -1,7 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
-updated: 2022-06-05 07:55:00
+updated: 2022-06-08 07:55:00
 categories: frontend
 ---
 
@@ -153,6 +153,16 @@ user.updateEmail('')	// 更新用户邮件
 user.updatePassword('') // 更新用户密码
 user.sendPasswordResetEmail(email)	// 发送重置密码邮箱
 ```
+
+- 默认的几种邮件模板都是无法更改内部模板的，如果要自定义，需要自己使用第三方服务或者自己用smtp去发送指定内容的邮件。但是像注册的时候生成认证链接还是可以直接用firebase来做，只不过因为要调用邮件，所以需要在firebase function里面做
+  ```javascript
+  exports.sendEmailVerificationEmail = functions.https.onCall(async (data, context) => {
+    const url = await admin.auth().generateEmailVerificationLink(context.auth.email); // 关键的email信息必须从context.auth里面取，name等信息可以从data里面取然后发送出去
+  })
+  
+  // 然后在客户端调用这个函数即可
+  await functions().httpsCallable('sendEmailVerificationEmail')({ username });
+  ```
 
 ## Firestore Database
 
@@ -323,6 +333,8 @@ db.collection("cities").where("state", "==", "CA")
   	--only functions:sendEmailVerificationEmail 	# 仅部署指定函数
   	--project=myproject	# 指定项目
   ```
+
+- 新创建的firebae function在调用的时候可能会得到一个UNAUTHENTICATED错误，需要这样做: `firebase function -> permissions -> add principal`，在`New principals field`输入`allUsers`，然后选择role Cloud Functions ，然后选择Cloud Functions Invoker
 
 - 函数有多种调用方式
 
