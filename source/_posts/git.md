@@ -410,17 +410,21 @@ fi
 
 - **系统中存在多个key，给git指定使用哪一个key**:
 
-   - 解决方法一，在`~/.ssh/config` 中添加这样的配置:
+   - 解决方法一，最简单的方法，在`~/.ssh/config` 中添加这样的配置:
 
       ```shell
-      host github.com
+      # 注意如果有定义Host *，不要在Host *区块下定义IdentityFile ~/.ssh/xxx
+      host my-repo
         HostName github.com
-        IdentifyFile ~/.ssh/id_rsa_mygit
+        IdentifyFile /Users/hao/.ssh/id_rsa_mygit	# 这里最好用权路径
         User git
+        IdentitiesOnly yes	# 这一句一定要加，网上很多教程没有加这个
+      
+      git remote set-url origin my-repo:haoflynet/app.git	# 无论是在终端还是sourcetree都适用
       ```
-
+   
    - 解决方法二，每次执行命令都使用`GIT_SSH_COMMAND`，例如:
-
+   
       ```shell
       GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_mygit" git pull
       ```
