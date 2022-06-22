@@ -133,7 +133,7 @@ miner.stop()	# 就能发现余额发生变化了
    - 如果开启了graphql可以直接访问`http://ip:8545/graphql/ui`，但是实际看感觉graphql的api不全呀，就只能查一些区块的东西，contract的基本不支持，这应该是目前的支持列表[EIP-1767](https://eips.ethereum.org/EIPS/eip-1767)
 
    ```shell
-   geth --identity "FirstNode" --nodiscover --datadir data --allow-insecure-unlock --http --http.addr "0.0.0.0" --http.corsdomain '*' --http.api "db,eth,net,web3,personal" --graphql --graphql.corsdomain '*' --nat extip:172.168.254.4 --networkid 202203101600 console	# 这里的console能够直接进入控制台
+   geth --identity "FirstNode" --nodiscover --datadir data --allow-insecure-unlock --http --http.addr "0.0.0.0" --http.corsdomain '*' --http.api "eth,net,web3,personal" --graphql --graphql.corsdomain '*' --nat extip:172.168.254.4 --networkid 202203101600 console	# 这里的console能够直接进入控制台
    # 参数列表，注意网上很多教程的rpc现在已经被http替代了
    --identity "First"	# 自定义节点名称
    --networkid 123	# 设置network的id

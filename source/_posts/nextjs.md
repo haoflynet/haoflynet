@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2022-03-30 22:37:00
+updated: 2022-06-22 22:37:00
 categories: js
 ---
 
@@ -330,6 +330,30 @@ export async function getStatisPaths() {
 }
 
 export default MyComponent
+```
+
+### 禁用后端渲染NoSSR
+
+- 如果要针对某个component或者某个html设置为不需要后端渲染或者某个组件前后端渲染本身就不一样导致报错` Hydration failed because the initial UI does not match what was rendered on the server.`那么可以这样做
+
+```javascript
+// 新建一个component，NoSsr.tsx
+import dynamic from 'next/dynamic'
+import React from 'react'
+
+const NoSsr = (props:any) => (
+  <React.Fragment>{props.children}</React.Fragment>
+)
+
+export default dynamic(() => Promise.resolve(NoSsr), {
+  ssr: false
+})
+
+
+// 在需要禁用的地方直接
+<NoSsr>
+  <div>...</div>
+</NoSsr>
 ```
 
 ## Hook
