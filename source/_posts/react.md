@@ -394,23 +394,35 @@ export function getUser(token: string) {
 }
 
 // reducer类似于vuex中的mutation
+const userStateValue = {email: '', id: ''}
+const initialState = (typeof localStorage === 'undefined' || !window.localStorage.getItem('user'))
+  ? userStateValue
+  : JSON.parse(window.localStorage.getItem('user') || '{}');
+
 const reducer: Reducer<AppState, AppActionTypes> = (
   state = initialState,
   action
 ) => {
   switch (action.type) {
     case 'SET_USER':
-      if (typeof localStorage !== "undefined") {
-        localStorage.setItem('USER_KEY', JSON.stringify(action.payload));
+      const payload = action.payload
+      newState = {
+        id: payload?.id || state.id,
+        firstName: payload?.firstName || state.firstName,
+        lastName: payload?.lastName || state.lastName,
+        username: payload?.username || state.username,
+        email: payload?.email || state.email,
+        accessToken: payload?.accessToken || state.accessToken,
       }
-      return {
-        ...state,
-        user: action.payload,
-      };
+      if (typeof localStorage !== 'undefined') {
+        window.localStorage.setItem('user', JSON.stringify(newState))
+      }
+      return newState
     default:
       return state;
   }
 };
+
 
 const store = useSelector<State, AppState>((state) => state.app);
 const isAuth = !!store.token && !!store.user && !!store.user.name;
