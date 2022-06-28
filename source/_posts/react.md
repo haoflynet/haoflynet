@@ -223,7 +223,7 @@ const MyComponent: FC<CurrentProps> = (props) => {
 
 ```javascript
 // 父组件
-[MyState, SetMyState] = useEffect(false);
+[MyState, SetMyState] = useState(false);
 <Child setMyState={SetMyState}>
 
 // 子组件
