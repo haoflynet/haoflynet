@@ -1,6 +1,6 @@
 web3的前端库，目前就这几个库，https://wagmi.sh/docs/comparison
 
-
+- 突然想到一个问题，这类库不能加header去访问blockchain
 
 ## 安装配置
 
@@ -63,8 +63,6 @@ const { chains, provider } = configureChains(
   ],
 )
 ```
-
-
 
 ## hooks
 
