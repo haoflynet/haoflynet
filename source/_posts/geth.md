@@ -144,6 +144,7 @@ miner.stop()	# 就能发现余额发生变化了
    --allow-insecure-unlock	# 允许通过HTTP-RPC来解锁account，是一个比较危险的操作，建议不开启，只有测试的时候可以开启一下
    --http.api	admin.debug,web3,eth,txpool,personal,ethash,miner,net	# 支持哪些http api
    --http.corsdomain '*'	# 允许哪些域名能够跨于连接
+   --rpcvhosts '*'
    
    # 然后需要另启一个终端，执行下面命令获取引导节点bootstrap node
    geth attach data/geth.ipc --exec admin.nodeInfo.enr
