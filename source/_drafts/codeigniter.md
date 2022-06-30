@@ -29,6 +29,8 @@ $this->db->where('field', $value)
 $this->db->group_start()
   ->or_group_start()
   ->like('first_name', $keyword)
+  ->or_like('...')
+  ->or_where
   ->group_end()
   
 # COUNT

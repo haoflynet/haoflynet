@@ -97,6 +97,7 @@ export class AppController {
     @Query('type') type: string // 只取某一个参数
     @Body() body: any	// @Body指定请求body
   	@Headers() headers: any // @Headers获取header头
+  	@Request() req: any,  // import { Request } from '@nestjs/common'
   ): string {
     
   }
@@ -118,6 +119,7 @@ export class PostController {
 # 常见异常，默认返回的是{"statusCode": 422, "error": "Unprocessable Entity"}格式
 NotFoundException: 404
 UnprocessableEntityException: 422
+InternalServerErrorException: 500
 
 throw new UnprocessableEntityException('field error')	# 如果在异常类上添加一个字符串，会在返回结果中添加一个message字段
 ```
@@ -186,6 +188,23 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
       @InjectModel(UserModel)
       private readonly userModel: typeof UserModel
     ) {}
+  }
+  ```
+
+## JWT认证
+
+- 可以直接参考[Authentication](https://docs.nestjs.com/security/authentication#jwt-functionality)
+
+- 需要注意文档里的[Enable authentication globally](https://docs.nestjs.com/security/authentication#enable-authentication-globally)配置是全局的配置，我们一般不会需要这样做，因为登录注册等接口是不需要token的
+
+- 在控制器获取jwt token的payload，可以这样做
+
+  ```javascript
+  async getInfo(@Request() req: any) {
+    console.log(req.user);
+    return {
+      ...req.user
+    };
   }
   ```
 
