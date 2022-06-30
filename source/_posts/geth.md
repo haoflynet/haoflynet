@@ -1,7 +1,7 @@
 ---
 title: "Geth 搭建私链 private blockchain"
 date: 2022-03-18 18:00:00
-updated: 2022-04-11 18:34:00
+updated: 2022-06-29 18:34:00
 categories: eth
 ---
 
@@ -144,6 +144,7 @@ miner.stop()	# 就能发现余额发生变化了
    --allow-insecure-unlock	# 允许通过HTTP-RPC来解锁account，是一个比较危险的操作，建议不开启，只有测试的时候可以开启一下
    --http.api	admin.debug,web3,eth,txpool,personal,ethash,miner,net	# 支持哪些http api
    --http.corsdomain '*'	# 允许哪些域名能够跨于连接
+   --rpcvhosts '*'	# 允许用哪些域名访问当前的network
    
    # 然后需要另启一个终端，执行下面命令获取引导节点bootstrap node
    geth attach data/geth.ipc --exec admin.nodeInfo.enr
@@ -176,3 +177,5 @@ miner.stop()	# 就能发现余额发生变化了
   ```
 
 - **移除所有pending的transaction**: 删除`data/geth/transactions.rlp`，然后重启geth服务端，注意queued的transaction不会清除，nonce从0开始，导致queud队列中的一直执行不了，此时只需要把中间空白的nonce值补齐就行(创建transaction)
+
+- **invalid host specified**: 可能是在运行network的时候没有指定rpcvhosts，参考上面的配置
