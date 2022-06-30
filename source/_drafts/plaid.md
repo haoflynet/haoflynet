@@ -72,3 +72,7 @@ const accountsResponse = await client.accountsGet({
 response.json(accountsResponse.data);
 ```
 
+## 前端集成
+
+- 后端提供创建link token的接口，然后前端可以直接参考这样用[simple.tsx](https://github.com/plaid/react-plaid-link/blob/ca3a9167db880ba080e2bf77047f7cf0f1f59d33/examples/simple.tsx)
+

@@ -513,12 +513,18 @@ location /nginx {
 
 - **上述timeout都不起作用**: 看看会不会是aws的负载均衡器设置了超时时间的
 
-- **Nginx报错502 Bad Gateway**: 如果检查了upstream、修改了timeout参数都还是不行的话，可以尝试在nginx配置中提高这两个fastcgi参数:
+- **Nginx报错502 Bad Gateway**: 
+
+  方法一：检查upstream是否正常
+  方法二：修改了timeout参数
+  方法三：可以尝试在nginx配置中提高这两个fastcgi参数:
 
   ```shell
   fastcgi_buffers 16 16k;
   fastcgi_buffer_size 32k;
   ```
+
+  方法四：如果是docker里面的nginx，查看网页上是否访问到代理的IP上面去了
 
 - **wordpress无限重定向**: 可能是在aws的elb中只发了http请求到后端，但是url访问的却是https，导致wordpress搞不清楚了，可以在nginx这边加上一个fastcgi配置:
 

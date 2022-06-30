@@ -50,13 +50,9 @@ inux下的管理软件(比如现在所使用的禅道管理软件)在安装的�
 
 # MySQL安装
 
-
-
     apt-get install mysql-server mysql-client
 
 # Apache安装
-
-
 
     apt-get install apache2
 
