@@ -1,7 +1,7 @@
 ---
 title: "Tailwind 开发手册"
 date: 2021-11-16 00:00:00
-updated: 2022-04-11 18:00:00
+updated: 2022-07-04 18:00:00
 categories: nodejs
 ---
 - 基本上是我现在开发新旧项目的必备工具了
@@ -368,3 +368,5 @@ select-none	# user-select:none，可选none、text、all、auto
 
 - [tailwindo](https://github.com/awssat/tailwindo): Laravel的blade模板转tailwind的工具，不大好用，但也将就了
 - [wickedblocks](https://wickedblocks.dev/): 免费的tailwindcss组件模板
+- [Flowbite](https://flowbite.com/docs/getting-started/quickstart/)：免费开源的tailwindcss组件
+- [HyperUI](https://www.hyperui.dev/): 免费开源的tailwindcss组件

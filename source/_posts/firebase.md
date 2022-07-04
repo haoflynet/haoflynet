@@ -327,11 +327,20 @@ db.collection("cities").where("state", "==", "CA")
 - 常用命令：
 
   ```shell
+  npm install -g firebase-tools	# 安装命令行工具
+  export GOOGLE_APPLICATION_CREDENTIALS="path-to-project-xxxxx.json"	# 设置管理员凭证
+  
+  firebase emulators:start	# 本地运行
+  firebase emulators:start --only functions	# 仅运行firebase function
+  
   # 部署到云端
   firebase deploy 
     --only functions	# 部署所有的函数
   	--only functions:sendEmailVerificationEmail 	# 仅部署指定函数
   	--project=myproject	# 指定项目
+  	
+  # 环境变量
+  firebase functions:config:get > .runtimeconfig.json	# 获取远端的自定义配置到本地的文件中去
   ```
 
 - 新创建的firebae function在调用的时候可能会得到一个UNAUTHENTICATED错误，需要这样做: `firebase function -> permissions -> add principal`，在`New principals field`输入`allUsers`，然后选择role Cloud Functions ，然后选择Cloud Functions Invoker

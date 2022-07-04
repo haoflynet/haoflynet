@@ -82,7 +82,7 @@ try {
 } catch (error) {
   err = error
 }
-except(err).to.be.an(Error.name)
+expect(err).to.be.an(Error.name)
 ```
 
 

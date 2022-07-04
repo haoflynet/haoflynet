@@ -1,5 +1,5 @@
 ---
-dtitle: "Linux 手册"
+title: "Linux 手册"
 date: 2013-09-08 11:02:30
 updated: 2022-06-05 21:52:30
 categories: system

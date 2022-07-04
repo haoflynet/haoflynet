@@ -1,6 +1,7 @@
 ---
 title: "使用PDB调试Python程序"
 date: 2015-07-11 17:18:07
+updated: 2022-07-04 12:57:00
 categories: 编程之路
 ---
 pdb是Python自带的类gdb、cdb的调试工具。
@@ -8,9 +9,9 @@ pdb是Python自带的类gdb、cdb的调试工具。
 在Sublime Text的SublimeREPL插件提供了pdb调试应用程序的功能，但是由于手上项目package太过复杂，所以这次我就直接在Django
 代码要调试的地方插入pdb代码，这样相当于直接在那个地方下了一个断点。可以在任何地方插入如下代码进行中断，即使是Django也能通过这种方式进行调试：
 
-
-
-    import pdb; pdb.set_trace()
+```python
+import pdb; pdb.set_trace()
+```
 
 pdb常用命令：
 

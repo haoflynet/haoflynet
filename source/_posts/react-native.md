@@ -448,6 +448,22 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
   
   ```
 
+### [react-native-geolocation-service](https://github.com/Agontuk/react-native-geolocation-service)
+
+- 谷歌定位插件，能够获取当前的定位
+
+- 如果出现获取不到地理位置，经常提示`timed out`并且time out设置为很大依然报错，可以参考这个issue[Location request timed out most of the time](https://github.com/Agontuk/react-native-geolocation-service/issues/174)，下载谷歌地图然后定位一下，再重新安装一下应用试试
+
+- 如果出现**Location settings are not satisfied**: 根据我的尝试，可能是因为国内或者说是因为小米手机的问题，ios和android得不同的设置才行:
+
+  ```javascript
+  Geolocation.getCurrentPosition(
+  	(position) => {console.log(position)},
+  	(error) => {console.log(error)},
+  	Platform.OS === 'ios' ? { enableHighAccuracy: true, timeout: 25000, maximumAge: 20000 } : { enableHighAccuracy: false, maximumAge: 20000, forceRequestLocation: true, forceLocationManager: true, distanceFilter: 250, accuracy: { android: 'balanced', ios: 'threeKilometers' } }
+      );
+  ```
+
 ### [react-native-iap](https://github.com/dooboolab/react-native-iap)
 
 - 用于google play和apple store的内购组件
