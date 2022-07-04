@@ -67,6 +67,22 @@ req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['f
 
 ## [firebase/firestore](https://haofly.net/firebase)
 
+## Google Fonts
+
+- 谷歌字体服务
+
+```shell
+# 支持多种字体可以加多个family参数
+https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata
+
+# 支持设置字体的weight
+https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900
+https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200..900
+https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,700
+```
+
+
+
 ## Logging
 
 - 谷歌的日志查询起来非常方便，就像是查询json字段一样

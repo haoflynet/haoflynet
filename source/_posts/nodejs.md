@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2022-06-05 08:50:30
+updated: 2022-07-04 11:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -111,6 +111,12 @@ const req = https.request('https://haofly.net', res => {
 req.on('error', () => reject)
 req.write(body, 'binary')
 req.end()
+```
+
+### 命令行
+
+```javascript
+process.argv	// 从命令行接收参数
 ```
 
 ### ECSMAScript/es6概念
@@ -264,7 +270,19 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 
 - [bcrypt](https://www.npmjs.com/package/bcrypt): 非常推荐的安全的密码/密码hash库，不用自己维护盐值，它是把计算次数和盐值都放到hash值里面去了
 
+- [dotenv](https://www.npmjs.com/package/dotenv): 支持.env文件读取环境变量
+
+  ```javascript
+  // 默认读取项目根目录的.env文件，也可以自定义.env文件的路径
+  import { config } from 'dotenv';
+  
+  config({
+    path: '../.env',
+  });
+  ```
+
 - [uuid](): uuid首选version 4，每秒生成10亿个，大约需要85年才会重复
+- [yup](https://github.com/jquense/yup): 非常简单且易于集成的认证库
 
 ## TroubleShooting
 

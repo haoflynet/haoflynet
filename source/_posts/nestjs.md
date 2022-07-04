@@ -191,9 +191,7 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
   }
   ```
 
-## JWT认证
-
-- 可以直接参考[Authentication](https://docs.nestjs.com/security/authentication#jwt-functionality)
+## [JWT认证Authentication](https://docs.nestjs.com/security/authentication#jwt-functionality)
 
 - 需要注意文档里的[Enable authentication globally](https://docs.nestjs.com/security/authentication#enable-authentication-globally)配置是全局的配置，我们一般不会需要这样做，因为登录注册等接口是不需要token的
 
@@ -207,6 +205,13 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
     };
   }
   ```
+
+## 开启CORS
+
+```javascript
+const app = await NestFactory.create(AppModule, { cors: true });
+await app.listen(3000);
+```
 
 ## OpenAPI/Swagger文档
 

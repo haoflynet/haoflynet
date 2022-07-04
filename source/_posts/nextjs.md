@@ -1,11 +1,12 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2022-06-22 22:37:00
+updated: 2022-07-02 22:37:00
 categories: js
 ---
 
 - `React`的`SSR`框架
+- 渲染有三种方式: BSR(客户端渲染，Browser Side Render)，SSG(静态页面生成，Static Site Generation)，SSR(服务端渲染，Server Side Render)
 - 需要注意的是如果页面中有用js控制的部分(例如条件渲染)，在SSR的时候不会直接渲染成DOM元素，虽然也能导出成静态HTML，但是仍然是前端js来控制的
 
 ## 基础配置
