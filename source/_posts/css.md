@@ -1,9 +1,11 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2022-07-04 16:30:00
+updated: 2022-07-05 16:30:00
 categories: frontend
 ---
+- [各种浏览器及系统的尺寸](http://chicun.jammy.cc/html/web.html)
+
 ## 长度单位
 
 ```shell

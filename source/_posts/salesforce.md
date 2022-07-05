@@ -1,7 +1,7 @@
 ---
 title: "Salesforce 中文操作手册"
 date: 2022-06-30 08:02:30
-updated: 2022-06-30 12:40:00
+updated: 2022-07-05 12:40:00
 categories: system
 ---
 
@@ -77,7 +77,11 @@ conn.sobject('Contact').count({})	// 统计指定条件的记录数，注意这�
 conn.sobject("Contact")	// 类似ORM的查询方式
   .find(
     // conditions in JSON object，查询条件
-    { LastName : { $like : 'A%' },
+    {
+      	LastName : {
+      		$like : 'A%',
+          $ne: null	// 不等于null
+    	},
       CreatedDate: { $gte : jsforce.Date.YESTERDAY },
       'Account.Name' : 'Sony, Inc.' },
     // fields in JSON object，下面是需要取的字段

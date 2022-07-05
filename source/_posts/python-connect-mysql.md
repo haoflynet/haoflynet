@@ -1,7 +1,7 @@
 ---
 title: "Python3 使用MySQL Connector操作数据库"
 date: 2015-11-04 17:48:41
-updated: 2021-02-07 18:45:22
+updated: 2022-07-05 18:45:22
 categories: 编程之路
 ---
 ## 安装方法
@@ -17,6 +17,9 @@ pip install mysqlclient
 sudo yum install pytho36-devel mysql-devel	# python36-devel指定python版本
 sudo yum install mariadb-devel MariaDB-shared	# 如果不安装会出现cannot find -lmariadb错误
 pip install mysqlclient
+
+# Mac m1/Apple Silicon
+export ARCHFLAGS="-arch x86_64"
 ```
 <!--more-->
 

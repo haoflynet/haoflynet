@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2022-06-06 08:42:00
+updated: 2022-07-05 09:54:00
 categories: Javascript
 ---
 
@@ -85,8 +85,8 @@ categories: Javascript
 ### Ec2绑定Elastic IP弹性IP
 
 - 弹性IP只要是绑定在运行中的ec2实例上就是免费的，所以如果仅仅是要一个不会随着机器状态变化的IP那么推荐用弹性IP而不是用负载均衡器
-
 - 当一个新建的弹性IP被关联到一个实例上的时候，该实例的公有IP地址也会变成一样的，不过之后如果实例重启公有IP会改变，弹性IP则不会了
+- 一个账号最多绑定5个弹性IP，超过了需要单独提交申请，所以有时候还是用elb代替吧
 
 ### EC2配置Cloudwatch监控
 
@@ -383,10 +383,38 @@ const res = await new AWS.SNS({ apiVersion: '2010-03-31' }).publish(params).prom
 ## CodeDeploy/Pipeline
 
 - CodeDeploy日志位置: `/var/log/aws/codedeploy-agent/codedeploy-agent.log`
+
 - 部署日志位置: `/opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log`
+
 - `CodeDeply Agent`安装方式见https://docs.aws.amazon.com/zh_cn/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html
+
 - 服务器上保留的副本的数量设置`/etc/codedeploy-agent/conf/codedeployagent.yml`里面的`max_revisions`，默认是10，服务器总共才8G，保留不了那么多副本
+
 - `CodeDeploy`拉取的源码和构建后的代码都会自动存储到S3上面去，这些文件可能占用很大的存储，我暂时还不清楚其费用和自动清理的方式，网上有人说用S3的生命周期管理，可是那样不能保证至少保留N个副本
+
+- 官方建议将敏感的环境变量放在AWS Secrets Manager或AWS Systems Manager Parameter Store参数中
+
+- 对于新版系统里面的CodeDeploy agent，它是支持Ruby3的，并且系统安装的也是Ruby3，但是有时候仍然提示当前用的是ruby2，不兼容。在[这里](https://github.com/aws/aws-codedeploy-agent/issues/301)有一个方法可以用:
+
+  ```shell
+  #!/bin/bash
+  # This installs the CodeDeploy agent and its prerequisites on Ubuntu 22.04.
+  
+  sudo apt-get update
+  sudo apt-get install ruby-full ruby-webrick wget -y
+  cd /tmp
+  wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/releases/codedeploy-agent_1.3.2-1902_all.deb
+  mkdir codedeploy-agent_1.3.2-1902_ubuntu22
+  dpkg-deb -R codedeploy-agent_1.3.2-1902_all.deb codedeploy-agent_1.3.2-1902_ubuntu22
+  sed 's/Depends:.*/Depends:ruby3.0/' -i ./codedeploy-agent_1.3.2-1902_ubuntu22/DEBIAN/control
+  dpkg-deb -b codedeploy-agent_1.3.2-1902_ubuntu22/
+  sudo dpkg -i codedeploy-agent_1.3.2-1902_ubuntu22.deb
+  systemctl list-units --type=service | grep codedeploy
+  sudo service codedeploy-agent status
+  ```
+
+- 另外如果ruby出现`cannot load such file -- webrick/httputil`错误，可以安装`apt install ruby-webrick -y`
+- deploy的生命周期hook: BeforeInstall、AfterInstall、AfterAllowTestTraffic、BeforeAllowTraffic、AfterAllowTraffic
 
 需要在项目根目录添加这些文件
 
@@ -510,6 +538,16 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
           }
       ]
   }
+  ```
+
+- 代码示例
+
+  ```javascript
+  const ssm = new AWS.SSM({ region: 'us-east-2'})
+  await ssm.getParameters({
+              Names: names,	// 注意一次取最多10个
+              WithDecryption: false
+          }).promise()
   ```
 
 ## Cron表达式
