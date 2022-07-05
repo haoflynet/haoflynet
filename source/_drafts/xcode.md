@@ -1,7 +1,7 @@
 ---
 title: "Xcode / iOS开发手册"
 date: 2018-06-05 21:32:00
-updated: 2022-04-18 09:36
+updated: 2022-07-05 09:36:00
 categories: Mac
 ---
 
@@ -42,3 +42,8 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
 - **ios模拟弱网环境**: 设置->开发者选项-> Network LINK CONDITIONER
 - **set the code signing identity value to apple development in the build settings editor**: 在`TARGETS -> Build Settings -> All`中搜索`signing` 即可，修改对应的值为`apple development`即可
 - **sandbox账户无法登录，提示要进入设置收验证码**: 无论怎样我都收不到验证码， 最后重新建了一个sandbox账户就可以了，sandbox在点击登录按钮登录的时候按理说是不用验证码的，直接就可以登录了。当然，必须得退出本机自身的apple id才行
+- **添加了测试设备后，Xcode依然无法安装**: 可能是因为Xcode没有及时更新云端的`Provisioning Profile`可以删除目录`~/Library/MobileDevice/Provisioning`，然后打包时候勾选`Automatically manage signing`，Xcode就会重新拉取了
+
+## 扩展阅读
+
+- [iOS证书(.p12)和描述文件(.mobileprovision)申请](https://ask.dcloud.net.cn/article/152)：关于证书申请的非常详细的一篇文章

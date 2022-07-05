@@ -1,6 +1,7 @@
 ---
 title: "Nestjs 使用手册"
 date: 2022-04-29 08:00:00
+updated: 2022-07-05 09:40:00
 categories: Javascript
 ---
 
@@ -137,7 +138,7 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
 
 - Migration: 由于migration和代码无关，也无需依赖注入，可以直接用sequelize-cli命令来创建维护即可，参考[Sequelize 使用手册](https://haofly.net/sequelize)
 
-- 配置，具体的数据表定义和用法可以参考[sequelize-typescript文档](https://github.com/RobinBuschmann/sequelize-typescript#readme)
+- 配置，具体的数据表定义和用法可以参考[sequelize-typescript文档](https://github.com/RobinBuschmann/sequelize-typescript#readme)以及我写的[Sequelize 使用手册](https://haofly.net/sequelize)
 
   ```javascript
   // app.module.ts的imports中进行引入
@@ -224,11 +225,13 @@ export class UserController {
     description: 'Signin success',
     type: UserResponseDto,// 响应的类型需要在这里定义
   })
+  @ApiResponse({ status: 201, description: 'The record has been successfully created.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })	// 可以定义多个response
   async signin(@Body() signDto: SigninDto): Promise<UserResponseDto> {}
 }
 
 class SignDto {
-  @ApiProperty({
+  @ApiProperty({ // 定义需要在API文档上展示的字段
     default: 'signin',	// 定义默认值
     enum: ['signin', 'signup'],	// 定义枚举值
     description: '', // 字段描述
@@ -238,3 +241,7 @@ class SignDto {
 }
 ```
 
+## 扩展文章
+
+- [NestJS Microservice 的微服务架构初探](https://juejin.cn/post/6844904178200870920)
+- [NestJS 微服务示例](https://zhuanlan.zhihu.com/p/372338721)

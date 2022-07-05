@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2022-06-05 08:45:00
+updated: 2022-07-05 08:45:00
 categories: Database
 ---
 
@@ -49,6 +49,8 @@ pg_dump -U username your_database > db_dump.bak	# 备份数据库
 \c 数据库名 # 切换数据库
 \dt	# 列出当前的表
 
+DROP DATABASE name; # 删除数据库
+
 # 如果是sql语句，必须加分号，且关键字必须大写
 CREATE DATABASE 数据库名;	# 创建数据库，那些
 CREATE USER 用户名 WITH ENCRYPTED PASSWORD '密码';	# 创建用户
@@ -85,7 +87,6 @@ COMMENT ON COLUMN users.userid IS 'This is user ID';	# 给表字段添加注释
 
 ALTER TABLE test DROP COLUMN name;	# 删除字段
 ALTER TABLE test ADD COLUMN name VARCHAR(255);	# 添加字段
-
 ```
 
 ### 数据操作

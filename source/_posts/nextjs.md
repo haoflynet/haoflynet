@@ -144,68 +144,8 @@ router.defaultLocale	// 默认的locale
   }
   ```
 
-- 如果不是所有页面的layout都相同，可以在单独的page里面这样做
+- 如果不是所有页面的layout都相同，可以参考[官方文档](https://nextjs.org/docs/basic-features/layouts)
 
-  ```javascript
-  // pages/_app.js，在_app.js中声明使用getLayout方法来获取Layout
-  export default function MyApp({ Component, pageProps }) {
-    // Use the layout defined at the page level, if available
-    const getLayout = Component.getLayout || ((page) => page)
-    return getLayout(<Component {...pageProps} />)
-  }
-  
-  // pages/_app.tsx，如果是typescript需要这样声明
-  type NextPageWithLayout = NextPage & {
-    getLayout?: (page: ReactElement) => ReactNode
-  }
-  type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout
-  }
-  export default function MyApp ({ Component, pageProps }: AppPropsWithLayout): ReactNode {
-    // 我这里和官网不一样，如果有getLayout就用getLayout，否则就用全局的
-    if (Component.getLayout) {
-      return Component.getLayout(<Component {...pageProps} />)
-    }
-    return (<Layout><Component {...pageProps} /></Layout>)
-  }
-  
-  // components/layout.js，自定义一个layout
-  import Navbar from './navbar'
-  import Footer from './footer'
-  export default function CustomLayout({ children }) {
-    return (
-      <>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </>
-    )
-  }
-  // components/layout.tsx, typescript版本
-  import React, { ReactElement } from 'react'
-  interface LayoutProps {
-    children: ReactElement
-  }
-  export default function Layout (props: LayoutProps): JSX.Element {
-    return (
-      <>
-        <div>header</div>
-        <main>{props.children}</main>
-      </>
-    )
-  }
-  
-  
-  
-  // pages/index.js
-  import Layout from '../components/layout'
-  import NestedLayout from '../components/nested-layout'
-  
-  export default function Page() {}
-  
-  // 通过getLayout方法来定义
-  Page.getLayout = CustomLayout
-  ```
 
 ### Head
 
