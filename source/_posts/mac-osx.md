@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2022-06-05 08:04:00
+updated: 2022-06-14 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -17,6 +17,8 @@ categories: system
 `Command + Shift + .`
 
 ## Mac瘦身
+
+- 最好的工具[mac-cleanup-sh](https://github.com/mac-cleanup/mac-cleanup-sh)
 
 - `~/Library/Application Support/Code/User/workspaceStorage`: VS Code的工作区文件夹唉，但是所有的扩展都会重建这个文件夹，把年代久远的删除了
 
