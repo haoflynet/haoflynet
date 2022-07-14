@@ -464,6 +464,7 @@ username2 ALL=NOPASSWD:/usr/bin/git # 该用户可以执行'sudo git'的操作
 
 cat /etc/passwd  	# 查看所有用户
 cat /etc/group		# 查看所有用户组
+cat /etc/shadow	# 通过看是否有加密穿来判断是否给用户设置了密码
 
 # 将用户添加到组
 usermod -a -G groupName userName

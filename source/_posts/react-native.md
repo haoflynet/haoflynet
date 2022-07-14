@@ -26,8 +26,9 @@ categories: js
 # 初始化项目
 npm uninstall -g react-native-cli	# 官方说不要用这个来初始化了，并且得卸载了，否则可能出现奇怪的问题
 npx react-native init testProject	--verbose # 新建项目目录，并初始化项目。命令会执行很久，且--verbose像没用似的，像卡死了一样
-npx react-native init testProject --version 0.1.2 --verbose	# 创建指定版本的项目
+npx react-native init testProject --version 0.68.2 --verbose	# 创建指定版本的项目
 npx react-native init aegis_app --template react-native-template-typescript --verbose	# 创建一个typescript的项目
+npx react-native init oai --template "react-native-template-typescript@6.10.*" --verbose	# 创建一个typescript的项目，指定版本
 
 ## 运行项目
 cd testProject
@@ -169,9 +170,35 @@ class MyComponent extends React.Component {
 
 图片组件，如果我们在同一个目录里面同时包含`a.png/a@2x.png,a@3x.png`那么`react native`就能通过屏幕的分辨率自动选择不同尺寸的图片，并且在代码里面仅需要`require(./img/check.png)`就行了。
 
-### Navigation/Component导航组件
+### Navigation/Component导航组件/路由/route
 
-[Navigation文档](https://reactnavigation.org/docs/hello-react-navigation.html)，Navigation已经单独成为一个模块，强烈建议不再使用老的导航器，[导航器对比](https://www.jianshu.com/p/98db12a6afec)，在这里有其更详细的文档。在`0.44`版本移除了[`Navigator`](https://facebook.github.io/react-native/docs/navigator.html)，该模块被移动到[react-native-custom-components](https://github.com/facebookarchive/react-native-custom-components)现在也仅用于兼容老版本。使用前得先安装`npm install --save react-navigation`。有如下三种类型的导航器
+[Navigation文档](https://reactnavigation.org/docs/getting-started)，Navigation已经单独成为一个模块，强烈建议不再使用老的导航器，[导航器对比](https://www.jianshu.com/p/98db12a6afec)，在这里有其更详细的文档。在`0.44`版本移除了[`Navigator`](https://facebook.github.io/react-native/docs/navigator.html)，该模块被移动到[react-native-custom-components](https://github.com/facebookarchive/react-native-custom-components)现在也仅用于兼容老版本。使用前得先安装`npm install --save react-navigation`。有如下三种类型的导航器
+
+```shell
+# 看官网的意思就是要安装这些东西
+npm install --save @react-navigation/native react-native-screens react-native-safe-area-context @react-navigation/native-stack
+
+# ios需要执行
+npx pod-install ios
+
+# android需要再MainActivity中添加一个方法
+import android.os.Bundle;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(null);
+}
+
+# 然后需要全局使用NavigationContainer包裹app，在app.js中
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+
+export default function App() {
+  return (
+    <NavigationContainer>{/* Rest of your app code */}</NavigationContainer>
+  );
+}
+```
 
 #### StackNavigator
 
