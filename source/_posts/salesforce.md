@@ -1,7 +1,7 @@
 ---
 title: "Salesforce 中文操作手册"
 date: 2022-06-30 08:02:30
-updated: 2022-07-05 12:40:00
+updated: 2022-07-22 12:40:00
 categories: system
 ---
 
@@ -19,6 +19,7 @@ categories: system
 
 - Sandbox的[价格表](https://www.salesforce.com/editions-pricing/platform/environments/)，没错，是按照原是数据的价格来按百分比收费的，怪不得很多用户都只是partial copy，得自己想办法去将生产数据同步到sandbox中去。
 - 如果不用salesforce自己的Refresh方式，那么想要同步production到sandbox，要么借助第三方的收费工具，要么就自己去同步了，自己同步是个体力活，你必须得找到不同对象之间的关系，新插入的数据和之前的ID肯定是不一样的，整个migration程序都得维护这些ID的映射，相当麻烦
+- 注意手动刷新sandbox后，相当于删除旧的创建新的，在旧的sandbox环境里面新建的用户会消失的，新的sandbox的users总是和production的一样，只不过email添加了一个后缀`.sandboxname`
 
 ### Apps
 
@@ -57,10 +58,12 @@ conn.login('username@domain.com', `${password}${securityToken}`, function(err, r
 ### 数据库操作
 
 ```javascript
-conn.describeSObject('Account');	// 获取对象object的数据结构
+conn.describeSObject('Account');	// 获取对象object的数据结构，包括recordTypeInfos
 ```
 
 ### 增删改查
+
+- 针对时间字段，如果是query raw sql， 记得不用加引号: `CreatedDate > 2022-07-19T00:00:00Z`，如果是sobject来查询，可以`const {SfDate} = require("jsforce"); SfDate.SfDate.toDateTimeLiteral('2022-07-19 00:00:00')`
 
 - find方法单次默认只能查询200条记录，可以修改offset，但是最大的offset值也才2000。如果要查询所有，可以这样做
 
@@ -81,6 +84,9 @@ conn.sobject("Contact")	// 类似ORM的查询方式
       	LastName : {
       		$like : 'A%',
           $ne: null	// 不等于null
+          $not: {	// 非
+          	$ne: null
+        	}
     	},
       CreatedDate: { $gte : jsforce.Date.YESTERDAY },
       'Account.Name' : 'Sony, Inc.' },
@@ -175,6 +181,10 @@ await conn.sobject("Account").destroy('0017000000hOMChAAO');
 await conn.sobject('Account').find({xxx}).destroy()
 conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删除多条
 ```
+
+### 常见错误处理
+
+- **DUPLICATES_DETECTED**: 如果在Object Manager没有发现什么唯一键，可以在`Setup -> Data -> Duplicate Management -> Duplicate Rules`里面看看有没有什么检测重复的规则
 
 ## Troubleshooting
 

@@ -1,13 +1,14 @@
 ---
 title: "Material UI / MUI手册"
 date: 2021-08-10 08:40:00
-updated: 2022-04-14 08:48:00
+updated: 2022-07-20 08:48:00
 categories: Javascript
 ---
 
 - 样式使用css-in-js风格，得单独学一套
 - [官方中文文档](https://material-ui.com/zh/)
 - 从5.x开始`material-ui`更名为`mui`了，网上搜到不要奇怪
+- 官方没有`react-native` 相关的UI插件，可以使用`react-native-paper`来代替，它也是遵循material design的
 
 ## 组件
 

@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-06-05 21:52:30
+updated: 2022-07-20 21:52:30
 categories: system
 ---
 # Linux手册
@@ -493,6 +493,7 @@ lspci				# 显示当前主机的所有PCI总线信息、vga/navidia表示的是�
 lspci -v -s 00:0f.2	# 显示指定硬件信息的详情，例如查看GPU大小等
 who -b	# 查看最后一次系统启动时间
 who -r # 查看当前系统运行时间
+last # 查看最近登录的日志
 
 # 环境变量
 env	# 查看环境变量
@@ -760,7 +761,14 @@ sftp: 基于ssh协议的加密ftp传输协议
 vsftpd: ftp服务器，支持ftp协议，不支持sftp协议
 
 ```shell
-# 安装方法
+# sftp配置方法
+## 日志配置，配置了日志就有登录相关的日志了，甚至有操作相关的日志
+## 参考https://access.redhat.com/articles/1374633，可能程序名会不一样
+## sftp的登录日志不会出现在last等系统登录日志中
+echo "Subsystem   sftp    /usr/libexec/openssh/sftp-server -l VERBOSE -f LOCAL3" >> /etc/ssh/sshd_config
+echo "local3.*  /var/log/sftp.log" >> /etc/syslog.conf
+
+# vsftp安装方法
 yum install vsftpd	# centos
 apt install vsftpd	# ubuntu
 # sudo vim /etc/vsftpd/vsftpd.conf，ubuntu在/etc/vsftpd.conf 修改如下几项：

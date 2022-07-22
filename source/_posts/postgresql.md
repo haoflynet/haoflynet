@@ -32,7 +32,6 @@ categories: Database
 ```shell
 SELECT version();	# 获取数据库版本
 
-
 # sudo apt-get install postgresql-client，命令行得先安装客户端，但是客户端的版本必须和服务端的版本一致，这就很麻烦了
 psql -U postgres -h xxx -w --password	# 使用命令行登录postgres数据库
 
