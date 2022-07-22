@@ -1,7 +1,7 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2022-07-05 14:37:00
+updated: 2022-07-20 14:37:00
 categories: system
 ---
 ## Android Studio 的使用
@@ -105,6 +105,8 @@ return loc;
 - **Failed to find platform sdk with path: platforms;android-31或者dependency's AAR metadata (META-INF/com/android/build/gradle/aar-metadata.properties)**需要下载compileSdkVersion中指定的sdk版本
 
 - **Android Studio的sdk manager没有显示未下载的sdk**: 重启android studio试试
+
+- **Failed to load WebView provider: No WebView installed**: 我这边把模拟器的系统升级到android 10就可以了
 
 - **cannot find symbol android.suppport.v4.app.ActivityCompat**：直接替换即可，将`import android.support.v4.app.ActivityCompat`替换为`import androidx.core.app.ActivityCompat`即可，这种到androidx的替换，出现一个替换一个就行，没其他问题，我遇到的还有:
 

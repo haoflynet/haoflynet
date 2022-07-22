@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-05-29 22:24:00
+updated: 2022-07-20 22:24:00
 categories: js
 ---
 
@@ -491,6 +491,17 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
       );
   ```
 
+### [react-native-async-storage](https://github.com/react-native-async-storage/async-storage)
+
+- 能够用来持久化mobx等的状态，在应用退出后不会清空
+- `React-native iOS, Async storage error: "Invalid key - must be at least one character. Key: `出现这个错误是因为在getItem/setItem的时候key的值为空，需要修改一下，注意如果key的值修改后可能需要重新build才能生效
+
+### [react-native-dotenv](https://github.com/goatandsheep/react-native-dotenv)
+
+-  使用`.env`文件来加载环境变量
+- 需要注意的是，它是有缓存的，如果变量更改了记得参考文档清理cache
+- 如果使用的是typescript，最好参考文档使用`Option 2: specify types manually`
+
 ### [react-native-iap](https://github.com/dooboolab/react-native-iap)
 
 - 用于google play和apple store的内购组件
@@ -500,6 +511,10 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
   3. License testing得添加设备登录的google账号
   4. `App -> Setup -> Advanced settings -> App availability`设置为`Published`
   5. `App ->  Setup -> Advanced settings -> Managed Google Play`设置为`Turn on`下面的留空就行
+
+### [react-native-paper](https://callstack.github.io/react-native-paper/index.html)
+
+- material-ui在react-native平台的替代品，同样遵循material design
 
 ## 开发原生相关问题
 
@@ -577,7 +592,7 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
   {!!icon && {icon}} // 将对象转换为布尔值即可
   ```
 
-- **输入框键盘挡住了部分视图**: 这时候需要使用`KeyboardAvoidingView`来包装一下`view`，该组件可以自动根据键盘的高度，调整自身的height或底部的padding来避免遮挡，有时候也需要再配合`ScrollView`来使用
+- **输入框键盘挡住了部分视图**: 这时候需要使用`KeyboardAvoidingView`来包装一下`view`，该组件可以自动根据键盘的高度，调整自身的height或底部的padding来避免遮挡，有时候也需要再配合`ScrollView`来使用，注意它可以不需要在整个页面外层包装，可以只包裹住form那部分即可
 
   ```javascript
   <KeyboardAvoidingView
