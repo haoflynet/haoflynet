@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-06-05 21:52:30
+updated: 2022-07-24 21:52:30
 categories: system
 ---
 # Linux手册
@@ -492,6 +492,8 @@ lspci				# 显示当前主机的所有PCI总线信息、vga/navidia表示的是�
 lspci -v -s 00:0f.2	# 显示指定硬件信息的详情，例如查看GPU大小等
 who -b	# 查看最后一次系统启动时间
 who -r # 查看当前系统运行时间
+lastlog # 查询所有用户最近一次的登陆时间
+last # 列出当前和最近登陆的用户的信息
 
 # 环境变量
 env	# 查看环境变量
