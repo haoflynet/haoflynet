@@ -20,10 +20,20 @@ brew install solidity
 - 函数入参修饰符
   - memory: 表示这里是值传递
   - storage: 表示是指针传递
-- 全局变量
+- 变量分类，注意每个变量在声明时都会有一个对应其类型的默认值，没有空值null的概念
+  - 状态变量：变量值会一直保存在合约的存储空间中
+  - 局部变量：仅在函数执行过程中有效，函数退出后就无效了
+  - 全局变量：保存在全局命名空间中的变量，用于获取区块链相关信息
+  
+- 内置全局变量
   - block.number(uint): 当前区块号
   - block.timestamp(uint): 当前区块的时间戳，等同于now
-  - Msg.sender(address): 消息发送者
+  - block.gaslimit(uint): 当前区块的gaslimit
+  - msg.sender(address): 消息发送者
+  - msg.value(uint): 当前消息的wei值
+  - now: 当前区块的时间长
+  - tx.gasprice(uint): 当前transaction的gas价格
+  - tx.origin(address payable): 当前交易的发送者地址
 
 ```solidity
 pragma solidity ^0.8.4;
