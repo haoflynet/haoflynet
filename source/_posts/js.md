@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-05-23 18:18:00
+updated: 2022-07-05 18:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -1063,6 +1063,7 @@ _.invert(obj)	// {'1': 'a', '2': 'b', '3': 'c'}
 ```javascript
 _.isEqual(_.sortBy(a), _.sortBy(b)) // 比较两个数组是否相等(不按顺序)
 _.isEqual(a.sort(), b.sort())	// 同上
+_.isEqual(a, b) // 可以比较两个Object是否相同
 ```
 
 ##### _.isMatchWith

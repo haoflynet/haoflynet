@@ -1,11 +1,12 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2022-06-22 22:37:00
+updated: 2022-07-02 22:37:00
 categories: js
 ---
 
 - `React`的`SSR`框架
+- 渲染有三种方式: BSR(客户端渲染，Browser Side Render)，SSG(静态页面生成，Static Site Generation)，SSR(服务端渲染，Server Side Render)
 - 需要注意的是如果页面中有用js控制的部分(例如条件渲染)，在SSR的时候不会直接渲染成DOM元素，虽然也能导出成静态HTML，但是仍然是前端js来控制的
 
 ## 基础配置
@@ -143,68 +144,8 @@ router.defaultLocale	// 默认的locale
   }
   ```
 
-- 如果不是所有页面的layout都相同，可以在单独的page里面这样做
+- 如果不是所有页面的layout都相同，可以参考[官方文档](https://nextjs.org/docs/basic-features/layouts)
 
-  ```javascript
-  // pages/_app.js，在_app.js中声明使用getLayout方法来获取Layout
-  export default function MyApp({ Component, pageProps }) {
-    // Use the layout defined at the page level, if available
-    const getLayout = Component.getLayout || ((page) => page)
-    return getLayout(<Component {...pageProps} />)
-  }
-  
-  // pages/_app.tsx，如果是typescript需要这样声明
-  type NextPageWithLayout = NextPage & {
-    getLayout?: (page: ReactElement) => ReactNode
-  }
-  type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout
-  }
-  export default function MyApp ({ Component, pageProps }: AppPropsWithLayout): ReactNode {
-    // 我这里和官网不一样，如果有getLayout就用getLayout，否则就用全局的
-    if (Component.getLayout) {
-      return Component.getLayout(<Component {...pageProps} />)
-    }
-    return (<Layout><Component {...pageProps} /></Layout>)
-  }
-  
-  // components/layout.js，自定义一个layout
-  import Navbar from './navbar'
-  import Footer from './footer'
-  export default function CustomLayout({ children }) {
-    return (
-      <>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </>
-    )
-  }
-  // components/layout.tsx, typescript版本
-  import React, { ReactElement } from 'react'
-  interface LayoutProps {
-    children: ReactElement
-  }
-  export default function Layout (props: LayoutProps): JSX.Element {
-    return (
-      <>
-        <div>header</div>
-        <main>{props.children}</main>
-      </>
-    )
-  }
-  
-  
-  
-  // pages/index.js
-  import Layout from '../components/layout'
-  import NestedLayout from '../components/nested-layout'
-  
-  export default function Page() {}
-  
-  // 通过getLayout方法来定义
-  Page.getLayout = CustomLayout
-  ```
 
 ### Head
 

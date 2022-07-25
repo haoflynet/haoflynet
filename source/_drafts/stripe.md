@@ -184,3 +184,7 @@ const transfer = await stripe.transfers.create({
 ### ORDERS
 
 ### webhook
+
+## 参考
+
+- [nextjs-subscription-payments](https://github.com/vercel/nextjs-subscription-payments): 基于Next.js和stripe的订阅支付完整应用程序

@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-05-29 22:24:00
+updated: 2022-07-20 22:24:00
 categories: js
 ---
 
@@ -26,8 +26,9 @@ categories: js
 # 初始化项目
 npm uninstall -g react-native-cli	# 官方说不要用这个来初始化了，并且得卸载了，否则可能出现奇怪的问题
 npx react-native init testProject	--verbose # 新建项目目录，并初始化项目。命令会执行很久，且--verbose像没用似的，像卡死了一样
-npx react-native init testProject --version 0.1.2 --verbose	# 创建指定版本的项目
+npx react-native init testProject --version 0.68.2 --verbose	# 创建指定版本的项目
 npx react-native init aegis_app --template react-native-template-typescript --verbose	# 创建一个typescript的项目
+npx react-native init oai --template "react-native-template-typescript@6.10.*" --verbose	# 创建一个typescript的项目，指定版本
 
 ## 运行项目
 cd testProject
@@ -169,9 +170,35 @@ class MyComponent extends React.Component {
 
 图片组件，如果我们在同一个目录里面同时包含`a.png/a@2x.png,a@3x.png`那么`react native`就能通过屏幕的分辨率自动选择不同尺寸的图片，并且在代码里面仅需要`require(./img/check.png)`就行了。
 
-### Navigation/Component导航组件
+### Navigation/Component导航组件/路由/route
 
-[Navigation文档](https://reactnavigation.org/docs/hello-react-navigation.html)，Navigation已经单独成为一个模块，强烈建议不再使用老的导航器，[导航器对比](https://www.jianshu.com/p/98db12a6afec)，在这里有其更详细的文档。在`0.44`版本移除了[`Navigator`](https://facebook.github.io/react-native/docs/navigator.html)，该模块被移动到[react-native-custom-components](https://github.com/facebookarchive/react-native-custom-components)现在也仅用于兼容老版本。使用前得先安装`npm install --save react-navigation`。有如下三种类型的导航器
+[Navigation文档](https://reactnavigation.org/docs/getting-started)，Navigation已经单独成为一个模块，强烈建议不再使用老的导航器，[导航器对比](https://www.jianshu.com/p/98db12a6afec)，在这里有其更详细的文档。在`0.44`版本移除了[`Navigator`](https://facebook.github.io/react-native/docs/navigator.html)，该模块被移动到[react-native-custom-components](https://github.com/facebookarchive/react-native-custom-components)现在也仅用于兼容老版本。使用前得先安装`npm install --save react-navigation`。有如下三种类型的导航器
+
+```shell
+# 看官网的意思就是要安装这些东西
+npm install --save @react-navigation/native react-native-screens react-native-safe-area-context @react-navigation/native-stack
+
+# ios需要执行
+npx pod-install ios
+
+# android需要再MainActivity中添加一个方法
+import android.os.Bundle;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(null);
+}
+
+# 然后需要全局使用NavigationContainer包裹app，在app.js中
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+
+export default function App() {
+  return (
+    <NavigationContainer>{/* Rest of your app code */}</NavigationContainer>
+  );
+}
+```
 
 #### StackNavigator
 
@@ -448,6 +475,33 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
   
   ```
 
+### [react-native-geolocation-service](https://github.com/Agontuk/react-native-geolocation-service)
+
+- 谷歌定位插件，能够获取当前的定位
+
+- 如果出现获取不到地理位置，经常提示`timed out`并且time out设置为很大依然报错，可以参考这个issue[Location request timed out most of the time](https://github.com/Agontuk/react-native-geolocation-service/issues/174)，下载谷歌地图然后定位一下，再重新安装一下应用试试
+
+- 如果出现**Location settings are not satisfied**: 根据我的尝试，可能是因为国内或者说是因为小米手机的问题，ios和android得不同的设置才行:
+
+  ```javascript
+  Geolocation.getCurrentPosition(
+  	(position) => {console.log(position)},
+  	(error) => {console.log(error)},
+  	Platform.OS === 'ios' ? { enableHighAccuracy: true, timeout: 25000, maximumAge: 20000 } : { enableHighAccuracy: false, maximumAge: 20000, forceRequestLocation: true, forceLocationManager: true, distanceFilter: 250, accuracy: { android: 'balanced', ios: 'threeKilometers' } }
+      );
+  ```
+
+### [react-native-async-storage](https://github.com/react-native-async-storage/async-storage)
+
+- 能够用来持久化mobx等的状态，在应用退出后不会清空
+- `React-native iOS, Async storage error: "Invalid key - must be at least one character. Key: `出现这个错误是因为在getItem/setItem的时候key的值为空，需要修改一下，注意如果key的值修改后可能需要重新build才能生效
+
+### [react-native-dotenv](https://github.com/goatandsheep/react-native-dotenv)
+
+-  使用`.env`文件来加载环境变量
+- 需要注意的是，它是有缓存的，如果变量更改了记得参考文档清理cache
+- 如果使用的是typescript，最好参考文档使用`Option 2: specify types manually`
+
 ### [react-native-iap](https://github.com/dooboolab/react-native-iap)
 
 - 用于google play和apple store的内购组件
@@ -457,6 +511,10 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
   3. License testing得添加设备登录的google账号
   4. `App -> Setup -> Advanced settings -> App availability`设置为`Published`
   5. `App ->  Setup -> Advanced settings -> Managed Google Play`设置为`Turn on`下面的留空就行
+
+### [react-native-paper](https://callstack.github.io/react-native-paper/index.html)
+
+- material-ui在react-native平台的替代品，同样遵循material design
 
 ## 开发原生相关问题
 
@@ -534,7 +592,7 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
   {!!icon && {icon}} // 将对象转换为布尔值即可
   ```
 
-- **输入框键盘挡住了部分视图**: 这时候需要使用`KeyboardAvoidingView`来包装一下`view`，该组件可以自动根据键盘的高度，调整自身的height或底部的padding来避免遮挡，有时候也需要再配合`ScrollView`来使用
+- **输入框键盘挡住了部分视图**: 这时候需要使用`KeyboardAvoidingView`来包装一下`view`，该组件可以自动根据键盘的高度，调整自身的height或底部的padding来避免遮挡，有时候也需要再配合`ScrollView`来使用，注意它可以不需要在整个页面外层包装，可以只包裹住form那部分即可
 
   ```javascript
   <KeyboardAvoidingView

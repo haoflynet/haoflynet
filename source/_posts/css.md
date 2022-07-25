@@ -1,9 +1,20 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2022-02-12 16:30:00
+updated: 2022-07-05 16:30:00
 categories: frontend
 ---
+- [各种浏览器及系统的尺寸](http://chicun.jammy.cc/html/web.html)
+
+## 长度单位
+
+```shell
+em: 如果是font-size，那么就是相对父元素的字体大小
+rem: 跟元素的字体大小，r是root的意思
+vw: 视窗宽度
+vh: 视窗高度
+```
+
 ## 浏览器兼容
 
 - 首行的`<!DOCTYPE html>`很关键
@@ -1054,6 +1065,15 @@ img{
 	height: auto;
 	max-width: 100%;
 	max-height: 100%;	
+}
+```
+
+#### 让video的控制栏一直显示
+
+```css
+video::-webkit-media-controls-panel {
+   display: flex !important;
+   opacity: 1 !important;
 }
 ```
 

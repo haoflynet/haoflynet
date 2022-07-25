@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2022-06-05 08:45:00
+updated: 2022-07-05 08:45:00
 categories: Database
 ---
 
@@ -32,7 +32,6 @@ categories: Database
 ```shell
 SELECT version();	# 获取数据库版本
 
-
 # sudo apt-get install postgresql-client，命令行得先安装客户端，但是客户端的版本必须和服务端的版本一致，这就很麻烦了
 psql -U postgres -h xxx -w --password	# 使用命令行登录postgres数据库
 
@@ -48,6 +47,8 @@ pg_dump -U username your_database > db_dump.bak	# 备份数据库
 \list	# 列出当前的数据库
 \c 数据库名 # 切换数据库
 \dt	# 列出当前的表
+
+DROP DATABASE name; # 删除数据库
 
 # 如果是sql语句，必须加分号，且关键字必须大写
 CREATE DATABASE 数据库名;	# 创建数据库，那些
@@ -85,7 +86,6 @@ COMMENT ON COLUMN users.userid IS 'This is user ID';	# 给表字段添加注释
 
 ALTER TABLE test DROP COLUMN name;	# 删除字段
 ALTER TABLE test ADD COLUMN name VARCHAR(255);	# 添加字段
-
 ```
 
 ### 数据操作

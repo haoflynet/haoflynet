@@ -1,7 +1,7 @@
 ---
 title: "axios网络请求"
 date: 2021-09-23 18:32:00
-updated: 2021-10-22 08:34:00
+updated: 2022-07-05 08:34:00
 categories: javascript
 ---
 
@@ -56,6 +56,15 @@ axios.get('/user', {
 axios({
   xsrfCookieName: 'XSRF-TOKEN'	// 带上这个参数能自动从cookie里面获取xsrf的token置入header头
 })
+```
+
+## 中间件/hook/beforerequest
+
+```javascript
+axios.interceptors.request.use((config) => {
+  config.headers = {....};
+  return config;
+});
 ```
 
 ## 取消Axios的HTTP请求

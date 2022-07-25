@@ -1,7 +1,7 @@
 ---
 title: "使用hardhat部署智能合约"
 date: 2022-03-21 18:00:00
-updated: 2022-03-29 22:40:00
+updated: 2022-06-30 22:40:00
 categories: eth
 ---
 
@@ -15,7 +15,7 @@ npm install -g hardhat
 npx hardhat	# 直接初始化项目，会生成一个hardhat.config.js配置文件，选最长的那个最全面了
 
 # 也可以在现有项目中初始化
-npm install --save-dev hardhat
+npm install --save hardhat
 npm install --save-dev @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-waffle ethereum-waffle chai	# 安装一些测试需要用到的依赖
 npx hardhat	# 初始化hardhat项目，可以选择只生成配置文件
 ```
@@ -87,10 +87,11 @@ npx hardhat test	# 运行测试
 
 - 一个测试用例`./test/token.js`
 - 智能合约的工具都互相兼容，如果是`truffle`语法写的测试用例，仍然可以用`npx hardhat test`来测试，需要先安装插件`npm install --save-dev @nomiclabs/hardhat-truffle5 @nomiclabs/hardhat-web3 web3`，并在`hardhat.config.js`中引入`require("@nomiclabs/hardhat-truffle5");`
-- 测试的各种操作默认都是`owner`，如果要切换为其他的用户，可以使用connect方法`contract.connect(address).getBalance()`，当然，得是`getSigners`里面的用户才可以，不然没有私钥基本上也操作不了
+- 测试的各种操作默认都是`owner`，如果要切换为其他的用户，可以使用connect方法`contract.connect(singer).getBalance()`，当然，得是`getSigners`里面的用户才可以，不然没有私钥基本上也操作不了
 
 ```javascript
-const { expect } = require("chai");
+const { expect } = require("chai");	// import { expect } from 'chai';
+import { ethers } from 'hardhat';
 
 describe("Token contract", function() {
   it("Test total supply to the owner", async function() {
@@ -109,6 +110,7 @@ describe("Token contract", function() {
 ### 部署
 
 - 部署到指定的以太坊网络
+- 如果发现部署的时候卡住了，一直没有响应，检查下是不是没有miner在挖矿
 - example: `./scripts/deploy.js`
 
 ```javascript
@@ -141,10 +143,11 @@ npx hardhat run scripts/deploy.js --network networkName	# 部署到指定的网�
 
 ## 调用合约
 
-- 根据我的使用，`artifacts`目录下的东西是编译后的东西，感觉有必要放到git repo中去，这样就不用存储abi到数据库了，而且代码也方便调用。每次部署相同的合约会得到一个不同地址，但编译后的合约肯定是一样的
+- 根据我的使用，`artifacts`目录下的东西是编译后的东西，感觉有必要放到git repo中去，这样就不用存储abi到数据库了，而且代码也方便调用。每次部署相同的合约会得到一个不同地址，但编译后的合约肯定是一样的。放到backend repo里面既可以用代码来部署也可以直接返回最新的给前端
 - 最好存储一下abi信息到数据库，这样后面即使不用hardhat也能比较方便地调用合约方法
 
 ```javascript
+// import '@nomiclabs/hardhat-waffle';
 const hre = require("hardhat");	// 以代码来执行deploy或者使用都是这个前缀
 
 await hre.artifacts.getArtifactPaths()	// 获取工件文件的路径

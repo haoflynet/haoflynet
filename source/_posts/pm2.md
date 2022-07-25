@@ -1,7 +1,7 @@
 ---
 title: "pm2 手册"
 date: 2020-02-18 08:50:00
-updated: 2022-03-08 08:47:00
+updated: 2022-07-19 16:47:00
 categories: nodejs
 ---
 
@@ -25,6 +25,7 @@ pm2 start yarn --interpreter bash --name my-app -- start	# yarn start方式启�
 pm2 start myscript.sh	# 如果是可执行的，那么直接start就可以了
 pm2 start myscript.py --interpreter=/usr/bin/python3	# 启动任意解释器的脚本
 pm2 start xxx -o ./out.log -e ./err.log	# 这样可以改变当前进程的日志输出地址，目前没找到全局修改的地方，另外-l参数是将标准输出和错误输出都输出到目标，但是同时也会输出到之前的标准输出和错误输出
+pm2 start app.js --cron-restart="0 0 * * * "	# 设置自动定时重启 
 
 pm2 stop all	# 停止所有程序
 pm2 restart all	# 重启所有程序
