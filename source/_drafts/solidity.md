@@ -31,12 +31,29 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract ERC20Token is ERC20 {	// 支持继承
+		IERC20 token;
+		
+		uint256 override amount; 
+		
+		struct Transaction {	// 创建一个结构体类型
+			address user;
+			uint timestamp;
+		}
+		Transaction[] transactions;	// 数组对象
+		
+		mapping (address => uint256) public investors; // mapping对象，可以用于记录key value的数据
+
 		address public constant MY_ADDRESS = 0x.....;	// 产量可以消耗更低的gas
 
-
 		// 继承的时候可以写新的构造函数，并且可以将新的构造函数中的参数传递给父类进行初始化
-    constructor(uint256 totalSupply, string memory name, string memory symbol) ERC20(name, symbol) {
+    constructor(uint256 totalSupply, string memory name, string memory symbol, address _anotherToken) ERC20(name, symbol) {
         _mint(msg.sender, totalSupply);
+        token IERC20(anotherToken);	// 将另外一个合约作为参数传递进来
+        
+        
+        transactions.push(
+        	Transaction('xx', 'bbb')	// 结构体的初始化
+        );	// 数组默认有一个push方法
     }
     
     // 获取当前的sender
@@ -62,17 +79,28 @@ contract ERC20Token is ERC20 {	// 支持继承
 - 比较常用的有:
   - ERC20：`@openzeppelin/contracts/token/ERC20/ERC20.sol`
 - 安装完成后`npm install @openzeppelin/contracts`后可以直接在solidity中进行引入
+- 提供了很多的帮助功能
+  - Ownable：增加管理员的管理功能，可以直接给方法添加onlyOwner即可实现只有管理员能够执行的方法
 
 ```solidity
+//SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ERC20Token is ERC20 {
-    constructor(uint memory totalSupply, string memory name, string memory symbol) ERC20(name, symbol) {
-        _mint(msg.sender, totalSupply);
+contract ERC20Token is ERC20, Ownable {
+		AnotherContract anotherContract;	// 可以声明另外一个contract，这样可以在方法里面直接调用它的方法
+
+    constructor(string memory name, string memory symbol, address initialHolder, uint256 initialSupply) ERC20(name, symbol) {
+        _mint(initialHolder, initialSupply);
+    }
+
+    function mint(address account, uint256 amount) public onlyOwner {
+        _mint(account, amount);
     }
 }
+
 ```
 
 ### [Solidity by Example](https://solidity-by-example.org/)

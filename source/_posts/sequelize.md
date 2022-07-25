@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2022-04-27 08:11:11
+updated: 2022-07-05 08:11:11
 categories: Javascript
 ---
 
@@ -67,6 +67,9 @@ const records = await sequelize.query("SELECT * FROM `users`", { type: QueryType
 
 ```javascript
 // 定义方式零，纯typescript的方式可以使用https://github.com/RobinBuschmann/sequelize-typescript
+@Column(DataType.VIRTUAL)
+accessToken: string;	// 添加virtual额外的字段
+
 
 // 定义方式一，typescript方式
 class PostModel extends Model {

@@ -464,6 +464,7 @@ username2 ALL=NOPASSWD:/usr/bin/git # 该用户可以执行'sudo git'的操作
 
 cat /etc/passwd  	# 查看所有用户
 cat /etc/group		# 查看所有用户组
+cat /etc/shadow	# 通过看是否有加密穿来判断是否给用户设置了密码
 
 # 将用户添加到组
 usermod -a -G groupName userName
@@ -761,7 +762,14 @@ sftp: 基于ssh协议的加密ftp传输协议
 vsftpd: ftp服务器，支持ftp协议，不支持sftp协议
 
 ```shell
-# 安装方法
+# sftp配置方法
+## 日志配置，配置了日志就有登录相关的日志了，甚至有操作相关的日志
+## 参考https://access.redhat.com/articles/1374633，可能程序名会不一样
+## sftp的登录日志不会出现在last等系统登录日志中
+echo "Subsystem   sftp    /usr/libexec/openssh/sftp-server -l VERBOSE -f LOCAL3" >> /etc/ssh/sshd_config
+echo "local3.*  /var/log/sftp.log" >> /etc/syslog.conf
+
+# vsftp安装方法
 yum install vsftpd	# centos
 apt install vsftpd	# ubuntu
 # sudo vim /etc/vsftpd/vsftpd.conf，ubuntu在/etc/vsftpd.conf 修改如下几项：

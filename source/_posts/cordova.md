@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2022-04-25 18:20:00
+updated: 2022-07-05 18:20:00
 categories: javascript
 ---
 
@@ -363,7 +363,9 @@ window.cordova.plugins.SignInWithApple.signin(
 
 ### [cordova-spotify](https://devdactic.com/ionic-spotify-app-native-spotify/)
 
-Cordova的Spotify插件
+- Cordova的Spotify插件
+
+- 如果是安卓，建议安装我fork的这个[cordova-spotify-oauth](https://github.com/haoflynet/cordova-spotify-oauth)，否则可能不起作用
 
 ## 插件开发Tips
 

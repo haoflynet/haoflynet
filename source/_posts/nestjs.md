@@ -1,6 +1,7 @@
 ---
 title: "Nestjs 使用手册"
 date: 2022-04-29 08:00:00
+updated: 2022-07-05 09:40:00
 categories: Javascript
 ---
 
@@ -137,7 +138,7 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
 
 - Migration: 由于migration和代码无关，也无需依赖注入，可以直接用sequelize-cli命令来创建维护即可，参考[Sequelize 使用手册](https://haofly.net/sequelize)
 
-- 配置，具体的数据表定义和用法可以参考[sequelize-typescript文档](https://github.com/RobinBuschmann/sequelize-typescript#readme)
+- 配置，具体的数据表定义和用法可以参考[sequelize-typescript文档](https://github.com/RobinBuschmann/sequelize-typescript#readme)以及我写的[Sequelize 使用手册](https://haofly.net/sequelize)
 
   ```javascript
   // app.module.ts的imports中进行引入
@@ -191,9 +192,7 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
   }
   ```
 
-## JWT认证
-
-- 可以直接参考[Authentication](https://docs.nestjs.com/security/authentication#jwt-functionality)
+## [JWT认证Authentication](https://docs.nestjs.com/security/authentication#jwt-functionality)
 
 - 需要注意文档里的[Enable authentication globally](https://docs.nestjs.com/security/authentication#enable-authentication-globally)配置是全局的配置，我们一般不会需要这样做，因为登录注册等接口是不需要token的
 
@@ -208,6 +207,13 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
   }
   ```
 
+## 开启CORS
+
+```javascript
+const app = await NestFactory.create(AppModule, { cors: true });
+await app.listen(3000);
+```
+
 ## OpenAPI/Swagger文档
 
 - [官方文档](https://docs.nestjs.com/openapi/introduction): 按照官方文档安装以来，然后直接替换main.ts即可
@@ -219,11 +225,13 @@ export class UserController {
     description: 'Signin success',
     type: UserResponseDto,// 响应的类型需要在这里定义
   })
+  @ApiResponse({ status: 201, description: 'The record has been successfully created.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })	// 可以定义多个response
   async signin(@Body() signDto: SigninDto): Promise<UserResponseDto> {}
 }
 
 class SignDto {
-  @ApiProperty({
+  @ApiProperty({ // 定义需要在API文档上展示的字段
     default: 'signin',	// 定义默认值
     enum: ['signin', 'signup'],	// 定义枚举值
     description: '', // 字段描述
@@ -233,3 +241,7 @@ class SignDto {
 }
 ```
 
+## 扩展文章
+
+- [NestJS Microservice 的微服务架构初探](https://juejin.cn/post/6844904178200870920)
+- [NestJS 微服务示例](https://zhuanlan.zhihu.com/p/372338721)

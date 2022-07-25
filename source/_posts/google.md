@@ -1,9 +1,11 @@
 ---
 title: "Google Cloud 相关服务"
 date: 2021-07-23 07:52:39
-updated: 2022-06-06 08:40:00
+updated: 2022-07-05 09:40:00
 categories: frontend
 ---
+
+- [Install the Google Cloud CLI](https://cloud.google.com/sdk/docs/install-sdk): google cloud cli工具安装方式
 
 ## Cloud Function
 
@@ -66,6 +68,25 @@ req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['f
 <!--more-->
 
 ## [firebase/firestore](https://haofly.net/firebase)
+
+## Google Fonts
+
+- 谷歌字体服务
+
+```shell
+# 支持多种字体可以加多个family参数
+https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata
+
+# 支持设置字体的weight
+https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900
+https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200..900
+https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,700
+```
+
+## Google Tag Manager(GTM)
+
+- 谷歌代码管理系统
+- 如果要在前端代码里面集成多种跟踪或者网站分析代码，以前的话就得添加多个代码片段，有了google tag manager，只需要添加一次，在google后台配置即可添加多个
 
 ## Logging
 

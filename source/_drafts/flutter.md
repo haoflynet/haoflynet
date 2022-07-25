@@ -1,8 +1,8 @@
-```
- brew tap dart-lang/dart
-$ brew install dart
- brew info dart
-	获取sdk位置
+```shell
+# 安装dart sdk
+brew tap dart-lang/dart
+brew install dart
+brew info dart	# 获取dart sdk的安装位置
 	
 	
 	Flutter是基于Dart语言的移动UI框架
