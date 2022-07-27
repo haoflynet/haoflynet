@@ -1,3 +1,9 @@
+---
+title: "Solidity 开发手册"
+date: 2022-07-26 12:02:30
+categories: system
+---
+
 ## 安装配置
 
 - 开发IDE: 我一般就直接用idea了，有solidity插件，但是以太坊有一个官方的IDE: [remix](https://remix.ethereum.org/)

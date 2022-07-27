@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-07-05 18:18:00
+updated: 2022-07-26 18:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -916,6 +916,14 @@ a = _.chain(arr).filter(n => n % 2 === 0).map(n => n * n).sum()
 a.value()	// 得到20
 arr.push(6)
 a.value()	// 得到56
+```
+
+##### _.cloneDeep
+
+- 深度克隆
+
+```javascript
+newObj = _.cloneDeep(oldObj);
 ```
 
 ##### _.countBy

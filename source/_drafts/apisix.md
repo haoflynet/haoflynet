@@ -7,3 +7,4 @@
 ## 插件
 
 ### [cors支持](https://apisix.apache.org/zh/docs/apisix/plugins/cors/)
+
