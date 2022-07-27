@@ -1,7 +1,7 @@
 ---
 title: "Nestjs 使用手册"
 date: 2022-04-29 08:00:00
-updated: 2022-07-05 09:40:00
+updated: 2022-07-26 15:40:00
 categories: Javascript
 ---
 
@@ -240,6 +240,12 @@ class SignDto {
   name: string;
 }
 ```
+
+## 常用扩展
+
+### [nestjs-command](https://www.npmjs.com/package/nestjs-command)
+
+- 可用于编写命令行工具或者写一个daemon进程都可以，集成非常方便，直接复制文档中的例子即可
 
 ## 扩展文章
 

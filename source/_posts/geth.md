@@ -45,19 +45,29 @@ admin.nodeInfo	# 获取当前节点信息
 admin.peers	# 获取peer节点信息
 net.peerCount	# 获取节点数量
 eth.blockNumber	# 查看当前区块数量
+eth.getBlock(eth.blockNumber - 1) # 获取指定块的详情，包括hash、difficulty, totalDifficulty(直到当前区块的所有difficulty的和)
 eth.getTransaction()
 eth.pendingTransactions	# 获取当前所有pending的transaction
 eth.coinbase	# 获取当前的矿工
 
-miner.setEtherbase(base)
-miner.start(1)	# 执行挖矿操作，参数是线程数
-
 web3 account extract --keyfile data/keystore/UTC--2022-03-16T02-29-14.506737237Z--XXXXXXXX --password XXXXXXXX # 获取在当前网络上创建的账户的私钥
 
 txpool.status # 查看当前pending和queued的transaction的状态
+txpool.content.queued
+txpool.inspect.queued	# 查看queued的transaction的gas price
 ```
 
 <!--more-->
+
+### 挖矿操作
+
+- 注意第一次挖会有`Generating DAG in progress`的操作，很慢，并且很耗CPU，这之后就好了
+- 挖矿难度`difficulty`，是一个动态变化的值，即使初始块为0，这之后也会越来越大的
+
+```shell
+miner.setEtherbase(base)
+miner.start(1)	# 执行挖矿操作，参数是线程数
+```
 
 ### 转账操作
 
@@ -123,6 +133,9 @@ miner.stop()	# 就能发现余额发生变化了
    
    # 如果已经初始化了，可以执行下面命令来启动
    geth --datadir data --networkid 15
+   
+   # 如果要重新初始化，需要先将之前的状态删除
+   rm -rf data/geth
    ```
    
 5. 启动以太坊私有测试链
@@ -145,7 +158,13 @@ miner.stop()	# 就能发现余额发生变化了
    --http.api	admin.debug,web3,eth,txpool,personal,ethash,miner,net	# 支持哪些http api
    --http.corsdomain '*'	# 允许哪些域名能够跨于连接
    --http.vhosts '*'	# 允许用哪些域名访问当前的network
-
+   --ws	# 启用websocket
+   --ws.addr value
+   --ws.port value
+   --ws.api value
+   --ws.rpcprefix value
+   --ws.origins value
+   
    # 然后需要另启一个终端，执行下面命令获取引导节点bootstrap node
    geth attach data/geth.ipc --exec admin.nodeInfo.enr
    ```

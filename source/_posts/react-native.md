@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-07-20 22:24:00
+updated: 2022-07-26 22:24:00
 categories: js
 ---
 
@@ -364,20 +364,18 @@ Share.share({	// 官方文档说android用message、ios用url，但经过我的�
 第三方库里面那些酷炫的效果均是通过动画来实现的
 
 ```javascript
-Animated.sequence([            // 首先执行decay动画，结束后同时执行spring和twirl动画
-  Animated.decay(position, {   // 滑行一段距离后停止
-    velocity: {x: gestureState.vx, y: gestureState.vy}, // 根据用户的手势设置速度
-    deceleration: 0.997,
-  }),
-  Animated.parallel([          // 在decay之后并行执行：
-    Animated.spring(position, {
-      toValue: {x: 0, y: 0}    // 返回到起始点开始
-    }),
-    Animated.timing(twirl, {   // 同时开始旋转
-      toValue: 360,
-    }),
-  ]),
-]).start();                    // 执行这一整套动画序列
+const top = useRef(new Animated.Value(100)).current;	// 将一个属性变为可以执行动画的属性
+
+<Animated.View>
+  <View style={{top}}></View>
+</Animated.View>
+
+top.setValue(1000);	// 当改变值的时候用setValue来执行，就能让改变变得平滑
+Animated.timing(top, {	// 也可以自定义执行时间
+  toValue: 1000,
+  duration: 500,	// 默认500
+  delay: 100,	// 默认为0
+}).start()
 ```
 
 ## 渲染JSX语法
@@ -418,6 +416,12 @@ const InfoText = ({ text }) => (		// 其中text是模板的参数
 import axios from 'axios';
 axios.get('...').then((response)=>(console.log(response.data))); // 得到响应结果，不用像fetch那样responseJson了
 ```
+
+## Debug
+
+- 如果是真机，可以通过摇一摇弹出debug菜单，但是基本上没啥用，最有用的可能就是Chrome里面调试了，至少能看到打印出来的object的详情
+
+- `LogBox`在`release/production`中是自动禁用的
 
 ## 常用插件推荐
 
