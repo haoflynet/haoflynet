@@ -1,4 +1,6 @@
-## Charts
+Charts
+
+- 目前我用到的`react-native`平台对`native`支持最好的表格组件了
 
 ### VictoryArea
 
@@ -14,6 +16,7 @@
     { x: 4, y: 4, y0: 2 },
     { x: 5, y: 6, y0: 2 }
   ]}
+  dataComponent={<Area />}	// 指那一块区域而不是某个点
 />
 ```
 
@@ -78,9 +81,7 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 </VictoryGroup>
 ```
 
-### VictoryLine
-
-- 折线图
+### VictoryLine折线图/线段
 
 ```jsx
 <VictoryLine
@@ -89,6 +90,21 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 	standalone={false}
 	data={data1}
 	interpolation={'natural'}
+  dataComponent={<Curve />}	// 指那一条线，而不是某个点
+/>
+```
+
+### VictoryScatter散点图
+
+- 如果想要展示或者高亮一个单独的点，可以直接用这个来就行了，它还支持丰富的点样式
+
+```jsx
+<VictoryScatter
+    style={{ data: { fill: "#c43a31" } }}
+    size={7}	// 指定点的大小
+    labels={({ datum }) => datum.y}
+    labelComponent={<VictoryLabel dy={8}/>}
+    data={[{x: 1, y: 1, symbol: 'star', size: 5}]}	// 可以针对某个点单独设置其形状和大小，形状包括star星星，square正方形，diamond菱形，circle圆形，triangleUp三角形
 />
 ```
 
@@ -151,3 +167,7 @@ containerComponent={
 ## 其他组件
 
 ### VictoryLabel
+
+## TroubleShooting
+
+- **[233, "RNSVGText",71...] is not usable as a native method argument**: 通常是由于表格中有变量没有赋初始值，得到了一个NaN造成的

@@ -155,6 +155,25 @@ class MyComponent extends React.Component {
 
 ## 组件
 
+### Animated动画
+
+第三方库里面那些酷炫的效果均是通过动画来实现的
+
+```javascript
+const top = useRef(new Animated.Value(100)).current;	// 将一个属性变为可以执行动画的属性
+
+<Animated.View>
+  <View style={{top}}></View>
+</Animated.View>
+
+top.setValue(1000);	// 当改变值的时候用setValue来执行，就能让改变变得平滑
+Animated.timing(top, {	// 也可以自定义执行时间
+  toValue: 1000,
+  duration: 500,	// 默认500
+  delay: 100,	// 默认为0
+}).start()
+```
+
 ### Button基础按钮
 
 这个组件的样式是固定的，如果需要自定义，那么高级的按钮参考`Touchable`系列
@@ -359,28 +378,10 @@ Share.share({	// 官方文档说android用message、ios用url，但经过我的�
 })
 ```
 
-## Animated动画
 
-第三方库里面那些酷炫的效果均是通过动画来实现的
+## JSX语法
 
-```javascript
-const top = useRef(new Animated.Value(100)).current;	// 将一个属性变为可以执行动画的属性
-
-<Animated.View>
-  <View style={{top}}></View>
-</Animated.View>
-
-top.setValue(1000);	// 当改变值的时候用setValue来执行，就能让改变变得平滑
-Animated.timing(top, {	// 也可以自定义执行时间
-  toValue: 1000,
-  duration: 500,	// 默认500
-  delay: 100,	// 默认为0
-}).start()
-```
-
-## 渲染JSX语法
-
-```tex
+```jsx
 // 使用循环
 <View>
     {this.state.voices.map((voice, index) => {
@@ -389,7 +390,7 @@ Animated.timing(top, {	// 也可以自定义执行时间
 			{voice.text}
 		</Text>
 		)
-	})}      
+	})}
 </View>
 
 // 定义模板(自定义标签)
@@ -401,10 +402,28 @@ const InfoText = ({ text }) => (		// 其中text是模板的参数
 <InfoText text="haofly"/>	// 使用模板
 ```
 
-## 相关ES6语法
+### 样式stylesheet
 
-```javascript
-// ES6里面必须显示绑定this，例如
+- [官方建议](https://reactnative.dev/docs/stylesheet)不要将stylesheet放在render函数中
+- 最好不同的组件使用不同的名称，不要全都用`styles`命名
+- 原生不支持scss那样的嵌套语法，好像也没有啥好用的嵌套方式，就是感觉原生就是不支持什么复杂的样式
+
+```jsx
+const page = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
+    alignItems: "center"
+  }
+})
+
+const typography = StyleSheet.create({
+  header: {
+    color: "#61dafb",
+    fontSize: 30,
+    marginBottom: 36
+  }
+})
 ```
 
 ## 网络请求
