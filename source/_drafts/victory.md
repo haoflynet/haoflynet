@@ -9,6 +9,7 @@ Charts
 ```jsx
 <VictoryArea
 	domain={{x: [minX, maxX], y: [minY, maxY]}}	// 可手动设置x和y轴的边界值
+  domain={{y: [minY, maxY]}}	// 也可以单独设置某个轴，和上面的一样，最小值和最大值必须不一样，否则会报一个prop type warning，就只能自己先设置默认值了
   data={[
     { x: 1, y: 2, y0: 0 },
     { x: 2, y: 3, y0: 1 },
@@ -50,6 +51,16 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 />
 ```
 
+#### 解决VictoryArea最后一个点的label被截断无法显示完整的问题
+
+- 参考[VictoryArea overflow labels be covered ](https://github.com/FormidableLabs/victory/issues/1725)
+
+```jsx
+<VictoryArea
+  groupComponent={<G />}	// 只需加一个这个就行
+/>
+```
+
 ### VictoryAxis
 
 - 坐标轴(有些图表自带了的，如果像自定义可以直接用这个)
@@ -64,6 +75,8 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
   offsetX={400}	// 横向坐标便宜量
 />
 ```
+
+### VictoryBoxPlot股票K线图
 
 ### VictoryGroup
 
@@ -111,6 +124,12 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 ## Containers
 
 ### VictoryChart
+
+```jsx
+<VictoryChart
+  height={300}	// 高度的默认值就是300
+/>
+```
 
 #### 隐藏坐标轴
 
