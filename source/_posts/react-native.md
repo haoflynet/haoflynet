@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-07-26 22:24:00
+updated: 2022-07-29 22:24:00
 categories: js
 ---
 
@@ -538,6 +538,8 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 ### [react-native-paper](https://callstack.github.io/react-native-paper/index.html)
 
 - material-ui在react-native平台的替代品，同样遵循material design
+- 在使用Menu.Item的时候，如果要自定义menu和整个container的高度，需要设置minHeight和maxHeight才行，不知道为啥container会默认设置为100，源码里没看到哪个地方有设置
+- `ActivityIndicator`就是一个loading图标，非常好用
 
 ## 开发原生相关问题
 
