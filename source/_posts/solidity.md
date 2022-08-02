@@ -1,6 +1,7 @@
 ---
 title: "Solidity 开发手册"
 date: 2022-07-26 12:02:30
+updated: 2022-08-01 12:00:00
 categories: system
 ---
 
@@ -127,3 +128,4 @@ contract ERC20Token is ERC20, Ownable {
 
 - **Type literal_string "WALLET_ADDRESS" is not implicity convertiable to expected type address**: 我这边是将`balances["0x..."]`改为了`balances[0x...]`就可以了 
 - **Please pass numbers as strings or BN objects to avoid precision errors**: 在solidity中，一般的数字都会要求使用字符串或者大数对象BN来表示，防止精度问题`web3.utils.toWei(String(123), 'ether')`
+- **Function has override specified but does not override anything**: override的时候参数多一个少一个居然报的是这个错误
