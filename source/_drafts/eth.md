@@ -49,7 +49,7 @@
 
 - A转给B，相当于改变了EVM状态的交易，需要广播到整个网络，任何节点都可以在EVM上广播交易请求，伺候矿工将执行交易并将由此产生的状态变化传播到网络的其他部分
 
-- 交易需要收费并且必须开采才能有效，包括Gas费和挖矿。Gas指矿工处理交易所需的蒜粒，用户必须为此计算支付费用，gasLimit和gasPrice决定支付给矿工的最高交易费用。关于Gas的计算可以参考[这里](https://ethereum.org/zh/developers/docs/transactions/#on-gas)
+- 交易需要收费并且必须开采才能有效，包括Gas费和挖矿。Gas指矿工处理交易所需的算力，用户必须为此计算支付费用，gasLimit和gasPrice决定支付给矿工的最高交易费用。关于Gas的计算可以参考[这里](https://ethereum.org/zh/developers/docs/transactions/#on-gas)
 
 - 一个交易包括下面信息:
 
