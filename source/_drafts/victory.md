@@ -102,7 +102,7 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 	labels={['']}
 	standalone={false}
 	data={data1}
-	interpolation={'natural'}
+	interpolation={'natural'}	// 默认是linear折线，natural表示平滑曲线
   dataComponent={<Curve />}	// 指那一条线，而不是某个点
 />
 ```
@@ -136,6 +136,7 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 ```jsx
 <VictoryChart>
   <VictoryAxis
+    tickLabelComponent={<></>}	// 如果不加这个，那轴上的坐标也是会显示的
     style={{
            axis: {
            display: 'none',
@@ -143,6 +144,7 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
     }}
   />
   <VictoryAxis
+    tickLabelComponent={<></>}
     dependentAxis
     style={{
            axis: {
