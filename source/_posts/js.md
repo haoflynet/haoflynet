@@ -240,7 +240,9 @@ dayjs('2018-10-1').isBefore('2018-1-1')	// 日期比较
 dayjs.extend(utc)
 dayjs.extend(timezone)	// 设置timezone需要extend这两个
 dayjs("").tz("America/New_York"))
+import duration from 'dayjs/plugin/duration';
 dayjs.extend(duration)
+import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime)	// 设置humanize需要extend这两个
 dayjs.duration(1, "minutes").humanize(); // a minute, 目前没有找到当1的时候为阿拉伯数字
 dayjs.duration(24, "hours").humanize(); // a day

@@ -1,7 +1,7 @@
 ---
 title: "Nestjs 使用手册"
 date: 2022-04-29 08:00:00
-updated: 2022-07-26 15:40:00
+updated: 2022-08-03 15:40:00
 categories: Javascript
 ---
 
@@ -251,3 +251,7 @@ class SignDto {
 
 - [NestJS Microservice 的微服务架构初探](https://juejin.cn/post/6844904178200870920)
 - [NestJS 微服务示例](https://zhuanlan.zhihu.com/p/372338721)
+
+## TroubleShooting
+
+- **测试的时候报错Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test.** 其他方法我试过不行，只能在`package.json`的`jest`下添加`"testTimeout": 60000`
