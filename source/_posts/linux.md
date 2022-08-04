@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-07-24 21:52:30
+updated: 2022-08-04 21:52:30
 categories: system
 ---
 # Linux手册
@@ -431,6 +431,7 @@ ntfs-3g /dev/sda5 /mnt/test	# 将windows的分区挂载到/mnt/test目录下面�
 
 # ncdu: 统计并查看磁盘空间使用量，可以按时间以及大小排序
 yum install ncdu
+du -h --max-depth=1	# 当ncdu统计出来的容量明显不对的时候只能用这个了
 
 # 查看磁盘读写情况，iostat
 sudo apt-get install sysstat -y

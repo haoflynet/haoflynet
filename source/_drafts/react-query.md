@@ -34,6 +34,7 @@ function App() {
   - 网络重新连接
   - 配置了最短refetch时间
 - 需要为不同的请求，设置唯一的key值，如果是带参数的，可以作为数组的第二个参数第三个参数即可，甚至可以是数字、object等对象。
+- 对于`enabled=false`的请求，如果之前已经缓存过数据了，那么会直接使用缓存的数据，并且`status === 'success', isSuccess=true`
 
 ```javascript
 const {
@@ -63,6 +64,28 @@ const { status, fetchStatus, data: projects } = useQuery(
   {
     enabled: !!userId, // 如果一个请求依赖于另外一个请求或者另外一个状态，可是用enabled参数，只有当enabled的时候才回去查询
     refetchOnWindowFocus: false, // 在窗口获得焦点的时候是否重新获取数据，默认为true。还可以使用focusManager.setEventListener自定义focus监听事件
+    retry : false, // 出错后不重试
+    retry: 6, // 设置出错后重试次数
+    retry: (failureCount, error) => {}, // 自定义出错后逻辑
+    retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000), // 设置重试的间隔时间
+    keepPreviousData: true, // 在翻页查询的时候不用一次又一次地loading
+    initialData: [], // 初始值，会保存在cache中
+    initialDataUpdatedAt: 1234567890,  // 使用某个时间戳的缓存数据来初始化
+    initialData: () => {	// 通过函数来初始化
+      return getExpensiveTodos()
+    },
+    initialData: () => {	// 从缓存中获取初始化值
+      return queryClient.getQueryData(['todos'])?.find(d => d.id === todoId)
+    },
+    placeholderData: [], // 默认值，和initialData不同的是它不会保存在cache中
+    placeholderData: useMemo(() => generateFakeTodos(), []), // 也可以是个函数
+    placeholderData: () => {	// 也可以从之前的缓存中取
+      return queryClient
+        .getQueryData(['blogPosts'])
+        ?.find(d => d.id === blogPostId)
+    },
+    staleTime: 1000,	// 在cache中的缓存时间
+    refetchInterval: 6000, // 设置自动刷新，自动刷新间隔时间
   }
 )
 ```
@@ -82,12 +105,68 @@ const userQueries = useQueries({
   })
 ```
 
+### useMutation
+
+- 写操作，比如create/update/delete等
+
+```javascript
+// 这里的mutation同样有isLoading、isSuccess，isError等状态
+const mutation = useMutation(newTodo => {
+  return axios.post('/todos', newTodo)
+})
+const mutation = useMutation(addTodo, {
+  onMutate: variables => {return newVariables},
+  onError: (error, variables, context) => {},
+  onSuccess: (data, variables, context) => {
+  	queryClient.invalidateQueries(['todos'])	// 可以在成功时让之前缓存的数据过期
+    queryClient.setQueryData(['todo', { id: variables.id }], data) // 可以在成功时直接设置新的缓存数据
+  },
+  onSettled: (data, error, variables, context) => {}
+})
+mutation.mutate({ 参数 }) // 当执行mutate方法的时候才会去执行
+await mutation.mutateAsync(todo) // 可以当Promise这样使用
+
+// 如果一次mutation请求后想要重置error或者data，比如submit失败，重新输入后需要清除那些错误状态
+mutation.reset()
+```
+
 ### useIsFetching
 
 - 全局的`isFetching`状态，表示当前是否有请求在后台执行
 
 ```javascript
 const isFetching = useIsFetching()
+```
+
+### useInfiniteQuery
+
+- 无限翻页查询
+
+### prefetchQuery/setQueryData
+
+- 预抓取
+- 如果该query已经在缓存中则不会执行，可以设置一个staleTime来指定时间
+
+```javascript
+const prefetchTodos = async () => {
+  await queryClient.prefetchQuery(['todos'], fetchTodos)	// 和正常的useQuery一样被缓存
+}
+
+queryClient.setQueryData(['todos'], todos) // 手动设置缓存数据
+```
+
+### invalidateQueries
+
+- 使缓存的数据过期
+
+```javascript
+queryClient.invalidateQueries()	// 过期所有
+queryClient.invalidateQueries(['todos'])	 // 过期指定的key
+
+// 下面两个都会失效
+const todoListQuery = useQuery(['todos'], fetchTodoList)
+const todoListQuery = useQuery(['todos', { page: 1 }], fetchTodoList)
+
 ```
 
 
