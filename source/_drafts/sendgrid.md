@@ -1,5 +1,7 @@
 sendgrid 手册
 
+- 原来是可以看到日志的，在`Activity`菜单，只不过得先点一下search才行
+
 ## 安装配置
 
 ```shell

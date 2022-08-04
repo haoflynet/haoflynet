@@ -1,7 +1,7 @@
 ---
 title: "Tailwind 开发手册"
 date: 2021-11-16 00:00:00
-updated: 2022-07-04 18:00:00
+updated: 2022-08-04 18:00:00
 categories: nodejs
 ---
 - 基本上是我现在开发新旧项目的必备工具了
@@ -370,3 +370,4 @@ select-none	# user-select:none，可选none、text、all、auto
 - [wickedblocks](https://wickedblocks.dev/): 免费的tailwindcss组件模板
 - [Flowbite](https://flowbite.com/docs/getting-started/quickstart/)：免费开源的tailwindcss组件
 - [HyperUI](https://www.hyperui.dev/): 免费开源的tailwindcss组件
+- [HYPERCOLOR](https://hypercolor.dev/): 可直接复制粘贴的tailwindcss渐变色组件Gradients for Tailwind CSS

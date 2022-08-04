@@ -1,7 +1,7 @@
 ---
 title: "Geth 搭建私链 private blockchain"
 date: 2022-03-18 18:00:00
-updated: 2022-06-30 18:34:00
+updated: 2022-08-04 18:34:00
 categories: eth
 ---
 
@@ -63,6 +63,7 @@ txpool.inspect.queued	# 查看queued的transaction的gas price
 
 - 注意第一次挖会有`Generating DAG in progress`的操作，很慢，并且很耗CPU，这之后就好了
 - 挖矿难度`difficulty`，是一个动态变化的值，即使初始块为0，这之后也会越来越大的
+- **至少要有一个矿工在挖矿并且挖出了矿，交易才能正常执行完成**
 
 ```shell
 miner.setEtherbase(base)
