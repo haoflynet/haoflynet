@@ -104,7 +104,7 @@ certbot delete # 删除所选择的证书
 ## 定时更新证书
 
 ```shell
-0 3 * * * certbot renew --post-hook "systemctl reload nginx"	# 更新完成后重启nginx
+0 3 * * * /usr/bin/certbot renew --post-hook "systemctl reload nginx"	# 更新完成后重启nginx
 0 3 * * * /usr/local/bin/certbot-auto renew --nginx	# 如果是certbot-auto可以这样做
 ```
 
