@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-07-26 18:18:00
+updated: 2022-08-05 18:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -248,6 +248,9 @@ dayjs.duration(1, "minutes").humanize(); // a minute, 目前没有找到当1的�
 dayjs.duration(24, "hours").humanize(); // a day
 dayjs.duration(1, "minutes").huminize(true);	// in a minute
 dayjs.duration(-1, "minutes").huminize(true);	// a minute ago
+
+// luxon
+dur().toHuman()	// 1 year, 2 months, 1 week, 3 days, 4 hours, 5 minutes, 6 seconds, 7 milliseconds, luxon的humanize简直不能看
 
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
 moment('2020-04-29 00:00:00');	// 直接解析，需要注意的是它不能解析时间只有一位的情况，例如'2020-04-29 0:0:0'
