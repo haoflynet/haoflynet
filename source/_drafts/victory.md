@@ -64,15 +64,16 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 ### VictoryAxis
 
 - 坐标轴(有些图表自带了的，如果像自定义可以直接用这个)
+- 如果要自定义一条看起来像横坐标或者纵坐标的线，可以直接用`VictoryLine`，`data`就是一个开始点一个结束点即可
 
 ```jsx
 <VictoryAxis
 	tickLabelComponent={<></>}	// 这样可以只显示坐标不显示坐标上的值
-	offsetY={160}	// 纵向坐标偏移量
+	offsetY={160}	// 纵向坐标偏移量，单位居然是px
 />
 <VictoryAxis
 	dependentAxis	// 好像这个就是纵轴
-  offsetX={400}	// 横向坐标便宜量
+  offsetX={400}	// 横向坐标偏移量
 />
 ```
 
@@ -98,7 +99,10 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 
 ```jsx
 <VictoryLine
-	style={{data: {stroke: '#2C74F6'}}}	// 设置线的颜色
+	style={{data: {
+    stroke: '#2C74F6',
+    strokeDasharray: '4,4', // 用虚线表示
+  }}}	// 设置线的颜色
 	labels={['']}
 	standalone={false}
 	data={data1}

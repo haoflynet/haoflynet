@@ -1,3 +1,8 @@
+---
+title: "React Query 使用手册"
+date: 2022-08-05 18:02:30
+categories: nodejs
+---
 - 非常好用的query库，目的是为了缓存后端api的结果，不用像以前一样，手动将结果一个一个存储到store，并且提供了一些非常好用的hook方法
 - 默认支持异步
 - 它并不是用于替代axios等请求库，而只是作为外层的封装，方便控制请求与结果
@@ -35,12 +40,16 @@ function App() {
   - 配置了最短refetch时间
 - 需要为不同的请求，设置唯一的key值，如果是带参数的，可以作为数组的第二个参数第三个参数即可，甚至可以是数字、object等对象。
 - 对于`enabled=false`的请求，如果之前已经缓存过数据了，那么会直接使用缓存的数据，并且`status === 'success', isSuccess=true`
+- query function要么返回内容，要么抛出错误，不能返回undefined，否则会返回一个warning: `query data cannot be undefined`
+
+<!--more-->
 
 ```javascript
 const {
   data,	// 实际的返回值
   error, // 错误对象
   status, // 可以是loading/error
+  refetch, // 用于重新获取数据的方法，可以直接调用refetch()对数据手动刷新
   fetchStatus, // 可以是fetching、paused、idle
   isFetching, // 如果是在后台获取数据，可以用这个来表示获取中的状态
   isLoading, isError, isSuccess} = useQuery(['todos'], fetchTodoList)}
@@ -93,6 +102,7 @@ const { status, fetchStatus, data: projects } = useQuery(
 ### useQueries
 
 - 写多个`useQuery`默认就是并发执行的，但是如果想要实现`Promise.all(users.map(async(user) => {}))`这样的并发可以使用`useQueries`
+- 返回的是一个list，每一个item都是一个useQuery的结果
 
 ```javascript
 const userQueries = useQueries({

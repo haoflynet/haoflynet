@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-07-29 22:24:00
+updated: 2022-08-05 22:24:00
 categories: js
 ---
 
@@ -61,7 +61,7 @@ this.setState({
 
 ```js
 // 指定固定的高度和宽度用width和height，React Native中的尺寸都是无单位的。
-<View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+<View style={{width: 50, height: '50%', backgroundColor: 'powderblue'}} />
 
 // 弹性的高度和宽度用flex。flex为1的时候表示撑满所有的剩余空间，如果多个并列子组件一起使用，则他们会平分空间，并且值越大所占比例就越大。例如
 <View style={{flex: 2, backgroundColor: 'skyblue'}} />
