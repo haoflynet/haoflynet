@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2022-07-05 10:50:30
+updated: 2022-08-08 10:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -178,6 +178,7 @@ npm update 包名		# 更新指定包
 npm install npm -g	# 升级npm
 npm install -g n && n stable # 升级node.js到最新稳定版
 升级node.js
+npm install --verbose # 显示debug日志
 
 npm config delete name	# 删除某个配置
 
@@ -203,13 +204,27 @@ yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
   2. 初始化`./node_modules/.bin/tsc --init`
   3. 最后使用`tsc`命令进行编译，将它放入`package.json`的`scripts`里面即可
   
+- 配置
+
+  ```json
+  {
+    "compilerOptions": {
+      "target": "es5", // 生成的代码的语言版本
+      "skipLibCheck": true,	// 跳过类型声明文件的类型检查
+      "allowSyntheticDefaultImports": true,	// 运行import x from 'y'这种操作，即使模块没有显示指定default的到处
+      "strict": true, // 开启严格模式
+    },
+    "include": ["src"],	// 搜索ts文件的路径
+  }
+  ```
+  
 - 函数定义
 
   ```javascript
   // 可变参数
   function test(field1: string, ...fields: string)
   ```
-  
+
 - 自定义类型:
 
   ```javascript

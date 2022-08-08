@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-08-05 22:24:00
+updated: 2022-08-08 12:24:00
 categories: js
 ---
 
@@ -443,6 +443,10 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 - `LogBox`在`release/production`中是自动禁用的
 
 ## 常用插件推荐
+
+### [Awesome React Native](https://github.com/jondot/awesome-react-native)
+
+- 包含很多的react native的插件扩展
 
 ### [customauth-react-native-sdk](https://github.com/torusresearch/customauth-react-native-sdk)
 
