@@ -1,6 +1,6 @@
-Charts
-
 - 目前我用到的`react-native`平台对`native`支持最好的表格组件了
+
+## Charts
 
 ### VictoryArea
 
@@ -188,6 +188,12 @@ containerComponent={
 	/>
 }
 ```
+
+## 公共属性
+
+ ### dataComponent
+
+- 是指坐标点的组件
 
 ## 其他组件
 
