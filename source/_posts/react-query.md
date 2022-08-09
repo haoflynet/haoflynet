@@ -49,7 +49,7 @@ const {
   data,	// 实际的返回值
   error, // 错误对象
   status, // 可以是loading/error
-  refetch, // 用于重新获取数据的方法，可以直接调用refetch()对数据手动刷新
+  refetch, // 用于重新获取数据的方法，可以直接调用refetch()对数据手动刷新，即使enabled=false也可以
   fetchStatus, // 可以是fetching、paused、idle
   isFetching, // 如果是在后台获取数据，可以用这个来表示获取中的状态
   isLoading, isError, isSuccess} = useQuery(['todos'], fetchTodoList)}

@@ -1,7 +1,7 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2022-07-20 14:37:00
+updated: 2022-08-09 12:37:00
 categories: system
 ---
 ## Android Studio 的使用
@@ -115,6 +115,8 @@ return loc;
   ```
 
 - **MacOs安装指定版本的jdk: ** https://www.azul.com/downloads/?package=jdk
+
+- **模拟器无法访问网络**： 可以尝试在AVD的管理面板上选择`Cold Boot Now`试试
 
 ##### 扩展阅读
 
