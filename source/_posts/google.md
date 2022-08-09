@@ -1,7 +1,7 @@
 ---
 title: "Google Cloud 相关服务"
 date: 2021-07-23 07:52:39
-updated: 2022-07-05 09:40:00
+updated: 2022-08-09 18:07:00
 categories: frontend
 ---
 
@@ -16,6 +16,15 @@ categories: frontend
 ```javascript
 req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['fastly-client-ip']	// 可以通过这种方式获取客户端IP地址
 ```
+
+## Cloud Scheduler
+
+- 定时任务
+- 配置说明：
+  - Max retry attempts: 失败重试的次数
+  - Max retry duration: 失败后的最长重试时间，看次数和时间哪个先到就停止
+  - Min/Max backoff duration: 两次重复间隔最短/最长时间
+  - Attempt deadline config：验证一个请求是否成功的最长等待时间，如果超过这个时间会显示失败，并得到一个UNKNOWN的错误
 
 ## Cloud Tasks
 
@@ -128,3 +137,4 @@ https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,700
 ## TroubleShooting
 
 - **Error: Cannot find module './middleware/cloudevent_to_background_event'**: 给我的感觉就是新版的sdk发布后老的只要是重新安装的就不能用，必须升级到最新版才可以
+- **Google Cloud Function出现错误Error: memory limit exceeded或者503 HTTP UNAVAILABLE**: 可能真的是内存超了，默认内存是128MB

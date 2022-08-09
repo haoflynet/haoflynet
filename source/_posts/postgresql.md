@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2022-07-05 08:45:00
+updated: 2022-08-09 12:45:00
 categories: Database
 ---
 
@@ -36,6 +36,9 @@ SELECT version();	# 获取数据库版本
 psql -U postgres -h xxx -w --password	# 使用命令行登录postgres数据库
 
 pg_dump -U username your_database > db_dump.bak	# 备份数据库
+
+SELECT * FROM pg_stat_activity;	# 检查当前有哪些session，哪些连接
+select pg_terminate_backend(pid) from pg_stat_activity; # 删除某个session
 ```
 
 ## 增删该查

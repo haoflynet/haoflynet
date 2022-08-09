@@ -250,6 +250,7 @@ dayjs.duration(1, "minutes").huminize(true);	// in a minute
 dayjs.duration(-1, "minutes").huminize(true);	// a minute ago
 
 // luxon
+DateTime.now();
 dur().toHuman()	// 1 year, 2 months, 1 week, 3 days, 4 hours, 5 minutes, 6 seconds, 7 milliseconds, luxon的humanize简直不能看
 
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
