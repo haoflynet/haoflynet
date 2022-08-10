@@ -1,7 +1,7 @@
 ---
 dtitle: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-08-04 21:52:30
+updated: 2022-08-10 09:52:30
 categories: system
 ---
 # Linux手册
@@ -794,6 +794,7 @@ usermod -s /usr/sbin/nologin ftpuser && echo "/usr/sbin/nologin" >> /etc/shells	
 
 # 常用命令
 ftp domain ip	# 连接目标ftp服务器
+sftp user@ip # 连接目标sftp服务器
 put a.txt		# 上传当前目录的一个文件
 mput ./*		# 同时上传多个文件
 dir	# 列出当前目录下的文件

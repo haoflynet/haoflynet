@@ -106,7 +106,7 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 	labels={['']}
 	standalone={false}
 	data={data1}
-	interpolation={'natural'}	// 默认是linear折线，natural表示平滑曲线
+	interpolation={'basis'}	// 默认是linear折线，basis平滑曲线，其他的其实都有差别，但说不上名字了，可以挨个试试：natural/basis/bundle/cardinal/catmullRom/monotoneY/monotoneX/step(电子信号那种)/stepAfter/stepBefore
   dataComponent={<Curve />}	// 指那一条线，而不是某个点
 />
 ```
