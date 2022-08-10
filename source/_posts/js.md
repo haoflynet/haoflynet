@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-08-05 18:18:00
+updated: 2022-08-10 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -251,6 +251,7 @@ dayjs.duration(-1, "minutes").huminize(true);	// a minute ago
 
 // luxon
 DateTime.now();
+today.toMillis() // 获取毫秒时间戳
 dur().toHuman()	// 1 year, 2 months, 1 week, 3 days, 4 hours, 5 minutes, 6 seconds, 7 milliseconds, luxon的humanize简直不能看
 
 // moment，更详细的操作文档可参见http://momentjs.cn/docs/#/displaying/
@@ -1087,6 +1088,16 @@ _.isEqual(a, b) // 可以比较两个Object是否相同
 ##### isNaN
 
 判断value是否是`NaN`
+
+##### _.nth
+
+- 获取数组/字符串指定索引的元素，可以用负数
+
+```javascript
+_.nth(arr, -1);	// 获取倒数第一个元素 
+_.nth(arr, -2); // 获取倒数第二个元素
+_.nth(str, -1);	// 获取字符串最后一个自负
+```
 
 ##### _.kebabCase
 

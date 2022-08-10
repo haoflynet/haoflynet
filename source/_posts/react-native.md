@@ -290,6 +290,15 @@ this.props.navigation.goBack()
 
 侧边弹出的抽屉效果
 
+### SafeAreaView
+
+- 使用改组件包裹可以自动实现异形屏的padding，也不用考虑android还是iOS
+
+```javascript
+import { SafeAreaView } from 'react-native'	// 如果不工作，就使用下面的方式
+import { SafeAreaView } from 'react-native-safe-area-context'
+```
+
 ### ScrollView滚动
 
 可以在该组件下面添加任意组件，能轻松实现几个组件的共同滑动
