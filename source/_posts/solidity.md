@@ -87,6 +87,32 @@ contract ERC20Token is ERC20 {	// 支持继承
 
 <!--more-->
 
+## 常用智能合约概念
+
+### ERC20
+
+### ERC721
+
+- 非同质化代币(NFT)
+
+- 标准方法：
+
+  - balanceof(address _owner): 只是返回账户拥有的NFT的数量
+  - ownerOf(uint256 _tokenId): 获取指定NFT token所属的账户地址
+  - safeTransferFrom: 将NFT从一个地址转移到另一个地址，from必须是自己的账户地址
+  - transferFrom
+  - approve：更改或者确认NFT的授权地址，授权将某个NFT转移到另一个账户
+  - setApprovalForAllgetApproved
+  - isApprovedForAll
+
+- 标准事件
+
+  - Transfer: 当NFT的所有权改变时触发该事件
+
+  - Approval：当更改或确认NFT的授权地址时触发
+
+    
+
 ## 智能合约代码库
 
 ### [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)
