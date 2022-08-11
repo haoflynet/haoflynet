@@ -1,7 +1,7 @@
 ---
 title: "Solidity 开发手册"
 date: 2022-07-26 12:02:30
-updated: 2022-08-01 12:00:00
+updated: 2022-08-11 21:00:00
 categories: system
 ---
 
@@ -20,6 +20,12 @@ brew install solidity
 
 ## 语法
 
+- 可见性修饰符(只能其中一种)
+  - public: 任何用户或者合约都能调用和访问
+  - private: 只能在本合约内部调用和访问
+  - external: 和public类似，不过只能在合约外调用，不能被合约内的其他函数调用
+  - Internal: 和private类似，不过可以在继承的子合约中调用副合约的函数
+
 - 函数修饰符
   - view: 可是使用合约中的变量，只是在本地执行，不会消耗gas，不会修改合约状态(例如修改变量、触发事件等)
   - pure: 只能使用局部的变量，入参或者方法内部的变量，既不读取状态，也不改变状态，同样是本地执行，不会消耗gas
@@ -31,7 +37,6 @@ brew install solidity
   - 状态变量：变量值会一直保存在合约的存储空间中
   - 局部变量：仅在函数执行过程中有效，函数退出后就无效了
   - 全局变量：保存在全局命名空间中的变量，用于获取区块链相关信息
-  
 - 内置全局变量
   - block.number(uint): 当前区块号
   - block.timestamp(uint): 当前区块的时间戳，等同于now
@@ -52,6 +57,8 @@ contract ERC20Token is ERC20 {	// 支持继承
 		
 		uint256 override amount; 
 		
+		mapping (address => bool) public wallets;	// 如果要存储一个list并且要判断其是否存在，没有直接的array判断方法，但是可以用这种mapping来实现，wallets[address]=true, requier(wallet[address], '')
+
 		struct Transaction {	// 创建一个结构体类型
 			address user;
 			uint timestamp;
@@ -89,12 +96,12 @@ contract ERC20Token is ERC20 {	// 支持继承
 
 ## 常用智能合约概念
 
-### ERC20
+### ERC20/BTC
 
-### ERC721
+### ERC721/NFT
 
 - 非同质化代币(NFT)
-
+- 每个NFT在链上其实就是一个uint256的token id，而**metadata信息则是存储中心化的外部的**，比如自己建的服务器或者S3这种图片服务存储中心，通过配置合约的`_baseURI`可以设置其url前缀，然后后面加上token id就是`tokenURI`了
 - 标准方法：
 
   - balanceof(address _owner): 只是返回账户拥有的NFT的数量
@@ -104,14 +111,12 @@ contract ERC20Token is ERC20 {	// 支持继承
   - approve：更改或者确认NFT的授权地址，授权将某个NFT转移到另一个账户
   - setApprovalForAllgetApproved
   - isApprovedForAll
-
 - 标准事件
 
   - Transfer: 当NFT的所有权改变时触发该事件
 
   - Approval：当更改或确认NFT的授权地址时触发
 
-    
 
 ## 智能合约代码库
 
