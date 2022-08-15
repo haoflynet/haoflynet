@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2022-07-05 16:30:00
+updated: 2022-08-15 16:30:00
 categories: frontend
 ---
 - [各种浏览器及系统的尺寸](http://chicun.jammy.cc/html/web.html)
@@ -318,7 +318,7 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 
 ##### text-decoration
 
-- `text-decoration: underline`添加下划线、下横线
+- `text-decoration: underline`添加下划线、下横线、删除线(line-through)
 
 ##### text-overflow
 
