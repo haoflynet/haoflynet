@@ -1,5 +1,18 @@
 - 目前我用到的`react-native`平台对`native`支持最好的表格组件了
 
+## 安装配置
+
+```shell
+npm install --save victory
+npm install --save victory-native	react-native-svg # react-native，注意还需要执行pod install
+
+
+# react-native需要忽略下面的warning
+LogBox.ignoreLogs([
+  "Require cycle: node_modules/victory",
+]);
+```
+
 ## Charts
 
 ### VictoryArea
@@ -132,6 +145,26 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 ```jsx
 <VictoryChart
   height={300}	// 高度的默认值就是300
+/>
+```
+
+#### 事件
+
+- 居然不能在外部直接包裹`Touchable*`等组件来实现全局的事件，包裹了，点击也没用
+
+```jsx
+<VictoryChart
+  events={[
+    {
+      childName: 'all',	// 可选all或者子组件的name
+      target: 'parent', // 可选parent、data、labels
+      eventHandlers: {
+        onPress: () => {	// 支持的事件都行，注意移动端和web端的不同就行
+          console.log('onPress');
+        },
+      },
+    },
+  ]}
 />
 ```
 

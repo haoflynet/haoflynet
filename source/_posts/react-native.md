@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-08-08 12:24:00
+updated: 2022-08-15 12:24:00
 categories: js
 ---
 
@@ -531,6 +531,13 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 
 - 能够用来持久化mobx等的状态，在应用退出后不会清空
 - `React-native iOS, Async storage error: "Invalid key - must be at least one character. Key: `出现这个错误是因为在getItem/setItem的时候key的值为空，需要修改一下，注意如果key的值修改后可能需要重新build才能生效
+
+### [react-native-bottom-sheet](https://www.npmjs.com/package/@gorhom/bottom-sheet)
+
+- 一个比较好用的底部弹出功能，drawer，抽屉
+- snapPoints: 定义弹出的区域的高度，这之外的地方不能点击
+- `enablePanDownToClose`: 向下滑自动关闭
+- 如果是多个sheet叠加显示，好像DOM后面的就是最上层
 
 ### [react-native-dotenv](https://github.com/goatandsheep/react-native-dotenv)
 
