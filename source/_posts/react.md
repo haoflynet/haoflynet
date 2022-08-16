@@ -12,8 +12,6 @@ categories: Javascript
 
 ## 状态管理
 
-### State
-
 ### Props
 
 <!--more-->
@@ -34,9 +32,11 @@ categories: Javascript
   } 
   ```
 
-### Effect Hook
+### Hooks
 
-- 副作用：数据获取、设置订阅、手动更改DOM
+#### useEffect
+
+- 副作用：数据获取、设置订阅、手动更改DOM，我们可以在函数组件中像类组件那样获取改变state
 
 - 可以把`useEffect Hook`看作`componentDidMount、componentDidUpdate、componentWillUnmount`这三个函数的组合，组件渲染完成后执行某些操作
 
@@ -92,6 +92,25 @@ function Example() {
   );
 }
 ```
+
+#### useMemo/useCallback
+
+- 两个比较类似，都是性能优化的手段，类似于类组件中的`shouldComponentUpdate`，在子组件中可以判断该组件的props和state是否有变化，避免服组件重新render的时候每次都重新渲染子组件
+
+- useMemo返回一个值，避免在每次渲染时候都重新进行计算
+
+  ```jsx
+  const data = useMemo(() => {复杂的计算过程}, [originalData]) // 这样除非originalData变了，否则父组件的改变不会引起子组件的变化
+  
+  // 如果一个useEffect依赖于某个需要计算的值，那么这个值最好被useMemo包裹
+  useEffect(() => {doSomething()}, [data]) // 这里应该监听data而不是originalData
+  ```
+
+- useCallback返回一个函数，当把它返回的这个函数作为子组件使用时，可以避免每次父组件更新时都重新渲染子组件
+
+  ```jsx
+  const myButton = useCallback(<Button>{label}</Button>, [label])                       
+  ```
 
 ### Ref
 
