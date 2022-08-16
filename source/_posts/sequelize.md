@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2022-07-05 08:11:11
+updated: 2022-08-15 08:11:11
 categories: Javascript
 ---
 
@@ -506,6 +506,10 @@ await User.update({
 }, {
   where: {id}
 })
+
+// 自增操作increment，自减操作decrement
+Model.increment('value', { by: 5, where: { id }})	// value的值自增5
+user.decrement('value', {by: 2})
 ```
 
 ### 删除操作

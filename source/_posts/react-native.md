@@ -27,8 +27,8 @@ categories: js
 npm uninstall -g react-native-cli	# 官方说不要用这个来初始化了，并且得卸载了，否则可能出现奇怪的问题
 npx react-native init testProject	--verbose # 新建项目目录，并初始化项目。命令会执行很久，且--verbose像没用似的，像卡死了一样
 npx react-native init testProject --version 0.68.2 --verbose	# 创建指定版本的项目
-npx react-native init aegis_app --template react-native-template-typescript --verbose	# 创建一个typescript的项目
-npx react-native init oai --template "react-native-template-typescript@6.10.*" --verbose	# 创建一个typescript的项目，指定版本
+npx react-native init testProject --template react-native-template-typescript --verbose	# 创建一个typescript的项目
+npx react-native init testProject --template "react-native-template-typescript@6.10.*" --verbose	# 创建一个typescript的项目，指定版本
 
 ## 运行项目
 cd testProject

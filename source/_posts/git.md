@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2022-03-17 18:21:00
+updated: 2022-08-15 18:21:00
 categories: tools
 ---
 # Git指南
@@ -463,3 +463,4 @@ fi
 
 - **The unauthenticated git protocol on port 9418 is no longer supported**: 将`git://github.com/xxx`修改为`https://github.com/xxx`
 
+- **Permission denied (publickey).fatal: Could not read from remote repository.Please make sure you have the correct access rights and the repository exists.** 权限问题，首先检查帐号是否真的有权限，然后可以用`GIT_SSH_COMMAND=‘ssh -v’ git clone `命令看下到底用的是哪个key

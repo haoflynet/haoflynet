@@ -1,7 +1,7 @@
 ---
 title: "Google Cloud 相关服务"
 date: 2021-07-23 07:52:39
-updated: 2022-08-09 18:07:00
+updated: 2022-08-15 18:07:00
 categories: frontend
 ---
 
@@ -9,6 +9,7 @@ categories: frontend
 
 ## Cloud Function
 
+- [不同配置的价格表](https://cloud.google.com/functions/pricing?hl=zh-cn)
 - 最大超时时间只能设置为540s=9min，实在不行可以用`Cloud Tasks` 队列，或者在时间快完的时候直接再调用一下url参数组织一下
 - [其他限制](https://cloud.google.com/functions/quotas): 常用的会有未压缩HTTP请求或响应的大小为10 MB
 - 为了减少函数的执行时间，我们需要尽量提升程序的启动时间，默认都是冷启动的，但是如果间隔时间很小，谷歌可能并没有销毁，这个间隔是谷歌自己控制的，并且是不一定的，所以你会发现如果启动时间长的函数，有时候处理得快有时候处理得慢。当然，谷歌也提供付费服务保证至少有几个实例在运行，如果不想用，还可以自己弄个定时任务去定时请求一次，不过当然那也算运行时间呀。
