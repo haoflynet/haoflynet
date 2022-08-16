@@ -1,7 +1,7 @@
 ---
 title: "使用hardhat部署智能合约"
 date: 2022-03-21 18:00:00
-updated: 2022-06-30 22:40:00
+updated: 2022-08-16 22:40:00
 categories: eth
 ---
 
@@ -96,7 +96,24 @@ const { expect } = require("chai");	// import { expect } from 'chai';
 import { ethers } from 'hardhat';
 
 describe("Token contract", function() {
+  let Token;
+  
+  // 代替beforeAll，这里面不能使用beforeAll，可以每个it里面都调用，只会执行一次
+  async function deployTokenFixture() {
+    Token = await ethers.getContractFactory("Token");
+    const [owner, addr1, addr2] = await ethers.getSigners();
+
+    const hardhatToken = await Token.deploy();
+
+    await hardhatToken.deployed();
+
+    // Fixtures can return anything you consider useful for your tests
+    return { Token, hardhatToken, owner, addr1, addr2 };
+  }
+  
   it("Test total supply to the owner", async function() {
+    await loadFixture(deployTokenFixture);
+    
     const [owner] = await ethers.getSigners();	// 这里只取了默认账户列表中的第一个账户，它也是默认的智能合约的owner
 
     const Token = await ethers.getContractFactory("Token");	// ContractFactory就是一个部署智能合约的工厂方法，这里并没有实际部署
