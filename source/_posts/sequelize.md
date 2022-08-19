@@ -223,7 +223,9 @@ Post.prototype.customQuery = () => {}
 - `sequelize`默认会给关联关系添加对应的读取方法，例如如果和user关联，那么会有`getUser`方法，而如果是一对多，或者多对多，那么会有`getUsers`方法，但是如果是`typescript`，就需要我们先将该方法声明一下
 
   ```javascript
-  public getUsers: BelongsToManyGetAssociationsMixin<UserModel>
+  public getUsers: BelongsToManyGetAssociationsMixin<UserModel>	// 懒加载
+  
+  await fooInstance.$get('bar');	// sequelize-typescript不使用include手动获取关联对象
   ```
 
 ### One to One一对一

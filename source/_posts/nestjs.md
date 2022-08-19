@@ -138,6 +138,8 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
 
 - Migration: 由于migration和代码无关，也无需依赖注入，可以直接用sequelize-cli命令来创建维护即可，参考[Sequelize 使用手册](https://haofly.net/sequelize)
 
+- 事务：[官方](https://docs.nestjs.com/techniques/database#transactions)不建议直接使用`@transaction`装饰器来包装事务，其实手动写也还好，因为需要用到事务的地方并不多
+
 - 配置，具体的数据表定义和用法可以参考[sequelize-typescript文档](https://github.com/RobinBuschmann/sequelize-typescript#readme)以及我写的[Sequelize 使用手册](https://haofly.net/sequelize)
 
   ```javascript

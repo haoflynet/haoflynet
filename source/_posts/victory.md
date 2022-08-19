@@ -1,3 +1,8 @@
+---
+title: "Victory - React Native图表库使用手册"
+date: 2022-08-17 15:02:30
+categories: nodejs
+---
 - 目前我用到的`react-native`平台对`native`支持最好的表格组件了
 
 ## 安装配置
@@ -33,6 +38,8 @@ LogBox.ignoreLogs([
   dataComponent={<Area />}	// 指那一块区域而不是某个点
 />
 ```
+
+<!--more-->
 
 #### Area颜色渐变
 
