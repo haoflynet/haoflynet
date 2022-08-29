@@ -659,6 +659,15 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
   KEY_PASSWORD=your_password
   ```
 
+- **Android Studio build签名APK的时候报错index.js not found**：可能是因为使用了typescript，文件现在是index.tsx，可以在`build.gradle`文件中指定`entryFile`:
+
+  ```javascript
+  project.ext.react = [
+      enableHermes: false,  // clean and rebuild if changing
+      entryFile: "index.tsx"	// 指定为tsx文件
+  ]
+  ```
+
 ##### 扩展阅读
 
 - 浅谈前端移动开发[(Ionic与React Native)](http://bbs.reactnative.cn/topic/420/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91-ionic-%E4%B8%8E-react-native)
