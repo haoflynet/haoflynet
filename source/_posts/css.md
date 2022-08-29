@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2022-08-15 16:30:00
+updated: 2022-08-29 16:30:00
 categories: frontend
 ---
 - [各种浏览器及系统的尺寸](http://chicun.jammy.cc/html/web.html)
@@ -1076,6 +1076,10 @@ video::-webkit-media-controls-panel {
    opacity: 1 !important;
 }
 ```
+
+#### 动态导入的font-family对动态的文字居然不起作用
+
+我的场景就是在canvas中添加文本，但是文本的字体在firefox中却不起作用。首先，如果只是在css中设置了font-face，那么只有在使用的时候才会去获取字体，可以尝试预加载，`<link rel="preload" as="font" href="/...ttf" type="font/ttf" crossorigin="anonymous"`，如果仍然不行，那么可以尝试在页面中添加一个使用该字体的文本，而且必须是显示的，不能隐藏，我不得不把的高度这些设置为0，然后颜色设置为背景色才做到。
 
 **扩展阅读**
 
