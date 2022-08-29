@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-08-15 12:24:00
+updated: 2022-08-29 12:24:00
 categories: js
 ---
 
@@ -561,6 +561,12 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 - 在使用Menu.Item的时候，如果要自定义menu和整个container的高度，需要设置minHeight和maxHeight才行，不知道为啥container会默认设置为100，源码里没看到哪个地方有设置
 - `ActivityIndicator`就是一个loading图标，非常好用
 
+### [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started/)
+
+- 测试框架
+
+
+
 ## 开发原生相关问题
 
 #### 在真实设备上调试以及打包到真实设备
@@ -667,6 +673,8 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
       entryFile: "index.tsx"	// 指定为tsx文件
   ]
   ```
+
+- **Android Studio报错：ERROR: Could not find method compile() for arguments**: 可能是依赖的包在调用老的java的api，找到错误日志中的文件，将`compile 'xxx'`修改为`implementation 'xxx'`
 
 ##### 扩展阅读
 

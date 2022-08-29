@@ -1,7 +1,7 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2022-08-17 12:37:00
+updated: 2022-08-29 12:37:00
 categories: system
 ---
 ## Android Studio 的使用
@@ -123,6 +123,18 @@ return loc;
   ```shell
   export PATH=~/Library/Android/sdk/tools:$PATH
   export PATH=~/Library/Android/sdk/platform-tools:$PATH
+  ```
+
+- **React Native build的APK居然还是需要metro在运行**： 直接build签名的release的apk
+
+- **error: package com.android.annotations does not exist**: 
+
+  ```shell
+  npm install --save-dev jetifier
+  npx jetify
+  
+  # 最后在package.json的scripts中添加
+  "postinstall": "npx jetify"
   ```
 
 ##### 扩展阅读
