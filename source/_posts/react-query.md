@@ -1,6 +1,7 @@
 ---
 title: "React Query 使用手册"
 date: 2022-08-05 18:02:30
+updated: 2022-08-29 22:40:00
 categories: nodejs
 ---
 - 非常好用的query库，目的是为了缓存后端api的结果，不用像以前一样，手动将结果一个一个存储到store，并且提供了一些非常好用的hook方法
@@ -72,7 +73,7 @@ const { status, fetchStatus, data: projects } = useQuery(
   ['projects', userId],
   getProjectsByUser,
   {
-    enabled: !!userId, // 如果一个请求依赖于另外一个请求或者另外一个状态，可是用enabled参数，只有当enabled的时候才回去查询
+    enabled: !!userId, // 如果一个请求依赖于另外一个请求或者另外一个状态，可是用enabled参数，只有当enabled的时候才回去查询，并且只要enabled满足条件会立马查询，如果不设置，每次进入页面也会立马查询，所以当把input作为条件的时候一定要看清楚，否则每次变化都会触发查询的
     refetchOnWindowFocus: false, // 在窗口获得焦点的时候是否重新获取数据，默认为true。还可以使用focusManager.setEventListener自定义focus监听事件
     retry : false, // 出错后不重试
     retry: 6, // 设置出错后重试次数
