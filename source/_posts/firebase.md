@@ -1,7 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
-updated: 2022-06-08 07:55:00
+updated: 2022-09-01 07:55:00
 categories: frontend
 ---
 
@@ -127,11 +127,16 @@ admin.messaging().sendToDevice('registrationToken', payload, { timeToLive: 120})
 <!--more-->
 
 - 证书配置在`firebase console -> Project settings -> Cloud Messaging -> ios app configuration`
-- 证书有两种，`APNs Authentication Key`和`APNs Certificates`，两者任选其一(如果两者都有默认会使用前者)，貌似现在更建议用前者，而且前者没有过期时间，可以参考这里[How to Create an iOS APNs Auth Key](https://developer.clevertap.com/docs/how-to-create-an-ios-apns-auth-key)，也是相当简单的，创建一个Apns的key，然后下载p8证书，然后上传到firebase后台即可，后者的话过期时间是一年。需要这样做：
-  1. Apple Developer后台，选择你的bundle id，然后点击里面的`Push Notification`权限的`Edit` 就能创建development和production证书了，但是创建证书需要一个Request文件，需要在你自己的电脑上创建这个文件才行
-  2. Mac -> Keychain -> 左上角菜单Keychain Access -> Certificate Assistant -> Request a Certificate From a Certificate Authority...
-  3. 创建后下载，然后上传到firebase后台即可
+- 证书有两种，两者任选其一(如果两者都有默认会使用前者)，貌似现在更建议用前者，而且前者没有过期时间
+  - `APNs Authentication Key`，develoepr后台`Certificates, Identifiers & Profiles -> Keys -> Create a key -> Apple Push Notifications service (APNs)`，申请完成后下载下来就是一个p8证书
+  - `APNs Certificates`，申请步骤
+    1. Apple Developer后台，选择你的bundle id，然后点击里面的`Push Notification`权限的`Edit` 就能创建development和production证书了，但是创建证书需要一个Request文件，需要在你自己的电脑上创建这个文件才行
+    2. Mac -> Keychain -> 左上角菜单Keychain Access -> Certificate Assistant -> Request a Certificate From a Certificate Authority... -> Saved to disk
+    3. Apple Developer后台 -> bundle id -> Push Notification configure -> Create Certificate -> Choose刚才创建的请求文件
+    4. 创建后下载，下载下来就是一个`aps.cer`的文件，然后上传到firebase后台即可，注意过期时间是一年
+
 - 要获取apple的team ID，需要在`Developer`后台点击`Membership`查看，参考[Locate your Team ID](https://help.apple.com/developer-account/#/dev55c3c710c)
+- 对于PHP的`edujugon/push-notification`库，步骤就还要复杂一点，这里是它官方的wiki: [APNS-Certificate](https://github.com/Edujugon/PushNotification/wiki/APNS-Certificate)，其中`apns-pro-cert.p12`的生成方法是打开keychain，然后切换到左边的`login`，再双击上面的第二种证书`aps.cer`就能导入到keychain了，然后在keychain里面信任该证书，就能导出为`*.p12`文件了，而`apns-pro-key.p12`同样来自于它，不用双击，而是点击左边的下拉选项，下面就是key了，导出成`*key.p12`即可。然后代码里面肯定是不能要密码的，参考wiki用`noenc`就可以了。弄完了后记得用wiki最下面的命令测试一下。如果代码使用的时候出现`Connection problem: stream_socket_client(): unable to connect to ssl://gateway.sandbox.push.apple.com:2195 (Connection refused)`多半是证书配置错了或者没开代理，记住修改证书后可能还有缓存，我尝试过`php artisan config:clear && php artisan cache:clear`都没用，最后直接在`config/pushnotification.php`配置中将`apn.certificate`指向了另外一个文件
 
 ### 移动端配置
 

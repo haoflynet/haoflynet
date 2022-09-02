@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-08-29 12:24:00
+updated: 2022-09-02 12:24:00
 categories: js
 ---
 
@@ -675,6 +675,10 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
   ```
 
 - **Android Studio报错：ERROR: Could not find method compile() for arguments**: 可能是依赖的包在调用老的java的api，找到错误日志中的文件，将`compile 'xxx'`修改为`implementation 'xxx'`
+
+- **Android Studio真机测试报错: Unable to load script. Make sure you're either running a Metro server (run 'react-natvie start') or that your bundle 'index.android.bundle' is packaged correctly for release.** 如果metro没打开就start，如果打开了，可以尝试执行这个命令: `adb reverse tcp:8081 tcp:8081`
+
+- **Could not resolve project :react-native-camera.**这是个已经没有维护的库了，参考[doc](https://github.com/react-native-camera/react-native-camera/blob/master/docs/migrationV2.md#android)，在`android/app/build.gradle`中添加`missingDimensionStrategy 'react-native-camera', 'general'`即可
 
 ##### 扩展阅读
 
