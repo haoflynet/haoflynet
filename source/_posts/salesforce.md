@@ -1,7 +1,7 @@
 ---
 title: "Salesforce 中文操作手册"
 date: 2022-06-30 08:02:30
-updated: 2022-07-22 12:40:00
+updated: 2022-09-05 14:10:00
 categories: system
 ---
 
@@ -35,6 +35,10 @@ categories: system
 - 对象的Record Types只是用于前端可以根据某个值来展示不同的表单，例如根据role来确定admin和user能设置哪些字段
 
 <!--more-->
+
+### Debug
+
+- 如果要对网站的用户进行debug，可以在`Setup -> Environments -> Logs -> Debug Logs`中进行设置，如果是调试sites的guest user，只需要new的时候选择指定的user即可
 
 ## [jsforce sdk](https://jsforce.github.io/)
 
@@ -81,19 +85,24 @@ conn.sobject("Contact")	// 类似ORM的查询方式
   .find(
     // conditions in JSON object，查询条件
     {
-      	LastName : {
+      LastName : {
       		$like : 'A%',
           $ne: null	// 不等于null
           $not: {	// 非
           	$ne: null
         	}
     	},
+  		$or: [
+  			{Name: {$like: "ha%"}},
+  			{Name: {$like: 'fly%'}},
+  		],
       CreatedDate: { $gte : jsforce.Date.YESTERDAY },
       'Account.Name' : 'Sony, Inc.' },
     // fields in JSON object，下面是需要取的字段
     { Id: 1,
       Name: 1,
-      CreatedDate: 1 }
+      CreatedDate: 1
+    },
   )
   .sort({ CreatedDate: -1, Name : 1 })
   .limit(5)
@@ -186,7 +195,18 @@ conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删�
 
 - **DUPLICATES_DETECTED**: 如果在Object Manager没有发现什么唯一键，可以在`Setup -> Data -> Duplicate Management -> Duplicate Rules`里面看看有没有什么检测重复的规则
 
+## 其他Packages配置
+
+### Survey Force
+
+- 一个调查问卷包，可以添加调查问卷给用户
+- 如果想要允许外部用户直接访问，那么需要新建sites，新建完成后按照文档修改权限，但是最后有一点需要注意的是创建Survey的时候那个可以复制的地址是代码里面写死的，如果需要修改就要去developer console修改其源代码，且生产环境不允许直接修改。有了sites后真实的访问地址是`${sites_url?id=xxxx` ，这里的ID就是那个survey的id
+- 其实其README中的配置步骤还是比较详细，就是可能salesforce后台的UI变了有些配置找不到地方，这里记录一下
+  - `Public Access Settings`和文档里面的描述不一样，`View Users`现在是点进`Assigned Users`里面设置，如果要修改那几个object的权限以及Apex Classes，需要在`Public Access Settings`里面设置`Apex Class Access`和` Object Settings`
+- 如果出现**Authorization Required**错误，多半是访问的url的问题，可能是id没有填
+
 ## Troubleshooting
 
 - **The requested resource no longer exists**: 可能是使用的rest api的版本太低了导致的，可以通过这个方式获取当前支持的API版本列表: [List Available REST API Versions](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_versions.htm)
 - **Unable to create/update fields: xxx. Please check the security settings of this field and verify that it is read/write for your profile or permission set**: 需要去检查一下这个字段的权限，在Setup -> Object Manager -> 选择Object再选择Fields，点击`Field Level Security`检查权限
+- **Can't alter metadata in an active org**：无法在生产环境直接修改部分代码，只能现在sandbox里面修改了同步过去
