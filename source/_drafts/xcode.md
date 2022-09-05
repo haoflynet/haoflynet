@@ -1,7 +1,7 @@
 ---
 title: "Xcode / iOS开发手册"
 date: 2018-06-05 21:32:00
-updated: 2022-07-26 09:36:00
+updated: 2022-09-05 15:36:00
 categories: Mac
 ---
 
@@ -32,6 +32,15 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
 ## 删除APP
 
 - 如果删除为提交过的app，那么它仍然会出现在列表中，非常烦，只能等半年后她自己清理了
+
+## Cocoapods/pod
+
+- 升级pod
+
+  ```shell
+  pod --version	# 查看pod版本
+  sudo gem install cocoapods	# 升级版本
+  ```
 
 ## TroubleShooting
 

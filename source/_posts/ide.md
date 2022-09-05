@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2022-01-13 08:26
+updated: 2022-09-05 14:26:00
 categories: 编程之路
 ---
 
@@ -182,6 +182,10 @@ https://black.readthedocs.io/en/stable/integrations/editors.html
 
 - 必须开启`FTP/SFTP Connectivity (ex. Remote Hosts Access)`插件并重启
 - `Tools->Deployment->Configuration`进行配置
+
+#### 连接数据库
+
+- 如果各种参数防火墙配置都没问题，依然连接就超时，可以尝试在连接设置里面的`Advanced -> useSSL`设置为`false`试试
 
 ### PhpStorm
 

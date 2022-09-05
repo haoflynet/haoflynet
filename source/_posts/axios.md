@@ -1,7 +1,7 @@
 ---
 title: "axios网络请求"
 date: 2021-09-23 18:32:00
-updated: 2022-07-05 08:34:00
+updated: 2022-09-05 16:34:00
 categories: javascript
 ---
 
@@ -128,3 +128,11 @@ axios({
 ## Troubleshooting
 
 - **curl正常，但是axios就是会报Request failed with status code 500错误**: 可能是因为用了代理，我发现有些接口不能用代理(例如https://graph.facebook.com/me?access_token)，只要用代理就报错，无论http还是https的代理，在代码里面设置proxy也会报错，反正就是不行，放在外网服务器就可以了，关键在cmd里面设置代理后用curl又是可以的
+
+- **Error: unable to verify the first certificate**，可以设置环境变量`NODE_TLS_REJECT_UNAUTHORIZED`
+
+  ```javascript
+  process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+  ```
+
+  

@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-09-02 12:24:00
+updated: 2022-09-05 14:24:00
 categories: js
 ---
 
@@ -325,6 +325,7 @@ TextInput默认宽度与父节点相同。如果想要其在没有文字的时�
     }}
     onChangeText={(text) => this.setState({text})}
     clearTextOnFocus={true}
+		keyboardType="numeric"	// 仅允许数字
     placeholder='请输入'	// 默认是灰色的
     value={this.state.text}
 />
@@ -561,11 +562,14 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 - 在使用Menu.Item的时候，如果要自定义menu和整个container的高度，需要设置minHeight和maxHeight才行，不知道为啥container会默认设置为100，源码里没看到哪个地方有设置
 - `ActivityIndicator`就是一个loading图标，非常好用
 
+### [react-native-text-input-mask](https://github.com/react-native-text-input-mask/react-native-text-input-mask)
+
+- 比如电话号码输入的mask模式
+- 如果出现**TypeError: null is not an object (evaluating 'RNTextInputMask')in v3.0.0**，需要添加这行配置到podfile文件: ``pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text', :modular_headers => true``
+
 ### [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started/)
 
 - 测试框架
-
-
 
 ## 开发原生相关问题
 
@@ -645,13 +649,22 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 
 - **输入框键盘挡住了部分视图**: 这时候需要使用`KeyboardAvoidingView`来包装一下`view`，该组件可以自动根据键盘的高度，调整自身的height或底部的padding来避免遮挡，有时候也需要再配合`ScrollView`来使用，注意它可以不需要在整个页面外层包装，可以只包裹住form那部分即可
 
-  ```javascript
+  ```jsx
+  import { useHeaderHeight } from '@react-navigation/elements'
+  const height = useHeaderHeight()
+  
   <KeyboardAvoidingView
   behavior={Platform.OS == "ios" ? "padding" : "height"}
   style={styles.container}
+  keyboardVerticalOffset={height + 47}	// 如果发现高度差那么一点可以这样设置
   >
     ...
   </KeyboardAvoidingView>
+  
+  <!--如果有时候KeyboardAvoingView不起作用，可以尝试https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view，例如用react-native-google-places-autocomplete的时候-->
+  <KeyboardAwareScrollView extraScrollHeight={75}>
+  	<GooglePlacesAutocomplete /> 
+  </KeyboardAwareScrollView>
   ```
 
 - **ARCHS[@]: unbound variable in Xcode 12或者YogaKit.modulemap not found**: 需要把`Build Settings -> Architectures -> Excluded Architecture`设置成这样(来自[Stackoverflow](https://stackoverflow.com/questions/64474801/archs-unbound-variable-in-xcode-12)): ![](https://i.stack.imgur.com/4RFTI.png)
@@ -690,4 +703,5 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 - [低仿映客直播](https://github.com/tion126/RNLive?utm_medium=email&utm_source=gank.io)
 - [双生——情侣应用](https://github.com/oh-bear/2life)
 - [基于 React Native 的跨三端应用架构实践](https://www.infoq.cn/article/vXkNh*HVrW7HUeiNdlsk)
+- [利用Github Actions来实现React Native的CI/CD](https://medium.com/@paramsingh_66174/ci-cd-pipeline-for-react-native-apps-98246237e29d)
 

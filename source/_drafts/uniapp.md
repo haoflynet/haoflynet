@@ -1,7 +1,7 @@
 ---
 title: "uniapp 开发手册"
 date: 2020-02-05 21:02:30
-updated: 2020-04-28 11:41:00
+updated: 2022-09-05 16:41:00
 categories: uniapp
 ---
 
@@ -137,7 +137,7 @@ uni.getLocation({
 
 ## uniCloud
 
-- 需要先创建云服务空间，然后关联云服务空间
+- 需要先创建云服务空间，然后关联云服务空间，阿里云的云空间是免费的，免费的额度都是没问题的
 - 但是论坛上还是大部分人持怀疑态度，毕竟长期的项目迭代，不应该绑定到一个商业平台上面来
 
 ### 云函数
@@ -151,6 +151,12 @@ uniCloud.callFunction({
   success: (res) => {
     this.title = res
   }
+})
+
+// 云函数内调用云数据库
+const dbJQL = uniCloud.databaseForJOL({event, context})	// 需要先这样初始化
+const res = await dbJQL.collection('user').where('id=2').get({	// 注意返回的记录在res.data里面
+  getOne: true,	 // 如果想只获取一条记录可以这样做
 })
 ```
 
@@ -183,6 +189,8 @@ addItem() {
 ```
 
 #### 权限控制
+
+- 默认所有权限都是false，可能会出现`未能获取当前用户信息: 30205 | 当前用户为匿名身份`的错误 
 
 ```json
 // user表的schema
