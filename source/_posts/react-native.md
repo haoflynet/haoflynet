@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-09-05 14:24:00
+updated: 2022-09-06 10:24:00
 categories: js
 ---
 
@@ -311,6 +311,15 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 ### StatusBar状态栏
 
+### Text
+
+```jsx
+<Text 
+	numberOfLines={2}	// 最多显示几行，多的会被隐藏
+  ellipsizeMode={'tail'}	// 多的显示省略号
+/>
+```
+
 ### TextInput输入框
 
 TextInput默认宽度与父节点相同。如果想要其在没有文字的时候也能占据宽度，可以设置`flex:1`并且父`View`也得设置`flex:1`
@@ -546,6 +555,10 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 - 需要注意的是，它是有缓存的，如果变量更改了记得参考文档清理cache
 - 如果使用的是typescript，最好参考文档使用`Option 2: specify types manually`
 
+### [react-native-drop-shadow](https://www.npmjs.com/package/react-native-drop-shadow)
+
+- 拖动的时候的阴影
+
 ### [react-native-iap](https://github.com/dooboolab/react-native-iap)
 
 - 用于google play和apple store的内购组件
@@ -561,6 +574,14 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 - material-ui在react-native平台的替代品，同样遵循material design
 - 在使用Menu.Item的时候，如果要自定义menu和整个container的高度，需要设置minHeight和maxHeight才行，不知道为啥container会默认设置为100，源码里没看到哪个地方有设置
 - `ActivityIndicator`就是一个loading图标，非常好用
+
+### [react-native-picker](https://github.com/beefe/react-native-picker)
+
+- 滚动时间或者select选择器
+
+### [react-native-qr-decode-image-camera](https://www.npmjs.com/package/react-native-qr-decode-image-camera)
+
+- 至少从图片里面解析二维码只有这个好用点
 
 ### [react-native-text-input-mask](https://github.com/react-native-text-input-mask/react-native-text-input-mask)
 
