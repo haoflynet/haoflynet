@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-08-10 08:18:00
+updated: 2022-09-06 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -99,6 +99,7 @@ arr.slice(0).reverse().map(function(){});	// 反向遍历数组，加个slice作
 $.each($array, function(k, v){});	// 遍历数组
 $.inArray('a', $arr): 判断数组是否包含某个元素
 delete a['a']	// 删除字典元素，如果用它来删除数组中的元素，删除完以后，数组总的长度不变，元素会被换成undefined，和php一样的坑
+delete a.b	// 同上
 
 Array.isArray(arr)	// 判断是否是数组，类似于其他语言的is_array
 Array.isArray(arr) && arr.length === 0	// 判断是否是空数组
@@ -734,6 +735,17 @@ $(document).ready(function);	// 当DOM已经加载，并且页面已经完全呈
   // 原生的ready方法
 })();
 ```
+### Canvas
+
+```javascript
+const c = document.getElementById('myCanvas')
+const ctx = c.getContext('2D')	// 创建一个可绘制的canvas画布
+ctx.font = ''	// 设置字体
+ctx.fillText('test', 10, 20)	// 填充文字
+ctx.fillStyle = 'red'	// 设置颜色
+ctx.textAlign = 'center'	// 文字水平居中
+```
+
 ### 特殊函数
 
 ```javascript

@@ -1,7 +1,7 @@
 ---
 title: "web3js 使用手册"
 date: 2022-04-14 18:02:30
-updated: 2022-08-02 12:00:00
+updated: 2022-09-06 12:00:00
 categories: eth
 ---
 
@@ -17,6 +17,14 @@ npm install web3 --save
 // 可以全局用
 var Web3 = require('web3');
 var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
+const web3 = new Web3(new Web3.providers.WebsocketProvider('WSS_ENDPOINT', {
+  reconnect: {	// 断开重连选项
+    auto: true,
+    delay: 5000, // ms
+    maxAttempts: 5,
+    onTimeout: false
+  }
+}));
 var eth = web3.eth
 
 // 也可以单独用某一个命名空间的

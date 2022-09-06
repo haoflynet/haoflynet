@@ -1,6 +1,7 @@
 ---
 title: "django-celery-beat定时任务配置"
 date: 2021-02-25 11:02:30
+updated: 2022-09-06 09:37:00
 categories: python
 ---
 
@@ -21,7 +22,7 @@ INSTALLED_APPS = (
 )
 
 CELERY_BROKER_URL = 'sqla+sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-CELERY_IMPORTS = ['schedules']	# 指定需要在哪些目录扫描定时任务
+CELERY_IMPORTS = ['schedules']	# 指定需要在哪些目录扫描定时任务，如果不添加则会出现 Received unregistered task of type 错误
 CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_RESULT_BACKEND = 'django-db'	# 这是下面的django-celery-results保存结果使用的
@@ -59,7 +60,6 @@ celery_app.autodiscover_tasks()
 ```python
 from 项目名.celery import celery_app
 
-
 @celery_app.task
 def my_cron_reminder():
     print(my_cron_reminder)
@@ -83,6 +83,7 @@ def my_cron_reminder():
 
 ```shell
 ./venv/bin/celery -A 项目名 worker --beat --scheduler django -l debug --logfile=/var/log/celery.log --detach
+# -c 1: 设置并发数量，默认是CPU的数量*2，这里设置为1其实也有两个
 ```
 
 ## 使用Django-Celery-Result保存定时任务执行结果

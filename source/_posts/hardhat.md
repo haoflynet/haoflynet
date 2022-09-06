@@ -1,7 +1,7 @@
 ---
 title: "使用hardhat部署智能合约"
 date: 2022-03-21 18:00:00
-updated: 2022-08-16 22:40:00
+updated: 2022-09-06 22:40:00
 categories: eth
 ---
 
@@ -36,7 +36,10 @@ npx hardhat	# 初始化hardhat项目，可以选择只生成配置文件
     networks: {
       reposten: {	// 如果要部署到其他网络需要在这里定义
       	url: `https://eth-ropsten.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
-      	accounts: [`0x${ROPSTEN_PRIVATE_KEY}`]
+      	accounts: [`0x${ROPSTEN_PRIVATE_KEY}`],
+        httpHeaders: {
+        	Authorization: `Bearer 自定义http header`,
+      	},
       },
       private: {
       url: 'http://127.0.0.1:8545',
@@ -141,7 +144,10 @@ async function main() {
 
   const Token = await ethers.getContractFactory("Token");
   const token = await Token.deploy();
-
+  
+  const MyContract2 = await ethers.getContractFactory('MyContract');
+  const contract2 = await MyContract2.attach('0xxxxxx');	// 直接使用已经部署的合约的地址来调用其方法
+  
   console.log("Token address:", token.address);
 }
 

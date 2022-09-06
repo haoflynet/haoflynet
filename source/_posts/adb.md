@@ -1,7 +1,7 @@
 ---
 title: "ADB: Android调试工具与自动化操作工具"
 date: 2018-03-12 21:32:00
-updated: 2020-07-26 15:29:00
+updated: 2022-09-06 15:29:00
 categories: android
 ---
 
@@ -41,7 +41,7 @@ adb shell netcfg	# 查看手机IP
 
 ```shell
 # 打印电源相关的信息
-adb shell dumpsys power	# mScreenOn=false表示当前为息屏状态
+adb shell dumpsys power	# mScreenOn=false表示当前为息屏状态或者看mHoldingDisplaySuspendBlocker
 ```
 
 ### 文件管理
@@ -58,10 +58,11 @@ adb pull 远程路径 本地路径	# 将设备上的文件复制到电脑
 ```shell
 adb shell pm list packages	# 列出所有的包名
 adb shell pm install -r $path/ES.apk	# 安装指定apk包
-adb shell am start -n 包名	# 打开指定应用
+adb shell am start -n 包名	# 打开指定应用，注意这里的包名不一定能直接打开，可能得再下面的详情里面找到首页的activity component
 adb shell dumpsys package 包名	# 查看指定包的详情，Activity等
 adb install apk文件	# 安装指定的apk文件到设备
 adb uninstall 软件包	# 卸载软件包
+adb shell ps	# 查看运行中的进程
 ```
 
 ### 应用内部管理
@@ -69,7 +70,7 @@ adb uninstall 软件包	# 卸载软件包
 - am(activity manager)
 
 ```shell
-am start -n com.estrongs.android.pop/com.estrongs.android.pop.view.FileExplorerActivity
+am start -n com.estrongs.android.pop/com.estrongs.android.pop.view.FileExplorerActivity	# 
 ```
 
 ### 输入文字
@@ -174,8 +175,6 @@ adb shell am broadcast -a ADB_INPUT_CODE --es code 67	# KEYCODE_DEL
 |          | KEYCODE_SHIFT_LEFT     | Shift + Left         |
 |          | KEYCODE_SHIFT_RIGHT    | Shift + Right        |
 
-
-
 ### 模拟触摸
 
 想要知道需要触摸的具体位置，可以打开安卓的开发者模式，然后将按键坐标打开。
@@ -201,3 +200,6 @@ adb pull /sdcard/screenshot.png /tmp	# 将截图拷贝到宿主机的/tmp目录
 adb shell getevent	# 监听触摸事件，但是只能监听用收点击屏幕，而不能监听用模拟器的事件
 ```
 
+## ToubleShooting
+
+- **java.lang.SecurityException: Injecting to another application requires INJECT_EVENTS permission**: 对于小米手机，除了打开USB 调试外，还要打开`USB调试（安全设置）`才允许进行操作
