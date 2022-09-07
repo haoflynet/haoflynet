@@ -519,7 +519,7 @@ product.template_suffix	// 返回产品的模板文件前缀，例如如果该�
 ## Shopify API开发
 
 - 要想调用API，首先要先在store里面创建一个APP，创建的时候需要选择相应的权限(`Access Scope`)，后面可以添加的。创建完成就能有API Key和Password了
-- 每个APP每分钟最多1000个请求，每秒最多50个请求，reset api每秒才2个，各个API的[频率限制](https://shopify.dev/api/usage/rate-limits，但是计算就有点迷了，特别是graphql有自查询的时候
+- 每个APP每分钟最多1000个请求，每秒最多50个请求，reset api每秒才2个，各个API的[频率限制](https://shopify.dev/api/usage/rate-limits)，但是计算就有点迷了，特别是graphql有自查询的时候
 
 ### [shopify graphql api](https://shopify.dev/api/admin-graphql#top)
 
