@@ -115,7 +115,7 @@ charge = await stripe.charges.refund(charge.id, {
 - 控制台有个[Connected accounts](https://dashboard.stripe.com/test/connect/accounts/overview)，好像就是转账给供应商或者服务提供商的，每个服务商会有一个account，里面那个示意图比较能说明其含义，提供服务的是第三方，相当于做了一个外卖系统，我们自己是外卖系统，客户是点餐的人，account就是商家
 - 控制台居然还能设置关联账户的提现方式Payout，是自动按周期提现还是通过API提现还是在控制台手动提现，可以用`accounts.update`接口来设置其payouts的方式
 
-- 表示一个`stripe`账户，你当前登陆的就是一个`account`
+- 表示一个`stripe`账户，你当前登陆的 就是一个`account`
 - 要创建`Account`的话，必须在`Connected accounts`里面启用才行
 - 需要注意使用API创建了用户，还有一些详细信息必须填入(这个可以在控制填写)，但是最后有一个`terms of service`必须使用API来`update`
 

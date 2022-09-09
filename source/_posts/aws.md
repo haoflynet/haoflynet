@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2022-07-05 09:54:00
+updated: 2022-09-08 09:54:00
 categories: Javascript
 ---
 
@@ -141,16 +141,22 @@ const config = {
 }
 
 const s3Client = new AWS.S3(config)
-s3Client.getObject({
+await s3Client.getObject({
   Bucket: config.bucket,
   Key: 'object path'
-}).promise().then(result => { console.log(result.Body) })
+}).promise()
 
-s3Client.putObject({
+await s3Client.putObject({
   Bucket: 'test',
   Key: 'abc/test1.png',
   Body: fs.readFileSync('./testimg/test.png'),
-}).promise().then(result => { console.log(result) })
+}).promise()
+
+await s3Client.copyObject({
+  CopySource: `${sourceBucket}/${encodeURIComponent(sourceName)}`,	// 注意这里最好用encode加一个转义，否则可能会出现错误：NoSuchKey: The specified key does not exist.
+  Bucket: 'targetBucket',
+  Key: 'targetName'
+}).promise()
 ```
 
 ### 开放S3桶的公共访问权限
