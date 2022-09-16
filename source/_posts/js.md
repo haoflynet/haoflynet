@@ -121,6 +121,8 @@ var a = 100;
 a.toString();	// 数字转字符串
 num.toString(8);	// 把数字转换为指定进制的字符串
 num.toFixed(2);	// 保留两位小数，我去会变成字符串，这个才是四舍五入，但是最好用lodash.floor
+
+obj%1 === 0	// 判断是否是数字
 ```
 ### 字符串
 
@@ -248,7 +250,7 @@ dayjs.extend(relativeTime)	// 设置humanize需要extend这两个
 dayjs.duration(1, "minutes").humanize(); // a minute, 目前没有找到当1的时候为阿拉伯数字
 dayjs.duration(24, "hours").humanize(); // a day
 dayjs.duration(1, "minutes").huminize(true);	// in a minute
-dayjs.duration(-1, "minutes").huminize(true);	// a minute ago
+dayjs.duration(-1, "minutes").huminize(true);	// a minute ago, react可以直接用react-timeago来计算
 
 // luxon
 DateTime.now();

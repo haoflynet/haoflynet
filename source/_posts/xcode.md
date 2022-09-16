@@ -1,9 +1,14 @@
 ---
 title: "Xcode / iOS开发手册"
-date: 2018-06-05 21:32:00
-updated: 2022-09-05 15:36:00
+date: 2022-09-15 21:32:00
 categories: Mac
 ---
+
+## Xcode常用操作
+
+### 模拟器打开keyboard键盘
+
+- 默认是不会弹出键盘的，直接用电脑的键盘进行输入，但是有时候想要调试一下键盘弹出的效果，可以点击顶部菜单`I/O -> Keyboard -> Toggle Software Keyboard`
 
 ## [Apple设计资源](https://developer.apple.com/design/resources/)
 
@@ -45,15 +50,34 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
 ## TroubleShooting
 
 - **Signing for "xxx" requires a development team. Select a development team in the project editor.**解决方法: 点击项目名->targets->General->Signing，选择自己的Team，选择后重新构建，如果仍然出现该错误，那么可以重启一下xcode或者更新一下xcode多次尝试。
+
 - **打包archive的时候签名报错XXX is automatically signed for development, but a conflicting code signing identity iPhone Distribution has been manually specified. Set the code signing identity value to "Apple Development" in the build settings editor, or switch to manual signing in the Signing & Capabilities editor.**：需要去`PROJECT -> BUILD SETTINGS -> COMBINED`中的`Signing->Code Signing Identity`的值从`iOS Developer`修改为`Apple Development`，还有`TARGETS -> Build Settings -> Combined`中的`Signing->Code Signing Identity->Release`的值从`iOS Developer`修改为Apple `Development`
+
 - **上传archive最后提示Missing private key**
+
 - **Run on device突然报错Errors were encountered while preparing your device for development. Please check the Devices and Simulators Window.**: 重启手机试试吧
+
 - **"XXXX" has 2 Apple Distribution certificates but their private keys are not installed. Contact the creator of one of these certificates to get a copy of the private key**: 可能是key过期了，去apple developer重新生成一个证书吧，下载下来安装上，但是得重启一下`xcode`
+
 - **push app 到appstore一直在processing**: 这个时候确实可以再push一个新版本，可能会更快
+
 - **ios模拟弱网环境**: 设置->开发者选项-> Network LINK CONDITIONER
+
 - **set the code signing identity value to apple development in the build settings editor**: 在`TARGETS -> Build Settings -> All`中搜索`signing` 即可，修改对应的值为`apple development`即可
+
 - **sandbox账户无法登录，提示要进入设置收验证码**: 无论怎样我都收不到验证码， 最后重新建了一个sandbox账户就可以了，sandbox在点击登录按钮登录的时候按理说是不用验证码的，直接就可以登录了。当然，必须得退出本机自身的apple id才行
+
 - **添加了测试设备后，Xcode依然无法安装**: 可能是因为Xcode没有及时更新云端的`Provisioning Profile`可以删除目录`~/Library/MobileDevice/Provisioning`，然后打包时候勾选`Automatically manage signing`，Xcode就会重新拉取了
+
+- **NSURLConnection SSL error**: 通常只需要在`Info.plist`中添加
+
+  ```shell
+  <key>NSAppTransportSecurity</key>
+  <dict>
+  	<key>NSAllowsArbitraryLoads</key>
+  	<true/>
+  </dict>
+  ```
 
 ## 扩展阅读
 

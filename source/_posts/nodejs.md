@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2022-08-08 10:50:30
+updated: 2022-09-05 21:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -188,6 +188,7 @@ npm config set proxy=http://127.0.0.1:1080 && npm config set proxy=https://127.0
 #### Yarn
 
 - `yarn`从`1.10x`开始会在`yarn.lock`中增加`integrity`字段，用于验证包的有效性
+- yarn真的笔npm快，而且每次lock文件的变动要少一些
 
 ```shell
 yarn add 包名	# 安装包
@@ -223,6 +224,21 @@ yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
   ```javascript
   // 可变参数
   function test(field1: string, ...fields: string)
+  ```
+
+- 常用类型
+
+  ```javascript
+  interface MyType {
+    [key: string]: string;	// mapping类型
+  }
+  
+  type MyType = {
+    username: string;
+    pass: string;
+  }
+  
+  type Type2 = keyof MyType;	// Type2会被解析为'username'|'pass'
   ```
 
 - 自定义类型:
@@ -337,6 +353,8 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
   ```
 
 - **Uncaught Error: ENOENT: no such file or directory, uv_cwd**: 检查一下当前目录是否还存在文件，node_modules这些目录是否还在
+
+- **error TS2694: Namespace 'NodeJS' has no exported member 'TypedArray'.**: 尝试`yarn add --dev @types/node`
 
 ##### 扩展阅读
 
