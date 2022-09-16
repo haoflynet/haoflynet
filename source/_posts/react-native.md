@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-09-06 10:24:00
+updated: 2022-09-15 10:24:00
 categories: js
 ---
 
@@ -332,6 +332,7 @@ TextInput默认宽度与父节点相同。如果想要其在没有文字的时�
            alignItem: 'center',
            textAlign: 'center',	// 这个才是输入框里面的文字居中
     }}
+    textContentType="oneTimeCode"	// 禁用自动填充，不显示键盘上面的password选项
     onChangeText={(text) => this.setState({text})}
     clearTextOnFocus={true}
 		keyboardType="numeric"	// 仅允许数字

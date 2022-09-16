@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2022-09-05 16:38:00
+updated: 2022-09-05 21:38:00
 categories: Javascript
 ---
 
@@ -524,6 +524,10 @@ export const actionCreators = createActions({
 });
 
 ```
+
+### [react-timeago](https://github.com/nmn/react-timeago)
+
+- 能够直接展示`1 hour ago / 2 days ago`等信息，不用去找啥时间组件了
 
 ### Styled-Components
 
