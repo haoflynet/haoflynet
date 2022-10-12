@@ -1,6 +1,6 @@
 ---
 title: "Xcode / iOS开发手册"
-date: 2022-09-15 21:32:00
+date: 2022-09-16 08:32:00
 categories: Mac
 ---
 
@@ -28,6 +28,8 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
    2. 点击`Product->Archive`，完成后会自动弹出一个对话框(当然，这个对话框也可以通过`Window->Organizer`打开，要选择对应的APP)
    3. 选择`Distribute App`，然后选择`App Store Connect`，再`Upload`，一直下一步应该就可以了。(如果打包能成功，但是上传却说认证失败，可能是网络问题)
    4.  上传完成后可以在`App Store Connect`后台的`TestFlight`看到刚才的build了，这时候可以去添加测试用户，点击左侧菜单`App Store Connect User`进行添加，添加方式见页面提示即可，很简单，添加完成后会发送邮件给用户，里面有个兑换码，在ios的testflightapp上点击redeem输入兑换码即可下载，如果下载时提示`the app couldn't be installed because testflight isn't available`，那就等大概五分钟试试
+
+<!--more-->
 
 ## App 迁移transfer
 
