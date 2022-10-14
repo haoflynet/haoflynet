@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2022-04-21 14:23:00
+updated: 2022-09-26 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -166,6 +166,8 @@ python:
 ```
 
 ### docker-compose常用命令
+
+- 新版的命令好像直接就是`docker compose`而不是`docker-compose`
 
 ```shell
 docker-compose stop		# 暂停所有容器

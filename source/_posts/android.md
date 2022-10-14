@@ -1,7 +1,7 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2022-08-29 12:37:00
+updated: 2022-10-13 15:37:00
 categories: system
 ---
 ## Android Studio 的使用
@@ -136,6 +136,16 @@ return loc;
   # 最后在package.json的scripts中添加
   "postinstall": "npx jetify"
   ```
+
+- **Type 'GoogleServicesTask' field 'intermediateDir' without corresponding getter has been annotated with @OutputDirectory**: 需要更新`com.google.gms:google-services`的版本，在Android Studio中打开`build.graddle`，修改如下代码:
+
+  ```java
+  dependencies {
+      classpath 'com.google.gms:google-services:4.3.10' // 在修改版本的时候编辑器会自动提示你最新的版本号的
+  }
+  ```
+
+- **Gradle sync failed: Syncfailed: reason unknown**: 尝试在SDK Manager中把29到33的SDK都安装上
 
 ##### 扩展阅读
 

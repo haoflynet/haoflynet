@@ -1,7 +1,7 @@
 ---
 title: "Salesforce 中文操作手册"
 date: 2022-06-30 08:02:30
-updated: 2022-09-05 14:10:00
+updated: 2022-09-23 14:10:00
 categories: system
 ---
 
@@ -14,6 +14,10 @@ categories: system
 #### 导出数据
 
 - `Setup -> Data -> Data Export -> Export Now -> Start Export`，大概等个5到10分钟就能在页面下载了
+
+#### 添加navigation菜单到首页
+
+- `Setup -> App Manager `，然后选择自己的首页的app，一般是`Force.com`，进入编辑页面就能看到`Choose the Tabs`设置了
 
 ### Sandbox
 
@@ -39,6 +43,10 @@ categories: system
 ### Debug
 
 - 如果要对网站的用户进行debug，可以在`Setup -> Environments -> Logs -> Debug Logs`中进行设置，如果是调试sites的guest user，只需要new的时候选择指定的user即可
+
+## [数据库客户端](https://pocketsoap.com/osx/soqlx/#Download)
+
+- 发现好多对象在后台看不了，但是用客户端或者sdk能看到
 
 ## [jsforce sdk](https://jsforce.github.io/)
 
@@ -81,6 +89,7 @@ conn.describeSObject('Account');	// 获取对象object的数据结构，包括re
 await conn.query('SELECT Id, Name FROM Account') // query语句能够实现简单的SQL(SOQL)查询
 await conn.sobject("Contact").count()	// 获取所有的记录数
 conn.sobject('Contact').count({})	// 统计指定条件的记录数，注意这里不是find再count，而是直接把条件放到count里面
+conn.sobject('Account').select('Id, Name') // 获取指定字段
 conn.sobject("Contact")	// 类似ORM的查询方式
   .find(
     // conditions in JSON object，查询条件

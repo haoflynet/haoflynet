@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2022-09-08 09:54:00
+updated: 2022-09-28 09:54:00
 categories: Javascript
 ---
 
@@ -10,6 +10,7 @@ categories: Javascript
 ## EC2
 
 - ubuntu系统默认用户为ubuntu，amazon系统默认的用户名为ec2-user
+- 默认会有12个月750小时的免费套餐，但是仅限个别低配类型
 
 ### 如何删除EC2实例
 
@@ -87,6 +88,10 @@ categories: Javascript
 - 弹性IP只要是绑定在运行中的ec2实例上就是免费的，所以如果仅仅是要一个不会随着机器状态变化的IP那么推荐用弹性IP而不是用负载均衡器
 - 当一个新建的弹性IP被关联到一个实例上的时候，该实例的公有IP地址也会变成一样的，不过之后如果实例重启公有IP会改变，弹性IP则不会了
 - 一个账号最多绑定5个弹性IP，超过了需要单独提交申请，所以有时候还是用elb代替吧
+
+### 安全组
+
+- 注意如果安全组的target设置为另外一个安全组，那么在访问另外一个安全组的实例的时候不能使用外网IP，只能用内网IP才行
 
 ### EC2配置Cloudwatch监控
 
@@ -313,6 +318,10 @@ email: $email
 
 - 通过`process.env.MY_ENV`获取环境变量
 
+- **注意如果有异步函数，一定要await它的返回，否则可能会在下一次触发的时候才执行**
+
+- 发现一个比较好用的库，可以实现打包、部署等操作: [motdotla/node-lambda](https://github.com/motdotla/node-lambda)
+
 - 如果需要安装依赖，要么创建`层`，要么就将`node_modules`一起压缩为`.zip`文件然后上传，可以使用`adm-zip`等方式压缩，但是这样会因为程序包太大而无法使用在线的内联编辑器
 
   ```javascript
@@ -384,6 +393,21 @@ const params = {
   TopicArn: 'arn:aws:sns:us-east-2:xxxxx:xxxxxxxxxx',	// 发送到指定的topic
 };
 const res = await new AWS.SNS({ apiVersion: '2010-03-31' }).publish(params).promise();
+```
+
+## SQS消息队列
+
+- 有两种消息队列
+  - 标准队列
+  - FIFO队列
+- 注意两种队列的消息在消费者获取到后都不会自动出队的，消费者需要在指定时间删除消息，否则消息会被其他消费者看到。可以在后台或者在接收消息的时候设置消息可见性时间，默认是30秒，即消费者在接收了消息后的30秒内如果没有删除消息，那么30秒后该消息同样能被其他的消费者获取到
+
+```javascript
+import {SQS} from 'aws-sdk'
+const client = new SQS()
+
+const message = await client.receiveMessage({QueueUrl: 'xxx', MaxNumberOfMessages: 1}).promise();
+await client.deleteMessage({QueueUrl: 'xxx', ReceiptHandle: message.ReceiptHandle}).promise();
 ```
 
 ## CodeDeploy/Pipeline
@@ -556,7 +580,7 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
           }).promise()
   ```
 
-## Cron表达式
+## Cron定时任务表达式
 
 - 很多地方都会用到cron表达式，比如cloudwatch、ebs生命周期管理器(lifecycle)
 - 和我们常规的linux的用法有点不一样，没有隔几天执行的方法，如果要实现只能在日期那里把一个月的写上

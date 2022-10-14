@@ -56,3 +56,7 @@ page
       console.log(`${request.failure().errorText} ${request.url()}`)
 	})
 ```
+
+## Troubleshooting
+
+- **Execution context was destroyed, most likely because of a navigation**: 如果有页面跳转或者刷新，需要等待其完成: `page.waitForNavigation({ timeout: 60000 })`

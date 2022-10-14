@@ -101,6 +101,7 @@ SELECT * FROM sfdc_contact WHERE "last_name"='Acevedo' AND "first_name"='Antonio
 
 # json字段查询
 SELECT * FROM users, jsonb_array_elements(users.data) r WHERE r->>'name' = 'value';	# 如果users表的data字段是一个数组，可以用这种方式查询数组的key value
+SELECT * FROM users WHERE data->>'FirstName' = 'haofly' ORDER BY id DESC LIMIT 50;	# 根据json的key查询
 ```
 
 #### 新增记录
