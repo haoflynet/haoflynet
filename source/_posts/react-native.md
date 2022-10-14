@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-09-15 10:24:00
+updated: 2022-09-22 08:24:00
 categories: js
 ---
 
@@ -303,10 +303,16 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 可以在该组件下面添加任意组件，能轻松实现几个组件的共同滑动
 
-```javascript
+```jsx
+const scrollViewRef = useRef<ScrollView>(null);
+
 <ScrollView
+	ref={scrollViewRef}
 	scrollEnabled={false}		// 禁用滚动
 ></ScrollView>
+
+scrollViewRef.scrollToEnd() // 滑动到底部
+scrollViewRef.scrollTo({x: 0, y: 100, animated: true})	// 滑动到指定位置
 ```
 
 ### StatusBar状态栏
@@ -332,7 +338,13 @@ TextInput默认宽度与父节点相同。如果想要其在没有文字的时�
            alignItem: 'center',
            textAlign: 'center',	// 这个才是输入框里面的文字居中
     }}
+    autoCapitalize="none"	// 禁用自动大写
     textContentType="oneTimeCode"	// 禁用自动填充，不显示键盘上面的password选项
+		returnKeyType="next"	// 定义keyboard键盘右下角的字体或样式，可选next、done、go、join、search、send等
+		onSubmitEditing={() => {
+      nextInputRef.current.focus();	// 如果上面的是next，并不会自动跳转，而是需要使用下一个input的ref来进行focus操作
+      Keyboard.dismiss();	// 隐藏键盘
+    }}
     onChangeText={(text) => this.setState({text})}
     clearTextOnFocus={true}
 		keyboardType="numeric"	// 仅允许数字

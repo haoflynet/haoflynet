@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2022-02-23 08:50:21
+updated: 2022-09-16 08:50:21
 categories: php
 ---
 # PHP
@@ -117,7 +117,7 @@ substr('abcdefg', -1); // 获取字符串最后一个字符
 nl2br() # 将字符串中的\n转换成网页的换行符<br>
 sprintf()	# 字符串格式化，需要注意的是，它不是用\转义，而是用的%来转义
 strlen() # 求字符串长度
-strpos('abc', 'a'); 	# 在字符串中查找第一次出现位置，没找到返回false
+strpos('abc', 'a'); 	# 在字符串中查找第一次出现位置，没找到返回false，注意如果第一个参数不是字符串，那么会返回null
 str_contains('abc', 'a');# 查找字符串是否出现在指定字符串中，php8.x开始的
 str_repeat('abc', n)	# 将字符串重复n次
 str_replace(搜索值，替换值，目标)	# 字符串替换，需要注意的是原字符串不会变化，返回的结果才是替换后的字符串
@@ -164,6 +164,11 @@ foreach ($data as [$id, $name]) {	// 循环中也能直接用
 }
                       
 urlencode($str);	// url encode编码
+
+// 将base64字符串转换为图片
+$file = fopen($filePath, 'wb');
+fwrite( $file, base64_decode( substr($base64String, strlen('data:image/png;base64,'), $base64String)) ));
+fclose( $file );
 ```
 ### 数字
 
@@ -194,10 +199,11 @@ hex2bin('843769807'); // 16进制转字符串
 ### 时间
 
 ```php
-time(): 获取当前时间戳，秒，10位数
+time(): 获取当前时间戳timestamp，秒，10位数
 microtime(); # 获取毫秒时间
 strtotime('2021-12-16 00:00:00'): 字符串转换为时间戳
 gmdate("Y-m-d\TH:i:s\Z"): 获取GMT时区的时间
+new DateTime('2022-09-20 00:00:00-05:00')->getTimestamp(); // 格式化时间为DateTime对象，并可以获取时间戳
 
 $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y')):获取今天开始时的时间戳
 $endToday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1:获取今天结束时的时间戳

@@ -1,6 +1,7 @@
 ---
 title: "Yii2 开发手册"
 date: 2021-11-15 18:02:30
+updated: 2022-09-16 08:44:00
 categories: php
 ---
 
@@ -215,6 +216,13 @@ class TestController extends Controller
 ## 帮助方法
 
 ```php
+Url::base();	// /path
+Url::base(true); // http(s)://example.com/path
+Yii::$app->urlManagerFrontend->createAbsoluteUrl(...);	// 创建全url路径
+
+// 获取绝对路径
+Yii::getAlias('@frontend/web/uploads/images/'.$fileName);
+
 // 生成绝对URL
 echo Url::to('@web/images/logo.gif');	// /images/logo.gif
 

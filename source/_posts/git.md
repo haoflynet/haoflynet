@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2022-08-15 18:21:00
+updated: 2022-10-12 18:21:00
 categories: tools
 ---
 # Git指南
@@ -457,7 +457,7 @@ fi
   export PATH="/Users/haofly/.nvm/versions/node/v15.3.0/bin:$PATH"	# 上面的配置还是不行那直接加到PATH吧
   ```
 
-- **Large files detected, ... recommended maximum file size of 50 MB**: github不允许超过50M的文件上传，只能存储在其他地方，但是已经`commit`倒本地的需要移出来，`git rm --cached 文件名 git commit --amend -CHEAD`
+- **Large files detected, ... recommended maximum file size of 50 MB**: github不允许超过50M的文件上传，只能存储在其他地方，但是已经`commit`倒本地的需要移出来，`git rm --cached 文件名 && git commit --amend -CHEAD`
 
 - **修改sourcetree保存的仓库密码**: 需要在macos的keychain中进行删除
 

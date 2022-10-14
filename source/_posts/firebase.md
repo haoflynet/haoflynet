@@ -1,7 +1,7 @@
 ---
 title: "Firebase/Firestore 使用手册"
 date: 2021-07-15 12:30:00
-updated: 2022-09-01 07:55:00
+updated: 2022-09-23 07:55:00
 categories: frontend
 ---
 
@@ -92,6 +92,23 @@ admin.initializeApp({
 
 ## Cloud Messaging(Push Notification/APNs)
 
+### fcm api
+
+- 最简单的测试方式
+
+```shell
+curl --location --request POST 'https://fcm.googleapis.com/fcm/send' \
+--header 'Authorization: key=server_key' \	# 这里填写server_key
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "notification": {
+        "title": "test",
+        "body": "testbody"
+    },
+    "to": "用户的fcm token"
+}'
+```
+
 ### [firebase-admin-node](https://github.com/firebase/firebase-admin-node)
 
 - 强烈建议在开发时先使用这个包进行测试，因为这个包能够返回非常详细的错误信息，特别是证书没配置对这些信息，而且这个包在使用代理的情况下工作很好，不会像移动端那样，有时候连代理不行，有时候不连代理不行
@@ -134,9 +151,10 @@ admin.messaging().sendToDevice('registrationToken', payload, { timeToLive: 120})
     2. Mac -> Keychain -> 左上角菜单Keychain Access -> Certificate Assistant -> Request a Certificate From a Certificate Authority... -> Saved to disk
     3. Apple Developer后台 -> bundle id -> Push Notification configure -> Create Certificate -> Choose刚才创建的请求文件
     4. 创建后下载，下载下来就是一个`aps.cer`的文件，然后上传到firebase后台即可，注意过期时间是一年
-
 - 要获取apple的team ID，需要在`Developer`后台点击`Membership`查看，参考[Locate your Team ID](https://help.apple.com/developer-account/#/dev55c3c710c)
-- 对于PHP的`edujugon/push-notification`库，步骤就还要复杂一点，这里是它官方的wiki: [APNS-Certificate](https://github.com/Edujugon/PushNotification/wiki/APNS-Certificate)，其中`apns-pro-cert.p12`的生成方法是打开keychain，然后切换到左边的`login`，再双击上面的第二种证书`aps.cer`就能导入到keychain了，然后在keychain里面信任该证书，就能导出为`*.p12`文件了，而`apns-pro-key.p12`同样来自于它，不用双击，而是点击左边的下拉选项，下面就是key了，导出成`*key.p12`即可。然后代码里面肯定是不能要密码的，参考wiki用`noenc`就可以了。弄完了后记得用wiki最下面的命令测试一下。如果代码使用的时候出现`Connection problem: stream_socket_client(): unable to connect to ssl://gateway.sandbox.push.apple.com:2195 (Connection refused)`多半是证书配置错了或者没开代理，记住修改证书后可能还有缓存，我尝试过`php artisan config:clear && php artisan cache:clear`都没用，最后直接在`config/pushnotification.php`配置中将`apn.certificate`指向了另外一个文件
+- 对于PHP的`edujugon/push-notification`库，步骤就还要复杂一点，这里是它官方的wiki: [APNS-Certificate](https://github.com/Edujugon/PushNotification/wiki/APNS-Certificate)，其中`apns-pro-cert.p12`的生成方法是打开keychain，然后切换到左边的`login`，再双击上面的第二种证书`aps.cer`就能导入到keychain了，然后在keychain里面信任该证书，就能导出为`*.p12`文件了，而`apns-pro-key.p12`同样来自于它，不用双击，而是点击左边的下拉选项，下面就是key了，导出成`*key.p12`即可。然后代码里面肯定是不能要密码的，参考wiki用`noenc`就可以了。弄完了后记得用wiki最下面的命令测试一下。如果代码使用的时候出现`Connection problem: stream_socket_client(): unable to connect to ssl://gateway.sandbox.push.apple.com:2195 (Connection refused)`多半是证书配置错了或者没开代理，记住修改证书后可能还有缓存，我尝试过`php artisan config:clear && php artisan cache:clear`都没用，最后直接在`config/pushnotification.php`配置中将`apn.certificate`指向了另外一个文件。
+  - 如果出现topic disallowed错误，可以尝试将topic修改为app的bundle id
+
 
 ### 移动端配置
 
@@ -402,3 +420,7 @@ res.end(Buffer.from(pdfStr, 'base64'));
 - **firebase发送消息出现`firebae Requested entity was not found.`**: 一般是证书没配置好
 - **MismatchSenderId**: 一般是证书选错了，可能选到了其他项目的证书，或者移动端选择了其他项目的证书
 - **Android更换google-services.json文件不生效**: 如果是android studio，需要`Buidl -> Rebuild Project`一下
+- **如果push notification在app那边无法注册**：可能原因有
+  - mobile没有开vpn
+  - google-service.json文件不对
+  - mobile不支持google service框架(**MISSING_INSTANCEID_SERVICE**)

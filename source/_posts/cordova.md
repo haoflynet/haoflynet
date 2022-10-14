@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2022-07-05 18:20:00
+updated: 2022-09-25 18:20:00
 categories: javascript
 ---
 
@@ -156,6 +156,8 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 - 如果有`position:absolute; bottom:0`这样的absolute/fixed组件，建议在不同屏幕上看一下，可能需要改为`bottom:env(safe-area-inset-bototm)`，否则可能仍然会跑到异形的地方去(注意背景色的不同)
 
 ## 常用插件推荐
+
+- [ionic官方插件列表](https://ionicframework.com/docs/native/in-app-purchase-2)
 
 - 很多插件的官方文档都不写插件在使用的时候的命名空间在哪里，可以尝试一下方法找一下:
 
