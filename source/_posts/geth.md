@@ -46,7 +46,7 @@ admin.peers	# 获取peer节点信息
 net.peerCount	# 获取节点数量
 eth.blockNumber	# 查看当前区块数量
 eth.getBlock(eth.blockNumber - 1) # 获取指定块的详情，包括hash、difficulty, totalDifficulty(直到当前区块的所有difficulty的和)
-eth.getTransaction()
+eth.getTransactionCount('0x0000000')	# 获取指定账户的transaction nonce值
 eth.pendingTransactions	# 获取当前所有pending的transaction
 eth.coinbase	# 获取当前的矿工
 

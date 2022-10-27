@@ -33,7 +33,7 @@ categories: system
 
 #### Table
 
-- 如果想要table中的某个列可以作为group用(多层级)，可以在table的`Dril Down`来进行`Group By`
+- 如果想要table中的某个列可以作为group用(多层级)，可以在table的`Drill Down`来进行`Group By`
 
 #### HTML Component
 
@@ -57,6 +57,7 @@ SUBSTITUTE_REGEX(@Column, "查找值", "替换值")	# 这个才和js中的replac
 
 SWITCH(data, case1, field, case2, field2, _default_, "默认值")	# 右边条件和结果两个两个成对
 
+LOOKUP(&Column: userId, @Table1_Column1, @Table1_Column2);
 LOOKUP(
 	CONCAT(@Table1_Column1, @Table1_Column2),
 	CONCAT(@Table2_Column1, @Table2_Column2),
