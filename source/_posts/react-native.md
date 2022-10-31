@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-09-22 08:24:00
+updated: 2022-10-31 08:24:00
 categories: js
 ---
 
@@ -571,6 +571,10 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 ### [react-native-drop-shadow](https://www.npmjs.com/package/react-native-drop-shadow)
 
 - 拖动的时候的阴影
+
+### [react-native-fs](https://github.com/itinance/react-native-fs)
+
+- 文件操作，下载文件，保存文件
 
 ### [react-native-iap](https://github.com/dooboolab/react-native-iap)
 
