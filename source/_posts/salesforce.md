@@ -1,7 +1,7 @@
 ---
 title: "Salesforce 中文操作手册"
 date: 2022-06-30 08:02:30
-updated: 2022-09-23 14:10:00
+updated: 2022-10-31 1740:00
 categories: system
 ---
 
@@ -39,6 +39,10 @@ categories: system
 - 对象的Record Types只是用于前端可以根据某个值来展示不同的表单，例如根据role来确定admin和user能设置哪些字段
 
 <!--more-->
+
+### 回收站Recycle Bin
+
+首页左上角搜索app里面有`Recycle Bin`，最近删除了的对象能在这里找到并恢复
 
 ### Debug
 
@@ -170,7 +174,7 @@ await conn.sobject("Account").retrieve(["0017000000hOMChAAO", "0017000000hOMChAA
 // 创建记录
 await conn.sobject("Account").create({ Name : 'My Account #1' });
 await conn.sobject("Account").create([{ Name : 'My Account #1'}, { Name : 'My Account #2'} ]); // 同时创建多条记录
-await conn.sobject("Account").create(accounts, {allowRecursive: true}); // 同时创建多条记录，默认一次最多200条，可以添加allowRecursive参数
+await conn.sobject("Account").create(accounts, {allowRecursive: true}); // 同时创建多条记录，默认一次最多200条，可以添加allowRecursive参数创建更多的记录
 
 
 // 更新记录

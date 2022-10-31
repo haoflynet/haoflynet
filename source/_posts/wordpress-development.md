@@ -1,7 +1,7 @@
 ---
 title: "wordpressd 插件开发手册"
 date: 2020-10-18 10:26:00
-updated: 2021-12-27 22:56:00
+updated: 2022-10-28 22:56:00
 categories: php
 ---
 
@@ -39,6 +39,17 @@ categories: php
 ## 帮助函数
 
 ### 用户相关函数
+
+#### wp_update_user
+
+- 更新用户指定字段，但不知道为什么，就是不能更新用户的`user_status`字段，最后我只能`$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->users} SET user_status = 1 WHERE ID = %d", $user->ID ))`来吧用户spam了
+
+```php
+wp_update_user([
+  'ID' => $userId,
+  'user_url => 'xxx',
+])
+```
 
 #### get_user_by
 

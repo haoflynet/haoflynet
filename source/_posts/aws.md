@@ -353,7 +353,7 @@ exports.handler = async (event, context) => {
 - [RDS MySQL中各种日志事件的详解](https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Tuning.wait-events.html)
 - **RDS出现too many connections错误**: 默认情况下，rds的最大连接数是根据内存计算得出的，可以在参数组里查看其计算方式，另外可以在mysql里执行`select @@max_connections`得到具体的数值。默认情况1核2G的实例我这边看最大值是45。可以自己创建一个新的参数组进行修改
 
-## IAM
+## IAM权限
 
 - 用户权限凭证管理
 - 如果要为aws sdk的api调用创建新的access key、access secret的话最好这样做:
