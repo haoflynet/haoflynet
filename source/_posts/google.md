@@ -1,7 +1,7 @@
 ---
 title: "Google Cloud 相关服务"
 date: 2021-07-23 07:52:39
-updated: 2022-08-15 18:07:00
+updated: 2022-11-03 18:07:00
 categories: frontend
 ---
 
@@ -26,6 +26,7 @@ req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['f
   - Max retry duration: 失败后的最长重试时间，看次数和时间哪个先到就停止
   - Min/Max backoff duration: 两次重复间隔最短/最长时间
   - Attempt deadline config：验证一个请求是否成功的最长等待时间，如果超过这个时间会显示失败，并得到一个UNKNOWN的错误
+- 居然遇到了trigger两次的bug，就一个任务在一个时间点居然trigger了两次，别人也遇到过https://stackoverflow.com/questions/71594174/cloud-scheduler-invokes-cloud-function-more-than-once-during-schedule，可能不能用http来trigger cloud function了
 
 ## Cloud Tasks
 

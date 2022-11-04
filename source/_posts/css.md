@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2022-08-29 16:30:00
+updated: 2022-11-03 16:30:00
 categories: frontend
 ---
 - [各种浏览器及系统的尺寸](http://chicun.jammy.cc/html/web.html)
@@ -421,6 +421,7 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### [attribute=value]
 
 - 例如`a[target=_blank]`表示选择所有`target`属性为`_blank`的`a`标签
+- div[style*="display:block"]选择有指定inline style的元素
 
 ##### [attribute~=value]
 
