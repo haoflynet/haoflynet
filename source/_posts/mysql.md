@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2022-06-05 08:44:00
+updated: 2022-11-04 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -171,6 +171,7 @@ SELECT * FROM table_name GROUP BY `field1`, `field2`;	# 分组显示，有多少
 # Having子句，与WHERE不同，它可以和一些统计函数一起使用
 SELECT name, SUM(money) FROM users GROUP BY name HAVING SUM(money)>23333 # 这一句就能查找出所拥有的资产综合大于23333的用户
 SELECT * FROM virtuals WHERE ip in (SELECT ip FROM virtuals GROUP BY ip HAVING COUNT(ip)>1);	# 可以统计所有有重复的数据
+SELECT * FROM users WHERE CONCAT(firstname, lastname) in (SELECT CONCAT(firstname, lastname) FROM users GROUP BY firstname, lastname HAVING COUNT(*)>1);	# 多个字段统计重复数据
 
 # 找出每个分组的最新的一条记录(目前我能找到的最有效的方法，虽然效率依然很低)
 SELECT table1.* FROM table1 LEFT JOIN table2 ON (table1.name = table2.name AND table1.id < table2.id) WHERE m2.id IS NULL;

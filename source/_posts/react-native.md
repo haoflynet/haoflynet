@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-10-31 08:24:00
+updated: 2022-11-03 08:24:00
 categories: js
 ---
 
@@ -599,6 +599,10 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 ### [react-native-qr-decode-image-camera](https://www.npmjs.com/package/react-native-qr-decode-image-camera)
 
 - 至少从图片里面解析二维码只有这个好用点
+
+### [react-native-share](https://github.com/react-native-share/react-native-share)
+
+- 弹出原生的分享组件，例如分享airdrop，保存到文件夹
 
 ### [react-native-text-input-mask](https://github.com/react-native-text-input-mask/react-native-text-input-mask)
 

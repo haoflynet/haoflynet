@@ -1,7 +1,7 @@
 ---
 title: "wordpressd 插件开发手册"
 date: 2020-10-18 10:26:00
-updated: 2022-10-28 22:56:00
+updated: 2022-11-03 22:56:00
 categories: php
 ---
 
@@ -133,12 +133,13 @@ while (have_posts()) {	// 遍历其结果
 
 - 获取当前遍历的对象的title
 
-### 全局类
+### 全局类/全局变量
 
 ```php
 # Wp类
 global $wp;
 home_url($wp->request); // 获取当前访问的完整路由url
+$_GET['abc']; // 直接获取url中的query 参数
 
 # Rewrite类
 global $wp_rewrite;	// 要调用该类的方法需要先声明一下

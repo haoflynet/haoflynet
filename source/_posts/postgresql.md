@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2022-08-09 12:45:00
+updated: 2022-11-04 12:45:00
 categories: Database
 ---
 
@@ -12,6 +12,7 @@ categories: Database
 ## 配置
 
 - 默认端口为5432，默认用户名为`postgres`
+- Mysql安装postgres命令行工具pg_dump等: `brew install libpq`
 
 ### 系统表
 
@@ -30,15 +31,20 @@ categories: Database
 ### 系统管理
 
 ```shell
+-- 注释 # 注释就用--来写
+
 SELECT version();	# 获取数据库版本
 
 # sudo apt-get install postgresql-client，命令行得先安装客户端，但是客户端的版本必须和服务端的版本一致，这就很麻烦了
 psql -U postgres -h xxx -w --password	# 使用命令行登录postgres数据库
 
-pg_dump -U username your_database > db_dump.bak	# 备份数据库
+select pg_size_pretty(pg_database_size('tablename')) as size;
+pg_dump -U username your_database > db_dump.bak	# 备份数据库，导出数据库
+psql -U postgres -h xxx 数据库名 < db_dump.back # 恢复restore数据库，该数据库需要先创建
 
 SELECT * FROM pg_stat_activity;	# 检查当前有哪些session，哪些连接
 select pg_terminate_backend(pid) from pg_stat_activity; # 删除某个session
+select pg_size_pretty(pg_database_size('dbname')) as size; # 查询数据库大小
 ```
 
 ## 增删该查
@@ -56,7 +62,15 @@ DROP DATABASE name; # 删除数据库
 # 如果是sql语句，必须加分号，且关键字必须大写
 CREATE DATABASE 数据库名;	# 创建数据库，那些
 CREATE USER 用户名 WITH ENCRYPTED PASSWORD '密码';	# 创建用户
+ALTER USER postgres WITH ENCRYPTED PASSWORD '新密码'; # 修改用户密码
 GRANT ALL PRIVILEGES ON DATABASE 数据库名 TO 用户名;	# 给用户分配某个数据库的权限
+
+# 给某个用户分配某个db的权限，注意这里的schema是固定写public，缺少权限可能报错ERROR: permission denied for relation tablename
+
+\c 数据库名;	# 写切到该数据库
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to username;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public to username;
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public to username;
 ```
 
 ### 数据表操作
