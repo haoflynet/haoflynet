@@ -10,21 +10,28 @@ categories: system
 
 - 生成能上传到google playstore的签名了的bundle文件(.abb格式)
 
-  -  `Build -> Generate Signed Bundle/APK`
+  - `Build -> Generate Signed Bundle/APK`，生成的时候记得勾选`Export encrypted key for enrolling published apps in Google Play App Signing`(导出的key的格式是pepk)
 
   - 如果是第一次上传，可以点击`Create new`生成一个新的keystore文件(一般会以.keystore或者.jks结尾)
 
   - 一个keystore可能包含多个alias的key，可以多次点击`Create new`来生成即可
 
-  - 如果之前已经上传了upload key到google play console里面，那么必须用之前的来生成才行，否则上传会提示SHA-1指纹不一致。可以在后台查看`Setup -> App Integrity -> Upload key certificate`看是否有了，注意这里的`Download certificate`只是下载公钥，没啥用的。
+  - 如果之前没有上传过google play console，那么在console里面直接新建一个release即可，不用先上传key这些
 
-  - 如果已经有上传证书并且丢失了的话，只能联系google重新生成一个了，[这里提交](https://support.google.com/googleplay/android-developer/contact/key)，下面有问题，选择完后会直接提示你重新生成一个keystore文件，并且导出为pem格式:
+  - 如果之前已经上传了**upload key certificate**到google play console里面，那么必须用之前的来生成才行，否则上传会提示SHA-1指纹不一致。可以在后台查看`Setup -> App Integrity -> Upload key certificate`看是否有了，注意这里的`Download certificate`只是下载公钥，没啥用的。
 
-    ```shell
-    keytool -genkeypair -alias upload -keyalg RSA -keysize 2048 -validity 9125 -keystore keystore.jks # 这条命令其实就是在Android studio里面Create new的功能
-    keytool -export -rfc -alias upload -file upload_certificate.pem -keystore keystore.jks
-    ```
-
+  - 如果已经有上传证书并且丢失了的话，只能联系google重新生成一个了(注意是**Upload key certificate**，而不是`App signing key certificate`)，在[这里提交](https://support.google.com/googleplay/android-developer/contact/key)或者页面的`contact our support team`，下面有一些问题
+  
+    - Is your app enrolled in Play App Signing by Google Play? 选择Yes，然后选择I have an upload key-related issue，然后选择I lost my upload key，选这个。会提示你生成一个新的.pem格式的文件，并且会直接给你生成的命令
+  
+      ```shell
+      keytool -genkeypair -alias upload -keyalg RSA -keysize 2048 -validity 9125 -keystore keystore.jks # 这条命令其实就是在Android studio里面Create new的功能
+      keytool -export -rfc -alias upload -file upload_certificate.pem -keystore keystore.jks	# 会生成PEM文件的
+      ```
+  
+    - ~~Is your app enrolled in Play App Signing by Google Play? 选择No，然后选择I lost my upload key，不要选这个，google说它不能重置，你必须创建新的app~~
+  
+  
   - 获取keystore的sha-1指纹: `keytool -list -v -keystore {keystore_name} -alias {alias_name}`
 
 ## Google Play Console的使用
