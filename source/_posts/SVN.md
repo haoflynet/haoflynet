@@ -41,8 +41,8 @@ svn revert -R ./	# 放弃本地所有的更改
 
 svn list URL	# 列出分支和tag
 svn checkout URL
-svn add file
-svn commit file1 file 2 -m "commit comment"	# 直接提交文件
+svn add file	# 把未跟踪的文件添加进来
+svn commit file1 file2 -m "commit comment"	# 直接提交文件
 
 svn update	# 更新svn仓库，相当于git pull
 svn log -l 10	# 列出最近10条提交记录
