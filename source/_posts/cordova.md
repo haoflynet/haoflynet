@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2022-09-25 18:20:00
+updated: 2022-11-11 18:20:00
 categories: javascript
 ---
 
@@ -67,7 +67,7 @@ corodva plugin add https://github.com/myproject#branch_name	# 从github安装指
 2. 在`vue/index.html`的`head`中添加内容:
 
    ```html
-   <meta http-equiv=”Content-Security-Policy” content="default-src ‘self’ data: gap: https://ssl.gstatic.com ‘unsafe-eval’; style-src ‘self’ ‘unsafe-inline’; media-src *; img-src ‘self’ data: content:; connect-src ‘self’ ws:;">
+   <meta http-equiv="Content-Security-Policy" content="default-src ‘self’ data: gap: https://ssl.gstatic.com ‘unsafe-eval’; style-src ‘self’ ‘unsafe-inline’; media-src *; img-src ‘self’ data: content:; connect-src ‘self’ ws:;">
    
    <script type="text/javascript" src="cordova.js"></script>
    ```
@@ -159,11 +159,15 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
 
 - [ionic官方插件列表](https://ionicframework.com/docs/native/in-app-purchase-2)
 
-- 很多插件的官方文档都不写插件在使用的时候的命名空间在哪里，可以尝试一下方法找一下:
+- 很多插件的官方文档都不写插件在使用的时候的命名空间在哪里，可以尝试一下方法找一下，找不到还有一个可能是插件没有注入进来，可以尝试rm然后重新add一下插件
 
   ```javascript
-  console.log(Object.keys(window.plugins))
-  console.log(Object.keys(window.cordova.plugins))
+  if (window.plugins) {
+    console.log('window.plugins', Object.keys(window.plugins))
+  }
+  if (window.cordova.plugins) {
+    console.log('window.cordova.plugins', Object.keys(window.cordova.plugins))
+  }
   console.log(Object.keys(window))
   ```
 
@@ -250,7 +254,7 @@ Google登陆插件，只不过需要获取很多的账号相关的信息，实�
 
 - `REVERSED_CLIENT_ID`需要在`firebase`的`Project settings`的app中获取，需要下载`GoogleService-Info.plist`，包含在里面的。安装完成后需要确保`REVERSED_CLIENT_ID`被加入到`XCode`中的`Resources/项目名-Info.plist`中的`URL types`中，其中`URL-identifier=REVERSED_CLIENT_ID`，`URL Schemes[0]=com.googleusercontent.apps.xxxxxxx` ，如果没有可以手动添加: ![](https://haofly.net/uploads/cordova_01.png)
 - `WEB_APPLICATION_CLIENT_ID`可以在`firebase`里新建一个`web app`取其ID或者直接在上面的`GoogleService-Info.plist`取`GOOGLE_APP_ID`
-- `Android`端的`webClientId`参数则是`firebase`的`android app`的`google-services.json`中的`client.oauth_client.client_id`
+- `Android`端的`webClientId`参数则是`firebase`的`android app`的`google-services.json`中的`client.oauth_client.client_id`(如果登录时返回一个错误码10有可能就是这个client id没有填对，或者是下面的fingerprints没有被添加到firebase里面去)
 - `Android`端现在可以不用`google-service.json`文件了(如果有用到firebase还是需要的，否则会出现错误:**No matching client found for package name**)，但是需要这样做
   1. 本地生成一个SHA1的key: `keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore -list -v`，这里的`~/.android/debug.keystore`是`keytool`的地址，安装了`Android Studio`就自动有的
   2. 在`Firebase -> Project Overview -> Project settings -> General`新建`Android apps`，并将上一步生成的SHA1添入到该APP下的`SHA certificate fingerprints`中
@@ -449,6 +453,10 @@ window.cordova.plugins.SignInWithApple.signin(
 - **package IInAppBillingService does not exist**: [AlexDisler/cordova-plugin-inapppurchase](https://github.com/AlexDisler/cordova-plugin-inapppurchase/issues/239)插件报的错，这个插件已经被`archived`了，不建议使用，修复可以尝试`mkdir -p platforms/android/app/src/main/aidl/com/android/vending/billing && cp platforms/android/src/com/android/vending/billing/IInAppBillingService.aidl platforms/android/app/src/main/aidl/com/android/vending/billing/`
 
 - **编译安卓的时候报错Cannot read property 'version' of null**: 尝试删除重新生成目录`cordova platform rm android && cordova platform add android`
+
+- **Cannot find 'GIDConfiguration' / No type or protocol named 'GIDSignInDelegate'**没什么特别的办法，自己尝试不同的Google或者firebase的pod版本吧，太难了
+
+- **script error**: js的错误，如果能在vue那边调试最好在那边调试，在cordova这边的话基本调试不了，只能自己加断点或者日志了
 
   
 
