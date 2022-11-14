@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-09-06 08:18:00
+updated: 2022-10-15 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -42,6 +42,7 @@ const [a, ...b]	= [1, 2, 3, 4]	// a=1, b=4	解构赋值
 ```javascript
 object instanceof constructor	// 判断某个对象是否属于某个类
 var copyObj = Object.assign({}, original_obj);	// 对象的深拷贝，直接用等于赋值是浅拷贝
+var copyObj = Object.assign({}, new Obj); // 直接将字典赋值给对象，或者叫拷贝对象
 Object.keys(obj);	// 获取对象所有的key，返回一个数组
 Object.values(obj); // 获取对象所有的value，返回一个数组
 Object.entries(obj); // 获取对象所有的键值对，返回一个数组，例如{a:123,b:233}, 会返回['a':123], ['b': 233]

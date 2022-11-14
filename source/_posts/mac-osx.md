@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2022-06-14 08:04:00
+updated: 2022-11-12 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -116,6 +116,10 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 
 1. iPad数据线连接Mac
 2. Mac上打开QuickTime Player，然后选择`File -> New Movie Recording`，在中间录像按钮边上点开的下拉菜单选择你的设备
+
+## 安装python2或者python3
+
+不要期待brew，最好直接从官网下载对应版本的dmg文件安装，都可以直接安装的
 
 ## Mac OS降级
 
