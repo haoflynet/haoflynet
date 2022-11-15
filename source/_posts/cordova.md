@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2022-11-11 18:20:00
+updated: 2022-11-14 18:20:00
 categories: javascript
 ---
 
@@ -434,29 +434,19 @@ window.cordova.plugins.SignInWithApple.signin(
 ## TroubleShooting
 
 - **应用启动一直白屏**: 网上有很多解决方法，都试过，我最后的解决方法是把系统语言切换成英文解决了
-
 - **pod: Command failed with exit code 31**: 尝试执行一下`pod repo update`，如果是`Apple Silicon`，那么需要使用`arch -x86_64 zsh`
-
 - 删除`node_module`可以解决的一些问题:
   - **Cannot find module './elementtree'**
-  
 - **Current working directory is not a Cordova-based project.**: 可能是`www`目录不见了
-
 - **new Date('2020-04-29 00:00:00')输出Invalid Date**: 目前我个人只在ios上复现过，vue直接运行没问题，但是真机上却是`Invalid Date`，用moment代替吧
-
 - **'GoogleService-Info.plist' was not found in your Cordova project root folder**: 如果是这样，首先检查是否有该文件，如果确实有还是报错，那么可以在`XCode`中手动添加，右键项目的`Resource->Add Files to "项目名"`选择`GoogleService-Info.plist`即可
-
 - **开启应用显示The connection to the server was unsuccessful**: 可以在`config.xml`中添加`<preference name="loadUrlTimeoutValue" value="60000" />`具体原因不知道为啥，至少能用
-
 - **File google-services.json is missing**: 从`firebase`下载`google-services.json`文件，然后复制到`platforms/android/app`下面去
-
 - **package IInAppBillingService does not exist**: [AlexDisler/cordova-plugin-inapppurchase](https://github.com/AlexDisler/cordova-plugin-inapppurchase/issues/239)插件报的错，这个插件已经被`archived`了，不建议使用，修复可以尝试`mkdir -p platforms/android/app/src/main/aidl/com/android/vending/billing && cp platforms/android/src/com/android/vending/billing/IInAppBillingService.aidl platforms/android/app/src/main/aidl/com/android/vending/billing/`
-
 - **编译安卓的时候报错Cannot read property 'version' of null**: 尝试删除重新生成目录`cordova platform rm android && cordova platform add android`
-
 - **Cannot find 'GIDConfiguration' / No type or protocol named 'GIDSignInDelegate'**没什么特别的办法，自己尝试不同的Google或者firebase的pod版本吧，太难了
-
 - **script error**: js的错误，如果能在vue那边调试最好在那边调试，在cordova这边的话基本调试不了，只能自己加断点或者日志了
-
-  
+- **修改Andorid的Gradle的版本**：可以直接在`android\gradle\wrapper\gradle-wrapper.properties`里面修改，但是这样每次cordova build后又恢复了，还有个办法是在cordova之前设置一个环境变量指定版本即可：`export CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL=https://services.gradle.org/distributions/gradle-6.7.1-all.zip`
+- **A problem was found with the configuration of task ':app:injectCrashlyticsMappingFileIdDebug' (type 'InjectMappingFileIdTask')** : 这个问题我就是将gradle的版本从7.1.1降到6.7.1解决的
+- **build An exception has occurred in the compiler (1.8.0_302). Please file a bug against the Java compiler via the Java bug reporting page**: 应该是android sdk版本的问题，我这边用系统默认的sdk不行，但是用android studio却可以，那么我直接设置为android studio的sdk路径即可: `export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home`
 

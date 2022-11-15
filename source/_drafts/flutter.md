@@ -19,6 +19,21 @@ flutter pub deps	# 显示依赖
 	下载sdk，得自己找地方放，放了后加入PATH
 ```
 
+## 插件推荐
+
+### firebase-messaging
+
+- 集成步骤可以参考[Firebase/Firestore 使用手册](https://haofly.net/firebase)和[Add Flutter push notifications with Firebase Cloud Messaging](https://blog.logrocket.com/add-flutter-push-notifications-firebase-cloud-messaging/)
+
 ## TroubleShooting
 
 - **HTTP Host Availability**: 如果`flutter doctor`出现这个错误，需要开启代理才行
+
+- **The plugin `flutter_webview_plugin` uses a deprecated version of the Android embedding**: 要么升级该插件，要么使用别人的分支:
+
+  ```yaml
+    flutter_webview_plugin:
+      git: https://github.com/snoopdoggy322/flutter_webview_plugin
+  ```
+
+  

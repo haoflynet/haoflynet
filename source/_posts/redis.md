@@ -1,7 +1,7 @@
 ---
 title: "redis 手册"
 date: 2016-04-11 11:02:40
-updated: 2020-04-13 16:32:00
+updated: 2022-11-15 16:32:00
 categories: database
 ---
 注意，Redis是单线程的，运行耗时任务时，会阻塞，导致不能响应其他的请求(对于耗时大的删除任务, Redis4.0提供lazy free功能)。
@@ -67,7 +67,7 @@ expired_keys：因为过期而呗自动删除的数据库建数量
 ```shell
 # redis-cli
 redis-cli -h 127.0.0.1 -p 6379 -a password	# 连接服务端
-client list		# 列出所有的客户端连接
+client list		# 列出所有的客户端连接，客户端的IP
 client kill 127.0.0.1:44444 # 断开某个连接
 
 # redis-cli --bigkeys	查看redis中非常大的key
