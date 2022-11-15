@@ -1,10 +1,14 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2022-10-13 15:37:00
+updated: 2022-11-14 15:37:00
 categories: system
 ---
 ## Android Studio 的使用
+
+### [Gradle和Gradle Plugin对应关系](https://developer.android.com/studio/releases/gradle-plugin)
+
+### 生成APK/ABB文件
 
 - 生成APK文件: `Build -> Build Bundles/APK(s) -> Build APK(s)`
 

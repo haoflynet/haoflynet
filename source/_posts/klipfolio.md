@@ -1,7 +1,7 @@
 ---
 title: "Klipfolio 手册"
 date: 2021-10-20 08:02:30
-updated: 2022-02-17 15:47:00
+updated: 2022-11-15 15:47:00
 categories: system
 ---
 - 这是一个不怎么好用的工具
@@ -15,6 +15,8 @@ categories: system
 - 可以支持参数，但是必须依赖于klip变量，例如，可以写成`https://haofly.net/{props.pageName}`，这里的`pageName`就是klip的变量，如果是第一次访问一个之前没有请求过的参数，那么可能会比较慢，后续的定时刷新也是可以起作用的，刷新的会把所有请求过的参数都请求一遍
 
 - 由于数据源的接口请求超时时间是80s，对于数据量大的，我们可以创建email形式的数据源，定时往指定的邮箱发送附件即可
+
+- 数据源的大小默认最大是10MB，通过付费计划可以升级到15MB，但是更大就不行了，并且modelled data也不能超过这个限制，所以要想join几张大表，可以在klip面板使用ARRAY(表1, 表2)，或者LOOKUP来查找需要的mapping数据。明明是我自己研究出来的方法，发现官网有文档的: [Managing your data source size](https://support.klipfolio.com/hc/en-us/articles/215548788-Klips-Managing-your-data-source-size)
 
 - 如果要在`dashboard`上手动请求刷新data sources，可以直接data sources的请求刷新接口:
 

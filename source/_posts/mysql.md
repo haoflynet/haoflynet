@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2022-11-04 08:44:00
+updated: 2022-11-15 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -79,7 +79,8 @@ INSERT INTO targetTable SELECT * FROM sourceTable;	# 复制表数据
 INSERT INTO targetTable (field1, field2) SELECT field1, field2 FROM sourceTable; # 指定字段复制表
 
 use information_schema;
-select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data  from TABLES;	# 查看所有库的大小
+select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data from TABLES;	# 查看所有库的
+SELECT table_schema, table_name, table_rows, truncate(data_length/1024/1024, 2) as 'size(MB)', truncate(index_length/1024/1024, 2) as 'index_size(MB)', truncate(DATA_FREE/1024/1024, 2) as 'fragmentation_size(MB)' from  information_schema.tables where table_schema='数据库名' order by data_length desc, index_length desc; # 查看库下所有表的大小
 ```
 
 ### 数据表操作
@@ -370,7 +371,7 @@ select @@version	# 查看MySQL版本
 show columns from 表名;
 
 # 查看当前连接数和客户端详情
-show processlist;
+show full processlist;
 
 # 查看最近一次死锁发生的原因
 SHOW ENGINE INNODB STATUS;

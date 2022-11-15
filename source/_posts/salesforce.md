@@ -1,7 +1,7 @@
 ---
 title: "Salesforce 中文操作手册"
 date: 2022-06-30 08:02:30
-updated: 2022-10-31 1740:00
+updated: 2022-11-15 1740:00
 categories: system
 ---
 
@@ -39,6 +39,11 @@ categories: system
 - 对象的Record Types只是用于前端可以根据某个值来展示不同的表单，例如根据role来确定admin和user能设置哪些字段
 
 <!--more-->
+
+### Report
+
+- 一个非常方便的过滤数据的方式，report还能分享和到处excel
+- 添加filter logic，首先要添加filter condition，然后在用A or B, A and (B or C)等等的逻辑控制语句来控制
 
 ### 回收站Recycle Bin
 
