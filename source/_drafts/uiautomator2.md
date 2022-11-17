@@ -22,11 +22,13 @@ print(d.implicitly_wait())
 ### 交互
 
 ```python
-device.app_start("com.smzdm.client.android")	# 打开APP
-device.app_start("com.smzdm.client.android", ".app.WelComeActivity")	# 打开APP指定的activity
+d.app_start("com.smzdm.client.android")	# 打开APP
+d.app_start("com.smzdm.client.android", ".app.WelComeActivity")	# 打开APP指定的activity
 d.app_stop("com.example.hello_world") # 关闭APP
 d.app_stop_all()	# 停止所有运行中的APP
 
-device(text="允许").click()	# 点击屏幕中的文字
+
+d.click(100, 200)	# 直接点击屏幕的坐标
+d(text="允许").click()	# 点击屏幕中的文字
 ```
 
