@@ -27,6 +27,10 @@ categories: system
 
 ### Apps
 
+- AppExchange(App Store)里面的app氛围APP、Component、Consultant
+
+#### Connected App
+
 - `New Connected App` 菜单在`Apps -> App Manager`里面，而不是在`Apps -> App Manager -> Connected Apps -> Manage Connected Apps`里面
 - `App Manager`和`Manage Connected Apps`里面如果有相同的app，那么可能这两个菜单点进去会是不同的设置
 - 在设置里面可以设置哪些profile能访问这个app，需要注意的是，即使选择的认证方法是POST的，如果你选择了所有人都能访问app(All users may self-authorize)，那么它仍然不会去使用POST认证，会直接用GET去访问app，所以即使我们要所有人都能访问也要选择只允许选择的人(Admin approved users are pre-authorized)，你可以选择所有的profile都行
