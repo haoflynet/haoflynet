@@ -70,7 +70,7 @@ mysql -uroot -pmysql --default-character-set=gbk  jpkc_db < jpkc_db.sql # 这里
 
 ```shell
 ## 创建数据库，如果是gbk编码，分别用gbk、gbk_chinese_ci;
-CREATE DATABASE 库名 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+CREATE DATABASE 库名 DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 TRUNCATE tablename	# 清空数据表
 DROP DATABASE database_name	# 删除数据库
 
