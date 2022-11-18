@@ -32,10 +32,27 @@ categories: system
 #### Connected App
 
 - `New Connected App` 菜单在`Apps -> App Manager`里面，而不是在`Apps -> App Manager -> Connected Apps -> Manage Connected Apps`里面
+
 - `App Manager`和`Manage Connected Apps`里面如果有相同的app，那么可能这两个菜单点进去会是不同的设置
-- 在设置里面可以设置哪些profile能访问这个app，需要注意的是，即使选择的认证方法是POST的，如果你选择了所有人都能访问app(All users may self-authorize)，那么它仍然不会去使用POST认证，会直接用GET去访问app，所以即使我们要所有人都能访问也要选择只允许选择的人(Admin approved users are pre-authorized)，你可以选择所有的profile都行
-- 如果要创建`visual app / canvas app`，那么app必须要允许OAuth
-- 如果要把visualforce app作为tab显示在顶部，需要现在Setup里面搜索Tabs，在visualforce里面选择它，最后再在首页的tabs里面添加即可
+
+- 在设置里面可以设置哪些profile能访问这个app，需要注意的是，即使选择的认证方法是POST的，如果你选择了所有人都能访问app(All users may self-authorize)，那么它仍然不会去使用POST认证，会直接用GET去访问app，所以即使我们要所有人都能访问也要选择只允许选择的人(Admin approved users are pre-authorized)，你可以选择所有的profile都行(在app最右边下拉Manage菜单中设置，不是View也不是edit)。注意修改后可能出现`You don't have permissions to view application with namespace `错误，只需要在manage菜单的下面Profiles那里选择Manage Profiles，把System Administrator打开即可
+
+- app要允许oauth才能将认证token传到第三方或者自己的callback api
+
+- 如果要作为tab显示在顶部菜单栏，需要
+
+  - 将connected app的canvas打开，并设置canvas app url
+
+  - 创建visualforce page，里面需要包含这个app，创建一个canvas来包含connected app，例如
+
+    ```java
+    <apex:page standardController="Account">
+        <apex:canvasApp applicationName="Connected APP的API名称"  width="100%" height="5400px" maxHeight="infinite" />
+    </apex:page>
+    ```
+
+  - 然后在Setup里面搜索Tabs，在visualforce里面选择它，最后再在首页的tabs里面添加即可
+
 - 创建了带Oauth的app后就能获取到其client_id和client_secret了(也叫Consumer Key和Consumer Secret)
 
 ### Object & Fields
@@ -78,6 +95,14 @@ conn.login('username@domain.com', `${password}${securityToken}`, function(err, r
     console.log(res);	// {"totalSize":0,"done":true,"records":[]}
   });
 });
+
+// 通过instanceUrl和accessToken进行连接
+new jsforce.Connection({
+  instanceUrl,
+  accessToken,
+});
+
+conn.identity()	// 能够获取到一些基本信息，例如organization_id
 ```
 
 ### 数据库操作
