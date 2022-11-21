@@ -40,6 +40,15 @@ categories: php
 
 ### 用户相关函数
 
+#### wp_signon
+
+- 通过用户名密码获取用户信息
+
+```php
+$user = wp_signon(['user_login' => 'xxx', 'user_password' => 'xxx'], false);
+echo $user->id
+```
+
 #### wp_update_user
 
 - 更新用户指定字段，但不知道为什么，就是不能更新用户的`user_status`字段，最后我只能`$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->users} SET user_status = 1 WHERE ID = %d", $user->ID ))`来吧用户spam了
