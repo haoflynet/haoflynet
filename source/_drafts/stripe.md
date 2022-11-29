@@ -185,6 +185,10 @@ const transfer = await stripe.transfers.create({
 
 ### webhook
 
+## Webhooks
+
+- 入口在`Developers -> Webhooks`，添加endpoint即可，里面有很多的事件可以选择
+
 ## 参考
 
 - [nextjs-subscription-payments](https://github.com/vercel/nextjs-subscription-payments): 基于Next.js和stripe的订阅支付完整应用程序

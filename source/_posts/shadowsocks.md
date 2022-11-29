@@ -5,7 +5,7 @@ updated: 2018-12-24 10:23:00
 categories: tools
 ---
 ## 服务器
-1. 安装服务(pypi)已经没怎么维护了，这里直接从github拉取源码)
+1. 安装服务(pypi)已经没怎么维护了，这里直接从github拉取源码
 
     ```shell
     yum install git -y

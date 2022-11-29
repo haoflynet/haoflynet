@@ -22,6 +22,7 @@
 
 ### IPN(Instant Payment Notification)
 
+- 需要在账户的后端控制台设置全局的，或者可以在表单的`notify_url`字段设置局部表单的IPN回调地址
 - 支付直接通知，注意是以表单的方式提交的，不是json数据
 - 收到消息需要验证，验证方式就是收到的时候将原数据拿来请求验证接口，[这里](https://developer.paypal.com/api/nvp-soap/ipn/IPNImplementation/#specs)有几种语言的验证实例
 
