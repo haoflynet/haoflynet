@@ -10,6 +10,11 @@ categories: Javascript
 ## 常用命令CLI
 
 ```shell
+npm install --save-dev @types/node @types/validator
+npm install sequelize reflect-metadata sequelize-typescript
+
+npm install mysql2 --save
+
 npm install --save-dev sequelize-cli	# 安装命令行工具npx
 npx sequelize-cli init	# 初始化，会创建config/migrations/seeders/models目录
 ```
@@ -47,7 +52,7 @@ module.exports = {
 ## 数据库连接
 
 ```javascript
-var sequelize = new Sequelize('database', 'username', 'password', {
+var sequelize = new Sequelize('mysql://用户名:密码@HOST:3306/数据库', {
   dialect: 'mysql',	// 如果不指定这个参数，可能会报错Dialect needs to be explicitly supplied as of v4.0.0
   logging: false	// 默认会将sql查询都输出到console.log中，设置为false可以不用输出，不输出sql语句
 })
