@@ -1,5 +1,6 @@
 node_modules/*
-.idea/*
+.idea
+.obsidian
 public/*
 qiniu_sync.py
 npm-debug.log
@@ -7,3 +8,4 @@ package-lock.json
 db.json
 .owncloudsync.log
 test.txt
+*.swp
