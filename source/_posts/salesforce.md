@@ -242,7 +242,13 @@ conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删�
 
 - **DUPLICATES_DETECTED**: 如果在Object Manager没有发现什么唯一键，可以在`Setup -> Data -> Duplicate Management -> Duplicate Rules`里面看看有没有什么检测重复的规则
 
-## 其他Packages配置
+## AppExchange Package app开发
+- Connected App用于连接第三方服务，第三方服务可以通过OAuth授权来获取token来获取salesforce的数据
+- AppExchange app是可以发布到salesforce的应用商店的(AppExchange)，但是开发者需要支付2500美元，并且以后每年还需要200美元，怪不得上面的app那么少
+- AppExchange App是原生的，无需身份验证和集成
+- Canvas App和Connected App都可以打包为AppExchange App
+
+## 推荐Packages
 
 ### Survey Force
 
