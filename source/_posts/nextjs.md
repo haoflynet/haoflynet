@@ -105,7 +105,7 @@ export async function getServerSideProps (context: NextPageContext): Promise<any
 import { useRouter } from 'next/router';
 
 const router = useRouter()		// 等同于window.location
-router.query.search	// 获取query参数
+router.query.search	// 获取参数
 router.push('/signin');	// 路由跳转
 router.replace('/signin');	// 路由跳转
 router.push({pathname: '/post/[pid]', query: {pid: post.id}})	// 指定参数
@@ -245,7 +245,10 @@ MyComponent.getInitialProps = async () => {
 }
 
 // 官方推荐的是getServerSideProps，需要注意的是它不能做用于纯component，必须是page
-export async function getServerSideProps(){
+export async function getServerSideProps(context: NextPageContext){
+  // context包含params, req, res, query, preview, previewData, resolvedUrl, locale, locales, defaultLocale
+  // 但是它居然无法获取window.location.hash
+  const query = context.query
   const data = await myAPI('/api/resource')
   return {
     props: { data }

@@ -247,6 +247,13 @@ conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删�
 - AppExchange app是可以发布到salesforce的应用商店的(AppExchange)，但是开发者需要支付2500美元，并且以后每年还需要200美元，怪不得上面的app那么少
 - AppExchange App是原生的，无需身份验证和集成
 - Canvas App和Connected App都可以打包为AppExchange App
+- [Canvas App/Connected App开发步骤](https://developer.salesforce.com/docs/atlas.en-us.platform_connect.meta/platform_connect/quick_start_create_canvas_app.htm)
+- [AppExchange App开发步骤](https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/isv2_1_quickstart.htm)
+- [Canvas App的认证方式](https://developer.salesforce.com/docs/atlas.en-us.platform_connect.meta/platform_connect/canvas_app_signed_req_authentication.htm)
+  -  SF会根据权限的设置来决定是用GET还是POST，但是默认是GET请求，即Permitted User选择的是`All users may self-authorize`。如果是GET请求，会带一个参数`_sfdc_canvas_authvalue = user_approval_required`到callback，callback收到该参数来决定是否启动OAuth认证流程。当用户Approve了后，canvas app应该调用一个repost方法取获取signed request
+  - [Verifying and Decoding a Signed Request](https://developer.salesforce.com/docs/atlas.en-us.platform_connect.meta/platform_connect/canvas_app_unsigning_code_example.htm)
+
+- 安装完AppExchange App后无法做到自动修改授权或者自动获取access token或者自动跳转到app页面，[参考](https://salesforce.stackexchange.com/questions/327096/connected-app-oauth2-and-managed-package-relationship)，只能用户手动点击Configuration才行
 
 ## 推荐Packages
 

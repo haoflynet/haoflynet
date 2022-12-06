@@ -1,7 +1,7 @@
 ---
 title: "Google Cloud 相关服务"
 date: 2021-07-23 07:52:39
-updated: 2022-11-03 18:07:00
+updated: 2022-12-5 18:07:00
 categories: frontend
 ---
 
@@ -32,12 +32,12 @@ req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['f
 
 - 任务队列，[官方文档](https://cloud.google.com/tasks/docs/creating-http-target-tasks?hl=zh-cn)用起来非常简单实用，可用于多消费者，或者减少第三方接口的并发速率限制
 
-- 速率控制(队列使用令牌桶来控制任务执行速率，每个命令的队列都有一个用于存储令牌的存储分区，应用没执行一个任务，就会从桶中移除一个令牌，会按照max_dispatches_per_second速率不断向令牌桶中补充填充新令牌)
+- 速率控制(队列使用令牌桶来控制任务执行速率，每个命令的队列都有一个用于存储令牌的存储分区，应用每执行一个任务，就会从桶中移除一个令牌，会按照max_dispatches_per_second速率不断向令牌桶中补充填充新令牌)
   - Max dispatches: 每秒钟任务分配的速率，每秒将任务分配给多少个worker
   - Max concurrent dispatches: 并发执行的数量，同时运行的任务的最大数量
   
 - 重试控制：
-  - MAX ATTEMPTS：任务可以尝试的最大次数，包括第一次尝试
+  - MAX ATTEMPTS：任务可以尝试的最大次数，包括第一次尝试，-1表示不限制?，但是不能设置为0，所以如果说只想执行一次，应该是设置为1
   - MAX INTERVAL：重试尝试之间的最短等待时间
   
 - 一些限制
@@ -102,6 +102,8 @@ https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,700
 ## Logging
 
 - 谷歌的日志查询起来非常方便，就像是查询json字段一样
+
+- 日志最大为256kb，其实非常小，而且很难debug，出现的时候程序会直接crash。如果经常出现，可以尝试用[object-sizeof](https://www.npmjs.com/package/object-sizeof)来查看一下内存
 
 - 常用的查询语法
 
