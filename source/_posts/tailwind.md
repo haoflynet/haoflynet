@@ -218,6 +218,7 @@ w-max	# max-content
 
 # min width
 min-w-full	# 可选min-w-0、min-w-full、min-w-min、min-w-max，但是没有上面width那么多数字，如果要用到需要自己来定义，注意extend minWidth而不是width
+min-h-screen # 100vh
 
 # height
 h-1/2	# height: 50%
@@ -254,6 +255,7 @@ uppercase	# text-transform: uppercase，可选uppercase、lowercase、capitalize
 
 # text overflow
 truncate	# overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+overflow-auto	
 overflow-ellipsis
 overflow-clip
 
@@ -295,6 +297,7 @@ bg-auto	# 可选auto、cover、contain
 # border radius，默认不支持hover，可以自定义
 rounded-none	# border-radius: 0px
 rounded-sm	# border-radius: 0.125rem
+rounded-md
 rounded-lg	# border-radius: 0.5rem
 rounded-2xl	# border-radius: 1.5rem
 rounded-3xl
@@ -341,8 +344,8 @@ opacity-0	# 可选0、5、10、20、25、30、40、50、60、70、75、80、90�
 
 ### [Transitions & animation](https://tailwindcss.com/docs/transition-property)
 
-- `transition-{properities}`可以实现指定属性的动画过渡效果效果
-- 例如按钮hover放大]
+- `transition-{properities}`可以实现指定属性的动画过渡效果效果，例如按钮hover放大
+- 我在实际使用的时候发现height值从0变化到100%无法出发duration效果，后来直接设置max-height就行了
 
 ```shell
 transition-top
