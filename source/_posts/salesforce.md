@@ -118,6 +118,10 @@ conn.describeSObject('Account');	// 获取对象object的数据结构，包括re
 - find方法单次默认只能查询200条记录，可以修改offset，但是最大的offset值也才2000。如果要查询所有，可以这样做
 
   ```javascript
+  // 方法1
+  const res = await conn.sobject('Contact').run({autoFetch: true, maxFetch: 200000})
+  
+  // 方法2
   const res = await conn.query('SELECT * FROM Contacts');	// 仍然只会返回2000条数据
   const res1 = await conn.queryMore(res.nextRecordsUrl); // 类似于现在有些翻页接口，外面套一个while循环就能遍历所有了
   ```
@@ -127,7 +131,7 @@ conn.describeSObject('Account');	// 获取对象object的数据结构，包括re
 await conn.query('SELECT Id, Name FROM Account') // query语句能够实现简单的SQL(SOQL)查询
 await conn.sobject("Contact").count()	// 获取所有的记录数
 conn.sobject('Contact').count({})	// 统计指定条件的记录数，注意这里不是find再count，而是直接把条件放到count里面
-conn.sobject('Account').select('Id, Name') // 获取指定字段
+conn.sobject('Account').find().select(['Id', 'Name']) // 获取指定字段，select必须在find后面，不能在前面
 conn.sobject("Contact")	// 类似ORM的查询方式
   .find(
     // conditions in JSON object，查询条件
