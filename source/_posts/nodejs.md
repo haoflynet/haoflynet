@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2022-09-16 08:50:30
+updated: 2022-12-05 08:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -313,8 +313,13 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
   ```
 
 - [node-csv](https://github.com/adaltas/node-csv): 读写CSV文件的库，它由cdv-generate,csv-parse,csv-transform,csv-stringify几个部分组成，一个一次性安装，也可以单独安装
+
+- [object-sizeof](https://www.npmjs.com/package/object-sizeof): 获取变量所占内存的大小，有时候非常需要这样的东西
+
 - [randomstring](https://www.npmjs.com/package/randomstring): 生成随机字符串
+
 - [uuid](): uuid首选version 4，每秒生成10亿个，大约需要85年才会重复
+
 - [yup](https://github.com/jquense/yup): 非常简单且易于集成的认证库
 
 ## TroubleShooting

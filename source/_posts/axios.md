@@ -65,6 +65,12 @@ axios.interceptors.request.use((config) => {
   config.headers = {....};
   return config;
 });
+
+axios.interceptors.response.use(async (res) => {
+  console.log(res.data, res.request.path);
+  await new Promise((r) => setTimeout(r, 800));
+  return res;
+});
 ```
 
 ## 取消Axios的HTTP请求

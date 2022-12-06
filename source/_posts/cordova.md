@@ -7,7 +7,7 @@ categories: javascript
 
 ## 基本命令
 
-- `npm install -g cordova `
+- `npm install -g cordova ios-deploy `
 - 如果要运行在`xcode`需要用`xcode`打开`项目名.xcworkspace`文件
 
 ```shell
@@ -239,6 +239,15 @@ firebase插件，包含(cloud messaging等多个firebase的功能)，**如果对
   <edit-config target="NSLocationAlwaysAndWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
       <string>need location access to find things nearby</string>
   </edit-config>
+  ```
+
+### [cordova-plugin-nativestorage](https://github.com/TheCocoaProject/cordova-plugin-nativestorage)
+
+- 如果不能使用可以直接安装仓库里面的最新代码
+
+  ```
+  cordova plugin remove cordova-plugin-nativestorage
+  cordova plugin add https://github.com/TheCocoaProject/cordova-plugin-nativestorage
   ```
 
 ### [cordova-plugin-purchase](https://github.com/j3k0/cordova-plugin-purchase)
