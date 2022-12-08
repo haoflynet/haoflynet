@@ -131,6 +131,40 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 />
 ```
 
+### VictoryPie饼图
+
+```react
+const CustomSlice = (props: any) => {
+  const {index, data} = props;
+  console.log('data', data, index);
+  const colors: any = {
+    Cats: 'blue',
+    Dogs: 'red',
+    Birds: 'yellow'
+  }
+  console.log('color', colors[data[index].x])
+  const style = Object.assign({}, props.style, {
+    stroke: colors[data[index].x]
+  });
+  return (
+    <Slice {...props} style={style}/>
+  );
+}
+  
+<VictoryPie
+	labelComponent={<></>}	// 不显示label
+  style={{ data: { fillOpacity: 0, stroke: "transparent", strokeWidth: 2 }, }}
+ 	dataComponent={<CustomSlice />}	// 如果要自定义每一个data的样式可以这样做
+	data={[
+      { x: "Cats", y: 35 },
+      { x: "Dogs", y: 40 },
+      { x: "Birds", y: 55 }
+      ]}
+/>
+```
+
+
+
 ### VictoryScatter散点图
 
 - 如果想要展示或者高亮一个单独的点，可以直接用这个来就行了，它还支持丰富的点样式

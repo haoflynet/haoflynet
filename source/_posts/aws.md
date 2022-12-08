@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2022-11-15 09:54:00
+updated: 2022-12-08 09:54:00
 categories: Javascript
 ---
 
@@ -11,7 +11,7 @@ categories: Javascript
 
 - ubuntu系统默认用户为ubuntu，amazon系统默认的用户名为ec2-user
 - 默认会有12个月750小时的免费套餐，但是仅限个别低配类型
-- 要想查看在所有region下的所有的ec2实例，可以在VPC dashboard中查看
+- 要想查看在所有region下的所有的ec2实例，可以在VPC dashboard中查看，`Running Instances -> See all regions`
 
 ### 如何删除EC2实例
 
