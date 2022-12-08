@@ -633,3 +633,5 @@ onKeyPress // 当键盘按下，function(e) => {e.charCode === 13}， charCode�
 - [在React中使用Redux](https://juejin.im/post/5b755537e51d45661d27cdc3)
 - [React Icons库](https://react-icons.github.io/react-icons/)
 - [在线视频播放库 react-player](https://github.com/cookpete/react-player)
+- [Victory](https://haofly.net/victory): 比较原生的charts库，甚至可以用于`React-Native`
+- [react-grid-layout](https://www.npmjs.com/package/react-grid-layout): 可拖动的grid布局
