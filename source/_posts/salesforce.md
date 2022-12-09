@@ -102,6 +102,23 @@ new jsforce.Connection({
   accessToken,
 });
 
+// 通过refresh token登陆，注意refresh token只有在OAuth的response_type为code的时候才能拿来用，否则会报错invalid_grant: expired access/refresh token
+// 也只有为code的时候canvas app才会在OAuth后发送signederquest到callback url
+// 可以在Connected App中设置refresh token的过期策略，设置为9999个月后过期就能一直拿来用了
+const conn = new jsforce.Connection({
+  oauth2 : {
+    clientId : 'Connected App的OAuth consumer key',  // 如果是安装的package，那么得是package作者的connected app的client id/secret
+    clientSecret : 'Connected App的OAuth consumer secret',
+    redirectUri : 'Connected App的callback uri',
+    loginUrl: 'https://login.salesforce.com',   // 当为sandbox环境时是https://test.salesforce.com
+  },
+  instanceUrl : 'Oauth得到的instance url',
+  accessToken : 'Oauth得到的accessToken', // 其实只要有refreshToken，这个值随便填啥都行
+  refreshToken : 'Oauth response_type为code的时候的refresh token'
+});
+
+const results = await conn.oauth2.refreshToken(refreshToken); // 获取新的accessToken
+
 conn.identity()	// 能够获取到一些基本信息，例如organization_id
 ```
 
@@ -246,7 +263,7 @@ conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删�
 
 - **DUPLICATES_DETECTED**: 如果在Object Manager没有发现什么唯一键，可以在`Setup -> Data -> Duplicate Management -> Duplicate Rules`里面看看有没有什么检测重复的规则
 
-## AppExchange Package app开发
+## AppExchange Package app / Connected App / Canvas App开发
 - Connected App用于连接第三方服务，第三方服务可以通过OAuth授权来获取token来获取salesforce的数据
 - AppExchange app是可以发布到salesforce的应用商店的(AppExchange)，但是开发者需要支付2500美元，并且以后每年还需要200美元，怪不得上面的app那么少
 - AppExchange App是原生的，无需身份验证和集成
@@ -256,8 +273,12 @@ conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删�
 - [Canvas App的认证方式](https://developer.salesforce.com/docs/atlas.en-us.platform_connect.meta/platform_connect/canvas_app_signed_req_authentication.htm)
   -  SF会根据权限的设置来决定是用GET还是POST，但是默认是GET请求，即Permitted User选择的是`All users may self-authorize`。如果是GET请求，会带一个参数`_sfdc_canvas_authvalue = user_approval_required`到callback，callback收到该参数来决定是否启动OAuth认证流程。当用户Approve了后，canvas app应该调用一个repost方法取获取signed request
   - [Verifying and Decoding a Signed Request](https://developer.salesforce.com/docs/atlas.en-us.platform_connect.meta/platform_connect/canvas_app_unsigning_code_example.htm)
-
 - 安装完AppExchange App后无法做到自动修改授权或者自动获取access token或者自动跳转到app页面，[参考](https://salesforce.stackexchange.com/questions/327096/connected-app-oauth2-and-managed-package-relationship)，只能用户手动点击Configuration才行
+- AppExchange App可以添加一个post install脚本，但是其作用有限，只能获取到最基本的信息，org名称、版本信息等，并且不能设置重定向
+- 给AppExchange的app的uninstall旁边增加一个[Configure按钮](https://salesforce.stackexchange.com/questions/7459/how-to-show-a-visualforce-page-on-the-first-installation-of-the-managed-package)以打开app的首页
+  - 这个只有在classic页面才有: `Setup > Build > Customize > Home and create a Custom Link`
+  - `Setup > Create > Packages`，选择package，然后选择component的时候把custom link添加上就行
+- Canvas APP的sdk并没有一个比较现代的npm包，不过还好有个大概能用的[SalesforceCanvasJavascriptSDK](https://github.com/forcedotcom/SalesforceCanvasJavascriptSDK)
 
 ## 推荐Packages
 
