@@ -58,6 +58,7 @@ categories: system
 ### Object & Fields
 
 - 对象的Record Types只是用于前端可以根据某个值来展示不同的表单，例如根据role来确定admin和user能设置哪些字段
+- `__c`结尾表示`custom`，`__r`结尾表示`relationship`
 
 <!--more-->
 
@@ -126,6 +127,35 @@ conn.identity()	// 能够获取到一些基本信息，例如organization_id
 
 ```javascript
 conn.describeSObject('Account');	// 获取对象object的数据结构，包括recordTypeInfos
+```
+
+### 数据表操作
+
+```javascript
+conn.metadata.list([{type: 'CustomObject'}]) // 列出所有的Custom Objects
+conn.metadata.read('CustomObject', ['tableName__c'])	// 列出指定object名的Custom Object
+
+// 创建Object，会自动创建Created By、LastModified By、Owner、Name、IsDeleted(后台看不到)字段
+conn.metadata.create('CustomObject', [{	
+  fullName: 'TableName__c',
+  label: 'Table Label',
+  pluralLabel: 'Table Label',
+  nameField: {	// 默认的name字段，这个字段不是唯一的
+    type: 'Text',
+    label: 'Name'
+  },
+  deploymentStatus: 'Deployed',
+  sharingModel: 'ReadWrite'
+}])
+
+// 给Object添加字段
+conn.metadata.create('CustomField', [{
+  fullName: 'TableName__c.FieldName__c',
+  label: 'FieldName',
+  type: 'Text',
+  length: 80,
+  inlineHelpText: 'This is inline help text'
+}])
 ```
 
 ### 增删改查
