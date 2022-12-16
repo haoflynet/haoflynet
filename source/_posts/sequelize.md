@@ -638,10 +638,27 @@ npx sequelize-cli db:seed:undo:all # 取消执行所有seed
 
 ## TroubleShooting
 - **Cannot read property 'length' of undefined /  Cannot convert undefined or null to object**: 可能是因为没有执行`Model.init`方法将model初始化
+
 - **is not associated to**: 可能是没有定义模型间的关联关系，后者没有初始化关联关系
+
 - **任何数据库操作都无响应/migrations没有执行并且都没有报错**: 可能是因为安装依赖的时候和当前使用的node版本不一致，也有可能是postgres依赖版本低造成的，可以尝试执行`npm install --save pg@latest`试试
+
 - **include关联关系时报错xxxx must appear in GROUP BY clause**: 
   - 如果是mysql8，可能需要修改`only_full_group_by`，
   - 如果是postgres我目前只能将那个字段加入group by里面，不过还好是id字段
   - 如果是postgres且只是单纯地想把关联的对象全部取出来(例如`hasMany`关系)，如果只是单纯地把关联对象的id加入`group`，那么得到的结果是没有聚合的，而是一条关联对象一个结果，例如user has many posts，如果有两个用户，每个用户2篇文章，那么查询出来是4条数据，这时候可以把`constraints`添加到include参数中，就可以user.posts来获取了，结果是2条数据
+  
 - **ERROR: Please install mysql2 package manully**: 安装就行: `npm install --save mysql2`
+
+- **Error: Could not dynamically require "mysql2". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work**: 这是在使用rollup的时候才有的问题，解决方法是在`rollup.config.mjs`中添加如下配置:
+
+  ```javascript
+  const plugins = [
+    ...,
+    commonjs({
+      dynamicRequireTargets: ['node_modules/mysql2']
+    })
+  ]
+  ```
+
+  
