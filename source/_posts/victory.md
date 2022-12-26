@@ -36,6 +36,7 @@ LogBox.ignoreLogs([
     { x: 5, y: 6, y0: 2 }
   ]}
   dataComponent={<Area />}	// 指那一块区域而不是某个点
+  interpolation={'basis'}	// 默认是linear折线，basis平滑曲线，其他的其实都有差别，但说不上名字了，可以挨个试试：natural/basis/bundle/cardinal/catmullRom/monotoneY/monotoneX/step(电子信号那种)/stepAfter/stepBefore
 />
 ```
 
@@ -90,9 +91,13 @@ import {Defs, LinearGradient, Stop} from 'react-native-svg';
 <VictoryAxis
 	tickLabelComponent={<></>}	// 这样可以只显示坐标不显示坐标上的值
 	offsetY={160}	// 纵向坐标偏移量，单位居然是px
+  style={{
+    axis: {stroke: "transparent"},	// 坐标轴线的颜色样式
+    tickLabels: {fill: 'white'}	// 坐标轴轴上的文字的说明的样式
+  }}
 />
 <VictoryAxis
-	dependentAxis	// 好像这个就是纵轴
+	dependentAxis	// 这样就是纵轴
   offsetX={400}	// 横向坐标偏移量
 />
 ```

@@ -57,7 +57,7 @@ var sequelize = new Sequelize('mysql://用户名:密码@HOST:3306/数据库', {
   logging: false	// 默认会将sql查询都输出到console.log中，设置为false可以不用输出，不输出sql语句
 })
 
-// 直接执行SQL row命令
+// 直接执行SQL raw queries
 const records = await sequelize.query("SELECT * FROM `users`", { type: QueryTypes.SELECT });
 ```
 
