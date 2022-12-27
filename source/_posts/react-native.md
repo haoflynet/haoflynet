@@ -35,6 +35,7 @@ cd testProject
 npx react-native start
 npx pod-install
 npx react-native run-ios	# 第一次启动会很慢。等模拟器运行起来后可以直接Cmd+R刷新应用，Cmd+D打开调试菜单
+npx react-native run-ios --simulator='iPhone 13 Pro Max' # 指定云行的模拟器的名称
 npx react-native run-android	# 安卓开发最好安装上android studio，这不仅会帮你安装java、jdk，而且还能直接管理安卓模拟器，把android studio配置好了以后，android的开发环境也好了
 
 npm install --save react-native@X.Y	# 直接指定版本号的更新升级，手动升级更爽。我不喜欢用react-native-git-upgrade来升级，需要注意的是，升级以后一定要顺便升级一下命令行工具react-native-cli，否则会可能会出现不预期的错误
@@ -735,6 +736,7 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 
 - **Could not resolve project :react-native-camera.**这是个已经没有维护的库了，参考[doc](https://github.com/react-native-camera/react-native-camera/blob/master/docs/migrationV2.md#android)，在`android/app/build.gradle`中添加`missingDimensionStrategy 'react-native-camera', 'general'`即可
 
+- **xcrun: error: SDK "iphoneos" cannot be located**: 尝试执行`sudo xcode-select --switch /Applications/Xcode.app`
 ##### 扩展阅读
 
 - 浅谈前端移动开发[(Ionic与React Native)](http://bbs.reactnative.cn/topic/420/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91-ionic-%E4%B8%8E-react-native)

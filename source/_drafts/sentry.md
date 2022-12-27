@@ -10,3 +10,5 @@ categories: Javascript
 { "values":[ { "type":"UnhandledRejection", "value":"Non-Error promise rejection captured with keys: [object has no keys]", "mechanism":{ "synthetic":true, "handled":false, "type":"onunhandledrejection" } } ] }
 ```
 
+## Troubleshooting
+- **yarn install的时候出现错误@sentry/cli error @sentry/cli: Command failed. Exit code: 1 Command: node scripts/install.js**，报错信息没有写明具体的原因，反正可能和yarn有关，用npm单独安装即可`npm install @sentry/cli`

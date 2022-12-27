@@ -179,3 +179,5 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 - **Safari不能审查元素，没有审查元素按钮**：得手动打开开发者菜单: `Preferences -> Advanced -> Show Develop menu in menu bar`
 
 - **MacOs安装指定的java版本**: https://www.azul.com/downloads/?package=jdk
+
+- **zsh: bad CPU type in executable**: 执行`softwareupdate --install-rosetta`

@@ -1603,7 +1603,7 @@ function retry(fn, times, delay=3000) {
      document.body.removeChild(tempInput);
      ```
 
-* **打开新标签页**: `window.open(pageURL,name,parameters)  `
+* **打开新标签页**: `window.open(pageURL,name,parameters) / window.open(url, '_blank')`
 
 * **$('form').serialize()表单序列化时无法正确获取`checkbox`的值**: 可以在`checkbox`前添加一个隐藏的`input`，两者使用同样的`name`，这样在表单提交的时候会提交两个值，但是后端都是选择的后面那个值
 
