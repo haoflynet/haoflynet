@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2022-09-05 21:38:00
+updated: 2022-12-30 21:38:00
 categories: Javascript
 ---
 
@@ -62,6 +62,12 @@ categories: Javascript
       Client.unsubscribe();
     }
   })
+  
+  // interval或者timeout都是需要清理的，否则每次页面有个状态变更重新渲染的时候就会重新新建，造成内存泄漏
+  useEffect(() => {
+    const interval = setInterval(() => {});
+    return () => clearInterval(interval);	
+  })
   ```
 
 - 在函数组件中执行副作用操作，可以直接使用`state`，不用编写class
@@ -100,6 +106,7 @@ function Example() {
 - useMemo返回一个值，避免在每次渲染时候都重新进行计算
 
   ```jsx
+  const data = {简单的计算过程}	// 注意如果是简单的数据转换可以不用useEffect或者useMemo，直接这样即可
   const data = useMemo(() => {复杂的计算过程}, [originalData]) // 这样除非originalData变了，否则父组件的改变不会引起子组件的变化
   
   // 如果一个useEffect依赖于某个需要计算的值，那么这个值最好被useMemo包裹
@@ -371,6 +378,14 @@ MyComponent.propTypes = {
     quantity: PropTypes.number
   }),
 }
+```
+
+### [React Hook Form](https://www.npmjs.com/package/react-hook-form)
+
+- 表单hook
+
+```javascript
+<button onClick={() => handleSubmit(onSubmit)()}	// 手动触发onSubmit检查
 ```
 
 ### React-Redux

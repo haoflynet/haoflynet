@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2022-08-15 08:11:11
+updated: 2022-12-30 08:11:11
 categories: Javascript
 ---
 
@@ -75,6 +75,7 @@ const records = await sequelize.query("SELECT * FROM `users`", { type: QueryType
 @Column(DataType.VIRTUAL)
 accessToken: string;	// 添加virtual额外的字段
 
+@Column(DataType.JSON) data: any	// JSON字段
 
 // 定义方式一，typescript方式
 class PostModel extends Model {
@@ -517,6 +518,9 @@ await User.update({
 // 自增操作increment，自减操作decrement
 Model.increment('value', { by: 5, where: { id }})	// value的值自增5
 user.decrement('value', {by: 2})
+
+
+Model.upsert({first_name: 'hao'}, {id: 123})	// upsert操作
 ```
 
 ### 删除操作

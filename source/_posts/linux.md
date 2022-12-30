@@ -94,7 +94,8 @@ time 命令	# 查看命令的执行时间
 
 # 结束进程
 kill -s 9 进程ID
-kill -TERM 进程ID		# 杀死进程及其所有的子进程
+kill -TERM 进程ID		# 杀死进程及其所有的子进程，但有时候不起作用
+ps -aef|grep "run.js" | awk '{print $2}' | xargs sudo kill -TERM	# 批量关闭指定的进程
 
 # 监控每个进程的网络带宽，类似的还有iftop，但是都只能监听TCP，iptraf工具能监听UDP流量
 sudo apt-get install nethogs -y
