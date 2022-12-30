@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2022-12-19 08:44:00
+updated: 2022-12-30 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -377,6 +377,9 @@ show full processlist;
 SHOW ENGINE INNODB STATUS;
 select * from information_schema.innodb_trx;	# 查找当前所有的锁
 
+# 查看连接的客户端的IP
+select * from information_schema.processlist;
+
 # 获取数据库当前的时间/查看数据库时区
 select curtime();
 select now();
@@ -532,7 +535,7 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 
 #### 唯一索引
 
-- **注意唯一索引不能建在可以为NULL的字段上，否则，唯一该唯一索引在NULL上不会生效，可以参考底部关于软删除的文章**
+- **注意唯一索引不能建在可以为NULL的字段上，否则，该唯一索引在NULL上不会生效，可以参考底部关于软删除的文章，简单地说，对于唯一索引的咧，只要有一行是null，那么唯一索引就不会生效**
 
 #### 聚簇索引(clustered index)
 

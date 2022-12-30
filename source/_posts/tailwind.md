@@ -1,7 +1,7 @@
 ---
 title: "Tailwind 开发手册"
 date: 2021-11-16 00:00:00
-updated: 2022-08-04 18:00:00
+updated: 2022-12-30 18:00:00
 categories: nodejs
 ---
 - 基本上是我现在开发新旧项目的必备工具了
@@ -98,8 +98,11 @@ md:w-full
 
 ### JIT(Just-in-Time模式)
 
-- 2.1开始才有，虽然是下一代的标准，但仍然是一个`Preview feature`
 - 就非常方便了，以前可能需要写`extend`的样式，现在直接开搞
+
+```javascript
+class="w-[calc(50% - 1rem)]"	// 可以直接使用calc进行计算
+```
 
 ### 样式!important
 
@@ -370,6 +373,7 @@ select-none	# user-select:none，可选none、text、all、auto
 ## 扩展
 
 - [tailwindo](https://github.com/awssat/tailwindo): Laravel的blade模板转tailwind的工具，不大好用，但也将就了
+- [daisyUI](https://daisyui.com/docs/install/): 截止2022年底，我用过的最顺手的组件库，也很方便集成
 - [wickedblocks](https://wickedblocks.dev/): 免费的tailwindcss组件模板
 - [Flowbite](https://flowbite.com/docs/getting-started/quickstart/)：免费开源的tailwindcss组件
 - [HyperUI](https://www.hyperui.dev/): 免费开源的tailwindcss组件

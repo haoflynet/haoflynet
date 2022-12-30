@@ -1,7 +1,7 @@
 ---
 title: "Salesforce 中文操作手册"
 date: 2022-06-30 08:02:30
-updated: 2022-11-15 1740:00
+updated: 2022-12-30 11;40:00
 categories: system
 ---
 
@@ -325,3 +325,4 @@ conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删�
 - **The requested resource no longer exists**: 可能是使用的rest api的版本太低了导致的，可以通过这个方式获取当前支持的API版本列表: [List Available REST API Versions](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_versions.htm)
 - **Unable to create/update fields: xxx. Please check the security settings of this field and verify that it is read/write for your profile or permission set**: 需要去检查一下这个字段的权限，在Setup -> Object Manager -> 选择Object再选择Fields，点击`Field Level Security`检查权限
 - **Can't alter metadata in an active org**：无法在生产环境直接修改部分代码，只能现在sandbox里面修改了同步过去
+- **Bad Message 431 reason: Request Header Fields Too Large**: 可能是字段太多了，因为不支持select * ，所以默认情况会在select后列出所有的字段，就可能导致header太大了，解决办法就是select指定的字段
