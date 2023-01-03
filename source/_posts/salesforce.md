@@ -310,6 +310,52 @@ conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删�
   - `Setup > Create > Packages`，选择package，然后选择component的时候把custom link添加上就行
 - Canvas APP的sdk并没有一个比较现代的npm包，不过还好有个大概能用的[SalesforceCanvasJavascriptSDK](https://github.com/forcedotcom/SalesforceCanvasJavascriptSDK)
 
+```javascript
+const onClickOAuth = () => {
+  // 需要注意的是sandbox的login uri是不一样的
+  const uri = hostname.includes('sandbox') ? 'https://test.salesforce.com/services/oauth2/authorize' : Sfdc.canvas.oauth.loginUrl();
+
+  Sfdc.canvas.oauth.login({
+    uri,
+    params: {
+      response_type : "code",   // 使用code的方式才能获取到refresh token
+      client_id : SFDC_CLIENT_ID, // 在package的canvas app的client id
+      redirect_uri : encodeURIComponent(SFDC_REDIRECT_URI), // 在Package的canvas app里面设置的回调地址
+    }
+  })
+}
+
+// oauth完成后关闭弹窗
+if (window.opener) {
+  try {
+    window.opener.Sfdc.canvas.oauth
+      .childWindowUnloadNotification(window.location.hash);
+  } catch (e) {
+    // do nothing
+  }
+  window.close();
+}
+
+// 登陆成功后获取对应的信息
+const _loggedIn = Sfdc.canvas.oauth.loggedin();
+const token = Sfdc.canvas.oauth.token();
+const client = Sfdc.canvas.oauth.client();
+Sfdc.canvas.client.refreshSignedRequest(function(data: any) {
+  if (data.status === 200) {
+    const signedRequest =  data.payload.response;
+    const part = signedRequest.split('.')[1];
+    const obj = JSON.parse(Sfdc.canvas.decode(part));
+
+    console.log('obj', obj);    // 可以获取到obj.client.instanceUrl,obj.client.oauthToken,obj.client.refreshToken,obj.context.organization.organizationId,obj.context.organization.name
+  }
+})
+
+Sfdc.canvas.client.ctx(function(ctx: any) {
+  if (ctx.status === 200) {
+      console.log(ctx.payload.organization.organizationId, ctx.payload.organization.name);
+  }
+}, client);
+```
 ## 推荐Packages
 
 ### Survey Force
