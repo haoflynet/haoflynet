@@ -138,6 +138,11 @@ https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,700
 - 有了它就不用每次添加一个新的服务(tag)都去修改代码了，因此服务添加多了也不会影响网站的首次加载速度
 - 在新建了账号后，就可以选择`Tags->New`，例如可以添加`Google Analytics 4`
 
+## Colab
+
+- Variables不是环境变量，是tensorflow的变量，可以参考[这里](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/guide/variable.ipynb)
+- Colab可以[连接不同的文件服务](https://neptune.ai/blog/google-colab-dealing-with-files): Github, Google Drive, Local File System, Google Sheets, Google Cloud Storage(GCS), AWS S3, Kaggle datasets, MySQL
+
 ## TroubleShooting
 
 - **Error: Cannot find module './middleware/cloudevent_to_background_event'**: 给我的感觉就是新版的sdk发布后老的只要是重新安装的就不能用，必须升级到最新版才可以

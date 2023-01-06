@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2022-08-10 09:52:30
+updated: 2023-01-04 09:52:30
 categories: system
 ---
 # Linux手册
@@ -314,6 +314,7 @@ ssh-keygen -p -f ~/.ssh/id_rsa.pub		# 修改key密码
 ssh -o ProxyCommand='nc -X 5 -x 127.0.0.1:1080 %h %p' host
 
 # ssh-add命令，将专用密钥添加到ssh-agent的高速缓存中。转发ssh key，常用与跳板机
+## ssh代理git可以参考https://docs.github.com/zh/developers/overview/using-ssh-agent-forwarding，但是排查问题还得加一个可能，如果服务器磁盘满了，也是代理不成功的
 ssh-add -L	# 列出ssh-agent的公钥
 ssh-add -l	# 列出ssh-agent的密钥
 ssh-add -k -i ~/.ssh/my.pub	# 将指定ssh key添加到当前用户的key列表中去，之后的ssh命令都会自动带上该key
