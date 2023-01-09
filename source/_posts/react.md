@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2022-12-30 21:38:00
+updated: 2023-01-09 21:38:00
 categories: Javascript
 ---
 
@@ -345,7 +345,7 @@ render() {
 </Nav>
 ```
 
-## 必备三方组件
+## 推荐三方组件
 
 ### prop-types
 
@@ -379,6 +379,11 @@ MyComponent.propTypes = {
   }),
 }
 ```
+
+### [react-animated-number](https://github.com/ameyms/react-animated-number)
+
+- 数字变化动态效果
+- 虽然这个库很久没维护了，但是对比其他的库，这个库是我找到的唯一能满足我要求的
 
 ### [React Hook Form](https://www.npmjs.com/package/react-hook-form)
 
