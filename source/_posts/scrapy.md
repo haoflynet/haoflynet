@@ -120,6 +120,12 @@ response.url				# 获取请求的URL
 response.headers			# 获取请求头
 ```
 
+#### 网页解析
+
+```python
+respons.css('li')	# css选择器 
+```
+
 ### Items
 
 `Item`只是对爬取结果对象的一个简单封装，提供了简洁的语法。需要注意的是，在pipeline里面处理item的时候必须`return item`否则，其他的item会接受不到，而且会打印一个莫名其妙的`None`，终端也不会显示抓取到的item，也就不将讲item输出到文件了
