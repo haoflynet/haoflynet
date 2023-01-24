@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2023-01-09 21:38:00
+updated: 2023-01-11 21:38:00
 categories: Javascript
 ---
 
@@ -389,8 +389,14 @@ MyComponent.propTypes = {
 
 - 表单hook
 
-```javascript
+```jsx
+const { register, trigger, formState: { errors } } = useForm();
+<input {...register("firstName", { required: true })} />	// 注册字段
+
 <button onClick={() => handleSubmit(onSubmit)()}	// 手动触发onSubmit检查
+
+<input name="singleErrorInput" />
+<ErrorMessage errors={errors} name="singleErrorInput" />	// 错误提示文本组件，需要先安装@hookform/error-message
 ```
 
 ### React-Redux
@@ -646,6 +652,14 @@ onKeyPress // 当键盘按下，function(e) => {e.charCode === 13}， charCode�
       ] 
     })
   }
+  ```
+
+- **Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()**: 可以尝试将函数组件修改为这样:
+
+  ```javascript
+  export const MyComponent = React.forwardRef(({...props}: InputProps, ref) => {
+   ...
+  });
   ```
 
 ## 扩展阅读

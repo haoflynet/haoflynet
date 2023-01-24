@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2022-12-05 08:50:30
+updated: 2023-01-05 08:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -254,7 +254,14 @@ yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
 - 常见错误
   - **Object is of type 'unknown' typescript generics**: 如果程序无法判断准确的类型，那么我们需要强制声明一下类型，例如`(error as Error).message`
   - **Property 'classList' does not exist on type 'Never'**: 对于react的ref需要这样定义: `const myEl = useRef<HTMLDivElement>(null);`
-
+  - **window undefined**: 尝试生命一个window对象
+    ```javascript
+    export interface CustomWindow extends Window {
+      customAttribute: any;
+    }
+    declare let window: CustomWindow;
+    ```
+ 
 ## ~~使用Forever管理NodeJs应用~~(生产环境最好用[pm2](https://haofly.net/pm2))
 
 - 直接使用`sudo npm install forever -g`进行安装
