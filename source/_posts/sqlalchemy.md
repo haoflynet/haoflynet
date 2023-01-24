@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2020-04-25 23:11:00
+updated: 2023-01-19 23:11:00
 categories: python
 ---
 
@@ -111,6 +111,7 @@ fullname = column_property(firstname + ' ' + lastname)	# 表示这一列的值�
 primary_key=True	# 是否是主键
 comment=''			# 注释，1.2版本才有的新特性
 table_name.column_name.name	# .name获取真实的列名
+nullable=False	# 是否可为空，默认为True
 ```
 
 ### 关联关系定义

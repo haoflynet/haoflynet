@@ -80,12 +80,12 @@ const { status, fetchStatus, data: projects } = useQuery(
     retry: (failureCount, error) => {}, // 自定义出错后逻辑
     retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000), // 设置重试的间隔时间
     keepPreviousData: true, // 在翻页查询的时候不用一次又一次地loading
-    initialData: [], // 初始值，会保存在cache中
+    initialData: [], // 初始值，会保存在cache中，如果同时设置了staleTime，那么第一次仍然现实initialData，staleTime时间后才首次去获取数据
     initialDataUpdatedAt: 1234567890,  // 使用某个时间戳的缓存数据来初始化
     initialData: () => {	// 通过函数来初始化
       return getExpensiveTodos()
     },
-    initialData: () => {	// 从缓存中获取初始化值
+    initialData: () => {	// 从另一个查询结果的缓存中获取初始化值
       return queryClient.getQueryData(['todos'])?.find(d => d.id === todoId)
     },
     placeholderData: [], // 默认值，和initialData不同的是它不会保存在cache中
@@ -95,7 +95,7 @@ const { status, fetchStatus, data: projects } = useQuery(
         .getQueryData(['blogPosts'])
         ?.find(d => d.id === blogPostId)
     },
-    staleTime: 1000,	// 在cache中的缓存时间
+    staleTime: 1000,	// 在cache中的缓存时间，过期时间内不会重新请求
     refetchInterval: 6000, // 设置自动刷新，自动刷新间隔时间
   }
 )
