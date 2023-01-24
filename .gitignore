@@ -9,3 +9,4 @@ db.json
 .owncloudsync.log
 test.txt
 *.swp
+.DS_Store
