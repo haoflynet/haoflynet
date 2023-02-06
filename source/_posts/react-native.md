@@ -614,6 +614,19 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 
 - 测试框架
 
+## 性能优化
+
+### Touchable系列组件不能很好的响应
+
+- 通过`requestAnimationFrame`，可以让组件的透明度改变效果很快切换回来，而不会卡在那儿
+
+```javascript
+requestAnimationFrame(() => {
+    this.doExpensiveAction();
+  });
+}
+```
+
 ## 开发原生相关问题
 
 #### 在真实设备上调试以及打包到真实设备
