@@ -6,6 +6,7 @@
   - BACS：英国
   - IBAN/SIC：欧盟
 - 感觉主要的流程就是后端生成link token，前端用link token初始化link component，用户输入自己的认证信息，成功就生成public token，后端再用public token获取access token
+- sandbox测试账户：[Sandbox test credentials](https://plaid.com/docs/sandbox/test-credentials/)
 
 ## API
 

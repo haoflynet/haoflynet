@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2022-04-29 09:36:30
+updated: 2023-01-19 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -18,12 +18,12 @@ apt-get install -y build-essential libssl-dev libffi-dev
 apk add --update alpine-sdk
 
 # Linux下不区分64和32位
-wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz	
-xz -d Python-3.7.0.tar.xz
-tar -xvf Python-3.7.0.tar
-cd Python-3.7.0
+wget https://www.python.org/ftp/python/3.9.9/Python-3.9.9.tar.xz	
+xz -d Python-3.9.9.tar.xz
+tar -xvf Python-3.9.9.tar
+cd Python-3.9.9
 # for Linux
-./configure && make && sudo make altinstall	
+./configure && make && sudo make altinstall		# altinstall能够不覆盖默认的python路径及可执行文件。但是注意通过altinstall安装的python在使用pip install后的包如果有可执行文件可能会覆盖默认的
 # for Mac
 ./configure --enable-framework --with-openssl=/usr/local/opt/openssl	# 不加openssl可能会出现the SSL module is not available的错误
 cd
@@ -1520,6 +1520,10 @@ conn.close()	# 关闭连接
 - **#error architecture not supported**: 安装某些包的时候会出现这个，可以尝试`ARCHFLAGS="-arch x86_64" pip install nltk`
 
 - **No such file or directory: 'c++': 'c++'**: `apt install build-essential`
+
+## 推荐Package
+
+- [python-dotenv](https://github.com/theskumar/python-dotenv): 从`.env`文件里面读取环境变量
 
 ## 推荐阅读
 
