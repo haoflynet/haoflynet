@@ -583,7 +583,7 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
   ```javascript
   const ssm = new AWS.SSM({ region: 'us-east-2'})
   await ssm.getParameters({
-              Names: names,	// 注意一次取最多10个
+              Names: names,	// 注意一次最多只能取10个
               WithDecryption: false
           }).promise()
   ```

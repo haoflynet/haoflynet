@@ -89,13 +89,13 @@ http{
 	##  
 	# Virtual Host Configs  虚拟主机配置，如果想要把server写在外面，可以在这里设置存放目录
 	##  
-	include /etc/nginx/conf.d/_.conf;  
-	include /etc/nginx/sites-enabled/_;  
+	include /etc/nginx/conf.d/_.conf;
+	include /etc/nginx/sites-enabled/_;
 	
 	# 设置虚拟主机  
 	server{  
 		listen 80;  
-		server_name haofly.net a.haofly.net; 	# 如果是多域名，用逗号分割开 
+		server_name haofly.net a.haofly.net; 	# 如果是多域名，用空格分割开 
 		root /var/www/haofly;		# 网站根目录
 	
 		charset utf-8; # 字符集不应该在html里面指定，而直接在服务器端指定  

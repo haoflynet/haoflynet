@@ -54,7 +54,7 @@ categories: server
 
    就这样，配置就算完成了，可以看到新的nginx配置已经写入到配置文件中，访问域名也会自动跳转到https了。
 
-6. 当然，`Let's Encrypt`只有90天的有效期，可以使用这条命令更新证书: `sudo certbot renew --dry-run`，官方建议每天随机运行两次该命令，如果证书没有过期，运行命令并不会对你的服务器造成什么影响，所以就添加如下定时任务:
+6. 当然，`Let's Encrypt`只有90天的有效期，可以使用这条命令更新证书: `sudo certbot renew --dry-run`，官方建议每天随机运行两次该命令，如果证书没有过期，运行命令并不会对你的服务器造成什么影响，所以就添加如下定时任务， 默认会自动创建定时任务在: `/etc/cron.d/certbot`:
 
    ```shell
    0 0,12 * * * python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew 
