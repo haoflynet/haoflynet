@@ -418,6 +418,7 @@ await client.deleteMessage({QueueUrl: 'xxx', ReceiptHandle: message.ReceiptHandl
 ```
 
 - SQS的客户端默认并不是一个监听者，如果想要持续监听一个队列，要么自己写`while true`循环，要么可以使用[sqs-consumer](https://www.npmjs.com/package/sqs-consumer)
+- 默认的重复检测时间是5分钟，即5分钟内发送相同内容的消息会被认定为重复，不会入队。但是必须有检测重复的功能，要么基于内容要么基于group，否则会报错`The queue should either have ContentBasedDeduplication enabled or MessageDeduplicationId provided explicitly`
 
 ## CodeDeploy/Pipeline
 
