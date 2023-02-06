@@ -1,6 +1,7 @@
 ---
 title: "Sentry 使用手册"
 date: 2019-09-05 14:40:00
+updated: 2023-01-27 22:26:00
 categories: Javascript
 ---
 
@@ -12,3 +13,4 @@ categories: Javascript
 
 ## Troubleshooting
 - **yarn install的时候出现错误@sentry/cli error @sentry/cli: Command failed. Exit code: 1 Command: node scripts/install.js**，报错信息没有写明具体的原因，反正可能和yarn有关，用npm单独安装即可`npm install @sentry/cli`
+- **error: API request failed**: cordova或者React-Native集成的时候报这个错误，原因是没有开代理

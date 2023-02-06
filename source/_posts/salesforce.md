@@ -1,7 +1,7 @@
 ---
 title: "Salesforce 中文操作手册"
 date: 2022-06-30 08:02:30
-updated: 2022-12-30 11;40:00
+updated: 2023-02-02 11;40:00
 categories: system
 ---
 
@@ -75,7 +75,7 @@ categories: system
 
 - 如果要对网站的用户进行debug，可以在`Setup -> Environments -> Logs -> Debug Logs`中进行设置，如果是调试sites的guest user，只需要new的时候选择指定的user即可
 
-## [数据库客户端](https://pocketsoap.com/osx/soqlx/#Download)
+## [数据库客户端SoqlXplorer](https://pocketsoap.com/osx/soqlx/#Download)
 
 - 发现好多对象在后台看不了，但是用客户端或者sdk能看到
 

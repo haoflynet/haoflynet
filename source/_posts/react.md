@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2023-01-09 21:38:00
+updated: 2023-02-02 21:38:00
 categories: Javascript
 ---
 
@@ -65,7 +65,7 @@ categories: Javascript
   
   // interval或者timeout都是需要清理的，否则每次页面有个状态变更重新渲染的时候就会重新新建，造成内存泄漏
   useEffect(() => {
-    const interval = setInterval(() => {});
+    const interval = setInterval(() => {}, 2000);
     return () => clearInterval(interval);	
   })
   ```
@@ -389,8 +389,19 @@ MyComponent.propTypes = {
 
 - 表单hook
 
-```javascript
-<button onClick={() => handleSubmit(onSubmit)()}	// 手动触发onSubmit检查
+```jsx
+const { register, setValue, getValues, trigger, formState: { errors } } = useForm();
+<input {...register("firstName", { required: true })} />	// 注册字段
+
+<button onClick={() => {
+    setValue('field', 'value')// 手动设置字段值
+    getValues('field') // 手动获取字段值
+    getValues(['field1', 'field2']) // 手动获取字段值
+}} />	
+<button onClick={() => handleSubmit(onSubmit)()} />	// 手动触发onSubmit检查
+
+<input name="singleErrorInput" />
+<ErrorMessage errors={errors} name="singleErrorInput" />	// 错误提示文本组件，需要先安装@hookform/error-message
 ```
 
 ### React-Redux
@@ -646,6 +657,14 @@ onKeyPress // 当键盘按下，function(e) => {e.charCode === 13}， charCode�
       ] 
     })
   }
+  ```
+
+- **Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()**: 可以尝试将函数组件修改为这样:
+
+  ```javascript
+  export const MyComponent = React.forwardRef(({...props}: InputProps, ref) => {
+   ...
+  });
   ```
 
 ## 扩展阅读

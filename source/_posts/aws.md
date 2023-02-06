@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2022-12-08 09:54:00
+updated: 2023-01-18 09:54:00
 categories: Javascript
 ---
 
@@ -12,6 +12,7 @@ categories: Javascript
 - ubuntu系统默认用户为ubuntu，amazon系统默认的用户名为ec2-user
 - 默认会有12个月750小时的免费套餐，但是仅限个别低配类型
 - 要想查看在所有region下的所有的ec2实例，可以在VPC dashboard中查看，`Running Instances -> See all regions`
+- [EC2实力类型列表](https://aws.amazon.com/ec2/instance-types/)
 
 ### 如何删除EC2实例
 
@@ -417,6 +418,7 @@ await client.deleteMessage({QueueUrl: 'xxx', ReceiptHandle: message.ReceiptHandl
 ```
 
 - SQS的客户端默认并不是一个监听者，如果想要持续监听一个队列，要么自己写`while true`循环，要么可以使用[sqs-consumer](https://www.npmjs.com/package/sqs-consumer)
+- 默认的重复检测时间是5分钟，即5分钟内发送相同内容的消息会被认定为重复，不会入队。但是必须有检测重复的功能，要么基于内容要么基于group，否则会报错`The queue should either have ContentBasedDeduplication enabled or MessageDeduplicationId provided explicitly`
 
 ## CodeDeploy/Pipeline
 
@@ -562,6 +564,8 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
 
 - 可以用于存储一些密码等环境变量，只有高级参数才收费，标准参数免费的，调用量极高才会收费
 
+- 注意Type选择SecureString
+
 - 如果要指定Role访问指定前缀的变量，可以这样设置Role的inline policy:
 
   ```json
@@ -583,9 +587,27 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
   ```javascript
   const ssm = new AWS.SSM({ region: 'us-east-2'})
   await ssm.getParameters({
-              Names: names,	// 注意一次最多只能取10个
-              WithDecryption: false
-          }).promise()
+    Names: names,	// 注意一次最多只能取10个，并且不能模糊搜索
+    WithDecryption: false
+  }).promise()
+  await ssm.describeParameters({	// 获取参数列表，但是结果是没有Value的，注意这里的IAM权限需要的是设置到ssm上，而不是parameter上，arn:aws:ssm:us-east-1:xxxxx:*而不是arn:aws:ssm:us-east-1:xxxxx:parameter/*
+  
+    "Filters": [
+      {
+        "Key": "Name",
+        "Values": [ "HAO" ]	// 这里就是模糊搜索
+      }
+    ],
+    "MaxResults": 50,	// 一次最多获取50个
+  }).promise()
+  // 更新Parameter，可以更新Type，在web是不能更新Type的
+  await ssm.putParameter({
+    Name: parameter.Name,
+    Type: 'SecureString',
+    Value: parameter.Value,
+    Overwrite: true,
+  }).promise();
+  
   ```
 
 ## Cron定时任务表达式

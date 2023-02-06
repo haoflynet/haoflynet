@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2022-11-03 08:24:00
+updated: 2023-01-18 08:24:00
 categories: js
 ---
 
@@ -356,15 +356,17 @@ TextInput默认宽度与父节点相同。如果想要其在没有文字的时�
 
 ### Touchable*系列
 
-包括了触摸的相关事件(触摸、点击、长按、反馈等):
+- `hitSlop`属性可以让可以点击的区域比实际的要大，非常适合在移动端的点击操作
 
-**onPressIn**: 触摸开始
+- 包括了触摸的相关事件(触摸、点击、长按、反馈等):
 
-**onPressOut**: 触摸离开
+  - **onPressIn**: 触摸开始
 
-**onPress**: 单击事件
+  - **onPressOut**: 触摸离开
 
-**onLongPress**: 长按事件
+  - **onPress**: 单击事件
+
+  - **onLongPress**: 长按事件
 
 #### TouchableHighlight
 
@@ -750,6 +752,10 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 - **Could not resolve project :react-native-camera.**这是个已经没有维护的库了，参考[doc](https://github.com/react-native-camera/react-native-camera/blob/master/docs/migrationV2.md#android)，在`android/app/build.gradle`中添加`missingDimensionStrategy 'react-native-camera', 'general'`即可
 
 - **xcrun: error: SDK "iphoneos" cannot be located**: 尝试执行`sudo xcode-select --switch /Applications/Xcode.app`
+
+- **Command PhaseScriptExecution failed with a nonzero exit code**: 如果无法查看错误详情，可以尝试运行Archive，可能会显示错误详情，可能就是下面这个问题，node路径没有找到
+
+- **React-Native env: node: No such file or directory**: 尝试执行`sudo ln -s "$(which node)" /usr/local/bin/node `
 ##### 扩展阅读
 
 - 浅谈前端移动开发[(Ionic与React Native)](http://bbs.reactnative.cn/topic/420/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91-ionic-%E4%B8%8E-react-native)

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2022-10-15 08:18:00
+updated: 2023-01-19 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -70,7 +70,7 @@ arr = [...arr1]	// 克隆/复制数组
 arr = [...arr1, arr2]	// 合并数组
 arr = [...'hello']	// 把字符串作为数组
 
-arrA.concat(arrB)			// 合并两个数组
+arrA.concat(arrB)			// 合并两个数组，会生成一个新的数组
 arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1
 arr.includes('元素');		// 判断数组是否包含某元素
 JSON.stringify(Array)		// 将数组转换为JSON格式的字符串
@@ -1240,6 +1240,15 @@ _.pick(obj, ['a', 'c'])	// {'a': 1, 'c': 3}
 ```javascript
 const obj = {'a': 1, 'b': '2', 'c': 3}
 _.pickBy(obj, _.isNumber)	// {'a': 1, 'c': 3}
+```
+
+##### _.random
+
+- 生成随机数
+
+```javascript
+_.random(0, 100)	// 生成0-100的整数
+_.random(0, 100, true)	// 生成0-100的浮点数
 ```
 
 ##### _.reduce
