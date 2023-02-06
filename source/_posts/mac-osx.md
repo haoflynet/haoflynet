@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2022-11-12 08:04:00
+updated: 2023-01-27 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -46,6 +46,8 @@ categories: system
 ```
 
 ### Homebrew配置使用
+
+- brew如果加cask参数表示下载的是.dmg/.pkg文件，不需要install等操作
 
 ```shell
 export ALL_PROXY=socks5://127.0.0.1:1080	# homebrew走ss代理

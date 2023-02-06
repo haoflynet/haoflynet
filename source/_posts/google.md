@@ -80,6 +80,10 @@ req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.headers['f
 
 ## [firebase/firestore](https://haofly.net/firebase)
 
+## Google Drive
+
+- 无论是用`google-drive-ocamlfuse`还是`rclone`的方式挂载都需要在web端授权，不如就用[rclone](https://haofly.net/rclone)，主要是mac上面好安装点而且功能更多
+
 ## Google Fonts
 
 - 谷歌字体服务

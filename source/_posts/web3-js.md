@@ -47,7 +47,7 @@ web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl || '', { headers }));
 web3.eth.getTransactionCount('0x...')	// 获取用户的transaction数量
 web3.eth.getBalance('0x...')	// 获取指定用户的balance
 web3.eth.getTransactionReceipt(hash)	// 获取指定hash的结果，结果只能通过status判断是成功还是失败，但是没有具体的原因
-// 获取transaction失败的原因
+// 获取transaction失败的原因, revert reason
 tx = await web3.eth.getTransaction(hash)
 try {
   await web3.eth.call(tx)
