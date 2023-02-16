@@ -148,7 +148,7 @@ return loc;
   "postinstall": "npx jetify"
   ```
 
-- **Type 'GoogleServicesTask' field 'intermediateDir' without corresponding getter has been annotated with @OutputDirectory**: 需要更新`com.google.gms:google-services`的版本，在Android Studio中打开`build.graddle`，修改如下代码:
+- **Type 'GoogleServicesTask' field 'intermediateDir' without corresponding getter has been annotated with @OutputDirectory**: 需要更新`com.google.gms:google-services`的版本，在Android Studio中打开`build.gradle`，修改如下代码:
 
   ```java
   dependencies {
