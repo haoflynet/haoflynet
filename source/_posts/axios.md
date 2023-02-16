@@ -58,16 +58,18 @@ axios({
 })
 ```
 
-## 中间件/hook/beforerequest
+## 中间件/hook/beforerequest/afterresponpse
 
 ```javascript
 axios.interceptors.request.use((config) => {
   config.headers = {....};
+  config.headers['request-startTime'] = new Date().getTime();
   return config;
 });
 
 axios.interceptors.response.use(async (res) => {
-  console.log(res.data, res.request.path);
+  console.log(res.data, res.request.path, res.request._url);
+  console.log(new Date().getTime() - (Number(res?.config?.headers?.['request-startTime']) || 0));	// 获取请求的耗时可以这样做
   await new Promise((r) => setTimeout(r, 800));
   return res;
 });
