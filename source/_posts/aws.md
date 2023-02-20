@@ -1,11 +1,12 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2023-01-18 09:54:00
+updated: 2023-02-18 09:54:00
 categories: Javascript
 ---
 
 - Aws的密钥只能下载一次，下载后请小心保存
+- AWS的命令行或者代码的环境变量是: `AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY/AWS_DEFAULT_REGION`
 
 ## EC2
 
@@ -237,6 +238,34 @@ Block all public access
 
 ```
 
+### 用S3部署静态站点
+
+- 如果要用自定义域名，bucket的名字需要和域名一样
+
+- 设置Bucket policy，允许所有人访问: 
+  ```json
+  {
+  	"Version":"2012-10-17",
+  	"Statement":[
+  		 {
+  		   "Sid":"AddPerm",
+  		   "Effect":"Allow",
+  		   "Principal": "*",
+  		   "Action":["s3:GetObject"],
+  		   "Resource":["arn:aws:s3:::<your bucket name here>/*"]
+  		 }
+  	]
+  }
+  ```
+
+- 开启静态站点功能Bucket -> Properties -> Static Website Hosting，开启后就会有一个aws的域名了，但是没有ssl证书
+
+- 自己在AWS上申请证书
+
+- 创建CloudFront -> Distribution，origin domain设置为自己的域名，Alternate domain (CNAME)选择自己的域名
+
+- 最后将域名的DNS设置A记录到cloudfront的域名即可
+
 ## ACM/AWS Certificate Manager
 
 - AWS的公有SSL/TLS证书是免费的，不过因为ACM管理私钥，所以只能在AWS上面使用。获取步骤还算简单，添加一个CNAME记录，一会儿就好了
@@ -328,6 +357,8 @@ email: $email
 - **注意如果有异步函数，一定要await它的返回，否则可能会在下一次触发的时候才执行**
 
 - 发现一个比较好用的库，可以实现打包、部署等操作: [motdotla/node-lambda](https://github.com/motdotla/node-lambda)
+
+  - 但是不是每种nodejs的库都能直接打包，比如nestjs，可以使用[nextjs-lambda](https://github.com/sladg/nextjs-lambda)打包成lambda，但是它会生成多个layers，并且同样会用到cloudfront和S3，我不如直接把生成的静态站点out目录上传到S3，然后用cloudfronted代理静态站点
 
 - 如果需要安装依赖，要么创建`层`，要么就将`node_modules`一起压缩为`.zip`文件然后上传，可以使用`adm-zip`等方式压缩，但是这样会因为程序包太大而无法使用在线的内联编辑器
 

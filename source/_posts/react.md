@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2023-02-02 21:38:00
+updated: 2023-02-18 21:38:00
 categories: Javascript
 ---
 
@@ -402,6 +402,28 @@ const { register, setValue, getValues, trigger, formState: { errors } } = useFor
 
 <input name="singleErrorInput" />
 <ErrorMessage errors={errors} name="singleErrorInput" />	// 错误提示文本组件，需要先安装@hookform/error-message
+
+// 字段验证： npm install @hookform/resolvers yup
+const schema = yup.object({
+  firstName: yup.string().required(),
+  age: yup.number().positive().integer().required(),
+}).required();
+const { register, handleSubmit, formState:{ errors } } = useForm({
+    resolver: yupResolver(schema)
+});
+
+// 如果是react-datepicker这种第三方组件，想要绑定props而不是直接设置一个值，可以这样包装一下
+import { Controller, useForm } from 'react-hook-form'
+<Controller
+  control={control}
+  name='date-input'
+  render={({ field }) => (
+    <DatePicker
+      onChange={(date) => field.onChange(date)}
+      selected={field.value}
+    />
+ )}
+/>
 ```
 
 ### React-Redux
