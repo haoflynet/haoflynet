@@ -565,7 +565,11 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 - `enablePanDownToClose`: 向下滑自动关闭
 - 如果是多个sheet叠加显示，好像DOM后面的就是最上层
 
-### [react-native-dotenv](https://github.com/goatandsheep/react-native-dotenv)
+### ~~[react-native-dotenv](https://github.com/goatandsheep/react-native-dotenv)~~
+
+### [react-native-config](https://github.com/luggit/react-native-config)
+
+- `react-native-config`比`react-native-dotenv`更通用，不用为每个环境变量声明typescript，并且它支持不同的环境使用不同的环境变量
 
 -  使用`.env`文件来加载环境变量
 - 需要注意的是，它是有缓存的，如果变量更改了记得参考文档清理cache

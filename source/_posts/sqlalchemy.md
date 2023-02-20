@@ -1,7 +1,7 @@
 ---
 title: "SQLAlchemy手册"
 date: 2017-11-15 22:51:39
-updated: 2023-01-19 23:11:00
+updated: 2023-02-17 23:11:00
 categories: python
 ---
 
@@ -102,7 +102,7 @@ UnicodeText
 Date
 DateTime	# daatetime.datetime()对象
 Time		# datetime.time()对象
-TIMESTAMP	# 时间戳
+TIMESTAMP	# 时间戳，赋值时需要用datetime.datetime.utcnow()
 
 # 关联列属性
 fullname = column_property(firstname + ' ' + lastname)	# 表示这一列的值由指定的列值确定
@@ -309,6 +309,10 @@ session.flush()
 
 user.name = 'new'
 session.commit()
+
+# 根据dict来更新object
+for key, value in mydict.items():
+    setattr(user, key, value)
 ```
 
 ### 删除

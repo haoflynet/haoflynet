@@ -95,6 +95,9 @@ class TestSpider(scrapy.Spider):
 
     def start_requests(self):
       """生成初始请求"""
+      self.crawler.stats.set_value('key', 'value')	# 可以自定义给爬虫设置全局的状态字段
+      self.crawler.stats.inc_value('my_custom_count')	# 还能设置自增字段
+      self.crawler.stats.max_value('my_custom_count')	# 还能设置最大值或最小值min_value(多线程依然能实现)
       yield Request(url, self.parse, meta={})
   
     def parse(self, respone):
@@ -105,6 +108,9 @@ class TestSpider(scrapy.Spider):
         self.parse_page(response)		# 即使你在parse_page里面返回了yield，该函数也不会执行，最好这样
         for item in self.parse_page(response):
             yield item
+            
+    def closed(self, reason):	# 爬虫结束的hook，正常结束reason都是"finished"
+        print(self.crawler.stats.get_stats())	# 获取爬虫的状态信息，就是最后的总结
 ```
 
 ### 请求与响应

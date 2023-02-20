@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2023-01-19 08:18:00
+updated: 2023-02-18 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -252,6 +252,7 @@ dayjs.duration(1, "minutes").humanize(); // a minute, 目前没有找到当1的�
 dayjs.duration(24, "hours").humanize(); // a day
 dayjs.duration(1, "minutes").huminize(true);	// in a minute
 dayjs.duration(-1, "minutes").huminize(true);	// a minute ago, react可以直接用react-timeago来计算
+date1.diff(date2, 'month')	// 计算两个时间的差值
 
 // luxon
 DateTime.now();
