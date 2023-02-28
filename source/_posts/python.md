@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2023-01-19 09:36:30
+updated: 2023-02-21 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -1520,6 +1520,8 @@ conn.close()	# 关闭连接
 - **#error architecture not supported**: 安装某些包的时候会出现这个，可以尝试`ARCHFLAGS="-arch x86_64" pip install nltk`
 
 - **No such file or directory: 'c++': 'c++'**: `apt install build-essential`
+
+- **no module named bz2: **`sudo apt-get install libbz2-dev`或者`sudo yum install bzip2-devel `
 
 ## 推荐Package
 

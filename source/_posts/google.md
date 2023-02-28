@@ -1,7 +1,7 @@
 ---
 title: "Google Cloud 相关服务"
 date: 2021-07-23 07:52:39
-updated: 2022-12-5 18:07:00
+updated: 2023-02-21 18:07:00
 categories: frontend
 ---
 
@@ -146,6 +146,8 @@ https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,700
 
 - Variables不是环境变量，是tensorflow的变量，可以参考[这里](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/guide/variable.ipynb)
 - Colab可以[连接不同的文件服务](https://neptune.ai/blog/google-colab-dealing-with-files): Github, Google Drive, Local File System, Google Sheets, Google Cloud Storage(GCS), AWS S3, Kaggle datasets, MySQL
+  - Google Drive: 注意无法直接链接别人分享给你的文件夹，必须将分享的文件夹添加快捷方式(Add shortcut to drive)到你自己的文件夹才行
+
 
 ## TroubleShooting
 

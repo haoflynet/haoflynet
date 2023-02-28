@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2023-01-18 08:24:00
+updated: 2023-02-26 08:24:00
 categories: js
 ---
 
@@ -622,6 +622,8 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 
 ## 性能优化
 
+### 最重要的是将需要变化的状态细化到单独的组件，这样状态变化时就不会影响到其他不需要的地方
+
 ### Touchable系列组件不能很好的响应
 
 - 通过`requestAnimationFrame`，可以让组件的透明度改变效果很快切换回来，而不会卡在那儿
@@ -760,6 +762,8 @@ jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"j
 - **Command PhaseScriptExecution failed with a nonzero exit code**: 如果无法查看错误详情，可以尝试运行Archive，可能会显示错误详情，可能就是下面这个问题，node路径没有找到
 
 - **React-Native env: node: No such file or directory**: 尝试执行`sudo ln -s "$(which node)" /usr/local/bin/node `
+
+- **No simulator found with name "iPhone 13"**运行时可以指定模拟器的名称: `yarn ios --simulator="iPhone 14"`
 ##### 扩展阅读
 
 - 浅谈前端移动开发[(Ionic与React Native)](http://bbs.reactnative.cn/topic/420/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91-ionic-%E4%B8%8E-react-native)
