@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2023-01-05 08:50:30
+updated: 2023-02-26 08:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -239,6 +239,10 @@ yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
   }
   
   type Type2 = keyof MyType;	// Type2会被解析为'username'|'pass'
+  
+  enum MyEnum {	// 注意定义枚举的时候要把key和value都写出来，如果写成enum MyEnum {VALUE1, VALUE2}这样可能会导致后面无法拿来匹配值，无论字符串还是枚举都匹配不上
+    VALUE1 = 'VALUE1', VALUE2 = 'VALUE2', VALUE3 = 'VALUE3'
+  }
   ```
 
 - 自定义类型:
@@ -261,7 +265,7 @@ yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
     }
     declare let window: CustomWindow;
     ```
- 
+
 ## ~~使用Forever管理NodeJs应用~~(生产环境最好用[pm2](https://haofly.net/pm2))
 
 - 直接使用`sudo npm install forever -g`进行安装
@@ -318,6 +322,8 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
     path: '../.env',
   });
   ```
+
+- [human-numbers](https://github.com/Kikobeats/human-number)：转换数字的大小K、M、B、T，不过它其实就一个[方法](https://github.com/Kikobeats/human-number/blob/master/src/index.js)，都可以不用它这个包
 
 - [node-csv](https://github.com/adaltas/node-csv): 读写CSV文件的库，它由cdv-generate,csv-parse,csv-transform,csv-stringify几个部分组成，一个一次性安装，也可以单独安装
 

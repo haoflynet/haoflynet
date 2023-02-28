@@ -11,7 +11,7 @@ categories: python
 - 文档太多，有很多几分钟就能上手的例子
 - Scrapy默认将已经抓取过的和队列中的请求都存储在内存中，不过可以使用`JOBDIR`将进度持久化
 - Scrapy本身不支持分布式，要支持分布式，需要依靠`scrapy-redis`，但是该库很久没人维护了，不过逻辑比较简单，可以自己造轮子
-- Scrapy要抓取Js生成的页面，需要使用其他的工具来辅助，比如Splash，Selenium等
+- Scrapy要抓取Js生成的页面，需要使用其他的工具来辅助，比如Splash，Selenium等，现在(2023)我更推荐[scrapy-playwright](https://github.com/scrapy-plugins/scrapy-playwright)
 - Scrapy可以通过设置`CONCURRENT_REQUESTS`设置并发的线程数量，默认是16，另外一个控制是`CONCURRENT_REQUESTS_PER_DOMAIN`默认是8。两个变量都是有作用的，并发有多大，程序就会开多少个子线程。当然，具体怎么执行还是得看CPU，例如，在4核8线程上面，同时仅有8个线程在运行(对于Python来说，其实仅有一个线程)，超过的线程，基本上属于等待唤醒的状态，等那8个线程执行完毕或者遇到IO阻塞的时候才会被唤醒。这一点，对于网络延迟很大的任务非常有用，不用再所有线程去等待了。
 
 在学习scrapy的过程中，如果有看源码的兴趣，建议顺便看看`scrapy-redis`，虽然该项目很少维护，但是却非常有利于搞懂`scrapy`框架。

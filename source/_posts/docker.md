@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2022-09-26 14:23:00
+updated: 2023-02-21 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -378,3 +378,5 @@ docker run --name postgres -e POSTGRES_PASSWORD=the_password -p 5432:5432 -d pos
     ```
 
 - **docker: Error response from daemon: network bridge is ambiguous (2 matches found on name).** 本来这个一般发生在network网卡有重名的情况，一般用`docker network prune ID`就可以删除了，但偏偏我这次遇到的是默认的`bridge`网卡重名，我也不知道怎么做到的，但是用`prune`删除会报错，最后的方法是删除`sudo mv /var/lib/docker/network/files/ /tmp/docker-network-bak`，然后重启`systemctl restart docker`重新生成网卡解决了，注意最好先备份一下网卡信息
+
+- **apt-add-repository: command not found**: 需要先安装: `apt-get install software-properties-common`
