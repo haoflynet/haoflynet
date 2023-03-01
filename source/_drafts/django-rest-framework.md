@@ -1,3 +1,9 @@
+## 请求于响应
+
+```python
+request.data.get('field')	# 获取POST的请求
+```
+
 ## 视图view
 
 ### Generic Views

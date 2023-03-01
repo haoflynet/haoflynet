@@ -1,7 +1,7 @@
 ---
 title: "Cordova 开发手册"
 date: 2021-04-29 08:02:30
-updated: 2022-11-14 18:20:00
+updated: 2023-03-01 18:20:00
 categories: javascript
 ---
 
@@ -134,6 +134,13 @@ cd platforms/ios && pod repo update && pod install	# cordova项目安装第三�
   ```
 
 - 然后`cordova prepare`后打开Xcode，在左侧目录`项目名->Resources->Images.xcassets->AppIcon`可以看到我们所有的图标，然后选中整个AppIcon框后，右侧可以勾选对应的平台，选择了后就可以把对应的图片拖到对应尺寸的框里，如果有重复的，可以直接`Cmd + C`进行复制，不能用鼠标复制。需要保证所有的框都装了icon并且没有感叹号
+
+### config.xml配置
+
+```xml
+<preference name="android-minSdkVersion" value="14"/>	<!--设置安卓的minSDK-->
+<preference name="deployment-target" value="7.0" /> <!--设置ios的min target -->
+```
 
 ### 异形屏处理
 

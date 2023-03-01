@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2023-02-21 09:36:30
+updated: 2023-03-01 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -35,6 +35,8 @@ python3.5 get-pip.py
 # Python3.5版本默认有安装pip的，如果没有，那么就酱紫
 wget https://bootstrap.pypa.io/get-pip.py
 python3.3 get-pip.py
+
+python3 -m venv/ path/to/venv	# 创建virtualenv环境
 ```
 
 ## 基本语法
