@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2021-03-04 15:01:00
+updated: 2023-03-01 15:01:00
 categories: python
 ---
 # Django教程
@@ -21,7 +21,7 @@ Django另一个我特别喜欢的特性就是Application，它与Project的概�
 ## 项目搭建
 
 1. [使用Virtualenv搭建Python3的Django环境](http://haofly.net/virtualenv-python-django/)
-2. 新建项目 `django-admin startproject 项目名` 这样会在当前目录新建一个目录，里面已经有一些基本的配置文件：
+2. 新建项目 `django-admin startproject 项目名 .` 这样会把当前目录作为一个Django项目，里面已经有一些基本的配置文件：
 
    ```shell
    django_test
@@ -1253,5 +1253,4 @@ Django下的定时任务插件，我以前用的是`django-crontab`，但是现�
 ##### 扩展阅读
 
 - [Sasha's Pony Checkup](https://www.ponycheckup.com): 简单的Django网站安全检测
-
 

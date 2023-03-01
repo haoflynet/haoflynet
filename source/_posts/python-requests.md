@@ -1,7 +1,7 @@
 ---
 title: "Python requests模块"
 date: 2016-08-07 11:02:39
-updated: 2020-11-18 21:18:00
+updated: 2023-03-01 21:18:00
 categories: python
 ---
 # python requests模块
@@ -111,6 +111,7 @@ r = S.post(url, files={
 
 ```python
 response.text	# 获取编码后的响应文本信息
+response.json()	# 获取json响应
 response.content	# 直接获取响应的二进制信息
 response.cookies	# 获取响应cookie对象
 response.status_code  # HTTP status，http状态码
