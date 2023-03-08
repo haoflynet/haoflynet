@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2023-01-07 09:52:30
+updated: 2023-03-06 09:52:30
 categories: system
 ---
 # Linux手册
@@ -337,12 +337,15 @@ ssh -o StrictHostKeyChecking=no root@ip
 # 命令行直接输入密码，使用sshpass，当然，这样子在history就会记录下你的密码了，可以使用history的相关功能屏暂时屏蔽掉记录密码的功能
 sshpass -ppassword ssh
 
-# 交互式SHELL自动输入，可以这样写一个可执行文件:
+# expect: 交互式SHELL自动输入，需要先安装apt install expect -y, 然后可以这样写一个可执行文件
 #!/usr/bin/expect -f	# 可以加入-d参数进行调试
+set timeout 10 # 注意超时也是会自动向下继续执行的
 spawn target.sh		# 需要执行的脚本
 expect "Select group"	# 期望出现的字符
+expect "aaa" {send "1\n"}	# 一组语句
 send "1\n"	# 当出现上面字符的时候输入指定字符
 interact	# 保持交互状态，这样不会退出交互
+expect "Success"	# 注意最好在后面判断一下成功信息的出现，这样才能保证程序执行完成了后退出，不然会以为回车没有用哟，此时不要用interact
 
 # CentOS下的安装
 yum install openssh-client openssh-server
@@ -550,6 +553,7 @@ systemctl reload nginx	# 重新读取配置文件
 
 systemctl is-enabled mongodb # 验证是否开启了开机启动
 systemctl enable docker.service	# 开机启动服务
+systemctl enable --now docker.service 	# 设置为启动服务并且现在就启动一下
 systemctl disable docker.service	# 禁用开机启动
 
 service httpd status	# 检查服务状态
