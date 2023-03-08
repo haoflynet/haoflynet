@@ -1,7 +1,7 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2022-11-14 15:37:00
+updated: 2023-03-08 15:37:00
 categories: system
 ---
 ## Android Studio 的使用
@@ -37,6 +37,10 @@ categories: system
   
   
   - 获取keystore的sha-1指纹: `keytool -list -v -keystore {keystore_name} -alias {alias_name}`
+
+### 模拟器里面实现震动
+
+- 目前能找到能行的方法只有在模拟器设置里面选择Virtual sensors -> Move，然后拖动X、Y、Z三个轴移动，不能太快也不能太慢
 
 ## Google Play Console的使用
 

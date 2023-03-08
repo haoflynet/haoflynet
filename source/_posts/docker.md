@@ -89,10 +89,11 @@ Dockerfile是一个制作镜像的脚本工具，通过它可以比直接拷贝d
 ```shell
 docker build -t local:mine .
 docker build --add-host=google.com:8.8.8.8 -t local:latest .	# docker build阶段的add-host仅仅用于构建阶段，这个hosts是不会打包进镜像的
+docker builder prune	# 删除build缓存cache
 ```
 - 在Dockerfile中应该尽可能晚的添加应用程序源代码，才能充分利用layer的缓存。这意味着`COPY`这种命令尽量放到后面，并且尽量只`COPY`需要的文件
 - 尽量合并RUN命令，特别是`yum`等的更新安装命令，并且给加上`–no-install-recommends`参数不安装不需要的依赖`apt-get -y install --no-install-recommends 包名`
-- 为渐小镜像大小可以移除安装缓存，`apt-get -y vim && rm -rf /var/lib/apt/lists/*`或者`yum clean all`
+- 为减小镜像大小可以移除安装缓存，`apt-get -y vim && rm -rf /var/lib/apt/lists/*`或者`yum clean all`或者`apt-get clean all`
 
 Dockerfile的语法说明:
 

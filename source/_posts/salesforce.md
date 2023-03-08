@@ -19,6 +19,23 @@ categories: system
 
 - `Setup -> App Manager `，然后选择自己的首页的app，一般是`Force.com`，进入编辑页面就能看到`Choose the Tabs`设置了
 
+#### 跟踪对象或字段的历史修改
+
+- 首先需要再对象的`Details`设置里面打开`Track Field History`
+
+- 由于每个对象最多只能设置20个追踪字段，所以默认没有打开，针对单独的字段得单独打开，在Object Manage -> Your Object -> Fields & Relationships
+
+   -> Set History Tracking，选中想要追踪的字段保存即可
+
+- jsforce sdk可以这样查询history
+
+  - 返回的结果中，ParentId才是原始对象的Id，FIeld则是更改的字段
+
+```javascript
+// 注意如果是标准对象，那么直接加History即可，例如AccountHistory，如果是自定义对象__c，那么需要将__c替换为__History
+conn.sobject('MyCustomObject__History').find({})
+```
+
 ### Sandbox
 
 - Sandbox的[价格表](https://www.salesforce.com/editions-pricing/platform/environments/)，没错，是按照原是数据的价格来按百分比收费的，怪不得很多用户都只是partial copy，得自己想办法去将生产数据同步到sandbox中去。
