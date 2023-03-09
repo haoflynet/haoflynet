@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2023-02-21 14:23:00
+updated: 2023-03-09 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -28,6 +28,7 @@ docker ps -q 		# 只列出容器的ID
 
 docker rm # 删除容器
 docker rmi # 删除镜像
+docker builder prune	# 清理创建失败的镜像的layer
 
 docker tag id name:tag	# 给镜像更改名称，重命名镜像Tag
 ```
