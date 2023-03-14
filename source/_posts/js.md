@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2023-02-18 08:18:00
+updated: 2023-03-14 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -361,7 +361,7 @@ class Person {
 
 ```js
 fs.statAsync(path); // 同步判断文件或文件夹是否存在，同步方法最好加上try...catch
-fs.stat(path, function(exists) {}); // 异步的方式判断文件或文件夹是否存在
+fs.stat(path, function(exists) {}); // 异步的方式判断文件或文件夹是否存在，文件创建时间
 
 fs.access(path, 权限, function(err){}); // 判断是否拥有指定文件的指定的权限，权限可以有fs.F_OK(文件是否可见，也可用来判断文件是否存在),fs.R_OK(是否可读),fs.W_OK(是否可写),fs.X_OK(是否可执行)
 

@@ -25,6 +25,7 @@ oci iam compartment list --all	# 列出所有的compartment，可以获取到com
 
 # 计算资源compute
 oci compute instance list --compartment-id=ocidxxxxx	# 列出所有的实例
+oci compute instance get --instance-id=ocid1.xxxxx	# 获取实例详情，但是这里不会返回IP，要获取IP还是得用vinc来弄
 
 # 公网IP，public-ip
 oci network public-ip list --compartment-id=ocidxxxxx --scope=REGION	# 列出所有的公网IP
