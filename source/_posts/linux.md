@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2023-03-06 09:52:30
+updated: 2023-03-14 09:52:30
 categories: system
 ---
 # Linux手册
@@ -345,7 +345,7 @@ expect "Select group"	# 期望出现的字符
 expect "aaa" {send "1\n"}	# 一组语句
 send "1\n"	# 当出现上面字符的时候输入指定字符
 interact	# 保持交互状态，这样不会退出交互
-expect "Success"	# 注意最好在后面判断一下成功信息的出现，这样才能保证程序执行完成了后退出，不然会以为回车没有用哟，此时不要用interact
+expect "Success"	# 注意最好在后面判断一下成功信息的出现，这样才能保证程序执行完成了后退出，不然会以为回车没有用哟，此时不要用interact。但是我仍然遇到过send后一直不执行下面语句的情况，不知道怎么解决了
 
 # CentOS下的安装
 yum install openssh-client openssh-server
@@ -442,6 +442,9 @@ du -h --max-depth=1	# 当ncdu统计出来的容量明显不对的时候只能用
 # 查看磁盘读写情况，iostat
 sudo apt-get install sysstat -y
 iostat
+
+# 磁盘空间不足
+apt-get autoremove	# 可以删除一些不必要的linux-headers-* 和 linux-headers-*-generic文件
 ```
 
 #### 用户管理

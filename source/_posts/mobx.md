@@ -1,3 +1,8 @@
+---
+title: "Mobx 手册"
+date: 2023-03-14 12:02:30
+categories: nodejs
+---
 - 使用起来比`redux`好用多了，就凭这一点我就放弃`redux`了
 - redux将数据保存在单一的store中，mobx则是分散在多个store中
 - [react-mobx-typescript-realworld-example-app](https://github.com/7anshuai/react-mobx-typescript-realworld-example-app): 一个很好的example项目
@@ -12,6 +17,8 @@ npm install mobx-utils --save	# 最好同时安装这个库，提供了更多的
 
 # 如果实用Typescript或者https://mobx.js.org/enabling-decorators.html可以参考这个文档修改一下配置即可
 ```
+
+<!--more-->
 
 ## 状态定义
 
