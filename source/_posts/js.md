@@ -963,6 +963,14 @@ _.countBy([6.1, 4.2, 6.3], Math.floor)	// {'4': 1, '6': 2}
 _.chunk([1,2,3,4,5], 2)	// [[1,2], [3,4], [5]]
 ```
 
+##### _.debounce(func, [wait=0])
+
+- 函数防抖，防止函数短时间内重复执行，例如api请求，搜索的查询
+
+```javascript
+_.debounce(() => {apicall}, 100)
+```
+
 ##### every
 
 必须所有回调都返回`true`，最终结果就为`true`，否则就为`false`. 有个妙用就是在实现在forEach中break的功能
