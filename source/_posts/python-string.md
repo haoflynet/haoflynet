@@ -86,10 +86,14 @@ str.count('sub_str')
 
 # 字符串替换
 import re
-text = 'Today is 11/27/2016'
+text = 'Today is 03/16/2023'
 pat = re.compile(r'(\d+)/(\d+)/(\d+)')
 pat.sub(r'\3-\1-\2', text)
 'Today is 2016-11-27'
+
+>>> text = 'Today is 03/16/2023, tomorrow is 03/17/2023'
+>>> re.sub(r'(\d+)/(\d+)/(\d+)', r'\3-\1-\2', text)
+'Today is 2023-03-16, tomorrow is 2023-03-17'
 
 # 带命名组的替换
 re.sub(r'<a.*?>(.*?)</a>','\g<1>', text) # 替换a标签，但保留a标签里面的内容，需要注意的是.*表示最长匹配，而.*?表示最短匹配。添加参数flag=re.IGNORECASE表示不区分大小写

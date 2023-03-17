@@ -328,7 +328,7 @@ def dictfetchall(cursor):
 
 #### 查询记录
 
-- `model`对象转换为json: `model_to_dict(blog)`，或者`result = django.core.serializers.serialize('json', some_queryset)`，但是对于特殊的字段，例如文件字段依然不能正常转换，最好还是自己写个`transform`去转换
+- `model`对象转换为json: `from django.forms.models import model_to_dict model_to_dict(blog)`，或者`result = django.core.serializers.serialize('json', some_queryset)`，但是对于特殊的字段，例如文件字段依然不能正常转换，最好还是自己写个`transform`去转换
 - `Blog.objects.all()[3:30]`只取出部分数据，相当于limit，并不会查处全部
 - 偶尔使用自定义的查询条件: `Model.objects.extra(where['FIND_IN_SET(1, field)])`
 - `get`方法如果找不到默认会报错，可以使用`try except`或者使用`filter(id="").first()`进行不报错处理，效果差不多
