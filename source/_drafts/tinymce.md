@@ -5,7 +5,7 @@
 const tinyMceEditorInitConfig = {
   {
     height: 500,	// 组件的高度
-    inline: true,	// 默认是false，会嵌入一个iframe，当为true的时候则是内嵌的元素，能够使用我们之前有的一些样式
+    inline: true,	// 默认是false，会嵌入一个iframe，当为true的时候则是内嵌的元素，能够使用我们之前有的一些样式，否则就不利于在其他地方展示了，因为其他地方不一定会引入编辑器的CSS
     plugins: 'image link',
     menubar: false,	// 是否显示menu bar，一般都不用吧，好丑
     paste_data_images: true,

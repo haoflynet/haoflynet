@@ -77,6 +77,7 @@ const { status, fetchStatus, data: projects } = useQuery(
     refetchOnWindowFocus: false, // 在窗口获得焦点的时候是否重新获取数据，默认为true。还可以使用focusManager.setEventListener自定义focus监听事件
     retry : false, // 出错后不重试
     retry: 6, // 设置出错后重试次数
+    notifyOnChangeProps: string[] | "all"	// 指定哪个属性更改后需要重新渲染，默认会自动跟踪想要的字段。这里可以配合onSuccess来优化渲染逻辑，不用每次改变都重新渲染，而是只是在onSuccess里面setStatus
     retry: (failureCount, error) => {}, // 自定义出错后逻辑
     retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000), // 设置重试的间隔时间
     keepPreviousData: true, // 在翻页查询的时候不用一次又一次地loading
