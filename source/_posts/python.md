@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2023-03-01 09:36:30
+updated: 2023-03-18 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -183,6 +183,12 @@ d = {key: value for (key, value) in iterable}
 dict(dict1.items() + dict2.items())
 dict(dict1, **dict2)
 dict1.update(dict2)	# 这种方式不会返回新的字典，只会更新原有dict1字典
+
+# 打乱字典顺序
+import random
+dict_list = list(dict1.items())
+random.shuffle(dict_list)
+dict2 = dict(dict_list)
 ```
 #### 集合
 

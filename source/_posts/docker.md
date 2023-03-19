@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2023-03-14 14:23:00
+updated: 2023-03-19 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -112,6 +112,8 @@ ENTRYPOINT: 和CMD类似,但是如果docker run中指定了命令,它仍然会�
 ENV: 指定环境变量，在dockerfile里面使用export是没用的，ENV <key> <value>或者ENV <key1>=<value1> <key2>=<value2>都可以
 ARG: 指定参数，比如ockerfile里面定义了`ARG JAVA_HOME`，那么可以在构建的时候用docker build JAVA_HOME=$JAVA_HOME对该参数进行赋值
 ONBUILD: 后面跟的是其他的普通指令，例如ONBUILDI RUN mkdir test，实际上它是创建了一个模版景象，后续根据该景象创建的子镜像不用重复写它后面的指令，就会执行该指令了
+
+ARG DEBIAN_FRONTEND=noninteractive	# 可以防止在安装一些依赖的时候跳出来让手动选择timezone等，添加这个环境变量即可
 ```
 
 ## Docker Compose 
@@ -287,6 +289,17 @@ docker run -it -e VIRTUAL_HOST=dev.haofly.net --name dev -d eboraas/laravel # �
 
 ```shell
 docker run --name postgres -e POSTGRES_PASSWORD=the_password -p 5432:5432 -d postgres
+```
+
+### Ubuntu/Debian
+
+- ubuntu如果要使用systemctl，需要安装init，可以在Dockerfile里面这样做
+
+```shell
+RUN apt-get update && apt-get install -y init && apt-get clean all
+
+# 在启动的时候需要使用/sbin/init命令
+docker run ... /sbin/init
 ```
 
 ## TroubleShooting

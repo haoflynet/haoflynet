@@ -1,7 +1,7 @@
 ---
 title: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2023-02-18 21:38:00
+updated: 2023-03-17 21:38:00
 categories: Javascript
 ---
 
@@ -688,6 +688,27 @@ onKeyPress // 当键盘按下，function(e) => {e.charCode === 13}， charCode�
    ...
   });
   ```
+
+- **[Property 'ref' does not exist on type 'IntrinsicAttributes'](https://stackoverflow.com/questions/73278383/getting-property-ref-does-not-exist-on-type-intrinsicattributes-error)**: 可以尝试将组件用`forwardRef`封装一下
+
+```javascript
+import { forwardRef } from "react";
+const NewComponent = forwardRef<HTMLDivElement>((props, ref) => {
+  return <div ref={ref}>{props.children}</div>;
+});
+
+import { useRef } from "react";
+export default function App() {
+  const titleRef = useRef<HTMLDivElement>(null);
+  return (
+    <div>
+      <NewComponent ref={titleRef} />
+    </div>
+  );
+}
+```
+
+
 
 ## 扩展阅读
 

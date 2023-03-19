@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2022-10-12 18:21:00
+updated: 2023-03-17 18:21:00
 categories: tools
 ---
 # Git指南
@@ -119,7 +119,9 @@ git stash -p	# 以交互的方式确定每一个修改是否需要stash
 git stash list				# 查看所有的"储藏"
 git stash apply				# 应用最近一次的“储藏”
 git show stash@{1}			# 查看stash
-git stacsh apply stash@{2}	# 应用指定的"储藏"
+git stash apply stash@{2}	# 应用指定的"储藏"
+
+git cherry-pick <commitHash>	# 将指定分支的某一个提交应用到当前的这个分支，常用于多个人共同开发，在对方分支后又有多余的提交，但是只想要之前的提交所以用git cherry-pick
 ```
 
 #### 分支操作

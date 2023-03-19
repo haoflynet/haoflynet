@@ -1,6 +1,7 @@
 ---
 title: "Xcode / iOS开发手册"
 date: 2022-09-16 08:32:00
+updated: 2023-03-17 23:57:00
 categories: Mac
 ---
 
@@ -47,6 +48,14 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
   ```shell
   pod --version	# 查看pod版本
   sudo gem install cocoapods	# 升级版本
+  
+  # 清理并重新安装以来
+  rm -rf ~/Library/Caches/CocoaPods; 
+  rm -rf Pods; 
+  rm -rf ~/Library/Developer/Xcode/DerivedData/*; 
+  pod deintegrate; 
+  pod setup; 
+  pod install;
   ```
 
 ## TroubleShooting
