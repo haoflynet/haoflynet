@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2022-11-03 16:30:00
+updated: 2023-03-17 16:30:00
 categories: frontend
 ---
 - [各种浏览器及系统的尺寸](http://chicun.jammy.cc/html/web.html)
@@ -323,7 +323,18 @@ margin: 10px 5px 15px 20px;	/*上 右 下 左*/
 ##### text-overflow
 
 - 设置当文本溢出包含元素时怎么做
+
 - clip(直接截断文本)、ellipsis(截断文本并显示省略号)
+
+- 如果text-overflow不能工作，可以尝试下这样：
+
+  ```javascript
+  {
+    width: 80px;	// 元素宽度必须是px，不能是百分比%
+    overflow: hidden; // 必须设置
+    white-space: nowrap;
+  }
+  ```
 
 ##### text-transform
 
