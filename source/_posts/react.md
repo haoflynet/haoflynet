@@ -1,7 +1,7 @@
 ---
-title: "React 开发手册"
+lutitle: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2023-03-17 21:38:00
+updated: 2023-03-28 21:38:00
 categories: Javascript
 ---
 
@@ -167,11 +167,28 @@ class ThemedButton extends React.Component {
   ```javascript
   import { Switch, Route } from 'react-router-dom'
   
+  // 检查是否登陆，如果未登陆就跳到登陆页
+  function CheckAuth({ Component }: any) {
+    const location = useLocation();
+    const auth = !!userStore.token; // your logic
+    const { pathname } = location;	// 获取当前的路由pathname
+  
+    if (auth && ['/sign', '/signup'].includes(pathname)) {
+      return <Navigate to="/dashboard" />;
+    }
+  
+    if (!auth && !['/sign', '/signup'].includes(pathname)) {
+      return <Navigate to="/" />;
+    }
+  
+    return <Component />;
+  }
+  
   const Main = () => (
   	<main>
       <Switch>
-      	<Route path='/roster' component={Home}/>
-      	<Route path='/schedule' component={Post}/>
+      	<Route path="/" element={<CheckAuth Component={SignIn} />} />
+      	<Route path='/schedule' element={<CheckAuth Component={SignIn} />} />
         <Route path='/about', render={() => <About something={this.something}>}/>	<!--通过这种方式绑定数据或者方法给子路由-->
     	</Switch>
     </main>
