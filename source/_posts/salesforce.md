@@ -33,7 +33,12 @@ categories: system
 
 ```javascript
 // 注意如果是标准对象，那么直接加History即可，例如AccountHistory，如果是自定义对象__c，那么需要将__c替换为__History
-conn.sobject('MyCustomObject__History').find({})
+conn.sobject('MyCustomObject__History').find({
+  ParentId: "xxxxxxxxx",
+  Field: "xxx",
+  OldValue: "",
+  NewValue: "",
+})
 ```
 
 ### Sandbox

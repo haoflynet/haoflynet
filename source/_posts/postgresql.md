@@ -44,7 +44,7 @@ psql -U postgres -h xxx 数据库名 < db_dump.back # 恢复restore数据库，�
 
 SELECT * FROM pg_stat_activity;	# 检查当前有哪些session，哪些连接
 select pg_terminate_backend(pid) from pg_stat_activity; # 删除某个session
-select pg_size_pretty(pg_database_size('dbname')) as size; # 查询数据库大小
+select pg_size_pretty(pg_database_size('dbname')) as size; # 查询数据库大小/容量
 ```
 
 ## 增删该查
@@ -53,7 +53,7 @@ select pg_size_pretty(pg_database_size('dbname')) as size; # 查询数据库大�
 
 ```shell
 # postgres shell中执行
-\list	# 列出当前的数据库
+\list	# 列出当前的数据库，这里不要加分号
 \c 数据库名 # 切换数据库
 \dt	# 列出当前的表
 

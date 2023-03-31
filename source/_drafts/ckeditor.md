@@ -1,0 +1,1 @@
+它居然不支持不用自己的样式，所以如果它生成的内容，必须得在它自己的编辑器里面预览，放在其他地方是不行的。但是一般的编辑器可以提供一个完整的CSS，其他地方引入就可以了，但是它却没有提供，只找到这个[The full list of content styles](https://ckeditor.com/docs/ckeditor5/latest/installation/advanced/content-styles.html#the-full-list-of-content-styles)，但是根本就不完整，剩下的需要自己去页面上抓下来。

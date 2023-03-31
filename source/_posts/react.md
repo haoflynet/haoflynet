@@ -1,7 +1,7 @@
 ---
 lutitle: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2023-03-28 21:38:00
+updated: 2023-03-22 21:38:00
 categories: Javascript
 ---
 
@@ -195,6 +195,11 @@ class ThemedButton extends React.Component {
   )
   
   this.props.location.pathname;	// 获取当前的url路径
+  
+  // 路由跳转
+  import { useNavigate } from "react-router-dom";
+  const navigate = useNavigate();
+  navigate('/about')
   ```
 
 - 需要注意的是，如果是`Link`链接的路由和当前路由是一样的，那么页面不会发生跳转，什么都不会做，这时候如果是弹出菜单，弹出菜单也不会自动关闭，所以这种情况可以单独处理一下，用`a`标签代替一下，然后使用window.location.href来进行跳转吧，例如:
@@ -407,7 +412,7 @@ MyComponent.propTypes = {
 - 表单hook
 
 ```jsx
-const { register, setValue, getValues, trigger, formState: { errors } } = useForm();
+const { register, setValue, getValues, trigger, handleSubmit, formState: { errors } } = useForm();
 <input {...register("firstName", { required: true })} />	// 注册字段
 
 <button onClick={() => {
@@ -417,8 +422,8 @@ const { register, setValue, getValues, trigger, formState: { errors } } = useFor
 }} />	
 <button onClick={() => handleSubmit(onSubmit)()} />	// 手动触发onSubmit检查
 
-<input name="singleErrorInput" />
-<ErrorMessage errors={errors} name="singleErrorInput" />	// 错误提示文本组件，需要先安装@hookform/error-message
+<input placeholder="email" {...register('email', { required: 'Email is required.' })} />	// 注意这里如果required为true而不是字符串，那么在出错的时候是不会显示错误的
+<ErrorMessage errors={errors} name="email" />	// 错误提示文本组件，需要先安装@hookform/error-message
 
 // 字段验证： npm install @hookform/resolvers yup
 const schema = yup.object({
