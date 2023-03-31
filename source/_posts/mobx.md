@@ -1,6 +1,7 @@
 ---
 title: "Mobx 手册"
 date: 2023-03-14 12:02:30
+updated: 2023-03-22 15:38:00
 categories: nodejs
 ---
 - 使用起来比`redux`好用多了，就凭这一点我就放弃`redux`了
@@ -35,6 +36,9 @@ type User = {
 }
 
 class ExampleStore {
+  @observable id = '';	// 把字段分开感觉还好一点
+  @observable token = '';
+  
   @observable user: User;
   
   constructor() {
@@ -43,6 +47,15 @@ class ExampleStore {
       token: observable,
       setToken: action
     });
+    
+    // 持久化推荐使用mobx-persist-store库
+    makePersistable(this, {
+      name: 'UserStore',
+      properties: ['id', 'token'],
+      storage: window.localStorage,
+    })
+      .then(() => {})
+      .catch(() => {});
   }
   
   @action setToken(token: string) {
@@ -58,5 +71,7 @@ class ExampleStore {
     return ...
   })
 }
+                    
+export default new ExampleStore()
 ```
 

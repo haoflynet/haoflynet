@@ -127,7 +127,7 @@ const userQueries = useQueries({
 const mutation = useMutation(newTodo => {
   return axios.post('/todos', newTodo)
 })
-const mutation = useMutation(addTodo, {
+const mutation = useMutation(() => {}, {
   onMutate: variables => {return newVariables},
   onError: (error, variables, context) => {},
   onSuccess: (data, variables, context) => {
