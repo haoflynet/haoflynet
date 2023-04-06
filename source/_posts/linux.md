@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2023-03-14 09:52:30
+updated: 2023-04-04 17:52:30
 categories: system
 ---
 # Linux手册
@@ -454,6 +454,7 @@ w # 查看当前登录的所有的用户
 who # 查看当前登录的用户及启动的进程
 
 sudo -i # 切换为root用户
+sudo -u postgres psql xxx # 以指定用户身份执行命令
 
 # 添加用户
 sudo useradd -s /bin/bash -d /home/username -m username
@@ -595,6 +596,9 @@ nethogs
 
 # 使用curl查看出口IP及服务商
 curl ipinfo.io
+
+# 关闭几种防火墙
+sudo apt remove iptables-persistent -y && sudo ufw disable && sudo iptables -F
 
 # CentOS6
 /etc/init.d/iptables status     # 查询防火墙状态
@@ -1281,6 +1285,7 @@ fi
   sudo sh -c "echo abc > target"
   # 方法二
   echo abc | sudo tee target
+  echo abc | sudo tee -a target	# 追加>>
   ```
 
 - **`add-apt-repository`的时候居然Python的错误:`Python error: UnicodeDecodeError: 'ascii' codec can't decode byte 0xc5`**，需要在add前设置语言编码

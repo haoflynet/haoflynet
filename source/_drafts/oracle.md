@@ -1,3 +1,9 @@
+## Instance
+
+```shell
+sudo apt remove iptables-persistent -y && sudo ufw disable && sudo iptables -F	# 关闭机器内部的防火墙
+```
+
 ## OCI(Oracle Cloud Infrasturcture)
 
 - Oracle的命令行工具
@@ -31,6 +37,8 @@ oci compute instance get --instance-id=ocid1.xxxxx	# 获取实例详情，但是
 oci network public-ip list --compartment-id=ocidxxxxx --scope=REGION	# 列出所有的公网IP
 oci network public-ip update --public-ip-id=ocid1.publicip.xxxxxxx --private-ip-id= # 将公网IP与私有IP解绑，解绑后服务器内部kennel
 oci network public-ip update --public-ip-id=ocid1.publicip.xxxxxxx --private-ip-id=ocid1.privateip.xxxxxx # 将公网IP绑定到指定的私有IP
+oci network public-ip create --compartment-id={COMPARTMENT_ID} --lifetime=RESERVED --display-name=test # 创建新的reversed ip
+oci network public-ip delete --public-ip-id=ocid1.publicip.xxxxxxx --force # 删除public ip，加了--force参数就不会询问你了
 
 # 私网IP，private-ip来自于VNIC Details里面的Private IP Address
 oci network private-ip get --private-ip-id=ocid1.privateip.xxxxxxx

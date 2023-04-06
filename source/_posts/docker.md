@@ -113,7 +113,7 @@ ENV: 指定环境变量，在dockerfile里面使用export是没用的，ENV <key
 ARG: 指定参数，比如ockerfile里面定义了`ARG JAVA_HOME`，那么可以在构建的时候用docker build JAVA_HOME=$JAVA_HOME对该参数进行赋值
 ONBUILD: 后面跟的是其他的普通指令，例如ONBUILDI RUN mkdir test，实际上它是创建了一个模版景象，后续根据该景象创建的子镜像不用重复写它后面的指令，就会执行该指令了
 
-ARG DEBIAN_FRONTEND=noninteractive	# 可以防止在安装一些依赖的时候跳出来让手动选择timezone等，添加这个环境变量即可
+ARG DEBIAN_FRONTEND=noninteractive	# 可以防止在安装一些依赖的时候跳出来让手动选择timezone等，添加这个环境变量即可，无图形GUI界面
 ```
 
 ## Docker Compose 
