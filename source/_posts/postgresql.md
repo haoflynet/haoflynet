@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2022-11-04 12:45:00
+updated: 2023-04-04 12:45:00
 categories: Database
 ---
 
@@ -9,10 +9,22 @@ categories: Database
 
 ## 安装PostgreSQL
 
+```shell
+sudo apt-get install -y postgresql	# 安装后默认就启动了的
+sudo apt-get install -y postgresql-client postgresql-client-common # 安装命令行客户端
+
+# 完整卸载postgresql
+sudo systemctl stop postgresql 	# 注意如果已经启动了postgresql必须在重装前将其停止，否则5432端口被占用后重新安装的实例默认会是5433端口
+sudo apt-get --purge remove postgresql\* -y && sudo rm -rf /etc/postgresql-common/ && sudo rm -rf /etc/postgresql/
+```
+
 ## 配置
 
 - 默认端口为5432，默认用户名为`postgres`
 - Mysql安装postgres命令行工具pg_dump等: `brew install libpq`
+- 配置文件默认在: `/etc/postgresql/{version}/main/postgresql.conf`，配置文件修改后需要重启`sudo systemctl restart postgresql`
+  - 监听`0.0.0.0`，需要修改`listen_addresses = 'localhost'为listen_addresses = '*'`
+
 
 ### 系统表
 
