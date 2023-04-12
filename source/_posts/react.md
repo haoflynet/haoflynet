@@ -412,7 +412,11 @@ MyComponent.propTypes = {
 - 表单hook
 
 ```jsx
-const { register, setValue, getValues, trigger, handleSubmit, formState: { errors } } = useForm();
+const { register, setValue, getValues, trigger, handleSubmit, control, formState: { errors } } = useForm({
+  defaultValues: {
+    name: 'xxx'	// 设置初始值
+  }
+});
 <input {...register("firstName", { required: true })} />	// 注册字段
 
 <button onClick={() => {

@@ -12,6 +12,59 @@ patronictl -c /etc/patroni/patroni.yml reinit cluster-name cluster-node	# 重新
 patronictl -c /etc/patroni/patroni.yml failover cluster-name	# 手动执行故障转移，可以选择一个slave节点作为新的master
 ```
 
+## restfulapi
+
+- 在yml中添加如下配置即可，注意这里的auth认证只针对于写请求，GET请求仍然可以正常访问的
+
+```yaml
+restapi:
+  listen: 0.0.0.0:8008
+  connect_address: PUBLIC_IP:8008
+  authentication:
+    username: admin
+    password: 密码
+```
+
+## Patroni+HAProxy实现负载均衡
+
+- 需要注意的是，读写操作都需要将所有的server列出来，并且check port应该设置为patroni的8008端口，patroni默认给master返回200，给slave返回503，这样就可以让HAProxy知道哪些是读服务器，哪些是写服务器了
+
+```shell
+listen postgres_write	# 写操作
+    bind *:5432
+    option httpchk
+    option tcplog
+    balance leastconn
+    mode tcp
+    http-check expect status 200
+    default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions
+    server pg1 192.168.1.1:5432 maxconn 1000 check port 8008
+    server pg2 192.168.1.2:5432 maxconn 1000 check port 8008
+    server pg3 192.168.1.3:5432 maxconn 1000 check port 8008
+
+listen postgres_read	# 读操作
+    bind *:65432
+    mode tcp
+    option tcplog
+    balance leastconn
+    option httpchk
+    http-check expect status 503
+    default-server inter 3s fall 3 rise 3 on-marked-down shutdown-sessions
+    server pg1 192.168.1.1:5432 maxconn 1000 check port 8008
+    server pg2 192.168.1.2:5432 maxconn 1000 check port 8008
+    server pg3 192.168.1.3:5432 maxconn 1000 check port 8008
+
+listen patroni	# restful api接口
+    bind *:8008
+    mode http
+    option httplog
+    option httpchk
+    http-check expect status 200
+    server pg1 192.168.1.1:8008 maxconn 100 check port 8008
+    server pg2 192.168.1.2:8008 maxconn 100 check port 8008
+    server pg3 192.168.1.3:8008 maxconn 100 check port 8008
+```
+
 ## TroubleShooting
 
 - **I am (xxx), the leader with the lock明明启动成功了，但是state却显示start failed**: 原因是在启动的时候patroni没有成功启动postgresql，这种情况可以先启动postgresql再启动patroni: `sudo systemctl stop patroni && sudo systemctl start postgresql && sudo systemctl start patroni`
