@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2023-03-19 14:23:00
+updated: 2023-04-14 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -89,6 +89,7 @@ Dockerfile是一个制作镜像的脚本工具，通过它可以比直接拷贝d
 
 ```shell
 docker build -t local:mine .
+docker build -f Dockerfile123 local:mine . 	# 指定dockerfile文件
 docker build --add-host=google.com:8.8.8.8 -t local:latest .	# docker build阶段的add-host仅仅用于构建阶段，这个hosts是不会打包进镜像的
 docker builder prune	# 删除build缓存cache
 ```

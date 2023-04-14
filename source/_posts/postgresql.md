@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2023-04-04 12:45:00
+updated: 2023-04-13 12:45:00
 categories: Database
 ---
 
@@ -142,6 +142,36 @@ SELECT * FROM users WHERE data->>'FirstName' = 'haofly' ORDER BY id DESC LIMIT 5
 BEGIN;
 other sql;
 COMMIT;
+```
+
+## PostgREST
+
+- 自动为PostgrSQL提供Restful API
+- 官网提供的安装方式不大一样，不能用`apt-get install`直接安装，所以可以这样做
+
+```shell
+mkdir ~/postgrest && cd ~/postgrest
+export POSTGREST_VERSION=v10.1.2	# 去官网查看最新版本: https://github.com/PostgREST/postgrest/releases
+wget https://github.com/PostgREST/postgrest/releases/download/${POSTGREST_VERSION}/postgrest-${POSTGREST_VERSION}-linux-static-x64.tar.xz && tar xvf postgrest-${POSTGREST_VERSION}-linux-static-x64.tar.xz
+
+# 自己添加配置文件postgrest.conf
+echo '
+db-uri = "postgres://postgres:password@127.0.0.1:5432/postgres"
+db-schemas = "public"
+db-anon-role = "web_anon"	# 这个角色后面需要在postgresql中手动创建
+' | tee postgrest.conf
+
+# 进入postgresql执行一下命令创建web_anon角色
+create role web_anon nologin;
+grant web_anon to postgres;
+grant usage on schema public to web_anon;
+grant select on public.users to web_anon;
+
+# 运行postgrest
+./postgrest postgrest.conf
+
+# 访问接口
+curl http://localhost:3000/表名?field=eq.value
 ```
 
 ## TroubleShooting

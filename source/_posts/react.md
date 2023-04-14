@@ -1,7 +1,7 @@
 ---
 lutitle: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2023-03-22 21:38:00
+updated: 2023-04-14 21:38:00
 categories: Javascript
 ---
 
@@ -160,7 +160,7 @@ class ThemedButton extends React.Component {
 }
 ```
 
-## 路由
+## 路由Route
 
 - 主要使用的是`React Router`，包括`react-router`，`react-router-dom`，`react-router-native`
 
@@ -184,6 +184,7 @@ class ThemedButton extends React.Component {
     return <Component />;
   }
   
+  // 路由定义
   const Main = () => (
   	<main>
       <Switch>
@@ -194,7 +195,20 @@ class ThemedButton extends React.Component {
     </main>
   )
   
+  // 也可以用json的方式定义路由
+  const element = useRoutes([{
+    path: '/',
+    element: <Dashboard />,
+    children: [
+    {
+    path: 'message',
+    element: <DashboardMessages />
+  }
+    ]
+  }])
+  
   this.props.location.pathname;	// 获取当前的url路径
+  const params = useParams() // 获取路由参数
   
   // 路由跳转
   import { useNavigate } from "react-router-dom";
