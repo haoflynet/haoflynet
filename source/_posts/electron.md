@@ -1,6 +1,6 @@
 ---
 title: "electron 手册"
-date: 2017-05-31 19:59:00
+date: 2023-04-19 19:59:00
 categories: js
 ---
 
@@ -18,7 +18,7 @@ categories: js
   npm run start 	# 运行APP
   npm run build	 # 编译
   ANALYZE=true npm run build	# 能够直接分析build完成后包的各部分所占的体积
-  npm run package	# 打包app，能直接打包成zip或者dmg
+  npm run package	# 打包app，能直接打包成zip或者dmg。可以在package.json中修改package参数，如果添加-mwl表示同时打包--mac, --win, --linux
   ```
 
 - 添加依赖
@@ -40,6 +40,8 @@ categories: js
   }
   ```
 
+<!--more-->
+
 ## 进程
 
 - 主进程 main process：启动应用后就会创建，可以i通过electron中的模块直接与原生GUI交互，在它里面调用BrowserWindow创建应用的窗口
@@ -47,6 +49,47 @@ categories: js
 - 进程有多种通信方式：ipc模块，webContents.send(Main进程主动向Renderer进程发送消息)、remote模块
 
 ## 常用功能实现
+
+##### 使用dotenv设置环境变量
+
+尝试了很多方法，最终只找到下面这个方法可用
+
+1. 在渲染进程`preload.ts`中创建一个方法向主进程获取环境变量
+   ```javascript
+   const electronHandler = {
+     ...
+     getConfig(config?: string) {
+       const configs = ipcRenderer.sendSync('get-env');
+       if (config) {
+         return configs[config];
+       }
+       return configs;
+     }
+   }
+   ```
+
+2. 在主进程中`main.ts`监听该事件
+
+   ```java
+   ipcMain.on('get-env', async (event) => {
+     event.returnValue = {
+       BACKEND_API: process.env.BACKEND_API,
+     };
+   });
+
+3. 在webpack中(`webpack.config.base.ts`)调用`dotenv`获取环境变量
+
+   ```javascript
+   module: {
+     ...
+     plugins: [
+         new webpack.EnvironmentPlugin({
+         NODE_ENV: 'production',
+         ...dotenv.config().parsed
+       }),
+     ]
+   }
+   ```
 
 ##### [关闭所有窗口时退出应用 (Windows & Linux)](https://www.electronjs.org/zh/docs/latest/tutorial/quick-start#关闭所有窗口时退出应用-windows--linux)
 
