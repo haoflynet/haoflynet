@@ -1497,7 +1497,7 @@ conn.close()	# 关闭连接
   pip install fabric3
   ```
   
-- **mac安装pillow**  :
+- **mac安装pillow, no module named PIL**:
   
   ```shell
   xcode-select --install

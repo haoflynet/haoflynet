@@ -159,6 +159,7 @@ echo '
 db-uri = "postgres://postgres:password@127.0.0.1:5432/postgres"
 db-schemas = "public"
 db-anon-role = "web_anon"	# 这个角色后面需要在postgresql中手动创建
+server-port = 3000	# default is 3000
 ' | tee postgrest.conf
 
 # 进入postgresql执行一下命令创建web_anon角色
