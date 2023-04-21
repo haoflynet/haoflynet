@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2022-09-16 08:50:21
+updated: 2023-04-21 08:50:21
 categories: php
 ---
 # PHP
@@ -204,6 +204,7 @@ microtime(); # 获取毫秒时间
 strtotime('2021-12-16 00:00:00'): 字符串转换为时间戳
 gmdate("Y-m-d\TH:i:s\Z"): 获取GMT时区的时间
 new DateTime('2022-09-20 00:00:00-05:00')->getTimestamp(); // 格式化时间为DateTime对象，并可以获取时间戳
+date('Y-m-d H:i:s', strtotime('-6 months'))	// 获取6个月前的时间
 
 $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y')):获取今天开始时的时间戳
 $endToday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1:获取今天结束时的时间戳
