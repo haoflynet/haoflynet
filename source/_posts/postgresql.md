@@ -42,6 +42,8 @@ sudo apt-get --purge remove postgresql\* -y && sudo rm -rf /etc/postgresql-commo
 
 ### 系统管理
 
+- 角色和用户是不同的，角色相当于一批用户，类似于岗位，比如开发者角色等
+
 ```shell
 -- 注释 # 注释就用--来写
 
@@ -59,6 +61,10 @@ select pg_terminate_backend(pid) from pg_stat_activity; # 删除某个session
 select pg_size_pretty(pg_database_size('dbname')) as size; # 查询数据库大小/容量
 
 SELECT * FROM pg_stat_replication; # 查看主从复制状态
+
+\du	# 获取当前系统所有的角色roles
+SELECT * FROM pg_roles;	# 同上
+SELECT * FROM information_schema.role_table_grants WHERE grantee = '角色名';	# 查询一个角色在哪些表有权哪些权限，也可以用\z命令查看不过没这么直观
 ```
 
 ## 增删该查
@@ -166,9 +172,11 @@ server-port = 3000	# default is 3000
 
 # 进入postgresql执行一下命令创建web_anon角色
 create role web_anon nologin;
-grant web_anon to postgres;
-grant usage on schema public to web_anon;
-grant select on public.users to web_anon;
+grant web_anon to postgres;	# 授权postgres用户拥有web_anon角色的权限
+grant usage on schema public to web_anon; # 授予web_anon对public模式的使用权限
+grant select on public.users to web_anon;	# 授予web_anon角色对public模式中的users表的select权限
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO web_anon;	# 授予web_anon角色对public模式中的所有表都具有select权
+
 
 # 运行postgrest
 ./postgrest postgrest.conf
