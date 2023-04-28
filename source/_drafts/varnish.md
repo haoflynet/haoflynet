@@ -1,4 +1,6 @@
-## 命令行工具vcli
+## 命令行工具
+
+### vcli
 
 ```shell
 # auth认证
@@ -14,6 +16,16 @@ vcli file edit 1	# 1就是文件的ID，编辑完成后保存会将它设置为d
 # VCLGroup
 vcli vg deploy 1	# 1是VCLGroup的ID，这样会部署和这个group关联的所有的vcl files
 ```
+
+### varnishadm
+
+```shell
+sudo varnishadm
+
+storage.list	
+```
+
+
 
 ## VCL语法
 
