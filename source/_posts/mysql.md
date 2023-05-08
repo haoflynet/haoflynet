@@ -332,9 +332,9 @@ flush privileges;
 # 修改MySQL的监听地址，要远程登录，必须监听0.0.0.0才行，vim /etc/my.cnf，在[mysqld]中增加下面配置然后重启即可
 bind-address=0.0.0.0
 
-# 新建用户
+# 新建用户/创建用户
 CREATE USER 用户名 IDENTIFIED by '密码';
-GRANT ALL PRIVILEGES ON 数据库名.* TO 用户名@'%'';
+GRANT ALL PRIVILEGES ON 数据库名.* TO 用户名@'%';
 FLUSH PRIVILEGES;
 
 # 删除用户

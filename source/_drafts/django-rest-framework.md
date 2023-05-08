@@ -1,6 +1,8 @@
-## 请求于响应
+## 请求与响应
 
 ```python
+request.body # 获取binary的请求体
+request.data	# 获取json格式的请求体，是一个dict
 request.data.get('field')	# 获取POST的请求
 ```
 

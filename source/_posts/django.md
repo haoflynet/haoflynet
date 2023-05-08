@@ -197,7 +197,6 @@ Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系
 
 ### 数据表定义
 
-- 除了自带的`admin`和第三方的扩展app，尽量不要使用`migrate`，有时候并不支持特定数据库类型，包括其他框架，都不要用`migrate`，写不好写，维护也不好维护
 - Django需要每张表都得有一个`primary_key=True`，如果没有指定，那么会默认假设你的表里面有一个`id`列，并且是`primary_key`
 - `ForeignKey`等外键的定义是可以使用model名称字符串的，而不用引入，因为引入经常会因为交叉引入而报错
 - 自定义的`manager`封装的是一些动态方法，并不是静态方法，是作用于`objects`上面的
@@ -223,8 +222,9 @@ class User(models.Model):
 当建立好models过后，执行如下命令就可以在数据库中新建或更新数据表了：
 
 ```shell
-python manage.py makemigrations
-python manage.py migrate
+python manage.py makemigrations	# 检测所有的model更改，自动生成相应的migrations文件到migrations目录下面去
+python manage.py makemigrations APP名称	# 为指定的APP执行migration
+python manage.py migrate	# 应用migration
 ```
 
 注：如果是有修改的，那么新添加的数据必须要允许null或者设置默认值，否则会报错，这其实是为了保护已经存在了的数据，当然在添加完该字段后把null去掉再更新数据库就可以了。
