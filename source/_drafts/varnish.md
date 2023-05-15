@@ -33,3 +33,11 @@ storage.list
 return (synth(422, "abc"));	# 返回状态码的同时能够指定错误信息
 ```
 
+### Vsthrottle
+
+-  API请求频率限制
+
+```javascript
+vsthrottle.is_denied(client.identity, 15, 10s, 30s) // 第一个参数表示客户端的唯一标识，第二、第三个参数表示频率为10秒内15个请求，最后一个参数表示如果超过了频率需要等待多久后重试
+```
+

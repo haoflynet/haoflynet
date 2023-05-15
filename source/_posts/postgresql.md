@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2023-04-21 12:45:00
+updated: 2023-04-28 12:45:00
 categories: Database
 ---
 
@@ -61,6 +61,7 @@ select pg_terminate_backend(pid) from pg_stat_activity; # 删除某个session
 select pg_size_pretty(pg_database_size('dbname')) as size; # 查询数据库大小/容量
 
 SELECT * FROM pg_stat_replication; # 查看主从复制状态
+select pg_is_in_recovery()	# 查看当前数据库时候是从库
 
 \du	# 获取当前系统所有的角色roles
 SELECT * FROM pg_roles;	# 同上

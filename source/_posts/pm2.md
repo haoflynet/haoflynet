@@ -1,7 +1,7 @@
 ---
 title: "pm2 手册"
 date: 2020-02-18 08:50:00
-updated: 2022-07-19 16:47:00
+updated: 2023-04-26 16:47:00
 categories: nodejs
 ---
 
@@ -61,6 +61,8 @@ pm2 install pm2-logrotate	# 另一种方式实现日志轮转，默认10M
 ```shell
 pm2 startup [ubuntu|centos|gentoo|systemd]	# 这样可以自动生成开机启动脚本
 pm2 startup ubuntu -u www	# 指定命令执行用户
+pm2 save
+systemctl status pm2-ubuntu	# 配置完成后可以用这个命令查看时候配置成功了，如果发现service并没有启动成功可以尝试pm2 kill，然后sudo systemctl start pm2-ubuntu.service
 ```
 
 ### 配置文件
