@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2023-3-01 09:54:00
+updated: 2023-05-09 09:54:00
 categories: Javascript
 ---
 
@@ -398,6 +398,12 @@ exports.handler = async (event, context) => {
   - 最好单独创建一个用户: `IAM -> 用户 -> 添加用户`，在创建的时候不要选择任何的策略权限
   - 创建完成后`添加内联策略`，然后选择需要的服务、操作、资源即可
 - 可以将创建好的Role直接绑定到EC2，这样在EC2里面的某些服务就不需要提供key和secret即可直接访问指定服务接口
+
+### aws_access_key_id/aws_secret_access_key
+
+- 申请的地方在右上角-> Security credentials->Access keys
+- 但是一个用户只能申请两个
+- 如果在用，但是忘记了内容，可以尝试在`~/.aws/credentials`中查找试试
 
 ## DocumentDB (MongoDB)
 

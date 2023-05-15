@@ -1,3 +1,15 @@
+## Sandbox/Live
+
+- 可以在不同的环境中创建不同的APP
+- sandbox的APP需要绑定一个business account，它的subscription plans是需要在这个business account里面创建的，需要用该账号登录sandbox.paypal.com
+
+## Subscription
+
+### Plan
+
+- plan可以直接在business dashboard中创建
+- 注意如果要给sandbox创建plan，需要在Developer，进入live mode，再点击Sandbox accounts，创建Business account，再使用这个账户登录sandbox.paypal.com进行创建，并且测试用的账号也得在live的sandbox accounts中添加
+
 ## 支付Payment集成
 
 ### [内嵌HTML的方式](https://developer.paypal.com/api/nvp-soap/paypal-payments-standard/integration-guide/html-reference-landing/)

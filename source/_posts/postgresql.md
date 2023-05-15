@@ -73,7 +73,7 @@ SELECT * FROM information_schema.role_table_grants WHERE grantee = '角色名';	
 
 ```shell
 # postgres shell中执行
-\list	# 列出当前的数据库，这里不要加分号
+\list	# 列出当前的数据库，这里不要加分号。等同于SELECT * from pg_database;
 \c 数据库名 # 切换数据库
 \dt	# 列出当前的表
 

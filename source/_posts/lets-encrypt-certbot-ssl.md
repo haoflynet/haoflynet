@@ -27,7 +27,7 @@ categories: server
    apt install -y certbot python3-acme python3-augeas python3-certbot python3-certbot-nginx python3-certbot-apache	# nginx和apache根据实际需要选择
    
    # for ubuntu >= 20
-   apt install -y certbot python3-certbot-nginx
+   sudo apt-get install -y certbot python3-certbot-nginx
    
    # for centos
    yum install epel-release -y && yum update -y
@@ -39,7 +39,7 @@ categories: server
 
 4. 确保你的nginx配置已经有配置域名，并且域名解析也已经指向该IP地址，域名能够通过80端口正常访问。
 
-5. 当安装完成以后，一切就简单了，运行`certbot --nginx`，会以提问的方式询问你几个配置问题:
+5. 当安装完成以后，一切就简单了，运行`sudo certbot --nginx`，会以提问的方式询问你几个配置问题:
 
    ```shell
    # 第一步会读取你的nginx配置，询问你需要对哪些域名需要添加ssl
