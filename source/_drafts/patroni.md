@@ -1,6 +1,91 @@
 - ` /etc/postgresql/POSTGRES_VERSION/main`这个目录是在安装`postgresql`的时候就自己初始化了的，如果patroni的postgresql.data_dir指向的是它，那么会被要求重新初始化
+- 服务发现工具一般推荐用etcd，只要在yml中配置了`etcd.hosts`，那么只要启动当前节点就会自动加入scope namespace的集群中
 
 ## 配置
+
+### 配置文件
+
+```yaml
+scope: &scope postgres-cluster # 这里是集群的名称
+namespace: /db/	# 在etcd的命名空间
+name: &name PG1	# 这是当前实例在集群中的名字标识符
+
+restapi:
+  listen: 0.0.0.0:8008	# patroni api的监听地址，如果需要使用HAProxy做读写分离需要将该接口暴露给HAProxy
+  connect_address: PUBLIC:8008	# patroni api的连接地址
+  authentication:	# restapi的Basic Auth认证，注意访问GET :8008/的时候是不需要认证的
+    username: admin
+    password: 密码
+
+etcd:
+  hosts: "127.0.0.1:2379,127.0.0.2:2379"	# 指定etcd的实例列表
+
+bootstrap:
+  dcs:
+    ttl: 30
+    loop_wait: 10
+    retry_timeout: 10
+    maximum_lag_on_failover: 1048576
+    postgresql:
+      use_pg_rewind: true
+
+  initdb:
+    - encoding: UTF8
+    - data-checksums
+
+  pg_hba:
+    - host replication replicator 0.0.0.0/0 md5
+    - host replication postgres 0.0.0.0/0 md5
+    - host all all 0.0.0.0/0 md5
+
+  users:
+    admin:
+      password: PATRONI_ADMIN_PASSWORD
+      options:
+        - createrole
+        - createdb
+
+postgresql:
+  listen: 0.0.0.0:5432
+  connect_address: PUBLIC_IP:5432
+  data_dir: /var/lib/postgresql/data/pgdata
+  pgpass: /tmp/pgpass
+  authentication:
+    replication:
+      username: POSTGRES_USERNAME
+      password: POSTGRES_PASSWORD
+    superuser:
+      username: POSTGRES_USERNAME
+      password: POSTGRES_PASSWORD
+  parameters:
+    unix_socket_directories: '.'
+
+tags:
+  nofailover: false
+  noloadbalance: false
+  clonefrom: false
+  nosync: false
+
+log:
+  dir: /var/log/
+  file_size: 31457280
+  level: DEBUG
+  loggers:
+    patroni: DEBUG
+    psycopg2: WARNING
+    kazoo.client: WARNING
+    urllib3: WARNING
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: custom
+    file:
+      class: logging.handlers.RotatingFileHandler
+      formatter: custom
+      filename: /var/log/patroni.log
+      maxBytes: 30000000
+      backupCount: 5
+```
 
 ## 常用命令
 

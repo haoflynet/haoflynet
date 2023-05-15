@@ -74,6 +74,7 @@ categories: 编程之路
 | Heroku                              | |
 | Vercel                              | |
 
+## GPU
 
-
+[AWS GPU竞价实例](https://mp.weixin.qq.com/s/47DW9OBNOS0_fUxDAicARQ)
 
