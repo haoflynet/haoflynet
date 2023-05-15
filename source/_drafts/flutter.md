@@ -36,4 +36,7 @@ flutter pub deps	# 显示依赖
       git: https://github.com/snoopdoggy322/flutter_webview_plugin
   ```
 
-  
+
+## 参考项目
+
+- [flutter_twitter_clone](https://github.com/TheAlphamerc/flutter_twitter_clone)

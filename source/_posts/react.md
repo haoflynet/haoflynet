@@ -466,6 +466,10 @@ import { Controller, useForm } from 'react-hook-form'
 />
 ```
 
+[react-hot-toast](https://github.com/timolins/react-hot-toast)
+
+- toast提示框组件
+
 ### React-Redux
 
 - 从后端的角度看，就是一个维护全局变量的东西(也有同一个页面不同组件使用相同的东西，比如当前用户的用户名用户头像啥的)

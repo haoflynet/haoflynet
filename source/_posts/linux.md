@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2023-04-04 17:52:30
+updated: 2023-05-09 17:52:30
 categories: system
 ---
 # Linux手册
@@ -477,8 +477,10 @@ cat /etc/passwd  	# 查看所有用户
 cat /etc/group		# 查看所有用户组
 cat /etc/shadow	# 通过看是否有加密穿来判断是否给用户设置了密码
 
-# 将用户添加到组
-usermod -a -G groupName userName
+# 将用户添加到组，注意可能需要重新登录才能生效
+sudo usermod -a -G groupName userName
+sudo usermod -a -G www-data ubuntu	# 将ubuntu添加到www-data组
+
 
 # ACL权限分配: 可以给指定的用户指定目录分配指定的权限
 

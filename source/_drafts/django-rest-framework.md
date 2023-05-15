@@ -6,6 +6,28 @@ request.data	# 获取json格式的请求体，是一个dict
 request.data.get('field')	# 获取POST的请求
 ```
 
+### 序列化
+
+- 同时还能支持字段验证
+
+```python
+# ModelSerializer可以直接针对model进行序列化，不用定义每一个字段了
+class MySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MyModel
+        fields = ['id', 'name', 'age']
+        
+# dict转换为对象
+data = {'name': 'John', 'age': 30}
+serializer = MySerializer(data)
+if serializer.is_valid():
+  validated_data = serializer.validated_data
+  instance = serializer.save()	# 如果是model可以直接这样save
+else:
+  print(serializer.errors)
+return Response(serializer.data)
+```
+
 ## 视图view
 
 ### Generic Views
@@ -77,6 +99,7 @@ class ListUsers(APIView):
 - `ViewSet`只是一种基于类的视图，不提供任何方法处理程序，而是提供诸如`.list()`和`.create()`之类的操作
 - `ViewSet`的方法处理程序仅使用`as_view()`方法绑定到完成视图的响应操作
 - 除了默认的几个restful路由外，如果需要其它的特别的路由，可以使用`@detail_route/@list_route`来标记，前一个在`url`中包含`pk`用于单个实例，后一个用于列表操作
+- 如果继承自ModelViewSet，那么如果不重写，就不用去写create/udpate等方法了
 
 例如: 
 
