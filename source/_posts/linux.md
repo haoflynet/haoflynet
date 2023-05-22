@@ -444,7 +444,10 @@ sudo apt-get install sysstat -y
 iostat
 
 # 磁盘空间不足
-apt-get autoremove	# 可以删除一些不必要的linux-headers-* 和 linux-headers-*-generic文件
+sudo apt-get clean && sudo apt-get autoremove	# 可以删除一些不必要的linux-headers-* 和 linux-headers-*-generic文件
+
+sudo journalctl --vacuum-size=500M # 可以将journal的日子限制到指定大小，会自动删除多余的日志
+
 ```
 
 #### 用户管理

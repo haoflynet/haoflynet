@@ -1,5 +1,7 @@
 ## Instance
 
+- 如果停止或者重启卡住了，是无法进行强制操作的，最多要等15分钟才能恢复
+
 ```shell
 sudo apt remove iptables-persistent -y && sudo ufw disable && sudo iptables -F	# 关闭机器内部的防火墙
 ```

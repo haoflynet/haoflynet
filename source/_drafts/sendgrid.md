@@ -14,6 +14,21 @@ npm install --save @sendgrid/mail
 
 - Would you also like to brand the links for this domain? 可以选择这个选项，选择后只需要设置DNS，对方收到邮件的发送者就是你自己的域名了，而不是`xxx@sendgrid.net`
 
+#### Laravel使用sendgrid
+
+- Laravel没有内置，但是可以用SMPT协议来发送，需要添加如下环境变量
+
+```shell
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.sendgrid.net
+MAIL_PORT=587
+MAIL_USERNAME=apikey
+MAIL_PASSWORD=后台生成的apikey
+MAIL_ENCRYPTION=tls
+MAIL_FROM_NAME="John Smith"
+MAIL_FROM_ADDRESS=from@example.com
+```
+
 ## Sendgrid发送邮件
 
 ```javascript

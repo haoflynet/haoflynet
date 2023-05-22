@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2023-03-16 08:24:00
+updated: 2023-05-20 08:24:00
 categories: js
 ---
 
@@ -319,6 +319,22 @@ scrollViewRef.scrollTo({x: 0, y: 100, animated: true})	// 滑动到指定位置
 ### StatusBar状态栏
 
 ### Text
+
+- 默认情况下，系统字体的大小会直接影响到APP里面的显示，我们需要防止这种情况，防止用户把字体调得太大，可以在app.tsx中全局设置:
+  ```javascript
+  import {Text, TextInput} from 'react-native';
+  
+  if (Text.defaultProps == null) {
+      Text.defaultProps = {};
+      Text.defaultProps.allowFontScaling = false;
+  }
+  if (TextInput.defaultProps == null) {
+      TextInput.defaultProps = {};
+      TextInput.defaultProps.allowFontScaling = false;
+  }
+  ```
+
+  
 
 ```jsx
 <Text 
