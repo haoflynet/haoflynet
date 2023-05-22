@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2021-12-27 08:28:00
+updated: 2023-05-22 08:28:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -432,6 +432,16 @@ location = / {
 - 需要在项目目录下新建`.htaccess`，语法需要是`nginx`的语法，而不是`apache`的
 - 然后在`nginx`该`server`配置中`include`该文件即可
 
+### 返回stream响应
+
+```nginx
+location / {
+    # 需要禁用缓冲
+    proxy_buffering off;
+    fastcgi_buffering off;
+}
+```
+
 ## 查看负载均衡状态
 
 nginx提供了默认的模块可以查看负载均衡的统计信息等，只需要在某个server里面添加：
@@ -501,9 +511,9 @@ location /nginx {
 
   ```shell
   # fastcgi模式
-  fastcgi_connect_timeout 300;
-  fastcgi_send_timeout 300;
-  fastcgi_read_timeout 300;
+  fastcgi_connect_timeout 300s;
+  fastcgi_send_timeout 300s;
+  fastcgi_read_timeout 300s;
   
   # proxy模式
   proxy_connect_timeout 300s;
@@ -531,3 +541,5 @@ location /nginx {
   ```shell
   fastcgi_param HTTPS on;
   ```
+
+- **改了各种配置都还是499错误** 发现关了代理就好了，mmp

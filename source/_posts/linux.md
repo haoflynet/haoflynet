@@ -186,6 +186,7 @@ sed '5s/^.*$/xxxxx/'  file		#　替换一整行
 sed '5s/^.*$/xxxxx/' filename	# 替换某个文件的第五行，并输出结果，不写入
 sed -i 's/^abc$/xxxxx/g' filename 	# 替换某个文件的abc字符串，并写入指定文件
 sed -i "s/localhost:8000/127.0.0.1:8000/g" `grep localhost:8000 -rl ./`	# 批量替换一个文件夹下所有文件的内容
+perl -i -pe 's/abc/def/g' Options\ AI.xcodeproj	# 如果文件名中有空格，我用sed一直不成功，只能用perl命令来代替
 ```
 ##### xargs
 
