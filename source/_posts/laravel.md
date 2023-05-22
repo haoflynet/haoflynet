@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2022-02-21 09:58:00
+updated: 2023-05-22 09:58:00
 categories: php
 ---
 # Laravel指南
@@ -70,6 +70,26 @@ app()->environment()
   return redirect()->action('HomeController@index', ['page' => 123])
   ```
 
+- 返回StreamResponse
+
+  ```php
+  use Illuminate\Support\Facades\Response;
+  use Symfony\Component\HttpFoundation\StreamedResponse;
+  
+  Route::get('/stream-data', function () {
+    $data = ['Line 1', 'Line 2', 'Line 3'];
+    return response()->stream(function() use ($data) {
+      foreach($stream as $line) {
+        echo $line . "\n";
+        
+        ob_flush();
+        flush();
+        
+        usleep(500000); // 测试延迟0.5秒
+      }
+    }
+  });
+  ```
 
 #### [Laravel 数据校验/验证Validation](https://haofly.net/laravel-validation)
 

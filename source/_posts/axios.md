@@ -1,7 +1,7 @@
 ---
 title: "axios网络请求"
 date: 2021-09-23 18:32:00
-updated: 2022-09-05 16:34:00
+updated: 2023-05-22 16:34:00
 categories: javascript
 ---
 
@@ -114,6 +114,23 @@ Promise.all([getUserAccount(), getUserPermissions()])
     const acct = results[0];
     const perm = results[1];
   });
+```
+
+## Axios Stream 请求
+
+- 注意nginx的location也需要添加配置`proxy_buffering off; fastcgi_buffering off;`
+
+```javascript
+axios({
+  url: '',
+  responseType: 'stream',
+  xhrFields: {
+    responseType: 'stream',
+    onprogress: function(e) {
+      console.log('onprogress', e.currentTarget.response);
+    }
+  },
+})
 ```
 
 ## Axios下载文件
