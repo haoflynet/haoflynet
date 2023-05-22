@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2022-12-30 08:44:00
+updated: 2023-05-18 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -14,6 +14,13 @@ categories: database
 yum install mariadb-server mariadb-client mariadb-devel -y
 systemctl start mariadb.service # 启动服务
 systemctl enable mariadb.service	# 开机启动
+
+# 彻底删除mysql
+sudo systemctl stop mysql
+sudo apt-get purge mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-*
+sudo rm -rf /var/lib/mysql
+sudo rm -rf /etc/mysql
+sudo deluser mysql && sudo delgroup mysql
 ```
 另外，更新方式可以参考这篇文章: [如何更新到MariaDB 10.4](https://www.mysterydata.com/update-upgrade-to-mariadb-10-4-on-vestacp-cwp-centos-7/)
 
@@ -33,6 +40,7 @@ sudo apt-get install libmariadb-client-lgpl-dev
 sudo ln -s /usr/bin/mariadb_config /usr/bin/mysql_config
 
 # 第一次登录使用
+sudo mysql # mysql8可以直接这样进入然后设置密码
 sudo mysql -u root
 ```
 
@@ -311,7 +319,7 @@ DROP FUNCTION name;	# 删除函数
 
 ```shell
 # 更改密码
-## 如果提示权限不足，可以先停止服务，然后这样启动service mysql start --skip-grant-tables
+## 如果提示权限不足，可以先停止服务，然后这样启动sudo service mysql start --skip-grant-tables
 use mysql;
 update user set password=PASSWORD('mysql') WHERE user="root";
 update user set authentication_string=PASSWORD('mysql') WHERE user="root";	# MySQL5.7以后password字段改为了authentication_string字段
