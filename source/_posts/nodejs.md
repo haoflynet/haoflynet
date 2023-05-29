@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2023-02-26 08:50:30
+updated: 2023-05-29 08:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -375,6 +375,13 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 - **error TS2694: Namespace 'NodeJS' has no exported member 'TypedArray'.**: 尝试`yarn add --dev @types/node`
 
 - **Cannot invoke an object which is possibly 'undefined'** 通常是在调用一个可能为undefined的对象的方法的时候出现，需要对方法也是用问号表达式: `props.obj?.click?.()`
+
+- **从Github私有仓库安装**: 需要在github生成token，然后放入`.npmrc`中:
+
+  ```shell
+  @optionsai:registry=https://npm.pkg.github.com/
+  //npm.pkg.github.com/:_authToken=这里就是token
+  ```
 
 ##### 扩展阅读
 
