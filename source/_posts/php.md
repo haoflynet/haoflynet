@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2023-04-21 08:50:21
+updated: 2023-05-25 08:50:21
 categories: php
 ---
 # PHP
@@ -781,6 +781,8 @@ ini_get('upload_max_filesize'); // 但是该属性只能获取，不能在代码
 - **SMTP connect() failed**: 可能是端口不对，现在大部分邮件都只支持ssl协议了，端口号一般是465
 
 - **Call to undefined function imagetypes()**: 没有安装gd扩展: `apt-get install libpng-dev && php7.4-gd -y`
+
+- **ignore_user_abort(false) **: 可以使前端在断开连接后后端仍然能够执行完成
 
 ##### 扩展阅读
 
