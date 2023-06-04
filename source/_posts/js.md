@@ -846,7 +846,7 @@ for await (const item of items) {
 
 ## Ajax
 
-最普遍的用法:
+- 如果要接收stream响应，nginx的location也需要添加配置`proxy_buffering off; fastcgi_buffering off;`
 
 ```javascript
 $('myForm').serializeArray();	// 将表单数据转换成array然后用ajax提交
@@ -856,6 +856,12 @@ $.ajax({
 	dataType: 'json',
 	type: 'POST',
 	data: data,
+  xhrFields: { // 如果是stream响应，需要这样设置
+    responseType: 'stream',
+    onprogress: function(e) {
+      console.log(e.currentTarget.response);
+    }
+  }
   beforeSend: function (xhr) {	// 发送请求前需要做什么
     
   },
