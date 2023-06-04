@@ -2,6 +2,8 @@
 
 ## API
 
+- OpenAI生成的图片默认只有1小时的时间，过期会无法访问
+
 ### 常用API
 
 - `/v1/completions`和`/v1/chat/completions`的区别是前者是传入一个字符串作为prompt参数(不过可以追加字符串做上下文），后者是直接传入数组作上下文
