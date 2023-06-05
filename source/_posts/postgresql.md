@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2023-04-28 12:45:00
+updated: 2023-06-02 12:45:00
 categories: Database
 ---
 
@@ -137,6 +137,7 @@ SELECT * FROM sfdc_contact WHERE "last_name"='Acevedo' AND "first_name"='Antonio
 # json字段查询
 SELECT * FROM users, jsonb_array_elements(users.data) r WHERE r->>'name' = 'value';	# 如果users表的data字段是一个数组，可以用这种方式查询数组的key value
 SELECT * FROM users WHERE data->>'FirstName' = 'haofly' ORDER BY id DESC LIMIT 50;	# 根据json的key查询
+SELECT * FROM users WHERE your_json_column @> '[{"fieldName": "firstName"}]'; # 查询[{fieldName: firstName}, {}]这样的数组数据
 ```
 
 #### 新增记录

@@ -476,7 +476,7 @@ fp.writelines()		# 并不会自动换行
 fp.seek(0, 0) # 这一句可以保证之前是否读取，都能清空
 fp.truncate() # 清空语句
 
-# 文件压缩zip库，这个库是纯Python写的，不是用C，解压速度比较慢，而且不支持压缩的时候加密，如果要想在压缩的时候加密，可以使用网上现成的一个库https://github.com/smihica/pyminizip，依赖于zlib库，但是如果要依赖zlib库为什么不直接用python调用zlib库的代码呢
+# 文件压缩zipfile库，这个库是纯Python写的，不是用C，解压速度比较慢，而且不支持压缩的时候加密，如果要想在压缩的时候加密，可以使用网上现成的一个库https://github.com/smihica/pyminizip，依赖于zlib库，但是如果要依赖zlib库为什么不直接用python调用zlib库的代码呢
           
 # 计算文件的md5值
 import hashlib

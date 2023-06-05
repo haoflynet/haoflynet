@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2022-12-30 08:11:11
+updated: 2023-06-02 10:11:11
 categories: Javascript
 ---
 
@@ -539,6 +539,27 @@ await User.destroy({
 });
 ```
 
+## 事务Transaction
+
+```javascript
+const t = await sequelize.transaction();
+try {
+  const user = await User.create({
+    firstName: 'Bart',
+    lastName: 'Simpson'
+  }, { transaction: t });
+
+  await user.addSibling({
+    firstName: 'Lisa',
+    lastName: 'Simpson'
+  }, { transaction: t });
+
+  await t.commit();
+} catch (error) {
+  await t.rollback();
+}
+```
+
 ## Migrate
 
 - **生成数据库千万不要用sync方法，官方都不建议将该方法用于生产环境，因为要改之前的数据表，它只能删除后再重建，非常危险的操作，而且现在没有一个很好的工具从models生成migrations(每个工具都不好用)，所以最好一开始就别用该方法。如果用了该也不是很难，把model复制过来，加上createdAt,updatedAt,deletedAt等然后表名换另一个，生成后对比一下就行了，一张表大概5分钟**
@@ -663,6 +684,16 @@ npx sequelize-cli db:seed:undo:all # 取消执行所有seed
       dynamicRequireTargets: ['node_modules/mysql2']
     })
   ]
+  ```
+
+- **Sequelize: TimeoutError: ResourceRequest timed out**: 可能是因为数据库并发太高导致pool连接超时，可以尝试将连接超时时间加长
+
+  ```shell
+    pool: {
+      max: 100,
+      min: 0,
+      acquire: 600000,
+    }
   ```
 
   
