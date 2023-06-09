@@ -1,7 +1,7 @@
 ---
 lutitle: "React 开发手册"
 date: 2019-09-10 14:40:00
-updated: 2023-04-14 21:38:00
+updated: 2023-06-08 21:38:00
 categories: Javascript
 ---
 
@@ -446,7 +446,17 @@ const { register, setValue, getValues, trigger, handleSubmit, control, formState
 // 字段验证： npm install @hookform/resolvers yup
 const schema = yup.object({
   firstName: yup.string().required(),
+  username: yup.string().required('Username is required'),
+  email: yup.string().required('Email is required').email('Email is not correct'),
+  phone: yup.string().matches(/\(\d{4}\) \d{3}-\d{4}/).required(),
   age: yup.number().positive().integer().required(),
+  field: yup.string().matches(/\d{9}/, 'Tax ID should be 9 digits').required(),
+  field: yup.string().when('username', {
+    is: (value: string) => value !== 'admin',
+    then: yup.string().notRequired(),
+    otherwise: yup.string().required('Field is required')
+  })
+  file: yup.mixed().test('is-valid-type', 'Not a valid file type', value => ((value) => {return true}) // 验证文件类型
 }).required();
 const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)
@@ -688,6 +698,10 @@ mutate({...users, new: true}); // 使用返回的mutate，省略key
 const { newDate } = await axios.patch('/users');	// 更新users操作，直接返回新的数据
 mutate(updated, false);	// 如果更新操作直接返回更新后的资源，那么mutate可以直接使用它，然而最后一个参数设置为false，这样就可以不用去请求获取新的资源了，表示无需重新验证资源
 ```
+
+### [text-mask](https://github.com/text-mask/text-mask)
+
+- input mask用
 
 ## 事件
 
