@@ -189,8 +189,9 @@ round($num, 2);	// 四舍五入，保留两位小数
 base_convert(number,frombase,tobase);	// 进制转换
 bcsub($left, $right, 2); // 将两个高精度的数字相见，第三个参数表示结果的小数点位数
 
-3 / 2 = 1; // 除法取商
+3 / 2 = 1; // 除法取商，同intdiv(3, 2)
 3 % 2 = 1; // 除法取余
+
 
 bin2hex("test");	// 字符串转16进制
 hex2bin('843769807'); // 16进制转字符串

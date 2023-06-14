@@ -150,6 +150,10 @@ class PostModel extends Model {
   	})
   }
   
+  @AfterUpdate
+  static createUser(user: UserModel) {
+    console.log(user.id);
+  }
 }
 
 // 定义方式二

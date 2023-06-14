@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2023-03-17 15:01:00
+updated: 2023-06-14 15:01:00
 categories: python
 ---
 # Django教程
@@ -194,6 +194,34 @@ urlpatterns = [
 Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系映射)的方式，每个model类代表一张数据库的表，每一个属性代表其一个字段(这种特性的实现依赖于python的元类)。 
 
 - 多数据库配置，参考[django多数据库配置](https://blog.csdn.net/songfreeman/article/details/70229839)，主要是在Meta里面添加`app_label`进行标识，然后我的建议是app_label直接和数据库名相同，这样就不用单独写配置关系`DATABASE_APPS_MAPPING`了
+
+- 方法二：使用单独的查询语句指定单独的数据库
+
+  ```python
+  UserModel.objects.using(dbname).all()
+  ```
+
+- 方法三：使用DB Router
+
+  ```python
+  # 指定读写规则
+  class CasaRouter:
+      def db_for_read(self, model, **hints):
+          if 'replica1' in settings.DATABASES:
+              return random.choice(['replica1'])
+          return random.choice(['default'])
+  
+      def db_for_write(self, model, **hints):
+          """ Always return primary """
+          return 'default'
+  
+      def allow_relation(self, obj1, obj2, **hints):
+        """Django默认是返回的None，None的话在大多数情况是正确的，表示只有当两个记录在同一个库查询的时候才能进行关联查询"""
+          return None
+  
+      def allow_migrate(self, db, app_label, model_name=None, **hints):
+          return True
+  ```
 
 ### 数据表定义
 
