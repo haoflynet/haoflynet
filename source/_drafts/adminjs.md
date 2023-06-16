@@ -63,7 +63,7 @@ imports: [
   AdminModule.createAdminAsync({
     useFactory: () => ({
       adminJsOptions: {
-        rootPath: '/admin',
+        rootPath: '/admin/',	// 我这边用https的时候会莫名其妙跳转到http，在/admin后面加上/就好了
         resources: [UserModel],
       },
     }),
