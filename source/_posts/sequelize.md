@@ -241,6 +241,13 @@ Post.prototype.customQuery = () => {}
 ### One to One一对一
 
 ```javascript
+// 装饰器定义
+@ForeignKey(() => Person)
+@Column
+authorId: number;
+@BelongsTo(() => Person)
+author: Person;
+
 Post.User = Post.belongsTo(app.model.Post, { foreignKey: 'post_id', as: 'Post' }),
 Post.PostOwn = User.belongsTo(app.model.Post, {'foreignKey': 'id', as: 'PostOwn'})	// 如果要与当前表自身做join等操作，那么也需要定义一个与自身的关联
 PostModel.belongsTo(UserModel)
