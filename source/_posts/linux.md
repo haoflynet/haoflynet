@@ -1428,3 +1428,5 @@ fi
   ```
 
 - **ssh输入密码后就挂起了无法登陆**：可能是路由器的问题，可以加一个参数试试: `ssh -o IPQoS=0x00 ubuntu@...`
+
+- **Ubuntu系统升级后apache或者nginx服务器不再解析PHP**: 应该是在升级系统后apache的php模块掉了，而且我的mysql模块也没了，可以尝试`sudo apt install libapache2-mod-php && sudo apt-get install php-mysql && sudo systemctl restart apache2`
