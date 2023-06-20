@@ -78,6 +78,8 @@ Log.e(String tag, String msg); //error错误日志，颜色肯定为红色
 ```java
 import android.widget.Toast;
 Toast.makeText(this,"显示内容", Toast.LENGTH_SHORT).show();
+
+// 如果报错Can't toast on a thread that has not called Looper.prepare()
 ```
 
 ### 时间处理
