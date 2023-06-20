@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2023-06-14 15:01:00
+updated: 2023-06-20 15:01:00
 categories: python
 ---
 # Django教程
@@ -146,6 +146,7 @@ HttpRequest.method   # 请求种类
 HttpRequest.GET      # 获取所有的GET参数(字典)
 HttpRequest.POST     # 获取表单POST的参数，这个是获取不到Json格式传送的数据的
 HttpRequest.POST.get('field', 'default')
+request.body()
 json.loads(request.body)	# 获取json格式的请求参数
 HttpRequest.scheme   # 表示请求的模式，是http还是https
 HttpRequest.cookies  # 包含了所有的cookie信息
@@ -236,7 +237,7 @@ fromo django.db import models
 class User(models.Model):
 	username = models.CharField(max_length = 20, verbose_name="注释")
 	create_time = models.DateTimeField(auto_now_add = True)	# 注册日期字段，如果同时有两个字段对应着同一个外键，那么久得重命名字段名了，比如：
-	receiver = models.ForeignKey('Users', null=True, related_name='receiver')
+	receiver = models.ForeignKey('Users', null=True, related_name='receiver')	# 数据库里面自动就是receiver_id
 	poster = models.ForeignKey('self', null=True, related_name='poster')	# self表示关联自己，
 	
 	def __str__(self):
@@ -438,7 +439,7 @@ post.abc = 'test'
 post.save()	# 更新一条数据
 
 Blog.objects.all().update(userName="new")  # 还可以批量更新
-obj, created = Posts.objects.update_or_create(pk = 3, title='wang', defaults = updated_values)   # 1.7之后可以用这种方法来更新或者创建一个，如果没找到对象，那么就新建，新建或者更新的字典是defaults的值，返回值中，obj表示该对象，created是一个布尔值
+obj, created = Posts.objects.update_or_create(title='wang', defaults = updated_values)   # 1.7之后可以用这种方法来更新或者创建一个，如果没找到对象，那么就新建，新建或者更新的字典是defaults的值，返回值中，obj表示该对象，created是一个布尔值
 get_or_create(title='wang', defaults=\{\})：获取或者新建
 ```
 
