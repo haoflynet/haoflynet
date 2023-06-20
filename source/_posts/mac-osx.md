@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2023-01-27 08:04:00
+updated: 2023-06-20 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -71,6 +71,8 @@ lsof # 查看所有进程打开的文件
 lsof -i # 查看有网络连接的应用程序列表
 
 dscacheutil -q group	# 查看所有用户和组
+
+sudo shutdown -h 2306132200	# 定时关机，后面是年月日时分秒
 ```
 
 ## 更换文件图标
