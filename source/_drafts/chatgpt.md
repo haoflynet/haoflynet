@@ -1,5 +1,9 @@
 ## Prompt
 
+### 提示词推荐网站
+
+- [AI Short](https://www.aishort.top/): 比如将文本改写成类似小红书的 Emoji 风格，
+
 ## API
 
 - OpenAI生成的图片默认只有1小时的时间，过期会无法访问
