@@ -6,7 +6,31 @@
 
 ## API
 
+- 每个模型都有对应的token数量限制，可以通过[Tokenizer](https://platform.openai.com/tokenizer)来计算
 - OpenAI生成的图片默认只有1小时的时间，过期会无法访问
+
+### 常用模型
+
+#### GPT
+
+- 问答功能
+
+#### DALL E
+
+- 根据文字生成图片模型
+
+#### Whisper
+
+- 通过声音转换文本
+
+#### Moderation
+
+- 文本内容识别时候暴力等有害内容
+
+#### Embeddings
+
+- 计算文本关联性，比如搜索、聚类、推荐算法、异常检测、多样性检测、分类等场景
+- text-embedding-ada-002
 
 ### 常用API
 

@@ -1,7 +1,7 @@
 ---
 title: "Salesforce 中文操作手册"
 date: 2022-06-30 08:02:30
-updated: 2023-02-02 11;40:00
+updated: 2023-06-20 11;40:00
 categories: system
 ---
 
@@ -40,6 +40,8 @@ conn.sobject('MyCustomObject__History').find({
   NewValue: "",
 })
 ```
+
+#### [将自定义的对象添加为tab](https://help.salesforce.com/s/articleView?id=sf.creating_custom_object_tabs.htm&type=5)
 
 ### Sandbox
 

@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2023-03-17 15:01:00
+updated: 2023-06-20 15:01:00
 categories: python
 ---
 # Django教程
@@ -146,6 +146,7 @@ HttpRequest.method   # 请求种类
 HttpRequest.GET      # 获取所有的GET参数(字典)
 HttpRequest.POST     # 获取表单POST的参数，这个是获取不到Json格式传送的数据的
 HttpRequest.POST.get('field', 'default')
+request.body()
 json.loads(request.body)	# 获取json格式的请求参数
 HttpRequest.scheme   # 表示请求的模式，是http还是https
 HttpRequest.cookies  # 包含了所有的cookie信息
@@ -195,6 +196,34 @@ Django同很多框架一样使用了ORM(Object Relational Mapping，对象关系
 
 - 多数据库配置，参考[django多数据库配置](https://blog.csdn.net/songfreeman/article/details/70229839)，主要是在Meta里面添加`app_label`进行标识，然后我的建议是app_label直接和数据库名相同，这样就不用单独写配置关系`DATABASE_APPS_MAPPING`了
 
+- 方法二：使用单独的查询语句指定单独的数据库
+
+  ```python
+  UserModel.objects.using(dbname).all()
+  ```
+
+- 方法三：使用DB Router
+
+  ```python
+  # 指定读写规则
+  class CasaRouter:
+      def db_for_read(self, model, **hints):
+          if 'replica1' in settings.DATABASES:
+              return random.choice(['replica1'])
+          return random.choice(['default'])
+  
+      def db_for_write(self, model, **hints):
+          """ Always return primary """
+          return 'default'
+  
+      def allow_relation(self, obj1, obj2, **hints):
+        """Django默认是返回的None，None的话在大多数情况是正确的，表示只有当两个记录在同一个库查询的时候才能进行关联查询"""
+          return None
+  
+      def allow_migrate(self, db, app_label, model_name=None, **hints):
+          return True
+  ```
+
 ### 数据表定义
 
 - Django需要每张表都得有一个`primary_key=True`，如果没有指定，那么会默认假设你的表里面有一个`id`列，并且是`primary_key`
@@ -208,7 +237,7 @@ fromo django.db import models
 class User(models.Model):
 	username = models.CharField(max_length = 20, verbose_name="注释")
 	create_time = models.DateTimeField(auto_now_add = True)	# 注册日期字段，如果同时有两个字段对应着同一个外键，那么久得重命名字段名了，比如：
-	receiver = models.ForeignKey('Users', null=True, related_name='receiver')
+	receiver = models.ForeignKey('Users', null=True, related_name='receiver')	# 数据库里面自动就是receiver_id
 	poster = models.ForeignKey('self', null=True, related_name='poster')	# self表示关联自己，
 	
 	def __str__(self):
@@ -410,7 +439,7 @@ post.abc = 'test'
 post.save()	# 更新一条数据
 
 Blog.objects.all().update(userName="new")  # 还可以批量更新
-obj, created = Posts.objects.update_or_create(pk = 3, title='wang', defaults = updated_values)   # 1.7之后可以用这种方法来更新或者创建一个，如果没找到对象，那么就新建，新建或者更新的字典是defaults的值，返回值中，obj表示该对象，created是一个布尔值
+obj, created = Posts.objects.update_or_create(title='wang', defaults = updated_values)   # 1.7之后可以用这种方法来更新或者创建一个，如果没找到对象，那么就新建，新建或者更新的字典是defaults的值，返回值中，obj表示该对象，created是一个布尔值
 get_or_create(title='wang', defaults=\{\})：获取或者新建
 ```
 
