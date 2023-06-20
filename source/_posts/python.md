@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2023-04-21 09:36:30
+updated: 2023-06-07 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -1531,7 +1531,9 @@ conn.close()	# 关闭连接
 
 - **no module named bz2: **`sudo apt-get install libbz2-dev`或者`sudo yum install bzip2-devel `
 
-- **no module named cv2**: `piip install opencv-python`
+- **no module named cv2**: `pip install opencv-python`
+
+- **urllib3 v2.0 only supports OpenSSL 1.1.1+**: 尝试降级: `pip uninstall urllib3 && pip install urllib3<2.0`
 
 ## 推荐Package
 

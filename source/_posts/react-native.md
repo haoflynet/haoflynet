@@ -293,7 +293,7 @@ this.props.navigation.goBack()
 
 ### SafeAreaView
 
-- 使用改组件包裹可以自动实现异形屏的padding，也不用考虑android还是iOS
+- 使用该组件包裹可以自动实现异形屏的padding，也不用考虑android还是iOS
 
 ```javascript
 import { SafeAreaView } from 'react-native'	// 如果不工作，就使用下面的方式

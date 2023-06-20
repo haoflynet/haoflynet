@@ -158,6 +158,7 @@ nvm ls-remote	# 查看所有可用的node版本
 nvm install xxx	# 下载需要的版本
 nvm use xxx	# 使用指定的版本
 nvm alias default xxx 	# 设置默认的node版本
+nvm uninstall v7.10.1
 ```
 
 #### npm

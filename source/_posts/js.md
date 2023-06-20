@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2023-03-14 08:18:00
+updated: 2023-06-19 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -365,7 +365,7 @@ fs.stat(path, function(exists) {}); // 异步的方式判断文件或文件夹�
 
 fs.access(path, 权限, function(err){}); // 判断是否拥有指定文件的指定的权限，权限可以有fs.F_OK(文件是否可见，也可用来判断文件是否存在),fs.R_OK(是否可读),fs.W_OK(是否可写),fs.X_OK(是否可执行)
 
-const fileBuffer = fs.readFileSync(__dirname, "../public/index.html")	// 读取文件，最好加上__dirname，否则可能会出现找不到路径的问题
+const fileBuffer = fs.readFileSync(path.join(__dirname, "../public/index.html"))	// 读取文件，最好加上__dirname，否则可能会出现找不到路径的问题
 fileBuffer.toString()	// 获取文件内容字符串
 
 fs.readdir('目录名', 'utf-8', function (err, data) {	// 获取目录下的文件

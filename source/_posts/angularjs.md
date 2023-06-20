@@ -150,7 +150,7 @@ export class MyComponent implements OnInit {
   
 	ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-    	formFieldName: ['初始值', [Validators.required, this.checkName()]],	// 第一个参数设置初始值，第二个参数是验证方法列表
+    	formFieldName: ['初始值', [Validators.required, this.checkName()]],	// 第一个参数设置初始值，第二个参数是验证方法列表，注意如果有多个validator，后面的一定要用中括号包起来，否则会报错Expected validator to return Promise or Observable
       字段2: ['', []],
       字段3: new FormControl('', {
         validators: [
@@ -194,6 +194,11 @@ export class MyComponent implements OnInit {
       </span>
     </p>
   </div>
+    <div class="mat-form-field"> // 注意表单级别的校验error，不能写在field下面，后者不会显示出来，mmp
+      <mat-error class="form-errors" *ngIf="formGroup.hasError('wrongDate')" i18n
+      >The end date should be after the start date.
+      </mat-error>
+    </div>
   <button type=submit">Submit</button>
 </form>
 ```
