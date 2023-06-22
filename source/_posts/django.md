@@ -1016,6 +1016,8 @@ class Post(models.Model):
 
 ## Django测试
 
+- 可以使用`python manage.py shell`进入shell终端直接访问项目中的各种对象
+
 - 如果想要在正式的数据库中测试数据，而不是让测试工具自己创建一个新的数据库，可以在`settings.py`中这样指定测试数据库，但是需要注意的是一定要加`--keepdb`选项，否则可能删除掉原来的数据库
 
   ```python

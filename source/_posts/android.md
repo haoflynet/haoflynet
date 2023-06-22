@@ -1,7 +1,7 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2023-03-08 15:37:00
+updated: 2023-06-20 15:37:00
 categories: system
 ---
 ## Android Studio 的使用
@@ -79,7 +79,10 @@ Log.e(String tag, String msg); //error错误日志，颜色肯定为红色
 import android.widget.Toast;
 Toast.makeText(this,"显示内容", Toast.LENGTH_SHORT).show();
 
-// 如果报错Can't toast on a thread that has not called Looper.prepare()
+// 如果报错Can't toast on a thread that has not called Looper.prepare()，可以这样包装一下
+Looper.prepare(); // 准备Looper
+Toast.makeText(getApplicationContext(), "Toast message", Toast.LENGTH_SHORT).show();
+Looper.loop(); // 启动Looper循环
 ```
 
 ### 时间处理
