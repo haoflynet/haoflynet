@@ -1,5 +1,11 @@
 - [测试卡号及账号](https://stripe.com/docs/testing)
 
+## 支付方式
+
+### [Payment link](https://stripe.com/docs/payment-links)
+
+- 使用这种方式只需要给用户生成一个支付link，用户无需注册stripe账号等就可以完成订阅功能
+
 ## [stripe API](https://stripe.com/docs/api)
 
 - API 是`server`端用来管理的

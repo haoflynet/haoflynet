@@ -1,3 +1,8 @@
+---
+title: "Oracle Cloud 使用记录"
+date: 2023-06-22 11:02:30
+categories: system
+---
 ## Instance
 
 - 如果停止或者重启卡住了，是无法进行强制操作的，最多要等15分钟才能恢复
