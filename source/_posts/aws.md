@@ -6,7 +6,7 @@ categories: Javascript
 ---
 
 - Aws的密钥只能下载一次，下载后请小心保存
-- AWS的命令行或者代码的环境变量是: `AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY/AWS_DEFAULT_REGION`
+- AWS的命令行或者代码的环境变量是: `AWS_ACCESS_KEY_ID(或AWS_ACCESS_KEY)/AWS_SECRET_ACCESS_KEY(或AWS_SECRET_KEY)/AWS_DEFAULT_REGION`
 
 ## EC2
 

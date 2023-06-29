@@ -209,8 +209,8 @@ List<String> names = new ArrayList<String>() {
   }
 };
 
-// 数组是否包含某个值
-Arrays.asList("a", "b").contains("c");
+Arrays.asList("a", "b").size(); // 获取数组长度length
+Arrays.asList("a", "b").contains("c"); // 数组是否包含某个值
 
 // 遍历数组
 for (double element: myList) {}

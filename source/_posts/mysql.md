@@ -530,6 +530,8 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 
 ## 数据库优化
 
+- EXPLAIN可用于查看语句的执行计划
+
 ### 常见性能问题及优化
 
 - **COUNT(*)优化**: Innodb数据库中表的总行数并没有直接存储，而是每次都执行全表扫描，如果表太大简单的`COUNT(*)`则会非常耗时。这时候不妨选择某个字段添加一个辅助索引，依然会扫描全表，但是`COUNT(*)`的性能能提高很多。因为在使用主键或者唯一索引的时候，InnoDB会先把所有的行读到数据缓冲区，发生了多次IO，而使用了辅助索引以后，由于辅助索引保存的仅仅是index的值，虽然还是读了那么多行到缓冲区，但是数据量则大大减少，仅有一个字段，磁盘IO减少，所以性能提高了。
@@ -540,6 +542,8 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 - **`wait_timeout`设置**: 最好将全局的`wait_timeout`设置为120，防止因为慢sql太多导致数据库性能变慢，特别是针对大企业的公共数据库。并且连接自己设置的`wait_timeout`依然首先会受到全局设置的影响，当`wait_timeout`超时后会出现**2013: Lost connection to MySQL server during query**错误
 
 ### 索引类型
+
+- 注意，外键并不会创建索引 
 
 #### 唯一索引
 
