@@ -636,7 +636,7 @@ var_dump(get_loaded_extensions());		// 查看安装了哪些模块
 
 apt-get install php7.4-mbstring	# 安装ext-mbstring扩展
 apt-get install php8.1-xml 	# 安装ext-dom扩展，8.1版本下用php7.4-xmlprc php7.4-xmo
-apt-get install php-bcmeth # 安装bcmath扩展
+apt-get install php-bcmath # 安装bcmath扩展
 apt-get install php8.1-gd # 安装ext-gd扩展
 apt-get install php8.1-curl	# 安装ext-curl扩展
 apt-get install php8.1-bcmath # 安装ext-bcmath扩展
