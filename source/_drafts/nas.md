@@ -20,3 +20,11 @@ sudo mkdir -p /srv/jellyfin/{config,cache}
 sudo docker run -d -v /srv/jellyfin/config:/config -v /srv/jellyfin/cache:/cache -v /media:/media --net=host jellyfin/jellyfin:latest
 ```
 
+### Stable diffusion
+
+```shell
+docker run --gpus all --restart unless-stopped -p 8080:8080 -v /media/share/diffusion-datadirextensions:/app/stable-diffusion-webui/extensions -v /media/share/diffusion-datadir/models:/app/stable-diffusion-webui/models -v /media/share/diffusion-datadir/outputs:/app/stable-diffusion-webui/outputs -v /media/share/diffusion-datadir/localizations:/app/stable-diffusion-webui/localizations --name stable-diffusion-webui -d universonic/stable-diffusion-webui
+```
+
+
+
