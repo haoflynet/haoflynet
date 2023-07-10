@@ -713,6 +713,7 @@ window.location.back() // 返回上一页
 window.history.pushState({"html":test.html,"pageTitle":response.pageTitle},"", urlPath);	// 不刷新页面直接修改url
 document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
 location.reload()				// 刷新当前页面
+window.stop() // 停止当前所有的渲染和js执行过程或者正在请求还未完成的请求
 
 window.getSelection().toString();	// 获取选中的文字，但是图片不能toString
 

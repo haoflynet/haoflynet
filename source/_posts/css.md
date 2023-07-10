@@ -1,7 +1,7 @@
 ---
 title: "CSS教程"
 date: 2015-01-11 08:12:39
-updated: 2023-04-12 16:30:00
+updated: 2023-06-24 16:30:00
 categories: frontend
 ---
 - [各种浏览器及系统的尺寸](http://chicun.jammy.cc/html/web.html)
@@ -726,6 +726,7 @@ div:nth-last-child(2) {
 ## 动画transitions/变化/变换/平滑移动
 
 - `transitions`允许我们平滑地改变属性值(而不是立马变更到某个值)
+- ease方法的在线示例: [Easing Functions Cheet Sheet](https://easings.net/)
 - 注意值必须是个确定的值，不能是100%这种
 
   ```css
