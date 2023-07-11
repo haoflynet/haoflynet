@@ -58,7 +58,7 @@ categories: system
 
 **onStart()**：可以被用户看到的时候调用的方法  
 **onRestart()**：从第二个返回第一个，因为第一个没被销毁  
-**onResume()**：可以获得用户焦点的时候调用  
+**onResume()**：可以获得用户焦点的时候调用
 **onPause()**：从一个Activity换向另一个Activity时第一个会调用这个  
 **onStop()**：当调完第二个时，第一个就调用这个，该Activity处于不可见时，而如果没有全部遮挡起来就不会调用第一个的onStop()方法了  
 **onDestroy()**：如果点击返回，可能会调用这个，把第二个摧毁了    
@@ -166,6 +166,15 @@ return loc;
   ```
 
 - **Gradle sync failed: Syncfailed: reason unknown**: 尝试在SDK Manager中把29到33的SDK都安装上
+
+- **class butterknife.compiler.ButterKnifeProcessor$RScanner**: 可以尝试在gradle.properties中添加参数
+
+  ```properties
+  org.gradle.jvmargs=-Xmx2048M -Dkotlin.daemon.jvm.options\="-Xmx2048M" \
+  --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
+  --add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED \
+  --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED
+  ```
 
 ##### 扩展阅读
 

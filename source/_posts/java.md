@@ -164,6 +164,11 @@ try {
 } catch (Exception e) {
   return false;
 }
+
+// 任意对象转JSON字符串
+import com.google.gson.Gson;
+String jsonString = gson.toJson(myObj);
+System.out.println(jsonString);
 ```
 
 ##### 正则匹配
