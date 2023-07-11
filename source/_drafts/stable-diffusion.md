@@ -7,14 +7,16 @@
 ### img2img图生图
 
 - 常用参数:
-  - Sampling Method: 去噪算法，平衡生成图的速度和质量，常用DPM++ 2M Karras
-  - Sampling Steps: 去噪过程的采样步数，越多越好，但也需要更长的时间，常用20-28之间
+  - Sampling Method: 采样器/采样方法，平衡生成图的速度和质量，常用DPM++ 2M Karras、UniPC(速度较快效果较好，对平面、卡通表现较好)
+  - Sampling Steps: 采样步数，越多越好，但也需要更长的时间，常用20-30之间
   - Batch Count: 批次数量，最好用Batch size吧
-  - Batch size: 每一批次的数量
-  - CFG(Classifier Free Guidance) scale: 提示词相关性，1(基本忽略你的提示)、3(更有创意)、7(比较平衡)、15(更加遵守提示)、30(严格按照提示)
+  - Batch size: 每一批次的数量，增加这个值可以提高速度，但是对显存消耗更大，如果显存没有16G，最好保持1
+  - CFG(Classifier Free Guidance) scale: 提示词相关性，1(基本忽略你的提示)、3(更有创意)、7(比较平衡)、15(更加遵守提示)、30(严格按照提示)，一般7-11
   - Denoising strength: 降噪强度(重绘幅度)，新生成的图片与原图的相似程度，数值越小，采样越少，相似度越高，生成越快
   - Seed: 种子值
   - Script: 自定义脚本
+  - Width / Height：尺寸太宽时，可能会出现多个主体
+  - Highres. fix: 高清修复，有时候在高分辨率下会生成混乱的图像，需要使用这个选项
 
 #### SKetch绘图
 
@@ -37,6 +39,8 @@
 #### Inpaint upload局部绘制上传蒙版
 
 ## 模型网站
+
+- 不同的模型需要放入不同的目录
 
 ### [Hugging Face](https://huggingface.co/)
 
