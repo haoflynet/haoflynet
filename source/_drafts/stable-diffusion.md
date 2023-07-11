@@ -1,13 +1,21 @@
 ## 安装配置
 
+
 - 除了英伟达和Mac以外，它好像不能在其他显卡上面运行，其他平台默认只能用CPU
+
+```shell
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+cd stable-diffusion-webui
+./webui.sh	# 然后访问7860端口即可
+```
+
 
 ## 主要功能
 
 ### img2img图生图
 
 - 常用参数:
-  - Sampling Method: 采样器/采样方法，平衡生成图的速度和质量，常用DPM++ 2M Karras、UniPC(速度较快效果较好，对平面、卡通表现较好)
+  - Sampling Method: 采样器/采样方法，平衡生成图的速度和质量。Euler最简单最快，Euler a步数超过30效果不会更好，DDIM收敛快效率低，需要更多step才能获得好的结果适合重绘，常用DPM++ 2M Karras、UniPC(速度较快效果较好，对平面、卡通表现较好)
   - Sampling Steps: 采样步数，越多越好，但也需要更长的时间，常用20-30之间
   - Batch Count: 批次数量，最好用Batch size吧
   - Batch size: 每一批次的数量，增加这个值可以提高速度，但是对显存消耗更大，如果显存没有16G，最好保持1
@@ -46,8 +54,23 @@
 
 ### [Civitai](https://civitai.com/)
 
+## 插件
+
+### ControlNet
+
+```shell
+git clone https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet # 安装后重启
+```
+
+- 参数
+  - Low VRAM: 此选项可以降低VRAM使用量，建议8G以下的显存开启此选项
+
 ## Troubleshooting
 
 - **Something went wrong Expecting value: line 1 column 1 (char 0)**: [两种解决办法](https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/9174)
   - 关闭代理
   - 添加`COMMANDLINE_ARGS`参数`--no-gradio-queue`
+
+- **RuntimeError: "LayerNormKernelImpl" not implemented for 'Half'**: 运行时添加参数`--no-half`
+
+- **When localhost is not accessible, a shareable link must be created. Please set share=True.**: 关闭代理即可
