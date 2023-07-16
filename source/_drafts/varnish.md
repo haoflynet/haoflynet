@@ -25,8 +25,6 @@ sudo varnishadm
 storage.list	
 ```
 
-
-
 ## VCL语法
 
 ```shell
