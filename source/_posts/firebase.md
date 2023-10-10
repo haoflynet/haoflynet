@@ -247,6 +247,19 @@ service cloud.firestore {
     }
   }
 }
+
+// realtime database的安全规则
+{
+  "rules": {
+    "$log_key": {
+      ".validate": "$log_key.matches(/^logs-.+/)",	// 使用正则匹配
+      ".read": true,
+      ".write": true
+    },
+    ".read": false,
+    ".write": false
+  }
+}
 ```
 
 ### 数据读写

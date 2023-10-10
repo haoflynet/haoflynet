@@ -19,7 +19,7 @@ ADB(Android Debug Bridge)，即android的一个调试工具，主要用于开发
 
 ```shell
 brew tap homebrew/cask
-brew cask install android-platform-tools
+brew install android-platform-tools
 ```
 
 <!--more-->

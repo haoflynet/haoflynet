@@ -447,7 +447,7 @@ const { register, setValue, getValues, trigger, handleSubmit, control, formState
 const schema = yup.object({
   firstName: yup.string().required(),
   username: yup.string().required('Username is required'),
-  email: yup.string().required('Email is required').email('Email is not correct'),
+  email: yup.string().email().required('Email is required').email('Email is not correct'),
   phone: yup.string().matches(/\(\d{4}\) \d{3}-\d{4}/).required(),
   age: yup.number().positive().integer().required(),
   field: yup.string().matches(/\d{9}/, 'Tax ID should be 9 digits').required(),

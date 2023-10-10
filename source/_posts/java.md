@@ -1,7 +1,7 @@
 ---
 title: "java 手册"
 date: 2016-06-27 22:52:39
-updated: 2022-11-14 11:56:00
+updated: 2023-07-26 11:56:00
 categories: java
 ---
 
@@ -25,6 +25,8 @@ categories: java
 
 - `object.getField() == 1`: 这种比较可能出现空指针异常
 
+- 获取对象的类: `object.getClass()`
+
 - 使用`Optional`来减少空指针异常:
 
   ```java
@@ -45,9 +47,10 @@ categories: java
   }
   ```
 
-#### Integer/Long/Double/Float/BigDecimal数字
+#### Integer/Long/Double/Float/BigDecimal/AtomicInteger数字
 
 - 千万不要用`Double/Float`来定义金额，因为经常会出现浮点数的精度问题，最好用大数类，例如`BigDecimal/BigInteger`
+- AtomicInteger是一个线程安全整数类，同时只有一个线程可以对其操作
 
 ```java
 a.longValue();	// 整型转长整型
@@ -167,6 +170,7 @@ try {
 
 // 任意对象转JSON字符串
 import com.google.gson.Gson;
+Gson gson = new Gson();
 String jsonString = gson.toJson(myObj);
 System.out.println(jsonString);
 ```
@@ -220,6 +224,16 @@ Arrays.asList("a", "b").contains("c"); // 数组是否包含某个值
 // 遍历数组
 for (double element: myList) {}
 for (int i = 0 ; i < myList.size(); i++) {}
+
+// 遍历数组并移除元素
+Iterator<String> iterator = myList.iterator();
+while (iterator.hasNext()) {
+    String item = iterator.next();
+    if (item.equals("banana")) {
+        iterator.remove(); // 根据条件删除元素
+    }
+}
+
 
 // Vector类，动态数组
 // Stack栈

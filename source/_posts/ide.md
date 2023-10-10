@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2022-09-05 14:26:00
+updated: 2023-07-28 14:26:00
 categories: 编程之路
 ---
 
@@ -103,6 +103,7 @@ categories: 编程之路
 - **Maven编译java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTags**，原因可能是`lombok`版本过低，`Java`版本过高导致，要么升`lombok`，要么降`Java`
 - **Error: java: 不支持发行版本5**: 依然是java版本的问题，可以尝试在`Project Settings->Project->Project SDK`中选择不同的`Java`版本
 - **添加外部工具External Tools**: 可以参见下面的`Prettier`配置
+- **默认的mvn路径**: `/Applications/IntelliJ\ IDEA.app/Contents/plugins/maven/lib/maven3/bin/mvn`
 
 #### 个人配置
 

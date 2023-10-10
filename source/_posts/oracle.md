@@ -13,7 +13,8 @@ sudo apt remove iptables-persistent -y && sudo ufw disable && sudo iptables -F	#
 
 ### 使用Bastion跳板机登录Instance
 
-- 在Instance详情页的`Virtual Cloud Agent`中打开`Bastion`，然后在`Bastion`的管理面板中创建`session`，最后复制登录命令即可，例如:
+- 在Instance详情页的`Virtual Cloud Agent`中打开`Bastion`，然后在`Bastion`的管理面板中创建`session`，(注意，bastion的private ip需要加入到机器的network中添加一条路由，允许22端口)，最后复制登录命令即可，例如:
+
   ```shell
   ssh -i <privateKey> -o ProxyCommand="ssh -i <privateKey> -W %h:%p -p 22 ocid1.bastionsession.oc1.us-sanjose-1.xxxxxx@host.bastion.us-sanjose-1.oci.oraclecloud.com" -p 22 ubuntu@10.0.8.89
   ```

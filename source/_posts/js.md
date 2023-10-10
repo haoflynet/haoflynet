@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2023-06-19 08:18:00
+updated: 2023-08-24 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -711,7 +711,7 @@ window.location.hostname	// 例如 haofly.net
 window.lcoation.href = 'url'	// 跳转到某个url
 window.location.back() // 返回上一页
 window.history.pushState({"html":test.html,"pageTitle":response.pageTitle},"", urlPath);	// 不刷新页面直接修改url
-document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md
+document.referrer				// 获取当前页面的referer，是一个read only属性，不可以在ajax里面改变，改不了，md。也可用于获取parent document的url
 location.reload()				// 刷新当前页面
 window.stop() // 停止当前所有的渲染和js执行过程或者正在请求还未完成的请求
 
@@ -968,6 +968,7 @@ _.countBy([6.1, 4.2, 6.3], Math.floor)	// {'4': 1, '6': 2}
 
 ```javascript
 _.chunk([1,2,3,4,5], 2)	// [[1,2], [3,4], [5]]
+_.chunk('abcdefg', 2).map(chunk => chunk.join(''))	// 如果用在字符串上的话结果会将每个字符分隔开，所以我们需要join一下
 ```
 
 ##### _.debounce(func, [wait=0])
