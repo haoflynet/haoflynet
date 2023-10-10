@@ -113,6 +113,7 @@ const userQueries = useQueries({
       return {
         queryKey: ['user', user.id],
         queryFn: () => fetchUserById(user.id),
+        onSuccess: (data) => {}
       }
     })
   })

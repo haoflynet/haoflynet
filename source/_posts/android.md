@@ -1,9 +1,11 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2023-06-20 15:37:00
+updated: 2023-10-10 15:37:00
 categories: system
 ---
+## [Android API Levels版本](https://apilevels.com/)
+
 ## Android Studio 的使用
 
 ### [Gradle和Gradle Plugin对应关系](https://developer.android.com/studio/releases/gradle-plugin)
@@ -56,12 +58,12 @@ categories: system
 
 ### Activity生命周期
 
-**onStart()**：可以被用户看到的时候调用的方法  
+**onStart()**：可以被用户看到的时候调用的方法
 **onRestart()**：从第二个返回第一个，因为第一个没被销毁  
 **onResume()**：可以获得用户焦点的时候调用
-**onPause()**：从一个Activity换向另一个Activity时第一个会调用这个  
+**onPause()**：从一个Activity换向另一个Activity时第一个会调用这个
 **onStop()**：当调完第二个时，第一个就调用这个，该Activity处于不可见时，而如果没有全部遮挡起来就不会调用第一个的onStop()方法了  
-**onDestroy()**：如果点击返回，可能会调用这个，把第二个摧毁了    
+**onDestroy()**：如果点击返回，可能会调用这个，把第二个摧毁了 
 
 ### 打印日志
 
@@ -71,6 +73,8 @@ Log.d(String tag, String msg);  //debug日志，颜色为蓝色
 Log.i(String tag, String msg);  //information日志，颜色为绿色
 Log.w(String tag, String msg); //warn告警日志，颜色为橙色
 Log.e(String tag, String msg); //error错误日志，颜色肯定为红色
+
+String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);	// 获取设备的deviceid
 ```
 
 ### Toast提示框展示日志
@@ -166,6 +170,8 @@ return loc;
   ```
 
 - **Gradle sync failed: Syncfailed: reason unknown**: 尝试在SDK Manager中把29到33的SDK都安装上
+
+- **获取BSSID总是返回02:00:00:00:00:00**:  这是因为高版本的android限制了的，就是无解
 
 - **class butterknife.compiler.ButterKnifeProcessor$RScanner**: 可以尝试在gradle.properties中添加参数
 

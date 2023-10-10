@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2023-06-02 12:45:00
+updated: 2023-08-31 12:45:00
 categories: Database
 ---
 
@@ -54,11 +54,30 @@ psql -U postgres -h xxx -w --password	# 使用命令行登录postgres数据库
 
 select pg_size_pretty(pg_database_size('tablename')) as size;
 pg_dump -U username your_database > db_dump.bak	# 备份数据库，导出数据库
+pg_dump -U username -d mydatabase -t temp_table -f temp_table.sql	# 导出指定的表，如果是view需要创建临时表才行
+psql -U your_user -d your_db -c "\COPY (SELECT row_to_json(t) FROM (SELECT * FROM your_table_or_view) t) TO '/path/to/output.json';"	# 导出数据为json
 psql -U postgres -h xxx 数据库名 < db_dump.back # 恢复restore数据库，该数据库需要先创建
 
 SELECT * FROM pg_stat_activity;	# 检查当前有哪些session，哪些连接
 select pg_terminate_backend(pid) from pg_stat_activity; # 删除某个session
 select pg_size_pretty(pg_database_size('dbname')) as size; # 查询数据库大小/容量
+# 查询每张表的大小/容量
+SELECT
+    table_name,
+    pg_size_pretty(total_bytes) AS total_size,
+    pg_size_pretty(index_bytes) AS index_size,
+    pg_size_pretty(table_bytes) AS table_size
+FROM (
+         SELECT
+             table_name,
+             pg_total_relation_size(table_name::regclass) AS total_bytes,
+             pg_indexes_size(table_name::regclass) AS index_bytes,
+             pg_total_relation_size(table_name::regclass) - pg_indexes_size(table_name::regclass) AS table_bytes
+         FROM information_schema.tables
+         WHERE table_schema = 'public'
+     ) AS sizes
+ORDER BY total_bytes DESC;
+
 
 SELECT * FROM pg_stat_replication; # 查看主从复制状态
 select pg_is_in_recovery()	# 查看当前数据库时候是从库
@@ -77,6 +96,7 @@ SELECT * FROM information_schema.role_table_grants WHERE grantee = '角色名';	
 \list	# 列出当前的数据库，这里不要加分号。等同于SELECT * from pg_database;
 \c 数据库名 # 切换数据库
 \dt	# 列出当前的表
+SELECT viewname FROM pg_views WHERE schemaname='public'; # 列出所有的view表
 
 DROP DATABASE name; # 删除数据库
 

@@ -1,7 +1,7 @@
 ---
 title: "Sequelize 使用手册"
 date: 2020-09-19 17:00:00
-updated: 2023-06-02 10:11:11
+updated: 2023-08-29 10:11:11
 categories: Javascript
 ---
 
@@ -154,6 +154,9 @@ class PostModel extends Model {
   static createUser(user: UserModel) {
     console.log(user.id);
   }
+
+  @AfterDestroy // 软删除也是这里
+  static async afterDestroy(use: UserModel) {}
 }
 
 // 定义方式二
@@ -548,6 +551,15 @@ await User.destroy({
 await User.destroy({
   truncate: true
 });
+```
+
+## Hooks
+
+```javascript
+  beforeUpdate: (instance, options) => {
+    console.log(instance.dataValues); // 新的值
+    console.log(instance._previousDataValues); // 当前的值
+  }
 ```
 
 ## 事务Transaction

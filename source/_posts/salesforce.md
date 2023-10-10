@@ -317,7 +317,18 @@ conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删�
 
 - **DUPLICATES_DETECTED**: 如果在Object Manager没有发现什么唯一键，可以在`Setup -> Data -> Duplicate Management -> Duplicate Rules`里面看看有没有什么检测重复的规则
 
+## SFDX命令行工具
+
+```shell
+npm install sfdx-cli --global
+sfdx force:auth:web:login -d -a DevHub	# 登录
+sfdx force:auth:web:login -r https://test.salesforce.com	# 登录sandbox
+
+sfdx force:mdapi:retrieve -s -r ./mdapipkg -o DevHub -p <package name>	# 获取package的元数据
+```
+
 ## AppExchange Package app / Connected App / Canvas App开发
+
 - Connected App用于连接第三方服务，第三方服务可以通过OAuth授权来获取token来获取salesforce的数据
 - AppExchange app是可以发布到salesforce的应用商店的(AppExchange)，但是开发者需要支付2500美元，并且以后每年还需要200美元，怪不得上面的app那么少
 - AppExchange App是原生的，无需身份验证和集成
@@ -330,8 +341,8 @@ conn.sobject("Account").del(['0017000000hOMChAAO','0017000000iKOZTAA4']; // 删�
 - 安装完AppExchange App后无法做到自动修改授权或者自动获取access token或者自动跳转到app页面，[参考](https://salesforce.stackexchange.com/questions/327096/connected-app-oauth2-and-managed-package-relationship)，只能用户手动点击Configuration才行
 - AppExchange App可以添加一个post install脚本，但是其作用有限，只能获取到最基本的信息，org名称、版本信息等，并且不能设置重定向
 - 给AppExchange的app的uninstall旁边增加一个[Configure按钮](https://salesforce.stackexchange.com/questions/7459/how-to-show-a-visualforce-page-on-the-first-installation-of-the-managed-package)以打开app的首页
-  - 这个只有在classic页面才有: `Setup > Build > Customize > Home and create a Custom Link`
-  - `Setup > Create > Packages`，选择package，然后选择component的时候把custom link添加上就行
+  - 这个只有在classic页面才有: `Setup > Build > Customize > Home -> Custom Links`，创建一个新的Link
+  - `Setup > Create > Packages`，选择package，在package的编辑页面的`Configure Custom Link`添加该link即可
 - Canvas APP的sdk并没有一个比较现代的npm包，不过还好有个大概能用的[SalesforceCanvasJavascriptSDK](https://github.com/forcedotcom/SalesforceCanvasJavascriptSDK)
 
 ```javascript

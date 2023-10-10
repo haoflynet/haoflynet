@@ -1,7 +1,7 @@
 ---
 title: "Python手册"
 date: 2013-08-20 12:05:30
-updated: 2023-06-07 09:36:30
+updated: 2023-07-28 09:36:30
 categories: python
 ---
 [Python 包/pcakge排名](https://hugovk.github.io/top-pypi-packages/): `pypi.org`那个搜索不知道结果是些啥玩意儿，最好在这里搜，前5000基本上都是主流的
@@ -429,7 +429,7 @@ os.path.getsize(filename) # 获取文件大小
 os.path.getatime(filename)	# 获取文件的访问时间
 os.path.getctime(filename)	# 获取文件创建时间
 os.path.getmtime(filename)	# 获取文件最近一次内容更改的时间
-os.path.basename(fname)  # 从完整路径获取其路径
+os.path.basename(fname)  # 从完整路径获取其文件名
 os.path.dirname(fname) # 从完整路径获取其名称
 os.getcwd()   # 获取当前目录
 os.chdir(newdir)  # 切换目录
@@ -1056,6 +1056,10 @@ from time_profile import *
  
 cProfile.run("timeit_profile()")
 ```
+
+#### [csv](https://docs.python.org/3/library/csv.html)
+
+- Python内置了csv读写库的
 
 #### ctypes
 

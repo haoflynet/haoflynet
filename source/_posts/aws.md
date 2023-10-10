@@ -1,12 +1,12 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2023-06-10 09:54:00
+updated: 2023-07-25 09:54:00
 categories: Javascript
 ---
 
 - Aws的密钥只能下载一次，下载后请小心保存
-- AWS的命令行或者代码的环境变量是: `AWS_ACCESS_KEY_ID(或AWS_ACCESS_KEY)/AWS_SECRET_ACCESS_KEY(或AWS_SECRET_KEY)/AWS_DEFAULT_REGION`
+- AWS的命令行或者代码的环境变量是: `AWS_ACCESS_KEY_ID(或AWS_ACCESS_KEY)/AWS_SECRET_ACCESS_KEY(或AWS_SECRET_KEY)/AWS_DEFAULT_REGION/AWS_REGION`
 
 ## EC2
 
@@ -629,7 +629,6 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
     WithDecryption: false
   }).promise()
   await ssm.describeParameters({	// 获取参数列表，但是结果是没有Value的，注意这里的IAM权限需要的是设置到ssm上，而不是parameter上，arn:aws:ssm:us-east-1:xxxxx:*而不是arn:aws:ssm:us-east-1:xxxxx:parameter/*
-  
     "Filters": [
       {
         "Key": "Name",
@@ -638,6 +637,7 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
     ],
     "MaxResults": 50,	// 一次最多获取50个
   }).promise()
+  
   // 更新Parameter，可以更新Type，在web是不能更新Type的
   await ssm.putParameter({
     Name: parameter.Name,
@@ -645,7 +645,6 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
     Value: parameter.Value,
     Overwrite: true,
   }).promise();
-  
   ```
 
 ## Cron定时任务表达式
@@ -768,6 +767,8 @@ ssm.listCommandInvocations({
   ```
 
 - **The authorization mechanism you have provided is not supported. Please use AWS4-HMAC-SHA256**: 要么手动设置access_key_id和secret_access_key两个环境变量，要么参考上文创建Role然后绑定到Ec2
+
+- **Unable to find a region via the region provider chain. Must provide an explicit region in the builder or setup environment to supply a region.** 原因是没有添加环境变量AWS_REGION
 
 
 

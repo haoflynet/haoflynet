@@ -46,15 +46,49 @@ cd stable-diffusion-webui
 
 #### Inpaint upload局部绘制上传蒙版
 
-## 模型网站
+## 模型
 
-- 不同的模型需要放入不同的目录
+- 不同的模型需要放入不同的目录，但一般是放在`stable-diffusion-webui/models/Stable-diffusion`目录下
 
-### [Hugging Face](https://huggingface.co/)
+### 模型网站
 
-### [Civitai](https://civitai.com/)
+#### [Hugging Face](https://huggingface.co/)
 
-## 插件
+#### [Civitai](https://civitai.com/)
+
+### 常用模型
+
+#### [Dark Sushi Mix 大颗寿司Mix](https://civitai.com/models/24779/dark-sushi-mix-mix)
+
+- 不错的动漫风格的模型
+
+- 生成示例:
+
+  - 参数:
+    - Sampling steps: 60
+    - ControNet:
+      - Single Image, Enable, Piexel Perfect, Allow Preview
+      - Control Type: Canny
+
+  - Prompt:
+
+  ```shell
+  (masterpicece:1,2), best quality, masterpiece, highres, original, extremely detailed wallpaper, perfect lighting, (extremely detailed CG:1.2), drawing, paintbrush,
+  
+  Negative Prompt:
+  NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331), (morbid:1.21), (mutilated:1.21), (tranny:1.331), mutated hands, (pooorly drawn hands:1.5), blurry, (bad anatomy:1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missing arms:1.331), (extra legs:1.331), (fused fingers:1.61051), (too many fingers:1.61051), (unclear eyes:1.331), lowers, bad hands, missing fingers, extra digit, bad hands, missing fingers, (((extra arms and legs)))
+  ```
+
+
+![](https://haofly.net/uploads/stable-diffusion_01.png)
+
+![](https://haofly.net/uploads/stable-diffusion_02.png)
+
+#### [cartoonish](https://civitai.com/models/18569/cartoonish)
+
+- 卡通人物模型
+
+## 插件/工具
 
 ### ControlNet
 
@@ -65,6 +99,14 @@ git clone https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webu
 - 参数
   - Low VRAM: 此选项可以降低VRAM使用量，建议8G以下的显存开启此选项
 
+### [Stable Diffusion Prompt Reader](https://github.com/receyuki/stable-diffusion-prompt-reader/blob/master/README.zh-Hans.md#stable-diffusion-prompt-reader)
+
+- 提取AI图片的Prompt
+
+### [Tagger](https://github.com/picobyte/stable-diffusion-webui-wd14-tagger)
+
+- 提取照片的Prompt，可以直接发送到img2img,txt2img等
+
 ## Troubleshooting
 
 - **Something went wrong Expecting value: line 1 column 1 (char 0)**: [两种解决办法](https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/9174)
@@ -74,3 +116,5 @@ git clone https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webu
 - **RuntimeError: "LayerNormKernelImpl" not implemented for 'Half'**: 运行时添加参数`--no-half`
 
 - **When localhost is not accessible, a shareable link must be created. Please set share=True.**: 关闭代理即可
+
+- **safetensors_rust.SafetensorError: Error while deserializing header: MetadataIncompleteBuffer**: 可能是safetensors模型文件没有下载完整或者已经损坏，尝试重新下载

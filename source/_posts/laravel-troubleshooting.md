@@ -243,3 +243,10 @@ public function boot()
 #### Illegal operator and value combination
 
 一般是因为在where条件中比较时间字段的时候传入了一个null值
+
+#### laravel/framework[v10.0.0, ..., v10.0.3] require composer-runtime-api ^2.2 -> found composer-runtime-api[2.1.0] but it does not match the constraint.
+
+```shell
+composer clearcache && composer selfupdate
+```
+

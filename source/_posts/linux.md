@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2023-05-09 17:52:30
+updated: 2023-09-11 17:52:30
 categories: system
 ---
 # Linux手册
@@ -96,6 +96,7 @@ time 命令	# 查看命令的执行时间
 kill -s 9 进程ID
 kill -TERM 进程ID		# 杀死进程及其所有的子进程，但有时候不起作用
 ps -aef|grep "run.js" | awk '{print $2}' | xargs sudo kill -TERM	# 批量关闭指定的进程
+pkill -f cycle_cleaner	# 批量关闭自定关键字的进程
 
 # 监控每个进程的网络带宽，类似的还有iftop，但是都只能监听TCP，iptraf工具能监听UDP流量
 sudo apt-get install nethogs -y
@@ -315,7 +316,7 @@ ssh-keygen -p -f ~/.ssh/id_rsa.pub		# 修改key密码
 # SSH使用代理
 ssh -o ProxyCommand='nc -X 5 -x 127.0.0.1:1080 %h %p' host
 
-# ssh-add命令，将专用密钥添加到ssh-agent的高速缓存中。转发ssh key，常用与跳板机
+# ssh-add命令，将专用密钥添加到ssh-agent的高速缓存中。转发ssh key，常用于跳板机
 ## ssh代理git可以参考https://docs.github.com/zh/developers/overview/using-ssh-agent-forwarding，但是排查问题还得加一个可能，如果服务器磁盘满了，也是代理不成功的
 ssh-add -L	# 列出ssh-agent的公钥
 ssh-add -l	# 列出ssh-agent的密钥
@@ -605,6 +606,10 @@ curl ipinfo.io
 
 # 关闭几种防火墙
 sudo apt remove iptables-persistent -y && sudo ufw disable && sudo iptables -F
+
+# ufw防火墙
+sudo ufw status	# 查看当前的规则列表
+sudo ufw allow from 192.168.1.100 to any port 3005	# 添加新规则
 
 # CentOS6
 /etc/init.d/iptables status     # 查询防火墙状态
@@ -1232,6 +1237,17 @@ fi
   然后全局生效,vim /etc/locale.conf
   LANG=zh_CN.UTF-8
   LC_COLLATE=zh_CN.UTF-8
+  
+  # Ubuntu
+  sudo locale-gen zh_CN.UTF-8
+  sudo update-locale
+  sudo vim /etc/environment # 添加如下两行
+  LC_ALL=zh_CN.UTF-8
+  LC_CTYPE=zh_CN.UTF-8
+  sudo vim ~/.bashrc # 添加如下两行
+  export LC_ALL=zh_CN.UTF-8
+  export LC_CTYPE=zh_CN.UTF-8
+  # 最后重新登录终端即可
   ```
 
 - **免密码登录仍然要求输入密码**

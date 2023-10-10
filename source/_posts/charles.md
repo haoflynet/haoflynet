@@ -20,8 +20,7 @@ categories: tools
    ![](https://haofly.net/uploads/charles_2.png)
 3. 安装Charles的证书: Help -> SSL Proxying -> Install Charles Root Certificate，安装证书，并完全信任该证书
    ![Mac 钥匙串管理](https://haofly.net/uploads/charles_3.png)
-4. 虽然设置了ssl证书，但是默认并没有对每个请求开启https的抓取，还需要针对单独的请求进行选择，在请求上面右键选择`SSL Proxy: Enabled`
-   ![](https://haofly.net/uploads/charles_4.png)
+4. 虽然设置了ssl证书，但是默认并没有对每个请求开启https的抓取，还需要针对单独的请求进行选择，在请求上面右键选择`SSL Proxy: Enabled`， 注意这里我不知道为什么，我在mac上右键的时候必须把键盘按下去才行![](https://haofly.net/uploads/charles_4.png)
 
 
 

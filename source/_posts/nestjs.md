@@ -1,13 +1,13 @@
 ---
 title: "Nestjs 使用手册"
 date: 2022-04-29 08:00:00
-updated: 2022-08-03 15:40:00
+updated: 2022-08-25 15:40:00
 categories: Javascript
 ---
 
 ## 项目配置
 
-- 默认端口为3000
+- 默认端口为3000，如果要修改可以在`src/main.ts`中进行修改
 
 ```shell
 # 项目初始化
@@ -206,6 +206,24 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
     return {
       ...req.user
     };
+  }
+  ```
+
+- `jwt-auth.guard.ts`中可以在handleRequest中处理错误
+
+  ```javascript
+  @Injectable()
+  export class JwtAuthGuard extends AuthGuard('jwt') {
+    canActivate(context: ExecutionContext) {
+      return super.canActivate(context);
+    }
+  
+    handleRequest(err, user, info) {
+      if (err || !user) {
+        throw err || new UnauthorizedException();
+      }
+      return user;
+    }
   }
   ```
 
