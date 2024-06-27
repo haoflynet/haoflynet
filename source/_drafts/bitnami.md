@@ -8,6 +8,10 @@ sudo /opt/bitnami/ctlscript.sh restart # 重启自身服务
 sudo /opt/bitnami/ctlscript.sh restart apache	# 重启指定服务
 ```
 
+## Apache
+
+- 默认安装目录在`/opt/bitnami/apache2`，其访问日志也在`/opt/bitnami/apache2/logs`
+
 ## MySQL
 
 - [Bitnami管理MySQL文档](https://docs.bitnami.com/aws/infrastructure/mysql/)

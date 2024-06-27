@@ -1,11 +1,46 @@
 ---
 title: "Koa"
 date: 2017-05-11 22:52:39
-updated: 2017-10-29 22:25:00
-categories: 平凡之路
+categories: nodejs
 ---
 
-[Koa2项目基本结构](https://github.com/haoflynet/project-structure/blob/master/Koa2/README.md)
+## koa router
+
+```shell
+npm install @koa/router # 安装
+```
+
+使用方法
+
+ ```javascript
+ const Router = require('@koa/router');
+ const app = new Koa();
+ const router = new Router();
+ 
+ router.post('/v1/a', async (ctx) => {});
+ router.get('/v1/:id', async(ctx) => { // 定义路由参数
+   const id = ctx.params.id
+ })
+ 
+ app.use(router.routes());
+ ```
+
+
+
+## Request and Response
+
+```javascript
+// Request
+ctx.request.body // 获取POST的body
+ctx.request.url // 获取请求path
+ctx.request.headers // 获取headers
+`${ctx.protocol}://${ctx.host}${ctx.url}` // 获取完整的URL
+ctx.ip // 获取客户端的IP，默认从X-Forwarded-For中获取
+
+// Response
+```
+
+
 
 ##### 实例
 
