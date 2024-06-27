@@ -26,6 +26,11 @@ class User {
   
   @Exclude()	// 指定在序列化的时候不包括该属性
   createdAt: Date;
+  
+  // 暴露一个单独的需要computed的字段
+  @Expose()
+  @Transform(({ value, key, obj, type }) => 'yolo' )
+  thisIsATest: string
 }
 ```
 

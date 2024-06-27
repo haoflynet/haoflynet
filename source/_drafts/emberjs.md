@@ -7,6 +7,15 @@ export default Ember.Route.extend({
   	controller.set('model', model);
 	}
   currentRequest: null,
+  
+  init() {
+  	this.get('store').findAll('users').then((content) => {
+      content.mapBy('name'); // 
+      content.forEach((user) => {
+        user.get('id');	// 用这种方式获取store的值
+      })
+    })
+  }
 
   actions: {
     willTransition(transition) { // 路由切换前调用
