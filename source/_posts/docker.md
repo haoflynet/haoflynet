@@ -235,9 +235,9 @@ apt del python			# 删除软件
 - `AWS`的数据库跟`Mariadb`数据库有些地方不兼容，最好用`MySQL`
 
 ```shell
-docker run --name some-mariadb -v /Users/haofly/workspace/share:/share --net host -e MYSQL_ROOT_PASSWORD=mysql -d mariadb:tag	# 开启一个mysql容器，可通过exec bash进入容器内
+docker run --name some-mariadb -v /Users/haofly/share:/share --net host -e MYSQL_ROOT_PASSWORD=mysql -d mariadb:tag	# 开启一个mysql容器，可通过exec bash进入容器内
 
-docker run --name mysql -e MYSQL_ROOT_PASSWORD=mysql -p 3306:3306 -d mysql:5.7.26
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=mysql -p 3306:3306 -v /Users/haofly/share:/share -d mysql:latest
 ```
 ### PHP容器
 
@@ -404,4 +404,4 @@ docker run ... /sbin/init
     RUN (crontab -l ; echo "*/5 * * * * /usr/bin/python3 /root/main.py >> /tmp/cron.log 2>&1") | crontab	# 程序运行后定时任务会自动执行了
     ```
 
-    
+    w
