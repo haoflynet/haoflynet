@@ -65,6 +65,12 @@ admin.initializeApp({
 })
 ```
 
+#### Nodejs集成
+
+```shell
+npm install firebase-admin
+```
+
 #### PHP集成
 
 - [php firestore 文档](https://googleapis.github.io/google-cloud-php/#/docs/cloud-firestore/v1.19.3/firestore/readme)
@@ -186,6 +192,31 @@ user.sendPasswordResetEmail(email)	// 发送重置密码邮箱
   // 然后在客户端调用这个函数即可
   await functions().httpsCallable('sendEmailVerificationEmail')({ username });
   ```
+
+## Realtime Database
+
+```javascript
+const admin = require('firebase-admin');
+
+// 替换成你的 Firebase 项目配置文件路径
+const serviceAccount = require('path/to/your/firebase/serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://your-project-id.firebaseio.com', // 替换成你的项目数据库URL
+});
+
+const database = admin.database();
+const ref = database.ref('/your/path/to/listen'); // 替换成你想监听的路径
+
+ref.on('value', (snapshot) => {
+  const data = snapshot.val();
+  console.log('Data changed:', data);
+});
+
+// 如果需要监听其他事件，比如子节点的增加、删除等，可以使用其他事件名，如 'child_added', 'child_removed' 等。
+// child_added: 如果是数组，那么每次在开始监听的时候所有的child都会触发child_added事件
+```
 
 ## Firestore Database
 

@@ -40,9 +40,20 @@ categories: system
   
   - 获取keystore的sha-1指纹: `keytool -list -v -keystore {keystore_name} -alias {alias_name}`
 
+### 物理设备镜像到电脑
+
+`Settings -> Tools -> Device mirroring -> Enable mirroring of physical Android devices`
+
 ### 模拟器里面实现震动
 
 - 目前能找到能行的方法只有在模拟器设置里面选择Virtual sensors -> Move，然后拖动X、Y、Z三个轴移动，不能太快也不能太慢
+
+### 模拟器里面使用代理
+
+```shell
+# 执行下面命令然后重启模拟器即可
+adb shell settings put global http_proxy $(ipconfig getifaddr en0):7890
+```
 
 ## Google Play Console的使用
 

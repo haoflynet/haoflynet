@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2023-06-20 15:01:00
+updated: 2024-03-26 15:01:00
 categories: python
 ---
 # Django教程
@@ -892,6 +892,8 @@ yesno：
 ## 用户管理功能
 
 ### 扩展/自定义用户表
+
+- 注意扩展用户表必须在项目最开始的时候做，否则在migrate的时候会[报错](https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#changing-to-a-custom-user-model-mid-project)
 
 Django默认通过`django.contrib.auth`提供用户认证相关功能，用户表默认为`auth_user`，但是如果我们想要使用给自己的用户表用于认证，但是又能用到django原有的认证功能，那么可以这样扩展用户表：
 
