@@ -90,6 +90,15 @@ cd stable-diffusion-webui
 
 ## 插件/工具
 
+### [Stable DIffusion Prompts](https://stable-diffusion-prompts.com/)
+
+- 提示词参考网站，网站收录了很多精美的图片并提供对应的提示词
+
+### [CLIP Interrogator](https://huggingface.co/spaces/pharmapsychotic/CLIP-Interrogator)
+
+- 提取AI图片的Prompt
+- 在线工具，需要排队，但是可能几分钟就好了，生成的prompt质量比较高
+
 ### ControlNet
 
 ```shell

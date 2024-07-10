@@ -14,7 +14,7 @@ categories: tools
 
 ### Charles的基本设置
 
-1. 点击设置按钮然后进入`Proxy Setting`，设置Http代理
+1. 点击菜单`Proxy -> Proxy Setting`，设置Http代理
    ![Http代理设置](https://haofly.net/uploads/charles_1.png)
 2. 系统代理设置
    ![](https://haofly.net/uploads/charles_2.png)
@@ -26,13 +26,13 @@ categories: tools
 
 ### Charles抓取移动端设备iPhone过程
 
-1. Mac上开启Wifi热点
+1. Mac上开启Wifi热点，或者连接到统一局域网
 
 2. 手机连接Mac的Wifi，在wifi详情的最下面设置http代理，代理地址即使路由地址，也即mac的地址
 
    ![](https://haofly.net/uploads/charles_6.png)
 
-3. 选择Help -> SSL Proxying -> Instanll Charles Root Certificate on a Mobile Device or Remote Browse。在移动端上面安装
+3. 选择Help -> SSL Proxying -> Instanll Charles Root Certificate on a Mobile Device or Remote Browse。在移动端上面安装，下载后需要再设置APP里面搜索描述文件就能找到已下载的描述文件了然后点击安装即可
    ![](https://haofly.net/uploads/charles_5.png)
 
 4. 这样和mac端一样进行抓取。抓取示例:
