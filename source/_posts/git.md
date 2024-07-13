@@ -1,7 +1,7 @@
 ---
 title: "Git 手册"
 date: 2016-08-07 07:12:39
-updated: 2023-05-19 18:21:00
+updated: 2024-02-29 18:21:00
 categories: tools
 ---
 # Git指南
@@ -113,6 +113,7 @@ git reset HEAD filename		# 把已经commit了的文件取消暂存
 git checkout -- filename	# 放弃指定文件的更改
 git checkout <commit hash> -- filename 	# 将文件恢复到指定提交
 git commit --amend			# 撤销上一次提交，并将暂存区文件重新提交。当然如果没有git add，直接执行这条命令就相当于修改message
+git commit --amend -m "新的提交消息"	# 直接修改上一次提交的message
 
 git stash					# 暂存，常用于要切换分支，但是当前分支上面的更改并不想现在提交，需要先把当前分支的状态暂存起来。暂存起来后就可以自由切换到其他分支了。
 git stash -p	# 以交互的方式确定每一个修改是否需要stash
@@ -159,6 +160,7 @@ git merge bug-fix	# 将bug-fix合并到当前分支，即dev分支
 - 最好不要修改已经`push`过的提交进行修改，如果一定要修改，需要使用`git push -f origin 分支名`进行推送以覆盖历史提交，对于还没合并进主分支的提交，其实也还可以，但是一定要慎重。
 - 需要注意的是变基后提交的`hash`会改变
 - 可以使用`git filter-branch --treefilter 'rm -f password.txt' HEAD`命令对整个版本历史中的每次提交进行修改，可以以此来删除误提交的敏感信息
+- `git rebase --abort`可以终止rebase
 
 例如，我在本地新建了一个文件，并且先后对文件进行了三次修改操作，但是我想将更新操作合并。通过`git log --oneline`查看本地的提交历史如下:
 
@@ -314,8 +316,7 @@ fi
    ```
 
     这一步可能这一步可能会冲突，原因当然是其他人在你之前对远程的master分支进行了修改并提交上去
-    如果没有错，就直接推送
-    git push origin master
+    如果没有错，就直接推送` git push origin master`
 
 ## TroubleShooting
 
@@ -329,6 +330,12 @@ fi
 
    ```shell
    git rm -r --cached .	# 这条命令处理不了文件夹，如果是文件夹，需要把最后的点修改为文件夹的路径
+   git add .
+   git commit -m "fixed untracked files"
+   
+   # 如果只想删除指定的文件或者目录，就这样做
+   git rm -r --cached node_modules
+   rm -rf node_modules
    git add .
    git commit -m "fixed untracked files"
    ```

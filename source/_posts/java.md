@@ -95,7 +95,7 @@ int len = b.length();			// 得到字符串长度
 b.concat(a);					// 连接字符串
 b + a;							// 连接字符串
 System.out.printf("test %s", a);
-System.format("test %s", a);// 格式化字符串
+String.format("test %s", a);// 格式化字符串
 b.charAt(0);					// 得到指定索引的字符
 a.compareTo(Object o);			
 a.compareToIgnoreCase(String str);// 比较字符串

@@ -1,7 +1,7 @@
 ---
 title: "我用的IDEs及其配置"
 date: 2019-02-26 21:32:00
-updated: 2023-07-28 14:26:00
+updated: 2024-06-27 14:26:00
 categories: 编程之路
 ---
 
@@ -62,6 +62,8 @@ categories: 编程之路
   - 取消自动将多个`import`替换为`import *`: `Editor -> Code Style -> Java `，将`Class count to use import with '*'`和`Names count to use static import with '*'`变大比如99，然后将下面的`Packages to Use Imporot with '*'`中的`import java.awt.*`和`import javax.swing`删除
   - 取消js循环中属性不存在的提示: `Unfiltered for ..in loop`取消即可
   
+- 一次移除所有的断点breakpoints: 双击Shift，然后输入Remove all即可看到菜单
+
 - 设置新建文件模板，比如自动加入`Created By name on ${DATE}`等功能:
 
   - `Perferences->Editor->File and Code Templates`，这里面可以针对不同类型的文件创建不同的模板
@@ -104,6 +106,7 @@ categories: 编程之路
 - **Error: java: 不支持发行版本5**: 依然是java版本的问题，可以尝试在`Project Settings->Project->Project SDK`中选择不同的`Java`版本
 - **添加外部工具External Tools**: 可以参见下面的`Prettier`配置
 - **默认的mvn路径**: `/Applications/IntelliJ\ IDEA.app/Contents/plugins/maven/lib/maven3/bin/mvn`
+- **增加控制台console缓冲区，增加输出行数**: `Settings -> 搜索Console -> Override console cycle buffer size (1024 KB)`，把这个值调大即可
 
 #### 个人配置
 
