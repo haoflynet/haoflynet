@@ -657,7 +657,7 @@ canvasEle.getContext("2d").strokeRect(20, 20, 150, 100)	// 在元素上绘制矩
 // js原生事件
 ele.onchange = function () {};
 ele.onchange = funciton () {};
-ele.addEventListener('click', func (e) {});	// 原生click事件，注意这里如果用箭头函数，那么获取当前元素不应该用this而是用e.targetsf
+ele.addEventListener('click', func (e) {});	// 原生click事件，注意这里如果用箭头函数，那么获取当前元素不应该用this而是用e.targets
 ele.removeEventListener('change', func () {});
 videoEle.addEventListener('resize', () => {});	// video元素的长宽或者分辨率变化
 ele.addEventListener('DOMNodeInserted', func (){});	// 当插入新DOM元素时触发
@@ -933,7 +933,7 @@ _.camelCase('__FOO_BAR__');	// => 'fooBar'
 - 这里的`.value()`是一个延迟计算操作，但是有些方法是不能加在链条中的，例如`reduce`会被立即计算
 
 ```javascript
-const arr = [1,2,3,4,5]了
+const arr = [1,2,3,4,5]
 _.chain(arr)
 	.filter(n => n % 2 === 0)
 	.map(n => n * n)

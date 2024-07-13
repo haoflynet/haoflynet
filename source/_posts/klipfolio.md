@@ -22,6 +22,7 @@ categories: system
 
   ```javascript
   // 使用html component做一个刷新按钮，然后手动POST接口
+  var xmlHttp = new XMLHttpRequest();
   xmlHttp.open('POST', 'https://app.klipfolio.com/datasources/ajax_refresh_datasource', true);
   xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   xmlHttp.send('di=&dsid=' + data source的id); // 这里加上di表示直接等待它完成，如果不加则是把它放入了刷新队列里面去
@@ -40,6 +41,10 @@ categories: system
 #### HTML Component
 
 - 只有这个component能够自己写html和js
+
+#### Hideen Data
+
+- 在UI设计的时候，左边可以给每个元素添加HIDDEN DATA
 
 ### Functions
 
@@ -65,4 +70,7 @@ LOOKUP(
 	CONCAT(@Table2_Column1, @Table2_Column2),
 	CONCAT(@Table2_Column3)
 )	# 相当于连表查询了，两张表join，然后取最后那个字段的值，这里的CONCAT就相当于多个ON条件了，没匹配上的也会有值
+
+DATEVALUE(DATE_STARTOF(TODAY(),"1",$Year_variable)) # 获取当前年份
+DATEVALUE(DATE_STARTOF(TODAY(),"3"),"yyyy MM") # 获取当前月份
 ```
