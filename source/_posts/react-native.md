@@ -595,6 +595,10 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 
 - 拖动的时候的阴影
 
+### [react-native-elements](https://github.com/react-native-elements/react-native-elements)
+
+- element 的UI套件/UI框架
+
 ### [react-native-fs](https://github.com/itinance/react-native-fs)
 
 - 文件操作，下载文件，保存文件
@@ -611,7 +615,7 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 
 ### [react-native-paper](https://callstack.github.io/react-native-paper/index.html)
 
-- material-ui在react-native平台的替代品，同样遵循material design
+- material-ui在react-native平台的替代品，同样遵循material design，但是最后不推荐，集成的本来就不多，还不大好用
 - 在使用Menu.Item的时候，如果要自定义menu和整个container的高度，需要设置minHeight和maxHeight才行，不知道为啥container会默认设置为100，源码里没看到哪个地方有设置
 - `ActivityIndicator`就是一个loading图标，非常好用
 

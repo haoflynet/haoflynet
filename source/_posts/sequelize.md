@@ -16,7 +16,7 @@ npm install sequelize reflect-metadata sequelize-typescript
 npm install mysql2 --save
 
 npm install --save-dev sequelize-cli	# 安装命令行工具npx
-npx sequelize-cli init	# 初始化，会创建config/migrations/seeders/models目录
+npx sequelize-cli init	# 初始化，会创建config, migrations, seeders, models目录
 ```
 
 注意上一步创建的config目录默认是json格式的，我们一般会想从.env文件中读取配置，通常要将它改成`config.js`文件，例如:
@@ -76,6 +76,9 @@ const records = await sequelize.query("SELECT * FROM `users`", { type: QueryType
 accessToken: string;	// 添加virtual额外的字段
 
 @Column(DataType.JSON) data: any	// JSON字段
+
+@Column({field: 'user_id'})
+userID: number;	// 自定义字段名称
 
 // 定义方式一，typescript方式
 class PostModel extends Model {
@@ -251,6 +254,9 @@ authorId: number;
 @BelongsTo(() => Person)
 author: Person;
 
+@BelongsTo(() => Person, 'person_id')	// 指定外键
+author: Person;
+
 Post.User = Post.belongsTo(app.model.Post, { foreignKey: 'post_id', as: 'Post' }),
 Post.PostOwn = User.belongsTo(app.model.Post, {'foreignKey': 'id', as: 'PostOwn'})	// 如果要与当前表自身做join等操作，那么也需要定义一个与自身的关联
 PostModel.belongsTo(UserModel)
@@ -378,7 +384,7 @@ Model.findAll({			// 查询指定字段
   offset: 10
 });
 
-const amount = await User.count({where: [...]}) // 直接COUNT得到数字
+const amount = await User.count({where: {...}}}) // 直接COUNT得到数字
 
 // 查询出所有字段并且添加一个聚合字段
 Model.findAll({

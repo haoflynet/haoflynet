@@ -45,7 +45,7 @@ conn.sobject('MyCustomObject__History').find({
 
 ### Sandbox
 
-- Sandbox的[价格表](https://www.salesforce.com/editions-pricing/platform/environments/)，没错，是按照原是数据的价格来按百分比收费的，怪不得很多用户都只是partial copy，得自己想办法去将生产数据同步到sandbox中去。
+- Sandbox的[价格表](https://www.salesforce.com/editions-pricing/platform/environments/)，没错，是按照原始数据的价格来按百分比收费的，怪不得很多用户都只是partial copy，得自己想办法去将生产数据同步到sandbox中去。
 - 如果不用salesforce自己的Refresh方式，那么想要同步production到sandbox，要么借助第三方的收费工具，要么就自己去同步了，自己同步是个体力活，你必须得找到不同对象之间的关系，新插入的数据和之前的ID肯定是不一样的，整个migration程序都得维护这些ID的映射，相当麻烦
 - 注意手动刷新sandbox后，相当于删除旧的创建新的，在旧的sandbox环境里面新建的用户会消失的，新的sandbox的users总是和production的一样，只不过email添加了一个后缀`.sandboxname`
 
