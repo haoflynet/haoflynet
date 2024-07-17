@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2023-08-24 08:18:00
+updated: 2024-07-17 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -74,6 +74,7 @@ arrA.concat(arrB)			// 合并两个数组，会生成一个新的数组
 arr.indexOf('元素')			// 获取某个元素在数组中的下标，查看某个元素是否存在于数组中，没有在返回－1
 arr.includes('元素');		// 判断数组是否包含某元素
 JSON.stringify(Array)		// 将数组转换为JSON格式的字符串
+JSON.stringify(data, null, '') // 不输出换行符
 arr.toString(): 数组转字符串，中间会自动加上逗号
 arr.join(''): 数组转字符串，分隔符可自定义
 arr.push(obj)		// 在数组尾部添加元素

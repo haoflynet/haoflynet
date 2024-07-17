@@ -1,7 +1,7 @@
 ---
 title: "MacOS教程"
 date: 2016-09-06 01:02:30
-updated: 2023-06-20 08:04:00
+updated: 2024-04-17 08:04:00
 categories: system
 ---
 ## 常用快捷键
@@ -69,6 +69,7 @@ vim /private/etc/motd	# 直接输入即可
 # lsof
 lsof # 查看所有进程打开的文件
 lsof -i # 查看有网络连接的应用程序列表
+sudo lsof -i -P | grep LISTEN | grep :8080	# 查看指定端口的占用情况
 
 dscacheutil -q group	# 查看所有用户和组
 
@@ -123,7 +124,14 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 
 ## 安装python2或者python3
 
-不要期待brew，最好直接从官网下载对应版本的dmg文件安装，都可以直接安装的
+不要期待brew，最好直接从官网下载对应版本的dmg文件安装，都可以直接安装的，如果要使用多个不同的版本，也可以使用pyenv:
+```shell
+brew install pyenv
+brew install pyenv-virtualenv
+pyenv install --list
+pyenv install 3.9.10	# 安装指定版本
+pyenv virtualenv 3.9.10 venv # 创建venv环境
+```
 
 ## Mac OS降级
 
@@ -180,7 +188,7 @@ https://channaly.medium.com/how-debug-cordova-based-application-with-chrome-dev-
 
 - **telnet: command not found**: `brew install telnet`
 
-- **Safari不能审查元素，没有审查元素按钮**：得手动打开开发者菜单: `Preferences -> Advanced -> Show Develop menu in menu bar`
+- **Safari不能审查元素，没有审查元素按钮**：得手动打开开发者菜单: `Preferences -> Advanced -> Show Develop menu in menu bar`新版本是`Show features for web developer`
 
 - **MacOs安装指定的java版本**: https://www.azul.com/downloads/?package=jdk
 

@@ -1,7 +1,7 @@
 ---
 title: "Laravel 手册"
 date: 2014-12-12 11:02:39
-updated: 2023-05-22 09:58:00
+updated: 2024-02-22 09:58:00
 categories: php
 ---
 # Laravel指南
@@ -14,6 +14,20 @@ categories: php
 - `.env`文件中，如果有空格，那么值需要用双引号包围，并且里面如果用`\n`，那么必须转义`\\n`
 - 如果`.env`不起作用，可以尝试清理缓存`php artisan cache:clear`
 - laravel可以根据不同的系统环境自动选择不同的配置文件，例如，如果`APP_ENV=testing`，那么会自动选择读取`.env.testing`中的配置，如果有`.env`则会被覆盖，特别是单元测试和`artisan`命令中
+- 项目目录文件最正确的配置
+
+  ```shell
+  cd /var/www/html/laravel-project-root 
+  sudo chown -R $USER:www-data .
+  
+  sudo find . -type f -exec chmod 664 {} \;   
+  sudo find . -type d -exec chmod 775 {} \;
+  
+  sudo find . -type d -exec chmod g+s {} \;
+  
+  sudo chgrp -R www-data storage bootstrap/cache 
+  sudo chmod -R ug+rwx storage bootstrap/cache
+  ```
 
 Laravel的主配置文件将经常用到的文件集中到了根目录下的`.env`目录下，这样更高效更安全。其内容如下：
 
@@ -1320,6 +1334,8 @@ public function report(Exception $e)
 - 命令行直接调用
 
   ```php
+  use Illuminate\Support\Facades\Artisan;
+  
   $exitCode = Artisan::call('email:send', [
       'user' => 1, '--queue' => 'default'
   ]);

@@ -117,7 +117,7 @@ timeout 3 top	# 仅运行3秒
 ```shell
 ls -lR | grep "^-" | wc -l # 递归统计文件夹下所有文件的个数
 ls -lt	# ls的时候按时间排序
-ls -Slh	# 按文件从大到小排序
+ls -Slh	# 按文件从大到小排序，大小排序
 ls -Slrh # 按文件从小到大排序
 ls -1 # 按文件名排序
 ls -1r	# 按文件名倒序排序
@@ -157,7 +157,7 @@ grep -n ""		# 把匹配到的行号也打印出来
 grep -v "Java"	# 查找没有该词的行
 grep -v ^$		# 排除空白行
 grep -5 ""		# 打印匹配的前后5行
-grep -E "a|b"	# grep支持正则
+grep -E "a|b"	# grep支持正则，多个关键字
 grep 字符串 文件名  # 在文件中查找某个字符串
 grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
 grep [0-9] 文件名  # 在文件中查找包含数字的行
@@ -244,7 +244,7 @@ tar -xzf *.tar.gz
 # 复制
 cp 文件1 文件2
 cp -r 目录1 目录2  # 递归复制
-cp -a 目录1 目录2  # 递归复制目录，同时将文件属性也复制过去
+cp -a 目录1 目录2  # 递归复制目录，同时将文件属性也复制过去，包括文件权限所有者全都复制
 
 # 文件分割
 split -b 1024m targetfile prefix  # 文件分隔-b表示按大小分隔，-l表示按行数分隔,prefix是分割后每个文件的前缀
@@ -530,9 +530,9 @@ shutdown -r now # 重启
 strace + 命令: 这条命令十分强大，可以定位你程序到底是哪个地方出了问题
 
 # 增加虚拟内存
-dd if=/dev/zero of=/swapfile bs=1024 count=500000  # 500MB，这两行是连在一起的，我日
-mkswap /swapfile && chown root:root /swapfile && chmod 0600 /swapfile && swapon /swapfile
-echo "/swapfile          swap            swap    defaults        0 0" >> /etc/fatab	# 开机时挂载
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=500000  # 500MB，这两行是连在一起的，我日
+sudo mkswap /swapfile && sudo chown root:root /swapfile && sudo chmod 0600 /swapfile && sudo swapon /swapfile
+sudo echo "/swapfile          swap            swap    defaults        0 0" >> /etc/fatab	# 开机时挂载
 
 /sbin/swapoff /swapfile	# 停止交换分区
 rm -rf /swapfile		# 删除交换分区
