@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2023-05-18 08:44:00
+updated: 2023-10-16 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -323,6 +323,7 @@ DROP FUNCTION name;	# 删除函数
 use mysql;
 update user set password=PASSWORD('mysql') WHERE user="root";
 update user set authentication_string=PASSWORD('mysql') WHERE user="root";	# MySQL5.7以后password字段改为了authentication_string字段
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'mynewpassword';	# 如果上面都不行可以试试这个
 flush privileges;
 
 # 查看用户权限
@@ -349,7 +350,8 @@ FLUSH PRIVILEGES;
 DROP user 用户名@'%';
 
 # 查找系统常用变量
-show global variables like 'log_error'; # 查看是否开启以及日志文件路径
+show global variables like 'log_error'; 
+show global variables like 'general_log';# 查看是否开启以及日志文件路径
 SET GLOBAL general_log = 'ON';
 
 # 记录下所有的sql命令
@@ -396,6 +398,10 @@ show variables like "%time_zone%"
 # 查看每个数据库所占用空间的大小
 use information_schema;
 SELECT table_schema, SUM(data_length)/1024/1024 FROM tables GROUP BY table_schema;	# 单位是M
+
+# 查询事务隔离级别
+SELECT @@transaction_ISOLATION;
+
 ```
 ### 数据库维护
 
@@ -406,9 +412,9 @@ SELECT table_schema, SUM(data_length)/1024/1024 FROM tables GROUP BY table_schem
 # 备份整个数据库
 mysqldump -u... -p... -h... -A > all.sql
 mysqldump -uroot -pmysql --databases -h127.0.0.1 abc | gzip > test.sql.1.gz # 压缩，只能在本地进行压缩
-mysqldump -u... -p... -h... dbname tablename > table.sql	# 备份单张表
-mysqldump -u... -p... -h... -d dbname > db.sql # 备份数据库的结构
-mysqldump -u... -p... -h... -d dbname tablename > table.sql # 备份单张表的结构
+mysqldump -u... -p... -h... --skip-add-drop-table dbname tablename > table.sql	# 备份单张表
+mysqldump -u... -p... -h... --skip-add-drop-table -d dbname > db.sql # 备份数据库的结构
+mysqldump -u... -p... -h... --skip-add-drop-table -d dbname tablename > table.sql # 备份单张表的结构
 
 # 备份多个数据库
 mysqldump -u... -p... -h... --databases data1 data2 > backup.sql
