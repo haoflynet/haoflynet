@@ -1,7 +1,7 @@
 ---
 title: "Python3 使用MySQL Connector操作数据库"
 date: 2015-11-04 17:48:41
-updated: 2022-07-05 18:45:22
+updated: 2024-03-26 18:45:22
 categories: 编程之路
 ---
 ## 安装方法
@@ -135,6 +135,11 @@ rows = cursor.fetchmany(size=1)
 * **EnvironmentError: mysql_config not found**，原因在mac环境下没有安装mysql包，需要`brew isntall mysql`
 
 * **安装mysqlclient的时候ld: library not found for -lssl**: python安装包时出现类似ssl的错误，参照[Python手册](https://haofly.net/python/index.html)，使用这种方式安装`pip install mysqlclient --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include"`
+
+* **安装mysqlclient的时候出错Exception: Can not find valid pkg-config name.      Specify MYSQLCLIENT_CFLAGS and MYSQLCLIENT_LDFLAGS env vars manually**：尝试先`brew install mysql pkg-config`
+
+* **Did you install mysqlclient**如果尝试很多方法都不行，又确实安装成功了，可以尝试更换mysqlclient的版本，例如我现在2.2.4不行，安装2.2.2就行了
+
 
 ##### 参考文章
 

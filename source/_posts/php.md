@@ -1,7 +1,7 @@
 ---
 title: "PHP 手册"
 date: 2013-08-07 02:02:30
-updated: 2023-05-25 08:50:21
+updated: 2024-02-22 08:50:21
 categories: php
 ---
 # PHP
@@ -61,7 +61,7 @@ array_reverse();// 逆序数组
 
 array_slice($arr, 0, 1); # 数组分片
 array_sum($arr); //计算数组中所有值的和
-array_unique();	// 数组去重
+array_unique();	// 数组去重，但是如果真的有重复，它会重建索引，有时候会返回带索引的object有时候会返回array，只有当索引不变的时候才会仍然返回array，一定要注意
 array_values($arr); //获取数组所有的value值
 array_walk(); // 利用回调函数对数组中每一个元素做回调处理
 array_keys();	// 获取所有的key
