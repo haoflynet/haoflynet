@@ -52,8 +52,19 @@ pm2 logs				# 查看所有应用的日志，如果要监听，最好用monitor�
 pm2 logs appname	# 查看指定app的日志输出
 pm2 flush # 晴空日志文件
 
-pm2 logrotate -u user	# 设置日志自动轮转，这条命令会写入一条轮转配置到/etc/logrotate.d/pm2-user
-pm2 install pm2-logrotate	# 另一种方式实现日志轮转，默认10M
+pm2 logrotate -u user	# 设置日志自动轮转，这条命令会写入一条轮转配置到/etc/logrotate.d/pm2-user，但是默认配置是保留12个日志文件，不是按照大小分的
+pm2 install pm2-logrotate	# 另一种方式实现日志轮转，默认10M，安装后用pm2 list能够看到一个module，更推荐这个，安装完成后会给你设置命令的
+
+$ pm2 set pm2-logrotate:max_size 100M	# 注意这里必须是M，而不是MB，否则不起作用，就会每分钟都轮转了
+$ pm2 set pm2-logrotate:retain 30
+$ pm2 set pm2-logrotate:compress false
+$ pm2 set pm2-logrotate:dateFormat YYYY-MM-DD_HH-mm-ss
+$ pm2 set pm2-logrotate:workerInterval 60
+$ pm2 set pm2-logrotate:rotateInterval 0 0 * * *
+$ pm2 set pm2-logrotate:rotateModule true
+Modules configuration. Copy/Paste line to edit values.
+[PM2][Module] Module successfully installed and launched
+[PM2][Module] Checkout module options: `$ pm2 conf`
 ```
 
 ### 设置开机启动

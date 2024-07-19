@@ -1,7 +1,7 @@
 ---
 title: "nginx教程"
 date: 2014-11-07 11:03:30
-updated: 2023-05-22 08:28:00
+updated: 2024-04-19 08:28:00
 categories: server
 ---
 Nginx用起来比Apache方便简介，也有很多超过Apache的地方。Nginx不仅可以作为http服务器来用，更重要的，它还可以用来做负载均衡和反向代理。[Nginx官方文档](https://docs.nginx.com/nginx/)
@@ -325,6 +325,10 @@ location ^~/abc/ {
 location /favicon.ico {
  	alias /var/www/html/mypath/favicon.ico; 
 }
+
+location = /favicon.ico {	# 有时候要用=，不知道为什么
+ 	alias /var/www/html/mypath/favicon.ico; 
+}
 ```
 
 ### 配置nginx IP黑白名单
@@ -521,7 +525,7 @@ location /nginx {
   proxy_read_timeout 300s;
   ```
 
-- **上述timeout都不起作用**: 看看会不会是aws的负载均衡器设置了超时时间的
+- **上述timeout都不起作用**: 看看会不会是aws的负载均衡器设置了超时时间的。MMP，ClashX可能也会导致刚好1分钟60秒超时的问题
 
 - **Nginx报错502 Bad Gateway**: 
 
