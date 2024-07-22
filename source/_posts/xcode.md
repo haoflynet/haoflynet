@@ -1,7 +1,7 @@
 ---
 title: "Xcode / iOS开发手册"
 date: 2022-09-16 08:32:00
-updated: 2023-03-17 23:57:00
+updated: 2024-06-27 23:57:00
 categories: Mac
 ---
 
@@ -79,6 +79,19 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
 - **sandbox账户无法登录，提示要进入设置收验证码**: 无论怎样我都收不到验证码， 最后重新建了一个sandbox账户就可以了，sandbox在点击登录按钮登录的时候按理说是不用验证码的，直接就可以登录了。当然，必须得退出本机自身的apple id才行
 
 - **添加了测试设备后，Xcode依然无法安装**: 可能是因为Xcode没有及时更新云端的`Provisioning Profile`可以删除目录`~/Library/MobileDevice/Provisioning`，然后打包时候勾选`Automatically manage signing`，Xcode就会重新拉取了
+
+- **python: No such file or directory**: 尝试执行
+
+  ```shell
+  # 安装python
+  brew install pyenv
+  pyenv install 2.7.18
+  
+  ln -s /opt/local/bin/python2.7 /usr/local/bin/python
+  ln -s /opt/local/bin/python2.7 /usr/local/bin/python2
+  ```
+  
+- **Flutter failed to write to a file at ...**: 搜索`ENABLE_USER_SCRIPT_SANDBOXING`配置，将其设置为disabled
 
 - **NSURLConnection SSL error**: 通常只需要在`Info.plist`中添加
 
