@@ -1,7 +1,7 @@
 ---
 title: "wordpress安装使用与插件推荐"
 date: 2014-08-05 11:02:30
-updated: 2021-03-14 22:11:00
+updated: 2024-06-27 22:11:00
 categories: tools
 ---
 ## 安装wordpress
@@ -36,11 +36,17 @@ sudo yum install php-gd  # 如果启动不了要安装这个
 
 - **Crayon Syntax Highlighter**：一款在文章中插入特定格式代码的插件，找了很久才找到这么一款可自定义很多功能，并且外观也不错，而且设置还是全中文的
 
+- [**CloudFront**](https://blog.ymirapp.com/wordpress-page-caching-cloudfront/): 这不是插件，而是我们可以直接将整个页面缓存到AWS的CloudFront中去
+
 - **duoshuo**：多说评论
 
 - **Google Analyticator**：谷歌的网站行为分析工具，可统计每日浏览量，甚至可以统计用户的浏览器和操作系统等信息
 
 - **JiaThis分享工具**：社会化分享工具
+
+- **[w3-total-cache](https://www.boldgrid.com/support/w3-total-cache/)**: 一个功能非常全的缓存插件，可以做页面缓存、编译缓存、片段缓存、对象缓存、数据库缓存、浏览器缓存、磁盘缓存等，大而全
+
+- **WPCode**: 可以给站点添加独立于主题外的脚本或者css，比如添加到全局的header或者footer里面
 
 - **WP-DB-Backup**：数据库备份工具，可自定义备份时间和备份位置(网站空间、本地电脑、发送邮件)
 
@@ -74,3 +80,18 @@ sudo yum install php-gd  # 如果启动不了要安装这个
   ```shell
   fastcgi_param HTTPS on;
   ```
+
+- **上传文件大小限制或者413 entity too large 错误**: 修改配置
+
+  ```shell
+  # php.ini
+  memory_limit = 1024M
+  post_max_size = 1024M
+  upload_max_filesize = 1024M
+  max_execution_time = 600
+  
+  # nginx.conf
+  client_max_body_size = 1024M;
+  ```
+
+  

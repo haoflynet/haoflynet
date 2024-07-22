@@ -6,6 +6,10 @@ categories: 编程之路
 
 [Spring Initializr](<https://start.spring.io/>)：Spring项目初始化工具。
 
+## 打包
+
+打包成war: `mvn clean package`
+
 ### 框架分层结构
 
 调用顺序
