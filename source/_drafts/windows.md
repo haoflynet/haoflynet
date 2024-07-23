@@ -1,0 +1,1 @@
+[Install MSIX App on Windows Server 2022](https://orcacore.com/install-msix-app-windows-server-2022/)
