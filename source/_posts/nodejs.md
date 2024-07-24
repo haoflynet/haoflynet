@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2023-07-27 08:50:30
+updated: 2023-10-12 08:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -13,13 +13,13 @@ categories: frontend
 
 ```shell
 # centos用下面命令安装指定版本nodejs
-sudo curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
+sudo curl --silent --location https://rpm.nodesource.com/setup_18.x | sudo bash -
 sudo yum install -y nodejs
 
 # ubuntu用下面命令安装指定版本nodejs
-sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-docker里面没有sudo就直接
-curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+# docker里面没有sudo就直接
+curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
 apt-get install -y nodejs
 
 # 添加淘宝镜像，既然用的阿里云，那淘宝的镜像也就不介意了
@@ -193,6 +193,7 @@ npm config set proxy=http://127.0.0.1:1080 && npm config set proxy=https://127.0
 
 ```shell
 yarn add 包名	# 安装包
+yarn add -D 包名 # 安装dev依赖
 npm install yarn@latest -g	# 升级yarn
 yarn dev -p 8000	# yarn能直接将参数传递给scripts，npm不行
 ```
@@ -322,6 +323,11 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
   config({
     path: '../.env',
   });
+  
+  // 使用require的方式
+  require('dotenv').config({
+    path: `configs/${process.env.NODE_ENV}.env`,
+  });
   ```
 
 - [human-numbers](https://github.com/Kikobeats/human-number)：转换数字的大小K、M、B、T，不过它其实就一个[方法](https://github.com/Kikobeats/human-number/blob/master/src/index.js)，都可以不用它这个包
@@ -391,6 +397,23 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
   //npm.pkg.github.com/:_authToken=这里就是token
   ```
 
+- **nodejs如何退出进程**
+
+  ```javascript
+  process.exit()
+  ```
+  
+- nodejs中直接使用await报错: `SyntaxError: await is only valid in async functions and the top level bodies of modules`
+  ```javascript
+  // 将其修改为一个异步方法
+  async function run() {
+      // 在这里使用 await
+      const result = await someAsyncFunction();
+      console.log(result);
+  }
+  run()
+  ```
+  
 - **/usr/lib/libcurl.dylib (No such file or directory)**: 在mac上安装失败，可以尝试
 
   ```shell
@@ -402,4 +425,4 @@ forever start -w server.js	# 监听文件夹下所有文件的改动并自动重
 
 **[N-club](https://github.com/nswbmw/N-club):** 使用Koa + MongoDB + Redis搭建的论坛系统
 
-[不容错谷哦的Node.js项目架构](https://mp.weixin.qq.com/s/nivph5JV_sovSDDSCsKmAA)
+[不容错谷哦的Node.js项目架构](https://mp.weixin.qq.com/s/nivph5JV_sovSDDSCsKmAA)n
