@@ -351,7 +351,6 @@ DROP user 用户名@'%';
 
 # 查找系统常用变量
 show global variables like 'log_error'; 
-show global variables like 'general_log';# 查看是否开启以及日志文件路径
 SET GLOBAL general_log = 'ON';
 
 # 记录下所有的sql命令

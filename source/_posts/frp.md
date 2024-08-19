@@ -1,6 +1,7 @@
 ---
 title: "使用frp实现内网穿透"
 date: 2018-09-21 09:32:00
+updated: 2024-08-19 09:05:00
 categories: 编程之路
 ---
 
@@ -91,3 +92,7 @@ bind_port = 6000
 ```
 
 然后启动本地CLIENT: `./frpc -c ./frpc.ini`。这时候，公网服务器端SERVER只开放了7000和6000端口。我们可以这样访问NAS的mysql服务: `mysql -uroot -pmysql -P3307 -h127.0.0.1`来访问内网的MySQL服务了。
+
+### UI客户端
+
+- [frpc-desktop](https://github.com/luckjiawei/frpc-desktop)

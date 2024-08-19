@@ -132,8 +132,8 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
 - 安装:
 
   ```shell
-  npm install --save @nestjs/sequelize sequelize sequelize-typescript mysql2
-  npm install --save-dev @types/sequelize
+  yarn add @nestjs/sequelize sequelize sequelize-typescript mysql2
+  yarn add -D @types/sequelize
   ```
 
 - Migration: 由于migration和代码无关，也无需依赖注入，可以直接用sequelize-cli命令来创建维护即可，参考[Sequelize 使用手册](https://haofly.net/sequelize)
@@ -201,6 +201,8 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
 - 在控制器获取jwt token的payload，可以这样做
 
   ```javascript
+  import {Request} from '@nestjs/common'
+  
   async getInfo(@Request() req: any) {
     console.log(req.user);
     return {
@@ -215,6 +217,12 @@ throw new UnprocessableEntityException('field error')	# 如果在异常类上添
   @Injectable()
   export class JwtAuthGuard extends AuthGuard('jwt') {
     canActivate(context: ExecutionContext) {
+      // 程序首先就是在这里验证，如果这里返回false，那么会直接403
+      throw new UnauthorizedException()
+      
+      const request = context.switchToHttp().getRequest()
+      request.user = await this.userService.findOne()	// 可以这样，然后就可以在@Request req中使用了
+      
       return super.canActivate(context);
     }
   
@@ -260,6 +268,133 @@ class SignDto {
   name: string;
 }
 ```
+
+## 部署nestjs到aws lambda Serverless
+
+[官方文档](https://docs.nestjs.com/faq/serverless)虽然提了一下，但是并没有一个方便的包来实现这些步骤，只能按照他提供的步骤摸索着来。要将nestjs转换为serverless模式，最主要的问题就是减少冷启动的时间。所以我们最好在编译阶段就进行优化。
+
+1. 首先安装必要的依赖
+   ```shell
+   # For npm
+   npm i @vendia/serverless-express aws-lambda
+   npm i -D @types/aws-lambda serverless-offline
+   
+   # For yarn
+   yarn add @vendia/serverless-express aws-lambda
+   yarn add -D @types/aws-lambda serverless-offline
+   ```
+
+2. 在根目录创建`serverless.yml`
+   ```yaml
+   service: serverless-example
+   
+   plugins:
+     - serverless-offline
+   
+   provider:
+     name: aws
+     runtime: nodejs20.x
+   
+   functions:
+     main:
+       handler: dist/main.handler
+       events:
+         - http:
+             method: ANY
+             path: /
+         - http:
+             method: ANY
+             path: '{proxy+}'
+   ```
+
+3. 修改main.ts
+   ```javascript
+   import { NestFactory } from '@nestjs/core'
+   import { ValidationPipe, VersioningType } from '@nestjs/common'
+   import { AppModule } from './app.module'
+   import { CustomExceptionFilter } from './filter/exception.filter'
+   import { Callback, Context, Handler } from 'aws-lambda'
+   import serverlessExpress from '@vendia/serverless-express'
+   
+   let server: Handler
+   
+   async function bootstrap(): Promise<Handler> {
+     const app = await NestFactory.create(AppModule)
+     app.enableVersioning({
+       type: VersioningType.URI
+     })
+     app.useGlobalPipes(new ValidationPipe())
+     app.useGlobalFilters(new CustomExceptionFilter())
+   
+     await app.init()
+   
+     const expressApp = app.getHttpAdapter().getInstance()
+     return serverlessExpress({ app: expressApp })
+   }
+   
+   export const handler: Handler = async (
+     event: any,
+     context: Context,
+     callback: Callback,
+   ) => {
+     server = server ?? (await bootstrap())
+     return server(event, context, callback)
+   }
+   ```
+
+4. 在`tsconfig.json`中添加配置:
+   ```json
+   {
+     "compilerOptions": {
+       ...
+       "esModuleInterop": true
+     }
+   }
+   ```
+
+5. 在根目录创建`webpack.config.js`
+   ```javascript
+   module.exports = (options, webpack) => {
+     const lazyImports = [
+       '@nestjs/microservices/microservices-module',
+       '@nestjs/websockets/socket-module',
+     ]
+   
+     return {
+       ...options,
+       externals: [],
+       output: {
+         ...options.output,
+         libraryTarget: 'commonjs2',
+       },
+       plugins: [
+         ...options.plugins,
+         new webpack.IgnorePlugin({
+           checkResource(resource) {
+             if (lazyImports.includes(resource)) {
+               try {
+                 require.resolve(resource)
+               } catch (err) {
+                 return true
+               }
+             }
+             return false
+           },
+         }),
+       ],
+     }
+   }
+   ```
+
+6. 测试
+   ```shell
+   # 这条命令会将整个目录编译为一个单独的js文件,  dist/main.js
+   nest build --webpack
+   
+   # 本地测试
+   npx serverless offline
+
+7. 部署，将该js文件压缩为zip包上传到aws lambda即可
 
 ## 常用扩展
 
