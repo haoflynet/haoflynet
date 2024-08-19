@@ -1,19 +1,41 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2023-07-25 09:54:00
+updated: 2024-07-22 09:54:00
 categories: Javascript
 ---
 
 - Aws的密钥只能下载一次，下载后请小心保存
-- AWS的命令行或者代码的环境变量是: `AWS_ACCESS_KEY_ID(或AWS_ACCESS_KEY)/AWS_SECRET_ACCESS_KEY(或AWS_SECRET_KEY)/AWS_DEFAULT_REGION/AWS_REGION`
+- AWS的命令行或者代码的环境变量是: `AWS_ACCESS_KEY_ID(或AWS_ACCESS_KEY)/AWS_SECRET_ACCESS_KEY(或AWS_SECRET_KEY)/AWS_DEFAULT_REGION/AWS_REGION`，除了放到环境变量，它一般也可以存储在`~/.ssh/aws/credentials`文件里
+- AWS现在的API版本是V3了，感觉文档清晰了不少：https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/ec2/
+
+## AWS CLI
+
+- 不同操作系统安装方式见[Installing, updating, and uninstalling the AWS CLI version 2 on Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)，包括mac都可以直接安装的
+
+- 可以在`~/.aws/config`中配置多个profile
+  ```shell
+  [default]
+  aws_access_key_id = 
+  aws_secret_access_key = 
+  
+  [profile user1]
+  aws_access_key_id = 
+  aws_secret_access_key = 
+  region = us-east-1
+  ```
+
+  使用的时候可以这样指定
+  ```shell
+  aws ec2 describe-instances --profile user1
+  ```
 
 ## EC2
 
 - ubuntu系统默认用户为ubuntu，amazon系统默认的用户名为ec2-user
 - 默认会有12个月750小时的免费套餐，但是仅限个别低配类型
 - 要想查看在所有region下的所有的ec2实例，可以在VPC dashboard中查看，`Running Instances -> See all regions`
-- [EC2实力类型列表](https://aws.amazon.com/ec2/instance-types/)
+- [EC2实力类型列表](https://aws.amazon.com/ec2/instance-types/)，注意t2、t3是突发性能实例，CPU的使用采用积分制(CPU credits)，如果某一时间发现CPU不行或者网站很卡，有可能是因为CPU资源无法使用了，这种情况要么等积分恢复，要么升级实例
 
 ### 如何删除EC2实例
 
@@ -102,7 +124,8 @@ categories: Javascript
 
 <!--more-->
 
-- 需要在服务器安装aws CLI工具，不同操作系统安装方式见[Installing, updating, and uninstalling the AWS CLI version 2 on Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)，在创建用户权限的时候选择Cloudwatch下的`PutMetricData`
+- 需要在服务器安装aws CLI工具，在创建用户权限的时候选择Cloudwatch下的`PutMetricData`
+- Metric的历史数据不是一直保留的，而是会根据采集间隔来确定不同的保留时间，参考[Metrics retention](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Metrics%20retention)
 - 对于服务的监控，ELB自带了监控指标的，不需要使用下面脚本中的`http_status_code`，可以在创建监控的时候搜索`5xx`即可看到
 - 还需要编写自定一个脚本实现自定义的监控，例如服务健康状态检测，脚本如下:
 
@@ -131,10 +154,32 @@ crontab -e
 */1 * * * * /home/ubuntu/watch.sh	# 设置为每分钟执行一次
 ```
 
+- 使用aws cli手动提交一条日志:
+  ```shell
+  aws logs put-log-events --log-group-name BestRingPOS --log-stream-name Debug --profile bestring-prod --cli-input-json '{"logGroupName":"MyGroup","logStreamName":"Debug","logEvents":[{"timestamp":1709016343000,"message":"{\"abc\":\"def\"}"}]}'
+  ```
+
 ### EC2开机脚本
 
 - 在EC2启动的时候执行
 - AWS的概念叫[User Data](https://docs.aws.amazon.com/zh_cn/AWSEC2/latest/UserGuide/user-data.html)
+
+### 磁盘清理
+
+- 默认磁盘都很小，并且aws好像会放很多snap的大文件在系统里面，可以尝试使用下面的脚本来清理一下
+
+```shell
+# from https://superuser.com/questions/1310825/how-to-remove-old-version-of-installed-snaps
+#!/bin/bash
+# Removes old revisions of snaps
+# CLOSE ALL SNAPS BEFORE RUNNING THIS
+set -eu
+
+LANG=C snap list --all | awk '/disabled/{print $1, $3}' |
+    while read snapname revision; do
+        snap remove "$snapname" --revision="$revision"
+    done
+```
 
 ## S3
 
@@ -266,6 +311,33 @@ Block all public access
 
 - 最后将域名的DNS设置A记录到cloudfront的域名即可
 
+### 命令行操作S3
+
+```shell
+aws s3 cp README.md s3://mybucket/README.md # 上传文件
+aws s3 cp README.md s3://mybucket/README.md --acl public-read # 上传文件并设置为public访问，注意如果bucket设置了Block all public access，哪怕你的账号有上传权限，也不能将它设置为公共访问，否则会直接报错PubObject, 403
+```
+
+## Cloudfront
+
+- 还有中缓存站点的方式是不使用S3，直接用CloudFront来代理缓存，参考文档: [How to use CloudFront to do WordPress page caching](https://blog.ymirapp.com/wordpress-page-caching-cloudfront/)
+
+## Cloudwatch
+
+- 注意只有上传的data为json的时候才能支持json字段直接查询
+- 如果是lambda函数，`console.log`输出对象的时候层级多了的时候会输出成`Object`字符串，这时候只需要在`console.log`最外层加一个`JSON.stringify(data, null, '')`即可，注意只能加在最外层，否则里面那个字段就是字符串了
+- 日志查询语法
+
+```shell
+fields @timestamp, extra_data.type as type # 指定需要显示的字段
+| filter isPresent(extra_data.error)	# 查询指定字段是否存在
+| filter @message LIKE "abc" # 模糊查询
+| filter data.permanentId =~ /(?i)274a680d-6514-4e1f-9aa0-d06796646eE2/ # 忽略大小写
+| filter @message NOT LIKE "def"
+| sort time asc # 按时间增序排序
+| limit 100
+```
+
 ## ACM/AWS Certificate Manager
 
 - AWS的公有SSL/TLS证书是免费的，不过因为ACM管理私钥，所以只能在AWS上面使用。获取步骤还算简单，添加一个CNAME记录，一会儿就好了(真遇到了等一个小时才生效的情况)
@@ -360,6 +432,8 @@ email: $email
 - 发现一个比较好用的库，可以实现打包、部署等操作: [motdotla/node-lambda](https://github.com/motdotla/node-lambda)
 
   - 但是不是每种nodejs的库都能直接打包，比如nestjs，可以使用[nextjs-lambda](https://github.com/sladg/nextjs-lambda)打包成lambda，但是它会生成多个layers，并且同样会用到cloudfront和S3，我不如直接把生成的静态站点out目录上传到S3，然后用cloudfronted代理静态站点
+
+- nestjs转换为aws lambda 可以参考[Nestjs 使用手册](https://haofly.net/nestjs)
 
 - 如果需要安装依赖，要么创建`层`，要么就将`node_modules`一起压缩为`.zip`文件然后上传，可以使用`adm-zip`等方式压缩，但是这样会因为程序包太大而无法使用在线的内联编辑器
 
@@ -769,6 +843,10 @@ ssm.listCommandInvocations({
 - **The authorization mechanism you have provided is not supported. Please use AWS4-HMAC-SHA256**: 要么手动设置access_key_id和secret_access_key两个环境变量，要么参考上文创建Role然后绑定到Ec2
 
 - **Unable to find a region via the region provider chain. Must provide an explicit region in the builder or setup environment to supply a region.** 原因是没有添加环境变量AWS_REGION
+
+- **Lambda@Edge报错execution role must be assumable**: 参考[https://stackoverflow.com/questions/53796032/why-do-i-get-execution-role-must-be-assumable-error-when-trying-to-deploy-to-l/53796764#53796764](https://stackoverflow.com/questions/53796032/why-do-i-get-execution-role-must-be-assumable-error-when-trying-to-deploy-to-l/53796764#53796764)的前两条回答
+
+- **SequelizeConnectionError: connect ETIMEDOUT 10.0.5.64:3306**: 首先应该检查VPC、subnet(是否同一网段)、AZ、安全组等配置是否正确
 
 
 
