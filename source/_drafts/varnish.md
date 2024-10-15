@@ -19,8 +19,11 @@ vcli vg deploy 1	# 1是VCLGroup的ID，这样会部署和这个group关联的所
 
 ### varnishadm
 
+- 是在admin机器执行的
+
 ```shell
 sudo varnishadm
+sudo varnishadm -T localhost:6082 -S /etc/varnish/secret # 如果有认证一般是这样的
 
 storage.list	
 ```
