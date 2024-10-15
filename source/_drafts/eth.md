@@ -37,6 +37,17 @@
 - 以太坊测试链，这里可以直接从测试链获取eth：https://faucets.chain.link/rinkeby
 - Provider: 提供者，是一个连接以太坊网络的抽象，用于查询以太坊网络状态或者发送更改状态的交易。
 
+- 使用rpc端点传送这个data可以判断合约是否存在:
+  ```
+  {
+    "id": "9rt861qdclg",
+    "jsonrpc": "2.0",
+    "method": "eth_getCode",
+    "params": ["0xfcbFbD73677C172E7523Ce85867dF5166A0BD64E", "latest"]
+  }
+  
+  ```
+
 ## 以太坊的客户端
 
 ### go-ethereum/geth
@@ -299,6 +310,7 @@ contract Token {
 ## Dapp
 
 - example: https://steemit.com
+- [How to Build a React Dapp with Hardhat and MetaMask](https://www.web3.university/article/how-to-build-a-react-dapp-with-hardhat-and-metamask)
 
 ## RPC客户端
 
@@ -316,6 +328,10 @@ contract Token {
 ## Infura
 
 - 作用是不用启节点就能连接RPC服务，如果不能直接连接对方的network rpc服务，那么只有自己启一个节点才能连接RPC服务，infura就是代替你启动节点，你可以直接使用API。同步节点并存储区块链数据可能需要好几天
+
+## POA(Proof of Authority权威证明)
+
+- 共识算法，至少需要3个节点才能容错，权威节点的数量决定了系统的容错能力，3个节点能够容忍1个节点故障。signer节点就是负责验证和签署交易或区块的节点，在共识算法中通常扮演关键角色，确保交易的合法性和区块的有效性
 
 
 

@@ -7,7 +7,7 @@ brew info dart	# 获取dart sdk的安装位置
 # 安装flutter：https://docs.flutter.dev/get-started/install/macos#system-requirements
 
 # 安装依赖
-flutter doctor	# 查看还有什么依赖没有安装
+flutter doctor	# 查看还有什么依赖没有安装，如果提示sdkmanager没找到，可以在Android Studio -> Settings -> SDK Tools -> SDK Command-line Tools选中它即可
 flutter pub get # 安装项目依赖性，同flutter packages get
 flutter pub upgrade	# 更新依赖包
 flutter pub cache	# 清除缓存

@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2023-08-31 12:45:00
+updated: 2024-09-04 12:45:00
 categories: Database
 ---
 
@@ -16,6 +16,10 @@ sudo apt-get install -y postgresql-client postgresql-client-common # 安装命�
 # 完整卸载postgresql
 sudo systemctl stop postgresql 	# 注意如果已经启动了postgresql必须在重装前将其停止，否则5432端口被占用后重新安装的实例默认会是5433端口
 sudo apt-get --purge remove postgresql\* -y && sudo rm -rf /etc/postgresql-common/ && sudo rm -rf /etc/postgresql/
+
+# mac安装命令行工具psql
+brew install libpq
+brew link --force libpq
 ```
 
 ## 配置

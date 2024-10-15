@@ -127,3 +127,7 @@ git clone https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webu
 - **When localhost is not accessible, a shareable link must be created. Please set share=True.**: 关闭代理即可
 
 - **safetensors_rust.SafetensorError: Error while deserializing header: MetadataIncompleteBuffer**: 可能是safetensors模型文件没有下载完整或者已经损坏，尝试重新下载
+
+## 教程
+
+[图生图](https://mp.weixin.qq.com/s/NR1lvG4zzffcIZFjCDo4gA)
