@@ -33,7 +33,7 @@ categories: Javascript
 ## EC2
 
 - ubuntu系统默认用户为ubuntu，amazon系统默认的用户名为ec2-user
-- 默认会有12个月750小时的免费套餐，但是仅限个别低配类型
+- 新用户默认会有750小时的免费套餐，但是仅限个别低配类型
 - 要想查看在所有region下的所有的ec2实例，可以在VPC dashboard中查看，`Running Instances -> See all regions`
 - [EC2实力类型列表](https://aws.amazon.com/ec2/instance-types/)，注意t2、t3是突发性能实例，CPU的使用采用积分制(CPU credits)，如果某一时间发现CPU不行或者网站很卡，有可能是因为CPU资源无法使用了，这种情况要么等积分恢复，要么升级实例
 
@@ -318,11 +318,18 @@ aws s3 cp README.md s3://mybucket/README.md # 上传文件
 aws s3 cp README.md s3://mybucket/README.md --acl public-read # 上传文件并设置为public访问，注意如果bucket设置了Block all public access，哪怕你的账号有上传权限，也不能将它设置为公共访问，否则会直接报错PubObject, 403
 ```
 
+### 将S3挂载到服务器
+
+```shell
+s3fs bucket名称 /home/ubuntu/本地目录 -o passwd_file=${HOME}/.passwd-s3fs(S3凭证) -o dbglevel=info -f(前台运行方便调试) -o curldbg -o allow_other(其他人允许访问这个目录)
+```
+
 ## Cloudfront
 
 - 还有中缓存站点的方式是不使用S3，直接用CloudFront来代理缓存，参考文档: [How to use CloudFront to do WordPress page caching](https://blog.ymirapp.com/wordpress-page-caching-cloudfront/)
+- 如果出现CSP错误(Refused to connect to 'xxx' because it violates the following Content Security Policy directive: xxx): 原因是CloudFront默认情况会覆盖你网页里面的CSP配置，可以尝试直接在CloudFront上面进行配置: CloudFront -> Behaviors -> Edit -> Response headers policy (View policy) -> Edit
 
-## Cloudwatch
+## CloudWatch
 
 - 注意只有上传的data为json的时候才能支持json字段直接查询
 - 如果是lambda函数，`console.log`输出对象的时候层级多了的时候会输出成`Object`字符串，这时候只需要在`console.log`最外层加一个`JSON.stringify(data, null, '')`即可，注意只能加在最外层，否则里面那个字段就是字符串了
@@ -373,7 +380,8 @@ fields @timestamp, extra_data.type as type # 指定需要显示的字段
 ## API Gateway
 
 - [Creating a Serverless Contact Form on AWS](https://levelup.gitconnected.com/creating-a-serverless-contact-form-on-aws-ff339ad1fa60): 使用API Gateway + SES服务创建一个serverless API用于网页的用户表单搜集
-- [如何启用 CloudWatch Logs 以对 API Gateway REST API 或 WebSocket API 进行问题排查](https://aws.amazon.com/cn/premiumsupport/knowledge-center/api-gateway-cloudwatch-logs/): 
+- [如何启用 CloudWatch Logs 以对 API Gateway REST API 或 WebSocket API 进行问题排查](https://aws.amazon.com/cn/premiumsupport/knowledge-center/api-gateway-cloudwatch-logs/)
+- 前端调用报错502，gateway错误日志显示413: 是因为请求的负载超过了最大的10 MB，这个值不能更改，只能修改程序了. [查看HTTP API 配额](https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/limits.html)
 
 ### 映射模板语法
 
@@ -433,7 +441,7 @@ email: $email
 
   - 但是不是每种nodejs的库都能直接打包，比如nestjs，可以使用[nextjs-lambda](https://github.com/sladg/nextjs-lambda)打包成lambda，但是它会生成多个layers，并且同样会用到cloudfront和S3，我不如直接把生成的静态站点out目录上传到S3，然后用cloudfronted代理静态站点
 
-- nestjs转换为aws lambda 可以参考[Nestjs 使用手册](https://haofly.net/nestjs)
+- nestjs转换为aws lambda 可以参考[Nestjs 使用手册](https://haofly.net/nestjs)，但是最好别用nestjs做lambda，性能真的不行。简单点，用koa.js就行了
 
 - 如果需要安装依赖，要么创建`层`，要么就将`node_modules`一起压缩为`.zip`文件然后上传，可以使用`adm-zip`等方式压缩，但是这样会因为程序包太大而无法使用在线的内联编辑器
 

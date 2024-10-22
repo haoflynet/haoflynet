@@ -29,7 +29,10 @@ brew install android-platform-tools
 
 ```shell
 adb devices	# 列出当前连接的设备(包括连接到电脑的手机以及模拟器)
+adb disconnected emulator-5554 # 断开指定设备的连接
 adb shell netcfg	# 查看手机IP
+adb shell settings put global http_proxy 192.168.31.133:7890 # 设置代理
+adb shell settings delete global http_proxy # 删除代理
 ```
 
 #### 无线连接
