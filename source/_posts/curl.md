@@ -1,7 +1,7 @@
 ---
 title: "curl手册"
 date: 2016-04-07 08:01:39
-updated: 2020-01-08 10:41:00
+updated: 2024-10-11 10:41:00
 categories: tools
 ---
 ## 常用参数
@@ -17,6 +17,7 @@ categories: tools
 -x: 设置代理，代理一定要加端口
 -X：请求方式，GET、POST、DELETE等
 -H: 设置请求头，比如-H "Content-Type: application/json"
+--location: 自动处理重定向
 ```
 
 <!--more-->
