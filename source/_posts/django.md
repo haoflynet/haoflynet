@@ -1,7 +1,7 @@
 ---
 title: "Django教程"
 date: 2015-03-14 08:44:39
-updated: 2024-03-26 15:01:00
+updated: 2024-09-04 15:01:00
 categories: python
 ---
 # Django教程
@@ -9,6 +9,8 @@ categories: python
 [Django常用项目结构](https://github.com/haoflynet/project-structure/blob/master/Django/README.md)以及[cookiecutter-django](https://github.com/pydanny/cookiecutter-django)。
 
 [Django第三方库推荐](https://djangopackages.org/)
+
+[django-extensions](https://github.com/django-extensions/django-extensions): Django扩展库，有很多其他框架有但是Django没有的扩展
 
 Python一直是我最喜欢的语言，在这个寒假打算认真学习一下Python的Web框架。在Django和Tornado之间我选择了前者，没有特别的原因，网上人云亦云的，肯定不会有一方离另一方差很远，我就直接去看了看Github上两个项目的活跃度，所以选择了前者。
 
