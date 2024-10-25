@@ -107,6 +107,7 @@ categories: 编程之路
 - **添加外部工具External Tools**: 可以参见下面的`Prettier`配置
 - **默认的mvn路径**: `/Applications/IntelliJ\ IDEA.app/Contents/plugins/maven/lib/maven3/bin/mvn`
 - **增加控制台console缓冲区，增加输出行数**: `Settings -> 搜索Console -> Override console cycle buffer size (1024 KB)`，把这个值调大即可
+- 双击Shift，然后输入Inspect Code可以检查所有的IDE级别的代码提示
 
 #### 个人配置
 

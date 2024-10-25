@@ -75,6 +75,8 @@ npm install firebase-admin
 
 - [php firestore 文档](https://googleapis.github.io/google-cloud-php/#/docs/cloud-firestore/v1.19.3/firestore/readme)
 
+- 另外一个admin sdk: [firebase-php](https://github.com/kreait/firebase-php)
+
 - 安装方式(需要ext-grpc扩展)
 
   ```shell
@@ -100,7 +102,8 @@ npm install firebase-admin
 
 ### fcm api
 
-- 最简单的测试方式
+- ~~最简单的测试方式~~: 这种方式已经被弃用了，现在继续使用会报错Deprecated endpoint
+- 新的API见[由使用旧版HTTP改为使用HTTP v1](https://firebase.google.com/docs/cloud-messaging/migrate-v1)，新的API需要先通过凭据获取失效好像为1小时的访问令牌才能发送通知。但是这个访问令牌的获取无法简单的用CURL来实现，官方也没提供例子，所以现在最好就用他们的SDK(官方例子中有Node.js/Java/Python/Go/C#)来获取凭据
 
 ```shell
 curl --location --request POST 'https://fcm.googleapis.com/fcm/send' \
@@ -145,7 +148,11 @@ admin.messaging().sendToDevice('registrationToken', payload, { timeToLive: 120})
   })
 ```
 
-#### 证书配置
+### [firebase-php](https://github.com/kreait/firebase-php)
+
+- 文档: https://firebase-php.readthedocs.io/en/7.15.0/setup.html
+
+### 证书配置
 
 <!--more-->
 

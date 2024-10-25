@@ -157,6 +157,8 @@ grep -n ""		# 把匹配到的行号也打印出来
 grep -v "Java"	# 查找没有该词的行
 grep -v ^$		# 排除空白行
 grep -5 ""		# 打印匹配的前后5行
+grep -A5 # 打印匹配的后5行
+grep -B5 # 打印匹配的前5行
 grep -E "a|b"	# grep支持正则，多个关键字
 grep 字符串 文件名  # 在文件中查找某个字符串
 grep ^字符串 文件名 # 在文件中查找以某字符串开始的行
@@ -809,7 +811,7 @@ allow_writeable_chroot=YES	# 是否允许在local_root目录进行写操作
 service vsftpd restart
 chkconfig vsftpd on 	# 开机启动
 
-# sftp修改默认登录目录，vim /etc/ssh/sshd_config
+# sftp修改默认登录目录，vim /etc/ssh/sshd_config，注意ChrootDirectory必须是root:root owner，权限必须是755
 
 # 创建用户
 adduser ftpuser	# ubuntu需要用命令useradd -m testuser
@@ -1446,3 +1448,5 @@ fi
 - **ssh输入密码后就挂起了无法登陆**：可能是路由器的问题，可以加一个参数试试: `ssh -o IPQoS=0x00 ubuntu@...`
 
 - **Ubuntu系统升级后apache或者nginx服务器不再解析PHP**: 应该是在升级系统后apache的php模块掉了，而且我的mysql模块也没了，可以尝试`sudo apt install libapache2-mod-php && sudo apt-get install php-mysql && sudo systemctl restart apache2`
+
+- **检测TLSv1.2，TLSv1.1、ssl是否工作正常**: 可以用curl调用这个网址https://badssl.com/
