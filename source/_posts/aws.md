@@ -321,7 +321,10 @@ aws s3 cp README.md s3://mybucket/README.md --acl public-read # 上传文件并�
 ### 将S3挂载到服务器
 
 ```shell
-s3fs bucket名称 /home/ubuntu/本地目录 -o passwd_file=${HOME}/.passwd-s3fs(S3凭证) -o dbglevel=info -f(前台运行方便调试) -o curldbg -o allow_other(其他人允许访问这个目录)
+s3fs bucket名称 /home/ubuntu/本地目录 -o passwd_file=${HOME}/.passwd-s3fs(S3凭证) -o dbglevel=info -f(前台运行方便调试) -o curldbg -o allow_other(其他人允许访问这个目录) -o umask=0022(目录挂载会变成当前用户) -o uid=$(id -u sftpuser) -o gid=$(id -g sftpuser) -o logfile=/var/log/s3fs/s3fs.log
+
+# 如果报错Transport endpoint is not connected，那么重新启动命令是不行的，得先卸载
+sudo unmount 本地目录
 ```
 
 ## Cloudfront
@@ -740,6 +743,11 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
 分钟 小时 日期 月 星期几 年份
 0 12 * * ? *	# 每天上午12:00(UTC)运行，相当于我们这边的下午8点
 ```
+
+## AWS Glue
+
+- 用于数据仓库ETL
+- 有一种不需要获取全部数据的方法叫下推优化，有助于优化性能https://docs.aws.amazon.com/zh_cn/glue/latest/dg/aws-glue-programming-pushdown.html，注意如果是JDBC的连接方式，优化方式不一样
 
 ## 开发
 

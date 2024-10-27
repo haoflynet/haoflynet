@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2022-07-02 22:37:00
+updated: 2024-10-11 22:37:00
 categories: js
 ---
 
@@ -293,11 +293,15 @@ export default dynamic(() => Promise.resolve(NoSsr), {
   ssr: false
 })
 
-
 // 在需要禁用的地方直接
 <NoSsr>
   <div>...</div>
 </NoSsr>
+
+// 方法二，直接包装制定的component
+const MyComponent = dynamic(() => import('./MyComponent'), {
+  ssr: false,
+});
 ```
 
 ## Hook
