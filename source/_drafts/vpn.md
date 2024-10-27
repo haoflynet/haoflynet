@@ -1,4 +1,9 @@
+## 服务器选择
+
+- AWS: 只有新用户第一年才有1个月的免费额度
+
 ## L2TP over IPsec
+
 - 一键搭建：https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/README-zh.md
 - linux服务器无桌面环境连接Ipsec服务端，修改自[ubuntu 终端里如何连接vpnd](https://github.com/hwdsl2/setup-ipsec-vpn/issues/960，下面是部分Dockerfile内容
 

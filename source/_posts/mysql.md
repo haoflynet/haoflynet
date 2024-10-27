@@ -1,7 +1,7 @@
 ---
 title: "MySQL／MariaDB/Sqlite 教程"
 date: 2016-08-07 11:01:30
-updated: 2023-10-16 08:44:00
+updated: 2024-10-22 08:44:00
 categories: database
 ---
 ## 安装方法
@@ -104,6 +104,7 @@ DELETE FROM 表名; # 这种方式比较慢，但是可以恢复
 TRUNCATE TABLE 表名 # 这种方式很快，但不会产生二进制日志，无法回复数据
 
 ALTER TABLE 表名 DROP FOREIGN KEY '外键名';	# 删除外键
+SET foreign_key_checks = 0;ALTER TABLE your_table ADD CONSTRAINT ...;SET foreign_key_checks = 1; # 如果添加外键的时候太慢可以尝试暂时关闭外键检查，当然得确保没有不合法的外键存在
 ALTER TABLE 表名 ADD 字段名 属性 AFTER 字段名;	# 给表添加字段
 ALTER TABLE 表名 ADD `id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST; # 添加字段到最前面
 ALTER TABLE 表名 DROP COLUMN 字段名;	# 给表删除字段
@@ -548,7 +549,7 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 
 ### 索引类型
 
-- 注意，外键并不会创建索引 
+- 外键的约束RESTRICT和NO ACTION的效果是一样的，如果子表中存在引用父表的记录，则不允许对父表进行更新或删除操作。
 
 #### 唯一索引
 
@@ -591,6 +592,8 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 - **Access denied for user 'root'@'localhost'**
 
   出现这种情况，可能是给用户分配了'%'权限，而没有分配localhost权限，我去...
+
+- **mysqldump: Couldn't execute 'FLUSH TABLES WITH READ LOCK': Access denied for user**: 在mysqldump的时候需要添加参数`--set-gtid-purged=OFF`
 
 - **WorkBench保持连接不断开**: `Edit->Preferences->SQL Editor，设置DBMS connection read time out(in seconds)`
 
@@ -650,6 +653,8 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 
 * **mysqldump出现Access denied for user xxx when using LOCK TABLES**: 可以在`mysqldump`命令添加上`--single-transaction`参数
 
+* **mysqldump出现 Error: 'Access denied; you need (at least one of) the PROCESS privilege(s) for this operation' when trying to dump tablespaces**：添加参数`--no-tablespaces`
+
 * **mysql8使用group出现only_full_group_by错误**: 执行一下sql命令即可:
 
   ```mysql
@@ -682,6 +687,16 @@ SELECT * FROM `table` WHERE FROM_BASE64(`field`) LIKE '%test%'; # 查询base64�
 - **Different lower_case_table_names settings for server ('0') and data dictionary ('1')**: 这是因为Mysql8开始新增了`data dictionary`的概念，数据初始化时会使用`lower-case-table-names=0`，数据库启动时则会读取`my.cnf`文件中的值，如果两者不一致就会报错，这时候可以直接修改`my.cnf`中的`[mysqld]`下添加`lower_case_table_names = 1`
 - **ERROR: Specified key was too long; max key length is 3072 bytes**: 一般是因为要做索引的字段长度太长了，但是有时候看起来并不长，仍然报错，那么可以在配置文件的`[mysqld]`下添加`innodb_large_prefix=1`，然后重启mysql即可
 - **mysqldump出现unknown information_schema(1109) COOLUMN_STATISTICS**: 需要添加参数`--skip-column-statistics`
+- **Mac使用mysqldump**: 
+
+  ```shell
+  brew install mysql
+  
+  # 如果在dump的时候报错does not include mysql_native_password需要降级
+  brew install mysql-client@8.4
+  brew unlink mysql
+  brew link mysql-client@8.4
+  ```
 
 ##### 扩展阅读
 
