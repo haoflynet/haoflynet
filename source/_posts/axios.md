@@ -17,7 +17,7 @@ axios({
   data: {}, // POST的data
   timeout: 0, 	// 超时时间，默认为0，表示不超时
   responseType: 'json',	// 默认接收JSON格式的响应
-  maxRedirects: 5, // 默认重试次数为5
+  maxRedirects: 5, // 默认重定向次数为5
   onUploadProgress: function (progressEvent) {}, // 上传前执行
   onDownloadProgress: function (progressEvent) {},	// 下载前执行
   validateStatus: function (status) {

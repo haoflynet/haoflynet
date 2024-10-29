@@ -1,7 +1,7 @@
 ---
 title: "React Native手册"
 date: 2017-05-27 14:59:00
-updated: 2023-05-20 08:24:00
+updated: 2024-10-10 08:24:00
 categories: js
 ---
 
@@ -631,6 +631,14 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 
 - 弹出原生的分享组件，例如分享airdrop，保存到文件夹
 
+### [react-native-swipeable-list](https://docs.swmansion.com/react-native-gesture-handler/docs/components/swipeable/)
+
+- [esthor/react-native-swipeable-list](https://github.com/esthor/react-native-swipeable-list): 官方推荐的这个，但是很多错误，不能用了
+
+- 人家[react-native-gesture-handler/swipeable](https://docs.swmansion.com/react-native-gesture-handler/docs/components/swipeable/)直接就可以用了
+
+- 可以左滑菜单的列表
+
 ### ~~react-native-snap-carousel~~
 
 - 触摸滚动组件，但是已经几年没维护了，且可以直接用原生的[VirtualizedList](https://reactnative.dev/docs/virtualizedlist)替代
@@ -639,6 +647,11 @@ axios.get('...').then((response)=>(console.log(response.data))); // 得到响应
 
 - 比如电话号码输入的mask模式
 - 如果出现**TypeError: null is not an object (evaluating 'RNTextInputMask')in v3.0.0**，需要添加这行配置到podfile文件: ``pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text', :modular_headers => true``
+
+### [swiper](https://www.npmjs.com/package/swiper)
+
+- 轮播图片
+- 非常强大，各种框架几乎都支持
 
 ### [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started/)
 

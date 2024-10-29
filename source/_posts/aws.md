@@ -336,6 +336,14 @@ sudo unmount 本地目录
 
 - 注意只有上传的data为json的时候才能支持json字段直接查询
 - 如果是lambda函数，`console.log`输出对象的时候层级多了的时候会输出成`Object`字符串，这时候只需要在`console.log`最外层加一个`JSON.stringify(data, null, '')`即可，注意只能加在最外层，否则里面那个字段就是字符串了
+- 如果需要搜集内存、磁盘或者监控自定义的文件等，需要安装`amazon-cloudwatch-agent`来收集指标，安装后运行/`opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard`可以以交互的方式生成配置文件，生成后可以这样启动:
+
+  ```shell
+  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
+      -a start \
+      -m ec2 \
+      -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json (e
+  ```
 - 日志查询语法
 
 ```shell
