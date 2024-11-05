@@ -110,6 +110,8 @@ conn.sobject('MyCustomObject__History').find({
 
 ## [jsforce sdk](https://jsforce.github.io/)
 
+- v3版本出来后，之前的版本好像对于部分账号会登陆失败，升级一下，改动不大，参考[MIGRATING_V1-V3](https://github.com/jsforce/jsforce/blob/main/MIGRATING_V1-V3.md)
+
 ### 配置连接
 
 ```javascript
