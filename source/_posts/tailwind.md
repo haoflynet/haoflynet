@@ -5,6 +5,7 @@ updated: 2022-12-30 18:00:00
 categories: nodejs
 ---
 - 基本上是我现在开发新旧项目的必备工具了
+- [railly.dev](https://customizer.railly.dev/): 自定义tailwindcss变量的网站
 
 ## 安装配置
 
