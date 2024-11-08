@@ -435,6 +435,7 @@ try {
 ```javascript
 // 同步方式
 var xmlHttp = new XMLHttpRequest();
+xmlHttp.timeout = 600000; // 设置超时时间
 xmlHttp.open("GET", "https://haofly.net", false);
 xmlHttp.send();
 console.log(xmlHttp.responseText);

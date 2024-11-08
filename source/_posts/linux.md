@@ -822,6 +822,7 @@ usermod -s /usr/sbin/nologin ftpuser && echo "/usr/sbin/nologin" >> /etc/shells	
 # 常用命令
 ftp domain ip	# 连接目标ftp服务器
 sftp user@ip # 连接目标sftp服务器
+sftp -i /path/to/your/private-key.pem username@hostname_or_ip # 使用pem文件登录目标sftp服务器
 put a.txt		# 上传当前目录的一个文件
 mput ./*		# 同时上传多个文件
 dir	# 列出当前目录下的文件

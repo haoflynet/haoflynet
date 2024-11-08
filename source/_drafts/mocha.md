@@ -59,7 +59,7 @@ expect(1).to.be.true
 expect(0).to.be.false
 expect(null).to.be.null
 expect(undefined).not.to.be.null
-expect(null).to.not.be.undeinfed
+expect(null).to.not.be.undefined
 expect(4).not.to.be.NaN
 expect([]).to.be.empty
 expect('').to.be.empty

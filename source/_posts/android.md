@@ -1,7 +1,7 @@
 ---
 title: "Android开发手册"
 date: 2015-03-18 09:12:39
-updated: 2023-10-10 15:37:00
+updated: 2024-11-05 15:37:00
 categories: system
 ---
 ## [Android API Levels版本](https://apilevels.com/)
@@ -54,6 +54,57 @@ categories: system
 # 执行下面命令然后重启模拟器即可
 adb shell settings put global http_proxy $(ipconfig getifaddr en0):7890
 ```
+
+### 支持同时构建不同的APP
+
+- 常用于同时生成测试和生产环境的APP
+
+- 在build.gradle (:app)中添加如下配置:
+  ```java
+  // 通过构建hook自动切换.env文件
+  applicationVariants.all { variant ->
+          variant.preBuild.doFirst {
+              def flavorName = variant.flavorName
+              def envFileName = ".env"
+  
+              def flutterRootDir = rootProject.projectDir.parent
+  
+              if (flavorName == "app1") {
+                  envFileName = "$flutterRootDir/env/app1.env"
+              } else if (flavorName == "app2") {
+                  envFileName = "$flutterRootDir/env/app2.env"
+              }
+  
+              def envFile = new File(envFileName)
+              def destinationFile = new File("$flutterRootDir/.env")
+  
+              if (envFile.exists()) {
+                  println "Copying ${envFile.toPath()} to ${destinationFile.toPath()}"
+                  Files.copy(envFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
+              } else {
+                  println "Error: ${envFileName} does not exist."
+                  throw new GradleException("Missing environment file: ${envFileName}. Build terminated.")
+              }
+          }
+      }
+  
+      productFlavors {
+          app1 {
+              dimension "app"
+              applicationId "com.example.app1"
+              resValue "string", "app_name", "App 1"
+              buildConfigField "String", "ENV_FILE", "\"app1.env\""
+          }
+          app2 {
+              dimension "app"
+              applicationId "com.example.app2"
+              resValue "string", "app_name", "App 2"
+              buildConfigField "String", "ENV_FILE", "\"app2.env\""
+          }
+      }
+  ```
+
+  
 
 ## Google Play Console的使用
 
