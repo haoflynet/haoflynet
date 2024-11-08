@@ -1,7 +1,7 @@
 ---
 title: "Xcode / iOS开发手册"
 date: 2022-09-16 08:32:00
-updated: 2024-06-27 23:57:00
+updated: 2024-11-05 23:57:00
 categories: Mac
 ---
 
@@ -10,6 +10,20 @@ categories: Mac
 ### 模拟器打开keyboard键盘
 
 - 默认是不会弹出键盘的，直接用电脑的键盘进行输入，但是有时候想要调试一下键盘弹出的效果，可以点击顶部菜单`I/O -> Keyboard -> Toggle Software Keyboard`
+
+### 构建hook
+
+- Pre-action和Post-actions，在顶部中间scheme中选择`Edit Scheme`，然后选择Build的`Pre-actions`，即可输入script，另外如果要获取当前的工程目录，可以使用`${PROJECT_DIR}`，但是Provide build settings from需要选择当前的Target
+
+### 支持构建多个不同的APP
+
+- 例如给开发和测试环境构建不同的APP
+
+1. 首先在XCode中的TARGETS选择当前的TARGET，右键Duplicate
+2. 点击顶部中间的Scheme，编辑新的Scheme，可以在新的Scheme的Build Pre-action中通过脚本来自动修改环境变量
+3. 选择当前Target，在`Signing & Capabilities`，修改`Bundle Identifier`，这样才能生成不同的APP
+4. 修改Info中的Bundle display name，即APP的名称
+5. 要运行不同的APP的时候只需要切换顶部中间的schemes即可
 
 ## [Apple设计资源](https://developer.apple.com/design/resources/)
 
