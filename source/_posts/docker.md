@@ -1,7 +1,7 @@
 ---
 title: "Docker 手册"
 date: 2015-12-10 07:51:39
-updated: 2024-10-22 14:23:00
+updated: 2024-11-10 14:23:00
 categories: tools
 ---
 在Docker里面，镜像和容器是两个概念，镜像类似操作系统的ISO，而容器则是以该ISO为基础生成而来的。
@@ -408,4 +408,19 @@ nginx -g 'daemon off;' # 启动nginx
     RUN (crontab -l ; echo "*/5 * * * * /usr/bin/python3 /root/main.py >> /tmp/cron.log 2>&1") | crontab	# 程序运行后定时任务会自动执行了
     ```
 
-    w
+- **Docker无法使用export的代理**: 尝试这样做
+
+    ```shell
+    sudo systemctl status docker # 检查docker的配置目录
+    sudo mkdir -p /etc/systemd/system/docker.service.d
+    sudo vim /etc/systemd/system/docker.service.d/proxy.conf # 输入你的代理，如下
+    [Service]
+    Environment="HTTP_PROXY=http://proxy.server.com:80"
+    Environment="HTTPS_PROXY=http://proxy.server.com:80"
+    
+    # 为了生效还需要执行
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker.service
+    ```
+
+    

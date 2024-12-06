@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2023-10-12 08:50:30
+updated: 2024-11-10 08:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -41,7 +41,7 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
     "someTool": "./bin/someTool.js"	// 当然这也可以直接在scripts里面写成./node_modules/bin/someTool.js
   },
   "engines": {	// 指定了运行环境
-    "node": ">=0.10.3 <0.12",
+    "node": ">=0.10.3 <0.12", // 强制指定node版本 "node": ">=18"
 		"npm": "~1.0.20"
   },
   "dependencies": {	// 指定项目运行所依赖的模块

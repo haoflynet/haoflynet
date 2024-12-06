@@ -51,6 +51,7 @@ categories: system
 
 ```shell
 export ALL_PROXY=socks5://127.0.0.1:1080	# homebrew走ss代理
+brew list # 查看已经安装的包
 ```
 
 ### 查看每个CPU的负载/GPU负载

@@ -1,7 +1,7 @@
 ---
 title: "axios网络请求"
 date: 2021-09-23 18:32:00
-updated: 2023-05-22 16:34:00
+updated: 2024-11-10 16:34:00
 categories: javascript
 ---
 
@@ -145,6 +145,10 @@ axios({
     response.data.pipe(fs.createWriteStream('aaa.jpg'))
   });
 ```
+
+## Axios 自动重试
+
+- 只需要安装[axios-retry](https://www.npmjs.com/package/axios-retry)即可
 
 ## Troubleshooting
 
