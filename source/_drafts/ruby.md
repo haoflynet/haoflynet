@@ -19,5 +19,8 @@ rvm implode # 卸载rvm
 # 还有一个工具叫rbenv
 sudo apt install rbenv -y
 rbenv install 3.0.2	# 安装指定版本的rub
+
+# 最终我还是没有成功地在Mac上安装指定版本的Ruby最后用docker来弄环境了, IDEA连接docker作为开发环境原来这么方便，都不用自己建容器
 ```
 
+## [SDK仓库](https://rubygems.org/)
