@@ -15,15 +15,50 @@ categories: Mac
 
 - Pre-action和Post-actions，在顶部中间scheme中选择`Edit Scheme`，然后选择Build的`Pre-actions`，即可输入script，另外如果要获取当前的工程目录，可以使用`${PROJECT_DIR}`，但是Provide build settings from需要选择当前的Target
 
+### IAP内购测试
+
+- 需要在App Store Connect后台添加Sandbox Test Accounts
+- 只能在真机测试，Settings -> App Store -> SANDBOX ACCOUNT登陆上面创建的account
+
+### TestFlight测试
+
+- 点击XCode -> Product -> Archive创建Archive后点击Distribute App按钮，然后选择TestFlight Internal Only，然后Distibute确定
+
 ### 支持构建多个不同的APP
 
 - 例如给开发和测试环境构建不同的APP
 
 1. 首先在XCode中的TARGETS选择当前的TARGET，右键Duplicate
+
 2. 点击顶部中间的Scheme，编辑新的Scheme，可以在新的Scheme的Build Pre-action中通过脚本来自动修改环境变量
+
 3. 选择当前Target，在`Signing & Capabilities`，修改`Bundle Identifier`，这样才能生成不同的APP
+
 4. 修改Info中的Bundle display name，即APP的名称
-5. 要运行不同的APP的时候只需要切换顶部中间的schemes即可
+
+5. 为了防止pod install的时候仅更新默认的target，其他的target的build phrases被破坏，需要在podfile里面添加配置
+   ```shell
+   # 下面配置仅针对 flutter，其他的项目，可以根据当前的podfile内容，复制出多个target
+   target 'Runner' do
+     use_frameworks!
+     use_modular_headers!
+   
+     flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+     target 'RunnerTests' do
+       inherit! :search_paths
+     end
+   end
+   
+   # 有多个target就写多个target
+   target '{TARGET_NAME}' do
+     use_frameworks!
+     use_modular_headers!
+   
+     flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+   end
+   ```
+
+6. 要运行不同的APP的时候只需要切换顶部中间的schemes即可
 
 ## [Apple设计资源](https://developer.apple.com/design/resources/)
 
@@ -91,6 +126,8 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
 - **set the code signing identity value to apple development in the build settings editor**: 在`TARGETS -> Build Settings -> All`中搜索`signing` 即可，修改对应的值为`apple development`即可
 
 - **sandbox账户无法登录，提示要进入设置收验证码**: 无论怎样我都收不到验证码， 最后重新建了一个sandbox账户就可以了，sandbox在点击登录按钮登录的时候按理说是不用验证码的，直接就可以登录了。当然，必须得退出本机自身的apple id才行
+
+- **Sandbox沙盒账户在app store中输入密码登陆后无响应，无法登陆**: 尝试在Settings -> App Store中的SANDBOX ACCOUNT中进行登陆
 
 - **添加了测试设备后，Xcode依然无法安装**: 可能是因为Xcode没有及时更新云端的`Provisioning Profile`可以删除目录`~/Library/MobileDevice/Provisioning`，然后打包时候勾选`Automatically manage signing`，Xcode就会重新拉取了
 

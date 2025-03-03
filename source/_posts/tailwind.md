@@ -38,7 +38,10 @@ module.exports = {
       },
       boxShadow: {
       	'md-all': '4px 4px 6px -1px rgba(0, 0, 0, 0.1), -2px 2px 4px -1px rgba(0, 0, 0, 0.06)'	// 四周阴影
-      }
+      },
+      color: {
+        'mine': '#7383bf', // 这样使用bg-mine, text-mine
+      },
       height: {
       	'full-vw': '100vw'
     	},
@@ -206,6 +209,9 @@ p-0	# padding: 0px
 p-px # padding: 1px
 p-0.5 # padding: 0.125rem
 p-1 # padding: 0.25rem，1/2/3/4/5/6(1.5rem)/7/8/9/10/11/12(3rem=30px)/14(3.5rem)/16(4rem)/20(5rem)/24/28/32(8rem)/36/40(10rem)/44/48/52/56/60/64/72/80(20rem)/96(24rem)
+
+mx-1 # horizontal margin
+my-2 # vertical margin
 ```
 
 ### Sizing

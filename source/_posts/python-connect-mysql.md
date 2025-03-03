@@ -1,7 +1,7 @@
 ---
 title: "Python3 使用MySQL Connector操作数据库"
 date: 2015-11-04 17:48:41
-updated: 2024-03-26 18:45:22
+updated: 2025-01-10 18:45:22
 categories: 编程之路
 ---
 ## 安装方法
@@ -20,6 +20,21 @@ pip install mysqlclient
 
 # Mac m1/Apple Silicon
 export ARCHFLAGS="-arch x86_64"
+
+
+# 终于有新的库了
+pip install mysql-connector-python
+# 如果是Django，那么修改一下ENGINE
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'your_database_name',
+        'USER': 'your_username',
+        'PASSWORD': 'your_password',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
 ```
 <!--more-->
 

@@ -1,7 +1,7 @@
 ---
 title: "React Query 使用手册"
 date: 2022-08-05 18:02:30
-updated: 2022-08-29 22:40:00
+updated: 2025-02-06 22:40:00
 categories: nodejs
 ---
 - 非常好用的query库，目的是为了缓存后端api的结果，不用像以前一样，手动将结果一个一个存储到store，并且提供了一些非常好用的hook方法
@@ -55,6 +55,8 @@ const {
   fetchStatus, // 可以是fetching、paused、idle
   isFetching, // 如果是在后台获取数据，可以用这个来表示获取中的状态
   isLoading, isError, isSuccess} = useQuery(['todos'], fetchTodoList)}
+  
+useQuery({queryKey: ['categories'], queryFn: getCategories}) // 如果是TypeScript需要指明参数key
 
 useQuery(['todo', todoId, { preview: true }], ...)	// 复杂的key
          
@@ -128,6 +130,12 @@ const userQueries = useQueries({
 const mutation = useMutation(newTodo => {
   return axios.post('/todos', newTodo)
 })
+
+const loginMutation = useMutation({
+  mutationFn: async () => await login(username, password), // 如果是typescript可以这样定义
+  onSuccess: (data: LoginResponse) => {}
+});
+
 const mutation = useMutation(() => {}, {
   onMutate: variables => {return newVariables},
   onError: (error, variables, context) => {},
