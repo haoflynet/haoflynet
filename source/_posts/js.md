@@ -1,7 +1,7 @@
 ---
 title: "JavaScript & Ajax & jQuery & NodeJS 教程"
 date: 2015-02-07 11:52:39
-updated: 2024-07-17 08:18:00
+updated: 2025-03-14 08:18:00
 categories: frontend
 ---
 # JavaScript & Ajax & jQuery
@@ -1309,6 +1309,7 @@ Arrays.from([12, 22, 33]).some(item => item > 30)
 ```javascript
 _.sortBy([{a: 123}, {a:222}], ['a'])
 _.sortBy([{a: 123}, {a:222}], function(o) => o.a)
+_.orderBy(claims, (c) => Number(c.total_patient_amount), 'desc');	// 如果需要降序就用orderBy
 ```
 
 ##### _.startCase

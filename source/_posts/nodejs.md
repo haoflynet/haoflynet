@@ -1,7 +1,7 @@
 ---
 title: "node.js教程"
 date: 2015-12-07 10:02:30
-updated: 2024-11-10 08:50:30
+updated: 2025-03-05 08:50:30
 categories: frontend
 ---
 - [`nodejs`各个版本当前的维护情况](https://nodejs.org/en/about/releases/)(10.x已经不再维护，12.x在2022年4月30日停止维护，14.x在2023年4月30日停止维护，16.x在2024年4月30日停止维护)。个人觉得当前应该使用的版本是`MAINTENANCE LTS START`的，`ACTIVE LTS START`应该没有`MAINTENANCE LTS START`的稳定，所以现在直到`2022-10-18`都应使用`14.x`
@@ -54,6 +54,35 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
   }
 }
 ```
+
+### 同一个repo多个项目共享文件
+
+1. 可以将共享的方法或者文件放到一个shared目录下，并且将shared设置为一个单独的package，这样目录结构就是这样的:
+   ```shell
+   project/
+     proj1/
+       package.json
+     proj2/
+     	package.json
+     shared/
+       package.json
+   ```
+
+2. 然后将shared/package.json的`package.json`中的`name`设置为`@proj/shared`
+
+3. 接着在proj1和proj2中都可以这样引入到`package.json`中
+   ```json
+   {
+     "dependencies": {
+       "@proj/shared": "file:../shared"
+     }
+   }
+   ```
+
+4. 然后在proj1和proj2中可以这样使用了:
+   ```javascript
+   import { sendEmail } from "@nsc/shared/emailUtil";
+   ```
 
 ## 常用语法
 

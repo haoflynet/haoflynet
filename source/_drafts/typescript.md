@@ -1,3 +1,22 @@
+## 常用声明
+
+### Record键值对
+
+```javascript
+Record<string, {key: string; value: string}[]> 
+// 等价于:
+{
+  [key: string]: { key: string; label: string }[];
+}
+```
+
+
+
+
+
+
+
+
 ```
 TS7031: Binding element label implicitly has an any type.
 
