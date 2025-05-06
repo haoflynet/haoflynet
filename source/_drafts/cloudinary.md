@@ -6,11 +6,13 @@ categories: Javascript
 
 # Deliver remote media files
 
-不用API直接传照片到cloudinary，可以限制domain
+- 不用API而是直接通过URL自动将照片传到到cloudinary，可以限制domain，直接后面跟自己真实的图片路径即可。例如:
 
-https://res.cloudinary.com/demo/image/fetch/https://upload.wikimedia.org/wikipedia/commons/1/13/Benedict_Cumberbatch_2011.png
+  https://res.cloudinary.com/demo/image/fetch/https://upload.wikimedia.org/wikipedia/commons/1/13/Benedict_Cumberbatch_2011.png
 
-直接后面跟自己真实的图片路径即可
+- 设置方法: `Settings -> Security`然后将指定的域名添加到`Allowed fetch domains`，然后Save即可
+
+
 
 
 

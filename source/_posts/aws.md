@@ -235,25 +235,10 @@ Block all public access
     "Id": "Policy1606902711529",
     "Statement": [
         {
-            "Sid": "Stmt1606902709971",
             "Effect": "Allow",
             "Principal": "*",
             "Action": "s3:GetObject",
             "Resource": "arn:aws:s3:::mybucketname/path1/*"
-        },
-        {
-            "Sid": "Stmt1606902709972",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::mybucketname/path2/*"
-        },
-        {
-            "Sid": "Stmt1606902709973",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::mybucketname/path3/*"
         }
     ]
 }
@@ -484,6 +469,19 @@ exports.handler = async (event, context) => {
 - [开启创建存储过程的功能](https://aws.amazon.com/premiumsupport/knowledge-center/rds-mysql-functions/?nc1=h_ls)
 - [RDS MySQL中各种日志事件的详解](https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Tuning.wait-events.html)
 - **RDS出现too many connections错误**: 默认情况下，rds的最大连接数是根据内存计算得出的，可以在参数组里查看其计算方式，另外可以在mysql里执行`select @@max_connections`得到具体的数值。默认情况1核2G的实例我这边看最大值是45。可以自己创建一个新的参数组进行修改
+
+### Aurora Postgresql
+
+- 如果要开启uuid扩展，执行下面命令即可:
+  ```shell
+  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+  ```
+
+- 如果要开启vector扩展，执行下面命令即可:
+
+  ```shell
+  CREATE EXTENSION vector;
+  ```
 
 ## IAM权限
 

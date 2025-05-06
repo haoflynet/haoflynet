@@ -1,5 +1,41 @@
 - [测试卡号及账号](https://stripe.com/docs/testing)
 
+## Product和Pricing
+
+- 如果要按量计费，并且需要分层计费，那么有两种模式
+  - tiers_mode设置为graduated(阶梯递增计费): 例如1-500区间单价$0.80, 501-1000区间单价$0.64。只能通过api来设置
+  - Volume: 根据最终用量，套用单一的价格，这就是默认方式
+
+- 按量计费需要通过[meters](https://docs.stripe.com/billing/subscriptions/usage-based/meters/configure)来设置数量
+
+  - 数量的聚合方法有三种:
+    - Sum: 每一次设置都是相加
+    - Count: 计算call的次数
+    - Last: 以最后一次设置为准
+
+
+```javascript
+// 搜索产品
+await stripe.products.list({
+  limit: 10,	// 默认是10，最大是100
+  expand: ['data.default_price'] // 同时将默认的price的详细信息拿到
+});
+
+// 按量计费设置数量
+stripe.billing.meterEvents.create({
+  event_name: priceEventName,
+  timestamp: Math.floor(Date.now() / 1000),
+  payload: {
+    stripe_customer_id: customerId,
+    value: quantity.toString(),
+  },
+});
+```
+
+  
+
+
+
 ## 支付方式
 
 ### [Payment link](https://stripe.com/docs/payment-links)
