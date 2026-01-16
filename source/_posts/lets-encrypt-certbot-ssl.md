@@ -31,7 +31,7 @@ categories: server
    
    # for centos
    yum install epel-release -y && yum update -y
-   yum install certbot certbot-nginx
+   sudo yum install certbot certbot-nginx
    
    # 如果各种安装方式都不行，比如一些无法解决的依赖问题no module named openssl, no module named cryptography，那么尝试安装一个独立的python3版本
    pip3 install certbot certbot-nginx

@@ -1,7 +1,7 @@
 ---
 title: "Linux 手册"
 date: 2013-09-08 11:02:30
-updated: 2023-09-11 17:52:30
+updated: 2025-04-29 17:52:30
 categories: system
 ---
 # Linux手册
@@ -301,6 +301,9 @@ chmod g+x filename	# 给group增加可执行权限
 chmod g+xw filename
 chmod o+w filename	# 给其他用户增加可写权限
 chmod g-x filename	# 给group移除可执行权限
+
+# 用结构化的方式展示文件夹结构
+tree -I node_modules # -I命令可以忽略指定目录
 ```
 
 #### ssh
@@ -381,6 +384,20 @@ sshd:IP
 
 ```shell
 openssl x509 -in cert.pem -noout -text	# 打印出证书的内容
+```
+
+##### SSL隧道
+
+```shell
+# 使用jump server来代理某一个端口，如果仅该server能否访问RDS，我们可以这样设置，然后本地访问127.0.0.1:3306就能够直接访问该数据库了
+# 在~/.ssh/config中添加
+Host jump
+    HostName xxx.xxx.xxx.xxx
+    User ubuntu
+    identityFile ~/.ssh/id-rsa.pem
+    LocalForward 3306 xxxxxxxx.us-east-1.rds.amazonaws.com:3306
+    ServerAliveInterval 5
+    ServerAliveCountMax 3
 ```
 
 #### 包管理
@@ -473,12 +490,17 @@ sudo passwd username
 # 批量修改用户密码
 chpasswd < user.txt	# 其中user.txt是用户名和密码的对应文件，格式为username:password
 
-# 给用户添加sudo权限，以下这种方法不可采取，因为改错了以后就不能使用sudo命令了，只能通过单用户模式去修改正确，最好的方式是使用`pkexec visudo`命令进行修改。
+# 给用户添加sudo权限，以下这种方法不可采取，因为改错了以后就不能使用sudo命令了，只能通过单用户模式去修改正确，最好的方式是使用`pkexec visudo`或者`sudo visudo`命令进行修改，因为这个命令会验证语法
 vim /etc/sudoers 修改如下内容(同时，可以像nginx那样将配置分开/etc/sudoers.d/针对某个用户)
 # User privilege specification  
 root    ALL=(ALL:ALL) ALL      # 在这一行下面写  
 username1 ALL=(ALL:ALL) ALL    # 该用户可以执行所有sudo操作
 username2 ALL=NOPASSWD:/usr/bin/git # 该用户可以执行'sudo git'的操作
+
+# 如果上述修改后，使用sudo仍然需要密码，可以尝试修改这个
+echo 'Defaults:liang runas_default=root, !authenticate' | sudo tee /etc/sudoers.d/my-user-nopass > /dev/null
+echo 'liang ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers.d/my-user-nopass > /dev/null
+sudo chmod 440 /etc/sudoers.d/my-user-nopass
 
 cat /etc/passwd  	# 查看所有用户
 cat /etc/group		# 查看所有用户组
@@ -497,6 +519,7 @@ su - www -c "php artisan"	# 以指定用户执行命令
 echo > /var/log/wtmp	# 成功登录的用户
 echo > /var/log/btmp	# 尝试登录的用户信息
 echo > /var/log/lastlog	# 最近登录的用户信息
+
 ```
 
 #### 系统相关

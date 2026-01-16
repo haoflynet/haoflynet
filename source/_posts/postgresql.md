@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL 使用手册"
 date: 2021-03-30 08:32:00
-updated: 2024-09-04 12:45:00
+updated: 2025-04-19 12:45:00
 categories: Database
 ---
 
@@ -89,6 +89,8 @@ select pg_is_in_recovery()	# 查看当前数据库时候是从库
 \du	# 获取当前系统所有的角色roles
 SELECT * FROM pg_roles;	# 同上
 SELECT * FROM information_schema.role_table_grants WHERE grantee = '角色名';	# 查询一个角色在哪些表有权哪些权限，也可以用\z命令查看不过没这么直观
+
+SHOW deadlock_timeout;	# 查看deadlock timeout时间
 ```
 
 ## 增删该查

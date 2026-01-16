@@ -1,7 +1,7 @@
 ---
 title: "AWS 常用配置"
 date: 2021-01-22 14:40:00
-updated: 2024-07-22 09:54:00
+updated: 2025-12-09 09:54:00
 categories: Javascript
 ---
 
@@ -80,7 +80,12 @@ categories: Javascript
    sudo growpart /dev/xvda 1
    lsblk	# 验证xvda1的大小是否已经变化，不过此时用df -h依然看不出变化
    
+   # ubuntu/centos使用
    sudo resize2fs /dev/xvda1	# 此时用df -h就能看到变化了，扩容过程也完成了
+   
+   # ami image使用
+   df -T / # 确定文件系统是xfs而不是ext
+   sudo xfs_growfs /
    ```
 
 ### EC2增加磁盘
@@ -329,6 +334,41 @@ sudo unmount 本地目录
       -m ec2 \
       -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json (e
   ```
+- 配置cloudwatch搜集指定的日志到cloudwatch中
+
+  ```shell
+  # 安装agent
+  curl -O https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+  sudo dpkg -i -E ./amazon-cloudwatch-agent.deb
+  sudo systemctl enable amazon-cloudwatch-agent
+  
+  # 添加配置文件
+  sudo vim /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+  {
+      "logs": {
+          "force_flush_interval": 5,
+          "logs_collected": {
+              "files": {
+                  "collect_list": [
+                      {
+                          "file_path": "/var/www/html/storage/logs/log-*.log",
+                          "log_group_name": "/project/production",
+                          "log_stream_name": "{instance_id}-{project}",
+                          "timestamp_format": "%Y-%m-%d %H:%M:%S",
+                          "auto_removal": true
+                      }
+                  ]
+              }
+          }
+      }
+  }
+  
+  # 启动agent
+  sudo systemctl enable amazon-cloudwatch-agent && sudo systemctl start amazon-cloudwatch-agent
+  
+  # 查看日志
+  journalctl --follow -u amazon-cloudwatch-agent
+  ```
 - 日志查询语法
 
 ```shell
@@ -337,9 +377,36 @@ fields @timestamp, extra_data.type as type # 指定需要显示的字段
 | filter @message LIKE "abc" # 模糊查询
 | filter data.permanentId =~ /(?i)274a680d-6514-4e1f-9aa0-d06796646eE2/ # 忽略大小写
 | filter @message NOT LIKE "def"
+| dedup type # 按照某个字段去重
 | sort time asc # 按时间增序排序
 | limit 100
 ```
+
+- 分组查询
+
+  ```shell
+  # 按照logStream字段就行分组
+  fields @logStream
+  | stats count() as log_count by @logStream
+  | earliest(field1) # 取分组后的第一条数据作为earliest
+  | latest(field1) # 取分组后的最后一条数据作为latest
+  | sort log_count desc
+  | limit 100
+  ```
+
+- 根据cloudwatch上的日志创建alarm
+
+  - 需要选择指定的log group，然后进入Metric filters，给log group创建metric filter
+
+  - metric filter的语法有点特殊，如果是简单的匹配到没问题，稍微有点复杂的话就有点麻烦，例如下面的
+    ```shell
+    # 不区分大小写的error，但是不包含其他的字符串
+    [(w1="*ERROR*" || w1="*error*" || w1="*Error*") && w1!="*[Pool Stats]*"]
+    ```
+
+  - 创建完成后直接选中该filter，然后点击create alarm即可
+    
+
 
 ## ACM/AWS Certificate Manager
 
@@ -433,11 +500,15 @@ email: $email
 
 - **注意如果有异步函数，一定要await它的返回，否则可能会在下一次触发的时候才执行**
 
+- 如果是AWS的Lambda，那么最好的初始化以及部署工具是官方的[aws-sam-cli](https://github.com/aws/aws-sam-cli)
+  
+  - 如果是express，那么千万不要用aws-serverless-express(5年没维护了)，最好用@codegenie/serverless-express
+  
 - 发现一个比较好用的库，可以实现打包、部署等操作: [motdotla/node-lambda](https://github.com/motdotla/node-lambda)
 
   - 但是不是每种nodejs的库都能直接打包，比如nestjs，可以使用[nextjs-lambda](https://github.com/sladg/nextjs-lambda)打包成lambda，但是它会生成多个layers，并且同样会用到cloudfront和S3，我不如直接把生成的静态站点out目录上传到S3，然后用cloudfronted代理静态站点
 
-- nestjs转换为aws lambda 可以参考[Nestjs 使用手册](https://haofly.net/nestjs)，但是最好别用nestjs做lambda，性能真的不行。简单点，用koa.js就行了
+- nestjs转换为aws lambda 可以参考[Nestjs 使用手册](https://haofly.net/nestjs)，但是**最好别用nestjs做lambda**，性能真的不行。简单点，用koa.js就行了
 
 - 如果需要安装依赖，要么创建`层`，要么就将`node_modules`一起压缩为`.zip`文件然后上传，可以使用`adm-zip`等方式压缩，但是这样会因为程序包太大而无法使用在线的内联编辑器
 
@@ -496,6 +567,15 @@ exports.handler = async (event, context) => {
 - 申请的地方在右上角-> Security credentials->Access keys
 - 但是一个用户只能申请两个
 - 如果在用，但是忘记了内容，可以尝试在`~/.aws/credentials`中查找试试
+
+### AWS OIDC
+
+- 可以使用 OIDC 联合身份验证，为已通过 OpenID Connect 兼容的身份提供者（IdP）向您的 AWS 账户中的 IAM OpenID Connect（OIDC）身份提供者进行身份验证的用户提供临时安全凭证。
+
+### Policy设置
+
+- 如果是在AWS上设置了OIDC Provider，虽然provider指向的是你自己的，你自己可以给id token添加自定义的claim(声明)，但是如果要拿来做Policy的条件，那么就只能用标准的字段：amr、aud、email、oaud、sub，可以用他们控制Role的access权限。参考[IAM 和 AWS STS 条件上下文密钥](https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html)，而amr、aud、sub只能在trust policy中使用
+- 如果条件允许，可以将sub的值用冒号分隔，将role等信息加进去
 
 ## DocumentDB (MongoDB)
 
@@ -754,6 +834,10 @@ echo "service codedeploy-agent restart" | at -M now + 2 minute;
 
 - 用于数据仓库ETL
 - 有一种不需要获取全部数据的方法叫下推优化，有助于优化性能https://docs.aws.amazon.com/zh_cn/glue/latest/dg/aws-glue-programming-pushdown.html，注意如果是JDBC的连接方式，优化方式不一样
+
+## Redshift
+
+- 如果select后的数据过大不能下载，可以在SQL里面直接将数据上传到S3，参考[Unloading data to Amazon S3](https://docs.aws.amazon.com/redshift/latest/dg/t_Unloading_tables.html)
 
 ## 开发
 

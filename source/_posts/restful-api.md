@@ -131,6 +131,37 @@ https://api.example.com/v1/
     * PATCH /collection/resource：返回完整的资源对象
     * DELETE /collection/resource：返回一个空文档
 
+## 响应格式推荐
+
+### 单个item
+
+```json
+{
+  "data": {}
+}
+```
+
+### item列表
+
+```json
+{
+  "data": [{}, {}],
+  "meta": {
+    "page": 1,
+    "page_size": 10,
+    "total": 20
+  } 
+}
+```
+
+### 错误响应格式
+
+```json
+{
+  "error": "this is error message",
+}
+```
+
 # 十、Hypermedia API
 
 RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。

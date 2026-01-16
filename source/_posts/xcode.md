@@ -1,9 +1,11 @@
 ---
 title: "Xcode / iOS开发手册"
 date: 2022-09-16 08:32:00
-updated: 2024-11-05 23:57:00
+updated: 2025-05-05 23:57:00
 categories: Mac
 ---
+
+[open-source-ios-apps](https://github.com/dkhamsing/open-source-ios-apps?tab=readme-ov-file#apple-vision): 无论开发什么类型的iOS，刚上手的时候都可以参考这里的example project
 
 ## Xcode常用操作
 
@@ -60,6 +62,14 @@ categories: Mac
 
 6. 要运行不同的APP的时候只需要切换顶部中间的schemes即可
 
+### 代码折叠功能
+
+- 这种功能居然不是默认打开的，设置方法： XCode -> Settings -> Text Editing -> 勾选Code folding ribbon
+
+### 格式化代码
+
+- 菜单 -> Editor -> Structure -> Format
+
 ## [Apple设计资源](https://developer.apple.com/design/resources/)
 
 ## 图标
@@ -106,6 +116,34 @@ App需要提供图标的规格为`40/588/60/80/87/120/160/180/1024`，另外，�
   pod setup; 
   pod install;
   ```
+
+## Vision APP开发
+
+- [awesome-visionOS](https://github.com/tomkrikorian/awesome-visionOS?tab=readme-ov-file#swiftui)
+- [visionOS App Icon Web Preview](https://gnikoloff.github.io/visionos-web-app-icon-maker/): 在线制作和预览vision app的图标
+
+#### 打开预览功能
+
+- Editor -> Canvas选中即可
+
+#### 组件
+
+##### 通用属性
+
+```swift
+.hoverEffect()	// 自动响应hover效果
+.hoverEffectDisabled() // 禁止响应hover效果
+.contentShape(RoundedRectangle(cornerSize: CGSizeMake(20, 20))).hoverEffect() // hover效果默认没有圆角，可以这样设置hover的圆角，但是一定要在hoverEffect前面设置
+```
+
+##### VStack、HStack、ZStack
+
+- V代表垂直，H代表从左到右，Z代表从背景到前景
+
+##### TabView
+
+- 就是左侧的tab切换组件，默认是图标，鼠标hover的时候会显示文字
+- https://www.rudrank.com/exploring-visionos-tabview/
 
 ## TroubleShooting
 

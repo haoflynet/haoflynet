@@ -1,7 +1,7 @@
 ---
 title: "Next.js 手册"
 date: 2021-05-19 08:00:00
-updated: 2024-10-11 22:37:00
+updated: 2025-04-18 22:37:00
 categories: js
 ---
 
@@ -215,6 +215,12 @@ module.exports = {
   <a><Image ... /></a> // 如果link下需要包含image，不能直接image，外面得加一层a标签
 </Link>
 ```
+
+## Server action
+
+- 后端的function，前端直接调用
+- 这里前端默认会传送auth token，但是server action里面没有进行验证，如果需要验证我们仍然得验证一下，否则有安全问题
+- server action只有在前端import后才会暴露出来，否则仍然是一个后端的function
 
 ## 后端渲染SSR
 

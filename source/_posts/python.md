@@ -1354,6 +1354,18 @@ pip install --pre sqlalchemy	# 安装prelease版本
 sudo pip3 install scrapy -i https://pypi.douban.com/simple  # 使用豆瓣的PIP源，例如
 ```
 
+### pipx
+
+- 是一个本地的全局的包管理工具，相当于直接在全局创建了一个env环境，而不用像以前那样install -g来安装
+
+### [poetry](https://python-poetry.org/docs/#installing-with-pipx)
+
+- 另外一个最新的包管理工具
+
+```shell
+pipx install poetry
+```
+
 ### pipenv
 
 最新的包管理工具，使用`pip install pipenv`直接安装。其配置文件
